@@ -13,7 +13,7 @@
 ## Local installation
 
     $ git clone https://github.com/uktrade/great-international-ui
-    $ cd invest-ui
+    $ cd great-international-ui
     $ make
 
 ## Directory Forms
