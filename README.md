@@ -1,4 +1,4 @@
-# great-international-uo
+# great-international-ui
 [Great International UI](https://www.directory.exportingisgreat.gov.uk/)
 
 [![circle-ci-image]][circle-ci]
@@ -61,9 +61,9 @@ Form submissions are powered by [directory-forms-api](https://github.com/uktrade
 Signed cookies are used as the session backend to avoid using a database. We therefore must avoid storing non-trivial data in the session, because the browser will be exposed to the data.
 
 
-[circle-ci-image]: https://circleci.com/gh/uktrade/invest-ui/tree/master.svg?style=svg
-[circle-ci]: https://circleci.com/gh/uktrade/invest-ui/tree/master
+[circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/master.svg?style=svg
+[circle-ci]: https://circleci.com/gh/uktrade/great-international/tree/master
 
-[codecov-image]: https://codecov.io/gh/uktrade/invest-ui/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/uktrade/invest-ui
+[codecov-image]: https://codecov.io/gh/uktrade/great-international/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/uktrade/great-international
 
