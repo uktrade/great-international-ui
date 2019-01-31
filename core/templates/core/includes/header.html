@@ -1,0 +1,51 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as lang_code %}
+
+{% if language_switcher.show %}
+  {% include 'core/includes/header_language_select.html' %}
+{% endif %}
+
+<header id="invest-header">
+  <div class="header-bar">
+    <div class="container">
+      <a class="header-logo" href="{% url 'index' %}" name="{% trans 'Home' %}">
+        <img tabindex="-1" src="{% static 'images/UK-Gov_STACK_WHITE_AW.png' %}" alt="UK Government" />
+      </a>
+      <div class="language-toggle" id="language-selector-activator">
+        {% if language_switcher.show %}
+          <a href="" aria-label="Show language selector" class="LanguageSelectorDialog-Tracker">
+            <span class="lang">{{ lang_code }}</span>
+          </a>
+        {% else %}
+        <div class="not-translated">
+          <span>{% trans 'Page in English only' %}</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="header-menu">
+    <div class="container">
+      <button class="header-menu-activator" aria-expanded="false" aria-label="Toggle navigation">{% trans "Menu" %}<span></span></button>
+      <nav class="header-links-list">
+        <ul>
+          <li><a href="{% url 'index' %}"{% if active_view_name == 'index' %} class="active"{% endif %}>
+            {% trans "Home" %}
+          </a></li>
+          <li><a href="{% url 'industries' %}"{% if active_view_name == 'industries' %} class="active"{% endif %}>
+            {% trans "Industries" %}
+          </a></li>
+          <li><a href="{% url 'setup-guide' %}"{% if active_view_name == 'setup-guide' %} class="active"{% endif %}>
+            {% trans "UK setup guide" %}
+          </a></li>
+          <li><a href="{% url 'contact' %}"{% if active_view_name == 'contact' %} class="active"{% endif %}>
+            {% trans "Contact the investment team" %}
+          </a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</header>

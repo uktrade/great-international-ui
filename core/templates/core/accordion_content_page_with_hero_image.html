@@ -1,0 +1,5 @@
+{% extends 'core/accordion_content_page.html' %}
+
+{% block hero_banner %}
+  {% include 'directory_components/hero.html' with hero_text=page.heading background_image_url=page.hero_image.url %}
+{% endblock %}

@@ -1,0 +1,32 @@
+
+// Mixins
+
+@import '../partials/vars';
+
+@mixin link-focus {
+  outline: $focus-yellow solid 3px;
+
+  &:active {
+    color: $mid-blue;
+  }
+}
+
+@mixin focus {
+  outline: $focus-yellow solid 3px;
+}
+
+@mixin active {
+  background-color: $focus-yellow;
+}
+
+@mixin red-underline {
+  border-bottom: 2px solid $great-red;
+}
+
+@mixin red-trim {
+  background-color: $great-red;
+  content: "";
+  height: 4px;
+  width: 100%;
+  position: absolute;
+}

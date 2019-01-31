@@ -1,0 +1,136 @@
+
+// Footer
+
+@import '../partials/vars';
+@import '../partials/mixins';
+
+#invest-footer {
+  background-color: $great-blue;
+  padding-top: $spacing-1;
+  font-family: inherit;
+  color: $white;
+
+  .container {
+    position: relative;
+  }
+}
+
+.footer-branding {
+  max-width: 200px;
+
+  img {
+    width: 170px;
+    margin-bottom: $spacing-4;
+  }
+}
+
+.footer-main-links-list {
+  text-align: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: $spacing-4;
+
+  a {
+    color: $stone;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      @include link-focus;
+    }
+  }
+
+  ul li {
+    display: inline-block;
+    padding-right: $spacing-4;
+    margin-right: $spacing-4;
+    color: $stone;
+    border-right: 2px solid $stone;
+
+    a {
+      font-weight: 700;
+    }
+  }
+
+  ul li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border: 0;
+  }
+}
+
+.footer-sub-links-list {
+  border-top: 1px solid rgba(255,255,255,0.5);
+  font-size: 13px;
+  padding: $spacing-4 0;
+
+  ul li {
+    display: inline-block;
+    margin-right: $spacing-4;
+
+    a {
+      color: $light-grey;
+
+      &:active {
+        @include link-focus;
+      }
+    }
+  }
+}
+
+.footer-copyright {
+  background-color: $dark-navy;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  text-align: right;
+  font-size: 12px;
+  padding: $spacing-4 0;
+  color: $light-grey;
+}
+
+
+@media (max-width: 1070px) {
+  :lang(ar) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 1040px) {
+  :lang(pt) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 1000px) {
+  :lang(fr) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 1030px) {
+  :lang(de),
+  :lang(es) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 810px) {
+  :lang(ja) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 790px) {
+  :lang(en) {
+    @import 'footer-collapsed';
+  }
+}
+
+@media (max-width: 620px) {
+  :lang(zh-hans) {
+    @import 'footer-collapsed';
+  }
+}

@@ -1,0 +1,120 @@
+{% extends 'core/base_cms.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE %}
+{% load filter_by_active_language from cms_tags %}
+{% load banner add_export_elements_classes from directory_components_tags %}
+
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'styles/pages/landing-page.css' %}" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+{% include 'core/includes/hero_landing_page.html' with heading=page.heading sub_heading=page.sub_heading img_url=page.hero_image.url %}
+
+{% if features.EU_EXIT_BANNER_ON and cms_component %}
+  <div class="banner-container margin-top-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
+    <div class="container">
+      {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
+    </div>
+  </div>
+{% endif %}
+
+<section class="landing-page-accordions section-underlined">
+  <div class="container">
+    <ul>
+      {% include 'core/includes/accordions.html' with accordions=page.subsections %}
+    </ul>
+  </div>
+</section>
+
+<section class="landing-page-industries industry-list section-underlined">
+  <div class="container">
+    <h2 class="heading-large">{{ page.sector_title }}</h2>
+
+    <div class="card-grid">
+      {% url 'industries' as industries_url %}
+      {% include 'core/includes/labelled_card_with_description_grid.html' with url_path=industries_url cards=page.sectors|filter_by_active_language %}
+    </div>
+
+    <a href="{% url 'industries' %}" class="button-ghost-blue">{{ page.sector_button_text }}</a>
+
+  </div>
+</section>
+
+<section class="landing-page-setup-guide section-underlined">
+  <div class="container">
+
+    <div class="intro">
+      <div class="card-grid">
+        <div class="column-two-thirds">
+          <h2 class="heading-large">{{ page.setup_guide_title }}</h2>
+          {% if page.setup_guide_lead_in %}
+            <p>{{ page.setup_guide_lead_in }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      {% for guide in page.guides|filter_by_active_language %}
+        <div class="column-third">
+          {% url 'setup-guide' as setup_guide_url %}
+          {% with setup_guide_url|add:guide.meta.slug as guide_url %}
+          {% include 'directory_components/card.html' with url=guide_url title=guide.heading description=guide.description %}
+          {% endwith %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="landing-page-how-we-help section-underlined">
+  <div class="container">
+
+    <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        {% if page.how_we_help_lead_in %}
+          <p>{{ page.how_we_help_lead_in }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="grid-row">
+      <ul>
+        {% for section in page.how_we_help %}
+          {% if section.text and section.icon %}
+            <li>
+              <div class="column-third help-section">
+                <img class="icon" src="{{ section.icon.url }}" alt="">
+                <p>{{ section.text }}</p>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        <li>
+          <div class="column-third help-section">
+            <div class="contact-button">
+              <a href="{% url 'contact' %}" class="button button-ghost-white">{% trans 'Contact us' %}</a>
+            </div>
+            {# only show in english and french as we are missing translations for this content #}
+            {% if LANGUAGE == 'en-gb' or LANGUAGE == 'fr' %}
+              <p>{{ page.how_we_help_text_six }}</p>
+            {% endif %}
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+{% endblock content %}
+
+
+{% block feedback_reporter %}{% endblock %}

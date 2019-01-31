@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Invest In Great Britain - {{ page.seo_title|default:page.title }}{% endblock %}
+
+{% block head_sharing_metadata %}
+    {{ block.super }}
+    <meta name="description" content="{{ page.search_description }}">
+{% endblock %}

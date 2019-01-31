@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-12 13:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: contact/forms.py:261
+msgid "Very satisfied"
+msgstr ""
+
+#: contact/forms.py:265
+msgid "Satisfied"
+msgstr ""
+
+#: contact/forms.py:269
+msgid "Neither satisfied or dissatisfied"
+msgstr ""
+
+#: contact/forms.py:273
+msgid "Dissatisfied"
+msgstr ""
+
+#: contact/forms.py:277
+msgid "Very dissatisfied"
+msgstr ""
+
+#: contact/forms.py:284
+msgid "Less than 10"
+msgstr "أقل من 10"
+
+#: contact/forms.py:288
+msgid "10 to 50"
+msgstr "من 10 إلى 50"
+
+#: contact/forms.py:292
+msgid "51 to 250"
+msgstr "من 51 إلى 250"
+
+#: contact/forms.py:296
+msgid "More than 250"
+msgstr "أكثر من 250"
+
+#: contact/forms.py:304 contact/forms.py:352
+msgid "Name"
+msgstr "الاسم الكامل"
+
+#: contact/forms.py:305 contact/forms.py:354
+msgid "Job title"
+msgstr "المسمى الوظيفي"
+
+#: contact/forms.py:306 contact/forms.py:353
+msgid "Email address"
+msgstr "البريد الإلكتروني للعمل"
+
+#: contact/forms.py:308 contact/forms.py:355
+msgid "Phone number"
+msgstr "هاتف العمل"
+
+#: contact/forms.py:311 contact/forms.py:356
+msgid "Company name"
+msgstr "اسم الشركة"
+
+#: contact/forms.py:313 contact/forms.py:357
+msgid "Company website"
+msgstr "موقع ويب الشركة"
+
+#: contact/forms.py:317
+msgid "Which country are you based in?"
+msgstr "في أي بلد أنت متواجد؟"
+
+#: contact/forms.py:319
+msgid ""
+"We will use this information to put you in touch with your closest British "
+"embassy or high commission."
+msgstr ""
+"سنستخدم هذه المعلومات لنساعدك في التواصل مع السفارة البريطانية أو اللجنة "
+"العليا الأقرب إليك.ابدأ بالكتابة لتحديد بلدك."
+
+#: contact/forms.py:325 contact/forms.py:359
+msgid "Current number of staff"
+msgstr "العدد الإجمالي الحالي للموظفين"
+
+#: contact/forms.py:329
+msgid "Tell us about your investment"
+msgstr "استثمارك"
+
+#: contact/forms.py:331
+msgid ""
+"Tell us about your company and your plans for the UK in terms of size of "
+"investment, operational and recruitment plans. Please also tell us what help "
+"you would like from the UK government."
+msgstr ""
+"أخبرنا عن الاستثمار الذي تريد القيام بهأخبرنا عن شركتك وخططك المتعلقة "
+"بالمملكة المتحدة من حيث حجم الاستثمار وخطط التشغيل والتوظيف. يُرجى أيضًا "
+"إخبارنا ما هي المساعدة التي تحتاج أن تقدمها لك حكومة المملكة المتحدة."
+
+#: contact/forms.py:358
+msgid "Country"
+msgstr "بلد"
+
+#: contact/forms.py:360
+msgid "Your investment"
+msgstr "استثمارك"
+
+#: contact/forms.py:385 contact/views.py:33 contact/views.py:44
+msgid "Contact form user email subject"
+msgstr ""
+
+#: contact/templates/contact/contact.html:11
+#: contact/templates/contact/contact_form_success_page.html:6
+#: core/templates/core/includes/footer.html:34
+#: core/templates/core/landing_page.html:102
+msgid "Contact us"
+msgstr "ابقى على تواصل"
+
+#: contact/templates/contact/contact.html:15
+#: core/templates/core/includes/footer.html:24
+#: core/templates/core/includes/header.html:44
+msgid "Contact the investment team"
+msgstr "تواصل مع فريق الإستثمار"
+
+#: contact/templates/contact/contact.html:22
+msgid "Contact Information"
+msgstr "معلومات جهة الاتصال"
+
+#: contact/templates/contact/contact.html:28
+msgid "Company information"
+msgstr "الشركة"
+
+#: contact/templates/contact/contact.html:34
+msgid "Your plans"
+msgstr "استثمارك"
+
+#: contact/templates/contact/contact.html:41
+msgid ""
+"By sending us your details you can confirm that the information you've "
+"shared with us is true and you accept our terms and conditions."
+msgstr ""
+"عن طريق إرسال تفاصيلك لنا، أنت تؤكد أن المعلومات التي شاركتها معنا صحيحة، "
+"وأنك توافق على بنودنا وشروطنا. الشروط والأحكام"
+
+#: contact/templates/contact/contact.html:46
+msgid "Submit"
+msgstr "ابقى على تواصل"
+
+#: contact/templates/contact/contact_form_success_page.html:13
+msgid "Your form has been submitted."
+msgstr "شكرًا لتسجيل اهتمامكم بالاستثمار في المملكة المتحدة."
+
+#: contact/templates/contact/contact_form_success_page.html:14
+msgid "Thank you, your form has been submitted."
+msgstr ""
+"تشير المعلومات المقدمة من جانبكم إلى موقعكم فضلاً عن خططكم الاستثمارية، وبذلك "
+"يمكننا توفير الشخص المناسب لمساعدتكم فيما بعد. ستتلقون قريبًا رسالة إلكترونية "
+"تفيد استلامنا للبيانات ذات الصلة بكم. من المقرر أن نرسل لكم رسالة إلكترونية "
+"للمتابعة في غضون 7 أيام. نتطلع إلى العمل معكم."
+
+#: contact/templates/email/email_agent.html:166
+#: contact/templates/email/email_agent.txt:12
+msgid "Submission url"
+msgstr ""
+
+#: core/templates/404.html:13
+msgid "This page cannot be found"
+msgstr ""
+
+#: core/templates/404.html:15
+msgid "If you entered a web address please check it’s correct."
+msgstr ""
+
+#: core/templates/404.html:16
+msgid "If you followed a link here, "
+msgstr ""
+
+#: core/templates/404.html:16
+msgid "let us know"
+msgstr ""
+
+#: core/templates/404.html:17
+msgid "Go to the homepage"
+msgstr ""
+
+#: core/templates/core/includes/footer.html:15
+#: core/templates/core/includes/header.html:12
+#: core/templates/core/includes/header.html:35
+msgid "Home"
+msgstr "الرئيسية"
+
+#: core/templates/core/includes/footer.html:18
+#: core/templates/core/includes/header.html:38
+msgid "Industries"
+msgstr "الصناعات في بريطانيا العظمى"
+
+#: core/templates/core/includes/footer.html:21
+#: core/templates/core/includes/header.html:41
+msgid "UK setup guide"
+msgstr "كيفية تأسيس شركة في المملكة المتحدة"
+
+#: core/templates/core/includes/footer.html:37
+msgid "Part of Great.gov.uk"
+msgstr ""
+
+#: core/templates/core/includes/footer.html:40
+msgid "Terms and conditions"
+msgstr "الشروط والأحكام"
+
+#: core/templates/core/includes/footer.html:43
+msgid "Privacy and cookies"
+msgstr "بيان خصوصية وملفات تعريف ارتباط الموقع الإلكتروني: GREAT.gov.uk"
+
+#: core/templates/core/includes/header.html:22
+msgid "Page in English only"
+msgstr ""
+
+#: core/templates/core/includes/header.html:31
+msgid "Menu"
+msgstr ""
+
+#: core/templates/core/includes/header_language_select.html:7
+msgid "Select language"
+msgstr ""
+
+#: core/templates/core/industry_page.html:49
+msgid "Related industries"
+msgstr "الصناعات ذات الصلة"

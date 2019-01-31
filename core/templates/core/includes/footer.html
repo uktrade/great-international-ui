@@ -1,0 +1,56 @@
+{% load static %}
+{% load i18n %}
+
+<footer id="invest-footer">
+  <div class="container">
+
+    <div class="footer-branding">
+      <img src="{% static 'images/UK-Gov_STACK_WHITE_AW.png' %}" alt="UK Government" />
+      <img src="{% static 'images/IIG_Invest_in_GREAT_White_WITH_Flag.png' %}" alt="Invest logo" />
+    </div>
+
+    <div class="footer-main-links-list">
+      <ul>
+        <li>
+          <a href="{% url 'index' %}" role="menuitem">{% trans "Home" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'industries' %}" role="menuitem">{% trans "Industries" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'setup-guide' %}" role="menuitem">{% trans "UK setup guide" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'contact' %}" role="menuitem">{% trans "Contact the investment team" %}</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-sub-links-list container">
+    <ul>
+      <li>
+        <a href="{{ footer_contact_us_link }}" >{% trans "Contact us" %}</a>
+      </li>
+      <li>
+        <a href="{{ services_urls.exred }}" >{% trans "Part of Great.gov.uk" %}</a>
+      </li>
+      <li>
+        <a href="{{ header_footer_urls.terms_and_conditions }}">{% trans "Terms and conditions" %}</a>
+      </li>
+      <li>
+        <a href="{{ header_footer_urls.privacy_and_cookies }}">{% trans "Privacy and cookies" %}</a>
+      </li>
+      <li>
+        <a href="{{ header_footer_urls.dit}}" >Department for International Trade</a>
+      </li>
+    </ul>
+  </div>
+
+  <div dir="ltr" class="footer-copyright">
+    <div class="container">
+      &copy; Crown copyright {% now 'Y' %}. All rights reserved.
+    </div>
+  </div>
+</footer>

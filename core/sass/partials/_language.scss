@@ -1,0 +1,49 @@
+@import 'vars';
+@import 'fonts';
+
+.button,
+.button-blue,
+.button-ghost-blue,
+.accordion-expander,
+.font-xlarge,
+.font-medium,
+.form-label,
+.form-hint,
+.card .card-inner .title,
+a.labelled-card .card-header h3,
+a.labelled-image-card .card-header h3 {
+  font-family: inherit;
+}
+
+:lang(de) {
+  h1, h2, h3, h4, h5, h6 {
+    hyphens: auto;
+  }
+
+  a.labelled-card .card-inner {
+    hyphens: auto;
+  }
+}
+
+:lang(ar) {
+  body,
+  main,
+  h1, h2, h3, h4, h5, h6,
+  .hero h1 {
+    font-family: 'ge-ss', sans-serif;
+  }
+
+  #invest-footer .footer-copyright {
+    font-family: $brand-font;
+  }
+
+  .footer-main-links-list {
+    hyphens: auto;
+  }
+}
+
+:lang(ja) .industry-pullout {
+  .column-third {
+    display: none;
+  }
+}

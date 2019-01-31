@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+{% load render_form from directory_components_tags %}
+
+{% load add_export_elements_classes from directory_components_tags %}
+{% block head_css %}
+    {{ block.super }}
+    <link href="{% static 'styles/pages/high-potential-opportunities-form.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'js/vendor/accessible-autocomplete.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}
+    {{ page.seo_title|default:"High Potential Opportunities - great.gov.uk" }}
+{% endblock %}
+
+{% block head_sharing_metadata %}
+    {{ block.super }}
+    <meta name="description" content="{{ page.search_description }}">
+{% endblock %}
+
+
+ {% block content %}
+    <div class="container">
+        {% include 'opportunities/breadcrumbs.html' %}
+        <div id="heading-container">
+            <h2 class="heading-large">{{ page.heading }}</h2>
+            <span class="font-xsmall">{{ page.sub_heading }}</span>
+        </div>
+        <div id="form-container">
+            <form method="post">
+                {% render_form form %}
+                <button type="submit" id="submit-button" class="button">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body_js %}
+    <script src="{% static 'js/dit.components.openHeaderNewTab.js' %}"></script>
+    <script src="{% static 'js/vendor/accessible-autocomplete.min.js' %}"></script>
+    <script>
+        accessibleAutocomplete.enhanceSelectElement({
+          selectElement: document.getElementById('js-country-select'),
+          defaultValue: '',
+          autoselect: false,
+          showAllValues: false,
+          placeholder: 'Type here',
+          minLength: 2,
+        })
+    </script>
+{% endblock %}

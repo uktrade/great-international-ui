@@ -1,0 +1,18 @@
+
+// Hero overrides
+
+.hero {
+  padding-top: 0;
+}
+
+.hero-generic .hero-title,
+.hero-generic .hero-title-compact {
+  max-width: 50%;
+}
+
+@media (max-width: 1100px) {
+  .hero-generic .hero-title,
+  .hero-generic .hero-title-compact {
+    max-width: 500px;
+  }
+}

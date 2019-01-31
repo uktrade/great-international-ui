@@ -1,0 +1,21 @@
+
+// Default/minimum required styling
+
+@import 'partials/base';
+@import 'partials/sections';
+@import 'partials/language';
+@import 'components/header';
+@import 'components/language-selector';
+@import 'components/footer';
+@import 'components/accordion';
+@import 'components/hero';
+@import 'components/cards';
+
+.intro {
+  margin-bottom: $spacing-3;
+}
+
+.grid-row {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,127 @@
+// Accordions
+.accordion-expander:after {
+  left: 0;
+  right: auto;
+  margin-left: 10px;
+}
+
+// Forms
+select.form-control {
+  background-position: 13px 1em, 23px 1em;
+}
+
+// Industry pullout
+.industry-pullout .data {
+  padding-left: 0;
+  padding-right: 19px;
+  border-left: 0;
+  border-right: 3px #01539e solid;
+}
+
+// List bullets
+.list.list-bullet.list-bullet li {
+  padding: 0 30px 0 0;
+  &:before {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Hero titles
+.hero {
+  .hero-title-compact {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Homepage hero
+.index .hero {
+  background-position: 180%;
+  background-size: 130%;
+
+  .hero-brand {
+    right: auto;
+    left: 15px;
+  }
+}
+
+@media not all, (min-resolution: 192dpi) {
+  .index .hero {
+    background-position: -500px;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 1100px) {
+  .index .hero {
+    background-position: -550px;
+  }
+}
+
+@media (max-width: 767px) {
+  .index .hero {
+    background-position: 0;
+    background-size: 200%;
+  }
+}
+
+// Header
+#invest-header {
+  .header-bar > .container {
+    text-align: left;
+  }
+
+  .header-links-list li {
+    float: right;
+  }
+}
+
+@media (max-width: 420px) {
+  #invest-header {
+    .header-logo {
+      left: 15px;
+    }
+    .header-bar >.container {
+      text-align: inherit;
+    }
+  }
+}
+
+// Footer
+#invest-footer > .container {
+  text-align: left;
+  overflow: auto;
+}
+
+#invest-footer {
+  .footer-branding {
+    text-align: left;
+    float: left;
+  }
+
+  .footer-main-links-list {
+    ul li {
+      font-size: 15px;
+    }
+
+    ul li:first-child {
+      border: 0;
+      margin-right: 0;
+    }
+
+    ul li:last-child {
+      border-right: 2px solid;
+      padding-right: 15px;
+      margin-right: 15px;
+    }
+  }
+}
+
+// Columns
+.column-third,
+.column-quarter,
+.column-half,
+.column-two-thirds {
+  float: right;
+}

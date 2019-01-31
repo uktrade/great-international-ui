@@ -1,0 +1,17 @@
+
+a.labelled-image-card {
+  position: relative;
+  z-index: 0;
+
+  .card-header {
+    z-index: 1;
+  }
+}
+
+a.labelled-image-card {
+  height: 200px;
+}
+
+a.labelled-card .card-image {
+  height: 150px;
+}

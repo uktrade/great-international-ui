@@ -1,0 +1,21 @@
+
+// Industries landing page
+
+@import '../partials/vars';
+@import '../partials/mixins';
+
+.industries {
+  padding-top: $spacing-1;
+}
+
+@media (max-width: 960px) {
+  .column-third {
+    width: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .column-third {
+    width: 100%;
+  }
+}

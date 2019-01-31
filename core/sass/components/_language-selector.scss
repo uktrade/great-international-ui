@@ -1,0 +1,227 @@
+
+// Language selector component
+
+@import '../partials/vars';
+@import '../partials/mixins';
+@import '../partials/typography';
+@import '../partials/grid';
+@import 'modal';
+
+.language-selector-control {
+  overflow: hidden;
+
+  button {
+    color: $white;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 0 10px;
+  }
+
+  form {
+    color: $white;
+    margin: 5px 0 0 0;
+    position: relative;
+    z-index: 0;
+
+    &.enhancedLanguageSelector {
+      button {
+        display: none;
+      }
+    }
+  }
+
+  option {
+    background-color: $mid-grey;
+    color: $black;
+  }
+
+  p,
+  select {
+    @include body-s;
+    background-color: transparent;
+    border: 1px solid $mid-grey;
+    border-radius: 0;
+    color: $white;
+    cursor: pointer;
+    height: 27px;
+    line-height: 27px;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .SelectTraker-Tracker {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border: none;
+    display: inline-block;
+    padding-left: 30px;
+    .code {
+      text-transform: uppercase;
+      &:after {
+        content: " - ";
+      }
+    }
+  }
+
+  .SelectTracker-Select {
+    border: none;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-indent: -1000px;
+    top: 0;
+    &:focus {
+      min-width: 150px;
+      & + p {
+        outline: 3px solid $focus-yellow;
+      }
+    }
+  }
+}
+
+
+.language-selector-dialog {
+  background-color: $white;
+  color: $black;
+  padding: $spacing-3;
+
+  input[type=submit] {
+    background:none;
+    border:none;
+    padding:0;
+    font: inherit;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  ul {
+    display: block;
+    padding-left: 0;
+  }
+
+  li {
+    float: left;
+    margin-bottom: $spacing-3;
+  }
+
+  p {
+    @include body-m;
+    display: block;
+    margin-bottom: $spacing-3;
+  }
+
+  .font-large {
+    margin-bottom: 1em;
+  }
+
+  #languages-selector {
+    @include heading-m;
+    font-weight: normal;
+  }
+}
+
+nav.navbar .LanguageSelectorDialog-Tracker {
+  @include body-s;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 25px;
+  text-decoration: none;
+
+  &:hover {
+    color: $white;
+    text-decoration: underline;
+  }
+
+  .lang {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+
+// DESKTOP ONLY
+@media (min-width: 768px) {
+  .language-selector-dialog {
+    .languages {
+      ul {
+        padding: 5px;
+      }
+      li {
+        @include items(4, $spacing-3);
+      }
+    }
+  }
+}
+
+// TABLET
+@media (min-width: 481px) and (max-width: 767px) {
+  .language-selector-dialog {
+    .languages {
+      li {
+        @include items(3, $spacing-3);
+      }
+    }
+  }
+}
+
+
+// MOBILE
+@media screen and (max-width: 640px) {
+  .language-selector-dialog {
+    input[type=submit] {
+      font-size: 18px;
+    }
+  }
+}
+
+// MOBILE
+@media screen and (max-width: 580px) {
+  .language-selector-dialog {
+    left: 0;
+    top: 15px;
+
+    .languages {
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .language-selector-dialog {
+    padding: $spacing-4;
+
+    #languages-selector {
+      @include body-m;
+    }
+
+    a {
+      @include body-m;
+    }
+
+    .languages {
+      li {
+        @include items(2, $spacing-4-m);
+      }
+
+      p {
+        left: 0;
+        top: $spacing-4-m;
+      }
+    }
+  }
+
+  .LanguageSelectorDialog-Tracker {
+    .label,
+    .lang::after {
+      position: absolute;
+      z-index: -1;
+    }
+  }
+}
