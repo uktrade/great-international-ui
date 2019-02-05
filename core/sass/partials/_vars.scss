@@ -21,6 +21,7 @@ $active-blue-disabled: #9bc6e9; // rgb(155, 198, 233)
 $dark-blue:            #132965; // rgb( 19,  41, 101)
 $dark-navy:            #160d37; // rgb( 22,  13,  55)
 $great-blue:           #1e1348; // rgb( 30,  19,  72)
+$lightened-great-blue: #3b3458; // only used in footer
 $mid-blue:             #00549f; // rgb(  0,  84, 159)
 
 // Aqua
@@ -61,4 +62,6 @@ $spacing-4-m: 10px;
 // Typography
 
 $hero-brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
-$brand-font: 'Roboto', arial, helvetica, verdana;
+$brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
+$brand-font-alternative: 'Roboto', arial, helvetica, verdana;
+$quote-font: 'Georgia', serif;

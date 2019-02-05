@@ -18,22 +18,46 @@
 //
 // dit.components.languageSelector.enhanceControl()
 // dit.components.languageSelector.enhanceDialog()
-//
+
+dit.components = dit.components || {};
+
 dit.components.languageSelector = (new function() {
 
-  var LANG_SELECT_CLOSE_BUTTON_ID = "header-language-selector-close";
+  var LANG_SELECT_CLOSE_BUTTON_ID = "great-header-language-selector-close";
 
-  /* Extends SelectTracker to meet additional display requirement
-   * @$select (jQuery node) Target input element
-   * @options (Object) Configurable options
-   **/
-  function LanguageSelectorControl($select, options) {
-    if(this.$node) {
-      $select.parents("form").addClass("enhancedLanguageSelector");
-      $select.on("change", function() {
-        this.form.submit();
-      })
+  dit.classes.LanguageSelectorControl = LanguageSelectorControl;
+    function LanguageSelectorControl($select) {
+      var SELECT_TRACKER = this;
+      var button, code, lang;
+
+      if (arguments.length && $select.length) {
+        this.$node = $(document.createElement("p"));
+        this.$node.attr("aria-hidden", "true");
+        this.$node.addClass("SelectTracker");
+        this.$select = $select;
+        this.$select.addClass("SelectTracker-Select");
+        this.$select.after(this.$node);
+        this.$select.on("change.SelectTracker", function() {
+          SELECT_TRACKER.update();
+        });
+
+        // Initial value
+        this.update();
+      }
     }
+
+  LanguageSelectorControl.prototype = {};
+  LanguageSelectorControl.prototype.update = function() {
+    var $code = $(document.createElement("span"));
+    var $lang = $(document.createElement("span"));
+    SelectTracker.prototype.update.call(this);
+    $lang.addClass("lang");
+    $code.addClass("code");
+    $lang.text(this.$node.text());
+    $code.text(this.$select.val());
+    this.$node.empty();
+    this.$node.append($code);
+    this.$node.append($lang);
   }
 
   /* Contructor
@@ -54,7 +78,7 @@ dit.components.languageSelector = (new function() {
     }, options);
 
 
-    if(arguments.length > 0 && $dialog.length) {
+    if (arguments.length > 0 && $dialog.length) {
       this.$container.attr("id", id);
       this.$container.addClass("LanguageSelectorDialog-Modal");
       this.setContent($dialog.children());
@@ -69,7 +93,6 @@ dit.components.languageSelector = (new function() {
   }
 
   LanguageSelectorDialog.prototype = new dit.classes.Modal
-
 
   // Just finds all available Language Selector components
   // and enhances using the any default settings.

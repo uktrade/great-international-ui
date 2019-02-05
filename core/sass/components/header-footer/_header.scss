@@ -1,0 +1,165 @@
+
+// HEADER
+// =======
+
+// base styling. JS disabled
+
+@import '../../partials/typography';
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.great-header {
+  position: relative;
+  z-index: 2;
+
+  a {
+    &:active:focus {
+      background-color: $focus-yellow;
+    }
+
+    &:focus {
+      @include focus
+    }
+
+    &:active:focus {
+      color: $great-blue;
+    }
+  }
+}
+
+// links in global header
+
+.great-domestic-international-links {
+  a {
+    color: $mid-grey;
+  }
+
+  .active {
+    color: $great-blue;
+
+    &:after {
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 4px;
+      background-color: $flag-red;
+      content: '';
+    }
+  }
+}
+
+// main header menu
+
+.great-header-menu {
+  background-color: $great-blue;
+  position: relative;
+
+  & > .container {
+    overflow: hidden;
+    padding-bottom: 25px;
+  }
+
+  &.international > .container {
+    padding-top: 25px;
+  }
+}
+
+// language/country select and account links
+
+.great-header-extra-links {
+  float: right;
+  font-size: 14px;
+  color: $white;
+
+  li {
+    display: inline-block;
+
+    &:last-child {
+      margin-left: 15px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active:focus span {
+      color: $great-blue;
+    }
+  }
+
+  .lang,
+  .country,
+  .great-header-account-link {
+    color: $stone;
+    margin-left: 5px;
+  }
+
+  .lang {
+    text-transform: uppercase;
+  }
+}
+
+.great-header-logo {
+  display: block;
+  float: left;
+}
+
+// main navigation
+
+.great-header-nav-container {
+  width: 100%;
+  background-color: $white;
+}
+
+.great-header-nav {
+  padding: 15px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: $white;
+
+  a {
+    font-family: inherit;
+    display: block;
+  }
+
+  a.link-heading {
+    text-decoration: underline;
+  }
+
+  > .container {
+    @include float-clear
+  }
+
+  .link-heading {
+    font-size: 19px;
+    margin-bottom: 0.2em;
+    color: $grey;
+  }
+}
+
+body.js-enabled {
+  @import 'js-header';
+}
+
+@media (max-width: 1260px) {
+  .great-header-nav {
+    margin: 0 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  @import 'mobile-header';
+}
+
+@media (max-width: 420px) {
+  .great-header-nav {
+    margin: 0 20px;
+  }
+}
