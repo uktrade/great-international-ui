@@ -345,6 +345,8 @@ FEATURE_FLAGS = {
     'SEARCH_ENGINE_INDEXING_OFF': env.bool(
         'FEATURE_SEARCH_ENGINE_INDEXING_DISABLED', False
     ),
+    # directory-components currently complains if this doens't exist
+    'EXPORT_JOURNEY_ON': False,
     # used by directory-components
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
 }
