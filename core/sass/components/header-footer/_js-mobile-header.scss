@@ -39,10 +39,9 @@
 
     .js-nav-list {
       margin: 0 30px;
-      width: auto;
 
       .column-quarter {
-        width: auto;
+        width: 100%;
         float: none;
       }
     }
@@ -72,6 +71,12 @@
         margin: 0;
         padding: 15px 0;
       }
+    }
+  }
+
+  .js-nav-list {
+    li {
+      display: block;
     }
   }
 
