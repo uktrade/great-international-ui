@@ -14,7 +14,6 @@ import os
 
 import environ
 
-from directory_components.constants import IP_RETRIEVER_NAME_GOV_UK
 from directory_constants.constants import cms
 
 
@@ -50,8 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'core',
-    'contact',
-    'opportunities',
     'directory_constants',
     'captcha',
     'directory_components',
@@ -69,7 +66,6 @@ MIDDLEWARE_CLASSES = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'contact.middleware.GoogleCampaignMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.RobotsIndexControlHeaderMiddlware',
 ]
@@ -349,9 +345,6 @@ FEATURE_FLAGS = {
     'SEARCH_ENGINE_INDEXING_OFF': env.bool(
         'FEATURE_SEARCH_ENGINE_INDEXING_DISABLED', False
     ),
-    'EU_EXIT_BANNER_ON': env.bool(
-        'FEATURE_EU_EXIT_BANNER_ENABLED', False
-    ),
     # used by directory-components
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
 }
@@ -368,41 +361,5 @@ HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
     'a9285cb0-6acf-428f-94f7-2da7248d9ef0'
 )
 
-# directory forms api client
-DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
-DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
-DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
-DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
-    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
-)
-DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
-    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'Invest in GB',
-)
 # Directory healthcheck
 HEALTH_CHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
-
-# ip-restrictor
-IP_RESTRICTOR_SKIP_CHECK_ENABLED = env.bool(
-    'IP_RESTRICTOR_SKIP_CHECK_ENABLED', False
-)
-IP_RESTRICTOR_SKIP_CHECK_SENDER_ID = env.str(
-    'IP_RESTRICTOR_SKIP_CHECK_SENDER_ID', ''
-)
-IP_RESTRICTOR_SKIP_CHECK_SECRET = env.str(
-    'IP_RESTRICTOR_SKIP_CHECK_SECRET', ''
-)
-IP_RESTRICTOR_REMOTE_IP_ADDRESS_RETRIEVER = env.str(
-    'IP_RESTRICTOR_REMOTE_IP_ADDRESS_RETRIEVER',
-    IP_RETRIEVER_NAME_GOV_UK
-)
-RESTRICT_ADMIN = env.bool('IP_RESTRICTOR_RESTRICT_IPS', False)
-ALLOWED_ADMIN_IPS = env.list('IP_RESTRICTOR_ALLOWED_ADMIN_IPS', default=[])
-ALLOWED_ADMIN_IP_RANGES = env.list(
-    'IP_RESTRICTOR_ALLOWED_ADMIN_IP_RANGES', default=[]
-)
-RESTRICTED_APP_NAMES = env.list(
-    'IP_RESTRICTOR_RESTRICTED_APP_NAMES', default=['admin']
-)
-if env.bool('IP_RESTRICTOR_RESTRICT_UI', False):
-    # restrict all pages that are not in apps API, healthcheck, admin, etc
-    RESTRICTED_APP_NAMES.append('')
