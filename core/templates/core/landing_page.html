@@ -1,5 +1,9 @@
-{% extends 'core/base.html' %}
-{% load static %}
+{% extends 'core/base_cms.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE %}
+{% load filter_by_active_language from cms_tags %}
+{% load banner add_export_elements_classes from directory_components_tags %}
 
 {% block head_css %}
   {{ block.super }}
@@ -8,7 +12,25 @@
 
 {% block content %}
 
-<section>
+{% include 'core/includes/hero_landing_page.html' with heading=page.heading sub_heading=page.sub_heading img_url=page.hero_image.url %}
+
+{% if features.EU_EXIT_BANNER_ON and cms_component %}
+  <div class="banner-container margin-top-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
+    <div class="container">
+      {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
+    </div>
+  </div>
+{% endif %}
+
+<section class="landing-page-accordions section-underlined">
+  <div class="container">
+    <ul>
+      {% include 'core/includes/accordions.html' with accordions=page.subsections %}
+    </ul>
+  </div>
+</section>
+
+<section class="landing-page-industries industry-list section-underlined">
   <div class="container">
     <h2 class="heading-large">{{ page.sector_title }}</h2>
 
