@@ -98,9 +98,6 @@
 
         <li>
           <div class="column-third help-section">
-            <div class="contact-button">
-              <a href="{% url 'contact' %}" class="button button-ghost-white">{% trans 'Contact us' %}</a>
-            </div>
             {# only show in english and french as we are missing translations for this content #}
             {% if LANGUAGE == 'en-gb' or LANGUAGE == 'fr' %}
               <p>{{ page.how_we_help_text_six }}</p>
