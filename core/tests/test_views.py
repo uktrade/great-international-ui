@@ -217,7 +217,6 @@ def test_landing_page_cms_component(
 
     url = reverse('index')
     response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
 
     assert response.template_name == ['core/landing_page.html']
 

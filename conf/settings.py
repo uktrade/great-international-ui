@@ -14,7 +14,6 @@ import os
 
 import environ
 
-from directory_components.constants import IP_RETRIEVER_NAME_GOV_UK
 from directory_constants.constants import cms
 
 
