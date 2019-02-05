@@ -50,7 +50,7 @@ urlpatterns += i18n_patterns(
     url(
         r"^international/$",
         core.views.LandingPageCMSView.as_view(),
-        name="landing-page"
+        name="index"
     ),
     url(
         r"^international/industries/$",
