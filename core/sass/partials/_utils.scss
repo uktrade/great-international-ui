@@ -42,24 +42,3 @@
     height: 1em;
   }
 }
-
-$spacings: 0 15 30 45 60 90;
-
-@each $spacing in $spacings {
-  .padding-horizontal-#{$spacing} {
-    padding-left: #{$spacing}px;
-    padding-right: #{$spacing}px;
-  }
-}
-
-@each $spacing in $spacings {
-  .padding-left-#{$spacing} {
-    padding-left: #{$spacing}px;
-  }
-}
-
-@each $spacing in $spacings {
-  .padding-right-#{$spacing} {
-    padding-right: #{$spacing}px;
-  }
-}
