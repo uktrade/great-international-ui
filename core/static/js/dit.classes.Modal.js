@@ -1,4 +1,7 @@
 
+dit.utils = dit.utils || {};
+dit.classes = dit.classes || {};
+
 /* Class: Modal
  * -------------------------
  * Create an area to use as popup/modal/lightbox effect.
@@ -11,7 +14,7 @@
  **/
 (function($, utils, classes) {
 
-  var ARIA_EXPANDED = "aria-expanded";
+  var ARIA_HIDDEN = "aria-hidden";
   var CSS_CLASS_CLOSE_BUTTON = "close";
   var CSS_CLASS_CONTAINER = "Modal-Container"
   var CSS_CLASS_CONTENT = "content";
@@ -26,21 +29,20 @@
     var modal = this;
     var config = $.extend({
       $activators: $(), // (optional) Element(s) to control the Modal
-      closeOnBuild: true, // Whether intial Modal view is open or closed
+      closed: true, // Whether intial Modal view is open or closed
       overlay: true,  // Whether it has an overlay or not
-      closeButtonId: '', // Option to add custom close button id
+      closeButtonID: '', // Option to add custom close button id
       onClose: function() {} // (optional) Callback called on modal close
     }, options || {});
 
     // If no arguments, likely just being inherited
     if (arguments.length) {
       // Create the required elements
-      if(config.overlay) {
+      if (config.overlay) {
         this.$overlay = Modal.createOverlay();
-        Modal.bindResponsiveOverlaySizeListener.call(this);
       }
 
-      this.$closeButton = Modal.createCloseButton(config.closeButtonId);
+      this.$closeButton = Modal.createCloseButton(config.closeButtonID);
       this.$content = Modal.createContent();
       this.$container = Modal.enhanceModalContainer($container);
       this.onClose = config.onClose;
@@ -53,12 +55,8 @@
       Modal.bindActivators.call(this, config.$activators);
 
       // Initial state
-      if (config.closeOnBuild) {
-        this.close();
-      }
-      else {
-        this.open();
-      }
+      if (config.closed) this.close();
+      else this.open();
     }
   }
 
@@ -68,11 +66,11 @@
     return $overlay;
   }
 
-  Modal.createCloseButton = function(closeButtonId) {
+  Modal.createCloseButton = function(closeButtonID) {
     var $button = $(document.createElement("button"));
     $button.text("Close");
     $button.addClass(CSS_CLASS_CLOSE_BUTTON);
-    if (closeButtonId) $button.attr('id', closeButtonId);
+    if (closeButtonID) $button.attr('id', closeButtonID);
     return $button;
   }
 
@@ -190,20 +188,6 @@
     });
   }
 
-  Modal.bindResponsiveOverlaySizeListener = function() {
-    var self = this;
-    // Resets the overlay height (once) on scroll because document
-    // height changes with responsive resizing and the browser
-    // needs a delay to redraw elements. Alternative was to have
-    // a rubbish setTimeout with arbitrary delay.
-    $(document.body).on(dit.responsive.reset, function(e, mode) {
-      $(window).off("scroll.ModalOverlayResizer");
-      $(window).one("scroll.ModalOverlayResizer", function() {
-        Modal.setOverlayHeight(self.$overlay);
-      });
-    });
-  }
-
   Modal.setOverlayHeight = function($overlay) {
     $overlay.get(0).style.height = ""; // Clear it first
     $overlay.height($(document).height());
@@ -213,7 +197,7 @@
   Modal.prototype.close = function() {
     var self = this;
     self.$container.fadeOut(50, function () {
-      self.$container.attr(ARIA_EXPANDED, false);
+      self.$container.attr(ARIA_HIDDEN, true);
       self.$container.removeClass(CSS_CLASS_OPEN);
       self.onClose();
     });
@@ -237,11 +221,11 @@
     self.$container.css("top", top + "px");
     self.$container.addClass(CSS_CLASS_OPEN);
     self.$container.fadeIn(250, function () {
-      self.$container.attr(ARIA_EXPANDED, true);
+      self.$container.attr(ARIA_HIDDEN, false);
     });
 
     if (self.$overlay && self.$overlay.length) {
-      Modal.setOverlayHeight(self.$overlay);
+      // Modal.setOverlayHeight(self.$overlay);
       self.$overlay.fadeIn(0);
     }
   }

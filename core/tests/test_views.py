@@ -200,6 +200,10 @@ def test_404_when_cms_language_unavailable(mock_cms_response, rf):
 def test_landing_page_cms_component(
     mock_get_page, mock_get_component, client, settings
 ):
+    settings.FEATURE_FLAGS = {
+        **settings.FEATURE_FLAGS,
+        'EU_EXIT_BANNER_ON': True,
+    }
     mock_get_page.return_value = {
         'title': 'the page',
         'sectors': [],
@@ -217,8 +221,12 @@ def test_landing_page_cms_component(
 
     url = reverse('index')
     response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
 
+    assert soup.select('.banner-container')[0].get('dir') == 'ltr'
     assert response.template_name == ['core/landing_page.html']
+    assert 'EU Exit updates' in str(response.content)
+    assert '<p class="body-text">Lorem ipsum.</p>' in str(response.content)
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')

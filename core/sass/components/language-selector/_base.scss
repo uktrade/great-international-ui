@@ -1,0 +1,11 @@
+
+// Language selector
+// ==================
+
+.great-header-language-selector {
+  button {
+    @include button-reset
+    padding: 0;
+    color: $active-blue;
+  }
+}

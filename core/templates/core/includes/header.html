@@ -1,51 +1,79 @@
-{% load i18n %}
+{% extends 'core/includes/header_base.html' %}
 {% load static %}
-{% get_current_language as lang_code %}
+{% load i18n %}
 
-{% if language_switcher.show %}
-  {% include 'core/includes/header_language_select.html' %}
-{% endif %}
+{% block header_language_selector %}
+  {% if language_switcher.show %}
+    {% include 'directory_components/header_footer_v2/language_selector.html' %}
+  {% endif %}
+{% endblock %}
 
-<header id="invest-header">
-  <div class="header-bar">
-    <div class="container">
-      <a class="header-logo" href="{% url 'index' %}" name="{% trans 'Home' %}">
-        <img tabindex="-1" src="{% static 'images/UK-Gov_STACK_WHITE_AW.png' %}" alt="UK Government" />
+{% block global_header_logo %}
+<img id="great-global-header-logo" class="great-global-header-footer-logo" alt="HM Government" height="24" src="{% static 'images/hm-government.svg' %}">
+{% endblock %}
+
+{% block header_logo %}
+<img src="{% static 'images/great.svg' %}" alt="Great Britain and Northern Ireland" width="180" height="auto">
+{% endblock %}
+
+{% block header_logo_url %}{{ services_urls.great_international }}{% endblock %}
+
+{% block header_extra_links %}
+  {% if not country_switcher.show %}
+    <li>
+      <a href="#" class="great-header-country" id="header-country-selector-activator">
+        <span class="text">Change country</span> <span class="country">Brazil</span>
       </a>
-      <div class="language-toggle" id="language-selector-activator">
-        {% if language_switcher.show %}
-          <a href="" aria-label="Show language selector" class="LanguageSelectorDialog-Tracker">
-            <span class="lang">{{ lang_code }}</span>
-          </a>
-        {% else %}
-        <div class="not-translated">
-          <span>{% trans 'Page in English only' %}</span>
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+    </li>
+  {% else %}
+    <li>
+      <p class="not-translated">
+        <span>{% trans 'Page in English only' %}</span>
+      </p>
+    </li>
+  {% endif %}
+  {% if language_switcher.show %}
+    <li>
+      <a href="#" class="LanguageSelectorDialog-Tracker great-header-language" id="header-language-selector-activator">
+        <span class="text">Change language</span> <span class="lang">{{ lang_code }}</span>
+      </a>
+    </li>
+  {% else %}
+    <li>
+      <p class="not-translated">
+        <span>{% trans 'Page in English only' %}</span>
+      </p>
+    </li>
+  {% endif %}
+{% endblock %}
 
-  <div class="header-menu">
-    <div class="container">
-      <button class="header-menu-activator" aria-expanded="false" aria-label="Toggle navigation">{% trans "Menu" %}<span></span></button>
-      <nav class="header-links-list">
-        <ul>
-          <li><a href="{% url 'index' %}"{% if active_view_name == 'index' %} class="active"{% endif %}>
-            {% trans "Home" %}
-          </a></li>
-          <li><a href="{% url 'industries' %}"{% if active_view_name == 'industries' %} class="active"{% endif %}>
-            {% trans "Industries" %}
-          </a></li>
-          <li><a href="{% url 'setup-guide' %}"{% if active_view_name == 'setup-guide' %} class="active"{% endif %}>
-            {% trans "UK setup guide" %}
-          </a></li>
-          <li><a href="{% url 'contact' %}"{% if active_view_name == 'contact' %} class="active"{% endif %}>
-            {% trans "Contact the investment team" %}
-          </a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+{% block header_nav %}
 
-</header>
+<li class="column-quarter js-top-level-list">
+  <span class="link-heading js-link-heading" id="header-invest-links-heading">Invest</span>
+  <ul class="js-collapsible-menu" aria-labelledby="header-invest-links-heading" id="header-invest-links-list">
+    <li class="js-menuitem">
+      <a class="link" id="header-invest-expand-to-the-uk" href="{{ services_urls.invest }}">Expand to the UK</a>
+    </li>
+    <li class="js-menuitem">
+      <a class="link" id="header-invest-ukan" href="#">UK Advisory Network</a>
+    </li>
+    <li class="js-menuitem">
+      <a class="link" id="header-invest-capital-investment" href="#">Capital investment in the UK</a>
+    </li>
+  </ul>
+</li>
+
+<li class="column-quarter js-menuitem">
+  <a href="{{ services_urls.fas }}" class="link-heading" id="great-header-fas-link">Find a UK supplier</a>
+</li>
+
+<li class="column-quarter js-menuitem">
+  <a href="#" class="link-heading" id="great-header-trade-info-link">Find tariffs, quotas and trade information</a>
+</li>
+
+<li class="column-quarter js-menuitem">
+  <a href="#" class="link-heading" id="great-header-news-events-link">News and events</a>
+</li>
+
+{% endblock %}
