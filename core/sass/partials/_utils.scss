@@ -1,0 +1,65 @@
+
+// UTILITY CLASSES
+// ================
+
+.with-flag {
+  margin-bottom: 90px;
+
+  & > .container {
+    position: relative;
+  }
+
+  & > .container:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    background-image: url('/static/images/uj-motif.png');
+    background-size: 155px;
+    width: 155px;
+    height: 30px;
+  }
+}
+
+.background-stone-gradient-bottom {
+  background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
+}
+
+.with-arrow {
+  display: block;
+  position: relative;
+  margin-left: 30px;
+  font-weight: 700;
+  margin-bottom: .2em;
+
+  &:before {
+    display: block;
+    font-weight: 700;
+    position: absolute;
+    left: -30px;
+    content: '➞';
+    width: 1em;
+    height: 1em;
+  }
+}
+
+$spacings: 0 15 30 45 60 90;
+
+@each $spacing in $spacings {
+  .padding-horizontal-#{$spacing} {
+    padding-left: #{$spacing}px;
+    padding-right: #{$spacing}px;
+  }
+}
+
+@each $spacing in $spacings {
+  .padding-left-#{$spacing} {
+    padding-left: #{$spacing}px;
+  }
+}
+
+@each $spacing in $spacings {
+  .padding-right-#{$spacing} {
+    padding-right: #{$spacing}px;
+  }
+}

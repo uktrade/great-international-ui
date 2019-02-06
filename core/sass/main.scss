@@ -1,2 +1,11 @@
 
-@import 'partials/default';
+// partials
+@import 'partials/language';
+@import 'partials/utils';
+@import 'partials/overrides';
+@import 'components/header-footer/base';
+@import 'components/modal/base';
+@import 'components/language-selector/base';
+
+// pages
+@import 'pages/landing-page';
