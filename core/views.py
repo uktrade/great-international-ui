@@ -59,7 +59,7 @@ class LandingPageCMSView(GetCMSComponentMixin, CMSPageView):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
     component_slug = cms.COMPONENTS_BANNER_INTERNATIONAL_SLUG
-    slug = 'home-page'
+    slug = 'international'
     subpage_groups = ['sectors', 'guides']
 
 
