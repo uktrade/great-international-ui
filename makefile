@@ -21,7 +21,7 @@ django_webserver:
 	$(DJANGO_WEBSERVER)
 
 DEBUG_SET_ENV_VARS := \
-	export PORT=8013; \
+	export PORT=8012; \
 	export SECRET_KEY=debug; \
 	export DEBUG=true ;\
 	export FEATURE_CONTACT_COMPANY_FORM_ENABLED=true; \
