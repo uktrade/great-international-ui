@@ -4,9 +4,8 @@ from django.utils import translation
 from django.http import Http404
 from directory_cms_client.client import cms_api_client
 
-from core.mixins import GetCMSComponentMixin, GetSlugFromKwargsMixin
+from core.mixins import GetSlugFromKwargsMixin
 from directory_cms_client.helpers import handle_cms_response
-from directory_constants.constants import cms
 
 
 class IncorrectSlug(Exception):
@@ -55,10 +54,9 @@ class CMSPageView(TemplateView):
         )
 
 
-class LandingPageCMSView(GetCMSComponentMixin, CMSPageView):
+class LandingPageCMSView(CMSPageView):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
-    component_slug = cms.COMPONENTS_BANNER_INTERNATIONAL_SLUG
     slug = 'international'
     subpage_groups = ['sectors', 'guides']
 
