@@ -3,7 +3,7 @@
 // ================
 
 .with-flag {
-  margin-bottom: 90px;
+  margin-bottom: 30px;
 
   & > .container {
     position: relative;
@@ -40,5 +40,25 @@
     content: '➞';
     width: 1em;
     height: 1em;
+  }
+}
+
+.button-arrow {
+  font-size: 24px;
+  font-weight: 700;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  font-family: $brand-font;
+
+  &:after {
+    display: block;
+    content: '➔';
+    position: absolute;
+    right: 15px;
+    bottom: 33px;
+    height: 24px;
+    width: 30px;
+    font-size: 35px;
   }
 }
