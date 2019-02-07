@@ -12,8 +12,8 @@ certifi==2018.1.18        # via requests
 chardet==3.0.4            # via requests
 directory-client-core==4.3.0  # via directory-cms-client, directory-forms-api-client
 directory-cms-client==8.2.0
-directory-components==3.5.0
-directory-constants==11.1.0
+directory-components==4.0.1
+directory-constants==12.3.0
 directory-forms-api-client==3.1.0
 directory-healthcheck==0.5.1
 directory-validators==5.0.0
@@ -29,7 +29,7 @@ django-storages==1.5.1
 django==1.11.13
 djangorestframework==3.7.7  # via sigauth
 docutils==0.14            # via botocore
-export-elements==0.23.0
+export-elements==1.0.2
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore

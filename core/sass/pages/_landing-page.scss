@@ -1,0 +1,68 @@
+
+// Home/landing page
+
+@import '../partials/vars';
+@import '../partials/mixins';
+
+.landing-page {
+  .hero {
+    overflow: visible;
+    background-image: url('/static/images/placeholder.png');
+
+    .container {
+      position: relative;
+    }
+
+    .heading-container {
+      position: absolute;
+      bottom: 60px;
+      left: 0;
+    }
+  }
+
+  .invest-fas-section {
+    .card .card-image {
+      height: 300px;
+    }
+  }
+
+  .study-visit-cta-section > .container {
+    border-bottom: 1px solid $lightened-great-blue;
+  }
+
+  .card {
+    flex-grow: 1;
+
+    .heading-large {
+      letter-spacing: 0.1;
+    }
+  }
+
+}
+
+@media (max-width: 768px) {
+  .landing-page {
+    .tariffs-image {
+      margin-bottom: 0;
+    }
+
+    .tariffs-content-wrapper {
+      margin-top: 45px;
+      margin-bottom: 45px;
+    }
+
+    .study-visit-cta-section {
+      .button-arrow {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-page {
+    .tariffs-content {
+      padding: 0;
+    }
+  }
+}

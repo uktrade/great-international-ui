@@ -3,115 +3,113 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load banner add_export_elements_classes from directory_components_tags %}
+{% load card hero add_export_elements_classes from directory_components_tags %}
 
-{% block head_css %}
-  {{ block.super }}
-  <link href="{% static 'styles/pages/landing-page.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block page_css_class %}landing-page{% endblock %}
 
 {% block content %}
 
-{% include 'core/includes/hero_landing_page.html' with heading=page.heading sub_heading=page.sub_heading img_url=page.hero_image.url %}
-
-{% if features.EU_EXIT_BANNER_ON and cms_component %}
-  <div class="banner-container margin-top-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
-    <div class="container">
-      {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
+<section class="hero hero-generic with-flag" id="hero-section">
+  <div class="container wrap-tight">
+    <div class="heading-container">
+      <h1 class="heading-xlarge">Home</h1>
     </div>
-  </div>
-{% endif %}
-
-<section class="landing-page-accordions section-underlined">
-  <div class="container">
-    <ul>
-      {% include 'core/includes/accordions.html' with accordions=page.subsections %}
-    </ul>
   </div>
 </section>
 
-<section class="landing-page-industries industry-list section-underlined">
+<section id="invest-fas-section" class="invest-fas-section background-stone-gradient-bottom padding-vertical-60">
   <div class="container">
-    <h2 class="heading-large">{{ page.sector_title }}</h2>
-
     <div class="card-grid">
-      {% url 'industries' as industries_url %}
-      {% include 'core/includes/labelled_card_with_description_grid.html' with url_path=industries_url cards=page.sectors|filter_by_active_language %}
-    </div>
-
-    <a href="{% url 'industries' %}" class="button-ghost-blue">{{ page.sector_button_text }}</a>
-
-  </div>
-</section>
-
-<section class="landing-page-setup-guide section-underlined">
-  <div class="container">
-
-    <div class="intro">
-      <div class="card-grid">
-        <div class="column-two-thirds">
-          <h2 class="heading-large">{{ page.setup_guide_title }}</h2>
-          {% if page.setup_guide_lead_in %}
-            <p>{{ page.setup_guide_lead_in }}</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-
-    <div class="card-grid">
-      {% for guide in page.guides|filter_by_active_language %}
-        <div class="column-third">
-          {% url 'setup-guide' as setup_guide_url %}
-          {% with setup_guide_url|add:guide.meta.slug as guide_url %}
-          {% include 'directory_components/card.html' with url=guide_url title=guide.heading description=guide.description %}
-          {% endwith %}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="landing-page-how-we-help section-underlined">
-  <div class="container">
-
-    <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
-    <div class="grid-row">
-      <div class="column-two-thirds">
-        {% if page.how_we_help_lead_in %}
-          <p>{{ page.how_we_help_lead_in }}</p>
-        {% endif %}
-      </div>
-    </div>
-
-    <div class="grid-row">
-      <ul>
-        {% for section in page.how_we_help %}
-          {% if section.text and section.icon %}
-            <li>
-              <div class="column-third help-section">
-                <img class="icon" src="{{ section.icon.url }}" alt="">
-                <p>{{ section.text }}</p>
-              </div>
-            </li>
-          {% endif %}
-        {% endfor %}
-
-        <li>
-          <div class="column-third help-section">
-            {# only show in english and french as we are missing translations for this content #}
-            {% if LANGUAGE == 'en-gb' or LANGUAGE == 'fr' %}
-              <p>{{ page.how_we_help_text_six }}</p>
-            {% endif %}
+      <div class="column-half">
+        {% static 'images/placeholder.png' as card_image %}
+        <div class="card " id="invest-card">
+          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="invest-card-image"></div>
+          <div class="card-inner wrap-tight">
+            <h2 class="heading-large">Invest in the UK</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <a href="#" class="link with-arrow">Expand to the UK</a>
+            <a href="#" class="link with-arrow">Capital investment in the UK</a>
           </div>
-        </li>
-
-      </ul>
+        </div>
+      </div>
+      <div class="column-half">
+        {% static 'images/placeholder.png' as card_image %}
+        <div class="card " id="fas-card">
+          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="fas-card-image"></div>
+          <div class="card-inner wrap-tight padding-horizontal-45">
+            <h2 class="heading-large">Find a UK supplier</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a href="{{ services_urls.fas }}" class="link with-arrow">Connect with UK businesses</a>
+            <a href="#" class="link with-arrow">Explore UK industries</a>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
 
+<section id="tariffs-section" class="tariffs-section">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-full column-half-l margin-vertical-90 tariffs-image">
+        <img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
+      </div>
+      <div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
+        <div class="padding-horizontal-45 wrap-tight tariffs-content">
+          <h2 class="heading-large">{{ page.tariffs_title }}</h2>
+          {{ page.tariffs_description|add_export_elements_classes }}
+          <a href="{{ page.tariffs_link }}" class="link with-arrow">CTA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
+  <div class="container wrap-tight">
+    <h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
+    <div class="card-grid">
+      <div class="column-third-xl column-half-l column-full">
+        <div class="card" id="news-placeholder1-card">
+          <a class="card-link" href="#" id="news-placeholder1-card-link">
+            <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="news-placeholder1-card-image"></div>
+            <div class="card-inner wrap-tight padding-horizontal-45">
+              <p class="subheading">Events</p>
+              <h3 class="heading-large">Join us at Singapore FinTech Festival 2019</h3>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="column-third-xl column-half-l column-full">
+        <div class="card" id="news-placeholder1-card">
+          <a class="card-link" href="#" id="news-placeholder2-card-link">
+            <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="news-placeholder2-card-image"></div>
+            <div class="card-inner wrap-tight padding-horizontal-45">
+              <p class="subheading">High Potential Opportunities</p>
+              <h3 class="heading-large">Rail infrastructure in Doncaster</h3>
+              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}
 
-
-{% block feedback_reporter %}{% endblock %}
+{% block content_after %}
+<section class="background-great-blue study-visit-cta-section" id="study-visit-cta-section">
+  <div class="container padding-vertical-30">
+    <div class="grid-row">
+      <div class="column-full column-half-l column-third-xl">
+        <a href="https://study-uk.britishcouncil.org/" rel="noopener noreferrer" class="button button-ghost-white button-arrow">Study in the UK</a>
+      </div>
+      <div class="column-full column-half-l column-third-xl">
+        <a href="https://www.visitbritain.com/gb/en" rel="noopener noreferrer" class="button button-ghost-white button-arrow">Visit the UK</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
