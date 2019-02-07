@@ -4,14 +4,13 @@ from django.utils import translation
 from django.http import Http404
 from directory_cms_client.client import cms_api_client
 
-from core.mixins import GetSlugFromKwargsMixin
+from core.mixins import (
+    GetSlugFromKwargsMixin,
+    ArticleSocialLinksMixin,
+    BreadcrumbsMixin,
+)
 from directory_cms_client.helpers import handle_cms_response
-
-
-class IncorrectSlug(Exception):
-    def __init__(self, canonical_url, *args, **kwargs):
-        self.canonical_url = canonical_url
-        super().__init__(*args, **kwargs)
+from directory_constants.constants import cms
 
 
 class CMSPageView(TemplateView):
@@ -57,8 +56,15 @@ class CMSPageView(TemplateView):
 class LandingPageCMSView(CMSPageView):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
-    slug = 'international'
-    subpage_groups = ['sectors', 'guides']
+    slug = cms.EXPORT_READINESS_HOME_INTERNATIONAL_SLUG
+
+
+class ArticlePageView(
+    ArticleSocialLinksMixin, BreadcrumbsMixin, GetSlugFromKwargsMixin,
+    CMSPageView
+):
+    active_view_name = 'article'
+    template_name = 'core/article_detail.html'
 
 
 class IndustriesLandingPageCMSView(CMSPageView):

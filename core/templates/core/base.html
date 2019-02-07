@@ -90,12 +90,12 @@
         {% endblock %}
 
         {% block body_content_container %}
-            <main id="content" class="{% block page_css_class %}{% endblock %}" role="main">
+            <main id="content" class="{% block css_layout_class %}{% endblock %}" role="main">
                 {% block content %}{% endblock %}
                 {% block feedback_reporter %}
                     <section dir="ltr" class="error-reporting">
                         <div class="container">
-                            <a id="error-reporting-section-contact-us" href="{{ services_urls.feedback }}" target="_blank">Is there anything wrong with this page?</a>
+                            <a id="error-reporting-section-contact-us" href="{{ services_urls.feedback }}" target="_blank">Is there anything wrong on this page?</a>
                         </div>
                     </section>
                 {% endblock %}

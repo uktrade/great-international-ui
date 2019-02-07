@@ -1,0 +1,19 @@
+
+<div class="container">
+  <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+    <ol>
+      <li>
+        <a href="{{ services_urls.exred }}">great.gov.uk</a>
+      </li>
+      {% for crumb in breadcrumbs %}
+        {% if not forloop.last %}
+          <li>
+            <a href="{{ crumb.url }}">{{ crumb.label }}</a>
+          </li>
+        {% else %}
+          <li aria-current="page">{{ crumb.label }}</li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>

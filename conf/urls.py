@@ -82,5 +82,10 @@ urlpatterns += i18n_patterns(
         core.views.UKRegionPageCMSView.as_view(),
         name="uk-region"
     ),
+    url(
+        r"^international/(?P<slug>[\w-]+)/$",
+        core.views.ArticlePageView.as_view(),
+        name="article-detail"
+    ),
     prefix_default_language=False,
 )
