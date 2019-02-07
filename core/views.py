@@ -95,3 +95,8 @@ class SetupGuidePageCMSView(GetSlugFromKwargsMixin, CMSPageView):
 class UKRegionPageCMSView(GetSlugFromKwargsMixin, CMSPageView):
     active_view_name = ''
     template_name = 'core/accordion_content_page_with_hero_image.html'
+
+
+class CampaignPageView(GetSlugFromKwargsMixin, CMSPageView):
+    active_view_name = ''
+    template_name = 'core/campaign.html'

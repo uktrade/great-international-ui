@@ -1,0 +1,32 @@
+
+// CAMPAIGN PAGE
+// =============
+
+@import '../partials/vars';
+
+.column-11-12 {
+  width: calc(100% / 12 * 11);
+}
+
+.campaign-page {
+
+  .selling-points-list {
+    .heading {
+      margin-top: 10px;
+    }
+  }
+
+  .breadcrumbs a {
+    color: $white;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-two-image {
+    margin: 0 0 15px 0;
+
+    img {
+      width: 100%;
+    }
+  }
+}

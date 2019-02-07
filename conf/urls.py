@@ -87,5 +87,10 @@ urlpatterns += i18n_patterns(
         core.views.ArticlePageView.as_view(),
         name="article-detail"
     ),
+    url(
+        r"^international/campaigns/(?P<slug>[\w-]+)/$",
+        core.views.CampaignPageView.as_view(),
+        name="campaign"
+    ),
     prefix_default_language=False,
 )

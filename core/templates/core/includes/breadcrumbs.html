@@ -3,14 +3,14 @@
   <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
     <ol>
       <li>
-        <a href="{{ services_urls.exred }}">great.gov.uk</a>
+        <a href="{% url 'index' %}">Great.gov.uk International</a>
       </li>
       {% for crumb in breadcrumbs %}
-        {% if not forloop.last %}
+        {% if not forloop.last and not forloop.first %}
           <li>
             <a href="{{ crumb.url }}">{{ crumb.label }}</a>
           </li>
-        {% else %}
+        {% elif forloop.last %}
           <li aria-current="page">{{ crumb.label }}</li>
         {% endif %}
       {% endfor %}
