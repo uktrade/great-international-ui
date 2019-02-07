@@ -1,5 +1,7 @@
 from unittest.mock import patch
 import pytest
+from bs4 import BeautifulSoup
+from django.urls import reverse
 
 from django.utils import translation
 from django.http import Http404
@@ -7,6 +9,7 @@ from django.http import Http404
 from core.views import CMSPageView
 from core.mixins import GetSlugFromKwargsMixin
 from core import helpers
+from core.tests.helpers import create_response
 
 
 test_sectors = [
@@ -190,3 +193,251 @@ def test_404_when_cms_language_unavailable(mock_cms_response, rf):
 
     with pytest.raises(Http404):
         view(request, slug='aerospace')
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_article_detail_page_no_related_content(
+    mock_get_page, client, settings
+):
+    test_article_page_no_related_content = {
+        'title': 'Test article admin title',
+        'article_title': 'Test article',
+        'article_teaser': 'Test teaser',
+        'article_body_text': '<p>Lorem ipsum</p>',
+        'related_pages': [],
+        'last_published_at': '2018-10-09T16:25:13.142357Z',
+        'meta': {
+            'languages': [('en-gb', 'English')],
+            'slug': 'foo',
+        },
+        'page_type': 'ArticlePage',
+    }
+
+    url = reverse(
+        'article-detail',
+        kwargs={'slug': 'foo'}
+    )
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=test_article_page_no_related_content
+    )
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.template_name == ['core/article_detail.html']
+
+    assert 'Related content' not in str(response.content)
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_detail_page_related_content(
+    mock_get_page, client, settings
+):
+
+    article_page = {
+        'title': 'Test article admin title',
+        'article_title': 'Test article',
+        'article_teaser': 'Test teaser',
+        'article_image': {'url': 'foobar.png'},
+        'article_body_text': '<p>Lorem ipsum</p>',
+        'related_pages': [
+            {
+                'article_title': 'Related article 1',
+                'article_teaser': 'Related article 1 teaser',
+                'article_image_thumbnail': {'url': 'related_article_one.jpg'},
+                'full_path': '/test-one',
+                'meta': {
+                    'slug': 'test-one',
+                }
+            },
+            {
+                'article_title': 'Related article 2',
+                'article_teaser': 'Related article 2 teaser',
+                'article_image_thumbnail': {'url': 'related_article_two.jpg'},
+                'full_path': '/test-two',
+                'meta': {
+                    'slug': 'test-two',
+                }
+            },
+        ],
+        'meta': {
+            'languages': [('en-gb', 'English')],
+            'slug': 'bar',
+        },
+        'page_type': 'ArticlePage',
+    }
+
+    url = reverse(
+        'article-detail',
+        kwargs={'slug': 'foo'}
+    )
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=article_page
+    )
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.template_name == ['core/article_detail.html']
+
+    assert 'Related content' in str(response.content)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    assert soup.find(
+        id='related-article-test-one-link'
+    ).attrs['href'] == '/international/test-one/'
+    assert soup.find(
+        id='related-article-test-two-link'
+    ).attrs['href'] == '/international/test-two/'
+
+    assert soup.find(
+        id='related-article-test-one'
+    ).select('h3')[0].text == 'Related article 1'
+    assert soup.find(
+        id='related-article-test-two'
+    ).select('h3')[0].text == 'Related article 2'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_breadcrumbs_mixin(mock_get_page, client, settings):
+
+    url = reverse('article-detail', kwargs={'slug': 'foo'})
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': 'ArticlePage',
+            'meta': {
+                'slug': 'foo',
+                'languages': [('en-gb', 'English')],
+            },
+        }
+    )
+    response = client.get(url)
+
+    breadcrumbs = response.context_data['breadcrumbs']
+    assert breadcrumbs == [
+        {
+            'url': '/international/',
+            'label': 'International'
+        },
+        {
+            'url': '/international/foo/',
+            'label': 'Foo'
+        },
+    ]
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_detail_page_social_share_links(
+    mock_get_page, client, settings
+):
+
+    test_article_page = {
+        'title': 'Test article admin title',
+        'article_title': 'Test article',
+        'article_image': {'url': 'foobar.png'},
+        'article_body_text': '<p>Lorem ipsum</p>',
+        'related_pages': [],
+        'full_path': (
+            '/international/foo/'),
+        'last_published_at': '2018-10-09T16:25:13.142357Z',
+        'meta': {
+            'slug': 'foo',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'ArticlePage',
+    }
+
+    url = reverse('article-detail', kwargs={'slug': 'foo'})
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=test_article_page
+    )
+
+    response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    assert response.status_code == 200
+    assert response.template_name == ['core/article_detail.html']
+
+    twitter_link = (
+        'https://twitter.com/intent/tweet?text=great.gov.uk'
+        '%20-%20Test%20article%20'
+        'http://testserver/international/foo/')
+    facebook_link = (
+        'https://www.facebook.com/share.php?u=http://testserver/'
+        'international/foo/')
+    linkedin_link = (
+        'https://www.linkedin.com/shareArticle?mini=true&url='
+        'http://testserver/international/foo/&title=great.gov.uk'
+        '%20-%20Test%20article%20&source=LinkedIn'
+    )
+    email_link = (
+        'mailto:?body=http://testserver/international/'
+        'foo/&subject=great.gov.uk%20-%20Test%20article%20'
+    )
+
+    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
+    assert soup.find(id='share-facebook').attrs['href'] == facebook_link
+    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
+    assert soup.find(id='share-email').attrs['href'] == email_link
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_detail_page_social_share_links_no_title(
+    mock_get_page, client, settings
+):
+
+    test_article_page = {
+        'title': 'Test article admin title',
+        'article_image': {'url': 'foobar.png'},
+        'article_body_text': '<p>Lorem ipsum</p>',
+        'related_pages': [],
+        'full_path': (
+            '/international/foo/'),
+        'last_published_at': '2018-10-09T16:25:13.142357Z',
+        'meta': {
+            'slug': 'foo',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'ArticlePage',
+    }
+
+    url = reverse('article-detail', kwargs={'slug': 'foo'})
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=test_article_page
+    )
+
+    response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    assert response.status_code == 200
+    assert response.template_name == ['core/article_detail.html']
+
+    twitter_link = (
+        'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
+        'http://testserver/international/foo/'
+        '')
+    linkedin_link = (
+        'https://www.linkedin.com/shareArticle?mini=true&url='
+        'http://testserver/international/foo/'
+        '&title=great.gov.uk'
+        '%20-%20%20&source=LinkedIn'
+    )
+    email_link = (
+        'mailto:?body=http://testserver/international/'
+        'foo/&subject='
+        'great.gov.uk%20-%20%20'
+    )
+
+    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
+    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
+    assert soup.find(id='share-email').attrs['href'] == email_link

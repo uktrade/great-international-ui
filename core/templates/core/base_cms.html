@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}Invest In Great Britain - {{ page.seo_title|default:page.title }}{% endblock %}
+{% block title %}Great.gov.uk international{% if page.seo_title %} - {{ page.seo_title }}{% endif %}{% endblock %}
 
 {% block head_sharing_metadata %}
     {{ block.super }}

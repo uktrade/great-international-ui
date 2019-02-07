@@ -1,4 +1,5 @@
 import re
+import dateparser
 
 from bs4 import BeautifulSoup
 
@@ -107,3 +108,10 @@ def title_from_heading(heading):
     if '：' in heading:
         return heading.split('：')[0].strip()
     return heading
+
+
+@register.filter
+def parse_date(date_string):
+    if date_string:
+        return dateparser.parse(date_string).strftime('%d %B %Y')
+    return None

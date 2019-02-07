@@ -9,6 +9,10 @@ def create_response(status_code=200, json_payload=None):
     return response
 
 
+def unslugify(slug):
+    return slug.replace('-', ' ').capitalize()
+
+
 def get_language_from_prefix(path):
     language_codes = translation.trans_real.get_languages()
     prefix = slash_split(path)

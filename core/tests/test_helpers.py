@@ -27,3 +27,15 @@ def test_get_language_from_prefix(client, path, expected_prefix):
 def test_get_untranslated_url(prefixed_url, exp_url):
     url = helpers.get_untranslated_url(prefixed_url)
     assert url == exp_url
+
+
+unslugify_slugs = [
+    ('test-slug-one', 'Test slug one'),
+    ('test-two', 'Test two'),
+    ('slug', 'Slug'),
+]
+
+
+@pytest.mark.parametrize('slug,exp', unslugify_slugs)
+def test_unslugify(slug, exp):
+    assert helpers.unslugify(slug) == exp

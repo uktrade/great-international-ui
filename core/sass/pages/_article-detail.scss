@@ -1,0 +1,55 @@
+
+// ARTICLE DETAIL PAGE
+// ===================
+
+@import '../partials/vars';
+
+.article-detail-page {
+  article.grid-row {
+    margin-bottom: 100px;
+  }
+
+  article header {
+    padding-bottom: 30px;
+
+    .column-seven-twelfths {
+      padding-bottom: 1em;
+    }
+
+    .heading-xlarge {
+      margin-top: 0.2em;
+    }
+  }
+
+  .column-seven-ninths {
+    width: calc(100% / 9 * 7);
+    float: right;
+  }
+
+  .article-content {
+    padding-top: 1em;
+    line-height: 1.75;
+    padding-bottom: 60px;
+  }
+
+  .content-list li a {
+    display: block;
+  }
+
+  .related-content-cards {
+    background-color: $stone-30;
+    padding-top: 30px;
+  }
+
+  @media (max-width: 640px) {
+    .column-seven-ninths {
+      width: 100%;
+      float: none;
+    }
+
+    .article-content {
+      margin-left: 0;
+    }
+  }
+
+}
