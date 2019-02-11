@@ -1,3 +1,4 @@
+{% load prefix_path from cms_tags %}
 
 {% if page.related_pages %}
 <div class="column-quarter">
@@ -6,7 +7,7 @@
     <ul>
       {% for article in page.related_pages %}
         <li>
-          <h3 class="heading-small"><a href="{% url 'article-detail' article.meta.slug %}" class="link">{{ article.article_title }}</a></h3>
+          <h3 class="heading-small"><a href="{{ article.full_path|prefix_path }}" class="link">{{ article.article_title }}</a></h3>
         </li>
       {% endfor %}
     </ul>

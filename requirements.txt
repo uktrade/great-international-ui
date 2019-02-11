@@ -30,7 +30,7 @@ django-storages==1.5.1
 django==1.11.13
 djangorestframework==3.7.7  # via sigauth
 docutils==0.14            # via botocore
-export-elements==1.0.2
+export-elements==1.0.3
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore
