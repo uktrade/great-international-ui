@@ -9,7 +9,6 @@
 }
 
 .campaign-page {
-
   .selling-points-list {
     .heading {
       margin-top: 10px;
@@ -22,8 +21,12 @@
 }
 
 @media (max-width: 640px) {
+  .reverse-columns-s {
+    flex-direction: column-reverse;
+  }
+
   .section-two-image {
-    margin: 0 0 15px 0;
+    margin: 0 0 30px 0;
 
     img {
       width: 100%;

@@ -578,7 +578,7 @@ def test_marketing_campaign_campaign_page_all_fields(
     assert related_page_one.find('a').text == 'Related article 1'
     assert related_page_one.find('p').text == 'Related article description 1'
     assert related_page_one.find('a').attrs['href'] == (
-        '/advice/finance/article-1/')
+        '/international/advice/finance/article-1/')
     assert related_page_one.find('img').attrs['src'] == (
         'article1_image_thumbnail.jpg')
 
@@ -586,7 +586,7 @@ def test_marketing_campaign_campaign_page_all_fields(
     assert related_page_two.find('a').text == 'Related article 2'
     assert related_page_two.find('p').text == 'Related article description 2'
     assert related_page_two.find('a').attrs['href'] == (
-        '/advice/finance/article-2/')
+        '/international/advice/finance/article-2/')
     assert related_page_two.find('img').attrs['src'] == (
         'article2_image_thumbnail.jpg')
 
@@ -594,7 +594,7 @@ def test_marketing_campaign_campaign_page_all_fields(
     assert related_page_three.find('a').text == 'Related article 3'
     assert related_page_three.find('p').text == 'Related article description 3'
     assert related_page_three.find('a').attrs['href'] == (
-        '/advice/finance/article-3/')
+        '/international/advice/finance/article-3/')
     assert related_page_three.find('img').attrs['src'] == (
         'article3_image_thumbnail.jpg')
 

@@ -1,6 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 {% load cta_box add_export_elements_classes from directory_components_tags %}
+{% load prefix_path from cms_tags %}
 
 {% block css_layout_class %}campaign-page{% endblock css_layout_class %}
 
@@ -24,12 +25,12 @@
 
 </section>
 
-<section id="campaign-section-one">
+<section id="campaign-section-one" class="padding-bottom-60">
   <div class="container">
     <div class="grid-row">
       <div class="column-half">
         <h2 id="section-one-heading" class="heading-large margin-top-60">{{ page.section_one_heading }}</h2>
-        <div id="section-one-intro">
+        <div id="section-one-intro" class="margin-bottom-60">
           {{ page.section_one_intro|add_export_elements_classes }}
         </div>
       </div>
@@ -83,12 +84,12 @@
   </div>
 </section>
 
-<section id="campaign-section-two" class="background-stone-50">
+<section id="campaign-section-two" class="background-stone-50 padding-vertical-60">
   <div class="container">
-    <div class="card-grid margin-top-60 margin-bottom-30 reverse-columns-s">
+    <div class="card-grid margin-bottom-30 reverse-columns-s">
 
       <div class="column-third">
-        <h2 id="section-two-heading" class="heading-large">{{ page.section_two_heading }}</h2>
+        <h2 id="section-two-heading" class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
         {{ page.section_two_intro|add_export_elements_classes }}
         {% if page.section_two_contact_button_url and page.section_one_contact_button_text %}
           <a id="section-two-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_two_contact_button_url }}">{{ page.section_two_contact_button_text }}</a>
@@ -96,7 +97,7 @@
       </div>
 
       {% if page.section_two_image %}
-        <div class="section-two-image column-two-thirds margin-top-30">
+        <div class="section-two-image column-two-thirds">
           <div class="grid-row">
             <img id="section-two-image" class="column-11-12 float-right" src="{{ page.section_two_image.url }}" alt="">
           </div>
@@ -108,7 +109,7 @@
 
 </section>
 
-<section class="related-content" id="campaign-related-content">
+<section id="campaign-related-content" class="related-content padding-bottom-60">
   <div class="container">
     <div class="grid-row">
       <div class="column-half">
@@ -125,7 +126,7 @@
           {% if article.article_image_thumbnail %}
             <img id="related-article-{{ article.meta.slug }}-image" src="{{ article.article_image_thumbnail.url }}" alt="">
           {% endif %}
-          <a id="related-page-{{ article.meta.slug }}-heading" href="{{ article.full_path }}" class="heading-medium grey-text margin-top-30">{{ article.article_title }}</a>
+          <a id="related-page-{{ article.meta.slug }}-heading" href="{{ article.full_path|prefix_path }}" class="heading-medium grey-text margin-top-30">{{ article.article_title }}</a>
           <p id="related-page-{{ article.meta.slug }}-description">{{ article.article_teaser }}</p>
         </li>
         {% endfor %}
@@ -134,7 +135,7 @@
   </div>
 </section>
 
-<section id="campaign-contact-section">
+<section id="campaign-contact-section" class="padding-bottom-60">
   <div class="container">
     {% cta_box box_id="campaign-contact-box" heading=page.cta_box_message button_text=page.cta_box_button_text button_class='button-large' button_url=page.cta_box_button_url box_class="background-stone-50" %}
   </div>

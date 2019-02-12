@@ -36,7 +36,7 @@ django==1.11.13
 djangorestframework==3.7.7  # via sigauth
 docutils==0.14            # via botocore
 execnet==1.5.0            # via pytest-xdist
-export-elements==1.0.3
+export-elements==1.1.0
 flake8==3.0.4
 freezegun==0.3.8
 gunicorn==19.5.0
