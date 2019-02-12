@@ -83,14 +83,19 @@ urlpatterns += i18n_patterns(
         name="uk-region"
     ),
     url(
-        r"^international/(?P<slug>[\w-]+)/$",
-        core.views.ArticlePageView.as_view(),
-        name="article-detail"
-    ),
-    url(
         r"^international/campaigns/(?P<slug>[\w-]+)/$",
         core.views.CampaignPageView.as_view(),
         name="campaign"
+    ),
+    url(
+        r"^international/(?P<slug>[\w-]+)/$",
+        core.views.ArticleListPageView.as_view(),
+        name="article-list"
+    ),
+    url(
+        r"^international/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$",
+        core.views.ArticlePageView.as_view(),
+        name="article-detail"
     ),
     prefix_default_language=False,
 )

@@ -5,8 +5,9 @@ from django.urls import reverse
 
 from django.utils import translation
 from django.http import Http404
+from django.views.generic import TemplateView
 
-from core.views import CMSPageView
+from core.mixins import CMSPageMixin
 from core.mixins import GetSlugFromKwargsMixin
 from core import helpers
 from core.tests.helpers import create_response
@@ -53,7 +54,7 @@ dummy_page = {
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
-    class MyView(CMSPageView):
+    class MyView(CMSPageMixin, TemplateView):
 
         template_name = 'core/base.html'
         slug = 'test'
@@ -85,7 +86,7 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
 def test_cms_language_switcher_active_language_available(
     mock_cms_response, rf
 ):
-    class MyView(CMSPageView):
+    class MyView(CMSPageMixin, TemplateView):
 
         template_name = 'core/base.html'
         slug = 'test'
@@ -107,7 +108,7 @@ def test_cms_language_switcher_active_language_available(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_active_view_name(mock_cms_response, rf):
-    class TestView(CMSPageView):
+    class TestView(CMSPageMixin, TemplateView):
         active_view_name = 'test'
         template_name = 'core/base.html'
         slug = 'test'
@@ -126,7 +127,7 @@ def test_active_view_name(mock_cms_response, rf):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_get_cms_page(mock_cms_response, rf):
-    class TestView(CMSPageView):
+    class TestView(CMSPageMixin, TemplateView):
         template_name = 'core/base.html'
         slug = 'invest-home-page'
         active_view_name = ''
@@ -144,7 +145,7 @@ def test_get_cms_page(mock_cms_response, rf):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageView):
+    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
         template_name = 'core/base.html'
         active_view_name = ''
 
@@ -171,7 +172,7 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_404_when_cms_language_unavailable(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageView):
+    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
         template_name = 'core/base.html'
 
     page = {
@@ -196,7 +197,7 @@ def test_404_when_cms_language_unavailable(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_article_article_detail_page_no_related_content(
+def test_article_detail_page_no_related_content(
     mock_get_page, client, settings
 ):
     test_article_page_no_related_content = {
@@ -210,12 +211,12 @@ def test_article_article_detail_page_no_related_content(
             'languages': [('en-gb', 'English')],
             'slug': 'foo',
         },
-        'page_type': 'ArticlePage',
+        'page_type': 'InternationalArticlePage',
     }
 
     url = reverse(
         'article-detail',
-        kwargs={'slug': 'foo'}
+        kwargs={'list': 'bar', 'slug': 'foo'}
     )
 
     mock_get_page.return_value = create_response(
@@ -247,7 +248,7 @@ def test_article_detail_page_related_content(
                 'article_title': 'Related article 1',
                 'article_teaser': 'Related article 1 teaser',
                 'article_image_thumbnail': {'url': 'related_article_one.jpg'},
-                'full_path': '/test-one',
+                'full_path': '/test-list/test-one/',
                 'meta': {
                     'slug': 'test-one',
                 }
@@ -256,7 +257,7 @@ def test_article_detail_page_related_content(
                 'article_title': 'Related article 2',
                 'article_teaser': 'Related article 2 teaser',
                 'article_image_thumbnail': {'url': 'related_article_two.jpg'},
-                'full_path': '/test-two',
+                'full_path': '/test-list/test-two/',
                 'meta': {
                     'slug': 'test-two',
                 }
@@ -264,14 +265,13 @@ def test_article_detail_page_related_content(
         ],
         'meta': {
             'languages': [('en-gb', 'English')],
-            'slug': 'bar',
+            'slug': 'foo',
         },
-        'page_type': 'ArticlePage',
+        'page_type': 'InternationalArticlePage',
     }
 
     url = reverse(
-        'article-detail',
-        kwargs={'slug': 'foo'}
+        'article-detail', kwargs={'list': 'bar', 'slug': 'foo'}
     )
 
     mock_get_page.return_value = create_response(
@@ -289,10 +289,10 @@ def test_article_detail_page_related_content(
 
     assert soup.find(
         id='related-article-test-one-link'
-    ).attrs['href'] == '/international/test-one/'
+    ).attrs['href'] == '/international/test-list/test-one/'
     assert soup.find(
         id='related-article-test-two-link'
-    ).attrs['href'] == '/international/test-two/'
+    ).attrs['href'] == '/international/test-list/test-two/'
 
     assert soup.find(
         id='related-article-test-one'
@@ -305,12 +305,12 @@ def test_article_detail_page_related_content(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_breadcrumbs_mixin(mock_get_page, client, settings):
 
-    url = reverse('article-detail', kwargs={'slug': 'foo'})
+    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
         json_payload={
-            'page_type': 'ArticlePage',
+            'page_type': 'InternationalArticlePage',
             'meta': {
                 'slug': 'foo',
                 'languages': [('en-gb', 'English')],
@@ -326,7 +326,11 @@ def test_breadcrumbs_mixin(mock_get_page, client, settings):
             'label': 'International'
         },
         {
-            'url': '/international/foo/',
+            'url': '/international/bar/',
+            'label': 'Bar'
+        },
+        {
+            'url': '/international/bar/foo/',
             'label': 'Foo'
         },
     ]
@@ -344,16 +348,16 @@ def test_article_detail_page_social_share_links(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'full_path': (
-            '/international/foo/'),
+            '/international/bar/foo/'),
         'last_published_at': '2018-10-09T16:25:13.142357Z',
         'meta': {
             'slug': 'foo',
             'languages': [('en-gb', 'English')],
         },
-        'page_type': 'ArticlePage',
+        'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={'slug': 'foo'})
+    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -369,17 +373,17 @@ def test_article_detail_page_social_share_links(
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
         '%20-%20Test%20article%20'
-        'http://testserver/international/foo/')
+        'http://testserver/international/bar/foo/')
     facebook_link = (
         'https://www.facebook.com/share.php?u=http://testserver/'
-        'international/foo/')
+        'international/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/foo/&title=great.gov.uk'
+        'http://testserver/international/bar/foo/&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/'
+        'mailto:?body=http://testserver/international/bar/'
         'foo/&subject=great.gov.uk%20-%20Test%20article%20'
     )
 
@@ -400,16 +404,16 @@ def test_article_detail_page_social_share_links_no_title(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'full_path': (
-            '/international/foo/'),
+            '/international/bar/foo/'),
         'last_published_at': '2018-10-09T16:25:13.142357Z',
         'meta': {
             'slug': 'foo',
             'languages': [('en-gb', 'English')],
         },
-        'page_type': 'ArticlePage',
+        'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={'slug': 'foo'})
+    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -424,16 +428,16 @@ def test_article_detail_page_social_share_links_no_title(
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/foo/'
+        'http://testserver/international/bar/foo/'
         '')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/foo/'
+        'http://testserver/international/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/'
+        'mailto:?body=http://testserver/international/bar/'
         'foo/&subject='
         'great.gov.uk%20-%20%20'
     )
@@ -480,7 +484,7 @@ campaign_page_all_fields = {
             'meta': {
                 'languages': [['en-gb', 'English']],
                 'slug': 'article-1'},
-            'page_type': 'ArticlePage',
+            'page_type': 'InternationalArticlePage',
             'title': 'Related article 1'
         },
         {
@@ -492,7 +496,7 @@ campaign_page_all_fields = {
             'meta': {
                 'languages': [['en-gb', 'English']],
                 'slug': 'article-2'},
-            'page_type': 'ArticlePage',
+            'page_type': 'InternationalArticlePage',
             'title': 'Related article 2'
         },
         {
@@ -504,7 +508,7 @@ campaign_page_all_fields = {
             'meta': {
                 'languages': [('en-gb', 'English')],
                 'slug': 'article-3'},
-            'page_type': 'ArticlePage',
+            'page_type': 'InternationalArticlePage',
             'title': 'Related article 3'
         },
     ],
@@ -688,3 +692,73 @@ def test_marketing_campaign_page_required_fields(
     assert soup.select(
         "li[aria-current='page']"
         )[0].text == campaign_page_required_fields['campaign_heading']
+
+
+test_articles = [
+    {
+        'seo_title': 'SEO title article 1',
+        'search_description': 'Search description article 1',
+        'article_title': 'Article 1 title',
+        'article_teaser': 'Article 1 teaser.',
+        'article_image': {'url': 'article_image1.png'},
+        'article_body_text': '<p>Lorem ipsum 1</p>',
+        'last_published_at': '2018-10-01T15:16:30.583279Z',
+        'full_path': '/topic/list/article-one/',
+        'tags': [
+            {'name': 'Test tag', 'slug': 'test-tag'},
+        ],
+        'meta': {'slug': 'article-one'}
+    },
+    {
+        'seo_title': 'SEO title article 2',
+        'search_description': 'Search description article 2',
+        'article_title': 'Article 2 title',
+        'article_teaser': 'Article 2 teaser.',
+        'article_image': {'url': 'article_image2.png'},
+        'article_body_text': '<p>Lorem ipsum 2</p>',
+        'last_published_at': '2018-10-02T15:16:30.583279Z',
+        'full_path': '/topic/list/article-two/',
+        'tags': [
+            {'name': 'Test tag', 'slug': 'test-tag'},
+        ],
+        'meta': {'slug': 'article-two'}
+    },
+]
+
+test_list_page = {
+    'title': 'List CMS admin title',
+    'seo_title': 'SEO title article list',
+    'search_description': 'Article list search description',
+    'landing_page_title': 'Article list landing page title',
+    'hero_image': {'url': 'article_list.png'},
+    'hero_teaser': 'Article list hero teaser',
+    'list_teaser': '<p>Article list teaser</p>',
+    'articles': test_articles,
+    'page_type': 'InternationalArticleListingPage',
+    'meta': {
+        'slug': 'article-list',
+        'languages': [('en-gb', 'English')],
+    },
+}
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_list_page(mock_get_page, client, settings):
+
+    url = reverse('article-list', kwargs={'slug': 'article-list'})
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=test_list_page
+    )
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.template_name == ['core/article_list.html']
+
+    assert test_list_page['title'] not in str(response.content)
+    assert test_list_page['landing_page_title'] in str(response.content)
+
+    assert '01 October' in str(response.content)
+    assert '02 October' in str(response.content)

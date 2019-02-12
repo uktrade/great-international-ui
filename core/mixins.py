@@ -1,8 +1,66 @@
+from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
+from django.utils import translation
+from django.http import Http404
 
 from directory_components.helpers import SocialLinkBuilder
 
+from directory_cms_client.client import cms_api_client
+from directory_cms_client.helpers import handle_cms_response
+
 from core.helpers import unslugify
+
+
+TEMPLATE_MAPPING = {
+    'InternationalTopicLandingPage': 'core/topic_list.html',
+    'InternationalArticleListingPage': 'core/article_list.html',
+    'InternationalArticlePage': 'core/article_detail.html'
+}
+
+
+class CMSPageMixin:
+    active_view_name = ''
+
+    @property
+    def template_name(self):
+        return TEMPLATE_MAPPING[self.page['page_type']]
+
+    @cached_property
+    def page(self):
+        response = cms_api_client.lookup_by_slug(
+            slug=self.slug,
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
+        return self.handle_cms_response(response)
+
+    def handle_cms_response(self, response):
+        page = handle_cms_response(response)
+        requested_language = translation.get_language()
+        if requested_language not in dict(page['meta']['languages']):
+            raise Http404('Content not found in requested language.')
+        return page
+
+    def get_context_data(self, *args, **kwargs):
+        page = self.page
+        show_language_switcher = (
+            len(page['meta']['languages']) > 1 and
+            'en-gb' in page['meta']['languages'][0]
+        )
+        language_available = translation.get_language() \
+            in page['meta']['languages']
+
+        return super().get_context_data(
+            language_switcher={
+                'show': show_language_switcher,
+                'available_languages': page['meta']['languages'],
+                'language_available': language_available
+            },
+            page=page,
+            active_view_name=self.active_view_name,
+            *args,
+            **kwargs
+        )
 
 
 class SetEtagMixin:

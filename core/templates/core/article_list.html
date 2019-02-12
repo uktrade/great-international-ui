@@ -1,0 +1,60 @@
+{% extends 'core/base_cms.html' %}
+{% load static %}
+{% load add_export_elements_classes from directory_components_tags %}
+{% load parse_date prefix_path from cms_tags %}
+
+{% block css_layout_class %}article-list-page{% endblock css_layout_class %}
+
+{% block content %}
+
+{% block hero %}
+  <section class="hero hero-generic" id="hero" style="background-image: url('{{ page.hero_image.url }}')">
+    <div class="container">
+      <div class="hero-title">
+        <h1 class="heading-hero-generic-compact" id="hero-heading">{{ page.landing_page_title }}</h1>
+        <p class="hero-description" id="hero-description">{{ page.articles_count }} article{{ page.articles_count|pluralize }}</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+<section id="{% block page_id %}article-list-page{% endblock %}">
+
+  {% block breadcrumbs %}
+    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
+  {% endblock %}
+
+  <div class="container">
+    {% if page.list_teaser %}
+    <div class="grid-row">
+      <div class="column-two-thirds-l column-full">
+        <div class="lede">
+          {{ page.list_teaser|add_export_elements_classes }}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="grid-row">
+      <div class="column-two-thirds-l column-full article-list">
+        <ul class="content-list">
+          {% block content_list %}
+
+            {% for article in page.articles %}
+              <li class="article">
+                <a href="{{ article.full_path|prefix_path }}" class="heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
+                <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
+              </li>
+            {% endfor %}
+
+          {% endblock %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% block list_footer %}
+{% endblock %}
+
+{% endblock %}

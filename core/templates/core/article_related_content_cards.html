@@ -1,4 +1,5 @@
 {% load card from directory_components_tags %}
+{% load prefix_path from cms_tags %}
 
 {% if page.related_pages %}
 <section class="related-content-cards background-stone">
@@ -7,9 +8,10 @@
         <ul class="card-grid" aria-labelledby="related-content-heading" id="related-pages-list">
           {% for article in page.related_pages %}
             <li class="column-third-l column-half-m column-full">
-              {% url 'article-detail' article.meta.slug as article_url %}
+              {% with article.full_path|prefix_path as article_url %}
               {% with 'related-article-'|add:article.meta.slug as card_id %}
                 {% card card_id=card_id title=article.article_title description=article.article_teaser url=article_url img_src=article.article_image_thumbnail.url %}
+              {% endwith %}
               {% endwith %}
             </li>
           {% endfor %}
