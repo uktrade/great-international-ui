@@ -757,7 +757,7 @@ def test_article_list_page(mock_get_page, client, settings):
     assert response.status_code == 200
     assert response.template_name == ['core/article_list.html']
 
-    assert test_list_page['title'] in str(response.content)
+    assert test_list_page['title'] not in str(response.content)
     assert test_list_page['landing_page_title'] in str(response.content)
 
     assert '01 October' in str(response.content)
