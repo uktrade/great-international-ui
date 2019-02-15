@@ -48,7 +48,8 @@ dummy_page = {
             ['fr', 'Français'],
             ['de', 'Deutsch'],
         ]
-    }
+    },
+    'page_type': ''
 }
 
 
@@ -66,7 +67,8 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
             'languages': [
                 ['de', 'Deutsch'],
             ]
-        }
+        },
+        'page_type': ''
     }
 
     mock_cms_response.return_value = helpers.create_response(
@@ -155,6 +157,7 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
             'languages': [('en-gb', 'English'), ('de', 'German')],
             'slug': 'aerospace'
         },
+        'page_type': ''
     }
 
     mock_cms_response.return_value = helpers.create_response(
@@ -216,7 +219,7 @@ def test_article_detail_page_no_related_content(
 
     url = reverse(
         'article-detail',
-        kwargs={'list': 'bar', 'slug': 'foo'}
+        kwargs={'topic': 'topic', 'list': 'bar', 'slug': 'foo'}
     )
 
     mock_get_page.return_value = create_response(
@@ -271,7 +274,8 @@ def test_article_detail_page_related_content(
     }
 
     url = reverse(
-        'article-detail', kwargs={'list': 'bar', 'slug': 'foo'}
+        'article-detail', kwargs={
+            'topic': 'topic', 'list': 'bar', 'slug': 'foo'}
     )
 
     mock_get_page.return_value = create_response(
@@ -305,7 +309,8 @@ def test_article_detail_page_related_content(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_breadcrumbs_mixin(mock_get_page, client, settings):
 
-    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
+    url = reverse('article-detail', kwargs={
+        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -326,11 +331,15 @@ def test_breadcrumbs_mixin(mock_get_page, client, settings):
             'label': 'International'
         },
         {
-            'url': '/international/bar/',
+            'url': '/international/topic/',
+            'label': 'Topic'
+        },
+        {
+            'url': '/international/topic/bar/',
             'label': 'Bar'
         },
         {
-            'url': '/international/bar/foo/',
+            'url': '/international/topic/bar/foo/',
             'label': 'Foo'
         },
     ]
@@ -348,7 +357,7 @@ def test_article_detail_page_social_share_links(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'full_path': (
-            '/international/bar/foo/'),
+            '/international/topic/bar/foo/'),
         'last_published_at': '2018-10-09T16:25:13.142357Z',
         'meta': {
             'slug': 'foo',
@@ -357,7 +366,8 @@ def test_article_detail_page_social_share_links(
         'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
+    url = reverse('article-detail', kwargs={
+        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -373,17 +383,17 @@ def test_article_detail_page_social_share_links(
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
         '%20-%20Test%20article%20'
-        'http://testserver/international/bar/foo/')
+        'http://testserver/international/topic/bar/foo/')
     facebook_link = (
         'https://www.facebook.com/share.php?u=http://testserver/'
-        'international/bar/foo/')
+        'international/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/bar/foo/&title=great.gov.uk'
+        'http://testserver/international/topic/bar/foo/&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/bar/'
+        'mailto:?body=http://testserver/international/topic/bar/'
         'foo/&subject=great.gov.uk%20-%20Test%20article%20'
     )
 
@@ -413,7 +423,8 @@ def test_article_detail_page_social_share_links_no_title(
         'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={'list': 'bar', 'slug': 'foo'})
+    url = reverse('article-detail', kwargs={
+        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -428,16 +439,16 @@ def test_article_detail_page_social_share_links_no_title(
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/bar/foo/'
+        'http://testserver/international/topic/bar/foo/'
         '')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/bar/foo/'
+        'http://testserver/international/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/bar/'
+        'mailto:?body=http://testserver/international/topic/bar/'
         'foo/&subject='
         'great.gov.uk%20-%20%20'
     )
@@ -516,6 +527,7 @@ campaign_page_all_fields = {
         'languages': [('en-gb', 'English')],
         'slug': 'test-page'
     },
+    'page_type': 'InternationalCampaignPage'
 }
 
 
@@ -631,6 +643,7 @@ campaign_page_required_fields = {
         'languages': [('en-gb', 'English')],
         'slug': 'test-page'
     },
+    'page_type': 'InternationalCampaignPage'
 }
 
 
@@ -745,7 +758,10 @@ test_list_page = {
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_list_page(mock_get_page, client, settings):
 
-    url = reverse('article-list', kwargs={'slug': 'article-list'})
+    url = reverse('article-list', kwargs={
+        'topic': 'article-topic',
+        'slug': 'article-list'
+    })
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -762,3 +778,39 @@ def test_article_list_page(mock_get_page, client, settings):
 
     assert '01 October' in str(response.content)
     assert '02 October' in str(response.content)
+
+
+@pytest.mark.parametrize('url,page_type,status_code', (
+    (
+        '/international/article-list/',
+        'InternationalArticlePage',
+        404
+    ),
+    (
+        '/international/topic/list/article-page/',
+        'InternationalArticlePage',
+        200
+    ),
+    (
+        '/international/topic/campaign/',
+        'InternationalCampaignPage',
+        404
+    )
+))
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_page_url_mismatch_404(
+    mock_get_page, url, page_type, status_code, client
+):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': page_type,
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+        }
+    )
+
+    response = client.get(url)
+    assert response.status_code == status_code

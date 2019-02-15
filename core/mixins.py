@@ -14,16 +14,31 @@ from core.helpers import unslugify
 TEMPLATE_MAPPING = {
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/article_detail.html'
+    'InternationalArticlePage': 'core/article_detail.html',
+    'InternationalCampaignPage': 'core/campaign.html',
 }
 
 
 class CMSPageMixin:
     active_view_name = ''
+    page_type = ''
 
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+        Avoid showing the wrong page type at the wrong url
+
+        e.g. /international/topic-slug should be a topic page
+        this avoids /international/article-slug showing an article page
+        at a url where it shouldn't exist
+        """
+
+        if self.page['page_type'] != self.page_type:
+            raise Http404
+        return super().dispatch(request, *args, **kwargs)
 
     @cached_property
     def page(self):
