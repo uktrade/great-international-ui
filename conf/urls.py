@@ -89,11 +89,16 @@ urlpatterns += i18n_patterns(
     ),
     url(
         r"^international/(?P<slug>[\w-]+)/$",
+        core.views.ArticleTopicPageView.as_view(),
+        name="article-topic"
+    ),
+    url(
+        r"^international/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
         core.views.ArticleListPageView.as_view(),
         name="article-list"
     ),
     url(
-        r"^international/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$",
+        r"^international/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$", # noqa
         core.views.ArticlePageView.as_view(),
         name="article-detail"
     ),

@@ -9,10 +9,21 @@ from core.mixins import (
 from directory_constants.constants import cms
 
 
+class CampaignPageView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
+    template_name = 'core/campaign.html'
+    page_type = 'InternationalCampaignPage'
+
+
+class ArticleTopicPageView(
+    BreadcrumbsMixin, GetSlugFromKwargsMixin, CMSPageMixin, TemplateView
+):
+    page_type = 'InternationalTopicLandingPage'
+
+
 class ArticleListPageView(
     BreadcrumbsMixin, GetSlugFromKwargsMixin, CMSPageMixin, TemplateView
 ):
-    pass
+    page_type = 'InternationalArticleListingPage'
 
 
 class LandingPageCMSView(CMSPageMixin, TemplateView):
@@ -26,7 +37,7 @@ class ArticlePageView(
     CMSPageMixin, TemplateView
 ):
     active_view_name = 'article'
-    template_name = 'core/article_detail.html'
+    page_type = 'InternationalArticlePage'
 
 
 class IndustriesLandingPageCMSView(CMSPageMixin, TemplateView):
@@ -58,7 +69,3 @@ class SetupGuidePageCMSView(
 
 class UKRegionPageCMSView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
     template_name = 'core/accordion_content_page_with_hero_image.html'
-
-
-class CampaignPageView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-    template_name = 'core/campaign.html'

@@ -4,3 +4,7 @@
 @import 'mobile-header';
 @import 'footer';
 @import 'language-selector';
+
+#skip-link:focus {
+  z-index: 5;
+}
