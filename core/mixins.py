@@ -12,6 +12,7 @@ from core.helpers import unslugify
 
 
 TEMPLATE_MAPPING = {
+    'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/article_detail.html',
