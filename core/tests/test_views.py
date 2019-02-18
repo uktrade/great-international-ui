@@ -788,14 +788,24 @@ def test_article_list_page(mock_get_page, client, settings):
     ),
     (
         '/international/topic/list/article-page/',
-        'InternationalArticlePage',
-        200
+        'InternationalArticleListingPage',
+        404
     ),
     (
         '/international/topic/campaign/',
         'InternationalCampaignPage',
         404
-    )
+    ),
+    (
+        '/international/',
+        'InternationalArticlePage',
+        404
+    ),
+    (
+        '/international/',
+        'InternationalHomePage',
+        200
+    ),
 ))
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_page_url_mismatch_404(
