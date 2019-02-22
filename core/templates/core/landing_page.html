@@ -66,37 +66,35 @@
 
 </section>
 
+{% if page.related_pages %}
 <section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
   <div class="container wrap-tight">
     <h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
     <div class="card-grid">
-      <div class="column-third-xl column-half-l column-full">
-        <div class="card" id="news-placeholder1-card">
-          <a class="card-link" href="#" id="news-placeholder1-card-link">
-            <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="news-placeholder1-card-image"></div>
-            <div class="card-inner wrap-tight padding-horizontal-45">
-              <p class="subheading">Events</p>
-              <h3 class="heading-large">Join us at Singapore FinTech Festival 2019</h3>
-              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </a>
+
+      {% for related_page in page.related_pages %}
+        <div class="column-third-xl column-half-l column-full">
+          <div class="card" id="{{ related_page.meta.slug }}-card">
+            <a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
+              <div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
+              <div class="card-inner wrap-tight padding-horizontal-45">
+                {% if related_page.page_type == 'InternationalArticlePage' %}
+                  <p class="subheading">Article</p>
+                {% else %}
+                  <p class="subheading">Campaign</p>
+                {% endif %}
+                <h3 class="heading-large">{{ related_page.title }}</h3>
+                {% if related_page.teaser %}<p class="description">{{ related_page.teaser }}</p>{% endif %}
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="column-third-xl column-half-l column-full">
-        <div class="card" id="news-placeholder1-card">
-          <a class="card-link" href="#" id="news-placeholder2-card-link">
-            <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="news-placeholder2-card-image"></div>
-            <div class="card-inner wrap-tight padding-horizontal-45">
-              <p class="subheading">High Potential Opportunities</p>
-              <h3 class="heading-large">Rail infrastructure in Doncaster</h3>
-              <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </a>
-        </div>
-      </div>
+      {% endfor %}
+
     </div>
   </div>
 </section>
+{% endif %}
 {% endblock content %}
 
 {% block content_after %}

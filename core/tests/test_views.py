@@ -824,3 +824,62 @@ def test_page_url_mismatch_404(
 
     response = client.get(url)
     assert response.status_code == status_code
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_homepage_no_related_pages(mock_get_page, client):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': []
+        }
+    )
+
+    response = client.get(reverse('index'))
+    assert 'News title' not in str(response.content)
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_homepage_related_pages(mock_get_page, client):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': [
+                {
+                    'title': 'Related article title',
+                    'page_type': 'InternationalArticlePage',
+                    'teaser': 'Related article teaser',
+                    'meta': {'slug': 'article'},
+                    'full_path': '/topic/list/article',
+                },
+                {
+                    'title': 'Related campaign title',
+                    'page_type': 'InternationalCampaignPage',
+                    'teaser': 'Related campaign teaser',
+                    'meta': {'slug': 'campaign'},
+                    'full_path': '/international/campaigns/campaign',
+                },
+            ]
+        }
+    )
+
+    response = client.get(reverse('index'))
+    assert 'News title' in str(response.content)
+    assert 'Related article title' in str(response.content)
+    assert 'Related article teaser' in str(response.content)
+    assert '/topic/list/article' in str(response.content)
+    assert 'Related campaign title' in str(response.content)
+    assert 'Related campaign teaser' in str(response.content)
+    assert '/international/campaigns/campaign' in str(response.content)
