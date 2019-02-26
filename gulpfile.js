@@ -10,10 +10,20 @@ const SASS_FILES = `${PROJECT_DIR}/core/sass/**/*.scss`;
 const CSS_DIR = `${PROJECT_DIR}/core/static/styles`;
 const CSS_FILES = `${PROJECT_DIR}/core/static/styles/**/*.css`;
 const CSS_MAPS = `${PROJECT_DIR}/core/static/styles/**/*.css.map`;
+const FLAGS_SRC = [
+  `${PROJECT_DIR}/node_modules/flag-icon-css/**/*.svg`,
+  `${PROJECT_DIR}/node_modules/flag-icon-css/**/*.min.css`,
+];
+const FLAGS_DEST = `${PROJECT_DIR}/core/static/vendor/flag-icons`;
 
 gulp.task('clean', function() {
-  return del([CSS_FILES, CSS_MAPS])
+  return del([CSS_FILES, CSS_MAPS, FLAGS_DEST])
 });
+
+gulp.task('flags', function() {
+  return gulp.src(FLAGS_SRC)
+  .pipe(gulp.dest(FLAGS_DEST));
+})
 
 gulp.task('sass:compile', function () {
   return gulp.src(SASS_FILES)
@@ -37,4 +47,4 @@ gulp.task('sass:watch', function () {
 
 gulp.task('sass', ['clean', 'sass:compile']);
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'flags']);
