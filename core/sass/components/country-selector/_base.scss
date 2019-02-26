@@ -83,6 +83,10 @@
 
 @media (max-width: 640px) {
   .country-selector-dialog {
+    select {
+      height: 49px;
+    }
+
     .select-container,
     .button-container {
       width: 100%;
