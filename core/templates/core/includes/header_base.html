@@ -2,23 +2,26 @@
 {% load i18n %}
 {% get_current_language as lang_code %}
 
-<header id="great-header" class="great-header">
+{% block header_country_selector %}
+{% endblock %}
 
-  <div id="great-global-header" class="great-global-header-footer great-global-header international">
+{% block header_language_selector %}
+{% endblock %}
+
+<header id="great-header" class="great-header country-selector-dialog-visible{% block header_class %}{% endblock %}">
+
+  <div id="great-global-header" class="great-global-header-footer great-global-header {% block global_header_class %}{% endblock %}">
     <div class="container">
       {% block global_header_logo %}
       {% endblock %}
       <div class="great-domestic-international-links">
         <a href="{{ services_urls.exred }}" id="great-global-header-domestic-link" class="domestic">For UK businesses</a>
-        <a href="{% url 'index' %}" id="great-global-header-international-link" class="international active">For international businesses</a>
+        <a href="{% url 'index' %}" id="great-global-header-international-link" class="international">For international businesses</a>
       </div>
     </div>
   </div>
 
-  {% block header_language_selector %}
-  {% endblock %}
-
-  <div id="great-header-menu" class="great-header-menu international">
+  <div id="great-header-menu" class="great-header-menu {% block header_menu_class %}{% endblock %}">
     <div class="container">
 
       <a id="great-header-logo" class="great-header-logo" href="{% block header_logo_url %}{% endblock %}">
@@ -32,7 +35,7 @@
     </div>
 
     <div class="great-header-nav-container">
-      <nav id="great-header-nav" class="great-header-nav international" aria-label="Main menu">
+      <nav id="great-header-nav" class="great-header-nav {% block header_nav_class %}{% endblock %}" aria-label="Main menu">
         <ul class="grid-row js-nav-list" id="great-header-nav-list">
           {% block header_nav %}
           {% endblock %}
