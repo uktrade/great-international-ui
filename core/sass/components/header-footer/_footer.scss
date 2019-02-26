@@ -57,7 +57,6 @@
 .great-footer-copyright {
   font-size: 12px;
   font-family: $brand-font-alternative;
-  letter-spacing: normal;
 }
 
 @media (max-width: 640px) {
@@ -118,6 +117,10 @@
     ul li a {
       color: $white;
       text-decoration: none;
+    }
+
+    .great-footer-domestic-international-link {
+      white-space: normal;
     }
   }
 

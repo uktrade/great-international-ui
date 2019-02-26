@@ -9,25 +9,21 @@
 
 .great-header {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 
   a {
     &:active:focus {
       background-color: $focus-yellow;
+      color: $great-blue;
     }
 
     &:focus {
       @include focus
     }
-
-    &:active:focus {
-      color: $great-blue;
-    }
   }
 }
 
 // links in global header
-
 .great-domestic-international-links {
   a {
     color: $mid-grey;
@@ -50,7 +46,6 @@
 }
 
 // main header menu
-
 .great-header-menu {
   background-color: $great-blue;
   position: relative;
@@ -60,13 +55,20 @@
     padding-bottom: 25px;
   }
 
+  &.domestic > .container {
+    padding-top: 20px;
+  }
+
   &.international > .container {
     padding-top: 25px;
+  }
+
+  &.domestic .great-header-logo {
+    height: 80px;
   }
 }
 
 // language/country select and account links
-
 .great-header-extra-links {
   float: right;
   font-size: 14px;
@@ -74,10 +76,6 @@
 
   li {
     display: inline-block;
-
-    &:last-child {
-      margin-left: 15px;
-    }
   }
 
   a {
@@ -88,6 +86,10 @@
       text-decoration: underline;
     }
 
+    &:last-child {
+      margin-left: 15px;
+    }
+
     &:active:focus span {
       color: $great-blue;
     }
@@ -95,7 +97,7 @@
 
   .lang,
   .country,
-  .great-header-account-link {
+  .account-link {
     color: $stone;
     margin-left: 5px;
   }
@@ -111,7 +113,6 @@
 }
 
 // main navigation
-
 .great-header-nav-container {
   width: 100%;
   background-color: $white;
@@ -121,28 +122,18 @@
   padding: 15px 0;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: $white;
-
-  a {
-    font-family: inherit;
-    display: block;
-  }
 
   a.link-heading {
     text-decoration: underline;
   }
 
-  > .container {
-    @include float-clear
-  }
-
   .link-heading {
     font-size: 19px;
-    margin-bottom: 0.2em;
     color: $grey;
   }
 }
 
+// JS enabled styling
 body.js-enabled {
   @import 'js-header';
 }
@@ -153,9 +144,7 @@ body.js-enabled {
   }
 }
 
-@media (max-width: 768px) {
-  @import 'mobile-header';
-}
+@import 'mobile-header';
 
 @media (max-width: 420px) {
   .great-header-nav {

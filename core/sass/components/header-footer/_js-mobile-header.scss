@@ -9,7 +9,14 @@
 
   .great-global-header {
     @include float-clear;
-    height: auto;
+  }
+
+  .great-header-menu.domestic .great-header-logo {
+    margin-top: -25px;
+
+    img {
+      height: 100%;
+    }
   }
 
   .great-header-logo img {
@@ -33,17 +40,14 @@
     margin: 0;
   }
 
-  .great-header-nav {
-    margin: 0;
-    width: 100%;
+  .great-header-nav.domestic .js-top-level-list {
+    .link-heading {
+      color: $white;
+      display: block;
+    }
 
-    .js-nav-list {
-      margin: 0 30px;
-
-      .column-quarter {
-        width: 100%;
-        float: none;
-      }
+    .js-collapsible-menu {
+      position: static;
     }
   }
 
@@ -53,6 +57,18 @@
     position: static;
     background-color: $lightened-great-blue;
     height: auto;
+    margin: 0;
+    width: 100%;
+
+    .js-nav-list {
+      margin: 0 30px;
+      width: auto;
+
+      .column-quarter {
+        width: auto;
+        float: none;
+      }
+    }
 
     &.collapsed {
       height: 0;
@@ -74,12 +90,6 @@
     }
   }
 
-  .js-nav-list {
-    li {
-      display: block;
-    }
-  }
-
   .js-mobile-button {
     @include button-reset;
     height: 50px;
@@ -93,6 +103,7 @@
     padding-right: 45px;
     cursor: pointer;
 
+    // burger menu/X icon
     span {
       position: absolute;
       right: 10px;
@@ -146,7 +157,6 @@
       margin-top: -12px;
     }
   }
-
 }
 
 @media (max-width: 420px) {

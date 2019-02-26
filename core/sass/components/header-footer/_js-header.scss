@@ -2,27 +2,17 @@
 // JS ENABLED HEADER STYLING
 // ==========================
 
-.great-global-header {
-  border: 0;
-}
-
 .great-header-nav-container {
   @include float-clear;
   background-color: transparent;
-  margin-top: -58px;
   max-width: 1200px;
   margin: 0 auto;
   width: auto;
-
-  & > * {
-    float: left;
-  }
 }
 
 .great-header-nav {
   margin-top: -58px;
   float: right;
-  clear: left;
   padding: 0;
   background: transparent;
 
@@ -31,6 +21,14 @@
     font-family: inherit;
     padding: 7px 0;
     display: block;
+  }
+
+  // height of the background for the menu options
+  &.domestic {
+    .js-menu-control.expanded:after {
+      height: 280px;
+      top: 120px;
+    }
   }
 
   &.international {
@@ -43,7 +41,7 @@
     padding: 15px;
   }
 
-
+  // heading buttons for menu dropdowns on desktop
   .js-menu-control {
     @include button-reset;
     cursor: pointer;
@@ -120,12 +118,7 @@
     position: static;
   }
 
-  .js-collapsible-menu.collapsed {
-    display: none;
-    right: 0;
-    left: auto;
-  }
-
+  // dropdown menu ul
   .js-collapsible-menu {
     position: absolute;
     background-color: transparent;
@@ -143,50 +136,10 @@
     }
   }
 
-  .js-listitem {
-    padding: 0 15px;
-
-    .link {
-      display: block;
-      padding: 15px 30px;
-      margin: 0 -30px;
-      position: relative;
-
-      &:after {
-        display: block;
-        content: '';
-        height: 1px;
-        background-color: $active-blue-alt;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: calc(100% - 60px);
-        margin: 0 30px;
-      }
-
-      &:active:focus {
-        color: $great-blue;
-
-        &:after {
-          background-color: $focus-yellow;
-        }
-      }
-    }
-
-    &:first-child .link {
-      padding-top: 30px;
-      margin-top: -15px;
-    }
-
-    &:last-child .link {
-      padding-bottom: 30px;
-      margin-bottom: -15px;
-
-      &:after {
-        display: none;
-      }
-    }
+  .js-collapsible-menu.collapsed {
+    display: none;
+    right: 0;
+    left: auto;
   }
 }
 
@@ -211,7 +164,7 @@
     float: left;
 
     .js-menu-control.expanded:after {
-      top: 108px;
+      top: 90px;
     }
   }
 }
