@@ -45,6 +45,6 @@ gulp.task('sass:watch', function () {
   );
 });
 
-gulp.task('sass', ['clean', 'sass:compile']);
+gulp.task('sass', ['clean', 'sass:compile', 'flags']);
 
 gulp.task('default', ['sass', 'flags']);
