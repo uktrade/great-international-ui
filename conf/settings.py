@@ -63,6 +63,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'core.context_processors.untranslated_url',
                 'core.context_processors.footer_contact_us_link',
+                'core.context_processors.user_country',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
@@ -147,6 +149,9 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+# Country cookie
+COUNTRY_COOKIE_NAME = 'country'
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
