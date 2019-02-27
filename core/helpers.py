@@ -9,7 +9,7 @@ COUNTRY_CODES = [code for code, _ in COUNTRY_CHOICES]
 
 def get_country_from_querystring(request):
     country_code = request.GET.get('country')
-    if country_code and country_code in COUNTRY_CODES:
+    if country_code in COUNTRY_CODES:
         return country_code
 
 

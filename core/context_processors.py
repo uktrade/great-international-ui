@@ -25,13 +25,7 @@ def footer_contact_us_link(request):
 def user_country(request):
     country_code = helpers.get_user_country(request)
     hide_country_selector = bool(country_code)
-
-    if country_code:
-        country_name = [
-            name for code, name in COUNTRY_CHOICES
-            if code == country_code][0]
-    else:
-        country_name = ''
+    country_name = dict(COUNTRY_CHOICES).get(country_code, '')
 
     return {
         # if there is a country already detected we can hide the selector

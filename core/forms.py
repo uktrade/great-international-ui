@@ -18,8 +18,6 @@ class CountryForm(forms.Form):
 
 
 def get_country_form_initial_data(request):
-    country_code = helpers.get_user_country(request)
-    if country_code:
-        return {
-            'country': country_code.upper()
-        }
+    return {
+        'country': helpers.get_user_country(request).upper() or None
+    }
