@@ -9,6 +9,7 @@ from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
 from core.helpers import unslugify
+from core import forms
 
 
 TEMPLATE_MAPPING = {
@@ -18,6 +19,22 @@ TEMPLATE_MAPPING = {
     'InternationalArticlePage': 'core/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
 }
+
+
+class CountrySelectorMixin:
+    country_form_class = forms.CountryForm
+
+    def get_context_data(self, *args, **kwargs):
+        country_form_kwargs = self.get_country_form_kwargs()
+        return super().get_context_data(
+            form=self.country_form_class(**country_form_kwargs),
+            *args, **kwargs)
+
+    def get_country_form_kwargs(self, **kwargs):
+        return {
+            'initial': forms.get_country_form_initial_data(self.request),
+            **kwargs,
+        }
 
 
 class CMSPageMixin:

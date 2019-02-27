@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load render_form from directory_components_tags %}
+
+<section id="country-selector-dialog" dir="ltr" class="country-selector-dialog">
+  <div class="container">
+    <div data-node="countries" class="countries">
+      <h2>Choose your country</h2>
+      <p>Tell us where your business is based to see information, guidance and opportunities specific to your location.</p>
+      <form class="form-group" action="" method="GET">
+        <div class="select-container">
+          {% if country %}
+            <span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
+          {% endif %}
+          <div class="country-select{% if form.country.errors %} form-group-error{% endif %}">
+            {% if form.country.label %}{{ form.country.label_tag }}{% endif %}
+            {% if form.country.errors %}
+              <span class="error-message">{{ form.country.errors }}</span>
+            {% endif %}
+            {% if form.country.help_text %}
+              <span class="form-hint">{{ form.country.help_text }}</span>
+            {% endif %}
+            {{ form.country }}
+          </div>
+        </div>
+        <div class="button-container">
+          <button class="button button-blue" type="submit">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

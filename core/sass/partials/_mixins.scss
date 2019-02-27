@@ -12,6 +12,33 @@
   }
 }
 
+@mixin up-chevron-1($colour) {
+  @include chevron(45deg, $colour);
+  border-color: $colour;
+  border-width: 2px 0 0 2px;
+  top: 5px;
+}
+
+@mixin down-chevron-1($colour) {
+  @include chevron(45deg, $colour);
+  border-color: $colour;
+  border-width: 0 2px 2px 0;
+  top: 1px;
+}
+
+@mixin flag-red-underline {
+  &:after {
+    background-color: $flag-red;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: block;
+  }
+}
+
 @mixin button-reset {
   border: 0;
   margin: 0;

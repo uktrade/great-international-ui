@@ -20,6 +20,9 @@
         <title>{% spaceless %}
           {% block title %}{% endblock %}
         {% endspaceless %}</title>
+        {% block cookie_domain_meta %}
+          <meta id="privacyCookieDomain" value="{{ directory_components_cookie_notice.PRIVACY_COOKIE_DOMAIN }}" />
+        {% endblock %}
 
         {% block head_favicon %}
             <link href='{% static 'directory_components/images/favicon-192x192.png' %}' rel='shortcut icon' type='image/png'>
@@ -29,6 +32,7 @@
         {% block head_css %}
             <link href="{% static 'export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
             <link href="{% static 'export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
             <link rel="stylesheet" href="{% static 'styles/main.css' %}">
         {% endblock %}
 
@@ -54,6 +58,7 @@
           <script src="{% static 'js/dit.utils.js' %}"></script>
           <script src="{% static 'js/dit.classes.Dropdown.js' %}"></script>
           <script src="{% static 'js/dit.classes.Modal.js' %}"></script>
+          <script src="{% static 'js/dit.components.countrySelector.js' %}"></script>
           <script src="{% static 'js/dit.components.greatInternationalHeader.js' %}"></script>
           <script src="{% static 'js/dit.components.languageSelector.js' %}"></script>
           <script src="{% static 'directory_components/js/dit.components.cookie-notice.js' %}"></script>
@@ -108,6 +113,14 @@
             {% include 'core/includes/footer.html' %}
         {% endblock %}
 
-        {% block body_js %}{% endblock %}
+        {% block body_js %}
+          <script type="text/javascript">
+          {% if not hide_country_selector %}
+            $(document).ready(function() {
+              dit.components.countrySelector.viewInhibitor(false);
+            });
+          {% endif %}
+          </script>
+        {% endblock %}
     </body>
 </html>

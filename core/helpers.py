@@ -1,5 +1,21 @@
+from django.conf import settings
 from django.utils import translation
 import requests
+
+from directory_constants.constants.choices import COUNTRY_CHOICES
+
+COUNTRY_CODES = [code for code, _ in COUNTRY_CHOICES]
+
+
+def get_country_from_querystring(request):
+    country_code = request.GET.get('country')
+    if country_code in COUNTRY_CODES:
+        return country_code
+
+
+def get_user_country(request):
+    return get_country_from_querystring(request) or \
+        request.COOKIES.get(settings.COUNTRY_COOKIE_NAME, '')
 
 
 def create_response(status_code=200, json_payload=None):

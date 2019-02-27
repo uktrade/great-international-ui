@@ -2,11 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block header_language_selector %}
-  {% if language_switcher.show %}
-    {% include 'directory_components/header_footer_v2/language_selector.html' %}
-  {% endif %}
+{% block header_country_selector %}
+  {% include 'core/includes/header_country_select.html' %}
 {% endblock %}
+
+{% block global_header_class %}international{% endblock %}
+{% block header_menu_class %}international{% endblock %}
+{% block header_nav_class %}international{% endblock %}
 
 {% block global_header_logo %}
 <img id="great-global-header-logo" class="great-global-header-footer-logo" alt="HM Government" height="24" src="{% static 'images/hm-government.svg' %}">
@@ -19,32 +21,15 @@
 {% block header_logo_url %}{% url 'index' %}{% endblock %}
 
 {% block header_extra_links %}
-  {% if not country_switcher.show %}
-    <li>
-      <a href="#" class="great-header-country" id="header-country-selector-activator">
-        <span class="text">Change country</span> <span class="country">Brazil</span>
-      </a>
-    </li>
-  {% else %}
-    <li>
-      <p class="not-translated">
-        <span>{% trans 'Page in English only' %}</span>
-      </p>
-    </li>
+<div id="country-select-activator-container">
+  <span id="country-text">Country</span>
+  {% if country.name %}
+    <span class="country">
+      <span class="flag-icon flag-icon-{{ country.code }}"></span>
+      {{ country.name }}
+    </span>
   {% endif %}
-  {% if language_switcher.show %}
-    <li>
-      <a href="#" class="LanguageSelectorDialog-Tracker great-header-language" id="header-language-selector-activator">
-        <span class="text">Change language</span> <span class="lang">{{ lang_code }}</span>
-      </a>
-    </li>
-  {% else %}
-    <li>
-      <p class="not-translated">
-        <span>{% trans 'Page in English only' %}</span>
-      </p>
-    </li>
-  {% endif %}
+</div>
 {% endblock %}
 
 {% block header_nav %}
