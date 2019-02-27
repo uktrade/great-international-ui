@@ -883,3 +883,31 @@ def test_homepage_related_pages(mock_get_page, client):
     assert 'Related campaign title' in str(response.content)
     assert 'Related campaign teaser' in str(response.content)
     assert '/international/campaigns/campaign' in str(response.content)
+
+
+@pytest.mark.parametrize('localised_articles,total_articles', (
+    ([], 4),
+    ([1], 5),
+    ([1, 2, 3, 4], 8),
+))
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_article_count_with_regional_articles(
+    mock_get_page, localised_articles, total_articles, client
+):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': 'InternationalArticleListingPage',
+            'articles_count': 4,
+            'localised_articles': localised_articles,
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+        }
+    )
+    url = reverse('article-list', kwargs={'topic': 'topic', 'slug': 'slug'})
+    response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    assert '{} articles'.format(total_articles) in soup.find(
+        id='hero-description').string
