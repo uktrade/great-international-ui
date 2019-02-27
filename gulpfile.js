@@ -17,7 +17,7 @@ const FLAGS_SRC = [
 const FLAGS_DEST = `${PROJECT_DIR}/core/static/vendor/flag-icons`;
 
 gulp.task('clean', function() {
-  return del([CSS_FILES, CSS_MAPS, FLAGS_DEST])
+  return del([CSS_FILES, CSS_MAPS])
 });
 
 gulp.task('flags', function() {
@@ -47,4 +47,4 @@ gulp.task('sass:watch', function () {
 
 gulp.task('sass', ['clean', 'sass:compile', 'flags']);
 
-gulp.task('default', ['sass', 'flags']);
+gulp.task('default', ['sass']);

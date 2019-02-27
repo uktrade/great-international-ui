@@ -45,15 +45,17 @@
 
             {% for article in page.localised_articles %}
               <li class="article">
-                <a href="{{ request.path }}{{ article.meta.slug }}" class="heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
-                <p class="subheading">
-                  {% if region == 'eu' %}
-                    <span class="flag-icon flag-icon-eu"></span> EU
-                  {% else %}
-                    <span class="non-eu">Non-EU</span>
-                  {% endif %}
-                </p>
-                <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
+                <a href="{{ request.path }}{{ article.meta.slug }}" class="article-heading heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
+                <div class="details">
+                  <p class="subheading">
+                    {% if region == 'eu' %}
+                      <span class="flag-icon flag-icon-eu"></span> EU
+                    {% else %}
+                      <span class="non-eu">Non-EU</span>
+                    {% endif %}
+                  </p>
+                  <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
+                </div>
               </li>
             {% endfor %}
           </ul>
@@ -68,7 +70,7 @@
 
             {% for article in page.articles %}
               <li class="article">
-                <a href="{{ article.full_path|prefix_path }}" class="heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
+                <a href="{{ article.full_path|prefix_path }}" class="article-heading heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
                 <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
               </li>
             {% endfor %}
