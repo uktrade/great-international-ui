@@ -53,10 +53,10 @@ class IndustriesLandingPageCMSView(BaseCMSPage):
     subpage_groups = ['children_sectors']
 
 
-class IndustryPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
-    active_view_name = 'industries'
-    template_name = 'core/industry_page.html'
-    subpage_groups = ['children_sectors']
+class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+    active_view_name = 'sector'
+    page_type = 'InternationalSectorPage'
+    template_name = 'core/sector_page.html'
 
 
 class SetupGuideLandingPageCMSView(BaseCMSPage):

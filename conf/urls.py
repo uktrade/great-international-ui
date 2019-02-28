@@ -71,14 +71,9 @@ urlpatterns += i18n_patterns(
         name="industries"
     ),
     url(
-        r"^international/industries/(?P<parent_slug>[\w-]+)/(?P<slug>[\w-]+)/$",  # NOQA
-        core.views.IndustryPageCMSView.as_view(),
-        name="industry"
-    ),
-    url(
         r"^international/industries/(?P<slug>[\w-]+)/$",
-        core.views.IndustryPageCMSView.as_view(),
-        name="industry"
+        core.views.SectorPageCMSView.as_view(),
+        name="sector"
     ),
     url(
         r"^international/uk-setup-guide/$",
