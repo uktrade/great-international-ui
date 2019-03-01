@@ -14,14 +14,14 @@ dit.components.countrySelector = (new function() {
 
   createBannerCloseButton = function() {
     var $container = $(BANNER + ' .countries');
-    var $closeButton = $('<button></button>', {
+    var $button = $('<button></button>', {
       'text': 'Close',
       'class': 'close-button',
       'aria-controls': BANNER_ID,
       id: BANNER_CLOSE_BUTTON_ID
     });
-    $container.append($closeButton);
-    return $closeButton;
+    $container.append($button);
+    return $button;
   }
 
   createBannerOpenButton = function() {
@@ -67,8 +67,9 @@ dit.components.countrySelector = (new function() {
     var $button = createBannerCloseButton();
 
     $button.on('keydown', function(e) {
-      // Close on enter or space
-      if(e.which === 13 || e.which === 32) {
+      // Close on enter, space or esc
+      if(e.which === 13 || e.which === 32 || e.which == 27) {
+        e.preventDefault();
         closeBanner();
       }
     });
@@ -80,7 +81,7 @@ dit.components.countrySelector = (new function() {
   }
 
   bannerContentsEventHandler = function() {
-    var $items = $(BANNER).find('select, a, button, input');
+    var $items = $(BANNER).find('form').find('select, a, button, input');
 
     $items.each(function() {
       $(this).on('keydown', function(e) {
