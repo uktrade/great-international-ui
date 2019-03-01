@@ -1,7 +1,11 @@
 import pytest
 import requests_mock
+from unittest.mock import patch
 from django.views.generic import TemplateView
 from core import mixins
+from core.tests.helpers import create_response
+
+from directory_constants.constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
 
 
 @pytest.mark.parametrize('method,expected', (
@@ -58,3 +62,31 @@ def test_cached_views_not_dynamic(rf, settings, view_class):
         request.session = None
         response = view(request)
         assert response.status_code == 200
+
+
+@pytest.mark.parametrize('country_code', [code for code, _ in COUNTRY_CHOICES])
+@patch('core.helpers.get_user_country')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_country_region(mock_cms_response, mock_country, country_code, rf):
+    class TestView(mixins.RegionalContentMixin, TemplateView):
+        template_name = 'core/base.html'
+
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'title': 'test',
+            'meta': {
+                'languages': [('en-gb', 'English')]
+            }
+        }
+    )
+
+    mock_country.return_value = country_code
+
+    request = rf.get('/')
+    response = TestView.as_view()(request)
+
+    if country_code in EU_COUNTRIES:
+        assert response.context_data['region'] == 'eu'
+    else:
+        assert not response.context_data['region']
