@@ -5,7 +5,7 @@ from django.http import Http404
 
 from directory_components.helpers import SocialLinkBuilder
 
-from directory_constants.constants.choices import COUNTRY_CHOICES
+from directory_constants.constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
@@ -29,7 +29,8 @@ class RegionalContentMixin:
     @property
     def region(self):
         country_code = helpers.get_user_country(self.request).upper() or None
-        return helpers.get_region(country_code)
+        if country_code in EU_COUNTRIES:
+            return 'eu'
 
     def get_context_data(self, *args, **kwargs):
         country_code = helpers.get_user_country(self.request)

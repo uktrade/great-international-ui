@@ -2,7 +2,7 @@ from django.conf import settings
 from django.utils import translation
 import requests
 
-from directory_constants.constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
+from directory_constants.constants.choices import COUNTRY_CHOICES
 
 COUNTRY_CODES = [code for code, _ in COUNTRY_CHOICES]
 
@@ -52,9 +52,3 @@ def get_untranslated_url(path):
     else:
         untranslated_url = path.replace('/' + current_language, '')
     return untranslated_url
-
-
-def get_region(country_code):
-    if EU_COUNTRIES.get(country_code):
-        return 'eu'
-    return 'non-eu'
