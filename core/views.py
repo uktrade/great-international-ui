@@ -5,12 +5,12 @@ from core.mixins import (
     ArticleSocialLinksMixin,
     BreadcrumbsMixin,
     CMSPageMixin,
-    CountrySelectorMixin,
+    RegionalContentMixin,
 )
 from directory_constants.constants import cms
 
 
-class BaseCMSPage(CountrySelectorMixin, CMSPageMixin, TemplateView):
+class BaseCMSPage(RegionalContentMixin, CMSPageMixin, TemplateView):
     pass
 
 
@@ -35,7 +35,7 @@ class LandingPageCMSView(BaseCMSPage):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
     page_type = 'InternationalHomePage'
-    slug = cms.EXPORT_READINESS_HOME_INTERNATIONAL_SLUG
+    slug = cms.GREAT_HOME_INTERNATIONAL_SLUG
 
 
 class ArticlePageView(
