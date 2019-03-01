@@ -60,24 +60,6 @@ dit.components.greatHeader = (new function() {
     $menu.before($control);
     $menu.addClass(COLLAPSED_CLASS);
 
-    // change the invest heading to a link
-    var $invest = $('#header-invest-links-heading');
-    var attrs = {};
-    attrs.href = $('#headerInvestURL').attr('value');
-
-    $.each($invest[0].attributes, function(index, attr) {
-      attrs[attr.nodeName] = attr.nodeValue;
-    });
-
-    $invest.replaceWith(function () {
-      return $('<a />', attrs).append($(this).contents());
-    });
-
-    // hide submenu items
-    $(COLLAPSIBLE_MENUS)
-      .attr('aria-hidden', 'true')
-      .hide();
-
     var _expanders = [];
 
     _expanders.push(new dit.classes.Dropdown($menu, {
@@ -86,27 +68,8 @@ dit.components.greatHeader = (new function() {
       hover: false,
       mode: self.mode,
       cleanup: function() {
-        // reassign because the element changed
-        $invest = $('#header-invest-links-heading');
-
-        // change link back to a span
-        $.each($invest[0].attributes, function(idx, attr) {
-            attrs[attr.nodeName] = attr.nodeValue;
-        });
-
-        delete attrs.href;
-
-        $invest.replaceWith(function () {
-          return $('<span />', attrs).append($(this).contents());
-        });
-
         // remove the menu button
         $control.remove();
-
-        // show submenu items again
-        $(COLLAPSIBLE_MENUS)
-          .attr('aria-hidden', 'false')
-          .show();
       }
     }));
 

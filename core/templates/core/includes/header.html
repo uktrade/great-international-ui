@@ -34,31 +34,24 @@
 
 {% block header_nav %}
 
-<li class="column-quarter js-top-level-list">
-  <span class="link-heading js-link-heading" id="header-invest-links-heading">Invest</span>
-  <ul class="js-collapsible-menu" aria-labelledby="header-invest-links-heading" id="header-invest-links-list">
-    <li class="js-menuitem">
-      <a class="link" id="header-invest-expand-to-the-uk" href="{{ services_urls.invest }}">Expand to the UK</a>
-    </li>
-    <li class="js-menuitem">
-      <a class="link" id="header-invest-ukan" href="#">UK Advisory Network</a>
-    </li>
-    <li class="js-menuitem">
-      <a class="link" id="header-invest-capital-investment" href="#">Capital investment in the UK</a>
-    </li>
-  </ul>
+<li class="column-quarter js-menuitem">
+  <a class="link-heading" id="great-header-invest" href="{{ services_urls.invest }}">Invest</a>
 </li>
 
 <li class="column-quarter js-menuitem">
-  <a href="{{ services_urls.fas }}" class="link-heading" id="great-header-fas-link">Find a UK supplier</a>
+  <a href="{{ services_urls.fas }}/search" class="link-heading" id="great-header-fas-link">Find a UK supplier</a>
 </li>
 
 <li class="column-quarter js-menuitem">
-  <a href="#" class="link-heading" id="great-header-trade-info-link">Find tariffs, quotas and trade information</a>
+  <a href="{% url 'industries' %}" class="link-heading" id="great-header-industries">Industries</a>
 </li>
 
 <li class="column-quarter js-menuitem">
-  <a href="#" class="link-heading" id="great-header-news-events-link">News and events</a>
+  <a href="{% url 'doing-business-with-the-uk' %}" class="link-heading" id="great-header-doing-business-with-the-uk">Doing business with the UK</a>
+</li>
+
+<li class="column-quarter js-menuitem">
+  <a href="{% url 'news' %}" class="link-heading" id="great-header-news">News</a>
 </li>
 
 {% endblock %}
