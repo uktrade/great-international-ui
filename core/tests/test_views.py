@@ -707,34 +707,51 @@ def test_marketing_campaign_page_required_fields(
         )[0].text == campaign_page_required_fields['campaign_heading']
 
 
-test_articles = [
+test_child_pages = [
     {
-        'seo_title': 'SEO title article 1',
-        'search_description': 'Search description article 1',
-        'article_title': 'Article 1 title',
-        'article_teaser': 'Article 1 teaser.',
-        'article_image': {'url': 'article_image1.png'},
-        'article_body_text': '<p>Lorem ipsum 1</p>',
-        'last_published_at': '2018-10-01T15:16:30.583279Z',
-        'full_path': '/topic/list/article-one/',
-        'tags': [
-            {'name': 'Test tag', 'slug': 'test-tag'},
-        ],
-        'meta': {'slug': 'article-one'}
+        'last_published_at': '2019-02-28T10:56:30.455848Z',
+        'meta': {'slug': 'campaign-one'},
+        'page_type': 'InternationalCampaignPage',
+        'teaser': 'Campaign one teaser',
+        'title': 'Campaign one'
     },
     {
-        'seo_title': 'SEO title article 2',
-        'search_description': 'Search description article 2',
-        'article_title': 'Article 2 title',
-        'article_teaser': 'Article 2 teaser.',
-        'article_image': {'url': 'article_image2.png'},
-        'article_body_text': '<p>Lorem ipsum 2</p>',
-        'last_published_at': '2018-10-02T15:16:30.583279Z',
-        'full_path': '/topic/list/article-two/',
-        'tags': [
-            {'name': 'Test tag', 'slug': 'test-tag'},
-        ],
-        'meta': {'slug': 'article-two'}
+        'last_published_at': '2019-02-28T10:56:31.455848Z',
+        'meta': {'slug': 'article-one'},
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article one teaser',
+        'title': 'Article one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {'slug': 'article-two'},
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article two teaser',
+        'title': 'Article two'
+    },
+]
+
+test_localised_child_pages = [
+    {
+        'last_published_at': '2019-02-28T10:56:30.455848Z',
+        'meta': {'slug': 'campaign-one'},
+        'page_type': 'InternationalCampaignPage',
+        'teaser': 'Campaign one teaser',
+        'title': 'Campaign one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:31.455848Z',
+        'meta': {'slug': 'article-one'},
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article one teaser',
+        'title': 'Article one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {'slug': 'article-two'},
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article two teaser',
+        'title': 'Article two'
     },
 ]
 
@@ -746,7 +763,8 @@ test_list_page = {
     'hero_image': {'url': 'article_list.png'},
     'hero_teaser': 'Article list hero teaser',
     'list_teaser': '<p>Article list teaser</p>',
-    'articles': test_articles,
+    'child_pages': test_child_pages,
+    'localised_child_pages': test_localised_child_pages,
     'page_type': 'InternationalArticleListingPage',
     'meta': {
         'slug': 'article-list',
@@ -776,8 +794,7 @@ def test_article_list_page(mock_get_page, client, settings):
     assert test_list_page['title'] not in str(response.content)
     assert test_list_page['landing_page_title'] in str(response.content)
 
-    assert '01 October' in str(response.content)
-    assert '02 October' in str(response.content)
+    assert '28 February' in str(response.content)
 
 
 @pytest.mark.parametrize('url,page_type,status_code', (
@@ -788,13 +805,28 @@ def test_article_list_page(mock_get_page, client, settings):
     ),
     (
         '/international/topic/list/article-page/',
+        'InternationalArticlePage',
+        200
+    ),
+    (
+        '/international/topic/list/article-page/',
         'InternationalArticleListingPage',
         404
+    ),
+    (
+        '/international/topic/list/',
+        'InternationalArticleListingPage',
+        200
     ),
     (
         '/international/topic/campaign/',
         'InternationalCampaignPage',
         404
+    ),
+    (
+        '/international/campaigns/campaign/',
+        'InternationalCampaignPage',
+        200
     ),
     (
         '/international/',
@@ -899,7 +931,7 @@ def test_article_count_with_regional_articles(
         json_payload={
             'page_type': 'InternationalArticleListingPage',
             'articles_count': 4,
-            'localised_articles': localised_articles,
+            'localised_child_pages': localised_articles,
             'meta': {
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],

@@ -12,7 +12,7 @@
     <div class="container">
       <div class="hero-title">
         <h1 class="heading-hero-generic-compact" id="hero-heading">{{ page.landing_page_title }}</h1>
-        {% with page.localised_articles|length as num_localised_articles %}
+        {% with page.localised_child_pages|length as num_localised_articles %}
         <p class="hero-description" id="hero-description">{{ page.articles_count|add:num_localised_articles }} article{{ page.articles_count|pluralize }}</p>
         {% endwith %}
       </div>
@@ -39,22 +39,25 @@
 
     <div class="grid-row">
       <div class="column-two-thirds-l column-full article-list">
-        {% if page.localised_articles %}
+        {% if page.localised_child_pages %}
           <ul class="content-list regional-content" aria-labelledby="article-list-localised">
             <h2 class="heading-large" id="article-list-localised">For businesses in {{ country.name }}</h2>
 
-            {% for article in page.localised_articles %}
+            {% for child_page in page.localised_child_pages %}
               <li class="article">
-                <a href="{{ request.path }}{{ article.meta.slug }}" class="article-heading heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
+                <a {% if child_page.page_type == 'InternationalCampaignPage' %}
+                href="{% url 'campaign' child_page.meta.slug %}"
+                {% else %}
+                href="{{ request.path }}{{ child_page.meta.slug }}"
+                {% endif %}
+                class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
                 <div class="details">
                   <p class="subheading">
                     {% if region == 'eu' %}
                       <span class="flag-icon flag-icon-eu"></span> EU
-                    {% else %}
-                      <span class="non-eu">Non-EU</span>
                     {% endif %}
                   </p>
-                  <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
+                  <p class="subheading">Last updated {{ child_page.last_published_at|parse_date }}</p>
                 </div>
               </li>
             {% endfor %}
@@ -64,14 +67,14 @@
         <ul class="content-list" {% if page.localised_articles %}aria-labelledby="article-list-general"{% endif %}>
           {% block content_list %}
 
-            {% if page.localised_articles %}
+            {% if page.localised_child_pages %}
               <h2 class="heading-large" id="article-list-general">General</h2>
             {% endif %}
 
-            {% for article in page.articles %}
+            {% for child_page in page.child_pages %}
               <li class="article">
-                <a href="{{ article.full_path|prefix_path }}" class="article-heading heading-medium link" id="{{ article.meta.slug }}-link">{{ article.article_title }}</a>
-                <p class="subheading">Last updated {{ article.last_published_at|parse_date }}</p>
+                <a href="{{ child_page.full_path|prefix_path }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
+                <p class="subheading">Last updated {{ child_page.last_published_at|parse_date }}</p>
               </li>
             {% endfor %}
 
