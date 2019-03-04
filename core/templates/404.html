@@ -2,6 +2,10 @@
 {% load static %}
 {% load i18n %}
 
+{% block body_header %}
+  {% include 'core/includes/header_no_country_select.html' %}
+{% endblock %}
+
 {% block content %}
 <section dir="ltr" class="error">
   <div class="container">
