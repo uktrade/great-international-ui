@@ -7,6 +7,10 @@
 
 // overrides
 
+#skip-link:focus {
+  z-index: 10;
+}
+
 section {
   padding-bottom: 0;
 }

@@ -51,6 +51,10 @@
   .great-footer-domestic-international-link {
     white-space: nowrap;
     text-align: right;
+
+    a {
+      color: $white;
+    }
   }
 }
 

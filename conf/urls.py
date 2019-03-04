@@ -53,8 +53,21 @@ urlpatterns += i18n_patterns(
         name="index"
     ),
     url(
+        r"^international/news/$",
+        core.views.ArticleListPageView.as_view(),
+        {'slug': 'news'},
+        name="news"
+    ),
+    url(
+        r"^international/doing-business-with-the-uk/$",
+        core.views.ArticleListPageView.as_view(),
+        {'slug': 'doing-business-with-the-uk'},
+        name="doing-business-with-the-uk"
+    ),
+    url(
         r"^international/industries/$",
-        core.views.IndustriesLandingPageCMSView.as_view(),
+        core.views.ArticleTopicPageView.as_view(),
+        {'slug': 'industries'},
         name="industries"
     ),
     url(
