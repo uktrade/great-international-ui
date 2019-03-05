@@ -36,7 +36,21 @@
   color: #fff;
 
   .container {
-    min-height: 300px;
+    min-height: 597px;
+    display: flex;
+    align-items: center;
+
+    .grid-row {
+      flex-grow: 1
+    }
+  }
+
+  .decorative-line {
+    width: 50%;
+  }
+
+  .arrow {
+    margin-left: 1em;
   }
 }
 
