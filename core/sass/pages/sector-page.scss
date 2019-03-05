@@ -12,15 +12,20 @@
   width: 100%;
 }
 
-.statistics .container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-
-  figure {
-    flex-grow: 1;
-    flex-shrink: 0;
-    width: 200px;
+.statistics {
+  .grid-row {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .statistic-number {
+    margin-bottom: 0.4em;
+  }
+  .statistic-heading {
+    margin-bottom: 0.75em;
+  }
+  .statistic-smallprint {
+    color: #666666;
   }
 }
 
