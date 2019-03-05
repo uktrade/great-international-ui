@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load add_export_elements_classes filter_by_active_language from cms_tags %}
+{% load add_export_elements_classes convert_headings_to filter_by_active_language override_class_on_h2_elements override_class_on_h4_elements from cms_tags %}
 
 {% block head_css %}
   {{ block.super }}
@@ -32,7 +32,7 @@
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-half-l">
-        {{ page.section_one_body|add_export_elements_classes|safe }}
+        {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_class_on_h2_elements:'heading-medium'|safe }}
       </div>
       <div class="column-full column-half-l">
         <figure>
@@ -161,12 +161,12 @@
       <div class="column-full column-half-xl">
         <h3>{{ page.section_three_subsection_one_heading }}</h3>
         <p>{{ page.section_three_subsection_one_teaser }}</p>
-        {{ page.section_three_subsection_one_body|add_export_elements_classes|safe }}
+        {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
       </div>
       <div class="column-full column-half-xl">
         <h3>{{ page.section_three_subsection_two_heading }}</h3>
         <p>{{ page.section_three_subsection_two_teaser }}</p>
-        {{ page.section_three_subsection_two_body|add_export_elements_classes|safe }}
+        {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
       </div>
     </div>
   </div>
