@@ -19,7 +19,7 @@
 {% if page.heading_teaser %}
 <section class="teaser">
   <div class="container">
-    <div class="grid-row">
+    <div class="grid-row padding-top-30 padding-bottom-30">
       <div class="column-full column-two-thirds-m column-half-l">
         <p>{{ page.heading_teaser }}</p>
       </div>
@@ -31,7 +31,7 @@
 <section class="section-one">
   <div class="container">
     <div class="grid-row">
-      <div class="column-full column-half-l">
+      <div class="column-full column-half-l section-one-body">
         {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_class_on_h2_elements:'heading-medium'|safe }}
       </div>
       <div class="column-full column-half-l">
@@ -48,7 +48,7 @@
 </section>
 
 <section class="statistics">
-  <div class="container">
+  <div class="container padding-vertical-30px margin-bottom-60">
     <div class="grid-row">
       <figure>
         {{ page.statistic_1_number }}
@@ -104,26 +104,28 @@
   </div>
 </section>
 
-<section class="highlights">
-  <div class="container">
+<section class="section-two">
+  <div class="container padding-vertical-90">
     <div class="grid-row">
-      <h2>{{ page.section_two_heading }}</h2>
-      <p>{{ page.section_two_teaser }}</p>
+      <div class="column-full column-two-thirds-m column-half-l">
+        <h2 class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
+        <p>{{ page.section_two_teaser }}</p>
+      </div>
     </div>
     <div class="grid-row">
       <div class="column-full column-third-l">
         <img src="{{ page.section_two_subsection_one_icon.url }}"/>
-        <h3>{{ page.section_two_subsection_one_heading }}</h3>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_one_heading }}</h3>
         <p>{{ page.section_two_subsection_one_body }}</p>
       </div>
       <div class="column-full column-third-l">
         <img src="{{ page.section_two_subsection_two_icon.url }}"/>
-        <h3>{{ page.section_two_subsection_two_heading }}</h3>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_two_heading }}</h3>
         <p>{{ page.section_two_subsection_two_body }}</p>
       </div>
       <div class="column-full column-third-l">
         <img src="{{ page.section_two_subsection_three_icon.url }}"/>
-        <h3>{{ page.section_two_subsection_three_heading }}</h3>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_three_heading }}</h3>
         <p>{{ page.section_two_subsection_three_body }}</p>
       </div>
     </div>
@@ -149,11 +151,11 @@
 {% endif %}
 
 {% if page.section_three_heading %}
-<section class="fact-sheets">
+<section class="section-three background-stone-30 padding-vertical-90">
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-two-thirds-m column-half-l">
-        <h2>{{ page.section_three_heading }}</h2>
+        <h2 class="heading-large margin-top-0">{{ page.section_three_heading }}</h2>
         <p>{{ page.section_three_teaser }}</p>
       </div>
     </div>
@@ -177,7 +179,7 @@
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-two-thirds-m column-half-l">
-        <h2>Next steps</h2>
+        <h2 class="heading-large margin-top-0">Next steps</h2>
         <p>DIT can advise you on doing business abroad, and help put you in touch with other people who can help such as lawyers and distributors.</p>
       </div>
     </div>
@@ -195,7 +197,7 @@
 {% if page.related_pages %}
 <section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
   <div class="container wrap-tight">
-    <h2 class="heading-large margin-bottom-45">News and events</h2>
+    <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
 
       {% for related_page in page.related_pages %}

@@ -1,8 +1,18 @@
+.section-one .container {
+  padding: 120px 0;
+}
+
+.section-one-body {
+  h2:first-child {
+    margin-top: 0;
+  }
+}
+
 .section-one-image {
   width: 100%;
 }
 
-.statistics .grid-row {
+.statistics .container {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -23,4 +33,8 @@
   .container {
     min-height: 300px;
   }
+}
+
+.next-steps .container {
+  padding: 150px 0;
 }
