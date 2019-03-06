@@ -1,5 +1,5 @@
 {% extends 'core/base_cms.html' %}
-{% load add_export_elements_classes convert_headings_to filter_by_active_language override_class_on_h2_elements override_class_on_h4_elements from cms_tags %}
+{% load add_export_elements_classes convert_headings_to filter_by_active_language override_elements_css_class from cms_tags %}
 {% load card from directory_components_tags %}
 
 {% block css_layout_class %}sector-page{% endblock %}
@@ -41,7 +41,7 @@
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-half-l section-one-body">
-        {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_class_on_h2_elements:'heading-medium'|safe }}
+        {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|safe }}
       </div>
       <div class="column-full column-half-l">
         <figure>
@@ -176,7 +176,7 @@
           <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_one_heading }}</h3>
           <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_one_teaser }}</p>
           <div class="font-xsmall">
-            {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+            {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
           </div>
         </div>
       </div>
@@ -185,7 +185,7 @@
           <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_two_heading }}</h3>
           <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_two_teaser }}</p>
           <div class="font-xsmall">
-            {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+            {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
           </div>
         </div>
       </div>

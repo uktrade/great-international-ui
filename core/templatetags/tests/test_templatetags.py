@@ -27,13 +27,19 @@ def test_convert_headings_to_does_not_convert_non_headings():
     assert actual == expected
 
 
-def test_override_class_on_h2_elements():
-    actual = cms_tags.override_class_on_h2_elements('<h2></h2>', 'test-class')
+def test_override_elements_css_class():
+    actual = cms_tags.override_elements_css_class(
+        '<h2 class="existing-class"></h2>',
+        'h2,test-class'
+    )
     expected = '<h2 class="test-class"></h2>'
     assert actual == expected
 
 
-def test_override_class_on_h4_elements():
-    actual = cms_tags.override_class_on_h4_elements('<h4></h4>', 'test-class')
-    expected = '<h4 class="test-class"></h4>'
+def test_override_elements_css_class_does_not_override_non_targets():
+    actual = cms_tags.override_elements_css_class(
+        '<h4 class="existing-class"></h4>',
+        'h2,test-class'
+    )
+    expected = '<h4 class="existing-class"></h4>'
     assert actual == expected

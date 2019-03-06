@@ -85,17 +85,12 @@ def convert_headings_to(value, heading):
 
 
 @register.filter
-def override_class_on_h2_elements(value, override):
+def override_elements_css_class(value, element_and_override):
+    arguments = element_and_override.split(',')
+    element_type = arguments[0]
+    override = arguments[1]
     soup = BeautifulSoup(value, 'html.parser')
-    for element in soup.findAll('h2'):
-        element.attrs['class'] = override
-    return str(soup)
-
-
-@register.filter
-def override_class_on_h4_elements(value, override):
-    soup = BeautifulSoup(value, 'html.parser')
-    for element in soup.findAll('h4'):
+    for element in soup.findAll(element_type):
         element.attrs['class'] = override
     return str(soup)
 
