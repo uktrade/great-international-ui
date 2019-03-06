@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
-{% load static from staticfiles %}
 {% load add_export_elements_classes convert_headings_to filter_by_active_language override_class_on_h2_elements override_class_on_h4_elements from cms_tags %}
+{% load card from directory_components_tags %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
@@ -212,29 +212,18 @@
 
 {% if page.related_pages %}
 <section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
-  <div class="container wrap-tight">
+  <div class="container">
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
-
       {% for related_page in page.related_pages %}
-        <div class="column-third-xl column-half-l column-full">
-          <div class="card" id="{{ related_page.meta.slug }}-card">
-            <a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
-              <div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
-              <div class="card-inner wrap-tight padding-horizontal-45">
-                {% if related_page.page_type == 'InternationalArticlePage' %}
-                  <p class="subheading">Article</p>
-                {% else %}
-                  <p class="subheading">Campaign</p>
-                {% endif %}
-                <h3 class="heading-large">{{ related_page.title }}</h3>
-                {% if related_page.teaser %}<p class="description">{{ related_page.teaser }}</p>{% endif %}
-              </div>
-            </a>
-          </div>
+        <div class="column-full column-half-l column-third-xl">
+          {% if related_page.page_type == 'InternationalArticlePage' %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
+          {% else %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Campaign' title=related_page.title description=related_page.teaser %}
+          {% endif %}
         </div>
       {% endfor %}
-
     </div>
   </div>
 </section>
