@@ -154,7 +154,7 @@
 {% if page.section_three_heading %}
 <section class="section-three background-stone-30 padding-vertical-90">
   <div class="container">
-    <div class="grid-row">
+    <div class="grid-row margin-bottom-60">
       <div class="column-full column-two-thirds-m column-half-l">
         <h2 class="heading-large margin-top-0">{{ page.section_three_heading }}</h2>
         <p>{{ page.section_three_teaser }}</p>
@@ -162,14 +162,22 @@
     </div>
     <div class="grid-row">
       <div class="column-full column-half-xl">
-        <h3>{{ page.section_three_subsection_one_heading }}</h3>
-        <p>{{ page.section_three_subsection_one_teaser }}</p>
-        {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+        <div class="subsection background-white padding-45">
+          <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_one_heading }}</h3>
+          <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_one_teaser }}</p>
+          <div class="font-xsmall">
+            {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+          </div>
+        </div>
       </div>
       <div class="column-full column-half-xl">
-        <h3>{{ page.section_three_subsection_two_heading }}</h3>
-        <p>{{ page.section_three_subsection_two_teaser }}</p>
-        {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+        <div class="subsection background-white padding-45">
+          <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_two_heading }}</h3>
+          <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_two_teaser }}</p>
+          <div class="font-xsmall">
+            {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_class_on_h4_elements:'heading-small'|safe }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

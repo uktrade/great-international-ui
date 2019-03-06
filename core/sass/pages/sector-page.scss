@@ -1,3 +1,5 @@
+@import '../partials/colours';
+
 .section-one .container {
   padding: 120px 0;
 }
@@ -51,6 +53,26 @@
 
   .arrow {
     margin-left: 1em;
+  }
+}
+
+.section-three {
+
+  .subsection {
+    position: relative;
+  }
+
+  .subsection-heading {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    margin: 0;
+    padding: 20px;
+    transform: translateY(-50%);
+  }
+
+  .subsection-teaser {
+    border-bottom: 1px solid $stone;
   }
 }
 
