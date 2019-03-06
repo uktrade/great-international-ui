@@ -1,12 +1,8 @@
 {% extends 'core/base_cms.html' %}
 {% load static from staticfiles %}
-{% load i18n %}
 {% load add_export_elements_classes convert_headings_to filter_by_active_language override_class_on_h2_elements override_class_on_h4_elements from cms_tags %}
 
-{% block head_css %}
-  {{ block.super }}
-  <link href="{% static 'styles/pages/sector-page.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block css_layout_class %}sector-page{% endblock %}
 
 {% block content %}
 
