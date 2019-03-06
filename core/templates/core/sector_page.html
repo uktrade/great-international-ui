@@ -12,9 +12,20 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.heading description=page.sub_heading %}
 
-{% block breadcrumbs %}
-  {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
-{% endblock %}
+<div class="container">
+  <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+    <ol>
+      <li>
+        <a href="{% url 'index' %}">Great.gov.uk International</a>
+      </li>
+      <li>
+        <a href="{% url 'industries' %}">Industries</a>
+      </li>
+      <li aria-current="page">{{ page.heading }}</li>
+    </ol>
+  </nav>
+</div>
+
 
 {% if page.heading_teaser %}
 <section class="teaser">
