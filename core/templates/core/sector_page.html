@@ -153,7 +153,7 @@
         <h2 class="heading-large">{{ page.case_study_title }}</h2>
         <p>{{ page.case_study_description }}</p>
         {% if page.case_study_cta_page and page.case_study_cta_text %}
-        <a class="button" href="{{ page.case_study_cta_page.url }}">{{ page.case_study_cta_text }}<span class="arrow">→</span></a>
+        <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}<span class="arrow">→</span></a>
         {% endif %}
       </div>
     </div>
