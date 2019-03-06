@@ -35,6 +35,12 @@
     }
   }
 
+  .section-two {
+    .section-two-icon {
+      height: 50px;
+    }
+  }
+
   .case-study {
     background-position: 50%;
     background-repeat: no-repeat;
@@ -55,7 +61,8 @@
       width: 50%;
     }
 
-    .arrow {
+    .button::after {
+      content: '→';
       margin-left: 1em;
     }
   }
@@ -88,13 +95,24 @@
       text-transform: none;
       font-size: 24px;
       line-height: 1.04167;
+      padding: 15px 20px;
 
       &::after {
-        content: url('/static/images/blue-right-arrow.svg');
+        content: '➔';
         position: absolute;
         top: 100%;
         left: 0;
-        margin-top: 30px;
+        margin-top: 15px;
+        color: $active-blue;
+      }
+
+      &:hover::after,
+      &:focus::after {
+        color: #005fb3;
+      }
+
+      &:focus:active::after {
+        color: $focus-yellow;
       }
     }
 
