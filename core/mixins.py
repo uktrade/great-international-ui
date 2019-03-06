@@ -20,6 +20,7 @@ TEMPLATE_MAPPING = {
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
+    'InternationalSectorPage': 'core/sector_page.html',
 }
 
 
