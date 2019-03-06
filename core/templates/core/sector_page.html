@@ -8,23 +8,25 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.heading description=page.sub_heading %}
 
-<div class="container">
-  <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
-    <ol>
-      <li>
-        <a href="{% url 'index' %}">Great.gov.uk International</a>
-      </li>
-      <li>
-        <a href="{% url 'industries' %}">Industries</a>
-      </li>
-      <li aria-current="page">{{ page.heading }}</li>
-    </ol>
-  </nav>
-</div>
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'industries' %}">Industries</a>
+        </li>
+        <li aria-current="page">{{ page.heading }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
 
 
 {% if page.heading_teaser %}
-<section class="teaser">
+<section id="sector-teaser-section" class="teaser">
   <div class="container">
     <div class="grid-row padding-top-30 padding-bottom-30">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -35,7 +37,7 @@
 </section>
 {% endif %}
 
-<section class="section-one">
+<section id="sector-section-one" class="section-one">
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-half-l section-one-body">
@@ -54,7 +56,7 @@
   </div>
 </section>
 
-<section class="statistics">
+<section id="sector-statistics-section" class="statistics">
   <div class="container padding-vertical-30px margin-bottom-60">
     <div class="grid-row padding-bottom-15 border-medium border-active-blue">
       <figure class="column-half column-third-m column-sixth-l">
@@ -111,7 +113,7 @@
   </div>
 </section>
 
-<section class="section-two">
+<section id="sector-section-two" class="section-two">
   <div class="container padding-vertical-90">
     <div class="grid-row margin-bottom-30">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -141,6 +143,7 @@
 
 {% if page.case_study_title and page.case_study_image %}
 <section
+  id="sector-case-study-section"
   class="case-study"
   style="background-image: url({{ page.case_study_image.url }})">
   <div class="container">
@@ -159,7 +162,7 @@
 {% endif %}
 
 {% if page.section_three_heading %}
-<section class="section-three background-stone-30 padding-vertical-90">
+<section id="sector-section-three" class="section-three background-stone-30 padding-vertical-90">
   <div class="container">
     <div class="grid-row margin-bottom-60">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -191,7 +194,7 @@
 </section>
 {% endif %}
 
-<section class="next-steps">
+<section id="sector-next-steps-section" class="next-steps">
   <div class="container">
     <div class="grid-row margin-bottom-45">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -211,7 +214,7 @@
 </section>
 
 {% if page.related_pages %}
-<section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
+<section id="sector-news-events-section" class="news-events background-stone-30 padding-vertical-60">
   <div class="container">
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
