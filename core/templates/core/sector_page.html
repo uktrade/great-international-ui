@@ -1,0 +1,235 @@
+{% extends 'core/base_cms.html' %}
+{% load add_export_elements_classes convert_headings_to filter_by_active_language override_elements_css_class from cms_tags %}
+{% load card from directory_components_tags %}
+
+{% block css_layout_class %}sector-page{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.heading description=page.sub_heading %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'industries' %}">Industries</a>
+        </li>
+        <li aria-current="page">{{ page.heading }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+
+{% if page.heading_teaser %}
+<section id="sector-teaser-section" class="teaser">
+  <div class="container">
+    <div class="grid-row padding-top-30 padding-bottom-30">
+      <div class="column-full column-two-thirds-m column-half-l">
+        <p>{{ page.heading_teaser }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="sector-section-one" class="section-one">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-full column-half-l section-one-body">
+        {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|safe }}
+      </div>
+      <div class="column-full column-half-l">
+        <figure>
+          <img class="section-one-image" src="{{ page.section_one_image.url }}" />
+          <figcaption>
+            <p>{{ page.section_one_image_caption }}</p>
+            <p>{{ page.section_one_image_caption_company }}</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sector-statistics-section" class="statistics">
+  <div class="container padding-vertical-30px margin-bottom-60">
+    <div class="card-grid padding-bottom-15 border-medium border-active-blue">
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_1_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_1_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_1_smallprint }}</p>
+        </figcaption>
+      </figure>
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_2_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_2_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_2_smallprint }}</p>
+        </figcaption>
+      </figure>
+      {% if page.statistic_3_number and page.statistic_3_heading %}
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_3_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_3_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_3_smallprint }}</p>
+        </figcaption>
+      </figure>
+      {% endif %}
+      {% if page.statistic_4_number and page.statistic_4_heading %}
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_4_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_4_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_4_smallprint }}</p>
+        </figcaption>
+      </figure>
+      {% endif %}
+      {% if page.statistic_5_number and page.statistic_5_heading %}
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_5_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_5_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_5_smallprint }}</p>
+        </figcaption>
+      </figure>
+      {% endif %}
+      {% if page.statistic_6_number and page.statistic_6_heading %}
+      <figure class="column-half column-third-l column-sixth-xl">
+        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_6_number }}</p>
+        <figcaption>
+          <p class="statistic-heading">{{ page.statistic_6_heading }}</p>
+          <p class="font-xsmall statistic-smallprint">{{ page.statistic_6_smallprint }}</p>
+        </figcaption>
+      </figure>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section id="sector-section-two" class="section-two">
+  <div class="container padding-vertical-90">
+    <div class="grid-row margin-bottom-30">
+      <div class="column-full column-two-thirds-m column-half-l">
+        <h2 class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
+        <p>{{ page.section_two_teaser }}</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="column-full column-third-l">
+        <img class="section-two-icon" src="{{ page.section_two_subsection_one_icon.url }}"/>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_one_heading }}</h3>
+        <p class="font-xsmall">{{ page.section_two_subsection_one_body }}</p>
+      </div>
+      <div class="column-full column-third-l">
+        <img class="section-two-icon" src="{{ page.section_two_subsection_two_icon.url }}"/>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_two_heading }}</h3>
+        <p class="font-xsmall">{{ page.section_two_subsection_two_body }}</p>
+      </div>
+      <div class="column-full column-third-l">
+        <img class="section-two-icon" src="{{ page.section_two_subsection_three_icon.url }}"/>
+        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_three_heading }}</h3>
+        <p class="font-xsmall">{{ page.section_two_subsection_three_body }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if page.case_study_title and page.case_study_image %}
+<section
+  id="sector-case-study-section"
+  class="case-study"
+  style="background-image: url({{ page.case_study_image.url }})">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-full column-two-thirds-m column-half-l column-third-xl">
+        <div class="decorative-line border-thin border-flag-red"></div>
+        <h2 class="heading-large">{{ page.case_study_title }}</h2>
+        <p>{{ page.case_study_description }}</p>
+        {% if page.case_study_cta_page and page.case_study_cta_text %}
+        <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if page.section_three_heading %}
+<section id="sector-section-three" class="section-three background-stone-30 padding-vertical-90">
+  <div class="container">
+    <div class="grid-row margin-bottom-60">
+      <div class="column-full column-two-thirds-m column-half-l">
+        <h2 class="heading-large margin-top-0">{{ page.section_three_heading }}</h2>
+        <p>{{ page.section_three_teaser }}</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="column-full column-half-xl">
+        <div class="subsection background-white padding-45">
+          <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_one_heading }}</h3>
+          <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_one_teaser }}</p>
+          <div class="font-xsmall">
+            {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+          </div>
+        </div>
+      </div>
+      <div class="column-full column-half-xl">
+        <div class="subsection background-white padding-45">
+          <h3 class="subsection-heading heading-medium white-text background-grey">{{ page.section_three_subsection_two_heading }}</h3>
+          <p class="subsection-teaser padding-top-15 padding-bottom-30">{{ page.section_three_subsection_two_teaser }}</p>
+          <div class="font-xsmall">
+            {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="sector-next-steps-section" class="next-steps">
+  <div class="container">
+    <div class="grid-row margin-bottom-45">
+      <div class="column-full column-two-thirds-m column-half-l">
+        <h2 class="heading-large margin-top-0">Next steps</h2>
+        <p>DIT can advise you on doing business abroad, and help put you in touch with other people who can help such as lawyers and distributors.</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="column-full column-half-l">
+        <a href="{{ services_urls.invest }}" class="button button-blue">I want to invest in the UK</a>
+      </div>
+      <div class="column-full column-half-l">
+        <a href="{{ services_urls.fas }}" class="button button-blue">I want to buy from the UK</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if page.related_pages %}
+<section id="sector-news-events-section" class="news-events background-stone-30 padding-vertical-60">
+  <div class="container">
+    <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
+    <div class="card-grid">
+      {% for related_page in page.related_pages %}
+        <div class="column-full column-half-l column-third-xl">
+          {% if related_page.page_type == 'InternationalArticlePage' %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
+          {% else %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Campaign' title=related_page.title description=related_page.teaser %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

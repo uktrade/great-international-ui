@@ -77,6 +77,25 @@ def add_export_elements_classes(value):
 
 
 @register.filter
+def convert_headings_to(value, heading):
+    soup = BeautifulSoup(value, 'html.parser')
+    for element in soup.findAll(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+        element.name = heading
+    return str(soup)
+
+
+@register.filter
+def override_elements_css_class(value, element_and_override):
+    arguments = element_and_override.split(',')
+    element_type = arguments[0]
+    override = arguments[1]
+    soup = BeautifulSoup(value, 'html.parser')
+    for element in soup.findAll(element_type):
+        element.attrs['class'] = override
+    return str(soup)
+
+
+@register.filter
 def add_href_target(value, request):
     soup = BeautifulSoup(value, 'html.parser')
     for element in soup.findAll('a', attrs={'href': re.compile("^http")}):
