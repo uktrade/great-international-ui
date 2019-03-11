@@ -11,17 +11,7 @@
     }
   }
 
-  .section-one-image {
-    width: 100%;
-  }
-
   .statistics {
-    .card-grid {
-      border-top: none;
-      border-left: none;
-      border-right: none;
-    }
-
     .statistic-number {
       margin-bottom: 0.4em;
     }
@@ -67,59 +57,24 @@
     }
   }
 
-  .section-three {
-
-    .subsection {
-      position: relative;
-    }
-
-    .subsection-heading {
-      position: absolute;
-      top: 0;
-      left: 25px;
-      margin: 0;
-      padding: 20px;
-      transform: translateY(-50%);
-    }
-
-    .subsection-teaser {
-      border-bottom: 1px solid $stone;
-    }
-  }
-
   .next-steps .container {
     padding: 150px 0 220px;
 
-    .button {
-      font-weight: 700;
-      text-transform: none;
-      font-size: 24px;
-      line-height: 1.04167;
-      padding: 15px 20px;
-
-      &::after {
-        content: '➔';
-        position: absolute;
-        top: 100%;
-        left: 0;
-        margin-top: 15px;
-        color: $active-blue;
-      }
-
-      &:hover::after,
-      &:focus::after {
-        color: #005fb3;
-      }
-
-      &:focus:active::after {
-        color: $focus-yellow;
+    @media (min-width: 961px) {
+      .cta-link {
+        font-size: 36px;
       }
     }
 
-    @media (min-width: 641px) {
-      .button {
-        font-size: 36px;
-        line-height: 1.11111;
+    .with-arrow {
+      margin: 0;
+
+      &:before {
+        display: none;
+      }
+      &:after {
+        content: '➔';
+        margin-left: 0;
       }
     }
   }
