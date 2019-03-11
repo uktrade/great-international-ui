@@ -55,6 +55,18 @@ class IndustriesLandingPageCMSView(BaseCMSPage):
 
 class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'InternationalSectorPage'
+    num_of_statistics = 0
+    section_three_num_of_subsections = 0
+
+    def count_data_with_field(self, list_of_data, field):
+        filtered_list = [x for x in list_of_data if x[field]]
+        return len(filtered_list)
+
+    def get_context_data(self, **kwargs):
+        context = super(SectorPageCMSView, self).get_context_data(**kwargs)
+        self.num_of_statistics = self.count_data_with_field(context['page']['statistics'], 'number')
+        self.section_three_num_of_subsections = self.count_data_with_field(context['page']['section_three_subsections'], 'heading')
+        return context
 
 
 class SetupGuideLandingPageCMSView(BaseCMSPage):

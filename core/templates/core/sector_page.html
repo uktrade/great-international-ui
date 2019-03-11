@@ -54,13 +54,25 @@
   <div class="container padding-vertical-30px margin-bottom-60-m">
     <div class="card-grid padding-bottom-15 underline-active-blue">
       {% for statistic in page.statistics %}
-        <figure class="column-half column-third-l column-sixth-xl">
-          <p class="bold-large active-blue-text statistic-number">{{ statistic.number }}</p>
-          <figcaption>
-            <p class="statistic-heading">{{ statistic.heading }}</p>
-            <p class="font-xsmall statistic-smallprint">{{ statistic.smallprint }}</p>
-          </figcaption>
-        </figure>
+        {% if statistic.number %}
+          {% if view.num_of_statistics == 6 %}
+          <figure class="column-half column-third-l column-sixth-xl">
+          {% elif view.num_of_statistics == 5 %}
+          <figure class="column-half column-third-l column-sixth-xl">
+          {% elif view.num_of_statistics == 4 %}
+          <figure class="column-half column-quarter-xl">
+          {% elif view.num_of_statistics == 3 %}
+          <figure class="column-half column-third-l">
+          {% else %}
+          <figure class="column-half">
+          {% endif %}
+            <p class="bold-large active-blue-text statistic-number">{{ statistic.number }}</p>
+            <figcaption>
+              <p class="statistic-heading">{{ statistic.heading }}</p>
+              <p class="font-xsmall statistic-smallprint">{{ statistic.smallprint }}</p>
+            </figcaption>
+          </figure>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -117,16 +129,24 @@
     </div>
     <div class="grid-row">
       {% for subsection in page.section_three_subsections %}
-      <div class="column-full column-half-xl margin-bottom-30">
-        <div class="fact-sheet">
-          <h3 class="highlight heading-medium background-grey white-text">{{ subsection.heading }}</h3>
-          <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
-            <p class="font-small">{{ subsection.teaser }}</p>
-            <hr>
-            {{ subsection.body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+        {% if subsection.heading %}
+          {% if view.section_three_num_of_subsections == 1 %}
+          <div class="column-full margin-bottom-30">
+          {% else %}
+          <div class="column-full column-half-xl margin-bottom-30">
+          {% endif %}
+            <div class="fact-sheet">
+              <h3 class="highlight heading-medium background-grey white-text">{{ subsection.heading }}</h3>
+              <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
+                {% if subsection.teaser %}
+                <p class="font-small">{{ subsection.teaser }}</p>
+                <hr>
+                {% endif %}
+                {{ subsection.body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
