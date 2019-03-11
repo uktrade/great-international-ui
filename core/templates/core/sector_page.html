@@ -53,56 +53,15 @@
 <section id="sector-statistics-section" class="statistics">
   <div class="container padding-vertical-30px margin-bottom-60-m">
     <div class="card-grid padding-bottom-15 underline-active-blue">
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_1_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_1_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_1_smallprint }}</p>
-        </figcaption>
-      </figure>
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_2_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_2_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_2_smallprint }}</p>
-        </figcaption>
-      </figure>
-      {% if page.statistic_3_number and page.statistic_3_heading %}
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_3_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_3_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_3_smallprint }}</p>
-        </figcaption>
-      </figure>
-      {% endif %}
-      {% if page.statistic_4_number and page.statistic_4_heading %}
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_4_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_4_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_4_smallprint }}</p>
-        </figcaption>
-      </figure>
-      {% endif %}
-      {% if page.statistic_5_number and page.statistic_5_heading %}
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_5_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_5_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_5_smallprint }}</p>
-        </figcaption>
-      </figure>
-      {% endif %}
-      {% if page.statistic_6_number and page.statistic_6_heading %}
-      <figure class="column-half column-third-l column-sixth-xl">
-        <p class="bold-large active-blue-text statistic-number">{{ page.statistic_6_number }}</p>
-        <figcaption>
-          <p class="statistic-heading">{{ page.statistic_6_heading }}</p>
-          <p class="font-xsmall statistic-smallprint">{{ page.statistic_6_smallprint }}</p>
-        </figcaption>
-      </figure>
-      {% endif %}
+      {% for statistic in page.statistics %}
+        <figure class="column-half column-third-l column-sixth-xl">
+          <p class="bold-large active-blue-text statistic-number">{{ statistic.number }}</p>
+          <figcaption>
+            <p class="statistic-heading">{{ statistic.heading }}</p>
+            <p class="font-xsmall statistic-smallprint">{{ statistic.smallprint }}</p>
+          </figcaption>
+        </figure>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -116,21 +75,13 @@
       </div>
     </div>
     <div class="grid-row">
-      <div class="column-full column-third-l">
-        <img class="section-two-icon" src="{{ page.section_two_subsection_one_icon.url }}"/>
-        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_one_heading }}</h3>
-        <p class="font-xsmall">{{ page.section_two_subsection_one_body }}</p>
-      </div>
-      <div class="column-full column-third-l">
-        <img class="section-two-icon" src="{{ page.section_two_subsection_two_icon.url }}"/>
-        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_two_heading }}</h3>
-        <p class="font-xsmall">{{ page.section_two_subsection_two_body }}</p>
-      </div>
-      <div class="column-full column-third-l">
-        <img class="section-two-icon" src="{{ page.section_two_subsection_three_icon.url }}"/>
-        <h3 class="heading-medium margin-top-15">{{ page.section_two_subsection_three_heading }}</h3>
-        <p class="font-xsmall">{{ page.section_two_subsection_three_body }}</p>
-      </div>
+      {% for subsection in page.section_two_subsections %}
+        <div class="column-full column-third-l">
+          <img class="section-two-icon" src="{{ subsection.icon.url }}"/>
+          <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
+          <p class="font-xsmall">{{ subsection.body }}</p>
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -165,26 +116,18 @@
       </div>
     </div>
     <div class="grid-row">
+      {% for subsection in page.section_three_subsections %}
       <div class="column-full column-half-xl margin-bottom-30">
         <div class="fact-sheet">
-          <h3 class="highlight heading-medium background-grey white-text">{{ page.section_three_subsection_one_heading }}</h3>
+          <h3 class="highlight heading-medium background-grey white-text">{{ subsection.heading }}</h3>
           <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
-            <p class="font-small">{{ page.section_three_subsection_one_teaser }}</p>
+            <p class="font-small">{{ subsection.teaser }}</p>
             <hr>
-            {{ page.section_three_subsection_one_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+            {{ subsection.body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
           </div>
         </div>
       </div>
-      <div class="column-full column-half-xl margin-bottom-30">
-        <div class="fact-sheet">
-          <h3 class="highlight heading-medium background-grey white-text">{{ page.section_three_subsection_two_heading }}</h3>
-          <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
-            <p class="font-small">{{ page.section_three_subsection_two_teaser }}</p>
-            <hr>
-            {{ page.section_three_subsection_two_body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
