@@ -29,7 +29,7 @@
 <section id="sector-teaser-section" class="teaser">
   <div class="container">
     <div class="grid-row padding-top-30 padding-bottom-30">
-      <div class="column-full column-two-thirds-m column-half-l">
+      <div class="column-full column-half-l">
         <p>{{ page.heading_teaser }}</p>
       </div>
     </div>
@@ -51,7 +51,7 @@
 </section>
 
 <section id="sector-statistics-section" class="statistics">
-  <div class="container padding-vertical-30px margin-bottom-60">
+  <div class="container padding-vertical-30px margin-bottom-60-m">
     <div class="card-grid padding-bottom-15 underline-active-blue">
       <figure class="column-half column-third-l column-sixth-xl">
         <p class="bold-large active-blue-text statistic-number">{{ page.statistic_1_number }}</p>
@@ -156,7 +156,7 @@
 {% endif %}
 
 {% if page.section_three_heading %}
-<section id="sector-section-three" class="section-three background-stone-30 padding-vertical-90">
+<section id="sector-section-three" class="section-three background-stone-30 padding-top-90 padding-bottom-60">
   <div class="container">
     <div class="grid-row margin-bottom-60">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -165,7 +165,7 @@
       </div>
     </div>
     <div class="grid-row">
-      <div class="column-full column-half-xl">
+      <div class="column-full column-half-xl margin-bottom-30">
         <div class="fact-sheet">
           <h3 class="highlight heading-medium background-grey white-text">{{ page.section_three_subsection_one_heading }}</h3>
           <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
@@ -175,7 +175,7 @@
           </div>
         </div>
       </div>
-      <div class="column-full column-half-xl">
+      <div class="column-full column-half-xl margin-bottom-30">
         <div class="fact-sheet">
           <h3 class="highlight heading-medium background-grey white-text">{{ page.section_three_subsection_two_heading }}</h3>
           <div class="fact-sheet-content background-white padding-45 wrap-tight font-xsmall">
@@ -199,10 +199,10 @@
       </div>
     </div>
     <div class="grid-row">
-      <div class="column-full column-half-l">
+      <div class="column-full column-half-l margin-bottom-30">
         {% cta_link with_arrow=True url=services_urls.invest text="I want to invest in the UK" %}
       </div>
-      <div class="column-full column-half-l">
+      <div class="column-full column-half-l margin-bottom-30">
         {% cta_link with_arrow=True url=services_urls.fas text="I want to buy from the UK" %}
       </div>
     </div>
