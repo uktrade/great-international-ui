@@ -64,13 +64,14 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 
     def get_context_data(self, **kwargs):
         context = super(SectorPageCMSView, self).get_context_data(**kwargs)
-        self.num_of_statistics = \
-            self.count_data_with_field(context['page']['statistics'], 'number')
-        self.section_three_num_of_subsections = \
-            self.count_data_with_field(
-                context['page']['section_three_subsections'],
-                'heading'
-            )
+        self.num_of_statistics = self.count_data_with_field(
+            context['page']['statistics'],
+            'number'
+        )
+        self.section_three_num_of_subsections = self.count_data_with_field(
+            context['page']['section_three_subsections'],
+            'heading'
+        )
         return context
 
 
