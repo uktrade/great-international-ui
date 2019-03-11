@@ -57,6 +57,12 @@
       width: 50%;
     }
 
+    @media (max-width: 640px) {
+      .button {
+        width: auto;
+      }
+    }
+
     .button::after {
       content: '→';
       margin-left: 1em;
