@@ -59,7 +59,7 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     section_three_num_of_subsections = 0
 
     def count_data_with_field(self, list_of_data, field):
-        filtered_list = [x for x in list_of_data if x[field]]
+        filtered_list = [item for item in list_of_data if item[field]]
         return len(filtered_list)
 
     def get_context_data(self, **kwargs):
