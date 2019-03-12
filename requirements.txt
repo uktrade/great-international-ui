@@ -13,7 +13,7 @@ chardet==3.0.4            # via requests
 dateparser==0.7.0
 directory-client-core==4.3.0  # via directory-cms-client, directory-forms-api-client
 directory-cms-client==8.3.0
-directory-components==5.0.1
+directory-components==6.0.0
 directory-constants==13.1.0
 directory-forms-api-client==3.1.0
 directory-healthcheck==0.5.1
@@ -30,7 +30,7 @@ django-storages==1.5.1
 django==1.11.13
 djangorestframework==3.7.7  # via sigauth
 docutils==0.14            # via botocore
-export-elements==1.1.0
+export-elements==2.0.0
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore
