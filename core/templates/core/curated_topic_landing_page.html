@@ -1,0 +1,115 @@
+{% extends 'core/base_cms.html' %}
+{% load cta_card from directory_components_tags %}
+{% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
+
+{% block content %}
+
+
+<section class="hero hero-generic padding-0" id="campaign-hero" style="background-image: url('http://placekitten.com/1600/500')">
+
+	<div class="container white-text">
+
+		<div class="hero-title">
+			<h1 class="heading-hero-generic">EU Exit: what you need to know</h1>
+		</div>
+	</div>
+
+</section>
+
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol>
+				<li>
+					<a href="{% url 'index' %}">Great.gov.uk International</a>
+				</li>
+				<li aria-current="page">EU Exit: what yo need to know</li>
+			</ol>
+		</div>
+
+		<p class="font-medium intro">alias reprehenderit eius recusandae in facilis neque nisi velit odio perferendis suscipit ullam aperiam placeat et aut eligendi illum est accusantium ab necessitatibus laborum iure quidem rem fugiat dolore qui voluptatem debitis earum a facere dolor animi itaque ea cupiditate</p>
+	</div>
+
+	<section class="background-stone-30 need-to-know-section">
+		<div class="container">
+			<h2 class="heading-large grey-text">EU Exit: What you need to know</h2>
+
+			<div class="flex-grid">
+				<div class="column-half">
+					<div class="card cta-card large-card">
+						<div
+							class="card-image"
+							role="image"
+							style="background-image: url('http://placekitten.com/600/325');"
+							aria-label="Card image description"
+							title="Card image description">
+							<p class="visually-hidden">Card image description</p>
+						</div>
+						<div class="link-container">
+							<a href="" class="cta-link">
+								<span>Card title</span>
+							</a>
+						</div>
+
+						<div class="card-inner">
+							<div class="description">
+								<p>Find information on bringing goods and services into the UK</p>
+
+								<a href="">UK Import tariffs and quota information</a>
+								<a href="">UK Import tariffs and quota information</a>
+								<a href="">Mobility of services for non-UK headquartered businesses</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="column-half">
+					<div class="card cta-card large-card">
+						<div
+							class="card-image"
+							role="image"
+							style="background-image: url('http://placekitten.com/600/325');"
+							aria-label="Card image description"
+							title="Card image description">
+							<p class="visually-hidden">Card image description</p>
+						</div>
+						<div class="link-container">
+							<a href="" class="cta-link">
+								<span>Card title</span>
+							</a>
+						</div>
+
+						<div class="card-inner">
+							<p class="description">Card description.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="flex-grid">
+			<div class="column-third">
+				{% cta_card with_arrow=True image_url='http://placekitten.com/400/200' text="Tell us what help you need" %}
+			</div>
+
+			<div class="column-third">
+				{% cta_card with_arrow=True image_url='http://placekitten.com/400/200' text="Tell us what help you need" %}
+			</div>
+
+			<div class="column-third">
+				{% cta_card with_arrow=True image_url='http://placekitten.com/400/200' text="Tell us what help you need" %}
+			</div>
+		</div>
+
+		<div class="help-block">
+			<div class="help-block-body">
+				<h2 class="heading-large grey-text">Need help?</h2>
+
+				<p>The UK Government takes an active approach to helping businesses expand to, and trade with the UK. If you have questions, we can help.</p>
+
+				<a href="" class="button button-arrow-small">Contact a UK Government representative</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
