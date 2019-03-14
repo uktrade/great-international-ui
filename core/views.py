@@ -38,6 +38,12 @@ class LandingPageCMSView(BaseCMSPage):
     slug = cms.GREAT_HOME_INTERNATIONAL_SLUG
 
 
+class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+    active_view_name = 'curated-topic-landing'
+    template_name = 'core/curated_topic_landing_page.html'
+    page_type = 'InternationalCuratedTopicLandingPage'
+
+
 class ArticlePageView(
     ArticleSocialLinksMixin, BreadcrumbsMixin,
     GetSlugFromKwargsMixin, BaseCMSPage,
