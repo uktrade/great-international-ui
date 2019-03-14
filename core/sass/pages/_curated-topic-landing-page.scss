@@ -21,8 +21,8 @@
             color: $active-blue;
             font-weight: bold;
             position: relative;
+            margin: 15px 0;
             margin-left: 30px;
-            margin-bottom: 15px;
 
             &::before {
                 content: '➞';
@@ -43,6 +43,7 @@
         }
     }
 
+    // Remove conflicting styles applied to this class
     .with-arrow {
         margin-left: 0;
 
