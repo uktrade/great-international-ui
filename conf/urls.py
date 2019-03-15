@@ -16,12 +16,12 @@ sitemaps = {
 
 healthcheck_urls = [
     url(
-        r'^international/sentry/$',
+        r'^sentry/$',
         directory_healthcheck.views.SentryHealthcheckView.as_view(),
         name='sentry'
     ),
     url(
-        r'^international/forms-api/$',
+        r'^forms-api/$',
         directory_healthcheck.views.FormsAPIBackendHealthcheckView.as_view(),
         name='forms-api'
     ),
