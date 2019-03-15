@@ -980,6 +980,5 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
     response = SectorPageCMSView.as_view()(request)
 
     view = response.context_data['view']
-    print(view)
     assert view.num_of_statistics == 2
     assert view.section_three_num_of_subsections == 2

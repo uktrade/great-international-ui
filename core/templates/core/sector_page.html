@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
-{% load add_export_elements_classes convert_headings_to filter_by_active_language override_elements_css_class from cms_tags %}
-{% load card image_with_caption cta_link from directory_components_tags %}
+{% load convert_headings_to filter_by_active_language override_elements_css_class from cms_tags %}
+{% load card image_with_caption cta_link add_export_elements_classes from directory_components_tags %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
@@ -30,7 +30,7 @@
   <div class="container">
     <div class="grid-row padding-top-30 padding-bottom-30">
       <div class="column-full column-half-l">
-        <p>{{ page.heading_teaser }}</p>
+        <p class="font-medium">{{ page.heading_teaser }}</p>
       </div>
     </div>
   </div>
