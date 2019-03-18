@@ -4,7 +4,6 @@ import directory_healthcheck.views
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
-from django.views.generic import TemplateView
 
 import core.views
 import conf.sitemaps
