@@ -14,7 +14,6 @@ cachetools==2.1.0         # via zenpy
 certifi==2018.1.18        # via requests
 chardet==3.0.4            # via requests
 codecov==2.0.9
-colorama==0.4.1           # via pytest
 coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
 directory-client-core==4.3.0  # via directory-cms-client, directory-forms-api-client
