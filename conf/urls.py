@@ -66,7 +66,7 @@ urlpatterns += i18n_patterns(
     ),
     url(
         r"^international/industries/$",
-        core.views.ArticleTopicPageView.as_view(),
+        core.views.IndustriesLandingPageCMSView.as_view(),
         {'slug': 'industries'},
         name="industries"
     ),

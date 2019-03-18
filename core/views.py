@@ -46,11 +46,25 @@ class ArticlePageView(
     page_type = 'InternationalArticlePage'
 
 
-class IndustriesLandingPageCMSView(BaseCMSPage):
-    active_view_name = 'industries'
+class IndustriesLandingPageCMSView(
+    BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
+):
+    page_type = 'InternationalTopicLandingPage'
     template_name = 'core/industries_landing_page.html'
-    slug = 'sector-landing-page'
-    subpage_groups = ['children_sectors']
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            IndustriesLandingPageCMSView, self
+        ).get_context_data(**kwargs)
+
+        def rename_heading_field(page):
+            page['landing_page_title'] = page['heading']
+            return page
+
+        context['page']['child_pages'] = [rename_heading_field(child_page)
+                                          for child_page
+                                          in context['page']['child_pages']]
+        return context
 
 
 class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
