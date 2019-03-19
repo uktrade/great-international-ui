@@ -1,0 +1,25 @@
+{% extends 'core/base_cms.html' %}
+
+{% block css_layout_class %}article-list-page{% endblock css_layout_class %}
+
+{% block content %}
+
+{% block hero %}
+  <section class="hero hero-generic padding-0" {% if page.hero_image %}style="background-image: url('{{ page.hero_image.url }}')"{% endif %}>
+    <div class="container">
+      <div class="hero-title-compact">
+        <h1 class="heading-hero-generic{% if page.breadcrumbs_label|length > 15 %}-compact{% endif %}" id="hero-heading">{{ page.landing_page_title }}</h1>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+<section class="topic-list-section">
+  {% block breadcrumbs %}
+    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
+  {% endblock %}
+    <div class="container">
+      {% block child_pages %}{% endblock %}
+    </div>
+</section>
+{% endblock %}
