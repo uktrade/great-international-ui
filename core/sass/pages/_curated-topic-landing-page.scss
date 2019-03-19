@@ -1,9 +1,4 @@
 .curated-topic-landing-page {
-    .intro {
-        max-width: 670px;
-        line-height: 1.6;
-    }
-
     .need-to-know-section {
         padding: 50px 0;
         margin: 80px 0; 
@@ -13,26 +8,17 @@
         .card-image {
             height: 325px;
         }
+
+        h3 {
+            margin-top: -30px;
+        }
     }
 
     .card-inner {
         a {
-            display: block;
+            @include with-arrow;
             color: $active-blue;
-            font-weight: bold;
-            position: relative;
             margin: 15px 0;
-            margin-left: 30px;
-
-            &::before {
-                content: '➞';
-                display: block;
-                font-weight: 700;
-                position: absolute;
-                left: -30px;
-                width: 1em;
-                height: 1em;
-            }
 
             &:hover,
             &:active,

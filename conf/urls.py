@@ -17,12 +17,12 @@ sitemaps = {
 
 healthcheck_urls = [
     url(
-        r'^international/sentry/$',
+        r'^sentry/$',
         directory_healthcheck.views.SentryHealthcheckView.as_view(),
         name='sentry'
     ),
     url(
-        r'^international/forms-api/$',
+        r'^forms-api/$',
         directory_healthcheck.views.FormsAPIBackendHealthcheckView.as_view(),
         name='forms-api'
     ),
@@ -67,14 +67,14 @@ urlpatterns += i18n_patterns(
         name="doing-business-with-the-uk"
     ),
     url(
-        r"^international/eu-exit-what-you-need-to-know/$",
+        r"^international/how-to-do-business-with-the-uk/$",
         core.views.CuratedLandingPageCMSView.as_view(),
-        {'slug': 'eu-exit-what-you-need-to-know'},
+        {'slug': 'how-to-do-business-with-the-uk'},
         name="eu-exit-landing"
     ),
     url(
         r"^international/industries/$",
-        core.views.ArticleTopicPageView.as_view(),
+        core.views.IndustriesLandingPageCMSView.as_view(),
         {'slug': 'industries'},
         name="industries"
     ),

@@ -1,46 +1,13 @@
-{% extends 'core/base_cms.html' %}
-{% load static %}
-{% load prefix_path parse_date from cms_tags %}
+{% extends 'core/topic_list_base.html' %}
 
-{% block css_layout_class %}article-list-page{% endblock css_layout_class %}
-
-{% block content %}
-
-{% block hero %}
-  <section class="hero hero-generic padding-0" {% if page.hero_image %}style="background-image: url('{{ page.hero_image.url }}')"{% endif %}>
-    <div class="container">
-      <div class="hero-title-compact">
-        <h1 class="heading-hero-generic{% if page.breadcrumbs_label|length > 15 %}-compact{% endif %}" id="hero-heading">{{ page.landing_page_title }}</h1>
-      </div>
-    </div>
-  </section>
-{% endblock %}
-
-<section class="topic-list-section">
-  {% block breadcrumbs %}
-    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
-  {% endblock %}
-    <div class="container">
-      <div class="card-grid">
-        {% for listing in page.child_pages %}
-          {% if listing.articles_count > 0 %}
-            <div class="column-full column-third-l column-half-m">
-              <div class="card">
-                <a class="card-link" href="{{ listing.full_path|prefix_path }}">
-                  <div class="card-image" {% if listing.hero_image_thumbnail %}role="image" style="background-image: url('{{ listing.hero_image_thumbnail.url }}');"{% endif %} aria-label="{{ listing.landing_page_title }}" title="{{ listing.landing_page_title }}">
-                    <p class="visually-hidden">{{ listing.landing_page_title }}</p>
-                  </div>
-                  <div class="card-inner">
-                    <h3 class="heading-large">{{ listing.landing_page_title }}</h3>
-                      <p class="description subheading">Updated {{ listing.last_published_at|parse_date }}</p>
-                      <p class="description subheading">{{ listing.articles_count }} guide{{ listing.articles_count|pluralize }}</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-</section>
-{% endblock %}
+{% block child_pages %}
+  <div class="card-grid">
+    {% for listing in page.child_pages %}
+      {% if listing.articles_count > 0 %}
+        <div class="column-full column-third-l column-half-m">
+          {% include 'core/includes/landing_page_card.html' with listing=listing %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock child_pages %}

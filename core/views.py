@@ -40,7 +40,6 @@ class LandingPageCMSView(BaseCMSPage):
 
 class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     active_view_name = 'curated-topic-landing'
-    template_name = 'core/curated_topic_landing_page.html'
     page_type = 'InternationalCuratedTopicLandingPage'
 
 
@@ -52,15 +51,47 @@ class ArticlePageView(
     page_type = 'InternationalArticlePage'
 
 
-class IndustriesLandingPageCMSView(BaseCMSPage):
-    active_view_name = 'industries'
+class IndustriesLandingPageCMSView(
+    BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
+):
+    page_type = 'InternationalTopicLandingPage'
     template_name = 'core/industries_landing_page.html'
-    slug = 'sector-landing-page'
-    subpage_groups = ['children_sectors']
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            IndustriesLandingPageCMSView, self
+        ).get_context_data(**kwargs)
+
+        def rename_heading_field(page):
+            page['landing_page_title'] = page['heading']
+            return page
+
+        context['page']['child_pages'] = [rename_heading_field(child_page)
+                                          for child_page
+                                          in context['page']['child_pages']]
+        return context
 
 
 class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'InternationalSectorPage'
+    num_of_statistics = 0
+    section_three_num_of_subsections = 0
+
+    def count_data_with_field(self, list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    def get_context_data(self, **kwargs):
+        context = super(SectorPageCMSView, self).get_context_data(**kwargs)
+        self.num_of_statistics = self.count_data_with_field(
+            context['page']['statistics'],
+            'number'
+        )
+        self.section_three_num_of_subsections = self.count_data_with_field(
+            context['page']['section_three_subsections'],
+            'heading'
+        )
+        return context
 
 
 class SetupGuideLandingPageCMSView(BaseCMSPage):

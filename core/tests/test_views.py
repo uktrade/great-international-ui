@@ -11,6 +11,7 @@ from core.mixins import CMSPageMixin
 from core.mixins import GetSlugFromKwargsMixin
 from core import helpers
 from core.tests.helpers import create_response
+from core.views import SectorPageCMSView
 
 
 test_sectors = [
@@ -943,3 +944,71 @@ def test_article_count_with_regional_articles(
     soup = BeautifulSoup(response.content, 'html.parser')
     assert '{} articles'.format(total_articles) in soup.find(
         id='hero-description').string
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalSectorPage',
+        'statistics': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ],
+        'section_three_subsections': [
+            {'heading': 'heading'},
+            {'heading': 'heading-with-teaser', 'teaser': 'teaser'},
+            {'heading': None, 'teaser': 'teaser-without-heading'}
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/')
+    response = SectorPageCMSView.as_view()(request)
+
+    view = response.context_data['view']
+    assert view.num_of_statistics == 2
+    assert view.section_three_num_of_subsections == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_get_industries_page_renames_heading_to_landing_page_title(
+    mock_get_page, client
+):
+    page = {
+        'title': 'test',
+        'page_type': 'InternationalTopicLandingPage',
+        'child_pages': [
+            {
+                'heading': 'heading'
+            }
+        ],
+        'meta': {
+            'slug': 'slug',
+            'languages': [('en-gb', 'English')],
+        }
+    }
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = reverse('industries')
+    response = client.get(url)
+
+    child_page = response.context_data['page']['child_pages'][0]
+    assert child_page['landing_page_title'] == 'heading'
