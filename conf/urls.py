@@ -45,6 +45,7 @@ urlpatterns = [
         name='robots'
     ),
     url(r'^international/i18n/', include('django.conf.urls.i18n')),
+    url(r'^international/how-to-setup-in-the-uk/$', TemplateView.as_view(template_name='core/guide_landing_page.html')),
 ]
 
 urlpatterns += i18n_patterns(
