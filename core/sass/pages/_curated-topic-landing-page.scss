@@ -1,0 +1,40 @@
+.curated-topic-landing-page {
+    .need-to-know-section {
+        padding: 50px 0;
+        margin: 80px 0; 
+    }
+
+    .large-card {
+        .card-image {
+            height: 325px;
+        }
+
+        h3 {
+            margin-top: -30px;
+        }
+    }
+
+    .card-inner {
+        a {
+            @include with-arrow;
+            color: $active-blue;
+            margin: 15px 0;
+
+            &:hover,
+            &:active,
+            &:focus {
+                text-decoration: none;
+                color: $mid-blue;
+            }
+        }
+    }
+
+    // Remove conflicting styles applied to this class
+    .with-arrow {
+        margin-left: 0;
+
+        &::before {
+            display: none;
+        }
+    }
+}
