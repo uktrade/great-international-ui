@@ -4,7 +4,6 @@ import directory_healthcheck.views
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
-from django.views.generic import TemplateView
 
 import core.views
 import conf.sitemaps
@@ -45,7 +44,6 @@ urlpatterns = [
         name='robots'
     ),
     url(r'^international/i18n/', include('django.conf.urls.i18n')),
-    url(r'^international/how-to-setup-in-the-uk/$', TemplateView.as_view(template_name='core/guide_landing_page.html')),
 ]
 
 urlpatterns += i18n_patterns(
@@ -71,6 +69,12 @@ urlpatterns += i18n_patterns(
         core.views.CuratedLandingPageCMSView.as_view(),
         {'slug': 'how-to-do-business-with-the-uk'},
         name="eu-exit-landing"
+    ),
+    url(
+        r"^international/how-to-setup-in-the-uk/$",
+        core.views.GuideLandingPageCMSView.as_view(),
+        {'slug': 'how-to-setup-in-the-uk'},
+        name="uk-setup-guides"
     ),
     url(
         r"^international/industries/$",
