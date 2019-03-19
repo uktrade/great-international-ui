@@ -79,7 +79,7 @@ urlpatterns += i18n_patterns(
     ),
     url(
         r"^international/how-to-setup-in-the-uk/guides/$",
-        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'),
+        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'), # noqa
     ),
     url(
         r"^international/industries/$",
