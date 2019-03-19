@@ -70,10 +70,12 @@
 			<h2 class="heading-large grey-text">{{ page.guides_section_heading }}</h2>
 
 			<div class="flex-grid">
-				{# for loop goes here #}
+				{% for guide in page.guides %}
 					<div class="column-third">
-						{% card img_src='image url' url='card url' heading='card title' description='card description' %}
+						{% url 'article-detail' topic='how-to-setup-in-the-uk' list='guides' slug=guide.meta.slug as guide_url %}
+						{% card img_src=guide.thumbnail.url url=guide_url heading=guide.title description=guide.teaser %}
 					</div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>
