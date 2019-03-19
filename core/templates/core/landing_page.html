@@ -12,7 +12,7 @@
 <section class="hero hero-generic with-flag" id="hero-section" style="background-image: url({% static 'images/placeholder.png' %})">
   <div class="container wrap-tight">
     <div class="heading-container">
-      <h1 class="heading-xlarge">Home</h1>
+      <h1 class="heading-xlarge">ADD</h1>
     </div>
   </div>
 </section>
@@ -25,10 +25,10 @@
         <div class="card " id="invest-card">
           <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="invest-card-image"></div>
           <div class="card-inner wrap-tight">
-            <h2 class="heading-large">Invest in the UK</h2>
+            <h2 class="heading-large">ADD</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a href="#" class="link with-arrow">Expand to the UK</a>
-            <a href="#" class="link with-arrow">Capital investment in the UK</a>
+            <a href="#" class="link with-arrow">Expand to the UK - ADD</a>
+            <a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>
           </div>
         </div>
       </div>
@@ -39,8 +39,8 @@
           <div class="card-inner wrap-tight padding-horizontal-45">
             <h2 class="heading-large">Find a UK supplier</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="{{ services_urls.fas }}" class="link with-arrow">Connect with UK businesses</a>
-            <a href="#" class="link with-arrow">Explore UK industries</a>
+            <a href="{{ services_urls.fas }}" class="link with-arrow">Connect with UK businesses - ADD</a>
+            <a href="#" class="link with-arrow">Explore UK industries - ADD</a>
           </div>
         </div>
       </div>
@@ -58,12 +58,26 @@
         <div class="padding-horizontal-45 wrap-tight tariffs-content">
           <h2 class="heading-large">{{ page.tariffs_title }}</h2>
           {{ page.tariffs_description|add_export_elements_classes }}
-          <a href="{{ page.tariffs_link }}" class="link with-arrow">CTA</a>
+						<form class="form-group" action="" method="GET" name="change_country_tariff">
+							<div class="select-container">
+								<div class="country-select{% if form.country.errors %} form-group-error{% endif %}" onchange="change_country_tariff.submit()">
+									{% if form.country.errors %}
+										<span class="error-message">{{ form.country.errors }}</span>
+									{% endif %}
+									{% if form.country.help_text %}
+										<span class="form-hint">{{ form.country.help_text }}</span>
+									{% endif %}
+									{{ form.country }}
+								</div>
+							</div>
+						</form>
+					<div>
+						<a href="{{ page.tariffs_link }}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }} </a>
+					</div>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
 {% if page.related_pages %}
