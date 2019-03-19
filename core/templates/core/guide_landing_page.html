@@ -1,0 +1,151 @@
+{% extends 'core/base_cms.html' %}
+
+{% load card image_with_caption add_export_elements_classes from directory_components_tags %}
+
+
+{% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
+
+{% block content %}
+
+	<section class="hero hero-generic padding-0" id="campaign-hero" style="background-image: url('{{ page.hero_image.url }}')">
+		<div class="container white-text">
+			<div class="hero-title">
+				<h1 class="heading-hero-generic">{{ page.display_title }}How to setup in the UK</h1>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol>
+				<li>
+					<a href="{% url 'index' %}">Great.gov.uk International</a>
+				</li>
+				<li aria-current="page">{{ page.display_title }}</li>
+			</ol>
+		</div>
+
+		<p class="font-medium intro">{{ page.teaser }}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	</div>
+
+	<section class="padding-vertical-60">
+		<div class="container">
+			<div class="card-grid reverse-columns-s">
+
+				<div class="column-third">
+					<ul class="selling-points-list" id="campaign-selling-points">
+						<li class="margin-bottom-30">
+							<img id="selling-points-icon-one" src="{{ page.selling_point_one_icon.url }}" height="50" alt="">
+							<h3 class="heading heading-medium">{{ page.selling_point_one_heading|add_export_elements_classes }} selling point one heading</h3>
+							{{ page.selling_point_one_content|add_export_elements_classes }}selling point one
+						</li>
+
+							<li class="margin-bottom-30">
+								{% if page.selling_point_two_icon %}
+									<img id="selling-points-icon-two" src="{{ page.selling_point_two_icon.url }}" height="50" alt="">
+								{% endif %}
+								<h3 class="heading heading-medium">{{ page.selling_point_two_heading }}selling point two heading</h3>
+								{{ page.selling_point_two_content|add_export_elements_classes }} selling point two
+							</li>
+						{% if page.selling_point_two_heading and page.selling_point_two_content %}
+						{% endif %}
+
+							<li class="margin-bottom-30">
+								{% if page.selling_point_three_icon %}
+									<img id="selling-points-icon-three" src="{{ page.selling_point_three_icon.url }}" height="50" alt="">
+								{% endif %}
+								<h3 class="heading heading-medium">{{ page.selling_point_three_heading }}Selling point three heading</h3>
+								{{ page.selling_point_three_content|add_export_elements_classes }}selling point three
+							</li>
+						{% if page.selling_point_three_heading and page.selling_point_three_content %}
+						{% endif %}
+					</ul>
+
+					{% if page.section_one_contact_button_url and page.section_one_contact_button_text %}
+						<a id="section-one-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_one_contact_button_url }}">{{ page.section_one_contact_button_text }}</a>
+					{% endif %}
+				</div>
+
+					<div class="column-two-thirds padding-bottom-15">
+						<div class="grid-row">
+							{% image_with_caption image_url='http://www.placekitten.com/670/400' main_caption="We're open" sub_caption="" %}
+						</div>
+					</div>
+				{% if page.section_one_image %}
+				{% endif %}
+			</div>
+
+		</div>
+	</section>
+
+	<section class="background-great-blue">
+		<div class="container">
+			<div class="cta-block flex-grid padding-vertical-90">
+				<div class="column-two-thirds">
+					<img class="cta-block-image" src="http://www.placekitten.com/670/320" alt="blah" width="100%" height="auto">
+				</div>
+
+				<div class="column-third white-text cta-block-content">
+					<h3 class="font-large">Title</h3>
+
+					<p class="padding-vertical-30">The most competitive corporation tax rate in the G20 and other taxation</p>
+
+					<a href="" class="button button-blue">Read more</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="background-stone-30 setup-guide padding-vertical-60">
+		<div class="container">
+			<h2 class="heading-large grey-text">{{ page. }}UK setup guide for Germany</h2>
+
+			<div class="flex-grid">
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+			</div>
+
+			<h2 class="heading-large grey-text">{{ page. }}UK setup guide</h2>
+
+			<div class="flex-grid">
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+				<div class="column-third">
+					{% card card_id="card-example-image-title" img_src='http://www.placekitten.com/370/210' url='#' heading='Lorem ipsum' description='blah' %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+		<div class="help-block">
+			<div class="help-block-body">
+				<h2 class="heading-large grey-text">Need help?</h2>
+
+				<p>The UK Government helps businesses expand to and trade with the UK. If you have questions, we can help.</p>
+
+				<a href="/eu-exit-news/contact/" class="button button-arrow-small">Contact an EU Exit enquiry service</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
