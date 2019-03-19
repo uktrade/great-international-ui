@@ -4,6 +4,7 @@ import directory_healthcheck.views
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
+from django.views.generic import RedirectView
 
 import core.views
 import conf.sitemaps
@@ -75,6 +76,10 @@ urlpatterns += i18n_patterns(
         core.views.GuideLandingPageCMSView.as_view(),
         {'slug': 'how-to-setup-in-the-uk'},
         name="uk-setup-guides"
+    ),
+    url(
+        r"^international/how-to-setup-in-the-uk/guides/$",
+        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'),
     ),
     url(
         r"^international/industries/$",
