@@ -17,30 +17,67 @@
   </div>
 </section>
 
+{#{% if country.name %}#}
+{#	<section class="landing-page-recommendations">#}
+{#		<div class="container">#}
+{#			<div class="card-grid">#}
+{#				<h2 class="heading-large">Recommended for businesses in <a href='country'> {{ country.name }}</a> </h2>#}
+{#			</div>#}
+{#			<div class="card-grid">#}
+{#				<div class="column-third-m">#}
+{#					<div class="card " id="invest-card">#}
+{#						<div class="card-inner wrap-tight">#}
+{#							<h2 class="heading-large">ADD</h2>#}
+{#							<p>Lorem ipsum dolor sit amet</p>#}
+{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
+{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#				<div class="column-third-m">#}
+{#					<div class="card " id="invest-card">#}
+{#						<div class="card-inner wrap-tight">#}
+{#							<h2 class="heading-large">ADD</h2>#}
+{#							<p>Lorem ipsum dolor sit amet</p>#}
+{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
+{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#				<div class="column-third-m">#}
+{#					<div class="card " id="invest-card">#}
+{#						<div class="card-inner wrap-tight">#}
+{#							<h2 class="heading-large">ADD</h2>#}
+{#							<p>Lorem ipsum dolor sit amet</p>#}
+{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
+{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#			<div>#}
+{#				<a href='country' class="button button-arrow-small"> {{ page.recommended_cta_text }} </a>#}
+{#			</div>#}
+{#		</div>#}
+{#	</section>#}
+{#{% endif %}#}
+
 <section id="invest-fas-section" class="invest-fas-section background-stone-gradient-bottom padding-vertical-60">
   <div class="container">
     <div class="card-grid">
       <div class="column-half">
-        {% static 'images/placeholder.png' as card_image %}
+				{% include 'directory_components/cta_card.html' with image_url=page.invest_trade_section_image_left.url text=page.invest_trade_section_title_left %}
         <div class="card " id="invest-card">
-          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="invest-card-image"></div>
           <div class="card-inner wrap-tight">
-            <h2 class="heading-large">ADD</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a href="#" class="link with-arrow">Expand to the UK - ADD</a>
-            <a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>
+            <p> {{ page.invest_trade_section_content_left|add_export_elements_classes|safe }} </p>
           </div>
         </div>
       </div>
-      <div class="column-half">
-        {% static 'images/placeholder.png' as card_image %}
-        <div class="card " id="fas-card">
-          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="fas-card-image"></div>
-          <div class="card-inner wrap-tight padding-horizontal-45">
-            <h2 class="heading-large">Find a UK supplier</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="{{ services_urls.fas }}" class="link with-arrow">Connect with UK businesses - ADD</a>
-            <a href="#" class="link with-arrow">Explore UK industries - ADD</a>
+			<div class="column-half">
+				{% include 'directory_components/cta_card.html' with image_url=page.invest_trade_section_image_right.url text=page.invest_trade_section_title_right %}
+        <div class="card " id="invest-card">
+          <div class="card-inner wrap-tight">
+            <p> {{ page.invest_trade_section_content_right|add_export_elements_classes|safe }} </p>
           </div>
         </div>
       </div>
@@ -66,6 +103,9 @@
 									{% endif %}
 									{% if form.country.help_text %}
 										<span class="form-hint">{{ form.country.help_text }}</span>
+									{% endif %}
+									{% if country %}
+										<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
 									{% endif %}
 									{{ form.country }}
 								</div>
