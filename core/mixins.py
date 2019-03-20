@@ -22,6 +22,7 @@ TEMPLATE_MAPPING = {
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalCuratedTopicLandingPage': 'core/curated_topic_landing_page.html',  # noqa
+    'InternationalGuideLandingPage': 'core/guide_landing_page.html'
 }
 
 

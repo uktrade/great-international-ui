@@ -18,7 +18,8 @@
         a {
             @include with-arrow;
             color: $active-blue;
-            margin: 15px 0;
+            margin-top: 15px;
+            margin-bottom: 15px;
 
             &:hover,
             &:active,

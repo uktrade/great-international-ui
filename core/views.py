@@ -43,6 +43,11 @@ class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'InternationalCuratedTopicLandingPage'
 
 
+class GuideLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+    active_view_name = 'guide-landing'
+    page_type = 'InternationalGuideLandingPage'
+
+
 class ArticlePageView(
     ArticleSocialLinksMixin, BreadcrumbsMixin,
     GetSlugFromKwargsMixin, BaseCMSPage,
