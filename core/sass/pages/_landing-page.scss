@@ -4,43 +4,44 @@
 @import '../partials/vars';
 @import '../partials/mixins';
 
-.landing-page {
-  .hero {
-    overflow: visible;
+.hero {
+  padding: $spacing-1 + $spacing-3 0 $spacing-1;
+  background-color: $black;
 
-    .container {
-      position: relative;
-    }
+  h1 {
+    margin-top: 0;
+    margin-bottom: $spacing-4;
+    font-family: $hero-brand-font;
+    text-transform: uppercase;
+  }
 
-    .heading-container {
-      position: absolute;
-      bottom: 60px;
-      left: 0;
+  h2 {
+    font-weight: 400;
+    margin-bottom: $spacing-3;
+  }
+
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hero-brand {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    img {
+      height: 100px;
     }
   }
 
-  .invest-fas-section {
-    .card .card-image {
-      height: 300px;
-    }
+  .hero-text {
+    width: 50%;
   }
-
-  .study-visit-cta-section > .container {
-    border-bottom: 1px solid $lightened-great-blue;
-  }
-
-  .card {
-    flex-grow: 1;
-
-    .heading-large {
-      letter-spacing: 0.1;
-    }
-  }
-
 }
 
 @media (max-width: 768px) {
-  .landing-page {
     .tariffs-image {
       margin-bottom: 0;
     }
@@ -56,12 +57,9 @@
       }
     }
   }
-}
 
 @media (max-width: 640px) {
-  .landing-page {
     .tariffs-content {
       padding: 0;
     }
   }
-}
