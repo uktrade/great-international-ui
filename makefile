@@ -91,4 +91,10 @@ translations:
 compile_translations:
 	$(DEBUG_SET_ENV_VARS) && python manage.py compilemessages
 
+compile_css:
+	./node_modules/.bin/gulp sass
+
+watch_css:
+	./node_modules/.bin/gulp sass:watch
+
 .PHONY: build clean test_requirements debug_webserver debug_test debug heroku_deploy_dev heroku_deploy_demo

@@ -41,10 +41,10 @@ gulp.task('sass:compile', function () {
 gulp.task('sass:watch', function () {
   gulp.watch(
     [SASS_FILES],
-    ['sass:compile']
+    gulp.series('sass:compile')
   );
 });
 
-gulp.task('sass', ['clean', 'sass:compile', 'flags']);
+gulp.task('sass', gulp.series('clean', 'sass:compile', 'flags'));
 
-gulp.task('default', ['sass']);
+gulp.task('default', gulp.series('sass'));
