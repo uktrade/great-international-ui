@@ -41,6 +41,90 @@
   }
 }
 
+.tariffs-select{
+  background-color: white;
+}
+
+.landing-page-country-selector-dialog {
+
+  h2 {
+    font-family: $brand-font;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .countries {
+    position: relative;
+  }
+
+  .button-container {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+
+    .button {
+      font-family: $brand-font;
+      font-weight: 700;
+      padding: 10px 20px;
+      height: 49px;
+    }
+  }
+
+  .form-group {
+    margin: 0;
+  }
+
+  .select-container {
+    float: left;
+    width: 50%;
+    position: relative;
+
+    label {
+      font-size: 0;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    .flag-icon {
+      position: absolute;
+      top: 6px;
+      left: 10px;
+      height: 36px;
+      width: 40px;
+    }
+  }
+
+}
+
+@media (max-width: 640px) {
+  .landing-page-country-selector-dialog {
+    select {
+      height: 49px;
+    }
+
+    .select-container,
+    .button-container {
+      width: 100%;
+    }
+
+    .button-container {
+      padding: 0;
+      margin-top: 15px;
+    }
+  }
+}
+
+// JS ENABLED STYLES
+body.js-enabled {
+  .landing-page-country-selector-dialog {
+    select {
+      padding-left: 60px;
+    }
+  }
+}
+
 @media (max-width: 768px) {
     .tariffs-image {
       margin-bottom: 0;
