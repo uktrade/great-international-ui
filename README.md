@@ -74,5 +74,5 @@ Then run the server and visit `int.trade.great:8013`
 [circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/master.svg?style=svg
 [circle-ci]: https://circleci.com/gh/uktrade/great-international/tree/master
 
-[codecov-image]: https://codecov.io/gh/uktrade/great-international/branch/master/graph/badge.svg
-[codecov]: https://codecov.io/gh/uktrade/great-international
+[codecov-image]: https://codecov.io/gh/uktrade/great-international-ui/branch/master/graph/badge.svg
+[codecov]: https://codecov.io/gh/uktrade/great-international-ui
