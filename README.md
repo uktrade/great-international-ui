@@ -46,8 +46,8 @@ Form submissions are powered by [directory-forms-api](https://github.com/uktrade
 [SASS](http://sass-lang.com/)
 [gulp](https://gulpjs.com/)
 
-    $ npm install  # to install yarn
-	$ yarn install # user yarn for installing all other javascript dependencies
+	$ npm install  # to install yarn
+	$ yarn install # use yarn for installing all other javascript dependencies
 
 ### Update CSS under version control
 
