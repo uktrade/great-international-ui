@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 
-{% load card image_with_caption add_export_elements_classes from directory_components_tags %}
+{% load card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components_tags %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
@@ -32,12 +32,12 @@
 		<div class="container">
 			<div class="card-grid reverse-columns-s">
 
-				<div class="column-third">
-					<div>{{ page.section_one_content|add_export_elements_classes }}</div>
+				<div class="column-half">
+					<div class="wrap-tight">{{ page.section_one_content|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|safe }}</div>
 				</div>
 
 				{% if page.section_one_image %}
-					<div class="column-two-thirds padding-bottom-15">
+					<div class="column-half padding-bottom-15">
 						<div class="grid-row">
 							{% image_with_caption image_url=page.section_one_image.url main_caption=page.section_one_image_caption sub_caption="" %}
 						</div>
