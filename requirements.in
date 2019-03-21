@@ -1,13 +1,13 @@
 boto3==1.4.1
 dateparser==0.7.0
-Django==1.11.13
+Django==1.11.20
 django-formtools==2.0
 django-crispy-forms==1.7.1
 django-environ==0.4.5
 django-storages==1.5.1
 gunicorn==19.5.0
 raven==6.9.0
-requests==2.18.4
+requests==2.21.0
 whitenoise==3.3.1
 jsonschema==2.6.0
 django-recaptcha==1.2.0
@@ -22,3 +22,4 @@ waitress==0.8.9
 zenpy==1.1.10
 django-redis==4.8.0
 directory-healthcheck==0.5.1
+urllib3>=1.23.0<2.0.0
