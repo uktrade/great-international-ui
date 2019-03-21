@@ -8,7 +8,7 @@
 
 ## Requirements
 
-[Python 3.6](https://www.python.org/downloads/release/python-360/)
+[Python 3.6](https://www.python.org/downloads/release/python-360/), [Redis](https://redis.io/)
 
 [redis](https://redis.io/)
 
@@ -34,6 +34,8 @@ Form submissions are powered by [directory-forms-api](https://github.com/uktrade
     $ make debug
 
 ### Run debug webserver
+
+> Make sure to have Redis running before attemptying to serve pages, e.g. with the `redis-server` command.
 
     $ make debug_webserver
 
