@@ -97,7 +97,7 @@
 
 <section id="tariffs-section" class="tariffs-section background-stone-40">
 	<div class="container">
-		<div class="grid-row">
+		<div class="grid-row" >
 			<div class="column-full column-half-l margin-vertical-90 tariffs-image">
 				<img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
 			</div>
@@ -105,8 +105,8 @@
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
 					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 					{{ page.tariffs_description|add_export_elements_classes }}
-					<form class="form-group" action="" method="GET" name="change_country_tariff">
-						<div class="select-container">
+					<form class="form-group landing-page-country-selector-dialog" action="" method="GET" name="change_country_tariff">
+						<div class="select-container tariffs-select">
 						{% if country %}
 							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
 						{% endif %}
