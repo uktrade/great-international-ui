@@ -63,7 +63,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'core.middleware.CountryMiddleware',
+    'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,9 +148,6 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
-# Country cookie
-COUNTRY_COOKIE_NAME = 'country'
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False

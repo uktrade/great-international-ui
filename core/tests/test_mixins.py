@@ -65,7 +65,7 @@ def test_cached_views_not_dynamic(rf, settings, view_class):
 
 
 @pytest.mark.parametrize('country_code', [code for code, _ in COUNTRY_CHOICES])
-@patch('core.helpers.get_user_country')
+@patch('directory_components.helpers.get_user_country')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_country_region(mock_cms_response, mock_country, country_code, rf):
     class TestView(mixins.RegionalContentMixin, TemplateView):
@@ -83,7 +83,7 @@ def test_country_region(mock_cms_response, mock_country, country_code, rf):
 
     mock_country.return_value = country_code
 
-    request = rf.get('/')
+    request = rf.get('/', {'country': country_code})
     response = TestView.as_view()(request)
 
     if country_code in EU_COUNTRIES:
