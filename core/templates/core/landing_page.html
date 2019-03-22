@@ -17,6 +17,7 @@
 </section>
 
 
+
 {#{% if country.name %}#}
 {#	<section class="landing-page-recommendations">#}
 {#		<div class="container">#}
@@ -140,27 +141,38 @@
       {% for related_page in page.related_pages %}
         <div class="column-third-xl column-half-l column-full">
           <div class="card" id="{{ related_page.meta.slug }}-card">
-            <a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
-              <div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
-              <div class="card-inner wrap-tight padding-horizontal-45">
-                {% if related_page.page_type == 'InternationalArticlePage' %}
+					{% if related_page.page_type == 'InternationalArticlePage' %}
+						<a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
+							<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
+								<div class="card-inner wrap-tight padding-horizontal-45">
 									{% if related_page.subheading %}
 										<p class="subheading">{{ related_page.subheading }}</p>
 									{% else %}
 										<p class="subheading">Article</p>
 									{% endif %}
-                {% else %}
-                  {% if related_page.subheading %}
-										<p class="subheading">{{ related_page.subheading }}</p>
-									{% else %}
-										<p class="subheading">Campaign</p>
+									<h3 class="heading-large">{{ related_page.title }}</h3>
+									{% if related_page.teaser %}
+										<p class="description">{{ related_page.teaser }}</p>
 									{% endif %}
-                {% endif %}
-                <h3 class="heading-large">{{ related_page.title }}</h3>
-                {% if related_page.teaser %}<p class="description">{{ related_page.teaser }}</p>{% endif %}
-              </div>
-            </a>
-          </div>
+								</div>
+						</a>
+					{% else %}
+						<a class="card-link" href="{% url 'campaign' related_page.meta.slug %}" id="{{ related_page.meta.slug }}-card-link">
+						 <div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
+              <div class="card-inner wrap-tight padding-horizontal-45">
+								{% if related_page.subheading %}
+									<p class="subheading">{{ related_page.subheading }}</p>
+								{% else %}
+									<p class="subheading">Campaign</p>
+								{% endif %}
+								<h3 class="heading-large">{{ related_page.title }}</h3>
+								{% if related_page.teaser %}
+									<p class="description">{{ related_page.teaser }}</p>
+								{% endif %}
+							</div>
+						</a>
+					{% endif %}
+					</div>
         </div>
       {% endfor %}
     </div>
