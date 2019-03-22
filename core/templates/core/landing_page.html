@@ -106,7 +106,7 @@
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
 					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 					{{ page.tariffs_description|add_export_elements_classes }}
-					<form class="form-group landing-page-country-selector-dialog" action="" method="GET" name="change_country_tariff">
+					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET" name="change_country_tariff">
 						<div class="select-container tariffs-select">
 						{% if country %}
 							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
@@ -123,11 +123,10 @@
 								</div>
 							</div>
 						</div>
+						<div class="button-container">
+							<button type="submit" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</button>
+						</div>
 					</form>
-					<div>
-						<a href="{% url 'campaign' country.code %}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</a>
-{#						<a href="{{ page.tariffs_link }}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }} </a>#}
-					</div>
 				</div>
 			</div>
 		</div>
