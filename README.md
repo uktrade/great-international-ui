@@ -10,6 +10,8 @@
 
 [Python 3.6](https://www.python.org/downloads/release/python-360/)
 
+[redis](https://redis.io/)
+
 ## Local installation
 
     $ git clone https://github.com/uktrade/great-international-ui
@@ -42,12 +44,17 @@ Form submissions are powered by [directory-forms-api](https://github.com/uktrade
 ## CSS development
 
 ### Requirements
+
 [node](https://nodejs.org/en/download/)
+
 [SASS](http://sass-lang.com/)
+
 [gulp](https://gulpjs.com/)
 
-	$ npm install  # to install yarn
-	$ yarn install # use yarn for installing all other javascript dependencies
+
+    $ npm install yarn
+    $ yarn install --production=false
+
 
 ### Update CSS under version control
 
