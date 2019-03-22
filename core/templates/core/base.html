@@ -30,9 +30,9 @@
         {% endblock %}
 
         {% block head_css %}
-            <link href="{% static 'export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
-            <link href="{% static 'export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
-            <link href="{% static 'vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'directory_components/export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'directory_components/export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
             <link rel="stylesheet" href="{% static 'styles/main.css' %}">
         {% endblock %}
 
@@ -44,7 +44,6 @@
             .js-disabled-only { display: none; }
         </style>
         <noscript>
-          <link href="{% static 'export_elements/stylesheets/elements-components-no-js.min.css' %}" media="all" rel="stylesheet" />
             <style type="text/css">
                 .navigation-toggle { display: block; }
                 .js-disabled-only { display: block; }
@@ -54,14 +53,15 @@
 
         {% block head_js %}
           <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
-          <script src="{% static 'js/dit.responsive.js' %}"></script>
-          <script src="{% static 'js/dit.utils.js' %}"></script>
-          <script src="{% static 'js/dit.classes.Dropdown.js' %}"></script>
-          <script src="{% static 'js/dit.classes.Modal.js' %}"></script>
-          <script src="{% static 'js/dit.components.countrySelector.js' %}"></script>
-          <script src="{% static 'js/dit.components.greatInternationalHeader.js' %}"></script>
-          <script src="{% static 'js/dit.components.languageSelector.js' %}"></script>
           <script src="{% static 'directory_components/js/dit.components.cookie-notice.js' %}"></script>
+        {% endblock %}
+
+        {% block header_js %}
+          <script src="{% static 'directory_components/js/dit.responsive.js' %}"></script>
+          <script src="{% static 'directory_components/js/dit.utils.js' %}"></script>
+          <script src="{% static 'directory_components/js/dit.classes.Dropdown.js' %}"></script>
+          <script src="{% static 'directory_components/js/dit.components.countrySelector.js' %}"></script>
+          <script src="{% static 'directory_components/js/dit.components.greatInternationalHeader.js' %}"></script>
         {% endblock %}
 
         {% block head_other %}{% endblock %}
@@ -91,7 +91,7 @@
         {% endblock %}
 
         {% block body_header %}
-          {% include 'core/includes/header.html' %}
+          {% include 'directory_components/header_footer/international_header.html' %}
         {% endblock %}
 
         {% block body_content_container %}
@@ -110,7 +110,7 @@
         {% endblock %}
 
         {% block body_footer %}
-            {% include 'core/includes/footer.html' %}
+            {% include 'directory_components/header_footer/international_footer.html' %}
         {% endblock %}
 
         {% block body_js %}

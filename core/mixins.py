@@ -3,15 +3,15 @@ from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
 
-from directory_components.helpers import SocialLinkBuilder
+from directory_components.helpers import SocialLinkBuilder, get_user_country
+from directory_components.mixins import CountryDisplayMixin
 
-from directory_constants.constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
+from directory_constants.constants.choices import EU_COUNTRIES
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
 from core import helpers
-from core import forms
 
 
 TEMPLATE_MAPPING = {
@@ -26,43 +26,22 @@ TEMPLATE_MAPPING = {
 }
 
 
-class RegionalContentMixin:
-    country_form_class = forms.CountryForm
+class RegionalContentMixin(CountryDisplayMixin):
+    """
+    Extends CountryDisplayMixin to enable regional content
+    """
 
     @property
     def region(self):
-        country_code = helpers.get_user_country(self.request).upper() or None
+        country_code = get_user_country(self.request).upper() or None
         if country_code in EU_COUNTRIES:
             return 'eu'
 
     def get_context_data(self, *args, **kwargs):
-        country_code = helpers.get_user_country(self.request)
-
-        # if there is a country already detected we can hide the selector
-        hide_country_selector = bool(country_code)
-        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
-
-        country = {
-            # used for flag icon css class. must be lowercase
-            'code': country_code.lower(),
-            'name': country_name,
-        }
-
-        country_form_kwargs = self.get_country_form_kwargs()
-
         return super().get_context_data(
-            hide_country_selector=hide_country_selector,
-            country=country,
-            form=self.country_form_class(**country_form_kwargs),
             region=self.region,
             *args, **kwargs
         )
-
-    def get_country_form_kwargs(self, **kwargs):
-        return {
-            'initial': forms.get_country_form_initial_data(self.request),
-            **kwargs,
-        }
 
 
 class CMSPageMixin:

@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'directory_constants',
     'captcha',
     'directory_components',
-    'export_elements',
     'crispy_forms',
     'health_check',
     'directory_healthcheck',
@@ -63,7 +62,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'core.middleware.CountryMiddleware',
+    'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,9 +147,6 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
-# Country cookie
-COUNTRY_COOKIE_NAME = 'country'
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
@@ -343,6 +339,8 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 
 # feature flags
 FEATURE_FLAGS = {
+    'NEWS_SECTION_ON': env.bool(
+        'FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
         'FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
     # used by directory-components
