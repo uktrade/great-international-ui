@@ -7,7 +7,6 @@
 
 {% block head_css %}
   {{ block.super }}
-  <link href="{% static 'styles/pages/landing-page.css' %}" media="all" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -107,7 +106,7 @@
 					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 					{{ page.tariffs_description|add_export_elements_classes }}
 					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET" name="change_country_tariff">
-						<div class="select-container tariffs-select">
+						<div class="select-container tariffs-select margin-bottom-30">
 						{% if country %}
 							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
 						{% endif %}
@@ -123,9 +122,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="button-container">
-							<button type="submit" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</button>
-						</div>
+						<button type="submit" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</button>
 					</form>
 				</div>
 			</div>
