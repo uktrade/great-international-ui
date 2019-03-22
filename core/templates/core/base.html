@@ -30,8 +30,8 @@
         {% endblock %}
 
         {% block head_css %}
-            <link href="{% static 'export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
-            <link href="{% static 'export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'directory_components/export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
+            <link href="{% static 'directory_components/export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
             <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
             <link rel="stylesheet" href="{% static 'styles/main.css' %}">
         {% endblock %}
@@ -44,7 +44,6 @@
             .js-disabled-only { display: none; }
         </style>
         <noscript>
-          <link href="{% static 'export_elements/stylesheets/elements-components-no-js.min.css' %}" media="all" rel="stylesheet" />
             <style type="text/css">
                 .navigation-toggle { display: block; }
                 .js-disabled-only { display: block; }

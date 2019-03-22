@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'directory_constants',
     'captcha',
     'directory_components',
-    'export_elements',
     'crispy_forms',
     'health_check',
     'directory_healthcheck',
