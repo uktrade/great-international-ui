@@ -351,6 +351,7 @@ FEATURE_FLAGS = {
     'EXPORT_JOURNEY_ON': False,
     # used by directory-components
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
+    'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON': env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False)
 }
 
 # Invest High Potential Opportunities

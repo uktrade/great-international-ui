@@ -16,52 +16,52 @@
 	{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title img_url=page.hero_image.url subtitle=page.hero_subtitle call_to_action_text=page.hero_cta_text %}
 </section>
 
-
-
-{#{% if country.name %}#}
-{#	<section class="landing-page-recommendations">#}
-{#		<div class="container">#}
-{#			<div class="card-grid">#}
-{#				<h2 class="heading-large">Recommended for businesses in <a href='country'> {{ country.name }}</a> </h2>#}
-{#			</div>#}
-{#			<div class="card-grid">#}
-{#				<div class="column-third-m">#}
-{#					<div class="card " id="invest-card">#}
-{#						<div class="card-inner wrap-tight">#}
-{#							<h2 class="heading-large">ADD</h2>#}
-{#							<p>Lorem ipsum dolor sit amet</p>#}
-{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
-{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#				<div class="column-third-m">#}
-{#					<div class="card " id="invest-card">#}
-{#						<div class="card-inner wrap-tight">#}
-{#							<h2 class="heading-large">ADD</h2>#}
-{#							<p>Lorem ipsum dolor sit amet</p>#}
-{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
-{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#				<div class="column-third-m">#}
-{#					<div class="card " id="invest-card">#}
-{#						<div class="card-inner wrap-tight">#}
-{#							<h2 class="heading-large">ADD</h2>#}
-{#							<p>Lorem ipsum dolor sit amet</p>#}
-{#							<a href="#" class="link with-arrow">Expand to the UK - ADD</a>#}
-{#							<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#			</div>#}
-{#			<div>#}
-{#				<a href='country' class="button button-arrow-small"> {{ page.recommended_cta_text }} </a>#}
-{#			</div>#}
-{#		</div>#}
-{#	</section>#}
-{#{% endif %}#}
+{% if features.FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ON and cms_component %}
+	{% if country.name %}
+		<section class="landing-page-recommendations">
+			<div class="container">
+				<div class="card-grid">
+					<h2 class="heading-large">Recommended for businesses in <a href='country'> {{ country.name }}</a> </h2>
+				</div>
+				<div class="card-grid">
+					<div class="column-third-m">
+						<div class="card " id="invest-card">
+							<div class="card-inner wrap-tight">
+								<h2 class="heading-large">ADD</h2>
+								<p>Lorem ipsum dolor sit amet</p>
+								<a href="#" class="link with-arrow">Expand to the UK - ADD</a>
+								<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>
+							</div>
+						</div>
+					</div>
+					<div class="column-third-m">
+						<div class="card " id="invest-card">
+							<div class="card-inner wrap-tight">
+								<h2 class="heading-large">ADD</h2>
+								<p>Lorem ipsum dolor sit amet</p>
+								<a href="#" class="link with-arrow">Expand to the UK - ADD</a>
+								<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>
+							</div>
+						</div>
+					</div>
+					<div class="column-third-m">
+						<div class="card " id="invest-card">
+							<div class="card-inner wrap-tight">
+								<h2 class="heading-large">ADD</h2>
+								<p>Lorem ipsum dolor sit amet</p>
+								<a href="#" class="link with-arrow">Expand to the UK - ADD</a>
+								<a href="#" class="link with-arrow">Capital investment in the UK - ADD</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<a href='country' class="button button-arrow-small"> {{ page.recommended_cta_text }} </a>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+{% endif %}
 
 <section class="padding-vertical-60">
 	<div class="container">
@@ -125,7 +125,8 @@
 						</div>
 					</form>
 					<div>
-						<a href="{{ page.tariffs_link }}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }} </a>
+						<a href="{% url 'campaign' country.code %}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</a>
+{#						<a href="{{ page.tariffs_link }}" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }} </a>#}
 					</div>
 				</div>
 			</div>
