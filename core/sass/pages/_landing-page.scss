@@ -146,3 +146,14 @@ body.js-enabled {
       padding: 0;
     }
   }
+
+@media (max-width: 1150px) {
+  .tariffs-image {
+      width: 100%;
+    }
+
+  .tariffs-content-wrapper {
+    width: 100%;
+  }
+  
+}
