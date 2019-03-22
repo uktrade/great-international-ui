@@ -110,8 +110,7 @@
 						{% if country %}
 							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
 						{% endif %}
-							<div class="country-select{% if form.country.errors %} form-group-error{% endif %}"
-									 onchange="change_country_tariff.submit()">
+							<div class="country-select{% if form.country.errors %} form-group-error{% endif %}">
 								{% if form.country.errors %}
 									<span class="error-message">{{ form.country.errors }}</span>
 								{% endif %}
