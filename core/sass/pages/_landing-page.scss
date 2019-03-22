@@ -74,7 +74,6 @@
   }
 
   .select-container {
-    float: left;
     width: 50%;
     position: relative;
 
@@ -150,9 +149,11 @@ body.js-enabled {
 @media (max-width: 1150px) {
   .tariffs-image {
       width: 100%;
+    margin-bottom: 45px;
     }
 
   .tariffs-content-wrapper {
+    margin-top: 45px;
     width: 100%;
   }
   
