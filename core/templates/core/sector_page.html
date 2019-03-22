@@ -66,9 +66,11 @@
           {% else %}
           <figure class="column-half">
           {% endif %}
+            <figcaption>
+              <p class="statistic-heading margin-top-30">{{ statistic.heading }}</p>
+            </figcaption>
             <p class="bold-large active-blue-text statistic-number">{{ statistic.number }}</p>
             <figcaption>
-              <p class="statistic-heading">{{ statistic.heading }}</p>
               <p class="font-xsmall statistic-smallprint">{{ statistic.smallprint }}</p>
             </figcaption>
           </figure>
