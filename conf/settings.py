@@ -339,6 +339,8 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 
 # feature flags
 FEATURE_FLAGS = {
+    'NEWS_SECTION_ON': env.bool(
+        'FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
         'FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
     # used by directory-components
