@@ -1,0 +1,20 @@
+{% load static %}
+<div class="column-third-xl column-half-l column-full">
+	<div class="card" id="{{ related_page.meta.slug }}-card">
+		<a class="card-link" href="{% url url_path_name related_page.meta.slug %}" id="{{ related_page.meta.slug }}-card-link">
+			<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image">
+			</div>
+			<div class="card-inner wrap-tight padding-horizontal-45">
+				{% if related_page.subheading %}
+					<p class="subheading">{{ related_page.subheading }}</p>
+				{% else %}
+					<p class="subheading">{{default_subheading}}</p>
+				{% endif %}
+				<h3 class="heading-large">{{ related_page.title }}</h3>
+				{% if related_page.teaser %}
+					<p class="description">{{ related_page.teaser }}</p>
+				{% endif %}
+			</div>
+		</a>
+	</div>
+</div>
