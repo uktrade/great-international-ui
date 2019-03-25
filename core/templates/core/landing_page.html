@@ -3,7 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language add_with_arrow_to_link from cms_tags %}
-{% load card hero add_export_elements_classes from directory_components_tags %}
+{% load card hero add_export_elements_classes render_form from directory_components_tags %}
 
 {% block content %}
 
@@ -52,25 +52,24 @@
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
 					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 					{{ page.tariffs_description|add_export_elements_classes }}
-					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET" name="change_country_tariff">
-						<div class="select-container tariffs-select margin-bottom-30 background-white">
-						{% if country %}
+					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
+						<div class="select-container background-white margin-bottom-30">
+						  {% if country %}
 							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
-						{% endif %}
-							<div class="country-select{% if form.country.errors %} form-group-error{% endif %}">
-								{% if form.country.errors %}
-									<span class="error-message">{{ form.country.errors }}</span>
-								{% endif %}
-								{% if form.country.help_text %}
-									<span class="form-hint">{{ form.country.help_text }}</span>
-								{% endif %}
-								<div>
-									{{ form.country }}
-								</div>
-							</div>
+						  {% endif %}
+						  <div class="country-select{% if country_selector_form.country.errors %} form-group-error{% endif %}">
+							{% if country_selector_form.country.label %}{{ country_selector_form.country.label_tag }}{% endif %}
+							{% if country_selector_form.country.errors %}
+							  <span class="error-message">{{ country_selector_form.country.errors }}</span>
+							{% endif %}
+							{% if country_selector_form.country.help_text %}
+							  <span class="form-hint">{{ country_selector_form.country.help_text }}</span>
+							{% endif %}
+							{{ country_selector_form.country }}
+						  </div>
 						</div>
-						<button type="submit" class="button button-arrow-small"> {{ page.tariffs_call_to_action_text }}</button>
-					</form>
+						<button class="button button-blue" type="submit">Continue</button>
+				  	</form>
 				</div>
 			</div>
 		</div>
