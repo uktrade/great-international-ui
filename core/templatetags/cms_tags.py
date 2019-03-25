@@ -144,10 +144,6 @@ def prefix_path(path):
 @register.filter
 def add_with_arrow_to_link(value):
     soup = BeautifulSoup(value, 'html.parser')
-    mapping = [
-        ('a', 'link with-arrow')
-    ]
-    for tag_name, class_name in mapping:
-        for element in soup.findAll(tag_name):
-            element.attrs['class'] = class_name
+    for element in soup.findAll('a'):
+        element.attrs['class'] = 'link with-arrow'
     return str(soup)
