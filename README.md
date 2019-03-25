@@ -73,10 +73,10 @@ Signed cookies are used as the session backend to avoid using a database. We the
 To be able to test cookies locally add the following to your `/etc/hosts`:
 
 ```
-127.0.0.1       int.trade.great
+127.0.0.1       international.trade.great
 ```
 
-Then run the server and visit `int.trade.great:8013`
+Then run the server and visit `international.trade.great:8012`
 
 
 [circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/master.svg?style=svg
