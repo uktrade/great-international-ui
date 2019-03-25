@@ -92,7 +92,7 @@
         <div class="column-third-xl column-half-l column-full">
           <div class="card" id="{{ related_page.meta.slug }}-card">
 					{% if related_page.page_type == 'InternationalArticlePage' %}
-						<a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
+						<a class="card-link" href="{% url 'international-article' related_page.meta.slug %}" id="{{ related_page.meta.slug }}-card-link">
 							<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
 								<div class="card-inner wrap-tight padding-horizontal-45">
 									{% if related_page.subheading %}

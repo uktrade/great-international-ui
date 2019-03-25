@@ -113,6 +113,11 @@ urlpatterns += i18n_patterns(
         name="campaign"
     ),
     url(
+        r"^international/great-international-app/articles/(?P<slug>[\w-]+)/$",
+        core.views.ArticlePageView.as_view(),
+        name="international-article"
+    ),
+    url(
         r"^international/(?P<slug>[\w-]+)/$",
         core.views.ArticleTopicPageView.as_view(),
         name="article-topic"
