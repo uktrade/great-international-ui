@@ -5,15 +5,9 @@
 {% load filter_by_active_language add_with_arrow_to_link from cms_tags %}
 {% load card hero add_export_elements_classes from directory_components_tags %}
 
-{% block head_css %}
-  {{ block.super }}
-{% endblock %}
-
 {% block content %}
 
-<section class="with-flag">
-	{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title img_url=page.hero_image.url subtitle=page.hero_subtitle call_to_action_text=page.hero_cta_text %}
-</section>
+{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title img_url=page.hero_image.url subtitle=page.hero_subtitle call_to_action_text=page.hero_cta_text %}
 
 <section class="padding-vertical-60">
 	<div class="container">
