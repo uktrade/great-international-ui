@@ -1,8 +1,8 @@
 {% load static %}
 <div class="column-third-xl column-half-l column-full">
-	<div class="card" id="{{ related_page.meta.slug }}-card">
-		<a class="card-link" href="{% url url_path_name related_page.meta.slug %}" id="{{ related_page.meta.slug }}-card-link">
-			<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image">
+	<div class="card">
+		<a class="card-link" href="{{url}}">
+			<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %}>
 			</div>
 			<div class="card-inner wrap-tight padding-horizontal-45">
 				{% if related_page.subheading %}

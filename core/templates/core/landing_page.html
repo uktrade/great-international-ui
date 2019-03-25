@@ -52,6 +52,7 @@
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
 					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 					{{ page.tariffs_description|add_export_elements_classes }}
+					{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
 					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
 						<div class="select-container background-white margin-bottom-30">
 						  {% if country %}
@@ -70,6 +71,11 @@
 						</div>
 						<button class="button button-blue" type="submit">Continue</button>
 				  	</form>
+				  	{% else %}
+				  	<form class="button-container" action="{{ page.tariffs_link }}" >
+				  		<button class="button button-blue button-arrow-small" >Continue</button>
+					</form>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -83,9 +89,11 @@
     <div class="card-grid">
       {% for related_page in page.related_pages %}
       	{% if related_page.page_type == 'InternationalArticlePage' %}
-        	{% include 'core/includes/featured_article_card.html' with url_path_name='international-article' default_subheading="Article" %}
+      		{% url 'article-detail' 'great-international-app' 'articles' related_page.meta.slug as article_url %}
+        	{% include 'core/includes/featured_article_card.html' with url=article_url default_subheading="Article" %}
 		{% else %}
-		     {% include 'core/includes/featured_article_card.html' with url_path_name='campaign' default_subheading="Campaign"  %}
+		    {% url 'campaign' related_page.meta.slug as campaign_url %}
+		    {% include 'core/includes/featured_article_card.html' with url=campaign_url default_subheading="Campaign"  %}
 		{% endif %}
       {% endfor %}
     </div>
