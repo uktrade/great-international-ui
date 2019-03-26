@@ -139,4 +139,3 @@ def parse_date(date_string):
 @register.filter
 def prefix_path(path):
     return '/international' + path
-
