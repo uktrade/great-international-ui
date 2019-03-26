@@ -140,10 +140,3 @@ def parse_date(date_string):
 def prefix_path(path):
     return '/international' + path
 
-
-@register.filter
-def add_with_arrow_to_link(value):
-    soup = BeautifulSoup(value, 'html.parser')
-    for element in soup.findAll('a'):
-        element.attrs['class'].append('with-arrow')
-    return str(soup)

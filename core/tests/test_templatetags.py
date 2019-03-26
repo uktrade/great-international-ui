@@ -28,9 +28,9 @@ def test_convert_headings_to(heading):
 def test_convert_links_to_with_arrow():
     template = Template(
         '{% load add_export_elements_classes '
-        'add_with_arrow_to_link from cms_tags %}'
+        'override_elements_css_class from cms_tags %}'
         '{{ html|add_export_elements_classes|'
-        'add_with_arrow_to_link|safe }}'
+        'override_elements_css_class:\'a, link with-arrow\'|safe }}'
 
     )
     context = Context({
@@ -41,7 +41,7 @@ def test_convert_links_to_with_arrow():
     html = template.render(context)
 
     assert html == (
-        '<a class="link with-arrow">Capital Investment</a>'
+        '<a class=" link with-arrow">Capital Investment</a>'
     )
 
 
