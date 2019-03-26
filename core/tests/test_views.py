@@ -896,6 +896,7 @@ def test_homepage_related_pages(mock_get_page, client):
                     'teaser': 'Related article teaser',
                     'meta': {'slug': 'article'},
                     'full_path': '/topic/list/article',
+                    'full_url': 'https://great.gov.uk/internatinal/topic/list/article',
                 },
                 {
                     'title': 'Related campaign title',
@@ -903,12 +904,14 @@ def test_homepage_related_pages(mock_get_page, client):
                     'teaser': 'Related campaign teaser',
                     'meta': {'slug': 'campaign'},
                     'full_path': '/international/campaigns/campaign',
+                    'full_url': 'https://great.gov.uk/international/campaigns/campaign',
                 },
             ]
         }
     )
 
     response = client.get(reverse('index'))
+    print(str(response.content))
     assert 'News title' in str(response.content)
     assert 'Related article title' in str(response.content)
     assert 'Related article teaser' in str(response.content)
