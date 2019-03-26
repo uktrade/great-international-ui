@@ -12,43 +12,6 @@ def test_prefix_path():
     assert actual == expected
 
 
-heading_types = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
-
-
-@pytest.mark.parametrize('heading', heading_types)
-def test_convert_headings_to(heading):
-    actual = cms_tags.convert_headings_to(
-        '<' + heading + '></' + heading + '>',
-        'figure'
-    )
-    expected = '<figure></figure>'
-    assert actual == expected
-
-
-def test_convert_headings_to_does_not_convert_non_headings():
-    actual = cms_tags.convert_headings_to('<span></span>', 'figure')
-    expected = '<span></span>'
-    assert actual == expected
-
-
-def test_override_elements_css_class():
-    actual = cms_tags.override_elements_css_class(
-        '<h2 class="existing-class"></h2>',
-        'h2,test-class'
-    )
-    expected = '<h2 class="test-class"></h2>'
-    assert actual == expected
-
-
-def test_override_elements_css_class_does_not_override_non_targets():
-    actual = cms_tags.override_elements_css_class(
-        '<h4 class="existing-class"></h4>',
-        'h2,test-class'
-    )
-    expected = '<h4 class="existing-class"></h4>'
-    assert actual == expected
-
-
 def test_add_anchors():
     template = Template(
         '{% load add_anchors from cms_tags %}'
@@ -198,32 +161,6 @@ def test_grouper_remainder():
         '        <li>4</li>'
         '        <li>5</li>'
         '    </ul>'
-    )
-
-
-def test_add_export_elements_classes():
-    template = Template(
-        '{% load add_export_elements_classes from cms_tags %}'
-        '{{ html|add_export_elements_classes|safe }}'
-
-    )
-    context = Context({
-        'html': (
-            '<br/>'
-            '<h2>Title one</h2>'
-            '<h3>Title two</h3>'
-            '<ul>List one</ul>'
-            '<ol>List two</ol>'
-        )
-    })
-    html = template.render(context)
-
-    assert html == (
-        '<br/>'
-        '<h2 class="heading-large">Title one</h2>'
-        '<h3 class="heading-medium">Title two</h3>'
-        '<ul class="list list-bullet">List one</ul>'
-        '<ol class="list list-number">List two</ol>'
     )
 
 
