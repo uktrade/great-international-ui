@@ -25,6 +25,26 @@ def test_convert_headings_to(heading):
     assert actual == expected
 
 
+def test_convert_links_to_with_arrow():
+        template = Template(
+            '{% load add_export_elements_classes '
+            'add_with_arrow_to_link from cms_tags %}'
+            '{{ html|add_export_elements_classes|'
+            'add_with_arrow_to_link|safe }}'
+
+        )
+        context = Context({
+            'html': (
+                '<a>Capital Investment</a>'
+            )
+        })
+        html = template.render(context)
+
+        assert html == (
+            '<a class="link with-arrow">Capital Investment</a>'
+        )
+
+
 def test_convert_headings_to_does_not_convert_non_headings():
     actual = cms_tags.convert_headings_to('<span></span>', 'figure')
     expected = '<span></span>'
