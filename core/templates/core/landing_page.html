@@ -42,45 +42,47 @@
 	</div>
 </section>
 
-<section id="tariffs-section" class="tariffs-section background-stone-40">
-	<div class="container">
-		<div class="grid-row" >
-			<div class="column-full column-half-l margin-vertical-90 tariffs-image">
-				<img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
-			</div>
-			<div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
-				<div class="padding-horizontal-45 wrap-tight tariffs-content">
-					<h2 class="heading-large">{{ page.tariffs_title }}</h2>
-					{{ page.tariffs_description|add_export_elements_classes }}
-					{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
-					<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
-						<div class="select-container background-white margin-bottom-30">
-						  {% if country %}
-							<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
-						  {% endif %}
-						  <div class="country-select{% if country_selector_form.country.errors %} form-group-error{% endif %}">
-							{% if country_selector_form.country.label %}{{ country_selector_form.country.label_tag }}{% endif %}
-							{% if country_selector_form.country.errors %}
-							  <span class="error-message">{{ country_selector_form.country.errors }}</span>
-							{% endif %}
-							{% if country_selector_form.country.help_text %}
-							  <span class="form-hint">{{ country_selector_form.country.help_text }}</span>
-							{% endif %}
-							{{ country_selector_form.country }}
-						  </div>
-						</div>
-						<button class="button button-blue" type="submit">Continue</button>
-				  	</form>
-				  	{% else %}
-				  	<form class="button-container" action="{{ page.tariffs_link }}" >
-				  		<button class="button button-blue button-arrow-small" >Continue</button>
-					</form>
-					{% endif %}
+{% if features.INTERNATIONAL_TARIFFS_ON %}
+	<section id="tariffs-section" class="tariffs-section background-stone-40">
+		<div class="container">
+			<div class="grid-row" >
+				<div class="column-full column-half-l margin-vertical-90 tariffs-image">
+					<img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
+				</div>
+				<div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
+					<div class="padding-horizontal-45 wrap-tight tariffs-content">
+						<h2 class="heading-large">{{ page.tariffs_title }}</h2>
+						{{ page.tariffs_description|add_export_elements_classes }}
+						{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
+							<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
+								<div class="select-container background-white margin-bottom-30">
+								  {% if country %}
+									<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
+								  {% endif %}
+								  <div class="country-select{% if country_selector_form.country.errors %} form-group-error{% endif %}">
+									{% if country_selector_form.country.label %}{{ country_selector_form.country.label_tag }}{% endif %}
+									{% if country_selector_form.country.errors %}
+									  <span class="error-message">{{ country_selector_form.country.errors }}</span>
+									{% endif %}
+									{% if country_selector_form.country.help_text %}
+									  <span class="form-hint">{{ country_selector_form.country.help_text }}</span>
+									{% endif %}
+									{{ country_selector_form.country }}
+								  </div>
+								</div>
+								<button class="button button-blue" type="submit">Continue</button>
+							</form>
+						{% else %}
+							<form class="button-container" action="{{ page.tariffs_link }}" >
+								<button class="button button-blue button-arrow-small" >Continue</button>
+							</form>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}
 
 {% if page.related_pages %}
 <section id="news-events-section" class="news-events-section padding-vertical-60">
@@ -91,7 +93,7 @@
       	{% if related_page.page_type == 'InternationalArticlePage' %}
         	{% include 'core/includes/featured_article_card.html' with url=related_page.full_url default_subheading="Article" %}
 		{% else %}
-		{% url 'campaign' related_page.meta.slug as campaign_url %}
+			{% url 'campaign' related_page.meta.slug as campaign_url %}
 		    {% include 'core/includes/featured_article_card.html' with url=campaign_url default_subheading="Campaign"  %}
 		{% endif %}
       {% endfor %}
