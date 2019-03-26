@@ -913,7 +913,6 @@ def test_homepage_related_pages(mock_get_page, client):
     )
 
     response = client.get(reverse('index'))
-    print(str(response.content))
     assert 'News title' in str(response.content)
     assert 'Related article title' in str(response.content)
     assert 'Related article teaser' in str(response.content)
