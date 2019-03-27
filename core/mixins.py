@@ -11,7 +11,7 @@ from directory_constants.constants.choices import EU_COUNTRIES, COUNTRY_CHOICES
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import helpers, forms
+from core import helpers
 from core.forms import TariffsCountryForm
 
 TEMPLATE_MAPPING = {
