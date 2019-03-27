@@ -120,3 +120,10 @@ class SetupGuidePageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 
 class UKRegionPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     template_name = 'core/accordion_content_page_with_hero_image.html'
+
+
+class CapitalInvestLandingPageCMSView(TemplateView):
+    active_view_name = 'capital-invest'
+    template_name = 'core/capital_invest_landing_page.html'
+    # page_type = 'CapitalInvestHomePage'
+    # slug = 'capital-invest'

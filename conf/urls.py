@@ -59,6 +59,17 @@ urlpatterns += (
         name="news"
     ),
     url(
+        r"^international/capital-invest/$",
+        core.views.CapitalInvestLandingPageCMSView.as_view(),
+        name="capital-invest"
+    ),
+    url(
+        r"^international/doing-business-with-the-uk/$",
+        core.views.ArticleListPageView.as_view(),
+        {'slug': 'doing-business-with-the-uk'},
+        name="doing-business-with-the-uk"
+    ),
+    url(
         r"^international/how-to-do-business-with-the-uk/$",
         core.views.CuratedLandingPageCMSView.as_view(),
         {'slug': 'how-to-do-business-with-the-uk'},
