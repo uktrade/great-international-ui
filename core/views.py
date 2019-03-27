@@ -6,8 +6,9 @@ from core.mixins import (
     BreadcrumbsMixin,
     CMSPageMixin,
     RegionalContentMixin,
-)
+    TariffsCountryDisplayMixin)
 from directory_constants.constants import cms
+from core.forms import TariffsCountryForm
 
 
 class BaseCMSPage(RegionalContentMixin, CMSPageMixin, TemplateView):
@@ -31,11 +32,13 @@ class ArticleListPageView(
     page_type = 'InternationalArticleListingPage'
 
 
-class LandingPageCMSView(BaseCMSPage):
+class LandingPageCMSView(TariffsCountryDisplayMixin, BaseCMSPage):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
     page_type = 'InternationalHomePage'
     slug = cms.GREAT_HOME_INTERNATIONAL_SLUG
+
+    tariffs_country_selector_form = TariffsCountryForm()
 
 
 class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):

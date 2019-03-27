@@ -116,7 +116,7 @@
   }
 
   .great-footer-links {
-    @include float-clear
+    @include float-clear;
 
     ul li a {
       color: $white;

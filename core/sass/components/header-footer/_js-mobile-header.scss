@@ -52,7 +52,7 @@
   }
 
   .great-header-nav {
-    @include float-clear
+    @include float-clear;
     transition: all .2s ease;
     position: static;
     background-color: $lightened-great-blue;

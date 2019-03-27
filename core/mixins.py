@@ -6,13 +6,13 @@ from django.http import Http404
 from directory_components.helpers import SocialLinkBuilder, get_user_country
 from directory_components.mixins import CountryDisplayMixin
 
-from directory_constants.constants.choices import EU_COUNTRIES
+from directory_constants.constants.choices import EU_COUNTRIES, COUNTRY_CHOICES
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import helpers
-
+from core import helpers, forms
+from core.forms import TariffsCountryForm
 
 TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
@@ -157,4 +157,27 @@ class BreadcrumbsMixin:
         return super().get_context_data(
             breadcrumbs=breadcrumbs,
             *args, **kwargs
+        )
+
+
+class TariffsCountryDisplayMixin:
+
+    def get_context_data(self, *args, **kwargs):
+        country_code = get_user_country(self.request)
+
+        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+
+        tariffs_country = {
+            # used for flag icon css class. must be lowercase
+            'code': country_code.lower(),
+            'name': country_name,
+        }
+
+        return super().get_context_data(
+            tariffs_country=tariffs_country,
+            tariffs_country_selector_form=TariffsCountryForm(
+                initial={
+                    'tariffs_country': country_code
+                }
+            )
         )
