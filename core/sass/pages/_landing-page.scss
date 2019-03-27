@@ -53,6 +53,10 @@
       width: 50%;
     }
   }
+  
+@mixin landingPageSection {
+  padding: $spacing-2 0;
+}
 
   .features-highlight-section {
     .features-highlight-icon {

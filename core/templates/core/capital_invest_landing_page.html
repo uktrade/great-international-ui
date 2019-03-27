@@ -1,0 +1,142 @@
+{% extends 'core/base_cms.html' %}
+{% load static from staticfiles %}
+{% load filter_by_active_language from cms_tags %}
+
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'styles/pages/setup-guide-page.css' %}" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+{% include 'core/includes/hero_landing_page.html' with heading="Capital Investment" img_url="https://directory-cms-public.s3.amazonaws.com/images/gov-background_0uKcrgM.original.png" subtitle="Invest in the UK" call_to_action_text="Contact Us" %}
+
+<section class="landing-page-section">
+  <div class="container">
+   <h2 class="heading-large">Benefits for investing in the UK</h2>
+		<div class="grid-row">
+			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
+		</div>
+		<div class="card-grid">
+			<div class="column-half">
+				<h3 class="heading-small">Benefit 1</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<h3 class="heading-small">Benefit 2</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<h3 class="heading-small"><a href="http://localhost:8012/international/">Expand to the UK</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/image_with_caption.html' with image_url="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" main_caption="Image Caption"  %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section class="landing-page-section">
+  <div class="container">
+    <h2 class="heading-large">Investing opportunities by region</h2>
+		<div class="grid-row">
+			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
+		</div>
+		<div class="card-grid">
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="The Midlands" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Powerhouse" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Ireland" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Scotland" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="South England" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+			<div class="column-third-m">
+				{% include 'directory_components/labelled_card.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Wales" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section class="landing-page-section">
+  <div class="container">
+   <h2 class="heading-large">Energy Sector</h2>
+		<div class="grid-row">
+			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
+		</div>
+		<div class="card-grid">
+			<div class="column-half">
+				<h3 class="heading-small">Benefit 1</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<h3 class="heading-small">Benefit 2</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<h3 class="heading-small"><a href="http://localhost:8012/international/">Expand to the UK</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/image_with_caption.html' with image_url="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" main_caption="Image Caption"  %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section class="landing-page-how-we-help landing-page-section with-flag">
+  <div class="container">
+    <h2 class="heading-large">What we do</h2>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+      	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <ul>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
+			<p>Aligning international investors with a credible project pipeline</p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
+			<p>Helping international investors navigate their investment journey</p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
+			<p>Giving guidance on UK regulations and policy</p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
+			<p>Working with UK organisations to ensure that their offer is investable</p>
+		  </div>
+		</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="landing-page-section">
+	<div class="container">
+		<div class="card-grid">
+			<div class="column-half">
+				<h2 class="heading-large">Contact Us</h2>
+				<p class="font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<div>
+					<a href="#" class="button button-arrow-small">Get in Touch</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+{% endblock content %}
+

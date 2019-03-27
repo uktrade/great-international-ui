@@ -174,3 +174,10 @@ class CMSPageFromPathView(TemplateView):
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+
+class CapitalInvestLandingPageCMSView(TemplateView):
+    active_view_name = 'capital-invest'
+    template_name = 'core/capital_invest_landing_page.html'
+    # page_type = 'CapitalInvestHomePage'
+    # slug = 'capital-invest'
