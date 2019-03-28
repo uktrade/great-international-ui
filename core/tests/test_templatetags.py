@@ -12,6 +12,26 @@ def test_prefix_path():
     assert actual == expected
 
 
+def test_convert_links_to_with_arrow():
+    template = Template(
+        '{% load add_export_elements_classes '
+        'override_elements_css_class from cms_tags %}'
+        '{{ html|add_export_elements_classes|'
+        'override_elements_css_class:\'a, link with-arrow\'|safe }}'
+
+    )
+    context = Context({
+        'html': (
+            '<a>Capital Investment</a>'
+        )
+    })
+    html = template.render(context)
+
+    assert html == (
+        '<a class=" link with-arrow">Capital Investment</a>'
+    )
+
+
 def test_add_anchors():
     template = Template(
         '{% load add_anchors from cms_tags %}'

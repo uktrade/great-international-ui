@@ -2,95 +2,101 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
-{% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes from directory_components_tags %}
-
-{% block css_layout_class %}landing-page{% endblock %}
+{% load filter_by_active_language override_elements_css_class from cms_tags %}
+{% load card hero add_export_elements_classes render_form from directory_components_tags %}
 
 {% block content %}
 
-<section class="hero hero-generic with-flag" id="hero-section" style="background-image: url({% static 'images/placeholder.png' %})">
-  <div class="container wrap-tight">
-    <div class="heading-container">
-      <h1 class="heading-xlarge">Home</h1>
-    </div>
-  </div>
+{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title img_url=page.hero_image.url subtitle=page.hero_subtitle call_to_action_text=page.hero_cta_text %}
+
+<section class="padding-vertical-60">
+	<div class="container">
+		<div class="card-grid">
+			<div class="column-half">
+				<div class="card">
+					<figure>
+						<img class="width-full" src="{{ page.invest_image.url }}">
+					</figure>
+					<div>
+						<h2 class="highlight heading-medium background-active-blue white-text margin-top-remove-30">{{ page.invest_title }}</h2>
+						<div class="card-inner">
+							{{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column-half">
+				<div class="card">
+					<figure>
+						<img class="width-full" src="{{ page.trade_image.url }}">
+					</figure>
+					<div>
+						<h2 class="highlight heading-medium background-active-blue white-text margin-top-remove-30">{{ page.trade_title }}</h2>
+						<div class="card-inner">
+							{{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
-<section id="invest-fas-section" class="invest-fas-section background-stone-gradient-bottom padding-vertical-60">
-  <div class="container">
-    <div class="card-grid">
-      <div class="column-half">
-        {% static 'images/placeholder.png' as card_image %}
-        <div class="card " id="invest-card">
-          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="invest-card-image"></div>
-          <div class="card-inner wrap-tight">
-            <h2 class="heading-large">Invest in the UK</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a href="#" class="link with-arrow">Expand to the UK</a>
-            <a href="#" class="link with-arrow">Capital investment in the UK</a>
-          </div>
-        </div>
-      </div>
-      <div class="column-half">
-        {% static 'images/placeholder.png' as card_image %}
-        <div class="card " id="fas-card">
-          <div class="card-image" role="image" style="background-image: url({% static 'images/placeholder.png' %});" id="fas-card-image"></div>
-          <div class="card-inner wrap-tight padding-horizontal-45">
-            <h2 class="heading-large">Find a UK supplier</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="{{ services_urls.fas }}" class="link with-arrow">Connect with UK businesses</a>
-            <a href="#" class="link with-arrow">Explore UK industries</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tariffs-section" class="tariffs-section">
-  <div class="container">
-    <div class="grid-row">
-      <div class="column-full column-half-l margin-vertical-90 tariffs-image">
-        <img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
-      </div>
-      <div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
-        <div class="padding-horizontal-45 wrap-tight tariffs-content">
-          <h2 class="heading-large">{{ page.tariffs_title }}</h2>
-          {{ page.tariffs_description|add_export_elements_classes }}
-          <a href="{{ page.tariffs_link }}" class="link with-arrow">CTA</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
+{% if features.INTERNATIONAL_TARIFFS_ON %}
+	<section id="tariffs-section" class="tariffs-section background-stone-40">
+		<div class="container">
+			<div class="grid-row" >
+				<div class="column-full column-half-l margin-vertical-90 tariffs-image">
+					<img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
+				</div>
+				<div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
+					<div class="padding-horizontal-45 wrap-tight tariffs-content">
+						<h2 class="heading-large">{{ page.tariffs_title }}</h2>
+						{{ page.tariffs_description|add_export_elements_classes }}
+						{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
+							<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
+								<div class="select-container background-white margin-bottom-30">
+								  {% if country %}
+									<span id="flag-container" class="js-enabled-only flag-icon flag-icon-{{ country.code }}"></span>
+								  {% endif %}
+								  <div class="country-select{% if country_selector_form.country.errors %} form-group-error{% endif %}">
+									{% if country_selector_form.country.label %}{{ country_selector_form.country.label_tag }}{% endif %}
+									{% if country_selector_form.country.errors %}
+									  <span class="error-message">{{ country_selector_form.country.errors }}</span>
+									{% endif %}
+									{% if country_selector_form.country.help_text %}
+									  <span class="form-hint">{{ country_selector_form.country.help_text }}</span>
+									{% endif %}
+									{{ country_selector_form.country }}
+								  </div>
+								</div>
+								<button class="button button-blue" type="submit">Continue</button>
+							</form>
+						{% else %}
+							<form class="button-container" action="{{ page.tariffs_link }}" >
+								<button class="button button-blue button-arrow-small" >Continue</button>
+							</form>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endif %}
 
 {% if page.related_pages %}
-<section id="news-events-section" class="news-events-section background-stone-30 padding-vertical-60">
+<section id="news-events-section" class="news-events-section padding-vertical-60">
   <div class="container wrap-tight">
     <h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
     <div class="card-grid">
-
       {% for related_page in page.related_pages %}
-        <div class="column-third-xl column-half-l column-full">
-          <div class="card" id="{{ related_page.meta.slug }}-card">
-            <a class="card-link" href="/international{{ related_page.full_path }}" id="{{ related_page.meta.slug }}-card-link">
-              <div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %} id="{{ related_page.meta.slug }}-card-image"></div>
-              <div class="card-inner wrap-tight padding-horizontal-45">
-                {% if related_page.page_type == 'InternationalArticlePage' %}
-                  <p class="subheading">Article</p>
-                {% else %}
-                  <p class="subheading">Campaign</p>
-                {% endif %}
-                <h3 class="heading-large">{{ related_page.title }}</h3>
-                {% if related_page.teaser %}<p class="description">{{ related_page.teaser }}</p>{% endif %}
-              </div>
-            </a>
-          </div>
-        </div>
+      	{% if related_page.page_type == 'InternationalArticlePage' %}
+        	{% include 'core/includes/featured_article_card.html' with url=related_page.full_url default_subheading="Article" %}
+		{% else %}
+			{% url 'campaign' related_page.meta.slug as campaign_url %}
+		    {% include 'core/includes/featured_article_card.html' with url=campaign_url default_subheading="Campaign"  %}
+		{% endif %}
       {% endfor %}
-
     </div>
   </div>
 </section>
@@ -102,10 +108,10 @@
   <div class="container padding-vertical-30">
     <div class="grid-row">
       <div class="column-full column-half-l column-third-xl">
-        <a href="https://study-uk.britishcouncil.org/" rel="noopener noreferrer" class="button button-ghost-white button-arrow">Study in the UK</a>
+        <a href="https://study-uk.britishcouncil.org/" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.study_in_uk_cta_text }}</a>
       </div>
       <div class="column-full column-half-l column-third-xl">
-        <a href="https://www.visitbritain.com/gb/en" rel="noopener noreferrer" class="button button-ghost-white button-arrow">Visit the UK</a>
+        <a href="https://www.visitbritain.com/gb/en" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.visit_uk_cta_text }}</a>
       </div>
     </div>
   </div>

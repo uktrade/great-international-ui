@@ -4,25 +4,6 @@
 
 @import 'mixins';
 
-.with-flag {
-  margin-bottom: 30px;
-
-  & > .container {
-    position: relative;
-  }
-
-  & > .container:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -20px;
-    background-image: url('/static/images/uj-motif.png');
-    background-size: 155px;
-    width: 155px;
-    height: 30px;
-  }
-}
-
 .background-stone-gradient-bottom {
   background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
 }
@@ -96,4 +77,8 @@
       border-color: $light-blue;
     }
   }
+}
+
+.margin-top-remove-30{
+  margin-top: -30px;
 }
