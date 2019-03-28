@@ -1,0 +1,87 @@
+
+// Capital Invest/landing page
+
+@import '../partials/vars';
+@import '../partials/mixins';
+
+@mixin landingPageSection {
+  padding: $spacing-2 0;
+}
+
+.landing-page-section:nth-child(odd){
+  @include landingPageSection;
+  background: $stone-40;
+}
+
+.landing-page-section:nth-child(even){
+  @include landingPageSection;
+}
+
+.landing-page-how-we-help {
+  font-size: 17px;
+
+  .container:after {
+    padding-bottom: $spacing-3;
+  }
+
+  p {
+    margin-bottom: $spacing-3;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  .icon {
+    height: 64px;
+    padding-bottom: $spacing-4;
+    margin-bottom: $spacing-4;
+    @include red-underline
+  }
+
+  .contact-button {
+    @extend .icon;
+    border-bottom: 0;
+  }
+}
+
+.energy_pdf_button{
+  width: 50%;
+}
+
+.pdf_button{
+  position: absolute;
+  left: 45px;
+  bottom: 45px;
+  width: calc(100% - 90px)
+}
+
+@media (max-width: 950px){
+  .ci-landing-page-energy-section{
+    flex-direction: column-reverse;
+    .column-half{
+      width: 100%;
+      .energy_pdf_button{
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 950px){
+  .ci-landing-page-benefit-section{
+    flex-direction: column-reverse;
+    .column-half{
+      width: 100%;
+      .energy_pdf_button{
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1180px) and (min-width:850px) {
+  .column-third-xl{
+    width: 50%;
+  }
+}
