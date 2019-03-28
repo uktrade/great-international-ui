@@ -15,7 +15,7 @@ def test_prefix_path():
 def test_convert_links_to_with_arrow():
     template = Template(
         '{% load add_export_elements_classes '
-        'override_elements_css_class from cms_tags %}'
+        'override_elements_css_class from directory_components_tags %}'
         '{{ html|add_export_elements_classes|'
         'override_elements_css_class:\'a, link with-arrow\'|safe }}'
 
