@@ -2,29 +2,24 @@
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
 
-{% block head_css %}
-  {{ block.super }}
-  <link href="{% static 'styles/pages/setup-guide-page.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
-
 {% block content %}
 
-{% include 'core/includes/hero_landing_page.html' with heading="Capital Investment" img_url="https://directory-cms-public.s3.amazonaws.com/images/gov-background_0uKcrgM.original.png" subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua" call_to_action_text="Contact Us" %}
+{% include 'core/includes/hero_landing_page.html' with heading="Invest your capital in" subheading="the UK" img_url="https://directory-cms-public.s3.amazonaws.com/images/gov-background_0uKcrgM.original.png" subtitle="Discover large-scale and growth capital opportunities in the preferred European destination for US and Asian VC investors." call_to_action_text="Contact our investment team" %}
 
-<section class="landing-page-section">
+<section class="landing-page-section ">
   <div class="container">
-   <h2 class="heading-large">Benefits for investing in the UK</h2>
+   <h2 class="heading-large">Why choose the UK</h2>
 		<div class="grid-row">
-			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
+			<p class="font-medium column-half margin-bottom-30">As the world’s fifth largest economy, the UK’s global reach, regulatory clarity and rich talent pool help large capital projects realise their full potential. </p>
 		</div>
-		<div class="card-grid">
-			<div class="column-half">
-				<h3 class="heading-small">Benefit 1</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-				<h3 class="heading-small">Benefit 2</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-				<h3 class="heading-small"><a href="http://localhost:8012/international/">Expand to the UK</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+		<div class="card-grid ci-landing-page-benefit-section">
+			<div class="column-half padding-right-60">
+				<h3 class="heading-small">Regulatory certainty</h3>
+				<p>The UK government actively helps foreign investors understand domestic policy and regulations. See how we help below.</p>
+				<h3 class="heading-small">A global reach</h3>
+				<p>The UK is a leading financial and technology market, playing host to some of the world’s biggest companies.</p>
+				<h3 class="heading-small">An innovation hub</h3>
+				<p>The UK ranks top 5 on the G20 Global Innovation Index, with talent from the world's top universities. </p>
 			</div>
 			<div class="column-half">
 				{% include 'directory_components/image_with_caption.html' with image_url="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" main_caption="Image Caption"  %}
@@ -35,28 +30,28 @@
 
 <section class="landing-page-section">
   <div class="container">
-    <h2 class="heading-large">Investing opportunities by region</h2>
+    <h2 class="heading-large">Large scale capital projects</h2>
 		<div class="grid-row">
-			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
+			<p class="font-medium column-half">Our large scale capital projects are open to investors looking to allocate at least £100m of capital in the UK. Uncover opportunities across engineering, technology and manufacturing that have the full support of the UK government.</p>
 		</div>
 		<div class="card-grid">
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="The Midlands" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/23/midlands-opportunities_capital-investment_March-2019.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="South England" pdf_text="South England brochure" description="Home to the capital of the UK, South England’s attracts a large proportion of the country’s international investment." pdf_link="https://cms.trade.great.gov.uk/documents/23/midlands-opportunities_capital-investment_March-2019.pdf" %}
 			</div>
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Powerhouse" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/25/northern-powerhouse-opportunities_capital-investment_March-2019.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Powerhouse" pdf_text="Powerhouse brochure" description="Northern Powerhouse is home to outstanding retail, residential and leisure projects. Over 340 projects created nearly 15,000 jobs in 2016/17." pdf_link="https://cms.trade.great.gov.uk/documents/25/northern-powerhouse-opportunities_capital-investment_March-2019.pdf" %}
 			</div>
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Ireland" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/24/northern-ireland-opportunities_capital-investment_March-2019.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Midlands Engine" pdf_text="Midlands brochure" description="Midlands Engine has become a UK manufacturing stronghold, with international investors securing over 13,000 jobs in 2017/18." pdf_link="https://cms.trade.great.gov.uk/documents/24/northern-ireland-opportunities_capital-investment_March-2019.pdf" %}
 			</div>
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Scotland" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/26/scotland-investment-opportunities_capital-investment_March-2019.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Northern Ireland" pdf_text="Northern Ireland brochure" description="Northern Ireland's success in the private sector created almost 7,000 jobs in 2015-26, with 75% of new investors choosing to reinvest." pdf_link="https://cms.trade.great.gov.uk/documents/26/scotland-investment-opportunities_capital-investment_March-2019.pdf" %}
 			</div>
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="South England" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/29/south-england-capital-investment-march-2019.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Scotland" pdf_text="Scotland brochure" description="The UK government is supporting a £1bn investment into Scotland after being the most attractive investment after London 5 years in a row." pdf_link="https://cms.trade.great.gov.uk/documents/29/south-england-capital-investment-march-2019.pdf" %}
 			</div>
-			<div class="column-third-m">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Wales" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." pdf_link="https://cms.trade.great.gov.uk/documents/19/wales_investment_opportunities_capital-investment.pdf" %}
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" img_alt='' url=card_url title="Wales" pdf_text="Wales brochure" description="Wales has become a global competitor in tech, engineering and manufacturing, with its capital, Cardiff, one of the UK's fastest-growing cities." pdf_link="https://cms.trade.great.gov.uk/documents/19/wales_investment_opportunities_capital-investment.pdf" %}
 			</div>
 
 		</div>
@@ -65,18 +60,13 @@
 
 <section class="landing-page-section">
   <div class="container">
-   <h2 class="heading-large">Energy Sector</h2>
-		<div class="grid-row">
-			<p class="font-medium column-half"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua  </p>
-		</div>
-		<div class="card-grid">
-			<div class="column-half">
-				<h3 class="heading-small">Benefit 1</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-				<h3 class="heading-small">Benefit 2</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-				<h3 class="heading-small"><a href="http://localhost:8012/international/">Expand to the UK</a></h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+		<div class="card-grid ci-landing-page-energy-section">
+			<div class="column-half padding-right-60">
+				<h2 class="heading-large"> UK Energy</h2>
+				<p>The UK government has prioritised the transition to a clean economy. As such, we are actively encouraging the development and commercialisation of low carbon technologies through innovation funding and support.</p>
+				<button class="button button-blue button-ghost-blue energy_pdf_button" href="https://cms.trade.great.gov.uk/documents/17/Energy_CI.PDF" >
+					UK Energy brochure
+				</button>
 			</div>
 			<div class="column-half">
 				{% include 'directory_components/image_with_caption.html' with image_url="http://www.techweekeurope.co.uk/wp-content/uploads/2013/02/shutterstock_92638234.jpg" main_caption="Image Caption"  %}
@@ -87,10 +77,10 @@
 
 <section class="landing-page-how-we-help landing-page-section with-flag">
   <div class="container">
-    <h2 class="heading-large">What we do</h2>
+    <h2 class="heading-large">How we help</h2>
     <div class="grid-row">
       <div class="column-two-thirds">
-      	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      	<p>At the Department for International Trade, we work with overseas investors looking to allocate capital in the UK. As a government department dedicated to making foreign investment easy, we can:</p>
       </div>
     </div>
     <div class="grid-row">
@@ -98,25 +88,25 @@
 		<li>
 		  <div class="column-quarter">
 			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
-			<p>Aligning international investors with a credible project pipeline</p>
+			<p>Give guidance on UK regulations and policy</p>
 		  </div>
 		</li>
 		<li>
 		  <div class="column-quarter">
 			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
-			<p>Helping international investors navigate their investment journey</p>
+			<p>Work with UK organisations to ensure their offer is investable</p>
 		  </div>
 		</li>
 		<li>
 		  <div class="column-quarter">
 			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
-			<p>Giving guidance on UK regulations and policy</p>
+			<p>Align international investors with credible projects pipeline</p>
 		  </div>
 		</li>
 		<li>
 		  <div class="column-quarter">
 			<img class="icon" src="https://cdn2.iconfinder.com/data/icons/social-productivity-line-art-1/128/chart-512.png" alt="">
-			<p>Working with UK organisations to ensure that their offer is investable</p>
+			<p>Help international investors navigate their investment journey </p>
 		  </div>
 		</li>
       </ul>
@@ -128,8 +118,8 @@
 	<div class="container">
 		<div class="card-grid">
 			<div class="column-half">
-				<h2 class="heading-large">Contact Us</h2>
-				<p class="font-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				<h2 class="heading-large">Contact our investment team</h2>
+				<p class="font-small">Our team are located at high commissions, embassies and consulates around the world. </p>
 				<div>
 					<a href="#" class="button button-arrow-small">Get in Touch</a>
 				</div>
