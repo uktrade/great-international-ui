@@ -7,7 +7,7 @@
 
 {% block head_js %}
 	{{ block.super }}
-	<script src="{% static 'js/tariffsCountrySelector.js' %}"></script>
+	<script src="{% static 'js/dit.tariffsCountrySelector.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -77,7 +77,11 @@
 								</div>
 								<button class="button button-blue" type="submit">Continue</button>
 							</form>
-							{% endif %}
+						{% else %}
+							<form class="button-container" action="{{ page.tariffs_link }}" >
+								<button class="button button-blue button-arrow-small" >Continue</button>
+							</form>
+						{% endif %}
 					</div>
 				</div>
 			</div>
