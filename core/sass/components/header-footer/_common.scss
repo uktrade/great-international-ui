@@ -83,7 +83,7 @@
 
 .great-global-header.domestic a.domestic,
 .great-global-header.international a.international {
-  @include flag-red-underline
+  @include flag-red-underline;
   color: $great-blue;
 }
 
