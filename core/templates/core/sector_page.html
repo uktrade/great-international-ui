@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load filter_by_active_language from cms_tags %}
-{% load card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to from directory_components_tags %}
+{% load card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components_tags %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
@@ -26,9 +26,9 @@
 
 
 {% if page.heading_teaser %}
-<section id="sector-teaser-section" class="teaser">
+<section id="sector-teaser-section" class="teaser padding-vertical-30">
   <div class="container">
-    <div class="grid-row padding-top-30 padding-bottom-30">
+    <div class="grid-row">
       <div class="column-full column-half-l">
         <p class="font-medium">{{ page.heading_teaser }}</p>
       </div>
@@ -37,7 +37,7 @@
 </section>
 {% endif %}
 
-<section id="sector-section-one" class="section-one">
+<section id="sector-section-one" class="section-one padding-vertical-60">
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-half-l section-one-body">
@@ -50,38 +50,15 @@
   </div>
 </section>
 
-<section id="sector-statistics-section" class="statistics">
-  <div class="container padding-vertical-30px margin-bottom-60-m">
-    <div class="card-grid padding-bottom-15 underline-active-blue">
-      {% for statistic in page.statistics %}
-        {% if statistic.number %}
-          {% if view.num_of_statistics == 6 %}
-          <figure class="column-half column-third-l column-sixth-xl">
-          {% elif view.num_of_statistics == 5 %}
-          <figure class="column-half column-third-l column-sixth-xl">
-          {% elif view.num_of_statistics == 4 %}
-          <figure class="column-half column-quarter-xl">
-          {% elif view.num_of_statistics == 3 %}
-          <figure class="column-half column-third-l">
-          {% else %}
-          <figure class="column-half">
-          {% endif %}
-            <figcaption>
-              <p class="statistic-heading margin-top-30">{{ statistic.heading }}</p>
-            </figcaption>
-            <p class="bold-large active-blue-text statistic-number">{{ statistic.number }}</p>
-            <figcaption>
-              <p class="font-xsmall statistic-smallprint">{{ statistic.smallprint }}</p>
-            </figcaption>
-          </figure>
-        {% endif %}
-      {% endfor %}
+<section id="sector-statistics-section" class="statistics padding-vertical-30">
+  <div class="container">
+    {% statistics_card_grid statistics=page.statistics num_of_statistics=view.num_of_statistics %}
     </div>
   </div>
 </section>
 
-<section id="sector-section-two" class="section-two">
-  <div class="container padding-vertical-90">
+<section id="sector-section-two" class="section-two padding-vertical-60">
+  <div class="container">
     <div class="grid-row margin-bottom-30">
       <div class="column-full column-two-thirds-m column-half-l">
         <h2 class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
@@ -155,7 +132,7 @@
 </section>
 {% endif %}
 
-<section id="sector-next-steps-section" class="next-steps">
+<section id="sector-next-steps-section" class="next-steps padding-vertical-60">
   <div class="container">
     <div class="grid-row margin-bottom-45">
       <div class="column-full column-two-thirds-m column-half-l">
