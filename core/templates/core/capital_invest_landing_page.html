@@ -72,6 +72,23 @@
   </div>
 </section>
 
+<section style="background-color: lightgray" class="landing-page-section">
+	<div class="container">
+		<div class="card-grid ci-landing-page-energy-section">
+			<div class="column-half padding-right-60">
+				<h2 class="heading-large">Homes in England Section</h2>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				<button class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} >
+					Homes in England
+				</button>
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/image_with_caption.html' with image_url="https://fakeimg.pl/640x360" main_caption=page.energy_sector_image_caption  %}
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="landing-page-how-we-help landing-page-section with-flag">
   <div class="container">
     <h2 class="heading-large">{{ page.how_we_help_title }} </h2>
@@ -123,7 +140,6 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 
 {% endblock content %}
