@@ -1,16 +1,10 @@
 @import '../partials/vars';
 
 .sector-page {
-    .section-one .container {
-      padding: 60px 0;
-    }
 
     @media (min-width: 769px) {
-      .section-one .container {
-        padding: 120px 0 90px;
-      }
       .section-one-body {
-        padding-right: 10%;
+        padding-right: calc(100% / 12);
       }
     }
 
@@ -20,23 +14,9 @@
     }
   }
 
-  .statistics {
-    .statistic-number {
-      margin-bottom: 0.4em;
-    }
-
-    .statistic-heading {
-      margin-bottom: 0.75em;
-    }
-
-    .statistic-smallprint {
-      color: #666666;
-    }
-  }
-
   .section-two {
     .section-two-icon {
-      height: 50px;
+      height: 60px;
     }
   }
 
@@ -73,8 +53,6 @@
   }
 
   .next-steps .container {
-    padding: 150px 0;
-
     @media (min-width: 961px) {
       .cta-link {
         font-size: 36px;
