@@ -80,6 +80,7 @@ class CMSPageMixin:
         """
 
         if self.page['page_type'] != self.page_type:
+            print(self.page['page_type'], self.page_type)
             raise Http404
         return super().dispatch(request, *args, **kwargs)
 
@@ -94,6 +95,7 @@ class CMSPageMixin:
         return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
+        print("starting the cms mixin")
         page = self.page
         show_language_switcher = (
             len(page['meta']['languages']) > 1 and
@@ -102,6 +104,7 @@ class CMSPageMixin:
         language_available = translation.get_language() \
             in page['meta']['languages']
 
+        print("returning the cms mixin context")
         return super().get_context_data(
             language_switcher={
                 'show': show_language_switcher,
