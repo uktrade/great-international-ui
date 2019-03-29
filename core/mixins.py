@@ -77,6 +77,7 @@ class CMSPageMixin:
         """
 
         if self.page['page_type'] != self.page_type:
+            print(self.page['page_type'], self.page_type)
             raise Http404
         return super().dispatch(request, *args, **kwargs)
 

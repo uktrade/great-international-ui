@@ -176,8 +176,8 @@ class CMSPageFromPathView(TemplateView):
         return TEMPLATE_MAPPING[self.page['page_type']]
 
 
-class CapitalInvestLandingPageCMSView(TemplateView):
+class CapitalInvestLandingPageCMSView(BaseCMSPage):
     active_view_name = 'capital-invest'
     template_name = 'core/capital_invest_landing_page.html'
-    # page_type = 'CapitalInvestHomePage'
-    # slug = 'capital-invest'
+    page_type = 'InternationalCapitalInvestLandingPage'
+    slug = 'capital-invest'
