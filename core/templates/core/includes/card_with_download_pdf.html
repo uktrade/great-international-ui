@@ -38,11 +38,9 @@
           <p class="description" style="margin-bottom: 100px">{{ description }}</p>
         {% endif %}
       {% endif %}
-      	<form method="get" action="{{ pdf_link }}">
-			<button class="button button-blue button-ghost-blue margin-top-30 pdf_button" >
-				{{ pdf_text }}
-			</button>
-		</form>
+		<a href="{{ pdf_link }}" target="_blank" class="button button-blue button-ghost-blue margin-top-30 pdf_button" >
+			{{ pdf_text }}
+		</a>
     </div>
 
   {% if url %}
