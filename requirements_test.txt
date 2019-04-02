@@ -18,7 +18,7 @@ colorama==0.4.1           # via pytest
 coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
 directory-client-core==4.3.0  # via directory-cms-client, directory-forms-api-client
-directory-cms-client==8.3.0
+git+https://github.com/uktrade/directory-cms-client.git@feature/page-tree-driven-routing#egg=directory-cms-client
 directory-components==8.2.1
 directory-constants==14.4.0  # via directory-components
 directory-forms-api-client==3.1.0
