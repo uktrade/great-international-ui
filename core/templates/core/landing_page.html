@@ -5,6 +5,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes render_form override_elements_css_class from directory_components_tags %}
 
+{% block css_layout_class %}landing-page{% endblock %}
+
 {% block head_js %}
 	{{ block.super }}
 	<script src="{% static 'js/dit.tariffsCountrySelector.js' %}"></script>
