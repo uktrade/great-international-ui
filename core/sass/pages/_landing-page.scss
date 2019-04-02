@@ -115,15 +115,6 @@
     }
   }
 
-  // JS ENABLED STYLES
-  body.js-enabled {
-    .country-selector-dialog {
-      select {
-        padding-left: 60px;
-      }
-    }
-  }
-
   @media (max-width: 768px) {
     .tariffs-image {
       margin-bottom: 0;
@@ -156,6 +147,17 @@
     .tariffs-content-wrapper {
       margin-top: 45px;
       width: 100%;
+    }
+  }
+}
+
+// JS ENABLED STYLES
+body.js-enabled {
+  .landing-page {
+    .country-selector-dialog {
+      select {
+        padding-left: 60px;
+      }
     }
   }
 }
