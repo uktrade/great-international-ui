@@ -45,7 +45,7 @@
     margin-top: -30px;
   }
 
-  .landing-page-country-selector-dialog {
+  .country-selector-dialog {
 
     h2 {
       font-family: $brand-font;
@@ -98,7 +98,7 @@
   }
 
   @media (max-width: 640px) {
-    .landing-page-country-selector-dialog {
+    .country-selector-dialog {
       select {
         height: 49px;
       }
@@ -117,7 +117,7 @@
 
   // JS ENABLED STYLES
   body.js-enabled {
-    .landing-page-country-selector-dialog {
+    .country-selector-dialog {
       select {
         padding-left: 60px;
       }
