@@ -113,6 +113,11 @@ urlpatterns += i18n_patterns(
         name="campaign"
     ),
     url(
+        r'^international/c/(?P<page_url>[\w\-/]*)$',
+        core.views.CMSPageView.as_view(),
+        name="render-cms-page"
+    ),
+    url(
         r"^international/(?P<slug>[\w-]+)/$",
         core.views.ArticleTopicPageView.as_view(),
         name="article-topic"
