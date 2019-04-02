@@ -50,6 +50,16 @@
   width: 50%;
 }
 
+.card-grid{
+  .card{
+    .card-inner {
+      p.description{
+        margin-bottom: 100px;
+      }
+    }
+  }
+}
+
 .pdf_button{
   text-align: center;
   position: absolute;
@@ -85,5 +95,40 @@
 @media (max-width: 1180px) and (min-width:850px) {
   .column-third-xl{
     width: 50%;
+  }
+}
+
+@media (max-width: 450px) {
+  .hero{
+    .container{
+      .hero-text{
+        .hero-subtitle{
+          width: 80%;
+        }
+
+        .hero_button{
+          white-space: initial;
+          width: 80%;
+        }
+      }
+    }
+  }
+
+  .card-grid{
+    .card{
+      .card-inner {
+        p.description{
+          margin-bottom: 120px;
+        }
+      }
+    }
+  }
+
+  .pdf_button {
+    height: 80px;
+    white-space: initial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
