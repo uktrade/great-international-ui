@@ -92,7 +92,7 @@
   }
 }
 
-@media (max-width: 1180px) and (min-width:850px) {
+@media screen and (max-width: 1180px), screen and (min-width:850px) {
   .column-third-xl{
     width: 50%;
   }
@@ -126,7 +126,7 @@
 
   .pdf_button {
     height: 80px;
-    white-space: initial;
+    white-space: normal;
     display: flex;
     align-items: center;
     justify-content: center;
