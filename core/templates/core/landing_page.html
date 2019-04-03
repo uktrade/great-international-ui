@@ -5,6 +5,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes render_form override_elements_css_class from directory_components_tags %}
 
+{% block css_layout_class %}landing-page{% endblock %}
+
 {% block head_js %}
 	{{ block.super }}
 	<script src="{% static 'js/dit.tariffsCountrySelector.js' %}"></script>
@@ -59,7 +61,7 @@
 						<h2 class="heading-large">{{ page.tariffs_title }}</h2>
 						{{ page.tariffs_description|add_export_elements_classes }}
 						{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
-							<form class="form-group landing-page-country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
+							<form class="form-group country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
 								<div class="select-container background-white margin-bottom-30">
 								  {% if country %}
 									<span id="tariffs-flag-container" class="js-enabled-only flag-icon flag-icon-{{ tariffs_country.code }}"></span>
