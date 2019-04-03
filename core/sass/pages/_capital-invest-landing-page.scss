@@ -92,7 +92,7 @@
   }
 }
 
-@media screen and (max-width: 1180px), screen and (min-width:850px) {
+@media (max-width: 1180px) and (min-width:641px) {
   .column-third-xl{
     width: 50%;
   }
@@ -131,4 +131,12 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.max-width-100{
+  max-width: 100%;
 }
