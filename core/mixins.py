@@ -74,14 +74,7 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        return self.handle_cms_response(response)
-
-    def handle_cms_response(self, response):
-        page = handle_cms_response(response)
-        requested_language = translation.get_language()
-        if requested_language not in dict(page['meta']['languages']):
-            raise Http404('Content not found in requested language.')
-        return page
+        return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
         page = self.page
