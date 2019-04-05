@@ -175,32 +175,6 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_404_when_cms_language_unavailable(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-
-    page = {
-        'title': 'the page',
-        'meta': {
-            'languages': [('en-gb', 'English'), ('de', 'German')],
-            'slug': 'aerospace'
-        },
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-            status_code=200,
-            json_payload=page
-        )
-
-    translation.activate('fr')
-    request = rf.get('/fr/')
-    view = TestView.as_view()
-
-    with pytest.raises(Http404):
-        view(request, slug='aerospace')
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_detail_page_no_related_content(
     mock_get_page, client, settings
 ):
