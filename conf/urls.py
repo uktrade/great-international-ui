@@ -127,5 +127,5 @@ urlpatterns += i18n_patterns(
         core.views.ArticlePageView.as_view(),
         name="article-detail"
     ),
-    prefix_default_language=False,
+    prefix_default_language=True,
 )
