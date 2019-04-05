@@ -140,6 +140,9 @@ class BreadcrumbsMixin:
         breadcrumbs = []
 
         for index, slug in enumerate(url_fragments):
+            # Don't add breadcrumb for language code part of URL
+            if index == 0:
+                continue
             url = '/'.join(url_fragments[0:index+1])
             breadcrumb = {
                 'url': '/' + url + '/',

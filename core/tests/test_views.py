@@ -328,19 +328,19 @@ def test_breadcrumbs_mixin(mock_get_page, client, settings):
     breadcrumbs = response.context_data['breadcrumbs']
     assert breadcrumbs == [
         {
-            'url': '/international/',
+            'url': '/en-gb/international/',
             'label': 'International'
         },
         {
-            'url': '/international/topic/',
+            'url': '/en-gb/international/topic/',
             'label': 'Topic'
         },
         {
-            'url': '/international/topic/bar/',
+            'url': '/en-gb/international/topic/bar/',
             'label': 'Bar'
         },
         {
-            'url': '/international/topic/bar/foo/',
+            'url': '/en-gb/international/topic/bar/foo/',
             'label': 'Foo'
         },
     ]
