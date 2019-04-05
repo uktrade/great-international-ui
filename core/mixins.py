@@ -74,7 +74,14 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        return handle_cms_response(response)
+        return self.handle_cms_response(response)
+
+    def handle_cms_response(self, response):
+        page = handle_cms_response(response)
+        requested_language = translation.get_language()
+        if requested_language not in dict(page['meta']['languages']):
+            raise Http404('Content not found in requested language.')
+        return page
 
     def get_context_data(self, *args, **kwargs):
         page = self.page
@@ -140,9 +147,6 @@ class BreadcrumbsMixin:
         breadcrumbs = []
 
         for index, slug in enumerate(url_fragments):
-            # Don't add breadcrumb for language code part of URL
-            if index == 0:
-                continue
             url = '/'.join(url_fragments[0:index+1])
             breadcrumb = {
                 'url': '/' + url + '/',
