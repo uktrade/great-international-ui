@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from django.urls import reverse
 
 from django.utils import translation
-from django.http import Http404
 from django.views.generic import TemplateView
 
 from core.mixins import CMSPageMixin
@@ -175,32 +174,6 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_404_when_cms_language_unavailable(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-
-    page = {
-        'title': 'the page',
-        'meta': {
-            'languages': [('en-gb', 'English'), ('de', 'German')],
-            'slug': 'aerospace'
-        },
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-            status_code=200,
-            json_payload=page
-        )
-
-    translation.activate('fr')
-    request = rf.get('/fr/')
-    view = TestView.as_view()
-
-    with pytest.raises(Http404):
-        view(request, slug='aerospace')
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_detail_page_no_related_content(
     mock_get_page, client, settings
 ):
@@ -328,19 +301,19 @@ def test_breadcrumbs_mixin(mock_get_page, client, settings):
     breadcrumbs = response.context_data['breadcrumbs']
     assert breadcrumbs == [
         {
-            'url': '/international/',
+            'url': '/en-gb/international/',
             'label': 'International'
         },
         {
-            'url': '/international/topic/',
+            'url': '/en-gb/international/topic/',
             'label': 'Topic'
         },
         {
-            'url': '/international/topic/bar/',
+            'url': '/en-gb/international/topic/bar/',
             'label': 'Bar'
         },
         {
-            'url': '/international/topic/bar/foo/',
+            'url': '/en-gb/international/topic/bar/foo/',
             'label': 'Foo'
         },
     ]
@@ -384,17 +357,18 @@ def test_article_detail_page_social_share_links(
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
         '%20-%20Test%20article%20'
-        'http://testserver/international/topic/bar/foo/')
+        'http://testserver/en-gb/international/topic/bar/foo/')
     facebook_link = (
-        'https://www.facebook.com/share.php?u=http://testserver/'
-        'international/topic/bar/foo/')
+        'https://www.facebook.com/share.php?u='
+        'http://testserver/en-gb/international/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/&title=great.gov.uk'
+        'http://testserver/en-gb/international/topic/bar/foo/'
+        '&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/topic/bar/'
+        'mailto:?body=http://testserver/en-gb/international/topic/bar/'
         'foo/&subject=great.gov.uk%20-%20Test%20article%20'
     )
 
@@ -440,16 +414,16 @@ def test_article_detail_page_social_share_links_no_title(
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/topic/bar/foo/'
+        'http://testserver/en-gb/international/topic/bar/foo/'
         '')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/'
+        'http://testserver/en-gb/international/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/topic/bar/'
+        'mailto:?body=http://testserver/en-gb/international/topic/bar/'
         'foo/&subject='
         'great.gov.uk%20-%20%20'
     )
@@ -800,42 +774,42 @@ def test_article_list_page(mock_get_page, client, settings):
 
 @pytest.mark.parametrize('url,page_type,status_code', (
     (
-        '/international/article-list/',
+        '/en-gb/international/article-list/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/topic/list/article-page/',
+        '/en-gb/international/topic/list/article-page/',
         'InternationalArticlePage',
         200
     ),
     (
-        '/international/topic/list/article-page/',
+        '/en-gb/international/topic/list/article-page/',
         'InternationalArticleListingPage',
         404
     ),
     (
-        '/international/topic/list/',
+        '/en-gb/international/topic/list/',
         'InternationalArticleListingPage',
         200
     ),
     (
-        '/international/topic/campaign/',
+        '/en-gb/international/topic/campaign/',
         'InternationalCampaignPage',
         404
     ),
     (
-        '/international/campaigns/campaign/',
+        '/en-gb/international/campaigns/campaign/',
         'InternationalCampaignPage',
         200
     ),
     (
-        '/international/',
+        '/en-gb/international/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/',
+        '/en-gb/international/',
         'InternationalHomePage',
         200
     ),
