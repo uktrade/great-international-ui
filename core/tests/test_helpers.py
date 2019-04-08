@@ -5,14 +5,14 @@ from core import helpers
 
 @pytest.mark.parametrize('path,expected_prefix', (
     ('/', 'en-gb'),
-    ('/ar/', 'ar'),
-    ('/es/industries/', 'es'),
-    ('/zh-hans/industries/', 'zh-hans'),
-    ('/de/industries/aerospace/', 'de'),
-    ('/fr/industries/automotive/', 'fr'),
+    ('/?lang=ar', 'ar'),
+    ('/industries?lang=es', 'es'),
+    ('/industries/?lang=zh-hans', 'zh-hans'),
+    ('/industries/aerospace?lang=de', 'de'),
+    ('/industries/automotive/?lang=fr', 'fr'),
 ))
-def test_get_language_from_prefix(client, path, expected_prefix):
-    prefix = helpers.get_language_from_prefix(path)
+def test_get_language_from_querystring(client, path, expected_prefix):
+    prefix = helpers.get_language_from_querystring(path)
     assert prefix == expected_prefix
 
 

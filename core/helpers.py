@@ -13,26 +13,8 @@ def unslugify(slug):
     return slug.replace('-', ' ').capitalize()
 
 
-def get_language_from_prefix(path):
+def get_language_from_querystring(request):
     language_codes = translation.trans_real.get_languages()
-    prefix = slash_split(path)
-    if prefix in language_codes:
-        return prefix
-    else:
-        return 'en-gb'
-
-
-def slash_split(string):
-    if string.count("/") == 1:
-        return string.split("/")[0]
-    else:
-        return "".join(string.split("/", 2)[:2])
-
-
-def get_untranslated_url(path):
-    current_language = get_language_from_prefix(path)
-    if current_language == 'en-gb':
-        untranslated_url = path
-    else:
-        untranslated_url = path.replace('/' + current_language, '')
-    return untranslated_url
+    language_code = request.GET.get('lang')
+    if language_code and language_code in language_codes:
+        return language_code

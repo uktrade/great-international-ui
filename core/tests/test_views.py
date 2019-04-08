@@ -301,19 +301,19 @@ def test_breadcrumbs_mixin(mock_get_page, client, settings):
     breadcrumbs = response.context_data['breadcrumbs']
     assert breadcrumbs == [
         {
-            'url': '/en-gb/international/',
+            'url': '/international/',
             'label': 'International'
         },
         {
-            'url': '/en-gb/international/topic/',
+            'url': '/international/topic/',
             'label': 'Topic'
         },
         {
-            'url': '/en-gb/international/topic/bar/',
+            'url': '/international/topic/bar/',
             'label': 'Bar'
         },
         {
-            'url': '/en-gb/international/topic/bar/foo/',
+            'url': '/international/topic/bar/foo/',
             'label': 'Foo'
         },
     ]
@@ -357,18 +357,18 @@ def test_article_detail_page_social_share_links(
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
         '%20-%20Test%20article%20'
-        'http://testserver/en-gb/international/topic/bar/foo/')
+        'http://testserver/international/topic/bar/foo/')
     facebook_link = (
         'https://www.facebook.com/share.php?u='
-        'http://testserver/en-gb/international/topic/bar/foo/')
+        'http://testserver/international/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/en-gb/international/topic/bar/foo/'
+        'http://testserver/international/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/en-gb/international/topic/bar/'
+        'mailto:?body=http://testserver/international/topic/bar/'
         'foo/&subject=great.gov.uk%20-%20Test%20article%20'
     )
 
@@ -414,16 +414,16 @@ def test_article_detail_page_social_share_links_no_title(
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/en-gb/international/topic/bar/foo/'
+        'http://testserver/international/topic/bar/foo/'
         '')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/en-gb/international/topic/bar/foo/'
+        'http://testserver/international/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/en-gb/international/topic/bar/'
+        'mailto:?body=http://testserver/international/topic/bar/'
         'foo/&subject='
         'great.gov.uk%20-%20%20'
     )
@@ -774,42 +774,42 @@ def test_article_list_page(mock_get_page, client, settings):
 
 @pytest.mark.parametrize('url,page_type,status_code', (
     (
-        '/en-gb/international/article-list/',
+        '/international/article-list/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/en-gb/international/topic/list/article-page/',
+        '/international/topic/list/article-page/',
         'InternationalArticlePage',
         200
     ),
     (
-        '/en-gb/international/topic/list/article-page/',
+        '/international/topic/list/article-page/',
         'InternationalArticleListingPage',
         404
     ),
     (
-        '/en-gb/international/topic/list/',
+        '/international/topic/list/',
         'InternationalArticleListingPage',
         200
     ),
     (
-        '/en-gb/international/topic/campaign/',
+        '/international/topic/campaign/',
         'InternationalCampaignPage',
         404
     ),
     (
-        '/en-gb/international/campaigns/campaign/',
+        '/international/campaigns/campaign/',
         'InternationalCampaignPage',
         200
     ),
     (
-        '/en-gb/international/',
+        '/international/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/en-gb/international/',
+        '/international/',
         'InternationalHomePage',
         200
     ),
@@ -871,7 +871,7 @@ def test_homepage_related_pages(mock_get_page, client):
                     'meta': {'slug': 'article'},
                     'full_path': '/topic/list/article',
                     'full_url':
-                    'https://great.gov.uk/internatinal/topic/list/article',
+                    'https://great.gov.uk/international/topic/list/article',
                 },
                 {
                     'title': 'Related campaign title',

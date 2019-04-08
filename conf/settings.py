@@ -61,7 +61,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.LocaleQuerystringMiddleware',
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
