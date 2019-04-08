@@ -1,10 +1,12 @@
-from django.utils.functional import cached_property
-from django.views.generic import TemplateView
 from django.conf import settings
+from django.views.generic import TemplateView
+from django.utils.functional import cached_property
+from django.utils import translation
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 from directory_constants.constants import cms
+
 
 from core.mixins import (
     TEMPLATE_MAPPING,
@@ -125,13 +127,14 @@ class UKRegionPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     template_name = 'core/accordion_content_page_with_hero_image.html'
 
 
-class CMSPageView(TemplateView):
+class CMSPageFromPathView(TemplateView):
 
     @cached_property
     def page(self):
-        response = cms_api_client.lookup_by_url(
-            url=self.kwargs['page_url'],
+        response = cms_api_client.lookup_by_path(
             site_id=settings.DIRECTORY_CMS_SITE_ID,
+            path=self.kwargs['path'],
+            language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
         return self.handle_cms_response(response)
