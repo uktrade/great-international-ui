@@ -62,6 +62,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'core.middleware.LocaleQuerystringMiddleware',
+    'core.middleware.PersistLocaleMiddleware',
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
