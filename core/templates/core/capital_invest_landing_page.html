@@ -20,7 +20,11 @@
 				{{ page.reason_to_invest_section_content|add_export_elements_classes|safe }}
 			</div>
 			<div class="column-half center_vertical flex-shrink-0 max-width-100">
-				{% include 'directory_components/image_with_caption.html' with image_url=page.reason_to_invest_section_image.url main_caption=page.reason_to_invest_section_image_caption %}
+				{% if page.reason_to_invest_section_image.url %}
+					<figure class="landing-page-image">
+						<img class="width-full" src="{{page.reason_to_invest_section_image.url}}">
+					</figure>
+				{%  endif %}
 			</div>
 		</div>
   </div>
@@ -67,7 +71,11 @@
 				</a>
 			</div>
 			<div class="column-half center_vertical max-width-100 flex-shrink-0">
-				{% include 'directory_components/image_with_caption.html' with image_url=page.energy_sector_image.url main_caption=page.energy_sector_image_caption  %}
+				{% if page.energy_sector_image.url %}
+					<figure class="landing-page-image">
+						<img class="width-full" src="{{page.energy_sector_image.url}}">
+					</figure>
+				{%  endif %}
 			</div>
 		</div>
   </div>
@@ -84,7 +92,11 @@
 				</button>
 			</div>
 			<div class="column-half center_vertical">
-				{% include 'directory_components/image_with_caption.html' with image_url="https://fakeimg.pl/640x360" main_caption=page.energy_sector_image_caption  %}
+				{% if page.energy_sector_image.url %}
+					<figure class="landing-page-image">
+						<img class="width-full" src="https://fakeimg.pl/640x360">
+					</figure>
+				{%  endif %}
 			</div>
 		</div>
 	</div>
