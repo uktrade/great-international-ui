@@ -82,7 +82,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
-                'core.context_processors.untranslated_url',
                 'core.context_processors.footer_contact_us_link',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
@@ -127,6 +126,7 @@ CACHES = {
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
+USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
@@ -283,8 +283,6 @@ AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN', '')
 AWS_S3_URL_PROTOCOL = env.str('AWS_S3_URL_PROTOCOL', 'https:')
 
 PREFIX_DEFAULT_LANGUAGE = False
-
-LANGUAGE_COOKIE_NAME = 'django-language'
 
 # directory CMS
 DIRECTORY_CMS_API_CLIENT_BASE_URL = env.str('CMS_URL')
