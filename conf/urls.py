@@ -4,6 +4,7 @@ import directory_healthcheck.views
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
+from django.core.urlresolvers import reverse_lazy
 
 import core.views
 import conf.sitemaps
@@ -58,22 +59,20 @@ urlpatterns += (
         name="news"
     ),
     url(
-        r"^international/doing-business-with-the-uk/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'doing-business-with-the-uk'},
-        name="doing-business-with-the-uk"
-    ),
-    url(
         r"^international/how-to-do-business-with-the-uk/$",
         core.views.CuratedLandingPageCMSView.as_view(),
         {'slug': 'how-to-do-business-with-the-uk'},
-        name="eu-exit-landing"
+        name="how-to-do-business-with-the-uk"
     ),
     url(
         r"^international/how-to-setup-in-the-uk/$",
         core.views.GuideLandingPageCMSView.as_view(),
         {'slug': 'how-to-setup-in-the-uk'},
-        name="uk-setup-guides"
+        name="how-to-setup-in-the-uk"
+    ),
+    url(
+        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
+        RedirectView.as_view(url=reverse_lazy('how-to-setup-in-the-uk')),
     ),
     url(
         r"^international/how-to-setup-in-the-uk/guides/$",

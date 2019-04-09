@@ -1,12 +1,11 @@
 {% load static %}
 <section class="hero background-stone-40 with-flag" style="background-image: url('{{ img_url }}')">
-	<div class="container">
-		<div class="hero-text">
-			<h1 class="heading-xlarge margin-bottom-15">{{ heading }}</h1>
-			<h1 class="heading-xlarge margin-bottom-15">{{ subtitle }}</h1>
-			{% if call_to_action_text %}
-				<a href="{% url 'doing-business-with-the-uk' %}" class="button button-arrow-small button-blue">{{ call_to_action_text }}</a>
-			{%  endif %}
-		</div>
-	</div>
+  <div class="container">
+    <div class="hero-text">
+      <h1 class="heading-xlarge margin-bottom-15">{{ heading }} <br> {{ subtitle }}</h1>
+      {% if call_to_action_text %}
+        <a href="{% url 'how-to-do-business-with-the-uk' %}" class="button button-arrow-small button-blue">{{ call_to_action_text }}</a>
+      {%  endif %}
+    </div>
+  </div>
 </section>
