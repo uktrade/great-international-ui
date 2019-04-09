@@ -7,12 +7,12 @@ from core import helpers
 
 @pytest.mark.parametrize('path,expect_code', (
     ('/', None),
-    ('?lang=pt', 'pt'),
-    ('/?lang=ar', 'ar'),
-    ('/industries?lang=es', 'es'),
-    ('/industries/?lang=zh-hans', 'zh-hans'),
-    ('/industries/aerospace?lang=de', 'de'),
-    ('/industries/automotive/?lang=fr', 'fr'),
+    ('?language=pt', 'pt'),
+    ('/?language=ar', 'ar'),
+    ('/industries?language=es', 'es'),
+    ('/industries/?language=zh-hans', 'zh-hans'),
+    ('/industries/aerospace?language=de', 'de'),
+    ('/industries/automotive/?language=fr', 'fr'),
 ))
 def test_get_language_from_querystring(path, expect_code, rf):
     url = reverse('index')
