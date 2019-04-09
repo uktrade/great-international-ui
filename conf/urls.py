@@ -60,22 +60,16 @@ urlpatterns += i18n_patterns(
         name="news"
     ),
     url(
-        r"^international/doing-business-with-the-uk/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'doing-business-with-the-uk'},
-        name="doing-business-with-the-uk"
-    ),
-    url(
         r"^international/how-to-do-business-with-the-uk/$",
         core.views.CuratedLandingPageCMSView.as_view(),
         {'slug': 'how-to-do-business-with-the-uk'},
-        name="eu-exit-landing"
+        name="how-to-do-business-with-the-uk"
     ),
     url(
-        r"^international/how-to-setup-in-the-uk/$",
+        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
         core.views.GuideLandingPageCMSView.as_view(),
         {'slug': 'how-to-setup-in-the-uk'},
-        name="uk-setup-guides"
+        name="how-to-setup-in-the-uk"
     ),
     url(
         r"^international/how-to-setup-in-the-uk/guides/$",
