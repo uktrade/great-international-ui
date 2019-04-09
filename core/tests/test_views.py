@@ -249,18 +249,18 @@ def test_article_detail_page_related_content(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [
             {
-                'article_title': 'Related article 1',
-                'article_teaser': 'Related article 1 teaser',
-                'article_image_thumbnail': {'url': 'related_article_one.jpg'},
+                'title': 'Related article 1',
+                'teaser': 'Related article 1 teaser',
+                'thumbnail': {'url': 'related_article_one.jpg'},
                 'full_path': '/test-list/test-one/',
                 'meta': {
                     'slug': 'test-one',
                 }
             },
             {
-                'article_title': 'Related article 2',
-                'article_teaser': 'Related article 2 teaser',
-                'article_image_thumbnail': {'url': 'related_article_two.jpg'},
+                'title': 'Related article 2',
+                'teaser': 'Related article 2 teaser',
+                'thumbnail': {'url': 'related_article_two.jpg'},
                 'full_path': '/test-list/test-two/',
                 'meta': {
                     'slug': 'test-two',
