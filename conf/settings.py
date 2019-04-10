@@ -61,7 +61,8 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
     'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.LocaleQuerystringMiddleware',
+    'core.middleware.PersistLocaleMiddleware',
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -82,7 +83,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
-                'core.context_processors.untranslated_url',
                 'core.context_processors.footer_contact_us_link',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
@@ -127,6 +127,7 @@ CACHES = {
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
+USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
@@ -284,8 +285,6 @@ AWS_S3_URL_PROTOCOL = env.str('AWS_S3_URL_PROTOCOL', 'https:')
 
 PREFIX_DEFAULT_LANGUAGE = False
 
-LANGUAGE_COOKIE_NAME = 'django-language'
-
 # directory CMS
 DIRECTORY_CMS_API_CLIENT_BASE_URL = env.str('CMS_URL')
 DIRECTORY_CMS_API_CLIENT_API_KEY = env.str('CMS_SIGNATURE_SECRET')
@@ -317,6 +316,9 @@ EMAIL_USE_TLS = True
 DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC = env.str(
     'DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC', ''
 )
+DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL = env.str(
+    'DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL', ''
+)
 DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES = env.str(
     'DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES', ''
 )
@@ -343,21 +345,20 @@ FEATURE_FLAGS = {
         'FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
         'FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON': env.bool(
+        'FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_ON': env.bool(
+        'FEATURE_INTERNATIONAL_TARIFFS_ENABLED', False),
+
     # used by directory-components
     'SEARCH_ENGINE_INDEXING_OFF': env.bool(
         'FEATURE_SEARCH_ENGINE_INDEXING_DISABLED', False
     ),
     # directory-components currently complains if this doens't exist
     'EXPORT_JOURNEY_ON': False,
-    # used by directory-components
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
     'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON':
         env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON':
-        env.bool
-        ('FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_ON':
-        env.bool('FEATURE_INTERNATIONAL_TARIFFS_ENABLED', True)
 }
 
 # Invest High Potential Opportunities
