@@ -341,6 +341,8 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 
 # feature flags
 FEATURE_FLAGS = {
+    'HOW_TO_DO_BUSINESS_ON': env.bool(
+        'FEATURE_HOW_TO_DO_BUSINESS_ENABLED', False),
     'NEWS_SECTION_ON': env.bool(
         'FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
