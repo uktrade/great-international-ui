@@ -71,6 +71,8 @@ def add_href_target(value, request):
 
 @register.filter
 def filter_by_active_language(pages):
+    if pages is None:
+        return []
     return [page for page in pages if is_translated_to_current_language(page)]
 
 
