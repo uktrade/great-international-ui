@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from django.urls import reverse
 
 from django.utils import translation
-from django.http import Http404
 from django.views.generic import TemplateView
 
 from core.mixins import CMSPageMixin
@@ -172,32 +171,6 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
     response = view(request, slug='aerospace')
 
     assert response.context_data['page'] == page
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_404_when_cms_language_unavailable(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-
-    page = {
-        'title': 'the page',
-        'meta': {
-            'languages': [('en-gb', 'English'), ('de', 'German')],
-            'slug': 'aerospace'
-        },
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-            status_code=200,
-            json_payload=page
-        )
-
-    translation.activate('fr')
-    request = rf.get('/fr/')
-    view = TestView.as_view()
-
-    with pytest.raises(Http404):
-        view(request, slug='aerospace')
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
@@ -386,11 +359,12 @@ def test_article_detail_page_social_share_links(
         '%20-%20Test%20article%20'
         'http://testserver/international/topic/bar/foo/')
     facebook_link = (
-        'https://www.facebook.com/share.php?u=http://testserver/'
-        'international/topic/bar/foo/')
+        'https://www.facebook.com/share.php?u='
+        'http://testserver/international/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/&title=great.gov.uk'
+        'http://testserver/international/topic/bar/foo/'
+        '&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
@@ -897,7 +871,7 @@ def test_homepage_related_pages(mock_get_page, client):
                     'meta': {'slug': 'article'},
                     'full_path': '/topic/list/article',
                     'full_url':
-                    'https://great.gov.uk/internatinal/topic/list/article',
+                    'https://great.gov.uk/international/topic/list/article',
                 },
                 {
                     'title': 'Related campaign title',
