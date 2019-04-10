@@ -113,6 +113,16 @@
   }
 
   @media (max-width: 640px) {
+    .hero-with-cta{
+      .container{
+        .hero-text{
+          .button-arrow-small{
+            white-space: normal;
+          }
+        }
+      }
+    }
+
     .tariffs-content {
       padding: 0;
     }
@@ -129,6 +139,21 @@
       width: 100%;
     }
   }
+
+  @mixin landingPageSection {
+  padding: $spacing-2 0;
+  }
+
+  .landing-page-section:nth-child(odd) {
+    @include landingPageSection;
+    background: $stone-40;
+  }
+
+  .landing-page-section:nth-child(even) {
+    @include landingPageSection;
+
+  }
+
 }
 
 // JS ENABLED STYLES

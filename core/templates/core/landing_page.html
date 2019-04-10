@@ -14,16 +14,17 @@
 
 {% block content %}
 
-{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title img_url=page.hero_image.url subtitle=page.hero_subtitle call_to_action_text=page.hero_cta_text %}
+{% url 'how-to-do-business-with-the-uk' as how_to_do_business_url %}
+{% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=how_to_do_business_url %}
 
-<section class="padding-vertical-60">
+<section class="padding-vertical-60 landing-page-section">
   <div class="container">
     <div class="card-grid">
       <div class="column-half">
         <div class="card cta-image-card">
           <img class="width-full" src="{{ page.invest_image.url }}">
           <div class="card-text">
-            <h2 class="highlight heading-medium background-active-blue white-text">{{ page.invest_title }}</h2>
+            <h2 class="highlight heading-large background-active-blue white-text">{{ page.invest_title }}</h2>
             <div class="padding-30">
               {{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
             </div>
@@ -34,7 +35,7 @@
         <div class="card cta-image-card">
           <img class="width-full" src="{{ page.trade_image.url }}">
           <div class="card-text">
-            <h2 class="highlight heading-medium background-active-blue white-text">{{ page.trade_title }}</h2>
+            <h2 class="highlight heading-large background-active-blue white-text">{{ page.trade_title }}</h2>
             <div class="padding-30">
               {{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
             </div>
@@ -46,15 +47,15 @@
 </section>
 
 {% if features.INTERNATIONAL_TARIFFS_ON %}
-  <section id="tariffs-section" class="tariffs-section background-stone-40">
+  <section id="tariffs-section" class="tariffs-section landing-page-section">
     <div class="container">
       <div class="grid-row" >
-        <div class="column-full column-half-l margin-vertical-90 tariffs-image">
+        <div class="column-full column-half-l margin-vertical-60 tariffs-image">
           <img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
         </div>
-        <div class="column-full column-half-l margin-vertical-90 tariffs-content-wrapper">
+        <div class="column-full column-half-l margin-vertical-60 tariffs-content-wrapper">
           <div class="padding-horizontal-45 wrap-tight tariffs-content">
-            <h2 class="heading-large">{{ page.tariffs_title }}</h2>
+            <h2 class="heading-large ">{{ page.tariffs_title }}</h2>
             {{ page.tariffs_description|add_export_elements_classes }}
 
             {% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
@@ -91,7 +92,7 @@
 {% endif %}
 
 {% if page.related_pages %}
-<section id="news-events-section" class="news-events-section padding-vertical-60">
+<section id="news-events-section" class="news-events-section padding-vertical-60 landing-page-section">
   <div class="container wrap-tight">
     <h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
     <div class="card-grid">
