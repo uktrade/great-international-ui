@@ -15,6 +15,6 @@ def unslugify(slug):
 
 def get_language_from_querystring(request):
     language_codes = translation.trans_real.get_languages()
-    language_code = request.GET.get('language')
+    language_code = request.GET.get('language') or request.GET.get('lang')
     if language_code and language_code in language_codes:
         return language_code
