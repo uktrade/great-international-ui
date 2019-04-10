@@ -496,8 +496,9 @@ campaign_page_all_fields = {
             'article_title': 'Related article 1',
             'full_path': '/advice/finance/article-1/',
             'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-1'},
+                'slug': 'article-1',
+                'languages': [('en-gb', 'English')],
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 1'
         },
@@ -508,8 +509,9 @@ campaign_page_all_fields = {
             'article_title': 'Related article 2',
             'full_path': '/advice/finance/article-2/',
             'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-2'},
+                'slug': 'article-2',
+                'languages': [('en-gb', 'English')],
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 2'
         },
@@ -520,15 +522,16 @@ campaign_page_all_fields = {
             'article_title': 'Related article 3',
             'full_path': '/advice/finance/article-3/',
             'meta': {
+                'slug': 'article-3',
                 'languages': [('en-gb', 'English')],
-                'slug': 'article-3'},
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 3'
         },
     ],
     'meta': {
+        'slug': 'test-page',
         'languages': [('en-gb', 'English')],
-        'slug': 'test-page'
     },
     'page_type': 'InternationalCampaignPage'
 }
@@ -746,21 +749,30 @@ test_child_pages = [
 test_localised_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {'slug': 'campaign-one'},
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalCampaignPage',
         'teaser': 'Campaign one teaser',
         'title': 'Campaign one'
     },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {'slug': 'article-one'},
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
         'title': 'Article one'
     },
     {
         'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {'slug': 'article-two'},
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
         'title': 'Article two'
