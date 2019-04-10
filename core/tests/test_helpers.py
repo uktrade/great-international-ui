@@ -1,32 +1,27 @@
 import pytest
 
+from django.urls import reverse
+
 from core import helpers
 
 
-@pytest.mark.parametrize('path,expected_prefix', (
-    ('/', 'en-gb'),
-    ('/ar/', 'ar'),
-    ('/es/industries/', 'es'),
-    ('/zh-hans/industries/', 'zh-hans'),
-    ('/de/industries/aerospace/', 'de'),
-    ('/fr/industries/automotive/', 'fr'),
+@pytest.mark.parametrize('path,expect_code', (
+    ('/', None),
+    ('?language=pt', 'pt'),
+    ('/?language=ar', 'ar'),
+    ('/industries?language=es', 'es'),
+    ('/industries/?language=zh-hans', 'zh-hans'),
+    ('/industries/aerospace?language=de', 'de'),
+    ('/industries/automotive/?language=fr', 'fr'),
+    ('?lang=fr', 'fr'),
+    ('?language=de&lang=de', 'de'),
+    ('?lang=pt&language=es', 'es')
 ))
-def test_get_language_from_prefix(client, path, expected_prefix):
-    prefix = helpers.get_language_from_prefix(path)
-    assert prefix == expected_prefix
-
-
-@pytest.mark.parametrize('prefixed_url,exp_url', (
-    ('/de/', '/'),
-    ('/ar/', '/'),
-    ('/es/industries/', '/industries/'),
-    ('/zh-hans/industries/', '/industries/'),
-    ('/de/industries/aerospace/', '/industries/aerospace/'),
-    ('/fr/industries/automotive/', '/industries/automotive/'),
-))
-def test_get_untranslated_url(prefixed_url, exp_url):
-    url = helpers.get_untranslated_url(prefixed_url)
-    assert url == exp_url
+def test_get_language_from_querystring(path, expect_code, rf):
+    url = reverse('index')
+    request = rf.get(url + path)
+    language_code = helpers.get_language_from_querystring(request)
+    assert language_code == expect_code
 
 
 unslugify_slugs = [

@@ -4,7 +4,9 @@ from django.utils import translation
 from django.http import Http404
 
 from directory_components.helpers import SocialLinkBuilder, get_user_country
-from directory_components.mixins import CountryDisplayMixin
+from directory_components.mixins import (
+    CountryDisplayMixin, LanguageSwitcherMixin
+)
 
 from directory_constants.constants.choices import EU_COUNTRIES, COUNTRY_CHOICES
 
@@ -26,7 +28,7 @@ TEMPLATE_MAPPING = {
 }
 
 
-class RegionalContentMixin(CountryDisplayMixin):
+class RegionalContentMixin(CountryDisplayMixin, LanguageSwitcherMixin):
     """
     Extends CountryDisplayMixin to enable regional content
     """
@@ -74,14 +76,7 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        return self.handle_cms_response(response)
-
-    def handle_cms_response(self, response):
-        page = handle_cms_response(response)
-        requested_language = translation.get_language()
-        if requested_language not in dict(page['meta']['languages']):
-            raise Http404('Content not found in requested language.')
-        return page
+        return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
         page = self.page

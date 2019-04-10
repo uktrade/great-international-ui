@@ -12,7 +12,7 @@
             <li class="column-third-l column-half-m column-full">
               {% with article.full_path|prefix_path as article_url %}
               {% with 'related-article-'|add:article.meta.slug as card_id %}
-                {% card card_id=card_id title=article.article_title description=article.article_teaser url=article_url img_src=article.article_image_thumbnail.url %}
+                {% card card_id=card_id title=article.title description=article.teaser url=article_url img_src=article.thumbnail.url %}
               {% endwith %}
               {% endwith %}
             </li>
