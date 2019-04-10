@@ -13,6 +13,9 @@ from core import helpers
     ('/industries/?language=zh-hans', 'zh-hans'),
     ('/industries/aerospace?language=de', 'de'),
     ('/industries/automotive/?language=fr', 'fr'),
+    ('?lang=fr', 'fr'),
+    ('?language=de&lang=de', 'de'),
+    ('?lang=pt&language=es', 'es')
 ))
 def test_get_language_from_querystring(path, expect_code, rf):
     url = reverse('index')
