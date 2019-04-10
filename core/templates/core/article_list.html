@@ -1,6 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 {% load add_export_elements_classes from directory_components_tags %}
+{% load filter_by_active_language from cms_tags %}
 {% load parse_date prefix_path from cms_tags %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
@@ -39,11 +40,12 @@
 
     <div class="grid-row">
       <div class="column-two-thirds-l column-full article-list">
-        {% if page.localised_child_pages %}
+        {% with page.localised_child_pages|filter_by_active_language as localised_child_pages %}
+        {% if localised_child_pages %}
           <ul class="content-list regional-content" aria-labelledby="article-list-localised">
             <h2 class="heading-large" id="article-list-localised">For businesses in {{ country.name }}</h2>
 
-            {% for child_page in page.localised_child_pages %}
+            {% for child_page in localised_child_pages %}
               <li class="article">
                 <a {% if child_page.page_type == 'InternationalCampaignPage' %}
                 href="{% url 'campaign' child_page.meta.slug %}"
@@ -63,15 +65,16 @@
             {% endfor %}
           </ul>
         {% endif %}
+        {% endwith %}
 
         <ul class="content-list" {% if page.localised_articles %}aria-labelledby="article-list-general"{% endif %}>
           {% block content_list %}
 
-            {% if page.localised_child_pages %}
+            {% if page.localised_child_pages|filter_by_active_language %}
               <h2 class="heading-large" id="article-list-general">General</h2>
             {% endif %}
 
-            {% for child_page in page.child_pages %}
+            {% for child_page in page.child_pages|filter_by_active_language %}
               <li class="article">
                 <a href="{{ child_page.full_path|prefix_path }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
                 <p class="subheading">Last updated {{ child_page.last_published_at|parse_date }}</p>

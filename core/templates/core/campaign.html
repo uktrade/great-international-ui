@@ -1,5 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
+{% load filter_by_active_language from cms_tags %}
 {% load cta_box add_export_elements_classes from directory_components_tags %}
 {% load prefix_path from cms_tags %}
 
@@ -109,6 +110,8 @@
 
 </section>
 
+{% with page.related_pages|filter_by_active_language as related_pages %}
+{% if related_pages %}
 <section id="campaign-related-content" class="related-content padding-bottom-60">
   <div class="container">
     <div class="grid-row">
@@ -121,7 +124,7 @@
     </div>
 
     <ul class="grid-row" aria-labelledby="related-content-heading" id="related-pages-list">
-      {% for article in page.related_pages %}
+      {% for article in related_pages %}
         <li class="column-third" id="related-page-{{ article.meta.slug }}">
           {% if article.article_image_thumbnail %}
             <img id="related-article-{{ article.meta.slug }}-image" src="{{ article.article_image_thumbnail.url }}" alt="">
@@ -134,6 +137,8 @@
 
   </div>
 </section>
+{% endif %}
+{% endwith %}
 
 <section id="campaign-contact-section" class="padding-bottom-60">
   <div class="container">
