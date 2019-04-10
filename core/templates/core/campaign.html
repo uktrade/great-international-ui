@@ -122,7 +122,7 @@
     </div>
 
     <ul class="grid-row" aria-labelledby="related-content-heading" id="related-pages-list">
-      {% for article in related_pages|filter_by_active_language %}
+      {% for article in page.related_pages|filter_by_active_language %}
         <li class="column-third" id="related-page-{{ article.meta.slug }}">
           {% if article.article_image_thumbnail %}
             <img id="related-article-{{ article.meta.slug }}-image" src="{{ article.article_image_thumbnail.url }}" alt="">
