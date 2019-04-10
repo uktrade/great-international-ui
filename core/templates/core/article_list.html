@@ -40,12 +40,11 @@
 
     <div class="grid-row">
       <div class="column-two-thirds-l column-full article-list">
-        {% with page.localised_child_pages|filter_by_active_language as localised_child_pages %}
-        {% if localised_child_pages %}
+        {% if page.localised_child_pages %}
           <ul class="content-list regional-content" aria-labelledby="article-list-localised">
             <h2 class="heading-large" id="article-list-localised">For businesses in {{ country.name }}</h2>
 
-            {% for child_page in localised_child_pages %}
+            {% for child_page in page.localised_child_pages %}
               <li class="article">
                 <a {% if child_page.page_type == 'InternationalCampaignPage' %}
                 href="{% url 'campaign' child_page.meta.slug %}"
@@ -65,12 +64,11 @@
             {% endfor %}
           </ul>
         {% endif %}
-        {% endwith %}
 
         <ul class="content-list" {% if page.localised_articles %}aria-labelledby="article-list-general"{% endif %}>
           {% block content_list %}
 
-            {% if page.localised_child_pages|filter_by_active_language %}
+            {% if page.localised_child_pages %}
               <h2 class="heading-large" id="article-list-general">General</h2>
             {% endif %}
 
