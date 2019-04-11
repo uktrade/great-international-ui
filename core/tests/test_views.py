@@ -751,6 +751,16 @@ test_localised_child_pages = [
         'teaser': 'Article two teaser',
         'title': 'Article two'
     },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-three',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article three teaser',
+        'title': 'Article three'
+    },
 ]
 
 test_list_page = {
@@ -930,9 +940,18 @@ def test_homepage_related_pages(mock_get_page, client):
 
 
 @pytest.mark.parametrize('localised_articles,total_articles', (
-    ([], 4),
-    ([1], 5),
-    ([1, 2, 3, 4], 8),
+    (
+        [],
+        4
+    ),
+    (
+        test_localised_child_pages[:-3],
+        5
+    ),
+    (
+        test_localised_child_pages,
+        8
+    ),
 ))
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_count_with_regional_articles(

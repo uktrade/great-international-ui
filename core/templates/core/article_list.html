@@ -38,13 +38,14 @@
     </div>
     {% endif %}
 
+    {% with page.localised_child_pages|filter_by_active_language as localised_children %}
     <div class="grid-row">
       <div class="column-two-thirds-l column-full article-list">
-        {% if page.localised_child_pages %}
+        {% if localised_children %}
           <ul class="content-list regional-content" aria-labelledby="article-list-localised">
             <h2 class="heading-large" id="article-list-localised">For businesses in {{ country.name }}</h2>
 
-            {% for child_page in page.localised_child_pages %}
+            {% for child_page in localised_children %}
               <li class="article">
                 <a {% if child_page.page_type == 'InternationalCampaignPage' %}
                 href="{% url 'campaign' child_page.meta.slug %}"
@@ -68,7 +69,7 @@
         <ul class="content-list" {% if page.localised_articles %}aria-labelledby="article-list-general"{% endif %}>
           {% block content_list %}
 
-            {% if page.localised_child_pages %}
+            {% if localised_children %}
               <h2 class="heading-large" id="article-list-general">General</h2>
             {% endif %}
 
@@ -83,6 +84,7 @@
         </ul>
       </div>
     </div>
+    {% endwith %}
   </div>
 </section>
 
