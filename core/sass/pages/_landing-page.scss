@@ -112,12 +112,12 @@
   }
 
   @media (max-width: 640px) {
-    .hero-with-cta{ .container{ .hero-text{
+    .hero-with-cta .container .hero-text{
       width: 100%;
         .button-arrow-small{
-        white-space: normal;
+          white-space: normal;
         }
-    } } }
+    }
 
     .tariffs-content {
       padding: 0;
