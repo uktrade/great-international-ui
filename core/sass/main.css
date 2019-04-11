@@ -1284,7 +1284,6 @@ body.js-enabled .country-selector-dialog select {
 }
 .landing-page .hero h1 {
   margin-top: 0;
-  margin-bottom: 15px;
   font-family: "Overpass", "Roboto", arial, helvetica, verdana;
 }
 .landing-page .hero h2 {
@@ -1356,6 +1355,9 @@ body.js-enabled .country-selector-dialog select {
   }
 }
 @media (max-width: 640px) {
+  .landing-page .hero-with-cta .container .hero-text {
+    width: 100%;
+  }
   .landing-page .hero-with-cta .container .hero-text .button-arrow-small {
     white-space: normal;
   }
@@ -1363,7 +1365,7 @@ body.js-enabled .country-selector-dialog select {
     padding: 0;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 961px) {
   .landing-page .tariffs-image {
     width: 100%;
     margin-bottom: 45px;
