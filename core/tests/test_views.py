@@ -940,6 +940,7 @@ def test_article_count_with_regional_articles(
             'page_type': 'InternationalArticleListingPage',
             'articles_count': 4,
             'localised_child_pages': localised_articles,
+            'child_pages': [],
             'meta': {
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
