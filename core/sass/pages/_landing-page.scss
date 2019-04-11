@@ -128,7 +128,7 @@
     }
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 900px) {
     .tariffs-image {
       width: 100%;
       margin-bottom: 45px;
@@ -146,12 +146,11 @@
 
   .landing-page-section:nth-child(odd) {
     @include landingPageSection;
-    background: $stone-40;
   }
 
   .landing-page-section:nth-child(even) {
     @include landingPageSection;
-
+    background: $stone-40;
   }
 
 }

@@ -57,33 +57,32 @@
           <div class="padding-horizontal-45 wrap-tight tariffs-content">
             <h2 class="heading-large ">{{ page.tariffs_title }}</h2>
             {{ page.tariffs_description|add_export_elements_classes }}
-
-            {% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
-              <form class="country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
-                <div class="select-container background-white margin-bottom-30">
-                  {% if country %}
-                  <span id="tariffs-flag-container" class="js-enabled-only flag-icon flag-icon-{{ tariffs_country.code }}"></span>
-                  {% endif %}
-                  <div class="country-select{% if page.country_selector_form.country.errors %} form-group-error{% endif %}" >
-                  {% if tariffs_country_selector_form.tariffs_country.label %}
-                    {{ tariffs_country_selector_form.tariffs_country.label_tag }}
-                  {% endif %}
-                  {% if tariffs_country_selector_form.tariffs_country.errors %}
-                    <span class="error-message">{{ tariffs_country_selector_form.tariffs_country.errors }}</span>
-                  {% endif %}
-                  {% if tariffs_country_selector_form.tariffs_country.help_text %}
-                    <span class="form-hint">{{ tariffs_country_selector_form.tariffs_country.help_text }}</span>
-                  {% endif %}
-                  {{ tariffs_country_selector_form.tariffs_country }}
-                  </div>
-                </div>
-                <button class="button button-blue" type="submit">Continue</button>
-              </form>
-            {% else %}
-              <div class="button-container">
-                <a href="{{ page.tariffs_link }}" class="button button-blue button-arrow-small">Continue</a>
-              </div>
-            {% endif %}
+				{% if features.INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON %}
+				  <form class="country-selector-dialog" action="{{ page.tariffs_link }}" method="GET">
+					<div class="select-container background-white margin-bottom-30">
+					  {% if country %}
+					  <span id="tariffs-flag-container" class="js-enabled-only flag-icon flag-icon-{{ tariffs_country.code }}"></span>
+					  {% endif %}
+					  <div class="country-select{% if page.country_selector_form.country.errors %} form-group-error{% endif %}" >
+					  {% if tariffs_country_selector_form.tariffs_country.label %}
+						{{ tariffs_country_selector_form.tariffs_country.label_tag }}
+					  {% endif %}
+					  {% if tariffs_country_selector_form.tariffs_country.errors %}
+						<span class="error-message">{{ tariffs_country_selector_form.tariffs_country.errors }}</span>
+					  {% endif %}
+					  {% if tariffs_country_selector_form.tariffs_country.help_text %}
+						<span class="form-hint">{{ tariffs_country_selector_form.tariffs_country.help_text }}</span>
+					  {% endif %}
+					  {{ tariffs_country_selector_form.tariffs_country }}
+					  </div>
+					</div>
+					<button class="button button-blue" type="submit">Continue</button>
+				  </form>
+				{% else %}
+				  <div class="button-container padding-top-30">
+					<a href="{{ page.tariffs_link }}" class="button button-blue button-arrow-small">Continue</a>
+				  </div>
+				{% endif %}
           </div>
         </div>
       </div>

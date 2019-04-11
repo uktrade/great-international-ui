@@ -1363,7 +1363,7 @@ body.js-enabled .country-selector-dialog select {
     padding: 0;
   }
 }
-@media (max-width: 1150px) {
+@media (max-width: 900px) {
   .landing-page .tariffs-image {
     width: 100%;
     margin-bottom: 45px;
@@ -1375,10 +1375,10 @@ body.js-enabled .country-selector-dialog select {
 }
 .landing-page .landing-page-section:nth-child(odd) {
   padding: 45px 0;
-  background: #f2eee8;
 }
 .landing-page .landing-page-section:nth-child(even) {
   padding: 45px 0;
+  background: #f2eee8;
 }
 
 body.js-enabled .landing-page .country-selector-dialog select {
