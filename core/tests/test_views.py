@@ -849,6 +849,10 @@ def test_page_url_mismatch_404(
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
             },
+            # Needed to prevent errors when responding for a number of page types
+            'localised_child_pages': [],
+            'child_pages': [],
+            'related_pages': [],
         }
     )
 
