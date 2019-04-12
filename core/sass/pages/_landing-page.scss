@@ -40,66 +40,11 @@
         height: 100px;
       }
     }
-@media (max-width: 641px) {
-  .hero{
-    .container {
-      .hero-text{
-        width: 100%;
-        p{
-          width: 50%;
-        }
-      }
-    }
-  }
-  }
-
-.margin-top-remove-30{
-  margin-top: -30px;
-}
 
     .hero-text {
       width: 50%;
     }
   }
-  
-@mixin landingPageSection {
-  padding: $spacing-2 0;
-}
-
-.landing-page-section:nth-child(odd){
-  @include landingPageSection;
-  background: $stone-40;
-}
-
-.landing-page-section:nth-child(even){
-  @include landingPageSection;
-}
-
-.landing-page-country-selector-dialog {
-
-  h2 {
-    font-family: $brand-font;
-    font-weight: 700;
-    font-size: 22px;
-  }
-
-  .countries {
-    position: relative;
-  }
-
-  .button-container {
-    float: left;
-    width: 50%;
-    padding-left: 15px;
-
-    .button {
-      font-family: $brand-font;
-      font-weight: 700;
-      padding: 10px 20px;
-      height: 49px;
-    }
-  }
-
 
   .margin-top-remove-30{
     margin-top: -30px;
@@ -132,43 +77,8 @@
         width: 40px;
       }
     }
-    
-  }
-  
-.landing-page-how-we-help {
-  font-size: 17px;
 
-  .container:after {
-    padding-bottom: $spacing-3;
   }
-
-  p {
-    margin-bottom: $spacing-3;
-  }
-
-  ul {
-    width: 100%;
-  }
-
-  .icon {
-    height: 64px;
-    padding-bottom: $spacing-4;
-    margin-bottom: $spacing-4;
-    @include red-underline
-  }
-
-  .contact-button {
-    @extend .icon;
-    border-bottom: 0;
-  }
-}
-  
-@media (max-width: 640px) {
-.landing-page-country-selector-dialog {
-    select {
-      height: 49px;
-    }
-
 
   @media (max-width: 640px) {
     .country-selector-dialog {

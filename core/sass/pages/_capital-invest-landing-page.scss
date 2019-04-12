@@ -5,15 +5,15 @@
 @import '../partials/mixins';
 
 @mixin landingPageSection {
-  padding: $spacing-2 0;
+  padding: $spacing-1 0;
 }
 
-.landing-page-section:nth-child(odd){
+.capital-invest-landing-page-section:nth-child(odd){
   @include landingPageSection;
   background: $stone-40;
 }
 
-.landing-page-section:nth-child(even){
+.capital-invest-landing-page-section:nth-child(even){
   @include landingPageSection;
 }
 

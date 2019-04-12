@@ -181,6 +181,11 @@ a.labelled-image-card .card-header h3 {
   margin-top: -30px;
 }
 
+.center_vertical {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 #skip-link:focus {
   z-index: 10;
 }
@@ -1385,6 +1390,110 @@ body.js-enabled .country-selector-dialog select {
 
 body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
+}
+
+.capital-invest-landing-page-section:nth-child(odd) {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+
+.capital-invest-landing-page-section:nth-child(even) {
+  padding: 60px 0;
+}
+
+.landing-page-how-we-help {
+  font-size: 17px;
+}
+.landing-page-how-we-help .container:after {
+  padding-bottom: 30px;
+}
+.landing-page-how-we-help p {
+  margin-bottom: 30px;
+}
+.landing-page-how-we-help ul {
+  width: 100%;
+}
+.landing-page-how-we-help .icon, .landing-page-how-we-help .contact-button {
+  height: 64px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e41f13;
+}
+.landing-page-how-we-help .contact-button {
+  border-bottom: 0;
+}
+
+.energy_pdf_button {
+  text-align: center;
+  width: 50%;
+}
+
+.card-grid .card .card-inner p.description {
+  margin-bottom: 100px;
+}
+
+.pdf_button {
+  text-align: center;
+  position: absolute;
+  left: 45px;
+  bottom: 45px;
+  width: calc(100% - 90px);
+}
+
+@media (max-width: 950px) {
+  .ci-landing-page-energy-section {
+    flex-direction: column-reverse;
+  }
+  .ci-landing-page-energy-section .column-half {
+    width: 100%;
+  }
+  .ci-landing-page-energy-section .column-half .energy_pdf_button {
+    width: 100%;
+  }
+}
+@media (max-width: 950px) {
+  .ci-landing-page-benefit-section {
+    flex-direction: column-reverse;
+  }
+  .ci-landing-page-benefit-section .column-half {
+    width: 100%;
+  }
+  .ci-landing-page-benefit-section .column-half .energy_pdf_button {
+    width: 100%;
+  }
+}
+@media (max-width: 1180px) and (min-width: 641px) {
+  .column-third-xl {
+    width: 50%;
+  }
+}
+@media (max-width: 450px) {
+  .hero .container .hero-text .hero-subtitle {
+    width: 80%;
+  }
+  .hero .container .hero-text .button {
+    white-space: initial;
+    width: 80%;
+  }
+
+  .card-grid .card .card-inner p.description {
+    margin-bottom: 120px;
+  }
+
+  .pdf_button {
+    height: 80px;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.max-width-100 {
+  max-width: 100%;
 }
 
 .article-detail-page article.grid-row {
