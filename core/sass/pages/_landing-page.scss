@@ -48,31 +48,11 @@
         height: 100px;
       }
     }
-@media (max-width: 641px) {
-  .hero{
-    .container {
-      .hero-text{
-        width: 100%;
-        p{
-          width: 50%;
-        }
-      }
-    }
-  }
-  }
-
-.margin-top-remove-30{
-  margin-top: -30px;
-}
 
     .hero-text {
       width: 50%;
     }
   }
-  
-@mixin landingPageSection {
-  padding: $spacing-2 0;
-}
 
   .features-highlight-section {
     .features-highlight-icon {
@@ -86,6 +66,10 @@
 
       .countries {
         position: relative;
+      }
+      
+      .margin-top-remove-30{
+        margin-top: -30px;
       }
 
       .select-container {
