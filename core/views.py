@@ -6,7 +6,9 @@ from core.mixins import (
     BreadcrumbsMixin,
     CMSPageMixin,
     RegionalContentMixin,
-    TariffsCountryDisplayMixin)
+    TariffsCountryDisplayMixin,
+    HowToDoBusinessPageFeatureFlagMixin,
+)
 from directory_constants.constants import cms
 from core.forms import TariffsCountryForm
 
@@ -41,7 +43,9 @@ class LandingPageCMSView(TariffsCountryDisplayMixin, BaseCMSPage):
     tariffs_country_selector_form = TariffsCountryForm()
 
 
-class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+class CuratedLandingPageCMSView(
+    HowToDoBusinessPageFeatureFlagMixin, GetSlugFromKwargsMixin, BaseCMSPage
+):
     active_view_name = 'curated-topic-landing'
     page_type = 'InternationalCuratedTopicLandingPage'
 

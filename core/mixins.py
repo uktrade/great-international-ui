@@ -2,6 +2,7 @@ from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
+from django.conf import settings
 
 from directory_components.helpers import SocialLinkBuilder, get_user_country
 from directory_components.mixins import (
@@ -26,6 +27,19 @@ TEMPLATE_MAPPING = {
     'InternationalCuratedTopicLandingPage': 'core/curated_topic_landing_page.html',  # noqa
     'InternationalGuideLandingPage': 'core/guide_landing_page.html'
 }
+
+
+class NotFoundOnDisabledFeature:
+    def dispatch(self, *args, **kwargs):
+        if not self.flag:
+            raise Http404()
+        return super().dispatch(*args, **kwargs)
+
+
+class HowToDoBusinessPageFeatureFlagMixin(NotFoundOnDisabledFeature):
+    @property
+    def flag(self):
+        return settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON']
 
 
 class RegionalContentMixin(CountryDisplayMixin, LanguageSwitcherMixin):

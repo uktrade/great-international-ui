@@ -990,3 +990,38 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
 
     child_page = response.context_data['page']['child_pages'][0]
     assert child_page['landing_page_title'] == 'heading'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_how_to_do_business_feature_off(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=dummy_page
+    )
+
+    url = reverse('how-to-do-business-with-the-uk')
+
+    response = client.get(url)
+
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_how_to_do_business_feature_on(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+
+    page = dummy_page
+    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = reverse('how-to-do-business-with-the-uk')
+
+    response = client.get(url)
+
+    assert response.status_code == 200
