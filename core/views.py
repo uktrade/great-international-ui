@@ -127,3 +127,10 @@ class CapitalInvestLandingPageCMSView(BaseCMSPage):
     template_name = 'core/capital_invest_landing_page.html'
     page_type = 'InternationalCapitalInvestLandingPage'
     slug = 'capital-invest'
+
+
+class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
+                                                       BaseCMSPage):
+    page_type = 'CapitalInvestRegionOpportunityPage'
+    template_name = 'core/capital_invest_region_opportunity_page.html'
+
