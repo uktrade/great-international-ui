@@ -69,6 +69,11 @@ urlpatterns += (
         name="capital-invest-region-opportunity"
     ),
     url(
+        r"^international/capital-invest/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
+        core.views.CapitalInvestSectorOpportunityLandingPageCMSView.as_view(),
+        name="capital-invest-sector-opportunity"
+    ),
+    url(
         r"^international/doing-business-with-the-uk/$",
         core.views.ArticleListPageView.as_view(),
         {'slug': 'doing-business-with-the-uk'},
