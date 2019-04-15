@@ -188,3 +188,9 @@ class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
     page_type = 'CapitalInvestRegionOpportunityPage'
     template_name = 'core/capital_invest_region_opportunity_page.html'
 
+
+class CapitalInvestSectorOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
+                                                       BaseCMSPage):
+    page_type = 'CapitalInvestSectorOpportunityPage'
+    template_name = 'core/capital_invest_sector_opportunity_page.html'
+
