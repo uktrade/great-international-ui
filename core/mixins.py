@@ -92,6 +92,7 @@ class CMSPageMixin:
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             active_view_name=self.active_view_name,
+            page=self.page,
             *args,
             **kwargs
         )
