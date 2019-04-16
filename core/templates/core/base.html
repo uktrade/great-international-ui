@@ -1,3 +1,5 @@
+{% extends 'directory_components/base.html' %}
+
 {% load static from staticfiles %}
 {% load i18n %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -5,123 +7,52 @@
 
 {% load static_absolute from directory_components_tags %}
 
-<!DOCTYPE html>
-    <!--[if lt IE 9]><html class="lte-ie8" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr' }}" lang="{{ LANGUAGE }}"><![endif]-->
-    <!--[if gt IE 8]><!--><html dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr' }}" lang="{{ LANGUAGE }}"><!--<![endif]-->
-    <head>
-        {% block head_google_tag_manager %}
-            {% if directory_components_analytics %}
-                <meta id="utmCookieDomain" value="{{ directory_components_analytics.UTM_COOKIE_DOMAIN }}" />
-            {% endif %}
-            {% include 'directory_components/google_tag_manager_head.html' %}
-        {% endblock %}
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% spaceless %}
-          {% block title %}{% endblock %}
-        {% endspaceless %}</title>
-        {% block cookie_domain_meta %}
-          <meta id="privacyCookieDomain" value="{{ directory_components_cookie_notice.PRIVACY_COOKIE_DOMAIN }}" />
-        {% endblock %}
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+{% endblock %}
 
-        {% block head_favicon %}
-            <link href='{% static 'directory_components/images/favicon-192x192.png' %}' rel='shortcut icon' type='image/png'>
-            <!--[if IE]> <link rel="icon" href="{% static 'directory_components/images/favicon.ico' %}" type="image/x-icon" /> <![endif]-->
-        {% endblock %}
+{% block header_js %}
+  <script src="{% static 'directory_components/js/dit.responsive.js' %}"></script>
+  <script src="{% static 'directory_components/js/dit.utils.js' %}"></script>
+  <script src="{% static 'directory_components/js/dit.classes.Dropdown.js' %}"></script>
+  <script src="{% static 'directory_components/js/dit.components.countrySelector.js' %}"></script>
+  <script src="{% static 'directory_components/js/dit.components.languageSelectorDropdown.js' %}"></script>
+  <script src="{% static 'directory_components/js/dit.components.greatInternationalHeader.js' %}"></script>
+{% endblock %}
 
-        {% block head_css %}
-            <link href="{% static 'directory_components/export_elements/stylesheets/govuk-elements-styles.min.css' %}" media="all" rel="stylesheet" />
-            <link href="{% static 'directory_components/export_elements/stylesheets/elements-components.min.css' %}" media="all" rel="stylesheet" />
-            <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all" rel="stylesheet" />
-            <link rel="stylesheet" href="{% static 'styles/main.css' %}">
-        {% endblock %}
+{% block head_other %}{% endblock %}
 
-        {% if LANGUAGE_BIDI %}
-          <link rel="stylesheet" type="text/css" href="{% static 'styles/bidi-rtl.css' %}">
-        {% endif %}
+{% block head_sharing_metadata %}
+    {% if request %}
+        <meta property="og:image" content="{% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    {% endif %}
+{% endblock %}
 
-        <style type="text/css">
-            .js-disabled-only { display: none; }
-        </style>
-        <noscript>
-            <style type="text/css">
-                .navigation-toggle { display: block; }
-                .js-disabled-only { display: block; }
-                .js-enabled-only { display: none; }
-            </style>
-        </noscript>
+{% block body_header %}
+  {% include 'core/includes/international_header.html' %}
+{% endblock %}
 
-        {% block head_js %}
-          <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.components.cookie-notice.js' %}"></script>
-        {% endblock %}
+{% block feedback_reporter %}
+<section dir="ltr" class="error-reporting">
+  <div class="container">
+    <a id="error-reporting-section-contact-us" href="{{ services_urls.feedback }}" target="_blank">{% trans 'Is there anything wrong on this page?' %}</a>
+  </div>
+</section>
+{% endblock %}
 
-        {% block header_js %}
-          <script src="{% static 'directory_components/js/dit.responsive.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.utils.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.classes.Dropdown.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.components.countrySelector.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.components.languageSelectorDropdown.js' %}"></script>
-          <script src="{% static 'directory_components/js/dit.components.greatInternationalHeader.js' %}"></script>
-        {% endblock %}
+{% block body_footer %}
+  {% include 'directory_components/header_footer/international_footer.html' %}
+{% endblock %}
 
-        {% block head_other %}{% endblock %}
-
-        {% block head_sharing_metadata %}
-            {% if request %}
-                <meta property="og:image" content="{% static_absolute 'directory_components/images/opengraph-image.png' %}">
-                <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-            {% endif %}
-        {% endblock %}
-    </head>
-
-    <body {% block body_attributes %}{% endblock %}>
-        {% block body_google_tag_manager %}
-            {% include 'directory_components/google_tag_manager_body.html' %}
-        {% endblock %}
-        <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-
-        {% block skip_link %}
-          <a id="skip-link" href="#content">Skip to main content</a>
-        {% endblock %}
-
-        {% block cookie_notice %}
-          <div dir="ltr">
-            {% include 'directory_components/cookie_notice.html' %}
-          </div>
-        {% endblock %}
-
-        {% block body_header %}
-          {% include 'core/includes/international_header.html' %}
-        {% endblock %}
-
-        {% block body_content_container %}
-            <main id="content" class="{% block css_layout_class %}{% endblock %}" role="main">
-                {% block content %}{% endblock %}
-                {% block feedback_reporter %}
-                    <section dir="ltr" class="error-reporting">
-                        <div class="container">
-                            <a id="error-reporting-section-contact-us" href="{{ services_urls.feedback }}" target="_blank">Is there anything wrong on this page?</a>
-                        </div>
-                    </section>
-                {% endblock %}
-                {% block content_after %}
-                {% endblock %}
-            </main>
-        {% endblock %}
-
-        {% block body_footer %}
-            {% include 'directory_components/header_footer/international_footer.html' %}
-        {% endblock %}
-
-        {% block body_js %}
-          <script type="text/javascript">
-          {% if not hide_country_selector %}
-            $(document).ready(function() {
-              dit.components.countrySelector.viewInhibitor(false);
-            });
-          {% endif %}
-          </script>
-        {% endblock %}
-    </body>
-</html>
+{% block body_js %}
+  <script type="text/javascript">
+  {% if not hide_country_selector %}
+    $(document).ready(function() {
+      dit.components.countrySelector.viewInhibitor(false);
+    });
+  {% endif %}
+  </script>
+{% endblock %}
