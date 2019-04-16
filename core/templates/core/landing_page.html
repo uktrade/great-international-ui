@@ -14,8 +14,8 @@
 
 {% block content %}
 
-{% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
-
+{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+{{page}}
 <section class="padding-vertical-60 landing-page-section">
   <div class="container">
     <div class="card-grid">
@@ -50,7 +50,7 @@
 	<div class="container">
 		<div class="grid-row" >
 			<div class="column-full column-half-l margin-vertical-60 tariffs-image">
-				<img class="width-100" src="{{ page.tariffs_image.url }}" alt="">
+				<img class="width-full" src="{{ page.tariffs_image.url }}" alt="">
 			</div>
 			<div class="column-full column-half-l margin-vertical-60 tariffs-content-wrapper">
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
