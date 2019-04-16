@@ -1,5 +1,5 @@
 {% extends 'core/base_cms.html' %}
-
+{% load filter_by_active_language from cms_tags %}
 {% load card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components_tags %}
 
 
@@ -70,7 +70,7 @@
       <h2 class="heading-large grey-text">{{ page.guides_section_heading }}</h2>
 
       <div class="flex-grid">
-        {% for guide in page.guides %}
+        {% for guide in page.guides|filter_by_active_language %}
           <div class="column-third">
             {% url 'article-detail' topic='how-to-setup-in-the-uk' list='guides' slug=guide.meta.slug as guide_url %}
             {% card img_src=guide.thumbnail.url url=guide_url heading=guide.title description=guide.teaser %}
@@ -91,4 +91,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}

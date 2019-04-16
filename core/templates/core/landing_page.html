@@ -92,12 +92,13 @@
 </section>
 {% endif %}
 
-{% if page.related_pages %}
-	<section id="news-events-section" class="news-events-section padding-vertical-60 landing-page-section">
+{% with page.related_pages|filter_by_active_language as related_pages %}
+{% if related_pages %}
+<section id="news-events-section" class="news-events-section padding-vertical-60 landing-page-section">
 		<div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
 			<div class="card-grid">
-			{% for related_page in page.related_pages %}
+			{% for related_page in related_pages %}
 				{% if related_page.page_type == 'InternationalArticlePage' %}
 					{% include 'core/includes/featured_article_card.html' with url=related_page.full_url default_subheading="Article" %}
 				{% else %}
@@ -109,6 +110,7 @@
 		</div>
 	</section>
 {% endif %}
+{% endwith %}
 {% endblock content %}
 
 {% block content_after %}
