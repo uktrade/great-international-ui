@@ -59,7 +59,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
-    'admin_ip_restrictor.middleware.AdminIPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'directory_components.middleware.LocaleQuerystringMiddleware',
     'directory_components.middleware.PersistLocaleMiddleware',
