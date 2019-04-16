@@ -1,8 +1,9 @@
 {% extends 'core/topic_list_base.html' %}
+{% load filter_by_active_language from cms_tags %}
 
 {% block child_pages %}
   <div class="card-grid">
-    {% for listing in page.child_pages %}
+    {% for listing in page.child_pages|filter_by_active_language %}
       <div class="column-full column-third-l column-half-m">
         {% include 'core/includes/landing_page_card.html' with listing=listing %}
       </div>

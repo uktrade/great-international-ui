@@ -228,6 +228,7 @@ def test_article_detail_page_related_content(
                 'full_path': '/test-list/test-one/',
                 'meta': {
                     'slug': 'test-one',
+                    'languages': [('en-gb', 'English')],
                 }
             },
             {
@@ -237,6 +238,7 @@ def test_article_detail_page_related_content(
                 'full_path': '/test-list/test-two/',
                 'meta': {
                     'slug': 'test-two',
+                    'languages': [('en-gb', 'English')],
                 }
             },
         ],
@@ -468,8 +470,9 @@ campaign_page_all_fields = {
             'article_title': 'Related article 1',
             'full_path': '/advice/finance/article-1/',
             'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-1'},
+                'slug': 'article-1',
+                'languages': [('en-gb', 'English')],
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 1'
         },
@@ -480,8 +483,9 @@ campaign_page_all_fields = {
             'article_title': 'Related article 2',
             'full_path': '/advice/finance/article-2/',
             'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-2'},
+                'slug': 'article-2',
+                'languages': [('en-gb', 'English')],
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 2'
         },
@@ -492,15 +496,16 @@ campaign_page_all_fields = {
             'article_title': 'Related article 3',
             'full_path': '/advice/finance/article-3/',
             'meta': {
+                'slug': 'article-3',
                 'languages': [('en-gb', 'English')],
-                'slug': 'article-3'},
+            },
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 3'
         },
     ],
     'meta': {
+        'slug': 'test-page',
         'languages': [('en-gb', 'English')],
-        'slug': 'test-page'
     },
     'page_type': 'InternationalCampaignPage'
 }
@@ -685,21 +690,30 @@ def test_marketing_campaign_page_required_fields(
 test_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {'slug': 'campaign-one'},
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalCampaignPage',
         'teaser': 'Campaign one teaser',
         'title': 'Campaign one'
     },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {'slug': 'article-one'},
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
         'title': 'Article one'
     },
     {
         'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {'slug': 'article-two'},
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
         'title': 'Article two'
@@ -709,24 +723,43 @@ test_child_pages = [
 test_localised_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {'slug': 'campaign-one'},
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalCampaignPage',
         'teaser': 'Campaign one teaser',
         'title': 'Campaign one'
     },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {'slug': 'article-one'},
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
         'title': 'Article one'
     },
     {
         'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {'slug': 'article-two'},
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
         'title': 'Article two'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-three',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article three teaser',
+        'title': 'Article three'
     },
 ]
 
@@ -826,6 +859,10 @@ def test_page_url_mismatch_404(
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
             },
+            # Needed to prevent errors when rendering some page types
+            'localised_child_pages': [],
+            'child_pages': [],
+            'related_pages': [],
         }
     )
 
@@ -868,7 +905,10 @@ def test_homepage_related_pages(mock_get_page, client):
                     'title': 'Related article title',
                     'page_type': 'InternationalArticlePage',
                     'teaser': 'Related article teaser',
-                    'meta': {'slug': 'article'},
+                    'meta': {
+                        'slug': 'article',
+                        'languages': [('en-gb', 'English')],
+                    },
                     'full_path': '/topic/list/article',
                     'full_url':
                     'https://great.gov.uk/international/topic/list/article',
@@ -877,7 +917,10 @@ def test_homepage_related_pages(mock_get_page, client):
                     'title': 'Related campaign title',
                     'page_type': 'InternationalCampaignPage',
                     'teaser': 'Related campaign teaser',
-                    'meta': {'slug': 'campaign'},
+                    'meta': {
+                        'slug': 'campaign',
+                        'languages': [('en-gb', 'English')],
+                    },
                     'full_path': '/international/campaigns/campaign',
                     'full_url':
                     'https://great.gov.uk/international/campaigns/campaign',
@@ -897,9 +940,18 @@ def test_homepage_related_pages(mock_get_page, client):
 
 
 @pytest.mark.parametrize('localised_articles,total_articles', (
-    ([], 4),
-    ([1], 5),
-    ([1, 2, 3, 4], 8),
+    (
+        [],
+        4
+    ),
+    (
+        test_localised_child_pages[:-3],
+        5
+    ),
+    (
+        test_localised_child_pages,
+        8
+    ),
 ))
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_count_with_regional_articles(
@@ -911,6 +963,7 @@ def test_article_count_with_regional_articles(
             'page_type': 'InternationalArticleListingPage',
             'articles_count': 4,
             'localised_child_pages': localised_articles,
+            'child_pages': [],
             'meta': {
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
@@ -971,7 +1024,10 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
         'page_type': 'InternationalTopicLandingPage',
         'child_pages': [
             {
-                'heading': 'heading'
+                'heading': 'heading',
+                'meta': {
+                    'languages': [('en-gb', 'English')],
+                },
             }
         ],
         'meta': {
