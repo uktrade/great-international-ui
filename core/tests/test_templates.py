@@ -47,7 +47,6 @@ def test_homepage_button_how_to_do_business_feature_on():
 
     template_name = 'core/landing_page.html'
     html = render_to_string(template_name, context)
-    print(html)
     assert 'Hero CTA text' in html
 
 
@@ -91,6 +90,7 @@ def test_article_detail_page_related_content():
                 'full_path': '/test-list/test-one/',
                 'meta': {
                     'slug': 'test-one',
+                    'languages': [('en-gb', 'English')],
                 }
             },
             {
@@ -100,6 +100,7 @@ def test_article_detail_page_related_content():
                 'full_path': '/test-list/test-two/',
                 'meta': {
                     'slug': 'test-two',
+                    'languages': [('en-gb', 'English')],
                 }
             },
         ],
