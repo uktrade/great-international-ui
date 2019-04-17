@@ -46,13 +46,3 @@
 {% block body_footer %}
   {% include 'directory_components/header_footer/international_footer.html' %}
 {% endblock %}
-
-{% block body_js %}
-  <script type="text/javascript">
-  {% if not hide_country_selector %}
-    $(document).ready(function() {
-      dit.components.countrySelector.viewInhibitor(false);
-    });
-  {% endif %}
-  </script>
-{% endblock %}
