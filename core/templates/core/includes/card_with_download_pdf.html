@@ -29,9 +29,11 @@
           <p class="subheading">{{ subheading }}</p>
         {% endif %}
         {% if title or heading %}
+        <a href="{{region}}">
           	<h3 class="heading-large">{% firstof title heading %}
 
 			</h3>
+		</a>
         {% endif %}
 
         {% if description %}

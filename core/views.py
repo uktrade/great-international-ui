@@ -187,6 +187,25 @@ class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
                                                        BaseCMSPage):
     page_type = 'CapitalInvestRegionOpportunityPage'
     template_name = 'core/capital_invest_region_opportunity_page.html'
+    num_of_economics_statistics = 0
+    num_of_location_statistics = 0
+
+    def count_data_with_field(self, list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    def get_context_data(self, **kwargs):
+        context = super(CapitalInvestRegionOpportunityLandingPageCMSView,
+                        self).get_context_data(**kwargs)
+        self.num_of_economics_statistics = self.count_data_with_field(
+            context['page']['economics_stats'],
+            'number'
+        )
+        self.num_of_location_statistics = self.count_data_with_field(
+            context['page']['location_stats'],
+            'number'
+        )
+        return context
 
 
 class CapitalInvestSectorOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
