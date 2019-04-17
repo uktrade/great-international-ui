@@ -2,10 +2,119 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes from directory_components_tags %}
+{% load card hero add_export_elements_classes statistics_card_grid from directory_components_tags %}
 
 {% block content %}
 
-{% include 'directory_components/hero_with_cta.html' with heading=page.hero_title  %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'capital-invest' %}">Capital Invest</a>
+        </li>
+        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="card-grid">
+			<div class="column-half-l padding-right-60">
+				<div class="font-medium padding-bottom-30">
+					{{ page.region_summary_section_intro}}
+				</div>
+				<div>
+					{{ page.region_summary_section_content|add_export_elements_classes|safe }}
+				</div>
+				</div>
+				<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
+					{% if page.region_summary_section_image.url %}
+						<figure class="landing-page-image flex-shrink-0">
+							<img class="width-full" src="{{page.region_summary_section_image.url}}">
+						</figure>
+					{%  endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
+		<div class="grid-row">
+			<p class="column-half-l">
+			{{ page.investment_opps_intro }}
+			</p>
+			{{page}}
+		------------------------------
+		{{page.sector_opportunities}}
+		------------------------------
+		{% for sector in page.child_pages %}
+			{% include 'core/includes/card_with_description_grid.html' with url_name='capital-invest-sector-opportunity' cards=page.sector_opportunities|filter_by_active_language  %}
+		{% endfor %}
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+	<div class="padding-bottom-60">
+		<h1 class="heading-large padding-bottom-45">{{ page.economics_data_title }}</h1>
+		{% statistics_card_grid statistics=page.economics_stats num_of_statistics=view.num_of_economics_statistics number_first=True %}
+	</div>
+	<div>
+		<h1 class="heading-large padding-bottom-45">{{ page.location_data_title }}</h1>
+		{% statistics_card_grid statistics=page.location_stats num_of_statistics=view.num_of_location_statistics number_first=True %}
+	</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="heading-large ">{{ page.section_title }}</h1>
+		<div class="card-grid">
+			{% if page.section_image.url %}
+				<div class="column-half-xl center_vertical">
+					<figure class="landing-page-image">
+						<img class="width-full" src="{{page.section_image.url}}">
+					</figure>
+				</div>
+			{% endif %}
+			<div class="column-half-xl">
+				{{ page.section_content|add_export_elements_classes|safe }}
+			</div>
+		</div>
+
+	</div>
+</section>
+
+{% include 'directory_components/full_width_banner_with_cta.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
+		<div class="grid-row padding-bottom-45">
+			<div class="column-half-l">
+				{{ page.next_steps_intro }}
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.invest_cta_link text=page.invest_cta_text %}
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.buy_cta_link text=page.buy_cta_text %}
+			</div>
+		</div>
+	</div>
+</section>
 
 {% endblock %}

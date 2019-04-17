@@ -1496,6 +1496,15 @@ body.js-enabled .landing-page .country-selector-dialog select {
   max-width: 100%;
 }
 
+.capital-invest-region-page-section:nth-child(odd) {
+  padding: 60px 0;
+}
+
+.capital-invest-region-page-section:nth-child(even) {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+
 .article-detail-page article.grid-row {
   margin-bottom: 100px;
 }
