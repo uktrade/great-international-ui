@@ -90,21 +90,6 @@ urlpatterns += (
         name="sector"
     ),
     url(
-        r"^international/uk-setup-guide/$",
-        core.views.SetupGuideLandingPageCMSView.as_view(),
-        name="setup-guide"
-    ),
-    url(
-        r"^international/uk-setup-guide/(?P<slug>[\w-]+)/$",
-        core.views.SetupGuidePageCMSView.as_view(),
-        name="guide-page"
-    ),
-    url(
-        r"^international/uk-regions/(?P<slug>[\w-]+)/$",
-        core.views.UKRegionPageCMSView.as_view(),
-        name="uk-region"
-    ),
-    url(
         r"^international/campaigns/(?P<slug>[\w-]+)/$",
         core.views.CampaignPageView.as_view(),
         name="campaign"

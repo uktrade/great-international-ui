@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from core import mixins
 from core.tests.helpers import create_response
 
-from directory_constants.constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
+from directory_constants.choices import COUNTRY_CHOICES, EU_COUNTRIES
 
 
 @pytest.mark.parametrize('method,expected', (

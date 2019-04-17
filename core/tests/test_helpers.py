@@ -8,7 +8,6 @@ from core import helpers
 @pytest.mark.parametrize('path,expect_code', (
     ('/', None),
     ('?language=pt', 'pt'),
-    ('/?language=ar', 'ar'),
     ('/industries?language=es', 'es'),
     ('/industries/?language=zh-hans', 'zh-hans'),
     ('/industries/aerospace?language=de', 'de'),
