@@ -51,16 +51,8 @@
 	<div class="container">
 		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
 		<div class="grid-row">
-			<p class="column-half-l">
-			{{ page.investment_opps_intro }}
-			</p>
-			{{page}}
-		------------------------------
-		{{page.sector_opportunities}}
-		------------------------------
-		{% for sector in page.child_pages %}
-			{% include 'core/includes/card_with_description_grid.html' with url_name='capital-invest-sector-opportunity' cards=page.sector_opportunities|filter_by_active_language  %}
-		{% endfor %}
+			<p class="column-half-l">{{ page.investment_opps_intro }}</p>
+		</div>
 	</div>
 </section>
 
