@@ -129,7 +129,7 @@ class CapitalInvestLandingPageCMSView(BaseCMSPage):
     slug = 'capital-invest'
 
 
-class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
+class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin,
                                                        BaseCMSPage):
     page_type = 'CapitalInvestRegionPage'
     template_name = 'core/capital_invest_region_page.html'
@@ -154,13 +154,13 @@ class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
         return context
 
 
-class CapitalInvestSectorOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
+class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin,
                                                        BaseCMSPage):
     page_type = 'CapitalInvestSectorPage'
     template_name = 'core/capital_invest_sector_page.html'
 
 
-class CapitalInvestOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
+class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin,
                                                  BaseCMSPage):
     page_type = 'CapitalInvestOpportunityPage'
     template_name = 'core/capital_invest_opportunity_page.html'

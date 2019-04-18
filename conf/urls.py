@@ -65,18 +65,18 @@ urlpatterns += (
     ),
     url(
         r"^international/capital-invest/opportunities/(?P<slug>[\w-]+)/$",
-        core.views.CapitalInvestOpportunityLandingPageCMSView.as_view(),
+        core.views.CapitalInvestOpportunityPageCMSView.as_view(),
         name="capital-invest-opportunity"
     ),
     url(
         r"^international/capital-invest/(?P<slug>[\w-]+)/$",
-        core.views.CapitalInvestRegionOpportunityLandingPageCMSView.as_view(),
-        name="capital-invest-region-opportunity"
+        core.views.CapitalInvestRegionPageCMSView.as_view(),
+        name="capital-invest-region"
     ),
     url(
         r"^international/capital-invest/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
-        core.views.CapitalInvestSectorOpportunityLandingPageCMSView.as_view(),
-        name="capital-invest-sector-opportunity"
+        core.views.CapitalInvestSectorPageCMSView.as_view(),
+        name="capital-invest-sector"
     ),
 
     url(
