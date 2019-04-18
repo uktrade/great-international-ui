@@ -57,14 +57,14 @@ a.labelled-image-card .card-header h3 {
   background-image: linear-gradient(to bottom, #ffffff 10%, #f5f2ed 10%);
 }
 
-.with-arrow {
+.with-left-arrow {
   display: block;
   position: relative;
   margin-left: 30px;
   font-weight: 700;
   margin-bottom: 0.2em;
 }
-.with-arrow:before {
+.with-left-arrow:before {
   display: block;
   font-weight: 700;
   position: absolute;

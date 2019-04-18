@@ -1,0 +1,84 @@
+{% extends 'core/base_cms.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load filter_by_active_language from cms_tags %}
+{% load card hero add_export_elements_classes from directory_components_tags %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs padding-bottom-0" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'capital-invest' %}">Capital Invest</a>
+        </li>
+        <li>
+          <a href="{% url 'capital-invest' %}">Midlands Engine</a>
+        </li>
+        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="grid-row">
+			<div class="font-medium padding-bottom-30 column-half-l">
+				{{ page.sector_summary_intro}}
+			</div>
+		</div>
+		<div class="card-grid">
+			<div class="column-half-l padding-right-60">
+				<div>
+					{{ page.sector_summary_content|add_export_elements_classes|safe }}
+				</div>
+			</div>
+			<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
+				{% if page.sector_summary_image.url %}
+					<figure class="landing-page-image flex-shrink-0">
+						<img class="width-full" src="{{page.sector_summary_image.url}}">
+					</figure>
+				{%  endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="grid-row">
+			<h1 class="heading-large">
+				{{ page.investment_opportunities_title}}
+			</h1>
+		</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
+		<div class="grid-row padding-bottom-45">
+			<div class="column-half-l">
+				{{ page.next_steps_intro }}
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.invest_cta_link text=page.invest_cta_text %}
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.buy_cta_link text=page.buy_cta_text %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

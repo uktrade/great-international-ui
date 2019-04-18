@@ -185,8 +185,8 @@ class CapitalInvestLandingPageCMSView(BaseCMSPage):
 
 class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
                                                        BaseCMSPage):
-    page_type = 'CapitalInvestRegionOpportunityPage'
-    template_name = 'core/capital_invest_region_opportunity_page.html'
+    page_type = 'CapitalInvestRegionPage'
+    template_name = 'core/capital_invest_region_page.html'
     num_of_economics_statistics = 0
     num_of_location_statistics = 0
 
@@ -210,8 +210,8 @@ class CapitalInvestRegionOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
 
 class CapitalInvestSectorOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
                                                        BaseCMSPage):
-    page_type = 'CapitalInvestSectorOpportunityPage'
-    template_name = 'core/capital_invest_sector_opportunity_page.html'
+    page_type = 'CapitalInvestSectorPage'
+    template_name = 'core/capital_invest_sector_page.html'
 
 
 class CapitalInvestOpportunityLandingPageCMSView(GetSlugFromKwargsMixin,
