@@ -52,15 +52,27 @@
 	</div>
 </section>
 
-<section class="capital-invest-region-page-section">
-	<div class="container">
-		<h1 class="grid-row">
-			<h1 class="heading-large">
-				{{ page.investment_opportunities_title}}
-			</h1>
+{% if page.related_pages %}
+	<section id="news-events-section" class="capital-invest-region-page-section">
+		<div class="container wrap-tight">
+		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
+			<div class="card-grid">
+			{% for related_page in page.related_pages %}
+				<div class="column-third-xl column-half-l column-full">
+					<div class="card">
+						<div class="card-inner wrap-tight padding-horizontal-45">
+							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<p>{{ related_page.location }}</p>
+							<p class="bold-small">{{ related_page.scale }}</p>
+							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+{% endif %}
 
 <section class="capital-invest-region-page-section">
 	<div class="container">

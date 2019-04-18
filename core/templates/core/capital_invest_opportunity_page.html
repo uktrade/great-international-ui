@@ -6,6 +6,147 @@
 
 {% block content %}
 
-{% include 'directory_components/hero_with_cta.html' with heading=page.hero_title  %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="card-grid">
+			<div class="column-half-l padding-right-60">
+				<div class="font-medium padding-bottom-30">
+					{{ page.opportunity_summary_intro}}
+				</div>
+				<div>
+					{{ page.opportunity_summary_content|add_export_elements_classes|safe }}
+				</div>
+				</div>
+				<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
+					{% if page.opportunity_summary_image.url %}
+						<figure class="landing-page-image flex-shrink-0">
+							<img class="width-full" src="{{page.opportunity_summary_image.url}}">
+						</figure>
+					{%  endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="grid-row padding-bottom-90">
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Location</div>
+				<div class="bold-small">{{ page.location }}</div>
+			</div>
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Project promoter</div>
+				<div class="bold-small">{{ page.project_promoter }}</div>
+			</div>
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Scale</div>
+				<div class="bold-small">{{ page.scale }}</div>
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Programme</div>
+				<div class="bold-small">{{ page.programme }}</div>
+			</div>
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Investment type</div>
+				<div class="bold-small">{{ page.investment_type }}</div>
+			</div>
+			<div class="column-third padding-right-90">
+				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
+				<div>Planning status</div>
+				<div class="bold-small">{{ page.planning_status }}</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="grid-row">
+			<h2 class="heading-large">{{ page.project_background_title }} </h2>
+			<div class="font-medium padding-bottom-30 column-half-l">
+				{{ page.project_background_intro}}
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-half-l padding-right-60">
+				<h2 class="heading-large">{{ page.project_description_title }}</h2>
+				<div>
+					{{ page.project_description_content|add_export_elements_classes|safe }}
+				</div>
+			</div>
+			<div class="column-half-l padding-right-60">
+				<h2 class="heading-large">{{ page.project_promoter_title }}</h2>
+				<div>
+					{{ page.project_promoter_content|add_export_elements_classes|safe }}
+				</div>
+			</div>
+		</div>
+		<div class="grid-row">
+		{% if page.project_image.url %}
+			<figure class="landing-page-image flex-shrink-0" style="align-items: center; display: flex; flex-direction: column;" >
+				<img class="width-half" src="{{page.project_image.url}}">
+			</figure>
+		{%  endif %}
+		</div>
+	</div>
+</section>
+
+{% include 'directory_components/full_width_banner_with_cta.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+
+{% if page.related_pages %}
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<div class="grid-row">
+			<h1 class="heading-large">
+				{{ page.similar_projects_title}}
+			</h1>
+			{% for related_page in page.related_pages %}
+				<div class="column-third-xl column-half-l column-full">
+					<div class="card">
+						<div class="card-inner wrap-tight padding-horizontal-45">
+							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<p>{{ related_page.location }}</p>
+							<p class="bold-small">{{ related_page.scale }}</p>
+							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<a class="button button-blue button-arrow-small" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+	</div>
+</section>
+{% endif %}
+
+<section class="capital-invest-region-page-section">
+	<div class="container">
+		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
+		<div class="grid-row padding-bottom-45">
+			<div class="column-half-l">
+				{{ page.next_steps_intro }}
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.invest_cta_link text=page.invest_cta_text %}
+			</div>
+			<div class="column-half">
+				{% include 'directory_components/cta_link.html' with with_arrow=True url=page.buy_cta_link text=page.buy_cta_text %}
+			</div>
+		</div>
+	</div>
+</section>
+
 
 {% endblock %}
