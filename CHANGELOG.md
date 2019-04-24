@@ -2,6 +2,10 @@
 
 ## Pre-release
 
+
+## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
+
 **Implemented enhancements:**
 
 - Upgraded [CMS client][directory-cms-client] to allow `lookup_by_path`, to facilitate CMS tree based routing.
