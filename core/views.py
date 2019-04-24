@@ -141,7 +141,7 @@ class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin,
         return len(filtered_list)
 
     def get_context_data(self, **kwargs):
-        context = super(CapitalInvestRegionOpportunityLandingPageCMSView,
+        context = super(CapitalInvestRegionPageCMSView,
                         self).get_context_data(**kwargs)
         self.num_of_economics_statistics = self.count_data_with_field(
             context['page']['economics_stats'],
