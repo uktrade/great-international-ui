@@ -89,7 +89,7 @@ To be able to test cookies locally add the following to your `/etc/hosts`:
 Then run the server and visit `international.trade.great:8012`
 
 
-[code-climate-image]: https://codeclimate.com/github/uktrade/great-international-ui/issue_count.svg
+[code-climate-image]: https://codeclimate.com/github/uktrade/great-international-ui/badges/issue_count.svg
 [code-climate]: https://codeclimate.com/github/uktrade/great-international-ui
 
 [circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/master.svg?style=svg

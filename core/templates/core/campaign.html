@@ -1,5 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
+{% load filter_by_active_language from cms_tags %}
 {% load cta_box add_export_elements_classes from directory_components_tags %}
 {% load prefix_path from cms_tags %}
 
@@ -121,7 +122,7 @@
     </div>
 
     <ul class="grid-row" aria-labelledby="related-content-heading" id="related-pages-list">
-      {% for article in page.related_pages %}
+      {% for article in page.related_pages|filter_by_active_language %}
         <li class="column-third" id="related-page-{{ article.meta.slug }}">
           {% if article.article_image_thumbnail %}
             <img id="related-article-{{ article.meta.slug }}-image" src="{{ article.article_image_thumbnail.url }}" alt="">
@@ -129,7 +130,7 @@
           <a id="related-page-{{ article.meta.slug }}-heading" href="{{ article.full_path|prefix_path }}" class="heading-medium grey-text margin-top-30">{{ article.article_title }}</a>
           <p id="related-page-{{ article.meta.slug }}-description">{{ article.article_teaser }}</p>
         </li>
-        {% endfor %}
+      {% endfor %}
     </ul>
 
   </div>

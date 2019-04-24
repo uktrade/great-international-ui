@@ -14,7 +14,7 @@ import os
 
 import environ
 
-from directory_constants.constants import cms
+from directory_constants import cms
 
 
 env = environ.Env()
@@ -59,16 +59,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
-    'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'core.middleware.LocaleQuerystringMiddleware',
-    'core.middleware.PersistLocaleMiddleware',
+    'directory_components.middleware.LocaleQuerystringMiddleware',
+    'directory_components.middleware.PersistLocaleMiddleware',
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
-    'directory_components.middleware.RobotsIndexControlHeaderMiddlware',
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -88,14 +86,10 @@ TEMPLATES = [
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
                 'directory_components.context_processors.feature_flags',
-                (
-                    'directory_components.context_processors.'
-                    'header_footer_processor'
-                ),
-                (
-                    'directory_components.context_processors.'
-                    'invest_header_footer_processor'
-                )
+                ('directory_components.context_processors.'
+                    'header_footer_processor'),
+                ('core.context_processors.'
+                    'directory_components_html_lang_attribute'),
             ],
         },
     },
@@ -141,8 +135,6 @@ LANGUAGES = [
     ('fr', 'Français'),                 # French
     ('es', 'español'),                  # Spanish
     ('pt', 'Português'),                # Portuguese
-    ('ar', 'العربيّة'),                 # Arabic
-    # ('ru', 'Русский'),                  # Russian
 ]
 
 LOCALE_PATHS = (
@@ -295,7 +287,10 @@ DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT = env.int(
 )
 
 # directory clients
-DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = 60 * 60 * 24 * 30  # 30 days
+DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = env.int(
+    'DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS',
+    60 * 60 * 24 * 30  # 30 days
+)
 
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')

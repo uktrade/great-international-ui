@@ -151,12 +151,13 @@
   </div>
 </section>
 
-{% if page.related_pages %}
+{% with page.related_pages|filter_by_active_language as related_pages %}
+{% if related_pages %}
 <section id="sector-news-events-section" class="news-events background-stone-30 padding-vertical-60">
   <div class="container">
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
-      {% for related_page in page.related_pages %}
+      {% for related_page in related_pages %}
         <div class="column-full column-half-l column-third-xl">
           {% if related_page.page_type == 'InternationalArticlePage' %}
             {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
@@ -169,5 +170,6 @@
   </div>
 </section>
 {% endif %}
+{% endwith %}
 
 {% endblock %}
