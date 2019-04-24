@@ -11,11 +11,11 @@ cachetools==2.1.0         # via zenpy
 certifi==2018.1.18        # via requests
 chardet==3.0.4            # via requests
 dateparser==0.7.0
-directory-client-core==4.3.0  # via directory-cms-client, directory-forms-api-client
-directory-cms-client==8.3.0
+directory-client-core==5.0.0  # via directory-cms-client, directory-forms-api-client
+directory-cms-client==10.0.0
 directory-components==10.3.0
 directory-constants==16.0.0  # via directory-components
-directory-forms-api-client==3.1.0
+directory-forms-api-client==4.0.0
 directory-healthcheck==0.5.1
 directory-validators==5.0.0
 django-crispy-forms==1.7.1
