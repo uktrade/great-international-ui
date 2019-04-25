@@ -3,6 +3,12 @@
 
 {% block head_title %}Great.gov.uk international{% if page.seo_title %} - {{ page.seo_title }}{% else %} - {{ page.title }}{% endif %}{% endblock %}
 
+{% block head_other %}
+  {% for language_code, url in page.meta.localised_urls %}
+    <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+  {% endfor %}
+{% endblock %}
+
 {% block head_sharing_metadata %}
     {{ block.super }}
     <meta name="description" content="{{ page.search_description }}">
