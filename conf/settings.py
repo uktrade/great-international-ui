@@ -14,7 +14,7 @@ import os
 
 import environ
 
-from directory_constants.constants import cms
+from directory_constants import cms
 
 
 env = environ.Env()
@@ -59,15 +59,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
-    'directory_components.middleware.IPRestrictorMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'directory_components.middleware.LocaleQuerystringMiddleware',
+    'directory_components.middleware.PersistLocaleMiddleware',
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
-    'directory_components.middleware.RobotsIndexControlHeaderMiddlware',
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -82,20 +81,15 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
-                'core.context_processors.untranslated_url',
                 'core.context_processors.footer_contact_us_link',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
                 'directory_components.context_processors.feature_flags',
-                (
-                    'directory_components.context_processors.'
-                    'header_footer_processor'
-                ),
-                (
-                    'directory_components.context_processors.'
-                    'invest_header_footer_processor'
-                )
+                ('directory_components.context_processors.'
+                    'header_footer_processor'),
+                ('core.context_processors.'
+                    'directory_components_html_lang_attribute'),
             ],
         },
     },
@@ -127,6 +121,7 @@ CACHES = {
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
+USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
@@ -140,8 +135,6 @@ LANGUAGES = [
     ('fr', 'Français'),                 # French
     ('es', 'español'),                  # Spanish
     ('pt', 'Português'),                # Portuguese
-    ('ar', 'العربيّة'),                 # Arabic
-    # ('ru', 'Русский'),                  # Russian
 ]
 
 LOCALE_PATHS = (
@@ -284,8 +277,6 @@ AWS_S3_URL_PROTOCOL = env.str('AWS_S3_URL_PROTOCOL', 'https:')
 
 PREFIX_DEFAULT_LANGUAGE = False
 
-LANGUAGE_COOKIE_NAME = 'django-language'
-
 # directory CMS
 DIRECTORY_CMS_API_CLIENT_BASE_URL = env.str('CMS_URL')
 DIRECTORY_CMS_API_CLIENT_API_KEY = env.str('CMS_SIGNATURE_SECRET')
@@ -297,7 +288,10 @@ DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT = env.int(
 DIRECTORY_CMS_SITE_ID = env.str('DIRECTORY_CMS_SITE_ID', 2)
 
 # directory clients
-DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = 60 * 60 * 24 * 30  # 30 days
+DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = env.int(
+    'DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS',
+    60 * 60 * 24 * 30  # 30 days
+)
 
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
@@ -317,6 +311,9 @@ EMAIL_USE_TLS = True
 # LINKS TO OTHER SERVICES
 DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC = env.str(
     'DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC', ''
+)
+DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL = env.str(
+    'DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL', ''
 )
 DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES = env.str(
     'DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES', ''
@@ -340,25 +337,26 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 
 # feature flags
 FEATURE_FLAGS = {
+    'HOW_TO_DO_BUSINESS_ON': env.bool(
+        'FEATURE_HOW_TO_DO_BUSINESS_ENABLED', False),
     'NEWS_SECTION_ON': env.bool(
         'FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
         'FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON': env.bool(
+        'FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_ON': env.bool(
+        'FEATURE_INTERNATIONAL_TARIFFS_ENABLED', False),
+
     # used by directory-components
     'SEARCH_ENGINE_INDEXING_OFF': env.bool(
         'FEATURE_SEARCH_ENGINE_INDEXING_DISABLED', False
     ),
     # directory-components currently complains if this doens't exist
     'EXPORT_JOURNEY_ON': False,
-    # used by directory-components
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
     'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON':
         env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON':
-        env.bool
-        ('FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_ON':
-        env.bool('FEATURE_INTERNATIONAL_TARIFFS_ENABLED', True)
 }
 
 # Invest High Potential Opportunities

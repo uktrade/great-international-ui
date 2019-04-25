@@ -1,16 +1,18 @@
 {% load card from directory_components_tags %}
+{% load filter_by_active_language from cms_tags %}
 {% load prefix_path from cms_tags %}
 
-{% if page.related_pages %}
+{% with page.related_pages|filter_by_active_language as related_pages %}
+{% if related_pages %}
 <section class="related-content-cards background-stone">
     <div class="container">
       <h2 class="heading-large">Related content</h2>
         <ul class="card-grid" aria-labelledby="related-content-heading" id="related-pages-list">
-          {% for article in page.related_pages %}
+          {% for article in related_pages %}
             <li class="column-third-l column-half-m column-full">
               {% with article.full_path|prefix_path as article_url %}
               {% with 'related-article-'|add:article.meta.slug as card_id %}
-                {% card card_id=card_id title=article.article_title description=article.article_teaser url=article_url img_src=article.article_image_thumbnail.url %}
+                {% card card_id=card_id title=article.title description=article.teaser url=article_url img_src=article.thumbnail.url %}
               {% endwith %}
               {% endwith %}
             </li>
@@ -20,3 +22,4 @@
     </div>
 </section>
 {% endif %}
+{% endwith %}

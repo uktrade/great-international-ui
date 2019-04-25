@@ -1,10 +1,10 @@
 import directory_components.views
 import directory_healthcheck.views
 
-from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
+from django.core.urlresolvers import reverse_lazy
 
 import core.views
 import conf.sitemaps
@@ -43,11 +43,10 @@ urlpatterns = [
         r"^international/robots\.txt$",
         directory_components.views.RobotsView.as_view(),
         name='robots'
-    ),
-    url(r'^international/i18n/', include('django.conf.urls.i18n')),
+    )
 ]
 
-urlpatterns += i18n_patterns(
+urlpatterns += (
     url(
         r"^international/$",
         core.views.LandingPageCMSView.as_view(),
@@ -60,22 +59,20 @@ urlpatterns += i18n_patterns(
         name="news"
     ),
     url(
-        r"^international/doing-business-with-the-uk/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'doing-business-with-the-uk'},
-        name="doing-business-with-the-uk"
-    ),
-    url(
         r"^international/how-to-do-business-with-the-uk/$",
         core.views.CuratedLandingPageCMSView.as_view(),
         {'slug': 'how-to-do-business-with-the-uk'},
-        name="eu-exit-landing"
+        name="how-to-do-business-with-the-uk"
     ),
     url(
         r"^international/how-to-setup-in-the-uk/$",
         core.views.GuideLandingPageCMSView.as_view(),
         {'slug': 'how-to-setup-in-the-uk'},
-        name="uk-setup-guides"
+        name="how-to-setup-in-the-uk"
+    ),
+    url(
+        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
+        RedirectView.as_view(url=reverse_lazy('how-to-setup-in-the-uk')),
     ),
     url(
         r"^international/how-to-setup-in-the-uk/guides/$",
@@ -91,21 +88,6 @@ urlpatterns += i18n_patterns(
         r"^international/industries/(?P<slug>[\w-]+)/$",
         core.views.SectorPageCMSView.as_view(),
         name="sector"
-    ),
-    url(
-        r"^international/uk-setup-guide/$",
-        core.views.SetupGuideLandingPageCMSView.as_view(),
-        name="setup-guide"
-    ),
-    url(
-        r"^international/uk-setup-guide/(?P<slug>[\w-]+)/$",
-        core.views.SetupGuidePageCMSView.as_view(),
-        name="guide-page"
-    ),
-    url(
-        r"^international/uk-regions/(?P<slug>[\w-]+)/$",
-        core.views.UKRegionPageCMSView.as_view(),
-        name="uk-region"
     ),
     url(
         r"^international/campaigns/(?P<slug>[\w-]+)/$",
@@ -131,6 +113,5 @@ urlpatterns += i18n_patterns(
         r"^international/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$", # noqa
         core.views.ArticlePageView.as_view(),
         name="article-detail"
-    ),
-    prefix_default_language=False,
+    )
 )

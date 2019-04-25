@@ -4,126 +4,97 @@
 @import '../partials/vars';
 @import '../partials/mixins';
 
-.hero {
-  padding: $spacing-1 + $spacing-3 0 $spacing-1;
-  background-color: $black;
-
-  h1 {
-    margin-top: 0;
-    margin-bottom: $spacing-4;
-    font-family: $hero-brand-font;
-  }
-
-  h2 {
-    font-weight: 400;
-    margin-bottom: $spacing-3;
-  }
-
-  .container {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-  }
-
-  .hero-brand {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    img {
-      height: 100px;
+.landing-page {
+  .cta-image-card {
+    .card-text {
+      margin-top: -30px;
     }
   }
 
-  .hero-text {
-    width: 50%;
-  }
-}
+  .hero {
+    padding: $spacing-1 + $spacing-3 0 $spacing-1;
+    background-color: $black;
 
-.margin-top-remove-30{
-  margin-top: -30px;
-}
-
-.landing-page-country-selector-dialog {
-
-  h2 {
-    font-family: $brand-font;
-    font-weight: 700;
-    font-size: 22px;
-  }
-
-  .countries {
-    position: relative;
-  }
-
-  .button-container {
-    float: left;
-    width: 50%;
-    padding-left: 15px;
-
-    .button {
-      font-family: $brand-font;
-      font-weight: 700;
-      padding: 10px 20px;
-      height: 49px;
-    }
-  }
-
-  .form-group {
-    margin: 0;
-  }
-
-  .select-container {
-    width: 100%;
-    position: relative;
-
-    label {
-      font-size: 0;
+    h1 {
+      margin-top: 0;
+      font-family: $hero-brand-font;
     }
 
-    select {
-      width: 100%;
+    h2 {
+      font-weight: 400;
+      margin-bottom: $spacing-3;
     }
 
-    .flag-icon {
+    .container {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .hero-brand {
       position: absolute;
-      top: 6px;
-      left: 10px;
-      height: 36px;
-      width: 40px;
+      right: 0;
+      top: 0;
+
+      img {
+        height: 100px;
+      }
+    }
+
+    .hero-text {
+      width: 50%;
     }
   }
 
-}
+  .margin-top-remove-30{
+    margin-top: -30px;
+  }
 
-@media (max-width: 640px) {
-  .landing-page-country-selector-dialog {
-    select {
-      height: 49px;
+  .country-selector-dialog {
+    border: 0;
+
+    .countries {
+      position: relative;
     }
 
-    .select-container,
-    .button-container {
+    .select-container {
       width: 100%;
+      position: relative;
+
+      label {
+        font-size: 0;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      .flag-icon {
+        position: absolute;
+        top: 6px;
+        left: 10px;
+        height: 36px;
+        width: 40px;
+      }
     }
 
-    .button-container {
-      padding: 0;
-      margin-top: 15px;
+  }
+
+  @media (max-width: 640px) {
+    .country-selector-dialog {
+      .select-container,
+      .button-container {
+        width: 100%;
+      }
+
+      .button-container {
+        padding: 0;
+        margin-top: 15px;
+      }
     }
   }
-}
 
-// JS ENABLED STYLES
-body.js-enabled {
-  .landing-page-country-selector-dialog {
-    select {
-      padding-left: 60px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .tariffs-image {
       margin-bottom: 0;
     }
@@ -140,21 +111,53 @@ body.js-enabled {
     }
   }
 
-@media (max-width: 640px) {
+  @media (max-width: 640px) {
+    .hero-with-cta .container .hero-text{
+      width: 100%;
+        .button-arrow-small{
+          white-space: normal;
+        }
+    }
+
     .tariffs-content {
       padding: 0;
     }
   }
 
-@media (max-width: 1150px) {
-  .tariffs-image {
+  @media (max-width: 961px) {
+    .tariffs-image {
       width: 100%;
-    margin-bottom: 45px;
+      margin-bottom: 45px;
     }
 
-  .tariffs-content-wrapper {
-    margin-top: 45px;
-    width: 100%;
+    .tariffs-content-wrapper {
+      margin-top: 45px;
+      width: 100%;
+    }
   }
-  
+
+  @mixin landingPageSection {
+  padding: $spacing-2 0;
+  }
+
+  .landing-page-section:nth-child(odd) {
+    @include landingPageSection;
+  }
+
+  .landing-page-section:nth-child(even) {
+    @include landingPageSection;
+    background: $stone-40;
+  }
+
+}
+
+// JS ENABLED STYLES
+body.js-enabled {
+  .landing-page {
+    .country-selector-dialog {
+      select {
+        padding-left: 60px;
+      }
+    }
+  }
 }

@@ -1,13 +1,6 @@
 from django.conf import settings
-from core import helpers
-from directory_constants.constants import urls
-
-
-def untranslated_url(request):
-    untranslated_url = helpers.get_untranslated_url(request.path)
-    return {
-        'untranslated_url': untranslated_url
-    }
+from django.utils import translation
+from directory_constants import urls
 
 
 def footer_contact_us_link(request):
@@ -18,4 +11,10 @@ def footer_contact_us_link(request):
 
     return {
         'footer_contact_us_link': footer_contact_us_link
+    }
+
+
+def directory_components_html_lang_attribute(request):
+    return {
+        'directory_components_html_lang_attribute': translation.get_language()
     }

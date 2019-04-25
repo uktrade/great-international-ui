@@ -2,17 +2,17 @@ from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
+from django.conf import settings
 
 from directory_components.helpers import SocialLinkBuilder, get_user_country
 from directory_components.mixins import CountryDisplayMixin
 
-from directory_constants.constants.choices import EU_COUNTRIES, COUNTRY_CHOICES
+from directory_constants.choices import EU_COUNTRIES
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
 from core import helpers
-from core.forms import TariffsCountryForm
 
 TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
@@ -24,6 +24,19 @@ TEMPLATE_MAPPING = {
     'InternationalCuratedTopicLandingPage': 'core/curated_topic_landing_page.html',  # noqa
     'InternationalGuideLandingPage': 'core/guide_landing_page.html'
 }
+
+
+class NotFoundOnDisabledFeature:
+    def dispatch(self, *args, **kwargs):
+        if not self.flag:
+            raise Http404()
+        return super().dispatch(*args, **kwargs)
+
+
+class HowToDoBusinessPageFeatureFlagMixin(NotFoundOnDisabledFeature):
+    @property
+    def flag(self):
+        return settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON']
 
 
 class RegionalContentMixin(CountryDisplayMixin):
@@ -74,32 +87,12 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        return self.handle_cms_response(response)
-
-    def handle_cms_response(self, response):
-        page = handle_cms_response(response)
-        requested_language = translation.get_language()
-        if requested_language not in dict(page['meta']['languages']):
-            raise Http404('Content not found in requested language.')
-        return page
+        return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
-        page = self.page
-        show_language_switcher = (
-            len(page['meta']['languages']) > 1 and
-            'en-gb' in page['meta']['languages'][0]
-        )
-        language_available = translation.get_language() \
-            in page['meta']['languages']
-
         return super().get_context_data(
-            language_switcher={
-                'show': show_language_switcher,
-                'available_languages': page['meta']['languages'],
-                'language_available': language_available
-            },
-            page=page,
             active_view_name=self.active_view_name,
+            page=self.page,
             *args,
             **kwargs
         )
@@ -157,27 +150,4 @@ class BreadcrumbsMixin:
         return super().get_context_data(
             breadcrumbs=breadcrumbs,
             *args, **kwargs
-        )
-
-
-class TariffsCountryDisplayMixin:
-
-    def get_context_data(self, *args, **kwargs):
-        country_code = get_user_country(self.request)
-
-        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
-
-        tariffs_country = {
-            # used for flag icon css class. must be lowercase
-            'code': country_code.lower(),
-            'name': country_name,
-        }
-
-        return super().get_context_data(
-            tariffs_country=tariffs_country,
-            tariffs_country_selector_form=TariffsCountryForm(
-                initial={
-                    'tariffs_country': country_code
-                }
-            )
         )

@@ -8,6 +8,13 @@ from directory_cms_client.helpers import handle_cms_response
 from directory_constants.constants import cms
 
 
+from directory_constants import slugs
+from directory_constants.choices import COUNTRY_CHOICES
+from directory_components.mixins import (
+    CMSLanguageSwitcherMixin
+)
+from directory_components.helpers import get_user_country
+
 from core.mixins import (
     TEMPLATE_MAPPING,
     GetSlugFromKwargsMixin,
@@ -15,12 +22,14 @@ from core.mixins import (
     BreadcrumbsMixin,
     CMSPageMixin,
     RegionalContentMixin,
-    TariffsCountryDisplayMixin)
+    HowToDoBusinessPageFeatureFlagMixin,
+)
+from core import forms
 
-from core.forms import TariffsCountryForm
 
-
-class BaseCMSPage(RegionalContentMixin, CMSPageMixin, TemplateView):
+class BaseCMSPage(
+    CMSLanguageSwitcherMixin, RegionalContentMixin, CMSPageMixin, TemplateView
+):
     pass
 
 
@@ -41,16 +50,36 @@ class ArticleListPageView(
     page_type = 'InternationalArticleListingPage'
 
 
-class LandingPageCMSView(TariffsCountryDisplayMixin, BaseCMSPage):
+class LandingPageCMSView(BaseCMSPage):
     active_view_name = 'index'
     template_name = 'core/landing_page.html'
     page_type = 'InternationalHomePage'
-    slug = cms.GREAT_HOME_INTERNATIONAL_SLUG
+    slug = slugs.GREAT_HOME_INTERNATIONAL
 
-    tariffs_country_selector_form = TariffsCountryForm()
+    tariffs_form_class = forms.TariffsCountryForm
+
+    def get_context_data(self, *args, **kwargs):
+        country_code = get_user_country(self.request)
+
+        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+
+        tariffs_country = {
+            # used for flag icon css class. must be lowercase
+            'code': country_code.lower(),
+            'name': country_name,
+        }
+
+        return super().get_context_data(
+            tariffs_country=tariffs_country,
+            tariffs_country_selector_form=self.tariffs_form_class(
+                initial={'tariffs_country': country_code}),
+            *args, **kwargs,
+        )
 
 
-class CuratedLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+class CuratedLandingPageCMSView(
+    HowToDoBusinessPageFeatureFlagMixin, GetSlugFromKwargsMixin, BaseCMSPage
+):
     active_view_name = 'curated-topic-landing'
     page_type = 'InternationalCuratedTopicLandingPage'
 
@@ -74,18 +103,17 @@ class IndustriesLandingPageCMSView(
     page_type = 'InternationalTopicLandingPage'
     template_name = 'core/industries_landing_page.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(
-            IndustriesLandingPageCMSView, self
-        ).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
 
         def rename_heading_field(page):
             page['landing_page_title'] = page['heading']
             return page
 
-        context['page']['child_pages'] = [rename_heading_field(child_page)
-                                          for child_page
-                                          in context['page']['child_pages']]
+        context['page']['child_pages'] = [
+            rename_heading_field(child_page)
+            for child_page in context['page']['child_pages']]
+
         return context
 
 
@@ -98,8 +126,8 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
         filtered_list = [item for item in list_of_data if item[field]]
         return len(filtered_list)
 
-    def get_context_data(self, **kwargs):
-        context = super(SectorPageCMSView, self).get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
         self.num_of_statistics = self.count_data_with_field(
             context['page']['statistics'],
             'number'

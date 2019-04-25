@@ -30,6 +30,9 @@
           </div>
           <div class="column-seven-twelfths">
             <h1 class="heading-xlarge">{{ page.article_title }}</h1>
+            {% if page.article_subheading %}
+              <p class="font-medium">{{ page.article_subheading }}</p>
+            {% endif %}
             <p class="subheading">Last updated {{ page.last_published_at|parse_date }}</p>
           </div>
 
@@ -56,7 +59,7 @@
       <div class="grid-row">
         <div class="column-three-quarters">
           {% if page.article_image %}
-            <img src="{{ page.article_image.url }}" alt="" class="width-100">
+            <img src="{{ page.article_image.url }}" alt="" class="width-full">
           {% endif %}
           <section class="grid-row">
             <div class="column-seven-ninths article-content">

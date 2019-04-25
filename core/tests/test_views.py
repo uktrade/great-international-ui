@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 from django.urls import reverse
 
 from django.utils import translation
-from django.http import Http404
 from django.views.generic import TemplateView
 
-from core.mixins import CMSPageMixin
-from core.mixins import GetSlugFromKwargsMixin
+from directory_components.mixins import CMSLanguageSwitcherMixin
+
+from core.mixins import CMSPageMixin, GetSlugFromKwargsMixin
 from core import helpers
 from core.tests.helpers import create_response
 from core.views import SectorPageCMSView
@@ -56,7 +56,7 @@ dummy_page = {
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
-    class MyView(CMSPageMixin, TemplateView):
+    class MyView(CMSPageMixin, CMSLanguageSwitcherMixin, TemplateView):
 
         template_name = 'core/base.html'
         slug = 'test'
@@ -89,7 +89,7 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
 def test_cms_language_switcher_active_language_available(
     mock_cms_response, rf
 ):
-    class MyView(CMSPageMixin, TemplateView):
+    class MyView(CMSPageMixin, CMSLanguageSwitcherMixin, TemplateView):
 
         template_name = 'core/base.html'
         slug = 'test'
@@ -175,139 +175,6 @@ def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_404_when_cms_language_unavailable(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-
-    page = {
-        'title': 'the page',
-        'meta': {
-            'languages': [('en-gb', 'English'), ('de', 'German')],
-            'slug': 'aerospace'
-        },
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-            status_code=200,
-            json_payload=page
-        )
-
-    translation.activate('fr')
-    request = rf.get('/fr/')
-    view = TestView.as_view()
-
-    with pytest.raises(Http404):
-        view(request, slug='aerospace')
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_article_detail_page_no_related_content(
-    mock_get_page, client, settings
-):
-    test_article_page_no_related_content = {
-        'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [],
-        'last_published_at': '2018-10-09T16:25:13.142357Z',
-        'meta': {
-            'languages': [('en-gb', 'English')],
-            'slug': 'foo',
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = reverse(
-        'article-detail',
-        kwargs={'topic': 'topic', 'list': 'bar', 'slug': 'foo'}
-    )
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=test_article_page_no_related_content
-    )
-
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.template_name == ['core/article_detail.html']
-
-    assert 'Related content' not in str(response.content)
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_article_detail_page_related_content(
-    mock_get_page, client, settings
-):
-
-    article_page = {
-        'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
-        'article_image': {'url': 'foobar.png'},
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [
-            {
-                'article_title': 'Related article 1',
-                'article_teaser': 'Related article 1 teaser',
-                'article_image_thumbnail': {'url': 'related_article_one.jpg'},
-                'full_path': '/test-list/test-one/',
-                'meta': {
-                    'slug': 'test-one',
-                }
-            },
-            {
-                'article_title': 'Related article 2',
-                'article_teaser': 'Related article 2 teaser',
-                'article_image_thumbnail': {'url': 'related_article_two.jpg'},
-                'full_path': '/test-list/test-two/',
-                'meta': {
-                    'slug': 'test-two',
-                }
-            },
-        ],
-        'meta': {
-            'languages': [('en-gb', 'English')],
-            'slug': 'foo',
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = reverse(
-        'article-detail', kwargs={
-            'topic': 'topic', 'list': 'bar', 'slug': 'foo'}
-    )
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=article_page
-    )
-
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.template_name == ['core/article_detail.html']
-
-    assert 'Related content' in str(response.content)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert soup.find(
-        id='related-article-test-one-link'
-    ).attrs['href'] == '/international/test-list/test-one/'
-    assert soup.find(
-        id='related-article-test-two-link'
-    ).attrs['href'] == '/international/test-list/test-two/'
-
-    assert soup.find(
-        id='related-article-test-one'
-    ).select('h3')[0].text == 'Related article 1'
-    assert soup.find(
-        id='related-article-test-two'
-    ).select('h3')[0].text == 'Related article 2'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_breadcrumbs_mixin(mock_get_page, client, settings):
 
     url = reverse('article-detail', kwargs={
@@ -386,11 +253,12 @@ def test_article_detail_page_social_share_links(
         '%20-%20Test%20article%20'
         'http://testserver/international/topic/bar/foo/')
     facebook_link = (
-        'https://www.facebook.com/share.php?u=http://testserver/'
-        'international/topic/bar/foo/')
+        'https://www.facebook.com/share.php?u='
+        'http://testserver/international/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/&title=great.gov.uk'
+        'http://testserver/international/topic/bar/foo/'
+        '&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
@@ -459,273 +327,33 @@ def test_article_detail_page_social_share_links_no_title(
     assert soup.find(id='share-email').attrs['href'] == email_link
 
 
-campaign_page_all_fields = {
-    'campaign_heading': 'Campaign heading',
-    'campaign_hero_image': {'url': 'campaign_hero_image.jpg'},
-    'cta_box_button_text': 'CTA box button text',
-    'cta_box_button_url': '/cta_box_button_url',
-    'cta_box_message': 'CTA box message',
-    'related_content_heading': 'Related content heading',
-    'related_content_intro': '<p>Related content intro.</p>',
-    'section_one_contact_button_text': 'Section one contact button text',
-    'section_one_contact_button_url': '/section_one_contact_button_url',
-    'section_one_heading': 'Section one heading',
-    'section_one_image': {'url': 'section_one_image.jpg'},
-    'section_one_intro': '<p>Section one intro.</p>',
-    'section_two_contact_button_text': 'Section one contact button text',
-    'section_two_contact_button_url': '/section_two_contact_button_url',
-    'section_two_heading': 'Section two heading',
-    'section_two_image': {'url': 'section_two_image.jpg'},
-    'section_two_intro': '<p>Section two intro</p>',
-    'selling_point_one_content': '<p>Selling point one content</p>',
-    'selling_point_one_heading': 'Selling point one heading',
-    'selling_point_one_icon': {'url': 'selling_point_one_icon.jpg'},
-    'selling_point_two_content': '<p>Selling point two content</p>',
-    'selling_point_two_heading': 'Selling point two heading',
-    'selling_point_two_icon': {'url': 'selling_point_two_icon.jpg'},
-    'selling_point_three_content': '<p>Selling point three content</p>',
-    'selling_point_three_heading': 'Selling point three heading',
-    'selling_point_three_icon': {'url': 'selling_point_three_icon.jpg'},
-    'related_pages': [
-        {
-            'article_image': {'url': 'article_image.jpg'},
-            'article_image_thumbnail': {'url': 'article1_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 1',
-            'article_title': 'Related article 1',
-            'full_path': '/advice/finance/article-1/',
-            'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-1'},
-            'page_type': 'InternationalArticlePage',
-            'title': 'Related article 1'
-        },
-        {
-            'article_image': {'url': 'article_image.jpg'},
-            'article_image_thumbnail': {'url': 'article2_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 2',
-            'article_title': 'Related article 2',
-            'full_path': '/advice/finance/article-2/',
-            'meta': {
-                'languages': [['en-gb', 'English']],
-                'slug': 'article-2'},
-            'page_type': 'InternationalArticlePage',
-            'title': 'Related article 2'
-        },
-        {
-            'article_image': {'url': 'article_image.jpg'},
-            'article_image_thumbnail': {'url': 'article3_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 3',
-            'article_title': 'Related article 3',
-            'full_path': '/advice/finance/article-3/',
-            'meta': {
-                'languages': [('en-gb', 'English')],
-                'slug': 'article-3'},
-            'page_type': 'InternationalArticlePage',
-            'title': 'Related article 3'
-        },
-    ],
-    'meta': {
-        'languages': [('en-gb', 'English')],
-        'slug': 'test-page'
-    },
-    'page_type': 'InternationalCampaignPage'
-}
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_marketing_campaign_campaign_page_all_fields(
-    mock_get_page, client, settings
-):
-    url = reverse('campaign', kwargs={'slug': 'test-page'})
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=campaign_page_all_fields
-    )
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.template_name == ['core/campaign.html']
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert ('<p class="body-text">Selling point two content</p>'
-            ) in str(response.content)
-
-    assert ('<p class="body-text">Selling point three content</p>'
-            ) in str(response.content)
-
-    hero_section = soup.find(id='campaign-hero')
-
-    exp_style = "background-image: url('{}')".format(
-        campaign_page_all_fields['campaign_hero_image']['url'])
-
-    assert hero_section.attrs['style'] == exp_style
-
-    assert soup.find(
-        id='selling-points-icon-two').attrs['src'] == campaign_page_all_fields[
-        'selling_point_two_icon']['url']
-
-    assert soup.find(
-        id='selling-points-icon-three'
-    ).attrs['src'] == campaign_page_all_fields[
-        'selling_point_three_icon']['url']
-
-    assert soup.find(
-        id='section-one-contact-button'
-    ).attrs['href'] == campaign_page_all_fields[
-        'section_one_contact_button_url']
-    assert soup.find(
-        id='section-one-contact-button').text == campaign_page_all_fields[
-        'section_one_contact_button_text']
-
-    assert soup.find(
-        id='section-two-contact-button'
-    ).attrs['href'] == campaign_page_all_fields[
-        'section_two_contact_button_url']
-    assert soup.find(
-        id='section-two-contact-button').text == campaign_page_all_fields[
-        'section_two_contact_button_text']
-
-    related_page_one = soup.find(id='related-page-article-1')
-    assert related_page_one.find('a').text == 'Related article 1'
-    assert related_page_one.find('p').text == 'Related article description 1'
-    assert related_page_one.find('a').attrs['href'] == (
-        '/international/advice/finance/article-1/')
-    assert related_page_one.find('img').attrs['src'] == (
-        'article1_image_thumbnail.jpg')
-
-    related_page_two = soup.find(id='related-page-article-2')
-    assert related_page_two.find('a').text == 'Related article 2'
-    assert related_page_two.find('p').text == 'Related article description 2'
-    assert related_page_two.find('a').attrs['href'] == (
-        '/international/advice/finance/article-2/')
-    assert related_page_two.find('img').attrs['src'] == (
-        'article2_image_thumbnail.jpg')
-
-    related_page_three = soup.find(id='related-page-article-3')
-    assert related_page_three.find('a').text == 'Related article 3'
-    assert related_page_three.find('p').text == 'Related article description 3'
-    assert related_page_three.find('a').attrs['href'] == (
-        '/international/advice/finance/article-3/')
-    assert related_page_three.find('img').attrs['src'] == (
-        'article3_image_thumbnail.jpg')
-
-
-campaign_page_required_fields = {
-    'campaign_heading': 'Campaign heading',
-    'campaign_hero_image': None,
-    'cta_box_button_text': 'CTA box button text',
-    'cta_box_button_url': '/cta_box_button_url',
-    'cta_box_message': 'CTA box message',
-    'related_content_heading': 'Related content heading',
-    'related_content_intro': '<p>Related content intro.</p>',
-    'related_pages': [],
-    'section_one_contact_button_text': None,
-    'section_one_contact_button_url': None,
-    'section_one_heading': 'Section one heading',
-    'section_one_image': None,
-    'section_one_intro': '<p>Section one intro.</p>',
-    'section_two_contact_button_text': None,
-    'section_two_contact_button_url': None,
-    'section_two_heading': 'Section two heading',
-    'section_two_image': None,
-    'section_two_intro': '<p>Section two intro</p>',
-    'selling_point_one_content': '<p>Selling point one content</p>',
-    'selling_point_one_heading': 'Selling point one heading',
-    'selling_point_one_icon': None,
-    'selling_point_two_content': '<p>Selling point two content</p>',
-    'selling_point_two_heading': 'Selling point two heading',
-    'selling_point_two_icon': None,
-    'selling_point_three_content': '<p>Selling point three content</p>',
-    'selling_point_three_heading': 'Selling point three heading',
-    'selling_point_three_icon': None,
-    'meta': {
-        'languages': [('en-gb', 'English')],
-        'slug': 'test-page'
-    },
-    'page_type': 'InternationalCampaignPage'
-}
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_marketing_campaign_page_required_fields(
-    mock_get_page, client, settings
-):
-    url = reverse('campaign', kwargs={'slug': 'test-page'})
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=campaign_page_required_fields
-    )
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.template_name == ['core/campaign.html']
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert ('<p class="body-text">Selling point two content</p>'
-            ) in str(response.content)
-
-    assert ('<p class="body-text">Selling point three content</p>'
-            ) in str(response.content)
-
-    hero_section = soup.find(id='campaign-hero')
-    assert not hero_section.attrs.get('style')
-
-    assert not soup.find(id='selling-points-icon-two')
-    assert not soup.find(id='selling-points-icon-three')
-
-    assert not soup.find(id='section-one-contact-button')
-    assert not soup.find(id='section-one-contact-button')
-
-    assert not soup.find(id='section-two-contact-button')
-    assert not soup.find(id='section-two-contact-button')
-
-    assert soup.select(
-        '#campaign-contact-box .box-heading'
-        )[0].text == campaign_page_required_fields['cta_box_message']
-
-    assert soup.find(
-        id='campaign-hero-heading'
-        ).text == campaign_page_required_fields['campaign_heading']
-
-    assert soup.find(
-        id='section-one-heading'
-        ).text == campaign_page_required_fields['section_one_heading']
-
-    assert soup.find(
-        id='section-two-heading'
-        ).text == campaign_page_required_fields['section_two_heading']
-
-    assert soup.find(
-        id='related-content-heading'
-        ).text == campaign_page_required_fields['related_content_heading']
-
-    assert soup.select(
-        "li[aria-current='page']"
-        )[0].text == campaign_page_required_fields['campaign_heading']
-
-
 test_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {'slug': 'campaign-one'},
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalCampaignPage',
         'teaser': 'Campaign one teaser',
         'title': 'Campaign one'
     },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {'slug': 'article-one'},
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
         'title': 'Article one'
     },
     {
         'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {'slug': 'article-two'},
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
         'title': 'Article two'
@@ -735,24 +363,43 @@ test_child_pages = [
 test_localised_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {'slug': 'campaign-one'},
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalCampaignPage',
         'teaser': 'Campaign one teaser',
         'title': 'Campaign one'
     },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {'slug': 'article-one'},
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
         'title': 'Article one'
     },
     {
         'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {'slug': 'article-two'},
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
         'title': 'Article two'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-three',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article three teaser',
+        'title': 'Article three'
     },
 ]
 
@@ -852,6 +499,10 @@ def test_page_url_mismatch_404(
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
             },
+            # Needed to prevent errors when rendering some page types
+            'localised_child_pages': [],
+            'child_pages': [],
+            'related_pages': [],
         }
     )
 
@@ -894,16 +545,22 @@ def test_homepage_related_pages(mock_get_page, client):
                     'title': 'Related article title',
                     'page_type': 'InternationalArticlePage',
                     'teaser': 'Related article teaser',
-                    'meta': {'slug': 'article'},
+                    'meta': {
+                        'slug': 'article',
+                        'languages': [('en-gb', 'English')],
+                    },
                     'full_path': '/topic/list/article',
                     'full_url':
-                    'https://great.gov.uk/internatinal/topic/list/article',
+                    'https://great.gov.uk/international/topic/list/article',
                 },
                 {
                     'title': 'Related campaign title',
                     'page_type': 'InternationalCampaignPage',
                     'teaser': 'Related campaign teaser',
-                    'meta': {'slug': 'campaign'},
+                    'meta': {
+                        'slug': 'campaign',
+                        'languages': [('en-gb', 'English')],
+                    },
                     'full_path': '/international/campaigns/campaign',
                     'full_url':
                     'https://great.gov.uk/international/campaigns/campaign',
@@ -923,9 +580,18 @@ def test_homepage_related_pages(mock_get_page, client):
 
 
 @pytest.mark.parametrize('localised_articles,total_articles', (
-    ([], 4),
-    ([1], 5),
-    ([1, 2, 3, 4], 8),
+    (
+        [],
+        4
+    ),
+    (
+        test_localised_child_pages[:-3],
+        5
+    ),
+    (
+        test_localised_child_pages,
+        8
+    ),
 ))
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_article_count_with_regional_articles(
@@ -937,6 +603,7 @@ def test_article_count_with_regional_articles(
             'page_type': 'InternationalArticleListingPage',
             'articles_count': 4,
             'localised_child_pages': localised_articles,
+            'child_pages': [],
             'meta': {
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
@@ -997,7 +664,10 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
         'page_type': 'InternationalTopicLandingPage',
         'child_pages': [
             {
-                'heading': 'heading'
+                'heading': 'heading',
+                'meta': {
+                    'languages': [('en-gb', 'English')],
+                },
             }
         ],
         'meta': {
@@ -1016,3 +686,38 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
 
     child_page = response.context_data['page']['child_pages'][0]
     assert child_page['landing_page_title'] == 'heading'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_how_to_do_business_feature_off(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=dummy_page
+    )
+
+    url = reverse('how-to-do-business-with-the-uk')
+
+    response = client.get(url)
+
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_how_to_do_business_feature_on(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+
+    page = dummy_page
+    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = reverse('how-to-do-business-with-the-uk')
+
+    response = client.get(url)
+
+    assert response.status_code == 200
