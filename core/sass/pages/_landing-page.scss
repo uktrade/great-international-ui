@@ -158,6 +158,12 @@
   }
 }
 
+.study-visit-cta-section {
+  .container {
+    border-bottom: 1px solid $lightened-great-blue;
+  }
+}
+
 // JS ENABLED STYLES
 body.js-enabled {
   .landing-page {
