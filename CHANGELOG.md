@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+**Implemented enhancements:**
+
+- [[CMS-1386]](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
+
+**Fixed bugs:**
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
