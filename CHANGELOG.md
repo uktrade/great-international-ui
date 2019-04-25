@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+**Implemented enhancements:**
+
+**Fixed bugs:**
+
+- [[CMS-1247]](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
