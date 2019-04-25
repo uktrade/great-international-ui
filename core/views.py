@@ -5,8 +5,6 @@ from django.utils import translation
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
-from directory_constants.constants import cms
-
 
 from directory_constants import slugs
 from directory_constants.choices import COUNTRY_CHOICES
