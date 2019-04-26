@@ -721,3 +721,24 @@ def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     response = client.get(url)
 
     assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_cms_page_from_path_view(lookup_by_path, client, settings):
+    page = dummy_page.copy()
+    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+
+    lookup_by_path.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+    response = client.get('/international/c/page/from/path')
+
+    assert response.status_code == 200
+
+    lookup_by_path.assert_called_with(
+        draft_token=None,
+        language_code='en-gb',
+        path='page/from/path',
+        site_id=settings.DIRECTORY_CMS_SITE_ID,
+    )
