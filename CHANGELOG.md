@@ -2,6 +2,15 @@
 
 ## Pre-release
 
+## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
+
+### Implemented enhancements:
+
+- [[CMS-775]](https://uktrade.atlassian.net/browse/CMS-775) Added alternate language url metadata to base template to improve SEO
+- [[CMS-1386]](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
+- [[CMS-1247]](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
+- [[CMS-1384]](https://uktrade.atlassian.net/browse/CMS-1384) Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
@@ -14,6 +23,7 @@
 - Added `DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS` env var.
 
 **Fixed bugs:**
+
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
 
 
