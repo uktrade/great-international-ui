@@ -18,9 +18,3 @@ def directory_components_html_lang_attribute(request):
     return {
         'directory_components_html_lang_attribute': translation.get_language()
     }
-
-
-def landing_page_invest_contact_us_link(request):
-    return {
-        'invest_contact_us_link': urls.INVEST_CONTACT_US
-    }
