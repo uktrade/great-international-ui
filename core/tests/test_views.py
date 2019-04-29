@@ -78,8 +78,9 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
     )
 
     request = rf.get('/')
-    with translation.override('de'):
-        response = MyView.as_view()(request)
+    request.LANGUAGE_CODE = 'de'
+
+    response = MyView.as_view()(request)
 
     assert response.status_code == 200
     assert response.context_data['language_switcher']['show'] is False
@@ -100,9 +101,10 @@ def test_cms_language_switcher_active_language_available(
         json_payload=dummy_page
     )
 
-    request = rf.get('/de/')
-    with translation.override('de'):
-        response = MyView.as_view()(request)
+    request = rf.get('/')
+    request.LANGUAGE_CODE = 'en-gb'
+
+    response = MyView.as_view()(request)
 
     assert response.status_code == 200
     context = response.context_data['language_switcher']
@@ -648,6 +650,7 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
     )
 
     request = rf.get('/')
+    request.LANGUAGE_CODE = 'en-gb'
     response = SectorPageCMSView.as_view()(request)
 
     view = response.context_data['view']

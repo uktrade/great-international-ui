@@ -6,7 +6,7 @@ from django.utils import translation
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from directory_constants import slugs
+from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin
@@ -71,6 +71,7 @@ class LandingPageCMSView(BaseCMSPage):
             tariffs_country=tariffs_country,
             tariffs_country_selector_form=self.tariffs_form_class(
                 initial={'tariffs_country': country_code}),
+            invest_contact_us_link=urls.INVEST_CONTACT_US,
             *args, **kwargs,
         )
 
