@@ -7,6 +7,7 @@
 
 ### Implemented enhancements:
 
+- [[CMS-1400]](https://uktrade.atlassian.net/browse/CMS-1400) Added new url/view to support tree-based routing
 - [[CMS-775]](https://uktrade.atlassian.net/browse/CMS-775) Added alternate language url metadata to base template to improve SEO
 - [[CMS-1386]](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
 - [[CMS-1247]](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages

@@ -1,4 +1,10 @@
+from django.conf import settings
 from django.views.generic import TemplateView
+from django.utils.functional import cached_property
+from django.utils import translation
+
+from directory_cms_client.client import cms_api_client
+from directory_cms_client.helpers import handle_cms_response
 
 from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
@@ -8,6 +14,7 @@ from directory_components.mixins import (
 from directory_components.helpers import get_user_country
 
 from core.mixins import (
+    TEMPLATE_MAPPING,
     GetSlugFromKwargsMixin,
     ArticleSocialLinksMixin,
     BreadcrumbsMixin,
@@ -129,3 +136,28 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
             'heading'
         )
         return context
+
+
+class CMSPageFromPathView(TemplateView):
+
+    @cached_property
+    def page(self):
+        response = cms_api_client.lookup_by_path(
+            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            path=self.kwargs['path'],
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
+        return self.handle_cms_response(response)
+
+    def get_context_data(self, **kwargs):
+        data = {'page': self.page}
+        data.update(kwargs)
+        return super().get_context_data(**data)
+
+    def handle_cms_response(self, response):
+        return handle_cms_response(response)
+
+    @property
+    def template_name(self):
+        return TEMPLATE_MAPPING[self.page['page_type']]
