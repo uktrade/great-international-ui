@@ -196,7 +196,11 @@ class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin,
 
     def get_context_data(self, **kwargs):
         context = super(CapitalInvestRegionPageCMSView,
-                        self).get_context_data(**kwargs)
+                        self).get_context_data(
+                        invest_cta_link=urls.SERVICES_INVEST,
+                        buy_cta_link=urls.SERVICES_FAS,
+                        **kwargs
+                    )
         self.num_of_economics_statistics = self.count_data_with_field(
             context['page']['economics_stats'],
             'number'
@@ -213,9 +217,22 @@ class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin,
     page_type = 'CapitalInvestSectorPage'
     template_name = 'core/capital_invest_sector_page.html'
 
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            invest_cta_link=urls.SERVICES_INVEST,
+            buy_cta_link=urls.SERVICES_FAS,
+            **kwargs
+        )
+
 
 class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin,
                                                  BaseCMSPage):
     page_type = 'CapitalInvestOpportunityPage'
     template_name = 'core/capital_invest_opportunity_page.html'
 
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            invest_cta_link=urls.SERVICES_INVEST,
+            buy_cta_link=urls.SERVICES_FAS,
+            **kwargs
+        )
