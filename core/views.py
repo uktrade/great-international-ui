@@ -137,22 +137,6 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
         return context
 
 
-class SetupGuideLandingPageCMSView(BaseCMSPage):
-    active_view_name = 'setup-guide'
-    template_name = 'core/setup_guide_landing_page.html'
-    slug = 'setup-guide-landing-page'
-    subpage_groups = ['children_setup_guides']
-
-
-class SetupGuidePageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
-    active_view_name = 'setup-guide'
-    template_name = 'core/accordion_content_page.html'
-
-
-class UKRegionPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
-    template_name = 'core/accordion_content_page_with_hero_image.html'
-
-
 class CMSPageFromPathView(TemplateView):
 
     @cached_property
