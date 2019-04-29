@@ -8,26 +8,16 @@
 
 {% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
 
-<section id="breadcrumb-section">
-  <div class="container">
-    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
-      <ol>
-        <li>
-          <a href="{% url 'index' %}">Great.gov.uk International</a>
-        </li>
-        <li>
-          <a href="{% url 'capital-invest' %}">Capital Invest</a>
-        </li>
-        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
-      </ol>
-    </nav>
-  </div>
+<section>
+	<div class="container">
+		{% url 'index' as index_url %}
+		{% url 'capital-invest' as capital_invest_url %}
+		{% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+	</div>
 </section>
 
-
-
 <section class="capital-invest-region-page-section">
-	<div class="container">RELATED PAGES ==== {{ page.related_pages }}
+	<div class="container">
 		<div class="card-grid">
 			<div class="column-half-l padding-right-60">
 				<div class="font-medium padding-bottom-30">
@@ -36,27 +26,34 @@
 				<div>
 					{{ page.region_summary_section_content|add_export_elements_classes|safe }}
 				</div>
-				</div>
-				<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
-					{% if page.region_summary_section_image.url %}
-						<figure class="landing-page-image flex-shrink-0">
-							<img class="width-full" src="{{page.region_summary_section_image.url}}">
-						</figure>
-					{%  endif %}
-				</div>
 			</div>
+			{% if page.region_summary_section_image.url %}
+			<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
+				<figure class="landing-page-image flex-shrink-0">
+					<img class="width-full" src="{{page.region_summary_section_image.url}}">
+				</figure>
+			</div>
+			{%  endif %}
 		</div>
 	</div>
 </section>
 
+{% if page.related_pages %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
 		<div class="grid-row">
-			<p class="column-half-l">{{ page.investment_opps_intro }}</p>
+			<p class="column-half-l padding-bottom-30">{{ page.investment_opps_intro }}</p>
+		</div>
+		<div class="card-grid">
+		{% for related_page in page.related_pages %}
+				{% url 'capital-invest-sector' page.meta.slug related_page.meta.slug as sector_url %}
+				{% include 'core/includes/featured_article_card.html' with url=sector_url %}
+		{% endfor %}
 		</div>
 	</div>
 </section>
+{% endif %}
 
 <section class="capital-invest-region-page-section">
 	<div class="container">
@@ -82,7 +79,7 @@
 					</figure>
 				</div>
 			{% endif %}
-			<div class="column-half-xl">
+			<div class="column-half-xl right-half-page-text">
 				{{ page.section_content|add_export_elements_classes|safe }}
 			</div>
 		</div>

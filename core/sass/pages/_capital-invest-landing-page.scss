@@ -17,15 +17,11 @@
   @include landingPageSection;
 }
 
-.landing-page-how-we-help {
+.capital-invest-region-icons-section {
   font-size: 17px;
 
   .container:after {
     padding-bottom: $spacing-3;
-  }
-
-  p {
-    margin-bottom: $spacing-3;
   }
 
   ul {
@@ -34,9 +30,6 @@
 
   .icon {
     height: 64px;
-    padding-bottom: $spacing-4;
-    margin-bottom: $spacing-4;
-    @include red-underline
   }
 
   .contact-button {

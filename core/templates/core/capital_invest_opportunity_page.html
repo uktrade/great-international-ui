@@ -31,40 +31,40 @@
 	</div>
 </section>
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-region-page-section capital-invest-region-icons-section">
 	<div class="container">
-		<div class="grid-row padding-bottom-90">
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Location</div>
-				<div class="bold-small">{{ page.location }}</div>
+		<div class="grid-row padding-bottom-90 ">
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Location</p>
+				<p class="bold-small">{{ page.location }}</p>
 			</div>
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Project promoter</div>
-				<div class="bold-small">{{ page.project_promoter }}</div>
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Project promoter</p>
+				<p class="bold-small">{{ page.project_promoter }}</p>
 			</div>
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Scale</div>
-				<div class="bold-small">{{ page.scale }}</div>
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Scale</p>
+				<p class="bold-small">{{ page.scale }}</p>
 			</div>
 		</div>
 		<div class="grid-row">
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Programme</div>
-				<div class="bold-small">{{ page.programme }}</div>
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Programme</p>
+				<p class="bold-small">{{ page.programme }}</p>
 			</div>
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Investment type</div>
-				<div class="bold-small">{{ page.investment_type }}</div>
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Investment type</p>
+				<p class="bold-small">{{ page.investment_type }}</p>
 			</div>
-			<div class="column-third padding-right-90">
-				<img src="https://static.thenounproject.com/png/28190-200.png" style="max-width: 10%">
-				<div>Planning status</div>
-				<div class="bold-small">{{ page.planning_status }}</div>
+			<div class="column-third">
+				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
+				<p>Planning status</p>
+				<p class="bold-small">{{ page.planning_status }}</p>
 			</div>
 		</div>
 	</div>
@@ -108,7 +108,7 @@
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<div class="grid-row">
-			<h1 class="heading-large">
+			<h1 class="heading-large padding-bottom-30">
 				{{ page.similar_projects_title}}
 			</h1>
 			{% for related_page in page.related_pages %}
@@ -124,7 +124,7 @@
 				</div>
 			{% endfor %}
 		</div>
-		<a class="button button-blue button-arrow-small" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+		<a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
 	</div>
 </section>
 {% endif %}
