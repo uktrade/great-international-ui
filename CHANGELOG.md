@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+### Fixed bugs:
+
+- Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
+
+
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
 
