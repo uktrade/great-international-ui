@@ -66,7 +66,7 @@
 				<div class="column-third-xl column-half-l column-full">
 					<div class="card">
 						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<a href="{% url 'capital-invest-opportunity' page.parent.meta.slug page.meta.slug related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
 							<p>{{ related_page.location }}</p>
 							<p class="bold-small">{{ related_page.scale }}</p>
 							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
@@ -78,10 +78,10 @@
 				<div class="column-third-xl column-half-l column-full">
 					<div class="card">
 						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<a href="{% url 'capital-invest-opportunity' page.parent.meta.slug page.meta.slug related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
 							<p>{{ related_page.location }}</p>
 							<p class="bold-small">{{ related_page.scale }}</p>
-							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
+							<p><u>Investment type:</u> {{ related_page.investment_type }}</p>
 						</div>
 					</div>
 				</div>

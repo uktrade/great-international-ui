@@ -64,11 +64,6 @@ urlpatterns += (
         name="capital-invest"
     ),
     url(
-        r"^international/capital-invest/opportunities/(?P<slug>[\w-]+)/$",
-        core.views.CapitalInvestOpportunityPageCMSView.as_view(),
-        name="capital-invest-opportunity"
-    ),
-    url(
         r"^international/capital-invest/(?P<slug>[\w-]+)/$",
         core.views.CapitalInvestRegionPageCMSView.as_view(),
         name="capital-invest-region"
@@ -78,7 +73,11 @@ urlpatterns += (
         core.views.CapitalInvestSectorPageCMSView.as_view(),
         name="capital-invest-sector"
     ),
-
+    url(
+        r"^international/capital-invest/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$",
+        core.views.CapitalInvestOpportunityPageCMSView.as_view(),
+        name="capital-invest-opportunity"
+    ),
     url(
         r"^international/doing-business-with-the-uk/$",
         core.views.ArticleListPageView.as_view(),

@@ -6,14 +6,8 @@
 
 {% block content %}
 
-{% if page.related_region_page %}
-	{% for related_region in page.related_region_page %}
-		{% related_region.title - related_sector.title
-		{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url hero_subheading=related_region.title %}
-	{% endfor %}
-{% else %}
-	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
-{% endif %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+
 
 <section id="breadcrumb-section">
   <div class="container">
@@ -25,20 +19,6 @@
         <li>
           <a href="{% url 'capital-invest' %}">Capital Invest</a>
         </li>
-        {% if page.related_region_page %}
-			{% for related_region in page.related_region_page %}
-				<li>
-				  <a href="{% url 'capital-invest-region' related_region.meta.slug %}">{{ related_region.title }}</a>
-				</li>
-			{% endfor %}
-        {% endif %}
-        {% if page.related_sector_page %}
-			{% for related_sector in page.related_sector_page %}
-				<li>
-				  <a href="{% url 'capital-invest-region' related_sector.meta.slug %}">{{ related_sector.title }}</a>
-				</li>
-			{% endfor %}
-        {% endif %}
         <li aria-current="page">{{ page.breadcrumbs_label }}</li>
       </ol>
     </nav>
@@ -152,7 +132,7 @@
 				<div class="column-third-xl column-half-l column-full">
 					<div class="card">
 						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<a href="{% url 'capital-invest-opportunity' 'midlands-engine' 'midlands-housing' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
 							<p>{{ related_page.location }}</p>
 							<p class="bold-small">{{ related_page.scale }}</p>
 							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>

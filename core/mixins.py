@@ -88,7 +88,7 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        print("\n\n\n\n the response:", response.json(), "\n\n\n\n\n")
+        print("\n\n\n\n the response ===>", response.json(), "\n\n\n\n\n")
         return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
