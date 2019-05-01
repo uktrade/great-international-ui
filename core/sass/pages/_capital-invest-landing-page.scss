@@ -17,6 +17,34 @@
   @include landingPageSection;
 }
 
+.capital-invest-landing-page-how-we-help {
+  font-size: 17px;
+
+  .container:after {
+    padding-bottom: $spacing-3;
+  }
+
+  p {
+    margin-bottom: $spacing-3;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  .icon {
+    height: 64px;
+    padding-bottom: $spacing-4;
+    margin-bottom: $spacing-4;
+    @include red-underline
+  }
+
+  .contact-button {
+    @extend .icon;
+    border-bottom: 0;
+  }
+}
+
 .capital-invest-region-icons-section {
   font-size: 17px;
 
@@ -43,15 +71,9 @@
   width: 50%;
 }
 
-.card-grid{
-  .card{
-    .card-inner {
-      p.description{
+.capital-invest-landing-page-section .card-grid .card .card-inner p.description{
         margin-bottom: 100px;
       }
-    }
-  }
-}
 
 .pdf_button{
   text-align: center;

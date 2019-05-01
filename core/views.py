@@ -183,8 +183,7 @@ class CapitalInvestLandingPageCMSView(BaseCMSPage):
     slug = 'capital-invest'
 
 
-class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin,
-                                                       BaseCMSPage):
+class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'CapitalInvestRegionPage'
     template_name = 'core/capital_invest_region_page.html'
     num_of_economics_statistics = 0
@@ -212,9 +211,8 @@ class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin,
         return context
 
 
-class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin,
-                                                       BaseCMSPage):
-    page_type = 'CapitalInvestSectorPage'
+class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
+    page_type = 'CapitalInvestRegionalSectorPage'
     template_name = 'core/capital_invest_sector_page.html'
 
     def get_context_data(self, **kwargs):
@@ -225,8 +223,7 @@ class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin,
         )
 
 
-class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin,
-                                                 BaseCMSPage):
+class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'CapitalInvestOpportunityPage'
     template_name = 'core/capital_invest_opportunity_page.html'
 

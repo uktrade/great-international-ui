@@ -6,12 +6,49 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+{% if page.related_region_page %}
+	{% for related_region in page.related_region_page %}
+		{% related_region.title - related_sector.title
+		{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url hero_subheading=related_region.title %}
+	{% endfor %}
+{% else %}
+	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% endif %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs padding-bottom-0" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'capital-invest' %}">Capital Invest</a>
+        </li>
+        {% if page.related_region_page %}
+			{% for related_region in page.related_region_page %}
+				<li>
+				  <a href="{% url 'capital-invest-region' related_region.meta.slug %}">{{ related_region.title }}</a>
+				</li>
+			{% endfor %}
+        {% endif %}
+        {% if page.related_sector_page %}
+			{% for related_sector in page.related_sector_page %}
+				<li>
+				  <a href="{% url 'capital-invest-region' related_sector.meta.slug %}">{{ related_sector.title }}</a>
+				</li>
+			{% endfor %}
+        {% endif %}
+        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
 
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<div class="card-grid">
-			<div class="column-half-l padding-right-60">
+			<div class="column-half-l left-half-page-text">
 				<div class="font-medium padding-bottom-30">
 					{{ page.opportunity_summary_intro}}
 				</div>

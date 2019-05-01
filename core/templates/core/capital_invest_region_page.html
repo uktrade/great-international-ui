@@ -19,7 +19,7 @@
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<div class="card-grid">
-			<div class="column-half-l padding-right-60">
+			<div class="column-half-l left-half-page-text">
 				<div class="font-medium padding-bottom-30">
 					{{ page.region_summary_section_intro}}
 				</div>
@@ -38,7 +38,7 @@
 	</div>
 </section>
 
-{% if page.related_pages %}
+{% if page.child_pages %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
@@ -46,9 +46,19 @@
 			<p class="column-half-l padding-bottom-30">{{ page.investment_opps_intro }}</p>
 		</div>
 		<div class="card-grid">
-		{% for related_page in page.related_pages %}
-				{% url 'capital-invest-sector' page.meta.slug related_page.meta.slug as sector_url %}
-				{% include 'core/includes/featured_article_card.html' with url=sector_url %}
+		{% for sector_page in page.child_pages %}
+			<div class="column-third-xl column-half-l column-full">
+				<div class="card">
+					<div class="card-image" role="img" style="background-image: url({{ sector_page.hero_image.url }});">
+					</div>
+					<div class="card-inner wrap-tight padding-horizontal-45">
+						<a href="{% url 'capital-invest-sector' page.meta.slug sector_page.meta.slug %}"><h3 class="heading-large">{{ sector_page.title }}</h3></a>
+						{% if sector_page.featured_description %}
+							<p class="description">{{ sector_page.featured_description }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
 		{% endfor %}
 		</div>
 	</div>
