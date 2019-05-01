@@ -9,7 +9,8 @@ from directory_cms_client.helpers import handle_cms_response
 from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_components.mixins import (
-    CMSLanguageSwitcherMixin
+    CMSLanguageSwitcherMixin,
+    CountryDisplayMixin,
 )
 from directory_components.helpers import get_user_country
 
@@ -138,7 +139,9 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
         return context
 
 
-class CMSPageFromPathView(TemplateView):
+class CMSPageFromPathView(
+    CMSLanguageSwitcherMixin, CountryDisplayMixin, TemplateView
+):
 
     @cached_property
     def page(self):
@@ -150,10 +153,11 @@ class CMSPageFromPathView(TemplateView):
         )
         return self.handle_cms_response(response)
 
-    def get_context_data(self, **kwargs):
-        data = {'page': self.page}
-        data.update(kwargs)
-        return super().get_context_data(**data)
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            page=self.page,
+            *args, **kwargs
+        )
 
     def handle_cms_response(self, response):
         return handle_cms_response(response)
