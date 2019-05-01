@@ -23,6 +23,7 @@ from core.mixins import (
     HowToDoBusinessPageFeatureFlagMixin,
 )
 from core import forms
+from core.context_modifiers import registry as context_modifiers
 
 
 class BaseCMSPage(
@@ -153,7 +154,10 @@ class CMSPageFromPathView(TemplateView):
     def get_context_data(self, **kwargs):
         data = {'page': self.page}
         data.update(kwargs)
-        return super().get_context_data(**data)
+        data = super().get_context_data(**data)
+        for modifier in context_modifiers.get_for_page_type(self.page['page_type']):
+            data = modifier(data, request=self.request)
+        return data
 
     def handle_cms_response(self, response):
         return handle_cms_response(response)
