@@ -48,7 +48,7 @@
             {% for child_page in localised_children %}
               <li class="article">
                 <a {% if child_page.page_type == 'InternationalCampaignPage' %}
-                href="{% url 'campaign' child_page.meta.slug %}"
+                href="{{ child_page.meta.url }}"
                 {% else %}
                 href="{{ request.path }}{{ child_page.meta.slug }}"
                 {% endif %}
