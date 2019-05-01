@@ -6,36 +6,59 @@ class Registry(defaultdict):
     def __init__(self):
         super().__init__(list)
 
-    def register(self, context_modifier, *for_page_types):
+    def _add_for_page_type(self, page_type, fn):
+        if fn not in self[page_type]:
+            self[page_type].append(fn)
+
+    def register(self, page_type, fn=None):
         """
-        Registers a function or class as a context modifier
-        for pages of type `page_type`
+        Registers a function as a context modifier for pages of type
+        ``page_type`` (which may be a single string, or a list).
         """
 
-        if not for_page_types:
-            return context_modifier
+        if fn is None:
+            def decorator(fn):
+                self.register(page_type, fn)
+                return fn
+            return decorator
 
-        if not callable(context_modifier):
-            raise TypeError('Context modifiers must be callables')
+        if not page_type:
+            return fn
 
-        for page_type in for_page_types:
-            if context_modifier not in self[page_type]:
-                self[page_type].append(context_modifier)
+        if not callable(fn):
+            raise TypeError(
+                'Context modifiers must be a callables, not %s' % type(fn)
+            )
 
-        return context_modifier
+        if isinstance(page_type, str):
+            self._add_for_page_type(page_type, fn)
 
-    def register_decorator(self, context_modifier=None, *for_page_types):
+        for page_type_item in page_type:
+            self._add_for_page_type(page_type_item, fn)
+
+        return fn
+
+    def unregister(self, fn=None):
         """
-        Register a model as a setting in the Wagtail admin
+        Registers a function as a context modifier for any page types
+        that it might be registered for.
         """
-        if context_modifier is None:
-            return lambda context_modifier: self.register(
-                context_modifier, *for_page_types)
-        return self.register(context_modifier, *for_page_types)
+
+        if fn is None:
+            def decorator(fn):
+                self.unregister(fn)
+                return fn
+            return decorator
+
+        for key in self.keys():
+            try:
+                self[key].remove(fn)
+            except ValueError:
+                pass
 
     def get_for_page_type(self, page_type):
         return self[page_type]
 
 
 registry = Registry()
-register_context_modifier = registry.register_decorator
+register_context_modifier = registry.register
