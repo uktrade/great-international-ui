@@ -53,6 +53,11 @@ urlpatterns += (
         name="index"
     ),
     url(
+        r"^international/c/$",
+        RedirectView.as_view(url=reverse_lazy('index')),
+        name="index-c-redirect"
+    ),
+    url(
         r"^international/news/$",
         core.views.ArticleListPageView.as_view(),
         {'slug': 'news'},
