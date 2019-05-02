@@ -234,7 +234,8 @@ class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
             buy_cta_link=urls.SERVICES_FAS,
             **kwargs
         )
-        self.hero_subheading = context['page']['related_sector_page'][
-                                   'parent']['title'], ' - '
+        self.hero_subheading = "{0} - {1}"\
+            .format(context['page']['related_sector_page']['parent']['title'],
+                    context['page']['related_sector_page']['title'])
         print('\n\n\n\n\n\n', self.hero_subheading)
         return context
