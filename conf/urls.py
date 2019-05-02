@@ -49,74 +49,29 @@ urlpatterns = [
 urlpatterns += (
     url(
         r"^international/$",
-        core.views.LandingPageCMSView.as_view(),
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'international'},
         name="index"
     ),
+    # avoid rendering the app root page
     url(
         r"^international/c/$",
         RedirectView.as_view(url=reverse_lazy('index')),
-        name="index-c-redirect"
     ),
+    # in case tree-based-routing is turned on for this page
     url(
-        r"^international/news/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'news'},
-        name="news"
+        r"^international/c/international/$",
+        RedirectView.as_view(url=reverse_lazy('index')),
     ),
+    # hoping we can eliminate this one!
     url(
-        r"^international/how-to-do-business-with-the-uk/$",
-        core.views.CuratedLandingPageCMSView.as_view(),
-        {'slug': 'how-to-do-business-with-the-uk'},
-        name="how-to-do-business-with-the-uk"
-    ),
-    url(
-        r"^international/how-to-setup-in-the-uk/$",
-        core.views.GuideLandingPageCMSView.as_view(),
-        {'slug': 'how-to-setup-in-the-uk'},
-        name="how-to-setup-in-the-uk"
-    ),
-    url(
-        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
-        RedirectView.as_view(url=reverse_lazy('how-to-setup-in-the-uk')),
-    ),
-    url(
-        r"^international/how-to-setup-in-the-uk/guides/$",
-        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'), # noqa
-    ),
-    url(
-        r"^international/industries/$",
-        core.views.IndustriesLandingPageCMSView.as_view(),
-        {'slug': 'industries'},
-        name="industries"
-    ),
-    url(
-        r"^international/industries/(?P<slug>[\w-]+)/$",
-        core.views.SectorPageCMSView.as_view(),
-        name="sector"
-    ),
-    url(
-        r"^international/campaigns/(?P<slug>[\w-]+)/$",
-        core.views.CampaignPageView.as_view(),
-        name="campaign"
+        r"^international/c/industries/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'industries'},
     ),
     url(
         r'^international/c/(?P<path>[\w\-/]*)$',
         core.views.CMSPageFromPathView.as_view(),
         name="render-cms-page"
     ),
-    url(
-        r"^international/(?P<slug>[\w-]+)/$",
-        core.views.ArticleTopicPageView.as_view(),
-        name="article-topic"
-    ),
-    url(
-        r"^international/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
-        core.views.ArticleListPageView.as_view(),
-        name="article-list"
-    ),
-    url(
-        r"^international/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$", # noqa
-        core.views.ArticlePageView.as_view(),
-        name="article-detail"
-    )
 )
