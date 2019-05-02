@@ -24,7 +24,10 @@ from core.mixins import (
     HowToDoBusinessPageFeatureFlagMixin,
 )
 from core import forms
-from core.context_modifiers import registry as context_modifiers
+from core.context_modifier_registry import (
+    context_modifier_registry,
+    register_context_modifier,
+)
 
 
 class BaseCMSPage(
@@ -154,13 +157,30 @@ class CMSPageFromPathView(
         )
         return self.handle_cms_response(response)
 
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        for fn in context_modifier_registry.get_for_page_type(
+            self.page['page_type']
+        ):
+            # context modifiers are applied here rather than in
+            # get_context_data() to allow them to interrupt the
+            # process by returning a HttpResponse
+            result = fn(context, self.page, self, request)
+            if hasattr(result, 'status_code'):
+                # This looks like a HttpResponse, so return immediately to
+                # avoid further unnecessary processing
+                return result
+        return self.render_to_response(context)
+
     def get_context_data(self, *args, **kwargs):
-        data = super().get_context_data(
-            page=self.page, *args, **kwargs
+        context_data = dict(
+            page=self.page,
+            page_path=self.kwargs['path'],
         )
-        for modifier in context_modifiers.get_for_page_type(self.page['page_type']):
-            data = modifier(data, request=self.request)
-        return data
+        # allows subclasses to override the above values, and
+        # also prevents super() being called with duplicate args
+        context_data.update(kwargs)
+        return super().get_context_data(*args, **context_data)
 
     def handle_cms_response(self, response):
         return handle_cms_response(response)
