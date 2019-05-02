@@ -82,7 +82,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
                 'core.context_processors.footer_contact_us_link',
-                'core.context_processors.landing_page_invest_contact_us_link',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
@@ -286,6 +285,7 @@ DIRECTORY_CMS_API_CLIENT_SERVICE_NAME = cms.GREAT_INTERNATIONAL
 DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT = env.int(
     'DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT', 2
 )
+DIRECTORY_CMS_SITE_ID = env.str('DIRECTORY_CMS_SITE_ID', 2)
 
 # directory clients
 DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = env.int(
