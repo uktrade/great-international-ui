@@ -171,7 +171,7 @@ class CMSPageFromPathView(
             # context modifiers are applied here rather than in
             # get_context_data() to allow them to interrupt the
             # process by returning a HttpResponse
-            result = fn(context, self.page, self, request)
+            result = fn(context, request, self)
             if hasattr(result, 'status_code'):
                 # This looks like a HttpResponse, so return immediately to
                 # avoid further unnecessary processing
@@ -194,3 +194,52 @@ class CMSPageFromPathView(
     @property
     def template_name(self):
         return self.template_mapping[self.page['page_type']]
+
+
+@register_context_modifier('InternationalHomePage')
+def home_page_context_modifier(context, request=None, view=None):
+
+    country_code = get_user_country(request)
+    country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+    context.update({
+        'tariffs_country': {
+            # used for flag icon css class. must be lowercase
+            'code': country_code.lower(),
+            'name': country_name,
+        },
+        'tariffs_country_selector_form': forms.TariffsCountryForm(
+            initial={'tariffs_country': country_code}
+        ),
+        'invest_contact_us_link': urls.INVEST_CONTACT_US,
+    })
+
+
+@register_context_modifier('InternationalTopicLandingPage')
+def topic_landing_context_modifier(context, request=None, view=None):
+
+    def rename_heading_field(page):
+        page['landing_page_title'] = page['heading']
+        return page
+
+    context['page']['child_pages'] = [
+        rename_heading_field(child_page)
+        for child_page in context['page']['child_pages']
+    ]
+
+    return context
+
+
+@register_context_modifier('InternationalSectorPage')
+def sector_page_context_modifier(context, request=None, view=None):
+
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    context['num_of_statistics'] = count_data_with_field(
+        context['page']['statistics'], 'number')
+
+    context['section_three_num_of_subsections'] = count_data_with_field(
+        context['page']['section_three_subsections'], 'heading')
+
+    return context
