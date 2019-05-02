@@ -22,6 +22,16 @@
   <script src="{% static 'directory_components/js/dit.components.greatInternationalHeader.js' %}"></script>
 {% endblock %}
 
+{% block head_js_ga360 %}
+    {{ block.super }}
+    {% if ga360 %}
+        <script id="ga360-script">
+            window.dataLayer.push({ 'pageCategory': {{ ga360.page_type }} });
+            dit.tagging.international.init();
+        </script>
+    {% endif %}
+{% endblock %}
+
 {% block head_other %}{% endblock %}
 
 {% block head_sharing_metadata %}

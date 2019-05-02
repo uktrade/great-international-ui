@@ -9,8 +9,8 @@ from directory_cms_client.helpers import handle_cms_response
 from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_components.mixins import (
-    CMSLanguageSwitcherMixin
-)
+    CMSLanguageSwitcherMixin,
+    GA360Mixin)
 from directory_components.helpers import get_user_country
 
 from core.mixins import (
@@ -26,7 +26,11 @@ from core import forms
 
 
 class BaseCMSPage(
-    CMSLanguageSwitcherMixin, RegionalContentMixin, CMSPageMixin, TemplateView
+    CMSLanguageSwitcherMixin,
+    RegionalContentMixin,
+    CMSPageMixin,
+    TemplateView,
+    GA360Mixin
 ):
     pass
 
@@ -34,18 +38,21 @@ class BaseCMSPage(
 class CampaignPageView(GetSlugFromKwargsMixin, BaseCMSPage):
     template_name = 'core/campaign.html'
     page_type = 'InternationalCampaignPage'
+    ga360_payload = {'page_type': 'InternationalCampaignPage'}
 
 
 class ArticleTopicPageView(
     BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
 ):
     page_type = 'InternationalTopicLandingPage'
+    ga360_payload = {'page_type': 'ArticleTopicPage'}
 
 
 class ArticleListPageView(
     BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
 ):
     page_type = 'InternationalArticleListingPage'
+    ga360_payload = {'page_type': 'ArticleListPage'}
 
 
 class LandingPageCMSView(BaseCMSPage):
@@ -53,6 +60,7 @@ class LandingPageCMSView(BaseCMSPage):
     template_name = 'core/landing_page.html'
     page_type = 'InternationalHomePage'
     slug = slugs.GREAT_HOME_INTERNATIONAL
+    ga360_payload = {'page_type': 'InternationalHomePage'}
 
     tariffs_form_class = forms.TariffsCountryForm
 
@@ -81,11 +89,13 @@ class CuratedLandingPageCMSView(
 ):
     active_view_name = 'curated-topic-landing'
     page_type = 'InternationalCuratedTopicLandingPage'
+    ga360_payload = {'page_type': 'CuratedLandingPage'}
 
 
 class GuideLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     active_view_name = 'guide-landing'
     page_type = 'InternationalGuideLandingPage'
+    ga360_payload = {'page_type': 'GuideLandingPage'}
 
 
 class ArticlePageView(
@@ -94,6 +104,7 @@ class ArticlePageView(
 ):
     active_view_name = 'article'
     page_type = 'InternationalArticlePage'
+    ga360_payload = {'page_type': 'ArticlePage'}
 
 
 class IndustriesLandingPageCMSView(
@@ -101,6 +112,7 @@ class IndustriesLandingPageCMSView(
 ):
     page_type = 'InternationalTopicLandingPage'
     template_name = 'core/industries_landing_page.html'
+    ga360_payload = {'page_type': 'IndustriesLandingPage'}
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -120,6 +132,7 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'InternationalSectorPage'
     num_of_statistics = 0
     section_three_num_of_subsections = 0
+    ga360_payload = {'page_type': 'SectorLandingPage'}
 
     def count_data_with_field(self, list_of_data, field):
         filtered_list = [item for item in list_of_data if item[field]]
