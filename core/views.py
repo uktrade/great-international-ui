@@ -148,10 +148,14 @@ class CMSPageFromPathView(
     TemplateView
 ):
 
+    # Allow subclasses to override these (will be useful when UIs are merged)
+    site_id = settings.DIRECTORY_CMS_SITE_ID
+    template_mapping = TEMPLATE_MAPPING
+
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
-            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            site_id=self.site_id,
             path=self.kwargs['path'],
             language_code=translation.get_language(),
             region=self.region,
@@ -189,4 +193,4 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
-        return TEMPLATE_MAPPING[self.page['page_type']]
+        return self.template_mapping[self.page['page_type']]
