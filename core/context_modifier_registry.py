@@ -27,7 +27,7 @@ class Registry(defaultdict):
 
         if not callable(fn):
             raise TypeError(
-                'Context modifiers must be a callables, not %s' % type(fn)
+                'Context modifiers must be a callable, not %s' % type(fn)
             )
 
         if isinstance(page_type, str):
@@ -40,8 +40,11 @@ class Registry(defaultdict):
 
     def unregister(self, fn=None):
         """
-        Registers a function as a context modifier for any page types
+        Unregisters a function as a context modifier for any page types
         that it might be registered for.
+
+        NOTE: Use this to unregister functions used in tests to keep the
+        registry nice and clean :)
         """
 
         if fn is None:
@@ -57,8 +60,12 @@ class Registry(defaultdict):
                 pass
 
     def get_for_page_type(self, page_type):
+        """
+        Return a list of context modifier functions for ``page_type``.
+        The list will be empty if no relevant functions have been regsitered.
+        """
         return self[page_type]
 
 
-registry = Registry()
-register_context_modifier = registry.register
+context_modifier_registry = Registry()
+register_context_modifier = context_modifier_registry.register
