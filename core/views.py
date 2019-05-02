@@ -144,7 +144,8 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 
 
 class CMSPageFromPathView(
-    CMSLanguageSwitcherMixin, CountryDisplayMixin, TemplateView
+    CMSLanguageSwitcherMixin, CountryDisplayMixin, RegionalContentMixin,
+    TemplateView
 ):
 
     @cached_property
@@ -153,6 +154,7 @@ class CMSPageFromPathView(
             site_id=settings.DIRECTORY_CMS_SITE_ID,
             path=self.kwargs['path'],
             language_code=translation.get_language(),
+            region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
         return self.handle_cms_response(response)
