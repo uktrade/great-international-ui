@@ -97,7 +97,9 @@
 	</div>
 </section>
 
-{% include 'directory_components/full_width_banner_with_cta.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+{% if page.case_study_title and page.case_study_cta_text %}
+	{% include 'directory_components/full_width_banner_with_cta.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+{% endif %}
 
 <section class="capital-invest-region-page-section">
 	<div class="container">
