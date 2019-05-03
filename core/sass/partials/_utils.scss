@@ -82,3 +82,13 @@
 .margin-top-remove-30{
   margin-top: -30px;
 }
+
+.only-display-tablet {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .only-display-tablet {
+    display: block;
+  }
+}

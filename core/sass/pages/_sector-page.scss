@@ -2,12 +2,6 @@
 
 .sector-page {
 
-    @media (min-width: 769px) {
-      .section-one-body {
-        padding-right: calc(100% / 12);
-      }
-    }
-
   .section-one-body {
     h2:first-child {
       margin-top: 0;
@@ -40,12 +34,6 @@
       width: 50%;
     }
 
-    @media (max-width: 640px) {
-      .button {
-        width: auto;
-      }
-    }
-
     .button::after {
       content: '→';
       margin-left: 1em;
@@ -53,11 +41,6 @@
   }
 
   .next-steps .container {
-    @media (min-width: 961px) {
-      .cta-link {
-        font-size: 36px;
-      }
-    }
 
     .with-arrow {
       margin: 0;
@@ -75,6 +58,34 @@
   .news-events {
     .card {
       height: 100%;
+    }
+  }
+
+// Responsive styling
+
+  @media (min-width: 961px) {
+    .next-steps .container .cta-link {
+      font-size: 36px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .section-one-body {
+      padding-right: calc(100% / 12);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .case-study {
+      // horrible but only way to override inline background style
+      background-image: none !important;
+      color: $grey;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .case-study .button {
+      width: auto;
     }
   }
 }

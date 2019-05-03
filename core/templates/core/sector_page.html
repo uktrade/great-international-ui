@@ -10,7 +10,7 @@
 
 <section id="breadcrumb-section">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+    <nav class="breadcrumbs" aria-label="Breadcrumbs">
       <ol>
         <li>
           <a href="{% url 'index' %}">Great.gov.uk International</a>
@@ -53,7 +53,6 @@
 <section id="sector-statistics-section" class="statistics padding-vertical-30">
   <div class="container">
     {% statistics_card_grid statistics=page.statistics num_of_statistics=view.num_of_statistics number_first=True %}
-    </div>
   </div>
 </section>
 
@@ -84,9 +83,10 @@
   style="background-image: url({{ page.case_study_image.url }})">
   <div class="container">
     <div class="grid-row">
-      <div class="column-full column-two-thirds-m column-half-l column-third-xl">
+      <div class="column-full column-two-thirds-l column-half-xl">
         <div class="decorative-line border-thin border-flag-red"></div>
         <h2 class="heading-large">{{ page.case_study_title }}</h2>
+        <img class="only-display-tablet width-full margin-bottom-15" src="{{ page.case_study_image.url }}" alt="">
         <p>{{ page.case_study_description }}</p>
         {% if page.case_study_cta_page and page.case_study_cta_text %}
         <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}</a>
