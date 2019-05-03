@@ -29,8 +29,8 @@ class BaseCMSPage(
     CMSLanguageSwitcherMixin,
     RegionalContentMixin,
     CMSPageMixin,
-    TemplateView,
-    GA360Mixin
+    GA360Mixin,
+    TemplateView
 ):
     pass
 

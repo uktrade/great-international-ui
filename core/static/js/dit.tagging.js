@@ -1,8 +1,8 @@
 dit.tagging = dit.tagging || {};
-dit.tagging.international = function() {
+dit.tagging.international = new function() {
 
-    this.init = function() {
-        $(document).ready(function (page) {
+    this.init = function(page) {
+        $(document).ready(function () {
             switch (page) {
                 case ("InternationalHomePage"):
                     addTaggingForFeaturedCards('International Landing Page');
