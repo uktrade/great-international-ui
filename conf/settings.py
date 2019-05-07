@@ -125,6 +125,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-LANGUAGE_COOKIE_NAME
+LANGUAGE_COOKIE_DEPRECATED_NAME = 'django-language'
+# Django's default value for LANGUAGE_COOKIE_DOMAIN is None
+LANGUAGE_COOKIE_DOMAIN = env.str('LANGUAGE_COOKIE_DOMAIN', None)
 
 # https://github.com/django/django/blob/master/django/conf/locale/__init__.py
 LANGUAGES = [
