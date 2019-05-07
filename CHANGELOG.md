@@ -10,6 +10,7 @@
 
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
 - [[CMS-1395]](https://uktrade.atlassian.net/browse/CMS-1395) Fix language cookie name and domain to be the same across all our services.
+- [CMS-1241](https://uktrade.atlassian.net/browse/CMS-1241) Accessibility fixes - img alt attributes and breadcrumbs
 
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
