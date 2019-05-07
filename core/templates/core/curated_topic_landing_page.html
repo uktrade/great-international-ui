@@ -34,7 +34,7 @@
 
       <div class="flex-grid">
         {% for feature in page.features_large %}
-          <div class="column-half">
+          <div class="column-half" data-ga-class="large-feature">
             <div class="card cta-card large-card">
               <div
                 class="card-image"
@@ -58,7 +58,7 @@
   <div class="container">
     <div class="flex-grid">
       {% for feature in page.features_small %}
-        <div class="column-third">
+        <div class="column-third" data-ga-class="small-feature">
           {% cta_card with_arrow=True image_url=feature.image.url text=feature.heading url=feature.url %}
         </div>
       {% endfor %}
