@@ -4,7 +4,7 @@
 
 ### Implemented enhancements:
 
-- [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to invest pages.
+- [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to international pages.
 
 ### Fixed bugs:
 
