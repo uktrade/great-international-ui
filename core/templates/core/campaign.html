@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 {% load filter_by_active_language from cms_tags %}
-{% load cta_box add_export_elements_classes from directory_components_tags %}
+{% load breadcrumbs cta_box add_export_elements_classes from directory_components_tags %}
 {% load prefix_path from cms_tags %}
 
 {% block css_layout_class %}campaign-page{% endblock css_layout_class %}
@@ -10,14 +10,9 @@
 <section class="hero hero-generic padding-0" id="campaign-hero" {% if page.campaign_hero_image %}style="background-image: url('{{ page.campaign_hero_image.url }}')"{% endif %}>
 
   <div class="container white-text">
-    <div class="breadcrumbs">
-      <ol>
-        <li>
-          <a href="{% url 'index' %}">Great.gov.uk International</a>
-        </li>
-        <li aria-current="page">{{ page.campaign_heading }}</li>
-      </ol>
-    </div>
+
+    {% url 'index' as index_url %}
+    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' right_label=page.campaign_heading %}
 
     <div class="hero-title">
       <h1 id="campaign-hero-heading" class="heading-hero-generic">{{ page.campaign_heading }}</h1>
