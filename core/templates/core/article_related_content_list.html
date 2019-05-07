@@ -8,7 +8,7 @@
     <h2 class="heading heading-small">Related content</h2>
     <ul>
       {% for article in related_pages %}
-        <li>
+        <li data-ga-class="related-content-card">
           <h3 class="heading-small"><a href="{{ article.full_path|prefix_path }}" class="link">{{ article.article_title }}</a></h3>
         </li>
       {% endfor %}

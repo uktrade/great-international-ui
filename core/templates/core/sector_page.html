@@ -89,7 +89,7 @@
         <h2 class="heading-large">{{ page.case_study_title }}</h2>
         <p>{{ page.case_study_description }}</p>
         {% if page.case_study_cta_page and page.case_study_cta_text %}
-        <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}</a>
+        <a class="button" href="{{ page.case_study_cta_page.full_path }}" data-ga-class="case-study-link">{{ page.case_study_cta_text }}</a>
         {% endif %}
       </div>
     </div>
@@ -140,7 +140,7 @@
         <p>DIT can advise you on doing business abroad, and help put you in touch with other people who can help such as lawyers and distributors.</p>
       </div>
     </div>
-    <div class="grid-row">
+    <div class="grid-row" data-ga-class="next-steps-links">
       <div class="column-full column-half-l margin-bottom-30">
         {% cta_link with_arrow=True url=invest_contact_us_link text="I want to invest in the UK" %}
       </div>
@@ -158,7 +158,7 @@
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
       {% for related_page in related_pages %}
-        <div class="column-full column-half-l column-third-xl">
+        <div class="column-full column-half-l column-third-xl" data-ga-class="related-pages">
           {% if related_page.page_type == 'InternationalArticlePage' %}
             {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
           {% else %}
