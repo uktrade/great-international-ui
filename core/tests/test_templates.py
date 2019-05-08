@@ -17,7 +17,7 @@ dummy_page = {
 
 def test_homepage_button_how_to_do_business_feature_off():
 
-    page = dummy_page
+    page = dummy_page.copy()
     page['hero_cta_text'] = 'Hero CTA text'
 
     context = {
@@ -35,7 +35,7 @@ def test_homepage_button_how_to_do_business_feature_off():
 
 def test_homepage_button_how_to_do_business_feature_on():
 
-    page = dummy_page
+    page = dummy_page.copy()
     page['hero_cta_text'] = 'Hero CTA text'
 
     context = {

@@ -711,7 +711,7 @@ def test_how_to_do_business_feature_off(mock_get_page, client, settings):
 def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
-    page = dummy_page
+    page = dummy_page.copy()
     page['page_type'] = 'InternationalCuratedTopicLandingPage'
 
     mock_get_page.return_value = create_response(
