@@ -78,8 +78,9 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
     )
 
     request = rf.get('/')
-    with translation.override('de'):
-        response = MyView.as_view()(request)
+    request.LANGUAGE_CODE = 'de'
+
+    response = MyView.as_view()(request)
 
     assert response.status_code == 200
     assert response.context_data['language_switcher']['show'] is False
@@ -100,9 +101,10 @@ def test_cms_language_switcher_active_language_available(
         json_payload=dummy_page
     )
 
-    request = rf.get('/de/')
-    with translation.override('de'):
-        response = MyView.as_view()(request)
+    request = rf.get('/')
+    request.LANGUAGE_CODE = 'en-gb'
+
+    response = MyView.as_view()(request)
 
     assert response.status_code == 200
     context = response.context_data['language_switcher']
@@ -648,6 +650,7 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
     )
 
     request = rf.get('/')
+    request.LANGUAGE_CODE = 'en-gb'
     response = SectorPageCMSView.as_view()(request)
 
     view = response.context_data['view']
@@ -708,7 +711,7 @@ def test_how_to_do_business_feature_off(mock_get_page, client, settings):
 def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
-    page = dummy_page
+    page = dummy_page.copy()
     page['page_type'] = 'InternationalCuratedTopicLandingPage'
 
     mock_get_page.return_value = create_response(
@@ -721,3 +724,24 @@ def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     response = client.get(url)
 
     assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_cms_page_from_path_view(lookup_by_path, client, settings):
+    page = dummy_page.copy()
+    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+
+    lookup_by_path.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+    response = client.get('/international/c/page/from/path')
+
+    assert response.status_code == 200
+
+    lookup_by_path.assert_called_with(
+        draft_token=None,
+        language_code='en-gb',
+        path='page/from/path',
+        site_id=settings.DIRECTORY_CMS_SITE_ID,
+    )
