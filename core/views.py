@@ -13,13 +13,6 @@ from directory_components.mixins import (
     GA360Mixin)
 from directory_components.helpers import get_user_country
 
-from directory_constants import slugs
-from directory_constants.choices import COUNTRY_CHOICES
-from directory_components.mixins import (
-    CMSLanguageSwitcherMixin
-)
-from directory_components.helpers import get_user_country
-
 from core.mixins import (
     TEMPLATE_MAPPING,
     GetSlugFromKwargsMixin,
