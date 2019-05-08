@@ -56,33 +56,20 @@
 		</div>
 	</div>
 </section>
-
-{% if page.related_pages or page.added_related_pages %}
+{% if page.child_pages %}
 	<section id="news-events-section" class="capital-invest-region-page-section">
 		<div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
 			<div class="card-grid">
-			{% for related_page in page.related_pages %}
-				<div class="column-third-xl column-half-l column-full">
-					<div class="card">
-						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'capital-invest-opportunity' page.parent.meta.slug page.meta.slug related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
-							<p>{{ related_page.location }}</p>
-							<p class="bold-small">{{ related_page.scale }}</p>
-							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-			{% for related_pages in page.added_related_pages %}
-				{% for related_page in related_pages.added_related_page %}
+			{% for child_page in page.child_pages %}
+				{% for opportunity in child_page.related_page %}
 					<div class="column-third-xl column-half-l column-full">
 						<div class="card">
 							<div class="card-inner wrap-tight padding-horizontal-45">
-								<a href="{% url 'capital-invest-opportunity' page.parent.meta.slug page.meta.slug related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
-								<p>{{ related_page.location }}</p>
-								<p class="bold-small">{{ related_page.scale }}</p>
-								<p><u>Investment type:</u> {{ related_page.investment_type }}</p>
+								<a href="{% url 'capital-invest-child-opportunity' page.parent.meta.slug page.meta.slug child_page.meta.slug %}" class="heading-medium">{{ opportunity.title }}</a>
+								<p>{{ opportunity.location }}</p>
+								<p class="bold-small">{{ opportunity.scale }}</p>
+								<p><u>Investment type: </u>{{ opportunity.investment_type }}</p>
 							</div>
 						</div>
 					</div>

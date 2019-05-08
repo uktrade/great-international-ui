@@ -226,6 +226,12 @@ class CapitalInvestSectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
     page_type = 'CapitalInvestOpportunityPage'
     template_name = 'core/capital_invest_opportunity_page.html'
+
+
+class CapitalInvestRegionalSectorOpportunityPageCMSView(GetSlugFromKwargsMixin,
+                                                        BaseCMSPage):
+    page_type = 'CapitalInvestRegionalSectorOpportunityPage'
+    template_name = 'core/capital_invest_child_opportunity_page.html'
     hero_subheading = []
 
     def get_context_data(self, **kwargs):
@@ -235,7 +241,6 @@ class CapitalInvestOpportunityPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
             **kwargs
         )
         self.hero_subheading = "{0} - {1}"\
-            .format(context['page']['related_sector_page']['parent']['title'],
-                    context['page']['related_sector_page']['title'])
-        print('\n\n\n\n\n\n', self.hero_subheading)
+            .format(context['page']['parent']['parent']['title'],
+                    context['page']['parent']['title'])
         return context
