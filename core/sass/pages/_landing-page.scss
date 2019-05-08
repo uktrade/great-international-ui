@@ -154,20 +154,6 @@
   .container {
     border-bottom: 1px solid $lightened-great-blue;
   }
-
-  @mixin landingPageSection {
-  padding: $spacing-2 0;
-  }
-
-  .landing-page-section:nth-child(odd) {
-    @include landingPageSection;
-  }
-
-  .landing-page-section:nth-child(even) {
-    @include landingPageSection;
-    background: $stone-40;
-  }
-
 }
 
 // JS ENABLED STYLES
