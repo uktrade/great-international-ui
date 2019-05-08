@@ -4,6 +4,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes from directory_components_tags %}
 
+{% block css_layout_class %}capital-invest-sector-page{% endblock %}
+
 {% block content %}
 
 {% if page.parent %}
@@ -33,7 +35,7 @@
   </div>
 </section>
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-sector-page-section">
 	<div class="container">
 		<div class="grid-row">
 			<div class="font-medium padding-bottom-30 column-half-l">
@@ -56,8 +58,9 @@
 		</div>
 	</div>
 </section>
+
 {% if page.child_pages %}
-	<section id="news-events-section" class="capital-invest-region-page-section">
+	<section id="news-events-section" class="capital-invest-sector-page-section">
 		<div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
 			<div class="card-grid">
@@ -80,7 +83,7 @@
 	</section>
 {% endif %}
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-sector-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
 		<div class="grid-row padding-bottom-45">

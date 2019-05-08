@@ -4,6 +4,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes from directory_components_tags %}
 
+{% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
+
 {% block content %}
 
 {% for opportunity in page.related_page %}
@@ -33,7 +35,7 @@
 </section>
 
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<div class="card-grid">
 			<div class="column-half-l left-half-page-text">
@@ -56,7 +58,7 @@
 	</div>
 </section>
 
-<section class="capital-invest-region-page-section capital-invest-region-icons-section">
+<section class="capital-invest-opportunity-page-section capital-invest-region-icons-section">
 	<div class="container">
 		<div class="grid-row padding-bottom-90 ">
 			<div class="column-third">
@@ -95,7 +97,7 @@
 	</div>
 </section>
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<div class="grid-row">
 			<h2 class="heading-large">{{ opportunity.project_background_title }} </h2>
@@ -132,7 +134,7 @@
 {% endif %}
 
 {% if opportunity.related_pages %}
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<div class="grid-row">
 			<h1 class="heading-large padding-bottom-30">
@@ -142,7 +144,7 @@
 				<div class="column-third-xl column-half-l column-full">
 					<div class="card">
 						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'capital-invest-opportunity' opportunity.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+							<a href="{% url 'capital-invest-opportunity' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
 							<p>{{ related_page.location }}</p>
 							<p class="bold-small">{{ related_page.scale }}</p>
 							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
@@ -156,7 +158,7 @@
 </section>
 {% endif %}
 
-<section class="capital-invest-region-page-section">
+<section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ opportunity.next_steps_title }}</h1>
 		<div class="grid-row padding-bottom-45">

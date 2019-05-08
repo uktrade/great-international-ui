@@ -4,19 +4,19 @@
 @import '../partials/vars';
 @import '../partials/mixins';
 
-.capital-invest-region-page {
+.capital-invest-sector-page {
 
   @mixin landingPageSection {
     padding: $spacing-1 0;
   }
 
-  .capital-invest-region-page-section:nth-child(odd) {
+  .capital-invest-sector-page-section:nth-child(odd) {
     @include landingPageSection;
-    background: $stone-40;
   }
 
-  .capital-invest-region-page-section:nth-child(even) {
+  .capital-invest-sector-page-section:nth-child(even) {
     @include landingPageSection;
+    background: $stone-40;
   }
 
 }

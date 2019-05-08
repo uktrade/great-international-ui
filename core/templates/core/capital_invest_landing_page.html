@@ -4,6 +4,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes from directory_components_tags %}
 
+{% block css_layout_class %}capital-invest-landing-page{% endblock %}
+
 {% block content %}
 
 {% url 'doing-business-with-the-uk' as doing_business_url %}
@@ -37,25 +39,13 @@
 		<div class="grid-row">
 			<p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
 		</div>
+
 		<div class="card-grid">
+		{% for region in page.related_regions %}
 			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_one_image.url img_alt='' region='midlands-engine' title=page.region_card_one_title pdf_text=page.region_card_one_cta_text description=page.region_card_one_description pdf_link=page.region_card_one_pdf_document %}
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=region.image.url img_alt='' region=region.meta.slug title=region.title pdf_text=page.region_card_one_cta_text description=region.featured_description pdf_link=page.region_card_one_pdf_document %}
 			</div>
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_two_image.url img_alt='' region='south-england' url=card_url title=page.region_card_two_title pdf_text=page.region_card_two_cta_text description=page.region_card_two_description pdf_link=page.region_card_two_pdf_document %}
-			</div>
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_three_image.url img_alt='' url=card_url title=page.region_card_three_title pdf_text=page.region_card_three_cta_text description=page.region_card_three_description pdf_link=page.region_card_three_pdf_document %}
-			</div>
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_four_image.url img_alt='' url=card_url title=page.region_card_four_title pdf_text=page.region_card_four_cta_text description=page.region_card_four_description pdf_link=page.region_card_four_pdf_document %}
-			</div>
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_five_image.url img_alt='' url=card_url title=page.region_card_five_title pdf_text=page.region_card_five_cta_text description=page.region_card_five_description pdf_link=page.region_card_five_pdf_document %}
-			</div>
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_six_image.url img_alt='' url=card_url title=page.region_card_six_title pdf_text=page.region_card_six_cta_text description=page.region_card_six_description pdf_link=page.region_card_six_pdf_document %}
-			</div>
+		{% endfor %}
 		</div>
   </div>
 </section>

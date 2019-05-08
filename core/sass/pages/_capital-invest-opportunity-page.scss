@@ -4,19 +4,23 @@
 @import '../partials/vars';
 @import '../partials/mixins';
 
-.capital-invest-region-page {
+.capital-invest-opportunity-page {
 
   @mixin landingPageSection {
     padding: $spacing-1 0;
   }
 
-  .capital-invest-region-page-section:nth-child(odd) {
+  .capital-invest-opportunity-page-section:nth-child(odd) {
+    @include landingPageSection;
+  }
+
+  .capital-invest-opportunity-page-section:nth-child(even) {
     @include landingPageSection;
     background: $stone-40;
   }
 
-  .capital-invest-region-page-section:nth-child(even) {
-    @include landingPageSection;
+  .icon {
+      height: 64px;
   }
 
 }

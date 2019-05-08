@@ -4,6 +4,8 @@
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes statistics_card_grid from directory_components_tags %}
 
+{% block css_layout_class %}capital-invest-region-page{% endblock %}
+
 {% block content %}
 
 {% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
@@ -20,7 +22,7 @@
 	<div class="container">
 		<div class="card-grid">
 			<div class="column-half-l left-half-page-text">
-				<div class="font-medium padding-bottom-30">
+				<div class="font-medium padding-bottom-60">
 					{{ page.region_summary_section_intro}}
 				</div>
 				<div>
@@ -48,13 +50,11 @@
 		{% for sector_page in page.child_pages %}
 			<div class="column-third-xl column-half-l column-full">
 				<div class="card">
-					<div class="card-image" role="img" style="background-image: url({{ sector_page.hero_image.url }});">
+					<div class="card-image" role="img" style="background-image: url({{ sector_page.image.url }});">
 					</div>
 					<div class="card-inner wrap-tight padding-horizontal-45">
 						<a href="{% url 'capital-invest-sector' page.meta.slug sector_page.meta.slug %}"><h3 class="heading-large">{{ sector_page.title }}</h3></a>
-						{% if sector_page.featured_description %}
-							<p class="description">{{ sector_page.featured_description }}</p>
-						{% endif %}
+						<p class="description">{{ sector_page.featured_description }}</p>
 					</div>
 				</div>
 			</div>
@@ -79,7 +79,7 @@
 
 <section class="capital-invest-region-page-section">
 	<div class="container">
-		<h1 class="heading-large ">{{ page.section_title }}</h1>
+		<h1 class="heading-large">{{ page.section_title }}</h1>
 		<div class="card-grid">
 			{% if page.section_image.url %}
 				<div class="column-half-xl center_vertical">
