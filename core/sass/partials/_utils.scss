@@ -83,7 +83,19 @@
   margin-top: -30px;
 }
 
-.center_vertical{
+.center-vertical{
   margin-top: auto;
   margin-bottom: auto;
 }
+
+ @media (min-width: 641px) {
+    section .container {
+      .left-half-page-text {
+        padding-right: 60px;
+      }
+
+      .right-half-page-text {
+        padding-left: 60px;
+      }
+    }
+  }

@@ -18,10 +18,10 @@
 			<p class="font-small column-half-l margin-bottom-45">{{ page.reason_to_invest_section_intro}} </p>
 		</div>
 		<div class="card-grid ci-landing-page-benefit-section">
-			<div class="column-half padding-right-60">
+			<div class="column-half left-half-page-text">
 				{{ page.reason_to_invest_section_content|add_export_elements_classes|safe }}
 			</div>
-			<div class="column-half center_vertical flex-shrink-0 max-width-100">
+			<div class="column-half center-vertical flex-shrink-0 max-width-100">
 			{{page.field }}
 				{% if page.reason_to_invest_section_image.url %}
 					<figure class="landing-page-image flex-shrink-0">
@@ -60,7 +60,7 @@
 					{{ page.energy_sector_cta_text }}
 				</a>
 			</div>
-			<div class="column-half center_vertical flex-shrink-0 max-width-100">
+			<div class="column-half center-vertical flex-shrink-0 max-width-100">
 				{% if page.energy_sector_image.url %}
 					<figure class="landing-page-image flex-shrink-0">
 						<img class="width-full" src="{{page.energy_sector_image.url}}">
@@ -81,7 +81,7 @@
 					Homes in England
 				</button>
 			</div>
-			<div class="column-half flex-shrink-0 center_vertical">
+			<div class="column-half flex-shrink-0 center-vertical">
 				{% if page.energy_sector_image.url %}
 					<figure class="landing-page-image flex-shrink-0">
 						<img class="width-full" src="https://fakeimg.pl/640x360">

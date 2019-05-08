@@ -12,11 +12,11 @@
 
   .capital-invest-region-page-section:nth-child(odd) {
     @include landingPageSection;
-    background: $stone-40;
   }
 
   .capital-invest-region-page-section:nth-child(even) {
     @include landingPageSection;
+    background: $stone-40;
   }
 
 }

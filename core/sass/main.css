@@ -148,11 +148,19 @@ a.labelled-image-card .card-header h3 {
   margin-top: -30px;
 }
 
-.center_vertical {
+.center-vertical {
   margin-top: auto;
   margin-bottom: auto;
 }
 
+@media (min-width: 641px) {
+  section .container .left-half-page-text {
+    padding-right: 60px;
+  }
+  section .container .right-half-page-text {
+    padding-left: 60px;
+  }
+}
 section {
   padding-bottom: 0;
 }
@@ -413,10 +421,10 @@ body.js-enabled .landing-page .country-selector-dialog select {
 
 .capital-invest-region-page .capital-invest-region-page-section:nth-child(odd) {
   padding: 60px 0;
-  background: #f2eee8;
 }
 .capital-invest-region-page .capital-invest-region-page-section:nth-child(even) {
   padding: 60px 0;
+  background: #f2eee8;
 }
 
 .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(odd) {
@@ -433,6 +441,9 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-page .capital-invest-opportunity-page-section:nth-child(even) {
   padding: 60px 0;
   background: #f2eee8;
+}
+.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-region-icons-section .contact-button, .capital-invest-landing-page .capital-invest-region-icons-section .capital-invest-opportunity-page .contact-button {
+  height: 64px;
 }
 
 .article-detail-page article.grid-row {

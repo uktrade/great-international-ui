@@ -38,7 +38,7 @@
 <section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<div class="card-grid">
-			<div class="column-half-l left-half-page-text">
+			<div class="column-half-l left-half-page-text center-vertical">
 				<div class="font-medium padding-bottom-30">
 					{{ opportunity.opportunity_summary_intro}}
 				</div>
@@ -46,7 +46,7 @@
 					{{ opportunity.opportunity_summary_content|add_export_elements_classes|safe }}
 				</div>
 				</div>
-				<div class="column-half-l center_vertical flex-shrink-0 max-width-100">
+				<div class="column-half-l center-vertical flex-shrink-0 max-width-100">
 					{% if opportunity.opportunity_summary_image.url %}
 						<figure class="landing-page-image flex-shrink-0">
 							<img class="width-full" src="{{opportunity.opportunity_summary_image.url}}">
@@ -121,7 +121,7 @@
 		</div>
 		<div class="grid-row">
 		{% if opportunity.project_image.url %}
-			<figure class="landing-page-image flex-shrink-0" style="align-items: center; display: flex; flex-direction: column;" >
+			<figure class="landing-page-image flex-shrink-0 padding-top-45" style="align-items: center; display: flex; flex-direction: column;" >
 				<img class="width-half" src="{{opportunity.project_image.url}}">
 			</figure>
 		{%  endif %}
