@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load filter_by_active_language from cms_tags %}
-{% load card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components_tags %}
+{% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components_tags %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
@@ -10,17 +10,9 @@
 
 <section id="breadcrumb-section">
   <div class="container">
-    <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
-      <ol>
-        <li>
-          <a href="{% url 'index' %}">Great.gov.uk International</a>
-        </li>
-        <li>
-          <a href="{% url 'industries' %}">Industries</a>
-        </li>
-        <li aria-current="page">{{ page.heading }}</li>
-      </ol>
-    </nav>
+    {% url 'index' as index_url %}
+    {% url 'industries' as industries_url %}
+    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' middle_url=industries_url middle_label='Industries' right_label=page.heading %}
   </div>
 </section>
 
@@ -68,7 +60,7 @@
     <div class="grid-row">
       {% for subsection in page.section_two_subsections %}
         <div class="column-full column-third-l">
-          <img class="section-two-icon" src="{{ subsection.icon.url }}"/>
+          <img class="section-two-icon" src="{{ subsection.icon.url }}" alt="">
           <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
           <p class="font-xsmall">{{ subsection.body }}</p>
         </div>

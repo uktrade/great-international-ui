@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load filter_by_active_language from cms_tags %}
-{% load card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components_tags %}
+{% load breadcrumbs card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components_tags %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
@@ -16,14 +16,8 @@
   </section>
 
   <div class="container">
-    <div class="breadcrumbs">
-      <ol>
-        <li>
-          <a href="{% url 'index' %}">Great.gov.uk International</a>
-        </li>
-        <li aria-current="page">{{ page.display_title }}</li>
-      </ol>
-    </div>
+    {% url 'index' as index_url %}
+    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' right_label=page.display_title %}
 
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
