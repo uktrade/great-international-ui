@@ -53,8 +53,8 @@ def test_homepage_button_how_to_do_business_feature_on():
 def test_article_detail_page_no_related_content():
     test_article_page_no_related_content = {
         'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
+        'title': 'Test article',
+        'subheading': 'Test teaser',
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'last_published_at': '2018-10-09T16:25:13.142357Z',
@@ -78,8 +78,8 @@ def test_article_detail_page_related_content():
 
     article_page = {
         'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
+        'title': 'Test article',
+        'subheading': 'Test teaser',
         'article_image': {'url': 'foobar.png'},
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [
@@ -166,11 +166,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article1_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 1',
-            'article_title': 'Related article 1',
-            'full_path': '/advice/finance/article-1/',
+            'subheading': 'Related article description 1',
+            'title': 'Related article 1',
             'meta': {
                 'languages': [['en-gb', 'English']],
+                'url': '/international/advice/finance/article-1/',
                 'slug': 'article-1'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 1'
@@ -178,11 +178,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article2_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 2',
-            'article_title': 'Related article 2',
-            'full_path': '/advice/finance/article-2/',
+            'subheading': 'Related article description 2',
+            'title': 'Related article 2',
             'meta': {
                 'languages': [['en-gb', 'English']],
+                'url': '/international/advice/finance/article-2/',
                 'slug': 'article-2'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 2'
@@ -190,11 +190,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article3_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 3',
-            'article_title': 'Related article 3',
-            'full_path': '/advice/finance/article-3/',
+            'subheading': 'Related article description 3',
+            'title': 'Related article 3',
             'meta': {
                 'languages': [('en-gb', 'English')],
+                'url': '/international/advice/finance/article-3/',
                 'slug': 'article-3'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 3'

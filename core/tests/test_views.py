@@ -735,7 +735,7 @@ def test_cms_page_from_path_view(lookup_by_path, client, settings):
         status_code=200,
         json_payload=page
     )
-    response = client.get('/international/c/page/from/path')
+    response = client.get('/international/content/page/from/path')
 
     assert response.status_code == 200
 
