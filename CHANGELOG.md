@@ -2,6 +2,10 @@
 
 ## Pre-release
 
+
+## [2019.05.09](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.09)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.26...2019.05.09)
+
 ### Implemented enhancements:
 
 - [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to international pages.
@@ -9,7 +13,7 @@
 ### Fixed bugs:
 
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
-- [[CMS-1395]](https://uktrade.atlassian.net/browse/CMS-1395) Fix language cookie name and domain to be the same across all our services.
+- [CMS-1395](https://uktrade.atlassian.net/browse/CMS-1395) Fix language cookie name and domain to be the same across all our services.
 - [CMS-1241](https://uktrade.atlassian.net/browse/CMS-1241) Accessibility fixes - img alt attributes and breadcrumbs
 
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
@@ -17,11 +21,11 @@
 
 ### Implemented enhancements:
 
-- [[CMS-1400]](https://uktrade.atlassian.net/browse/CMS-1400) Added new url/view to support tree-based routing
-- [[CMS-775]](https://uktrade.atlassian.net/browse/CMS-775) Added alternate language url metadata to base template to improve SEO
-- [[CMS-1386]](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
-- [[CMS-1247]](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
-- [[CMS-1384]](https://uktrade.atlassian.net/browse/CMS-1384) Fix the invest CTA on sector pages to link directly to invest's contact form
+- [CMS-1400](https://uktrade.atlassian.net/browse/CMS-1400) Added new url/view to support tree-based routing
+- [CMS-775](https://uktrade.atlassian.net/browse/CMS-775) Added alternate language url metadata to base template to improve SEO
+- [CMS-1386](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
+- [CMS-1247](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
+- [CMS-1384](https://uktrade.atlassian.net/browse/CMS-1384) Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
