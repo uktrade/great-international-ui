@@ -1,14 +1,39 @@
-{% extends 'core/topic_list_base.html' %}
-{% load filter_by_active_language from cms_tags %}
+{% extends 'core/base_cms.html' %}
 
-{% block child_pages %}
-  <div class="card-grid">
-    {% for listing in page.child_pages|filter_by_active_language %}
-      {% if listing.articles_count > 0 %}
-        <div class="column-full column-third-l column-half-m">
-          {% include 'core/includes/landing_page_card.html' with listing=listing %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-{% endblock child_pages %}
+{% load filter_by_active_language from cms_tags %}
+{% load card from directory_components_tags %}
+
+{% block css_layout_class %}article-list-page{% endblock css_layout_class %}
+
+{% block content %}
+
+{% block hero %}
+  <section class="hero hero-generic padding-0" {% if page.hero_image %}style="background-image: url('{{ page.hero_image.url }}')"{% endif %}>
+    <div class="container">
+      <div class="hero-title-compact">
+        <h1 class="heading-hero-generic{% if page.breadcrumbs_label|length > 15 %}-compact{% endif %}" id="hero-heading">{{ page.landing_page_title }}</h1>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+<section class="breadcrumbs-section">
+  {% block breadcrumbs %}
+    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
+  {% endblock %}
+</section>
+
+<section class="topic-list-section background-stone-30 padding-vertical-60">
+    <div class="container">
+      {% block child_pages %}
+      <div class="card-grid">
+        {% for listing in page.child_pages|filter_by_active_language %}
+          <div class="column-full column-third-l column-half-m">
+            {% include 'core/includes/card_with_publish_date.html' with listin=listing %}
+          </div>
+        {% endfor %}
+      </div>
+      {% endblock %}
+    </div>
+</section>
+{% endblock %}
