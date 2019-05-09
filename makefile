@@ -60,7 +60,8 @@ DEBUG_SET_ENV_VARS := \
 	export DIRECTORY_CONSTANTS_URL_INVEST=http://invest.trade.great:8012; \
 	export DIRECTORY_CONSTANTS_URL_SINGLE_SIGN_ON=http://sso.trade.great:8004; \
 	export IP_RESTRICTOR_RESTRICT_UI=true; \
-	export LANGUAGE_COOKIE_DOMAIN=.trade.great
+	export LANGUAGE_COOKIE_DOMAIN=.trade.great; \
+	export DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT=15
 
 TEST_SET_ENV_VARS := \
 	export DIRECTORY_FORMS_API_BASE_URL=http://forms.trade.great:8011; \
