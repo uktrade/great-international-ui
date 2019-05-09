@@ -112,7 +112,7 @@ class IndustriesLandingPageCMSView(
     BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
 ):
     page_type = 'InternationalTopicLandingPage'
-    template_name = 'core/industries_landing_page.html'
+    template_name = 'core/topic_list.html'
     ga360_payload = {'page_type': 'IndustriesLandingPage'}
 
     def get_context_data(self, *args, **kwargs):
@@ -153,9 +153,8 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 
 
 class CMSPageFromPathView(
-    CMSLanguageSwitcherMixin, CountryDisplayMixin, TemplateView
+    CountryDisplayMixin, CMSLanguageSwitcherMixin, TemplateView
 ):
-
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
