@@ -92,6 +92,11 @@ urlpatterns = [
         name="campaign"
     ),
     url(
+        r'^international/content/$',
+        RedirectView.as_view(url=reverse_lazy('index')),
+        name="content-index-redirect"
+    ),
+    url(
         r'^international/content/(?P<path>[\w\-/]*)$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
