@@ -5,6 +5,10 @@
 ### Implemented enhancements:
 
 - [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to international pages.
+- Upgrade Directory Components to 11.0.3 to add
+    - [CI-114](https://uktrade.atlassian.net/browse/CI-114) Add 'UK Setup Guide' link to header
+    - [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to the international header
+    - [Full Changelog](https://github.com/uktrade/directory-components/blob/master/CHANGELOG.md)
 
 ### Fixed bugs:
 

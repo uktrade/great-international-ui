@@ -26,9 +26,11 @@
     {{ block.super }}
     {% if ga360 %}
         <script src="{% static 'js/dit.tagging.js' %}"></script>
+        <script src="{% static 'directory_components/js/dit.tagging.internationalHeader.js' %}"></script>
         <script id="ga360-script">
             window.dataLayer.push({ 'pageCategory': '{{ ga360.page_type }}' });
             dit.tagging.international.init('{{ ga360.page_type }}');
+            dit.tagging.internationalHeader.init();
         </script>
     {% endif %}
 {% endblock %}
