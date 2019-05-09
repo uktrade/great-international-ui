@@ -12,6 +12,7 @@ from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin)
 from directory_components.helpers import get_user_country
+from directory_components.mixins import CountryDisplayMixin
 
 from core.mixins import (
     TEMPLATE_MAPPING,
@@ -151,7 +152,9 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
         return context
 
 
-class CMSPageFromPathView(TemplateView):
+class CMSPageFromPathView(
+    CMSLanguageSwitcherMixin, CountryDisplayMixin, TemplateView
+):
 
     @cached_property
     def page(self):

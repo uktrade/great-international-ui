@@ -43,10 +43,7 @@ urlpatterns = [
         r"^international/robots\.txt$",
         directory_components.views.RobotsView.as_view(),
         name='robots'
-    )
-]
-
-urlpatterns += (
+    ),
     url(
         r"^international/$",
         core.views.LandingPageCMSView.as_view(),
@@ -95,9 +92,9 @@ urlpatterns += (
         name="campaign"
     ),
     url(
-        r'^international/c/(?P<path>[\w\-/]*)$',
+        r'^international/content/(?P<path>[\w\-/]*)$',
         core.views.CMSPageFromPathView.as_view(),
-        name="render-cms-page"
+        name="cms-page-from-path"
     ),
     url(
         r"^international/(?P<slug>[\w-]+)/$",
@@ -114,4 +111,4 @@ urlpatterns += (
         core.views.ArticlePageView.as_view(),
         name="article-detail"
     )
-)
+]
