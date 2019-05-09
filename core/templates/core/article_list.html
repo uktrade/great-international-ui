@@ -47,12 +47,7 @@
 
             {% for child_page in localised_children %}
               <li class="article">
-                <a {% if child_page.page_type == 'InternationalCampaignPage' %}
-                href="{% url 'campaign' child_page.meta.slug %}"
-                {% else %}
-                href="{{ request.path }}{{ child_page.meta.slug }}"
-                {% endif %}
-                class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
+                <a href="{{ child_page.meta.url }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
                 <div class="details">
                   <p class="subheading">
                     {% if region == 'eu' %}
@@ -75,7 +70,7 @@
 
             {% for child_page in page.child_pages|filter_by_active_language %}
               <li class="article">
-                <a href="{{ child_page.full_path|prefix_path }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
+                <a href="{{ child_page.meta.url }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
                 <p class="subheading">Last updated {{ child_page.last_published_at|parse_date }}</p>
               </li>
             {% endfor %}
