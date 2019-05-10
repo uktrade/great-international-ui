@@ -59,24 +59,24 @@ urlpatterns = [
     url(
         r'^international/content/industries/$',
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'industries/'},
+        {'path': 'industries'},
         name="industries"
     ),
     url(
         r"^international/content/how-to-setup-in-the-uk/$",
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'how-to-setup-in-the-uk/'},
+        {'path': 'how-to-setup-in-the-uk'},
         name="how-to-setup-in-the-uk"
     ),
     url(
         r"^international/content/how-to-do-business-with-the-uk/$",
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'how-to-do-business-with-the-uk/'},
+        {'path': 'how-to-do-business-with-the-uk'},
         name="how-to-do-business-with-the-uk"
     ),
     # ----
     url(
-        r'^international/content/(?P<path>[\w\-/]*)$',
+        r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
     ),
