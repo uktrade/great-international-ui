@@ -1,3 +1,5 @@
+import pytest
+
 from django.template.loader import render_to_string
 
 from bs4 import BeautifulSoup
@@ -363,3 +365,157 @@ def test_marketing_campaign_page_required_fields():
     assert soup.select(
         "li[aria-current='page']"
         )[0].text == campaign_page_required_fields['campaign_heading']
+
+
+def test_homepage_no_related_pages():
+    context = {
+        'page': {
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': []
+        }
+    }
+
+    html = render_to_string('core/landing_page.html', context)
+
+    assert 'News title' not in html
+
+
+def test_homepage_related_pages():
+    context = {
+        'page': {
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': [
+                {
+                    'title': 'Related article title',
+                    'page_type': 'InternationalArticlePage',
+                    'teaser': 'Related article teaser',
+                    'meta': {
+                        'slug': 'article',
+                        'languages': [('en-gb', 'English')],
+                        'url': (
+                            'https://great.gov.uk/international/'
+                            'topic/list/article'),
+                    },
+                    'full_path': '/topic/list/article',
+                    'full_url':
+                    'https://great.gov.uk/international/topic/list/article',
+                },
+                {
+                    'title': 'Related campaign title',
+                    'page_type': 'InternationalCampaignPage',
+                    'teaser': 'Related campaign teaser',
+                    'meta': {
+                        'slug': 'campaign',
+                        'languages': [('en-gb', 'English')],
+                        'url': (
+                            'https://great.gov.uk/international/'
+                            'campaigns/campaign'),
+                    },
+                    'full_path': '/international/campaigns/campaign',
+                    'full_url':
+                    'https://great.gov.uk/international/campaigns/campaign',
+                },
+            ]
+        }
+    }
+
+    html = render_to_string('core/landing_page.html', context)
+
+    assert 'News title' in html
+    assert 'Related article title' in html
+    assert 'Related article teaser' in html
+    assert '/topic/list/article' in html
+    assert 'Related campaign title' in html
+    assert 'Related campaign teaser' in html
+    assert '/international/campaigns/campaign' in html
+
+
+test_localised_child_pages = [
+    {
+        'last_published_at': '2019-02-28T10:56:30.455848Z',
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalCampaignPage',
+        'teaser': 'Campaign one teaser',
+        'title': 'Campaign one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:31.455848Z',
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article one teaser',
+        'title': 'Article one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article two teaser',
+        'title': 'Article two'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-three',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article three teaser',
+        'title': 'Article three'
+    },
+]
+
+
+@pytest.mark.parametrize('localised_articles,total_articles', (
+    (
+        [],
+        4
+    ),
+    (
+        test_localised_child_pages[:-3],
+        5
+    ),
+    (
+        test_localised_child_pages,
+        8
+    ),
+))
+def test_article_count_with_regional_articles(
+    localised_articles, total_articles
+):
+    context = {
+        'page': {
+            'page_type': 'InternationalArticleListingPage',
+            'articles_count': 4,
+            'localised_child_pages': localised_articles,
+            'child_pages': [],
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+        }
+    }
+
+    html = render_to_string('core/article_list.html', context)
+
+    soup = BeautifulSoup(html, 'html.parser')
+    assert '{} articles'.format(total_articles) in soup.find(
+        id='hero-description').string

@@ -1,17 +1,10 @@
 from unittest.mock import patch
-import pytest
 from bs4 import BeautifulSoup
 from django.urls import reverse
 
-from django.utils import translation
-from django.views.generic import TemplateView
-
-from directory_components.mixins import CMSLanguageSwitcherMixin
-
-from core.mixins import CMSPageMixin, GetSlugFromKwargsMixin
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import SectorPageCMSView
+from core.views import CMSPageFromPathView
 
 
 test_sectors = [
@@ -54,13 +47,8 @@ dummy_page = {
 }
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
-    class MyView(CMSPageMixin, CMSLanguageSwitcherMixin, TemplateView):
-
-        template_name = 'core/base.html'
-        slug = 'test'
-        active_view_name = ''
 
     page = {
         'title': 'test',
@@ -69,7 +57,7 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
                 ['de', 'Deutsch'],
             ]
         },
-        'page_type': ''
+        'page_type': 'InternationalHomePage'
     }
 
     mock_cms_response.return_value = helpers.create_response(
@@ -77,145 +65,56 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
         json_payload=page
     )
 
-    request = rf.get('/')
+    request = rf.get('/international/')
     request.LANGUAGE_CODE = 'de'
 
-    response = MyView.as_view()(request)
+    response = CMSPageFromPathView.as_view()(request, path='/international/')
 
     assert response.status_code == 200
     assert response.context_data['language_switcher']['show'] is False
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_active_language_available(
     mock_cms_response, rf
 ):
-    class MyView(CMSPageMixin, CMSLanguageSwitcherMixin, TemplateView):
-
-        template_name = 'core/base.html'
-        slug = 'test'
-        active_view_name = ''
+    page = dummy_page.copy()
+    page['page_type'] = 'InternationalHomePage'
 
     mock_cms_response.return_value = helpers.create_response(
         status_code=200,
-        json_payload=dummy_page
+        json_payload=page
     )
 
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'
 
-    response = MyView.as_view()(request)
+    response = CMSPageFromPathView.as_view()(request, path='/international/')
 
     assert response.status_code == 200
     context = response.context_data['language_switcher']
     assert context['show'] is True
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_active_view_name(mock_cms_response, rf):
-    class TestView(CMSPageMixin, TemplateView):
-        active_view_name = 'test'
-        template_name = 'core/base.html'
-        slug = 'test'
-
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=dummy_page
-    )
-
-    request = rf.get('/')
-    response = TestView.as_view()(request)
-
-    assert response.status_code == 200
-    assert response.context_data['active_view_name'] == 'test'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_cms_page(mock_cms_response, rf):
-    class TestView(CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-        slug = 'invest-home-page'
-        active_view_name = ''
+
+    page = dummy_page.copy()
+    page['page_type'] = 'InternationalHomePage'
 
     mock_cms_response.return_value = helpers.create_response(
         status_code=200,
-        json_payload=dummy_page
+        json_payload=page
     )
 
     request = rf.get('/')
-    response = TestView.as_view()(request)
-
-    assert response.context_data['page'] == dummy_page
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_get_cms_page_kwargs_slug(mock_cms_response, rf):
-    class TestView(GetSlugFromKwargsMixin, CMSPageMixin, TemplateView):
-        template_name = 'core/base.html'
-        active_view_name = ''
-
-    page = {
-        'title': 'the page',
-        'meta': {
-            'languages': [('en-gb', 'English'), ('de', 'German')],
-            'slug': 'aerospace'
-        },
-        'page_type': ''
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-            status_code=200,
-            json_payload=page
-        )
-
-    translation.activate('en-gb')
-    request = rf.get('/')
-    view = TestView.as_view()
-    response = view(request, slug='aerospace')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(request, path='/')
 
     assert response.context_data['page'] == page
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_breadcrumbs_mixin(mock_get_page, client, settings):
-
-    url = reverse('article-detail', kwargs={
-        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload={
-            'page_type': 'InternationalArticlePage',
-            'meta': {
-                'slug': 'foo',
-                'languages': [('en-gb', 'English')],
-            },
-        }
-    )
-    response = client.get(url)
-
-    breadcrumbs = response.context_data['breadcrumbs']
-    assert breadcrumbs == [
-        {
-            'url': '/international/',
-            'label': 'International'
-        },
-        {
-            'url': '/international/topic/',
-            'label': 'Topic'
-        },
-        {
-            'url': '/international/topic/bar/',
-            'label': 'Bar'
-        },
-        {
-            'url': '/international/topic/bar/foo/',
-            'label': 'Foo'
-        },
-    ]
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_article_detail_page_social_share_links(
     mock_get_page, client, settings
 ):
@@ -227,7 +126,7 @@ def test_article_detail_page_social_share_links(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'full_path': (
-            '/international/topic/bar/foo/'),
+            '/international/content/topic/bar/foo/'),
         'last_published_at': '2018-10-09T16:25:13.142357Z',
         'meta': {
             'slug': 'foo',
@@ -236,8 +135,7 @@ def test_article_detail_page_social_share_links(
         'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={
-        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
+    url = '/international/content/topic/bar/foo/'
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -253,18 +151,18 @@ def test_article_detail_page_social_share_links(
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
         '%20-%20Test%20article%20'
-        'http://testserver/international/topic/bar/foo/')
+        'http://testserver/international/content/topic/bar/foo/')
     facebook_link = (
         'https://www.facebook.com/share.php?u='
-        'http://testserver/international/topic/bar/foo/')
+        'http://testserver/international/content/topic/bar/foo/')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/'
+        'http://testserver/international/content/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20Test%20article%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/topic/bar/'
+        'mailto:?body=http://testserver/international/content/topic/bar/'
         'foo/&subject=great.gov.uk%20-%20Test%20article%20'
     )
 
@@ -274,7 +172,7 @@ def test_article_detail_page_social_share_links(
     assert soup.find(id='share-email').attrs['href'] == email_link
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_article_detail_page_social_share_links_no_title(
     mock_get_page, client, settings
 ):
@@ -285,7 +183,7 @@ def test_article_detail_page_social_share_links_no_title(
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'full_path': (
-            '/international/bar/foo/'),
+            '/international/content/topic/bar/foo/'),
         'last_published_at': '2018-10-09T16:25:13.142357Z',
         'meta': {
             'slug': 'foo',
@@ -294,8 +192,7 @@ def test_article_detail_page_social_share_links_no_title(
         'page_type': 'InternationalArticlePage',
     }
 
-    url = reverse('article-detail', kwargs={
-        'topic': 'topic', 'list': 'bar', 'slug': 'foo'})
+    url = '/international/content/topic/bar/foo/'
 
     mock_get_page.return_value = create_response(
         status_code=200,
@@ -310,16 +207,16 @@ def test_article_detail_page_social_share_links_no_title(
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/topic/bar/foo/'
+        'http://testserver/international/content/topic/bar/foo/'
         '')
     linkedin_link = (
         'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/topic/bar/foo/'
+        'http://testserver/international/content/topic/bar/foo/'
         '&title=great.gov.uk'
         '%20-%20%20&source=LinkedIn'
     )
     email_link = (
-        'mailto:?body=http://testserver/international/topic/bar/'
+        'mailto:?body=http://testserver/international/content/topic/bar/'
         'foo/&subject='
         'great.gov.uk%20-%20%20'
     )
@@ -423,203 +320,7 @@ test_list_page = {
 }
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_article_list_page(mock_get_page, client, settings):
-
-    url = reverse('article-list', kwargs={
-        'topic': 'article-topic',
-        'slug': 'article-list'
-    })
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=test_list_page
-    )
-
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.template_name == ['core/article_list.html']
-
-    assert test_list_page['title'] not in str(response.content)
-    assert test_list_page['landing_page_title'] in str(response.content)
-
-    assert '28 February' in str(response.content)
-
-
-@pytest.mark.parametrize('url,page_type,status_code', (
-    (
-        '/international/article-list/',
-        'InternationalArticlePage',
-        404
-    ),
-    (
-        '/international/topic/list/article-page/',
-        'InternationalArticlePage',
-        200
-    ),
-    (
-        '/international/topic/list/article-page/',
-        'InternationalArticleListingPage',
-        404
-    ),
-    (
-        '/international/topic/list/',
-        'InternationalArticleListingPage',
-        200
-    ),
-    (
-        '/international/topic/campaign/',
-        'InternationalCampaignPage',
-        404
-    ),
-    (
-        '/international/campaigns/campaign/',
-        'InternationalCampaignPage',
-        200
-    ),
-    (
-        '/international/',
-        'InternationalArticlePage',
-        404
-    ),
-    (
-        '/international/',
-        'InternationalHomePage',
-        200
-    ),
-))
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_page_url_mismatch_404(
-    mock_get_page, url, page_type, status_code, client
-):
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload={
-            'page_type': page_type,
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            # Needed to prevent errors when rendering some page types
-            'localised_child_pages': [],
-            'child_pages': [],
-            'related_pages': [],
-        }
-    )
-
-    response = client.get(url)
-    assert response.status_code == status_code
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_homepage_no_related_pages(mock_get_page, client):
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload={
-            'page_type': 'InternationalHomePage',
-            'news_title': 'News title',
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            'related_pages': []
-        }
-    )
-
-    response = client.get(reverse('index'))
-    assert 'News title' not in str(response.content)
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_homepage_related_pages(mock_get_page, client):
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload={
-            'page_type': 'InternationalHomePage',
-            'news_title': 'News title',
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            'related_pages': [
-                {
-                    'title': 'Related article title',
-                    'page_type': 'InternationalArticlePage',
-                    'teaser': 'Related article teaser',
-                    'meta': {
-                        'slug': 'article',
-                        'languages': [('en-gb', 'English')],
-                    },
-                    'full_path': '/topic/list/article',
-                    'full_url':
-                    'https://great.gov.uk/international/topic/list/article',
-                },
-                {
-                    'title': 'Related campaign title',
-                    'page_type': 'InternationalCampaignPage',
-                    'teaser': 'Related campaign teaser',
-                    'meta': {
-                        'slug': 'campaign',
-                        'languages': [('en-gb', 'English')],
-                    },
-                    'full_path': '/international/campaigns/campaign',
-                    'full_url':
-                    'https://great.gov.uk/international/campaigns/campaign',
-                },
-            ]
-        }
-    )
-
-    response = client.get(reverse('index'))
-    assert 'News title' in str(response.content)
-    assert 'Related article title' in str(response.content)
-    assert 'Related article teaser' in str(response.content)
-    assert '/topic/list/article' in str(response.content)
-    assert 'Related campaign title' in str(response.content)
-    assert 'Related campaign teaser' in str(response.content)
-    assert '/international/campaigns/campaign' in str(response.content)
-
-
-@pytest.mark.parametrize('localised_articles,total_articles', (
-    (
-        [],
-        4
-    ),
-    (
-        test_localised_child_pages[:-3],
-        5
-    ),
-    (
-        test_localised_child_pages,
-        8
-    ),
-))
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_article_count_with_regional_articles(
-    mock_get_page, localised_articles, total_articles, client
-):
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload={
-            'page_type': 'InternationalArticleListingPage',
-            'articles_count': 4,
-            'localised_child_pages': localised_articles,
-            'child_pages': [],
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-        }
-    )
-    url = reverse('article-list', kwargs={'topic': 'topic', 'slug': 'slug'})
-    response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    assert '{} articles'.format(total_articles) in soup.find(
-        id='hero-description').string
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
 
     page = {
@@ -649,16 +350,16 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
         json_payload=page
     )
 
-    request = rf.get('/')
+    request = rf.get('/international/content/industries/sector-page/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = SectorPageCMSView.as_view()(request)
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/industries/sector-page/')
 
-    view = response.context_data['view']
-    assert view.num_of_statistics == 2
-    assert view.section_three_num_of_subsections == 2
+    assert response.context_data['num_of_statistics'] == 2
+    assert response.context_data['section_three_num_of_subsections'] == 2
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_industries_page_renames_heading_to_landing_page_title(
     mock_get_page, client
 ):
@@ -691,7 +392,7 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
     assert child_page['landing_page_title'] == 'heading'
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_do_business_feature_off(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
 
@@ -700,14 +401,14 @@ def test_how_to_do_business_feature_off(mock_get_page, client, settings):
         json_payload=dummy_page
     )
 
-    url = reverse('how-to-do-business-with-the-uk')
+    url = '/international/content/how-to-do-business-with-the-uk/'
 
     response = client.get(url)
 
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
@@ -719,7 +420,7 @@ def test_how_to_do_business_feature_on(mock_get_page, client, settings):
         json_payload=page
     )
 
-    url = reverse('how-to-do-business-with-the-uk')
+    url = '/international/content/how-to-do-business-with-the-uk/'
 
     response = client.get(url)
 
@@ -735,7 +436,7 @@ def test_cms_page_from_path_view(lookup_by_path, client, settings):
         status_code=200,
         json_payload=page
     )
-    response = client.get('/international/content/page/from/path')
+    response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
 
