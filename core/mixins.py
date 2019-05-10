@@ -2,10 +2,9 @@ from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
-from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 
-from directory_components.helpers import SocialLinkBuilder, get_user_country
+from directory_components.helpers import get_user_country
 from directory_components.mixins import CountryDisplayMixin
 
 from directory_constants.choices import EU_COUNTRIES
@@ -13,7 +12,6 @@ from directory_constants.choices import EU_COUNTRIES
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import helpers
 
 TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
@@ -28,15 +26,22 @@ TEMPLATE_MAPPING = {
 
 FEATURE_FLAGGED_URLS_MAPPING = {
     '/international/content/how-to-do-business-with-the-uk/': (
-        settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON']
-    ),
+        'HOW_TO_DO_BUSINESS_ON'),
 }
 
 
 class NotFoundOnDisabledFeature:
     def dispatch(self, *args, **kwargs):
-        if not FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, True):
+
+        if self.request.path not in FEATURE_FLAGGED_URLS_MAPPING:
+            return super().dispatch(*args, **kwargs)
+
+        flag = FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, None)
+        flag_on = settings.FEATURE_FLAGS.get(flag, False)
+
+        if not flag_on:
             raise Http404()
+
         return super().dispatch(*args, **kwargs)
 
 
@@ -59,7 +64,6 @@ class RegionalContentMixin(CountryDisplayMixin):
 
 
 class CMSPageMixin:
-    active_view_name = ''
     page_type = ''
     region = ''
 
@@ -92,10 +96,7 @@ class CMSPageMixin:
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
-            active_view_name=self.active_view_name,
-            page=self.page,
-            *args,
-            **kwargs
+            page=self.page, *args, **kwargs
         )
 
 
@@ -105,63 +106,3 @@ class SetEtagMixin:
         if request.method == 'GET':
             response.add_post_render_callback(set_response_etag)
         return response
-
-
-class GetSlugFromKwargsMixin:
-    @property
-    def slug(self):
-        return self.kwargs.get('slug')
-
-
-class ArticleSocialLinksMixin:
-
-    @property
-    def page_title(self):
-        return self.page.get('article_title', '')
-
-    def get_context_data(self, *args, **kwargs):
-
-        social_links_builder = SocialLinkBuilder(
-            self.request.build_absolute_uri(),
-            self.page_title,
-            'great.gov.uk')
-
-        return super().get_context_data(
-            social_links=social_links_builder.links,
-            *args, **kwargs
-        )
-
-
-class BreadcrumbsMixin:
-
-    def get_context_data(self, *args, **kwargs):
-        prefix = ''
-
-        if self.request.path.startswith('/international/content/'):
-            prefix = '/international/content/'
-        else:
-            prefix = '/international/'
-
-        parts = self.request.path.split(prefix)[1].split('/')
-        url_fragments = [part for part in parts if part]
-
-        breadcrumbs = []
-
-        for index, slug in enumerate(url_fragments):
-            url = '/'.join(url_fragments[0:index+1])
-            breadcrumb = {
-                'url': prefix + url + '/',
-                'label': helpers.unslugify(slug)
-            }
-            breadcrumbs.append(breadcrumb)
-
-        breadcrumbs.insert(0, {
-            'url': reverse_lazy('index'),
-            'label': 'great.gov.uk International'
-            }
-        )
-
-        return super().get_context_data(
-            breadcrumbs=breadcrumbs,
-            *args, **kwargs
-        )
