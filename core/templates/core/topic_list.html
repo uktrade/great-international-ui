@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 
 {% load filter_by_active_language from cms_tags %}
-{% load card from directory_components_tags %}
+{% load breadcrumbs card from directory_components_tags %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
 
@@ -18,9 +18,12 @@
 {% endblock %}
 
 <section class="breadcrumbs-section">
-  {% block breadcrumbs %}
-    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
-  {% endblock %}
+  <div class="container">
+    {% url 'index' as index_url %}
+    {% url 'industries' as industries_url %}
+
+    {% breadcrumbs left_url=index_url left_label='great.gov.uk International' right_label=page.landing_page_title %}
+  </div>
 </section>
 
 <section class="topic-list-section background-stone-30 padding-vertical-60">

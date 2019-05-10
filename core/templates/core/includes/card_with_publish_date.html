@@ -5,7 +5,7 @@
     <div class="card-image" {% if listing.hero_image_thumbnail %} style="background-image: url('{{ listing.hero_image_thumbnail.url }}');"{% endif %}>
     </div>
     <div class="card-inner">
-      <h3 class="heading-large">{{ listing.title }}</h3>
+      <h3 class="heading-large">{{ listing.heading }}</h3>
       <p class="description subheading">Updated {{ listing.last_published_at|parse_date }}</p>
     </div>
   </a>

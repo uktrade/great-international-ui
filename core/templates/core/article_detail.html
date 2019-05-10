@@ -1,10 +1,11 @@
 {% extends 'core/base_cms.html' %}
 
 {% load static %}
+{% load trans from i18n %}
 {% load parse_date from cms_tags %}
-{% load add_export_elements_classes from directory_components_tags %}
+{% load breadcrumbs add_export_elements_classes from directory_components_tags %}
 
-{% block head_title %}{{ page.article_title }} - great.gov.uk{% endblock %}
+{% block head_title %}{{ page.article_title }} - great.gov.uk International{% endblock %}
 
 {% block og_image %}{% if page.article_image %}{{ page.article_image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 
@@ -17,7 +18,13 @@
 <section id="article">
 
   {% block breadcrumbs %}
-    {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
+  <div class="container">
+    {% url 'index' as index_url %}
+    {% url 'how-to-setup-in-the-uk' as setup_url %}
+    {% trans 'UK setup guide' as setup_label %}
+
+    {% breadcrumbs left_url=index_url left_label='great.gov.uk International' middle_url=setup_url middle_label=setup_label right_label=page.display_title %}
+  </div>
   {% endblock %}
 
   <article>

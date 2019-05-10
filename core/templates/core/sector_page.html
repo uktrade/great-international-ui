@@ -1,4 +1,5 @@
 {% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
 {% load filter_by_active_language from cms_tags %}
 {% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components_tags %}
 
@@ -12,7 +13,9 @@
   <div class="container">
     {% url 'index' as index_url %}
     {% url 'industries' as industries_url %}
-    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' middle_url=industries_url middle_label='Industries' right_label=page.heading %}
+    {% trans 'Industries' as industries_label %}
+
+    {% breadcrumbs left_url=index_url left_label='great.gov.uk International' middle_url=industries_url middle_label=industries_label right_label=page.heading %}
   </div>
 </section>
 
@@ -44,7 +47,7 @@
 
 <section id="sector-statistics-section" class="statistics padding-vertical-30">
   <div class="container">
-    {% statistics_card_grid statistics=page.statistics num_of_statistics=view.num_of_statistics number_first=True %}
+    {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics number_first=True %}
     </div>
   </div>
 </section>
