@@ -22,22 +22,22 @@ TEMPLATE_MAPPING = {
     'InternationalArticlePage': 'core/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
-    'InternationalCuratedTopicLandingPage': 'core/curated_topic_landing_page.html',  # noqa
+    'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',  # noqa
     'InternationalGuideLandingPage': 'core/guide_landing_page.html'
+}
+
+FEATURE_FLAGGED_URLS_MAPPING = {
+    '/international/content/how-to-do-business-with-the-uk/': (
+        settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON']
+    ),
 }
 
 
 class NotFoundOnDisabledFeature:
     def dispatch(self, *args, **kwargs):
-        if not self.flag:
+        if not FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, True):
             raise Http404()
         return super().dispatch(*args, **kwargs)
-
-
-class HowToDoBusinessPageFeatureFlagMixin(NotFoundOnDisabledFeature):
-    @property
-    def flag(self):
-        return settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON']
 
 
 class RegionalContentMixin(CountryDisplayMixin):
