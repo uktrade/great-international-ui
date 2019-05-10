@@ -1,0 +1,15 @@
+<div class="container breadcrumbs">
+  <ol>
+    <li>
+      <a href="{{ home_breadcrumbs_url }}">great.gov.uk</a>
+    </li>
+    {% if features.NEWS_SECTION_ON %}
+      <li>
+        <a href="{{ news_breadcrumbs_url }}">EU exit news</a>
+      </li>
+    {% endif %}
+    <li aria-current="page">
+        <span class="current">{{ page.breadcrumbs_label }}</span>
+    </li>
+  </ol>
+</div>

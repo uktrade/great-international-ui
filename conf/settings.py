@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'health_check',
     'directory_healthcheck',
+    'euexit'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -147,6 +148,33 @@ LOCALE_PATHS = (
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
+)
+
+# directory forms api client
+DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
+DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
+DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
+DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
+)
+DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
+    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
+)
+
+# EU exit
+EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
+
+# Contact
+INVEST_CONTACT_URL = env.str(
+    'INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/'
+)
+FIND_A_SUPPLIER_CONTACT_URL = env.str(
+    'FIND_A_SUPPLIER_CONTACT_URL',
+    'https://trade.great.gov.uk/industries/contact/'
+)
+CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
+    'CONTACT_DOMESTIC_ZENDESK_SUBJECT',
+    'great.gov.uk international contact form'
 )
 
 # needed only for dev local storage

@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 import core.views
 import conf.sitemaps
+import euexit.views
 
 
 sitemaps = {
@@ -57,6 +58,21 @@ urlpatterns += (
         core.views.ArticleListPageView.as_view(),
         {'slug': 'news'},
         name="news"
+    ),
+    url(
+        r"^international/contact/$",
+        core.views.InternationalContactPageView.as_view(),
+        name='contact-page-international'
+    ),
+    url(
+        r'^international/eu-exit-news/contact/$',
+        euexit.views.InternationalContactFormView.as_view(),
+        name='eu-exit-international-contact-form'
+    ),
+    url(
+        r'^international/eu-exit-news/contact/success/$',
+        euexit.views.InternationalContactSuccessView.as_view(),
+        name='eu-exit-international-contact-form-success'
     ),
     url(
         r"^international/how-to-do-business-with-the-uk/$",

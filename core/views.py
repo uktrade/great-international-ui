@@ -10,7 +10,7 @@ from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin)
+    GA360Mixin, CountryDisplayMixin)
 from directory_components.helpers import get_user_country
 
 from core.mixins import (
@@ -174,3 +174,14 @@ class CMSPageFromPathView(TemplateView):
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+
+class InternationalContactPageView(CountryDisplayMixin, TemplateView):
+    template_name = 'core/contact_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            hide_language_selector=True,
+            invest_contact_us_url=urls.build_invest_url('contact/'),
+            *args, **kwargs
+        )

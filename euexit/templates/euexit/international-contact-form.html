@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+  {% block breadcrumbs %}
+    {% url 'landing-page-international' as landing_page %}
+    {% url 'international-eu-exit-news-list' as news_list %}
+    {% include 'euexit/breadcrumbs.html' with home_breadcrumbs_url=landing_page news_breadcrumbs_url=news_list %}
+  {% endblock %}
+
+  {% block form_content %}
+    {% include 'euexit/form-contents.html'%}
+  {% endblock %}
+{% endblock %}

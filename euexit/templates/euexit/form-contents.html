@@ -1,0 +1,19 @@
+{% load render_form from directory_components_tags %}
+{% load add_export_elements_classes from directory_components_tags %}
+
+<div class="container">
+    <div class="grid-row">
+        <div class="column-one-half">
+            <h1 class="heading-xlarge">{{ page.heading }}</h1>
+            <p>{{ page.body_text|add_export_elements_classes }}</p>
+        </div>
+    </div>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <form method="post">
+                {% render_form form %}
+                <button class="button">{{ page.submit_button_text }}</button>
+            </form>
+        </div>
+    </div>
+</div>
