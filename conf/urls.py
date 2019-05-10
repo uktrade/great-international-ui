@@ -46,59 +46,35 @@ urlpatterns = [
     ),
     url(
         r"^international/$",
-        core.views.LandingPageCMSView.as_view(),
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'international/'},
         name="index"
-    ),
-    url(
-        r"^international/news/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'news'},
-        name="news"
-    ),
-    url(
-        r"^international/how-to-do-business-with-the-uk/$",
-        core.views.CuratedLandingPageCMSView.as_view(),
-        {'slug': 'how-to-do-business-with-the-uk'},
-        name="how-to-do-business-with-the-uk"
-    ),
-    url(
-        r"^international/how-to-setup-in-the-uk/$",
-        core.views.GuideLandingPageCMSView.as_view(),
-        {'slug': 'how-to-setup-in-the-uk'},
-        name="how-to-setup-in-the-uk"
-    ),
-    url(
-        r"^international/how-to-setup-in-the-uk/(?P<slug>[\w-]+)/$",
-        core.views.ArticlePageView.as_view(),
-        name="how-to-setup-in-the-uk-article"
-    ),
-    url(
-        r"^international/industries/$",
-        core.views.IndustriesLandingPageCMSView.as_view(),
-        {'slug': 'industries'},
-        name="industries"
-    ),
-    url(
-        r"^international/industries/(?P<slug>[\w-]+)/$",
-        core.views.SectorPageCMSView.as_view(),
-        name="sector"
-    ),
-    url(
-        r"^international/campaigns/(?P<slug>[\w-]+)/$",
-        core.views.CampaignPageView.as_view(),
-        name="campaign"
     ),
     url(
         r'^international/content/$',
         RedirectView.as_view(url=reverse_lazy('index')),
         name="content-index-redirect"
     ),
+    # these 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',
         core.views.CMSPageFromPathView.as_view(),
         {'path': 'industries/'},
-        name="content-industries"
+        name="industries"
     ),
+    url(
+        r"^international/content/how-to-setup-in-the-uk/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'how-to-setup-in-the-uk/'},
+        name="how-to-setup-in-the-uk"
+    ),
+    url(
+        r"^international/content/how-to-do-business-with-the-uk/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'how-to-do-business-with-the-uk/'},
+        name="how-to-do-business-with-the-uk"
+    ),
+    # ----
     url(
         r'^international/content/(?P<path>[\w\-/]*)$',
         core.views.CMSPageFromPathView.as_view(),
