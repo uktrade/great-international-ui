@@ -22,9 +22,6 @@ class Registry(defaultdict):
                 return fn
             return decorator
 
-        if not page_type:
-            return fn
-
         if not callable(fn):
             raise TypeError(
                 'Context modifiers must be a callables, not %s' % type(fn)
@@ -37,24 +34,6 @@ class Registry(defaultdict):
             self._add_for_page_type(page_type_item, fn)
 
         return fn
-
-    def unregister(self, fn=None):
-        """
-        Registers a function as a context modifier for any page types
-        that it might be registered for.
-        """
-
-        if fn is None:
-            def decorator(fn):
-                self.unregister(fn)
-                return fn
-            return decorator
-
-        for key in self.keys():
-            try:
-                self[key].remove(fn)
-            except ValueError:
-                pass
 
     def get_for_page_type(self, page_type):
         return self[page_type]
