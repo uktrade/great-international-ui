@@ -54,7 +54,6 @@ def test_homepage_button_how_to_do_business_feature_on():
 
 def test_article_detail_page_no_related_content():
     test_article_page_no_related_content = {
-        'title': 'Test article admin title',
         'title': 'Test article',
         'subheading': 'Test teaser',
         'article_body_text': '<p>Lorem ipsum</p>',
@@ -79,7 +78,6 @@ def test_article_detail_page_no_related_content():
 def test_article_detail_page_related_content():
 
     article_page = {
-        'title': 'Test article admin title',
         'title': 'Test article',
         'subheading': 'Test teaser',
         'article_image': {'url': 'foobar.png'},
