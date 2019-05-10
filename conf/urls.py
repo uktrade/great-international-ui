@@ -68,12 +68,9 @@ urlpatterns = [
         name="how-to-setup-in-the-uk"
     ),
     url(
-        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
-        RedirectView.as_view(url=reverse_lazy('how-to-setup-in-the-uk')),
-    ),
-    url(
-        r"^international/how-to-setup-in-the-uk/guides/$",
-        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'), # noqa
+        r"^international/how-to-setup-in-the-uk/(?P<slug>[\w-]+)/$",
+        core.views.ArticlePageView.as_view(),
+        name="how-to-setup-in-the-uk-article"
     ),
     url(
         r"^international/industries/$",
@@ -97,23 +94,14 @@ urlpatterns = [
         name="content-index-redirect"
     ),
     url(
+        r'^international/content/industries/$',
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'industries/'},
+        name="content-industries"
+    ),
+    url(
         r'^international/content/(?P<path>[\w\-/]*)$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
     ),
-    url(
-        r"^international/(?P<slug>[\w-]+)/$",
-        core.views.ArticleTopicPageView.as_view(),
-        name="article-topic"
-    ),
-    url(
-        r"^international/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
-        core.views.ArticleListPageView.as_view(),
-        name="article-list"
-    ),
-    url(
-        r"^international/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$", # noqa
-        core.views.ArticlePageView.as_view(),
-        name="article-detail"
-    )
 ]
