@@ -153,7 +153,8 @@ class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
 
 
 class CMSPageFromPathView(
-    CountryDisplayMixin, CMSLanguageSwitcherMixin, TemplateView
+    BreadcrumbsMixin, CountryDisplayMixin, CMSLanguageSwitcherMixin,
+    TemplateView
 ):
     @cached_property
     def page(self):

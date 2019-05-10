@@ -2,6 +2,7 @@ from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
+from django.core.urlresolvers import reverse_lazy
 from django.conf import settings
 
 from directory_components.helpers import SocialLinkBuilder, get_user_country
@@ -134,7 +135,14 @@ class ArticleSocialLinksMixin:
 class BreadcrumbsMixin:
 
     def get_context_data(self, *args, **kwargs):
-        parts = self.request.path.split('/')
+        prefix = ''
+
+        if self.request.path.startswith('/international/content/'):
+            prefix = '/international/content/'
+        else:
+            prefix = '/international/'
+
+        parts = self.request.path.split(prefix)[1].split('/')
         url_fragments = [part for part in parts if part]
 
         breadcrumbs = []
@@ -142,10 +150,16 @@ class BreadcrumbsMixin:
         for index, slug in enumerate(url_fragments):
             url = '/'.join(url_fragments[0:index+1])
             breadcrumb = {
-                'url': '/' + url + '/',
+                'url': prefix + url + '/',
                 'label': helpers.unslugify(slug)
             }
             breadcrumbs.append(breadcrumb)
+
+        breadcrumbs.insert(0, {
+            'url': reverse_lazy('index'),
+            'label': 'great.gov.uk International'
+            }
+        )
 
         return super().get_context_data(
             breadcrumbs=breadcrumbs,
