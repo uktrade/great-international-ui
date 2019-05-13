@@ -1,3 +1,5 @@
+import pytest
+
 from django.template.loader import render_to_string
 
 from bs4 import BeautifulSoup
@@ -52,9 +54,8 @@ def test_homepage_button_how_to_do_business_feature_on():
 
 def test_article_detail_page_no_related_content():
     test_article_page_no_related_content = {
-        'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
+        'title': 'Test article',
+        'subheading': 'Test teaser',
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
         'last_published_at': '2018-10-09T16:25:13.142357Z',
@@ -77,9 +78,8 @@ def test_article_detail_page_no_related_content():
 def test_article_detail_page_related_content():
 
     article_page = {
-        'title': 'Test article admin title',
-        'article_title': 'Test article',
-        'article_teaser': 'Test teaser',
+        'title': 'Test article',
+        'subheading': 'Test teaser',
         'article_image': {'url': 'foobar.png'},
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [
@@ -166,11 +166,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article1_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 1',
-            'article_title': 'Related article 1',
-            'full_path': '/advice/finance/article-1/',
+            'subheading': 'Related article description 1',
+            'title': 'Related article 1',
             'meta': {
                 'languages': [['en-gb', 'English']],
+                'url': '/international/advice/finance/article-1/',
                 'slug': 'article-1'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 1'
@@ -178,11 +178,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article2_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 2',
-            'article_title': 'Related article 2',
-            'full_path': '/advice/finance/article-2/',
+            'subheading': 'Related article description 2',
+            'title': 'Related article 2',
             'meta': {
                 'languages': [['en-gb', 'English']],
+                'url': '/international/advice/finance/article-2/',
                 'slug': 'article-2'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 2'
@@ -190,11 +190,11 @@ campaign_page_all_fields = {
         {
             'article_image': {'url': 'article_image.jpg'},
             'article_image_thumbnail': {'url': 'article3_image_thumbnail.jpg'},
-            'article_teaser': 'Related article description 3',
-            'article_title': 'Related article 3',
-            'full_path': '/advice/finance/article-3/',
+            'subheading': 'Related article description 3',
+            'title': 'Related article 3',
             'meta': {
                 'languages': [('en-gb', 'English')],
+                'url': '/international/advice/finance/article-3/',
                 'slug': 'article-3'},
             'page_type': 'InternationalArticlePage',
             'title': 'Related article 3'
@@ -363,3 +363,157 @@ def test_marketing_campaign_page_required_fields():
     assert soup.select(
         "li[aria-current='page']"
         )[0].text == campaign_page_required_fields['campaign_heading']
+
+
+def test_homepage_no_related_pages():
+    context = {
+        'page': {
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': []
+        }
+    }
+
+    html = render_to_string('core/landing_page.html', context)
+
+    assert 'News title' not in html
+
+
+def test_homepage_related_pages():
+    context = {
+        'page': {
+            'page_type': 'InternationalHomePage',
+            'news_title': 'News title',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            'related_pages': [
+                {
+                    'title': 'Related article title',
+                    'page_type': 'InternationalArticlePage',
+                    'teaser': 'Related article teaser',
+                    'meta': {
+                        'slug': 'article',
+                        'languages': [('en-gb', 'English')],
+                        'url': (
+                            'https://great.gov.uk/international/'
+                            'topic/list/article'),
+                    },
+                    'full_path': '/topic/list/article',
+                    'full_url':
+                    'https://great.gov.uk/international/topic/list/article',
+                },
+                {
+                    'title': 'Related campaign title',
+                    'page_type': 'InternationalCampaignPage',
+                    'teaser': 'Related campaign teaser',
+                    'meta': {
+                        'slug': 'campaign',
+                        'languages': [('en-gb', 'English')],
+                        'url': (
+                            'https://great.gov.uk/international/'
+                            'campaigns/campaign'),
+                    },
+                    'full_path': '/international/campaigns/campaign',
+                    'full_url':
+                    'https://great.gov.uk/international/campaigns/campaign',
+                },
+            ]
+        }
+    }
+
+    html = render_to_string('core/landing_page.html', context)
+
+    assert 'News title' in html
+    assert 'Related article title' in html
+    assert 'Related article teaser' in html
+    assert '/topic/list/article' in html
+    assert 'Related campaign title' in html
+    assert 'Related campaign teaser' in html
+    assert '/international/campaigns/campaign' in html
+
+
+test_localised_child_pages = [
+    {
+        'last_published_at': '2019-02-28T10:56:30.455848Z',
+        'meta': {
+            'slug': 'campaign-one',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalCampaignPage',
+        'teaser': 'Campaign one teaser',
+        'title': 'Campaign one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:31.455848Z',
+        'meta': {
+            'slug': 'article-one',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article one teaser',
+        'title': 'Article one'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-two',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article two teaser',
+        'title': 'Article two'
+    },
+    {
+        'last_published_at': '2019-02-28T10:56:32.455848Z',
+        'meta': {
+            'slug': 'article-three',
+            'languages': [('en-gb', 'English')],
+        },
+        'page_type': 'InternationalArticlePage',
+        'teaser': 'Article three teaser',
+        'title': 'Article three'
+    },
+]
+
+
+@pytest.mark.parametrize('localised_articles,total_articles', (
+    (
+        [],
+        4
+    ),
+    (
+        test_localised_child_pages[:-3],
+        5
+    ),
+    (
+        test_localised_child_pages,
+        8
+    ),
+))
+def test_article_count_with_regional_articles(
+    localised_articles, total_articles
+):
+    context = {
+        'page': {
+            'page_type': 'InternationalArticleListingPage',
+            'articles_count': 4,
+            'localised_child_pages': localised_articles,
+            'child_pages': [],
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+        }
+    }
+
+    html = render_to_string('core/article_list.html', context)
+
+    soup = BeautifulSoup(html, 'html.parser')
+    assert '{} articles'.format(total_articles) in soup.find(
+        id='hero-description').string

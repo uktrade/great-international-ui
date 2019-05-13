@@ -16,8 +16,8 @@
   </section>
 
   <div class="container">
-    {% url 'index' as index_url %}
-    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' right_label=page.display_title %}
+
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.display_title %}
 
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
@@ -66,8 +66,7 @@
       <div class="flex-grid">
         {% for guide in page.guides|filter_by_active_language %}
           <div class="column-third" data-ga-class="guide-card">
-            {% url 'article-detail' topic='how-to-setup-in-the-uk' list='guides' slug=guide.meta.slug as guide_url %}
-            {% card img_src=guide.thumbnail.url url=guide_url heading=guide.title description=guide.teaser %}
+            {% card img_src=guide.thumbnail.url url=guide.meta.url heading=guide.title description=guide.teaser %}
           </div>
         {% endfor %}
       </div>
