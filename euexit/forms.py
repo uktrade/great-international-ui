@@ -19,8 +19,8 @@ COMPANY_CHOICES = (
 
 TERMS_LABEL = mark_safe(
     'Tick this box to accept the '
-    f'<a class="link" href="{urls.TERMS_AND_CONDITIONS}" target="_blank">terms and '
-    'conditions</a> of the great.gov.uk service.'
+    f'<a class="link" href="{urls.TERMS_AND_CONDITIONS}" target="_blank">'
+    'terms and conditions</a> of the great.gov.uk service.'
 )
 
 
