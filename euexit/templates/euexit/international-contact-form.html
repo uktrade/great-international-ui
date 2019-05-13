@@ -2,11 +2,12 @@
 
 {% load static from staticfiles %}
 
+{% block css_layout_class %}eu-exit-form{% endblock %}
+
 {% block content %}
   {% block breadcrumbs %}
-    {% url 'landing-page-international' as landing_page %}
-    {% url 'international-eu-exit-news-list' as news_list %}
-    {% include 'euexit/breadcrumbs.html' with home_breadcrumbs_url=landing_page news_breadcrumbs_url=news_list %}
+    {% url 'index' as landing_page %}
+    {% include 'euexit/breadcrumbs.html' with home_breadcrumbs_url=landing_page %}
   {% endblock %}
 
   {% block form_content %}

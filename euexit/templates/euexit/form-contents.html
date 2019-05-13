@@ -3,13 +3,9 @@
 
 <div class="container">
     <div class="grid-row">
-        <div class="column-one-half">
+        <div class="column-two-thirds-m column-half-xl">
             <h1 class="heading-xlarge">{{ page.heading }}</h1>
-            <p>{{ page.body_text|add_export_elements_classes }}</p>
-        </div>
-    </div>
-    <div class="grid-row">
-        <div class="column-two-thirds">
+            <div class="margin-bottom-45">{{ page.body_text|add_export_elements_classes }}</div>
             <form method="post">
                 {% render_form form %}
                 <button class="button">{{ page.submit_button_text }}</button>
