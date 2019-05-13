@@ -1,5 +1,5 @@
 from django.utils import translation
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 from directory_constants import urls
 
