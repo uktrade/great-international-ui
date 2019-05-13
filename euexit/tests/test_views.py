@@ -23,7 +23,7 @@ def test_international_form(mock_lookup_by_slug, client):
 
     assert response.status_code == 200
     assert response.template_name == [
-        views.InternationalContactFormView.template_name
+        TEMPLATE_MAPPING[views.InternationalContactFormView.page_type]
     ]
 
 
@@ -126,7 +126,7 @@ def test_form_success_page(mock_lookup_by_slug, client):
 
     assert response.status_code == 200
     assert response.template_name == [
-        views.InternationalContactSuccessView.template_name
+        TEMPLATE_MAPPING[views.InternationalContactSuccessView.page_type]
     ]
     assert response.context_data['page'] == {
         'body_text': 'what next',
