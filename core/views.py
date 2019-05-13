@@ -7,8 +7,11 @@ from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
 from directory_constants.choices import COUNTRY_CHOICES
-from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin
+from directory_constants.constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
+from directory_components.mixins import (
+    CMSLanguageSwitcherMixin,
+    GA360Mixin, CountryDisplayMixin)
 
 from core import forms
 from core.mixins import (
@@ -118,3 +121,14 @@ def sector_page_context_modifier(context, request):
         'section_three_num_of_subsections': count_data_with_field(
             page['section_three_subsections'], 'heading'),
         }
+
+
+class InternationalContactPageView(CountryDisplayMixin, TemplateView):
+    template_name = 'core/contact_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            hide_language_selector=True,
+            invest_contact_us_url=urls.build_invest_url('contact/'),
+            *args, **kwargs
+        )

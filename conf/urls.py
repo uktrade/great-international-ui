@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse_lazy
 
 import core.views
 import conf.sitemaps
+import euexit.views
 
 
 sitemaps = {
@@ -54,6 +55,21 @@ urlpatterns = [
         r'^international/content/$',
         RedirectView.as_view(url=reverse_lazy('index')),
         name="content-index-redirect"
+    ),
+    url(
+        r"^international/contact/$",
+        core.views.InternationalContactPageView.as_view(),
+        name='contact-page-international'
+    ),
+    url(
+        r'^international/eu-exit-news/contact/$',
+        euexit.views.InternationalContactFormView.as_view(),
+        name='eu-exit-international-contact-form'
+    ),
+    url(
+        r'^international/eu-exit-news/contact/success/$',
+        euexit.views.InternationalContactSuccessView.as_view(),
+        name='eu-exit-international-contact-form-success'
     ),
     # these 3 named urls are required for breadcrumbs in templates
     url(
