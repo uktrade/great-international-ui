@@ -6,6 +6,7 @@ from directory_constants import choices
 from django.urls import reverse
 
 from core.tests.helpers import create_response
+from core.mixins import TEMPLATE_MAPPING
 from euexit import views
 
 
@@ -191,7 +192,7 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
     ),
 ))
 @patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_page_url_mismatch_404(
+def test_page_url_mismatch_404_template_mapping(
     mock_get_page, url, page_type, status_code, client
 ):
     mock_get_page.return_value = create_response(
@@ -212,3 +213,5 @@ def test_page_url_mismatch_404(
 
     response = client.get(url)
     assert response.status_code == status_code
+    if response.status_code == 200:
+        assert response.template_name[0] == TEMPLATE_MAPPING[page_type]

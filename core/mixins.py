@@ -21,7 +21,9 @@ TEMPLATE_MAPPING = {
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',  # noqa
-    'InternationalGuideLandingPage': 'core/guide_landing_page.html'
+    'InternationalGuideLandingPage': 'core/guide_landing_page.html',
+    'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
+    'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',  # noqa
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
