@@ -1,4 +1,6 @@
+import pytest
 from unittest import mock
+from unittest.mock import patch
 
 from directory_constants import choices
 from django.urls import reverse
@@ -164,3 +166,49 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
     assert response.status_code == 200
     form = response.context_data['form']
     assert form.ingress_url is None
+
+
+@pytest.mark.parametrize('url,page_type,status_code', (
+    (
+        '/international/eu-exit-news/contact/',
+        'InternationalArticlePage',
+        404
+    ),
+    (
+        '/international/eu-exit-news/contact/',
+        'InternationalEUExitFormPage',
+        200
+    ),
+    (
+        '/international/eu-exit-news/contact/success/',
+        'InternationalArticlePage',
+        404
+    ),
+    (
+        '/international/eu-exit-news/contact/success/',
+        'InternationalEUExitFormSuccessPage',
+        200
+    ),
+))
+@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+def test_page_url_mismatch_404(
+    mock_get_page, url, page_type, status_code, client
+):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'page_type': page_type,
+            'disclaimer': 'disclaim',
+            'meta': {
+                'slug': 'slug',
+                'languages': [('en-gb', 'English')],
+            },
+            # Needed to prevent errors when rendering some page types
+            'localised_child_pages': [],
+            'child_pages': [],
+            'related_pages': [],
+        }
+    )
+
+    response = client.get(url)
+    assert response.status_code == status_code
