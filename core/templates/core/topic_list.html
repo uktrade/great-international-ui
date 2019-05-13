@@ -19,10 +19,10 @@
 
 <section class="breadcrumbs-section">
   <div class="container">
-    {% url 'index' as index_url %}
+
     {% url 'industries' as industries_url %}
 
-    {% breadcrumbs left_url=index_url left_label='great.gov.uk International' right_label=page.landing_page_title %}
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.landing_page_title %}
   </div>
 </section>
 

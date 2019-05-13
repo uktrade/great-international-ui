@@ -11,11 +11,11 @@
 
 <section id="breadcrumb-section">
   <div class="container">
-    {% url 'index' as index_url %}
+
     {% url 'industries' as industries_url %}
     {% trans 'Industries' as industries_label %}
 
-    {% breadcrumbs left_url=index_url left_label='great.gov.uk International' middle_url=industries_url middle_label=industries_label right_label=page.heading %}
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=industries_url middle_label=industries_label right_label=page.heading %}
   </div>
 </section>
 

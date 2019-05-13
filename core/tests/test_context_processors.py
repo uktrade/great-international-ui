@@ -1,4 +1,5 @@
 from django.utils import translation
+from django.core.urlresolvers import reverse_lazy
 
 from directory_constants import urls
 
@@ -43,3 +44,13 @@ def test_directory_components_html_lang_attribute(settings):
         assert actual[
             'directory_components_html_lang_attribute'
         ] == translation.get_language()
+
+
+def test_site_home_link():
+    actual = context_processors.site_home_link(None)
+    assert actual == {
+        'site_home_link': {
+            'label': 'great.gov.uk International',
+            'url': reverse_lazy('index')
+        }
+    }
