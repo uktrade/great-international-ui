@@ -1,0 +1,21 @@
+{% load message_box from directory_components_tags %}
+
+<section class="padding-top-30 padding-bottom-60">
+  <div class="container">
+      <div class="width-two-thirds">
+          <div id="success-message-container">
+            {% message_box heading=page.heading description=page.body_text %}
+          </div>
+      </div>
+  </div>
+</section>
+
+<section id="next-container" class="background-stone-30 padding-top-60 padding-bottom-90">
+  <div class="container">
+    <div class="width-two-thirds wrap-tight">
+      <h2 class="heading-large">{{ page.next_title }}</h2>
+      <p class="margin-bottom-45">{{ page.next_body_text }}</p>
+      <a class="link" href="{{ home_url }}">Continue to great.gov.uk</a>
+    </div>
+  </div>
+</section>
