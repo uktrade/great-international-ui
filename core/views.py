@@ -6,152 +6,36 @@ from django.utils import translation
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from directory_constants import slugs, urls
 from directory_constants.choices import COUNTRY_CHOICES
+from directory_constants import urls
+from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin)
-from directory_components.helpers import get_user_country
 
-from core.mixins import (
-    TEMPLATE_MAPPING,
-    GetSlugFromKwargsMixin,
-    ArticleSocialLinksMixin,
-    BreadcrumbsMixin,
-    CMSPageMixin,
-    RegionalContentMixin,
-    HowToDoBusinessPageFeatureFlagMixin,
-)
 from core import forms
+from core.mixins import (
+    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+from core.context_modifiers import Registry
+
+context_modifiers = Registry()
 
 
-class BaseCMSPage(
-    CMSLanguageSwitcherMixin,
-    RegionalContentMixin,
-    CMSPageMixin,
+class CMSPageFromPathView(
     GA360Mixin,
+    RegionalContentMixin,
+    CMSLanguageSwitcherMixin,
+    NotFoundOnDisabledFeature,
     TemplateView
 ):
-    pass
 
+    @property
+    def ga360_payload(self):
+        return {'page_type': self.page['page_type']}
 
-class CampaignPageView(GetSlugFromKwargsMixin, BaseCMSPage):
-    template_name = 'core/campaign.html'
-    page_type = 'InternationalCampaignPage'
-    ga360_payload = {'page_type': 'InternationalCampaignPage'}
-
-
-class ArticleTopicPageView(
-    BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
-):
-    page_type = 'InternationalTopicLandingPage'
-    ga360_payload = {'page_type': 'ArticleTopicPage'}
-
-
-class ArticleListPageView(
-    BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
-):
-    page_type = 'InternationalArticleListingPage'
-    ga360_payload = {'page_type': 'ArticleListPage'}
-
-
-class LandingPageCMSView(BaseCMSPage):
-    active_view_name = 'index'
-    template_name = 'core/landing_page.html'
-    page_type = 'InternationalHomePage'
-    slug = slugs.GREAT_HOME_INTERNATIONAL
-    ga360_payload = {'page_type': 'InternationalHomePage'}
-
-    tariffs_form_class = forms.TariffsCountryForm
-
-    def get_context_data(self, *args, **kwargs):
-        country_code = get_user_country(self.request)
-
-        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
-
-        tariffs_country = {
-            # used for flag icon css class. must be lowercase
-            'code': country_code.lower(),
-            'name': country_name,
-        }
-
-        return super().get_context_data(
-            tariffs_country=tariffs_country,
-            tariffs_country_selector_form=self.tariffs_form_class(
-                initial={'tariffs_country': country_code}),
-            invest_contact_us_link=urls.INVEST_CONTACT_US,
-            *args, **kwargs,
-        )
-
-
-class CuratedLandingPageCMSView(
-    HowToDoBusinessPageFeatureFlagMixin, GetSlugFromKwargsMixin, BaseCMSPage
-):
-    active_view_name = 'curated-topic-landing'
-    page_type = 'InternationalCuratedTopicLandingPage'
-    ga360_payload = {'page_type': 'CuratedLandingPage'}
-
-
-class GuideLandingPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
-    active_view_name = 'guide-landing'
-    page_type = 'InternationalGuideLandingPage'
-    ga360_payload = {'page_type': 'GuideLandingPage'}
-
-
-class ArticlePageView(
-    ArticleSocialLinksMixin, BreadcrumbsMixin,
-    GetSlugFromKwargsMixin, BaseCMSPage,
-):
-    active_view_name = 'article'
-    page_type = 'InternationalArticlePage'
-    ga360_payload = {'page_type': 'ArticlePage'}
-
-
-class IndustriesLandingPageCMSView(
-    BreadcrumbsMixin, GetSlugFromKwargsMixin, BaseCMSPage,
-):
-    page_type = 'InternationalTopicLandingPage'
-    template_name = 'core/industries_landing_page.html'
-    ga360_payload = {'page_type': 'IndustriesLandingPage'}
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        def rename_heading_field(page):
-            page['landing_page_title'] = page['heading']
-            return page
-
-        context['page']['child_pages'] = [
-            rename_heading_field(child_page)
-            for child_page in context['page']['child_pages']]
-
-        return context
-
-
-class SectorPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):
-    page_type = 'InternationalSectorPage'
-    num_of_statistics = 0
-    section_three_num_of_subsections = 0
-    ga360_payload = {'page_type': 'SectorLandingPage'}
-
-    def count_data_with_field(self, list_of_data, field):
-        filtered_list = [item for item in list_of_data if item[field]]
-        return len(filtered_list)
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        self.num_of_statistics = self.count_data_with_field(
-            context['page']['statistics'],
-            'number'
-        )
-        self.section_three_num_of_subsections = self.count_data_with_field(
-            context['page']['section_three_subsections'],
-            'heading'
-        )
-        return context
-
-
-class CMSPageFromPathView(TemplateView):
+    @property
+    def template_name(self):
+        return TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
@@ -161,19 +45,82 @@ class CMSPageFromPathView(TemplateView):
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
-        return self.handle_cms_response(response)
-
-    def get_context_data(self, **kwargs):
-        data = {'page': self.page}
-        data.update(kwargs)
-        return super().get_context_data(**data)
-
-    def handle_cms_response(self, response):
         return handle_cms_response(response)
 
-    @property
-    def template_name(self):
-        return TEMPLATE_MAPPING[self.page['page_type']]
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(page=self.page, **kwargs)
+
+        modifiers = context_modifiers.get_for_page_type(self.page['page_type'])
+
+        for modifier in modifiers:
+            context.update(modifier(context, request=self.request))
+
+        return context
+
+
+@context_modifiers.register('InternationalArticlePage')
+def article_page_context_modifier(context, request):
+
+    page_title = context['page'].get('article_title', '')
+
+    social_links_builder = SocialLinkBuilder(
+        request.build_absolute_uri(),
+        page_title,
+        'great.gov.uk')
+
+    return {
+        'social_links': social_links_builder.links
+    }
+
+
+@context_modifiers.register('InternationalHomePage')
+def home_page_context_modifier(context, request):
+
+    country_code = get_user_country(request)
+    country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+
+    return {
+        'tariffs_country': {
+            # used for flag icon css class. must be lowercase
+            'code': country_code.lower(),
+            'name': country_name,
+        },
+        'tariffs_country_selector_form': forms.TariffsCountryForm(
+            initial={'tariffs_country': country_code}
+        ),
+    }
+
+
+@context_modifiers.register('InternationalTopicLandingPage')
+def sector_landing_page_context_modifier(context, request):
+
+    def rename_heading_field(page):
+        page['landing_page_title'] = page['heading']
+        return page
+
+    context['page']['child_pages'] = [
+        rename_heading_field(child_page)
+        for child_page in context['page']['child_pages']]
+
+    return context
+
+
+@context_modifiers.register('InternationalSectorPage')
+def sector_page_context_modifier(context, request):
+
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    page = context['page']
+
+    return {
+        'num_of_statistics': count_data_with_field(
+            page['statistics'], 'number'),
+        'section_three_num_of_subsections': count_data_with_field(
+            page['section_three_subsections'], 'heading'),
+        }
 
 
 class InternationalContactPageView(CountryDisplayMixin, TemplateView):

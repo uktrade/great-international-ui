@@ -16,8 +16,8 @@
   </section>
 
   <div class="container">
-    {% url 'index' as index_url %}
-    {% breadcrumbs left_url=index_url left_label='Great.gov.uk International' right_label=page.display_title %}
+
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.display_title %}
 
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>

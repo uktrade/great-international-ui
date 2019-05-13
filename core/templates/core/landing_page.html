@@ -123,7 +123,7 @@
     </div>
     <div class="card-grid">
       <div class="column-third-xl column-half-l column-full">
-        {% url 'industries' as discover_uk_industries_url %}
+        {% url 'content-industries' as discover_uk_industries_url %}
         {% cta_card with_arrow=True url=discover_uk_industries_url image_url=page.featured_links.0.image.url text=page.featured_links.0.heading %}
       </div>
       <div class="column-third-xl column-half-l column-full">
@@ -145,10 +145,9 @@
     <div class="card-grid">
     {% for related_page in related_pages %}
       {% if related_page.page_type == 'InternationalArticlePage' %}
-        {% include 'core/includes/featured_article_card.html' with url=related_page.full_url default_subheading="Article" %}
+        {% include 'core/includes/featured_article_card.html' with url=related_page.meta.url default_subheading="Article" %}
       {% else %}
-        {% url 'campaign' related_page.meta.slug as campaign_url %}
-        {% include 'core/includes/featured_article_card.html' with url=campaign_url default_subheading="Campaign"  %}
+        {% include 'core/includes/featured_article_card.html' with url=related_page.meta.url default_subheading="Campaign" %}
       {% endif %}
     {% endfor %}
     </div>

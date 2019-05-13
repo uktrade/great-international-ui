@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block head_title %}Great.gov.uk international{% if page.seo_title %} - {{ page.seo_title }}{% else %} - {{ page.title }}{% endif %}{% endblock %}
+{% block head_title %}{{ site_home_link.label }}{% if page.seo_title %} - {{ page.seo_title }}{% else %} - {{ page.title }}{% endif %}{% endblock %}
 
 {% block head_other %}
   {% for language_code, url in page.meta.localised_urls %}

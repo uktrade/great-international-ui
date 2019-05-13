@@ -22,7 +22,6 @@ class InternationalContactFormView(
 ):
     slug = slugs.EUEXIT_INTERNATIONAL_FORM
     form_class = forms.InternationalContactForm
-    template_name = 'euexit/international-contact-form.html'
     success_url = reverse_lazy('eu-exit-international-contact-form-success')
     subject = 'EU exit international contact form'
     page_type = 'InternationalEUExitFormPage'
@@ -62,6 +61,5 @@ class InternationalContactFormView(
 
 
 class InternationalContactSuccessView(CMSPageMixin, TemplateView):
-    template_name = 'euexit/international-contact-form-success.html'
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
