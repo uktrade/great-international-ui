@@ -3,19 +3,21 @@
 ## Pre-release
 
 
-## [2019.05.09](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.09)
-[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.26...2019.05.09)
+## [2019.05.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.26...2019.05.13)
+
 
 ### Implemented enhancements:
 
-- [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to international pages.
 - [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Implement contact us form
+- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Implement tree based routing
 
 ### Fixed bugs:
 
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
 - [CMS-1395](https://uktrade.atlassian.net/browse/CMS-1395) Fix language cookie name and domain to be the same across all our services.
 - [CMS-1241](https://uktrade.atlassian.net/browse/CMS-1241) Accessibility fixes - img alt attributes and breadcrumbs
+- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Follow-up to tree-based routing ticket: fixed breadcrumbs home link not displaying
 
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
