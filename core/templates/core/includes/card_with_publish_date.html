@@ -1,0 +1,12 @@
+{% load parse_date prefix_path from cms_tags %}
+
+<div class="card">
+  <a class="card-link" href="{{ listing.meta.url }}">
+    <div class="card-image" {% if listing.hero_image_thumbnail %} style="background-image: url('{{ listing.hero_image_thumbnail.url }}');"{% endif %}>
+    </div>
+    <div class="card-inner">
+      <h3 class="heading-large">{{ listing.heading }}</h3>
+      <p class="description subheading">Updated {{ listing.last_published_at|parse_date }}</p>
+    </div>
+  </a>
+</div>

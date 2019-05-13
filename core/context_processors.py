@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils import translation
+from django.urls import reverse_lazy
 from directory_constants import urls
 
 
@@ -17,4 +18,13 @@ def footer_contact_us_link(request):
 def directory_components_html_lang_attribute(request):
     return {
         'directory_components_html_lang_attribute': translation.get_language()
+    }
+
+
+def site_home_link(request):
+    return {
+        'site_home_link': {
+            'url': reverse_lazy('index'),
+            'label': 'great.gov.uk International'
+        }
     }

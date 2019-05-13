@@ -9,6 +9,7 @@
 ### Implemented enhancements:
 
 - [CI-108](https://uktrade.atlassian.net/browse/CI-108) Add GA tags to international pages.
+- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Implement contact us form
 
 ### Fixed bugs:
 

@@ -1,6 +1,0 @@
-{% extends 'core/includes/plain_card_grid.html' %}
-{% load title_from_heading from cms_tags %}
-
-{% block card_content %}
-  {% include 'directory_components/labelled_image_card.html' with img_src=card.hero_image.url img_alt='' url=card_url title=card.heading|title_from_heading %}
-{% endblock %}

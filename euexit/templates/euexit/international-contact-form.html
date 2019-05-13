@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block css_layout_class %}eu-exit-form{% endblock %}
+
+{% block content %}
+  {% block breadcrumbs %}
+    {% url 'index' as landing_page %}
+    {% include 'euexit/breadcrumbs.html' with home_breadcrumbs_url=landing_page %}
+  {% endblock %}
+
+  {% block form_content %}
+    {% include 'euexit/form-contents.html'%}
+  {% endblock %}
+{% endblock %}

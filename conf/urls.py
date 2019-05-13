@@ -4,10 +4,11 @@ import directory_healthcheck.views
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 import core.views
 import conf.sitemaps
+import euexit.views
 
 
 sitemaps = {
@@ -43,75 +44,56 @@ urlpatterns = [
         r"^international/robots\.txt$",
         directory_components.views.RobotsView.as_view(),
         name='robots'
-    )
-]
-
-urlpatterns += (
+    ),
     url(
         r"^international/$",
-        core.views.LandingPageCMSView.as_view(),
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'international/'},
         name="index"
     ),
     url(
-        r"^international/news/$",
-        core.views.ArticleListPageView.as_view(),
-        {'slug': 'news'},
-        name="news"
+        r'^international/content/$',
+        RedirectView.as_view(url=reverse_lazy('index')),
+        name="content-index-redirect"
     ),
     url(
-        r"^international/how-to-do-business-with-the-uk/$",
-        core.views.CuratedLandingPageCMSView.as_view(),
-        {'slug': 'how-to-do-business-with-the-uk'},
-        name="how-to-do-business-with-the-uk"
+        r"^international/contact/$",
+        core.views.InternationalContactPageView.as_view(),
+        name='contact-page-international'
     ),
     url(
-        r"^international/how-to-setup-in-the-uk/$",
-        core.views.GuideLandingPageCMSView.as_view(),
-        {'slug': 'how-to-setup-in-the-uk'},
-        name="how-to-setup-in-the-uk"
+        r'^international/eu-exit-news/contact/$',
+        euexit.views.InternationalContactFormView.as_view(),
+        name='eu-exit-international-contact-form'
     ),
     url(
-        r"^international/how-to-do-business-with-the-uk/how-to-setup-in-the-uk/$",  # noqa
-        RedirectView.as_view(url=reverse_lazy('how-to-setup-in-the-uk')),
+        r'^international/eu-exit-news/contact/success/$',
+        euexit.views.InternationalContactSuccessView.as_view(),
+        name='eu-exit-international-contact-form-success'
     ),
+    # these 3 named urls are required for breadcrumbs in templates
     url(
-        r"^international/how-to-setup-in-the-uk/guides/$",
-        RedirectView.as_view(url='/international/how-to-setup-in-the-uk/#guides'), # noqa
-    ),
-    url(
-        r"^international/industries/$",
-        core.views.IndustriesLandingPageCMSView.as_view(),
-        {'slug': 'industries'},
+        r'^international/content/industries/$',
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'industries'},
         name="industries"
     ),
     url(
-        r"^international/industries/(?P<slug>[\w-]+)/$",
-        core.views.SectorPageCMSView.as_view(),
-        name="sector"
-    ),
-    url(
-        r"^international/campaigns/(?P<slug>[\w-]+)/$",
-        core.views.CampaignPageView.as_view(),
-        name="campaign"
-    ),
-    url(
-        r'^international/c/(?P<path>[\w\-/]*)$',
+        r"^international/content/how-to-setup-in-the-uk/$",
         core.views.CMSPageFromPathView.as_view(),
-        name="render-cms-page"
+        {'path': 'how-to-setup-in-the-uk'},
+        name="how-to-setup-in-the-uk"
     ),
     url(
-        r"^international/(?P<slug>[\w-]+)/$",
-        core.views.ArticleTopicPageView.as_view(),
-        name="article-topic"
+        r"^international/content/how-to-do-business-with-the-uk/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'how-to-do-business-with-the-uk'},
+        name="how-to-do-business-with-the-uk"
     ),
+    # ----
     url(
-        r"^international/(?P<topic>[\w-]+)/(?P<slug>[\w-]+)/$",
-        core.views.ArticleListPageView.as_view(),
-        name="article-list"
+        r'^international/content/(?P<path>[\w\-/]*)/$',
+        core.views.CMSPageFromPathView.as_view(),
+        name="cms-page-from-path"
     ),
-    url(
-        r"^international/(?P<topic>[\w-]+)/(?P<list>[\w-]+)/(?P<slug>[\w-]+)/$", # noqa
-        core.views.ArticlePageView.as_view(),
-        name="article-detail"
-    )
-)
+]
