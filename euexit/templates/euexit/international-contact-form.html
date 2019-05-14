@@ -3,6 +3,8 @@
 {% load static from staticfiles %}
 {% load breadcrumbs from directory_components_tags %}
 
+{% block head_title %}{{ site_home_link.label }} - {{ page.breadcrumbs_label }}{% endblock %}
+
 {% block css_layout_class %}eu-exit-form{% endblock %}
 
 {% block content %}
