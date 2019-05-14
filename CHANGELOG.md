@@ -2,6 +2,10 @@
 
 ## Pre-release
 
+### Fixed bugs:
+
+- [CMS-1510](https://uktrade.atlassian.net/browse/CMS-1510) Remove prefix_path shim to fix related article urls
+
 ### Implemented enhancements:
 
 - [CMS-1480](https://uktrade.atlassian.net/browse/CMS-1480) Add translations to po files and templates
