@@ -40,13 +40,6 @@ class Registry(defaultdict):
         Unregisters a function as a context modifier for any page types
         that it might be registered for.
         """
-
-        if fn is None:
-            def decorator(fn):
-                self.unregister(fn)
-                return fn
-            return decorator
-
         for key in self.keys():
             try:
                 self[key].remove(fn)

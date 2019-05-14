@@ -95,3 +95,12 @@ def test_context_modifier_unregister():
         modifiers = registry.get_for_page_type(page_type)
         assert len(modifiers) == 1
         assert modifiers[0] == example_modifier_two
+
+    # Unregister same method again to show that nothing bad happens
+    registry.unregister(example_modifier_one)
+
+    # Only 'example_modifier_two' should now be registered
+    for page_type in page_types:
+        modifiers = registry.get_for_page_type(page_type)
+        assert len(modifiers) == 1
+        assert modifiers[0] == example_modifier_two
