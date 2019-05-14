@@ -1,13 +1,13 @@
 {% extends "core/base.html" %}
 
 {% load static from staticfiles %}
+{% load breadcrumbs from directory_components_tags %}
 
 {% block css_layout_class %}eu-exit-form{% endblock %}
 
 {% block content %}
   {% block breadcrumbs %}
-    {% url 'index' as landing_page %}
-    {% include 'euexit/breadcrumbs.html' with home_breadcrumbs_url=landing_page %}
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.breadcrumbs_label %}
   {% endblock %}
 
   {% block form_content %}
