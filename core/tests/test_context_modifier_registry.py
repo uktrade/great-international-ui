@@ -51,7 +51,7 @@ def test_register_multiple_times():
     assert modifiers[0] == example_modifier
 
 
-def test_context_modifier_register_multiple_page_types():
+def test_register_for_multiple_page_types_at_once():
     registry = Registry()
     page_types = ['ArticlePage', 'EventPage', 'VenuePage']
 
@@ -67,7 +67,7 @@ def test_context_modifier_register_multiple_page_types():
         assert modifiers[0] == example_modifier
 
 
-def test_context_modifier_unregister():
+def test_unregister():
     registry = Registry()
     page_types = ['ArticlePage', 'EventPage', 'VenuePage']
 
