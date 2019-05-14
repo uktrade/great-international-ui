@@ -14,11 +14,12 @@ from directory_components.mixins import (
     GA360Mixin, CountryDisplayMixin)
 
 from core import forms
+from core.context_modifiers import (
+    register_context_modifier,
+    registry as context_modifier_registry
+)
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
-from core.context_modifiers import Registry
-
-context_modifiers = Registry()
 
 
 class CMSPageFromPathView(
@@ -51,15 +52,15 @@ class CMSPageFromPathView(
 
         context = super().get_context_data(page=self.page, **kwargs)
 
-        modifiers = context_modifiers.get_for_page_type(self.page['page_type'])
-
-        for modifier in modifiers:
+        for modifier in context_modifier_registry.get_for_page_type(
+            self.page['page_type']
+        ):
             context.update(modifier(context, request=self.request))
 
         return context
 
 
-@context_modifiers.register('InternationalArticlePage')
+@register_context_modifier('InternationalArticlePage')
 def article_page_context_modifier(context, request):
 
     page_title = context['page'].get('article_title', '')
@@ -74,7 +75,7 @@ def article_page_context_modifier(context, request):
     }
 
 
-@context_modifiers.register('InternationalHomePage')
+@register_context_modifier('InternationalHomePage')
 def home_page_context_modifier(context, request):
 
     country_code = get_user_country(request)
@@ -92,7 +93,7 @@ def home_page_context_modifier(context, request):
     }
 
 
-@context_modifiers.register('InternationalTopicLandingPage')
+@register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
 
     def rename_heading_field(page):
@@ -106,7 +107,7 @@ def sector_landing_page_context_modifier(context, request):
     return context
 
 
-@context_modifiers.register('InternationalSectorPage')
+@register_context_modifier('InternationalSectorPage')
 def sector_page_context_modifier(context, request):
 
     def count_data_with_field(list_of_data, field):

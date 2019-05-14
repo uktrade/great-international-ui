@@ -37,3 +37,7 @@ class Registry(defaultdict):
 
     def get_for_page_type(self, page_type):
         return self[page_type]
+
+
+registry = Registry()
+register_context_modifier = registry.register
