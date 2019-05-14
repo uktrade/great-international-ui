@@ -2,6 +2,5 @@
 {% load static from staticfiles %}
 
 {% block form_content %}
-    {% url 'index' as home_url %}
-    {% include 'euexit/form-success-contents.html' with home_url=home_url %}
+    {% include 'euexit/form-success-contents.html' %}
 {% endblock %}
