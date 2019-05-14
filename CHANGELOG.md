@@ -3,6 +3,13 @@
 ## Pre-release
 
 
+## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
+
+## Fixed bugs
+
+- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages, fix incorrect page title
+
 ## [2019.05.13_1](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_1)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13...2019.05.13_1)
 
