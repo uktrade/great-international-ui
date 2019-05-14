@@ -9,6 +9,7 @@
 ### Fixed bugs
 
 - [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed 500 error on contact page due to wrong url in template
+- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages
 
 
 ## [2019.05.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13)
