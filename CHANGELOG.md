@@ -6,6 +6,10 @@
 ## [2019.05.13_1](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_1)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13...2019.05.13_1)
 
+### Implemented enhancements
+
+- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Context modifier implementation tidying and test improvements (for tree based routing)
+
 ### Fixed bugs
 
 - [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed 500 error on contact page due to wrong url in template
