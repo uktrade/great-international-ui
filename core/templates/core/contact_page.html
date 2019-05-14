@@ -1,19 +1,12 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
 {% load trans from i18n %}
-{% load banner from directory_components_tags %}
+{% load breadcrumbs banner from directory_components_tags %}
 
 {% block content %}
 <section class="background-white">
-  <div class="container breadcrumbs">
-    <ol>
-      <li>
-        <a href="{% url 'landing-page-international' %}">great.gov.uk</a>
-      </li>
-      <li aria-current="page">
-          <span class="current">Contact us</span>
-      </li>
-    </ol>
+  <div class="container">
+    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label='Contact us' %}
   </div>
 
   <div class="container">
