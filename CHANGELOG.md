@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Implemented enhancements:
+
+- [CMS-1480](https://uktrade.atlassian.net/browse/CMS-1480) Add translations to po files and templates
 
 ## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
