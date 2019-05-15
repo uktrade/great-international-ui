@@ -20,38 +20,6 @@
     }
   }
 
-  .case-study {
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
-
-    .container {
-      min-height: 597px;
-      display: flex;
-      align-items: center;
-
-      .grid-row {
-        flex-grow: 1
-      }
-    }
-
-    .decorative-line {
-      width: 50%;
-    }
-
-    @media (max-width: 640px) {
-      .button {
-        width: auto;
-      }
-    }
-
-    .button::after {
-      content: '→';
-      margin-left: 1em;
-    }
-  }
-
   .next-steps .container {
     @media (min-width: 961px) {
       .cta-link {
