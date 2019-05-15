@@ -14,6 +14,9 @@
 
 - [CMS-1514](https://uktrade.atlassian.net/browse/CMS-1514) Fix case studies disappearing on mobile
 
+### Fixed bugs
+- CMS-1543: Fix link to invest contact us form on sector pages.
+
 ## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
 
