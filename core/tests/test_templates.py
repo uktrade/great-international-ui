@@ -87,8 +87,8 @@ def test_article_detail_page_related_content():
                 'title': 'Related article 1',
                 'teaser': 'Related article 1 teaser',
                 'thumbnail': {'url': 'related_article_one.jpg'},
-                'full_path': '/test-list/test-one/',
                 'meta': {
+                    'url': '/international/test-list/test-one/',
                     'slug': 'test-one',
                     'languages': [('en-gb', 'English')],
                 }
@@ -97,8 +97,8 @@ def test_article_detail_page_related_content():
                 'title': 'Related article 2',
                 'teaser': 'Related article 2 teaser',
                 'thumbnail': {'url': 'related_article_two.jpg'},
-                'full_path': '/test-list/test-two/',
                 'meta': {
+                    'url': '/international/test-list/test-two/',
                     'slug': 'test-two',
                     'languages': [('en-gb', 'English')],
                 }
