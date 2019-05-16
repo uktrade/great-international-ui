@@ -1,7 +1,8 @@
 # Changelog
 
 ## Pre-release
-
+## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
 ### Implemented enhancements:
 
