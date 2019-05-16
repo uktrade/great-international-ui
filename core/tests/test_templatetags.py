@@ -6,12 +6,6 @@ from bs4 import BeautifulSoup
 from core.templatetags import cms_tags
 
 
-def test_prefix_path():
-    actual = cms_tags.prefix_path('/article-list/article-slug/')
-    expected = '/international/article-list/article-slug/'
-    assert actual == expected
-
-
 def test_convert_links_to_with_arrow():
     template = Template(
         '{% load add_export_elements_classes '

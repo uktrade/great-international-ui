@@ -131,16 +131,18 @@
   <div class="container">
     <div class="grid-row margin-bottom-45">
       <div class="column-full column-two-thirds-m column-half-l">
-        <h2 class="heading-large margin-top-0">Next steps</h2>
-        <p>DIT can advise you on doing business abroad, and help put you in touch with other people who can help such as lawyers and distributors.</p>
+        <h2 class="heading-large margin-top-0">{% trans 'Next steps' %}</h2>
+        <p>{% trans 'The UK Government’s Department for International Trade helps connect international buyers with UK companies. Tell us what products or services you’re looking for an we’ll find your ideal business partner.' %}</p>
       </div>
     </div>
     <div class="grid-row" data-ga-class="next-steps-links">
       <div class="column-full column-half-l margin-bottom-30">
-        {% cta_link with_arrow=True url=invest_contact_us_link text="I want to invest in the UK" %}
+        {% trans "I want to invest in the UK" as want_to_invest %}
+        {% cta_link with_arrow=True url=invest_contact_us_url text=want_to_invest %}
       </div>
       <div class="column-full column-half-l margin-bottom-30">
-        {% cta_link with_arrow=True url=services_urls.fas text="I want to buy from the UK" %}
+        {% trans "I want to buy from the UK" as want_to_buy %}
+        {% cta_link with_arrow=True url=services_urls.fas text=want_to_buy %}
       </div>
     </div>
   </div>

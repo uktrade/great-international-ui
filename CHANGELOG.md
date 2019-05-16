@@ -3,19 +3,33 @@
 ## Pre-release
 
 
+### Implemented enhancements:
+
+- CMS-1480 - Add translations to po files and templates
+- CI-108 - Temporarily turn off additional GA tagging.
+
+### Fixed bugs
+
+- CMS-1514 Fix case studies disappearing on mobile
+- CMS-1510 - Remove prefix_path shim to fix related article urls
+- Upgrade `directory-components` to version `13.0.0` to fix CMS-1254 and CMS-1460
+- CMS-1543: Fix link to invest contact us form on sector pages.
+- No ticket - Fix links to industries landing page and how to setup page on homepage
+- No ticket - Fix invest contact link on industry pages
+
 ## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
 
 ## Fixed bugs
 
-- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages, fix incorrect page title
+- CMS-1472 - Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages, fix incorrect page title
 
 ## [2019.05.13_1](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_1)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13...2019.05.13_1)
 
 ### Fixed bugs
 
-- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Follow-up to contact form ticket: fixed 500 error on contact page due to wrong url in template
+- CMS-1472 - Follow-up to contact form ticket: fixed 500 error on contact page due to wrong url in template
 
 
 ## [2019.05.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13)
@@ -24,26 +38,26 @@
 
 ### Implemented enhancements:
 
-- [CMS-1472](https://uktrade.atlassian.net/browse/CMS-1472) Implement contact us form
-- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Implement tree based routing
+- CMS-1472 - Implement contact us form
+- CMS-1465 - Implement tree based routing
 
 ### Fixed bugs:
 
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
-- [CMS-1395](https://uktrade.atlassian.net/browse/CMS-1395) Fix language cookie name and domain to be the same across all our services.
-- [CMS-1241](https://uktrade.atlassian.net/browse/CMS-1241) Accessibility fixes - img alt attributes and breadcrumbs
-- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Follow-up to tree-based routing ticket: fixed breadcrumbs home link not displaying
+- CMS-1395 - Fix language cookie name and domain to be the same across all our services.
+- CMS-1241 - Accessibility fixes - img alt attributes and breadcrumbs
+- CMS-1465 - Follow-up to tree-based routing ticket: fixed breadcrumbs home link not displaying
 
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
 
 ### Implemented enhancements:
 
-- [CMS-1400](https://uktrade.atlassian.net/browse/CMS-1400) Added new url/view to support tree-based routing
-- [CMS-775](https://uktrade.atlassian.net/browse/CMS-775) Added alternate language url metadata to base template to improve SEO
-- [CMS-1386](https://uktrade.atlassian.net/browse/CMS-1386) Updated homepage design
-- [CMS-1247](https://uktrade.atlassian.net/browse/CMS-1247) Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
-- [CMS-1384](https://uktrade.atlassian.net/browse/CMS-1384) Fix the invest CTA on sector pages to link directly to invest's contact form
+- CMS-1400 - Added new url/view to support tree-based routing
+- CMS-775 - Added alternate language url metadata to base template to improve SEO
+- CMS-1386 - Updated homepage design
+- CMS-1247 - Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
+- CMS-1384 - Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
