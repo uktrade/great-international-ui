@@ -2,9 +2,6 @@
 
 ## Pre-release
 
-### Fixed bugs:
-
-- CMS-1510 - Remove prefix_path shim to fix related article urls
 
 ### Implemented enhancements:
 
@@ -12,7 +9,10 @@
 
 ### Fixed bugs
 
-- [CMS-1514](https://uktrade.atlassian.net/browse/CMS-1514) Fix case studies disappearing on mobile
+- CMS-1514 Fix case studies disappearing on mobile
+- CMS-1510 - Remove prefix_path shim to fix related article urls
+- Upgrade `directory-components` to version `13.0.0` to fix CMS-1254 and CMS-1460
+
 
 ### Fixed bugs
 - CMS-1543: Fix link to invest contact us form on sector pages.
