@@ -2,7 +2,6 @@
 
 ## Pre-release
 
-
 ### Implemented enhancements:
 
 - CMS-1480 - Add translations to po files and templates
@@ -12,8 +11,8 @@
 
 - CMS-1514 Fix case studies disappearing on mobile
 - CMS-1510 - Remove prefix_path shim to fix related article urls
-- Upgrade `directory-components` to version `13.0.0` to fix CMS-1254 and CMS-1460
-
+- CMS-1555 - Upgrade `directory-components` to version `13.0.0` to fix CMS-1254 and CMS-1460
+- Button on bottom of International Home page now goes to correct industries page not home page
 
 ### Fixed bugs
 - CMS-1543: Fix link to invest contact us form on sector pages.
