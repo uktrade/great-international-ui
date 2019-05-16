@@ -6,6 +6,7 @@
 ### Implemented enhancements:
 
 - CMS-1480 - Add translations to po files and templates
+- CI-108 - Temporarily turn off additional GA tagging.
 
 ### Fixed bugs
 
