@@ -15,6 +15,7 @@
 - Upgrade `directory-components` to version `13.0.0` to fix CMS-1254 and CMS-1460
 - CMS-1543: Fix link to invest contact us form on sector pages.
 - No ticket - Fix links to industries landing page and how to setup page on homepage
+- No ticket - Fix invest contact link on industry pages
 
 ## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
