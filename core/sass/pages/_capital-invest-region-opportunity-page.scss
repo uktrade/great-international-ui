@@ -1,0 +1,22 @@
+
+// Capital Invest/landing page
+
+@import '../partials/vars';
+@import '../partials/mixins';
+
+.capital-invest-region-page {
+
+  @mixin landingPageSection {
+    padding: $spacing-1 0;
+  }
+
+  .capital-invest-region-page-section:nth-child(odd) {
+    @include landingPageSection;
+  }
+
+  .capital-invest-region-page-section:nth-child(even) {
+    @include landingPageSection;
+    background: $stone-40;
+  }
+
+}

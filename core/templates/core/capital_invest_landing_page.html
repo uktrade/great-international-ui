@@ -1,0 +1,158 @@
+{% extends 'core/base_cms.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load filter_by_active_language from cms_tags %}
+{% load card hero add_export_elements_classes from directory_components_tags %}
+
+{% block content %}
+
+{% url 'doing-business-with-the-uk' as doing_business_url %}
+{% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=doing_business_url %}
+
+<section class="capital-invest-landing-page-section ">
+  <div class="container">
+   <h2 class="heading-large">{{ page.reason_to_invest_section_title }} </h2>
+		<div class="grid-row">
+			<p class="font-small column-half-l margin-bottom-45">{{ page.reason_to_invest_section_intro}} </p>
+		</div>
+		<div class="card-grid ci-landing-page-benefit-section">
+			<div class="column-half padding-right-60">
+				{{ page.reason_to_invest_section_content|add_export_elements_classes|safe }}
+			</div>
+			<div class="column-half center_vertical flex-shrink-0 max-width-100">
+				{% if page.reason_to_invest_section_image.url %}
+					<figure class="landing-page-image flex-shrink-0">
+						<img class="width-full" src="{{page.reason_to_invest_section_image.url}}">
+					</figure>
+				{%  endif %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section class="capital-invest-landing-page-section">
+  <div class="container">
+    <h2 class="heading-large">{{ page.region_ops_section_title }} </h2>
+		<div class="grid-row">
+			<p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
+		</div>
+		<div class="card-grid">
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_one_image.url img_alt='' region='midlands-engine' title=page.region_card_one_title pdf_text=page.region_card_one_cta_text description=page.region_card_one_description pdf_link=page.region_card_one_pdf_document %}
+			</div>
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_two_image.url img_alt='' url=card_url title=page.region_card_two_title pdf_text=page.region_card_two_cta_text description=page.region_card_two_description pdf_link=page.region_card_two_pdf_document %}
+			</div>
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_three_image.url img_alt='' url=card_url title=page.region_card_three_title pdf_text=page.region_card_three_cta_text description=page.region_card_three_description pdf_link=page.region_card_three_pdf_document %}
+			</div>
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_four_image.url img_alt='' url=card_url title=page.region_card_four_title pdf_text=page.region_card_four_cta_text description=page.region_card_four_description pdf_link=page.region_card_four_pdf_document %}
+			</div>
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_five_image.url img_alt='' url=card_url title=page.region_card_five_title pdf_text=page.region_card_five_cta_text description=page.region_card_five_description pdf_link=page.region_card_five_pdf_document %}
+			</div>
+			<div class="column-third-xl">
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_six_image.url img_alt='' url=card_url title=page.region_card_six_title pdf_text=page.region_card_six_cta_text description=page.region_card_six_description pdf_link=page.region_card_six_pdf_document %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section class="capital-invest-landing-page-section">
+  <div class="container">
+		<div class="card-grid ci-landing-page-energy-section">
+			<div class="column-half padding-right-60">
+				<h2 class="heading-large">{{ page.energy_sector_title }}</h2>
+				<p> {{ page.energy_sector_content|add_export_elements_classes|safe}} </p>
+				<a class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} target="_blank">
+					{{ page.energy_sector_cta_text }}
+				</a>
+			</div>
+			<div class="column-half center_vertical flex-shrink-0 max-width-100">
+				{% if page.energy_sector_image.url %}
+					<figure class="landing-page-image flex-shrink-0">
+						<img class="width-full" src="{{page.energy_sector_image.url}}">
+					</figure>
+				{%  endif %}
+			</div>
+		</div>
+  </div>
+</section>
+
+<section style="background-color: lightgray" class="capital-invest-landing-page-section">
+	<div class="container">
+		<div class="card-grid ci-landing-page-energy-section">
+			<div class="column-half padding-right-60">
+				<h2 class="heading-large">Homes in England Section</h2>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				<button class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} >
+					Homes in England
+				</button>
+			</div>
+			<div class="column-half flex-shrink-0 center_vertical">
+				{% if page.energy_sector_image.url %}
+					<figure class="landing-page-image flex-shrink-0">
+						<img class="width-full" src="https://fakeimg.pl/640x360">
+					</figure>
+				{%  endif %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-page-how-we-help capital-invest-landing-page-section with-flag">
+  <div class="container">
+    <h2 class="heading-large">{{ page.how_we_help_title }} </h2>
+    <div class="grid-row">
+      <div class="column-two-thirds">
+      	<p> {{ page.how_we_help_intro }}</p>
+      </div>
+    </div>
+    <div class="grid-row">
+      <ul>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src={{page.how_we_help_one_icon.url}} alt="">
+			<p>{{ page.how_we_help_one_text }} </p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src={{page.how_we_help_two_icon.url}} alt="">
+			<p>{{ page.how_we_help_two_text }}</p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src={{page.how_we_help_three_icon.url}} alt="">
+			<p>{{ page.how_we_help_three_text }} </p>
+		  </div>
+		</li>
+		<li>
+		  <div class="column-quarter">
+			<img class="icon" src={{page.how_we_help_four_icon.url}} alt="">
+			<p>{{ page.how_we_help_four_text }} </p>
+		  </div>
+		</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="capital-invest-landing-page-section">
+	<div class="container">
+		<div class="card-grid">
+			<div class="column-half">
+				<h2 class="heading-large">{{ page.contact_section_title }} </h2>
+				<p class="font-small">{{ page.contact_section_text }} </p>
+				<div>
+					<a href="#" class="button button-arrow-small">{{ page.contact_section_cta_text }} </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock content %}
+

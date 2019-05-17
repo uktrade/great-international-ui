@@ -1,11 +1,13 @@
 {% load static %}
 <div class="column-third-xl column-half-l column-full">
 	<div class="card">
-		<a class="card-link" href="{{ url }}">
-			<div class="card-image" role="image" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %}>
+		<a class="card-link" href="{{url}}">
+			<div class="card-image" role="img" {% if related_page.thumbnail %}style="background-image: url({{ related_page.thumbnail.url }});"{% endif %}>
 			</div>
 			<div class="card-inner wrap-tight padding-horizontal-45">
+				{% if related_pages.subheading or related_page.default_subheading %}
 				<p class="subheading">{{ related_page.subheading|default:default_subheading }}</p>
+				{% endif %}
 				<h3 class="heading-large">{{ related_page.title }}</h3>
 				{% if related_page.teaser %}
 					<p class="description">{{ related_page.teaser }}</p>

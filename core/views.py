@@ -133,3 +133,44 @@ class InternationalContactPageView(CountryDisplayMixin, TemplateView):
             invest_contact_us_url=urls.build_invest_url('contact/'),
             *args, **kwargs
         )
+
+
+@context_modifiers.register('CapitalInvestRegionPage')
+def capital_invest_region_page_context_modifier(context, request):
+
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    page = context['page']
+
+    return {
+        'num_of_economics_statistics': count_data_with_field(
+            page['economics_stats'], 'number'),
+        'num_of_location_statistics': count_data_with_field(
+            page['location_stats'], 'number'),
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+    }
+
+
+@context_modifiers.register('CapitalInvestRegionalSectorPage')
+def capital_invest_regional_sector_page_context_modifier(context, request):
+
+    return {
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+    }
+
+
+@context_modifiers.register('CapitalInvestRegionalSectorOpportunityPage')
+def capital_invest_regional_sector_opportunity_page_context_modifier(context, request):
+
+    page = context['page']
+
+    return {
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+        'hero_subheading': "{0} - {1}".format(
+            page['parent']['parent']['title'], page['parent']['title'])
+    }

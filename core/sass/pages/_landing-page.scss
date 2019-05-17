@@ -59,6 +59,47 @@
       height: 60px;
     }
   }
+  
+.landing-page-section:nth-child(odd){
+  @include landingPageSection;
+  background: $stone-40;
+}
+
+.landing-page-section:nth-child(even){
+  @include landingPageSection;
+}
+
+.landing-page-country-selector-dialog {
+
+  h2 {
+    font-family: $brand-font;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .countries {
+    position: relative;
+  }
+
+  .button-container {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+
+    .button {
+      font-family: $brand-font;
+      font-weight: 700;
+      padding: 10px 20px;
+      height: 49px;
+    }
+  }
+
+
+  .margin-top-remove-30{
+    margin-top: -30px;
+  }
+  
+  
 
   .tariffs-section {
     .country-selector-dialog {
@@ -66,6 +107,10 @@
 
       .countries {
         position: relative;
+      }
+      
+      .margin-top-remove-30{
+        margin-top: -30px;
       }
 
       .select-container {
