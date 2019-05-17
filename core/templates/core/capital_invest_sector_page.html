@@ -65,11 +65,11 @@
 		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
 			<div class="card-grid">
 			{% for child_page in page.child_pages %}
-				{% for opportunity in child_page.related_page %}
+				{% for opportunity in child_page.opportunities %}
 					<div class="column-third-xl column-half-l column-full">
 						<div class="card">
 							<div class="card-inner wrap-tight padding-horizontal-45">
-								<a href="{% url 'capital-invest-child-opportunity' page.parent.meta.slug page.meta.slug child_page.meta.slug %}" class="heading-medium">{{ opportunity.title }}</a>
+								<a href="{% url 'capital-invest-child-opportunity' page.parent.meta.slug page.meta.slug child_page.meta.slug %}" class="heading-medium">{{ opportunity.hero_title }}</a>
 								<p>{{ opportunity.location }}</p>
 								<p class="bold-small">{{ opportunity.scale }}</p>
 								<p><u>Investment type: </u>{{ opportunity.investment_type }}</p>

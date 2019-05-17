@@ -181,6 +181,16 @@ class CapitalInvestLandingPageCMSView(BaseCMSPage):
     template_name = 'core/capital_invest_landing_page.html'
     page_type = 'InternationalCapitalInvestLandingPage'
     slug = 'capital-invest'
+    one_to_six = ['one', 'two', 'three', 'four', 'five', 'six']
+    regions = []
+
+    def get_context_data(self, **kwargs):
+        context = super(CapitalInvestLandingPageCMSView,
+                        self).get_context_data(
+                        **kwargs
+                    )
+        zip(self.one_to_six, context['page']['related_regions'])
+        return context
 
 
 class CapitalInvestRegionPageCMSView(GetSlugFromKwargsMixin, BaseCMSPage):

@@ -41,9 +41,10 @@
 		</div>
 
 		<div class="card-grid">
-		{% for region in page.related_regions %}
+		{% for region, number in zipped_data %}
+		{{region}}{{number}}
 			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=region.image.url img_alt='' region=region.meta.slug title=region.title pdf_text=page.region_card_one_cta_text description=region.featured_description pdf_link=page.region_card_one_pdf_document %}
+				{% include 'core/includes/card_with_download_pdf.html' with img_src=region.image.url img_alt='' region=region.meta.slug title=region.title description=region.featured_description pdf_text=page.region_card_one_cta_text pdf_link=page.region_card_one_pdf_document %}
 			</div>
 		{% endfor %}
 		</div>
@@ -71,15 +72,15 @@
   </div>
 </section>
 
-<section style="background-color: lightgray" class="capital-invest-landing-page-section">
+<section class="capital-invest-landing-page-section">
 	<div class="container">
 		<div class="card-grid ci-landing-page-energy-section">
-			<div class="column-half padding-right-60">
+			<div class="column-half left-half-page-text">
 				<h2 class="heading-large">Homes in England Section</h2>
-				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				<button class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} >
+				<p> {{ page.energy_sector_content|add_export_elements_classes|safe}} </p>
+				<a class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} target="_blank" >
 					Homes in England
-				</button>
+				</a>
 			</div>
 			<div class="column-half flex-shrink-0 center-vertical">
 				{% if page.energy_sector_image.url %}

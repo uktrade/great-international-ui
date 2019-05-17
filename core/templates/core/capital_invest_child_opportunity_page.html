@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% for opportunity in page.related_page %}
+{% for opportunity in page.opportunities %}
 
 {% include 'directory_components/hero.html' with hero_text=opportunity.hero_title background_image_url=opportunity.hero_image.url hero_subheading=view.hero_subheading %}
 
@@ -33,7 +33,6 @@
     </nav>
   </div>
 </section>
-
 
 <section class="capital-invest-opportunity-page-section">
 	<div class="container">
