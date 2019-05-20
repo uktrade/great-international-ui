@@ -104,12 +104,3 @@ def parse_date(date_string):
 @register.filter
 def prefix_path(path):
     return '/international' + path
-#
-#
-# @register.inclusion_tag('core/capital_invest_child_opportunity_page.html',
-# takes_context=True)
-# def opportunities(context):
-#     return {
-#         'opportunities': Opportunity.objects.all(),
-#         'request': context['request'],
-#     }

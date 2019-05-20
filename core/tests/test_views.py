@@ -485,5 +485,3 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
 
     assert response.context_data['num_of_economics_statistics'] == 2
     assert response.context_data['num_of_location_statistics'] == 1
-
-
