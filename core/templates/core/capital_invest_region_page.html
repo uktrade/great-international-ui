@@ -13,7 +13,7 @@
 <section>
 	<div class="container">
 		{% url 'index' as index_url %}
-		{% url 'capital-invest' as capital_invest_url %}
+		{% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
 		{% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
 	</div>
 </section>
