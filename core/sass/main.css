@@ -230,26 +230,55 @@ section {
 .landing-page .features-highlight-section .features-highlight-icon {
   height: 60px;
 }
-.landing-page .tariffs-section .country-selector-dialog {
-  border: 0;
+.landing-page .landing-page-section:nth-child(odd) {
+  padding: 45px 0;
+  background: #f2eee8;
 }
-.landing-page .tariffs-section .country-selector-dialog .countries {
+.landing-page .landing-page-section:nth-child(even) {
+  padding: 45px 0;
+}
+.landing-page .landing-page-country-selector-dialog h2 {
+  font-family: "Overpass", "Roboto", arial, helvetica, verdana;
+  font-weight: 700;
+  font-size: 22px;
+}
+.landing-page .landing-page-country-selector-dialog .countries {
   position: relative;
 }
-.landing-page .tariffs-section .country-selector-dialog .margin-top-remove-30 {
+.landing-page .landing-page-country-selector-dialog .button-container {
+  float: left;
+  width: 50%;
+  padding-left: 15px;
+}
+.landing-page .landing-page-country-selector-dialog .button-container .button {
+  font-family: "Overpass", "Roboto", arial, helvetica, verdana;
+  font-weight: 700;
+  padding: 10px 20px;
+  height: 49px;
+}
+.landing-page .landing-page-country-selector-dialog .margin-top-remove-30 {
   margin-top: -30px;
 }
-.landing-page .tariffs-section .country-selector-dialog .select-container {
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog {
+  border: 0;
+}
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .countries {
+  position: relative;
+}
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .margin-top-remove-30 {
+  margin-top: -30px;
+}
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .select-container {
   width: 100%;
   position: relative;
 }
-.landing-page .tariffs-section .country-selector-dialog .select-container label {
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .select-container label {
   font-size: 0;
 }
-.landing-page .tariffs-section .country-selector-dialog .select-container select {
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .select-container select {
   width: 100%;
 }
-.landing-page .tariffs-section .country-selector-dialog .select-container .flag-icon {
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .select-container .flag-icon {
   position: absolute;
   top: 6px;
   left: 10px;
@@ -257,55 +286,53 @@ section {
   width: 40px;
 }
 @media (max-width: 640px) {
-  .landing-page .tariffs-section .country-selector-dialog .country-selector-dialog .select-container,
-.landing-page .tariffs-section .country-selector-dialog .country-selector-dialog .button-container {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .country-selector-dialog .select-container,
+.landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .country-selector-dialog .button-container {
     width: 100%;
   }
-  .landing-page .tariffs-section .country-selector-dialog .country-selector-dialog .button-container {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .country-selector-dialog .button-container {
     padding: 0;
     margin-top: 15px;
   }
-  .landing-page .tariffs-section .country-selector-dialog .tariffs-content {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .tariffs-content {
     padding: 0;
   }
 }
 @media (max-width: 768px) {
-  .landing-page .tariffs-section .country-selector-dialog .tariffs-image {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .tariffs-image {
     margin-bottom: 0;
   }
-  .landing-page .tariffs-section .country-selector-dialog .tariffs-content-wrapper {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .country-selector-dialog .tariffs-content-wrapper {
     margin-top: 45px;
     margin-bottom: 45px;
   }
 }
 @media (max-width: 768px) {
-  .landing-page .tariffs-section .study-visit-cta-section .button-arrow {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .study-visit-cta-section .button-arrow {
     margin-bottom: 15px;
   }
 }
 @media (max-width: 961px) {
-  .landing-page .tariffs-section .tariffs-image {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .tariffs-image {
     width: 100%;
     margin-bottom: 45px;
   }
-  .landing-page .tariffs-section .tariffs-content-wrapper {
+  .landing-page .landing-page-country-selector-dialog .tariffs-section .tariffs-content-wrapper {
     margin-top: 45px;
     width: 100%;
   }
 }
-.landing-page .featured-links-section .with-arrow {
+.landing-page .landing-page-country-selector-dialog .featured-links-section .with-arrow {
   margin: 0;
 }
-.landing-page .featured-links-section .with-arrow:before {
+.landing-page .landing-page-country-selector-dialog .featured-links-section .with-arrow:before {
   display: none;
   content: "";
 }
-
-.study-visit-cta-section .container {
+.landing-page .study-visit-cta-section .container {
   border-bottom: 1px solid #3b3458;
 }
-
-body.js-enabled .landing-page .country-selector-dialog select {
+.landing-page body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
 }
 
@@ -539,32 +566,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .sector-page .section-two .section-two-icon {
   height: 60px;
 }
-.sector-page .case-study {
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
-}
-.sector-page .case-study .container {
-  min-height: 597px;
-  display: flex;
-  align-items: center;
-}
-.sector-page .case-study .container .grid-row {
-  flex-grow: 1;
-}
-.sector-page .case-study .decorative-line {
-  width: 50%;
-}
-@media (max-width: 640px) {
-  .sector-page .case-study .button {
-    width: auto;
-  }
-}
-.sector-page .case-study .button::after {
-  content: "→";
-  margin-left: 1em;
-}
 @media (min-width: 961px) {
   .sector-page .next-steps .container .cta-link {
     font-size: 36px;
@@ -622,6 +623,14 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .curated-topic-landing-page .with-arrow::before {
   display: none;
+}
+
+#id_captcha-container {
+  margin-bottom: 30px;
+}
+
+.eu-exit-form .form-group > .form-control {
+  width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

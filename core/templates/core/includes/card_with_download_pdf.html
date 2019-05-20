@@ -29,20 +29,26 @@
           <p class="subheading">{{ subheading }}</p>
         {% endif %}
         {% if title or heading %}
-        <a href="{{region}}">
+        {% if region %}
+        <a href="{% url 'cms-page-from-path' region %}">
+        {% endif %}
           	<h3 class="heading-large">{% firstof title heading %}
 
 			</h3>
+		{% if region %}
 		</a>
+		{% endif %}
         {% endif %}
 
         {% if description %}
           <p class="description">{{ description }}</p>
         {% endif %}
       {% endif %}
+      {% if pdf_text and pdf_link %}
 		<a href="{{ pdf_link }}" target="_blank" class="button button-blue button-ghost-blue margin-top-30 pdf_button" >
 			{{ pdf_text }}
 		</a>
+	  {% endif %}
     </div>
 
   {% if url %}

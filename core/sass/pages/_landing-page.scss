@@ -59,154 +59,155 @@
       height: 60px;
     }
   }
-  
-.landing-page-section:nth-child(odd){
-  @include landingPageSection;
-  background: $stone-40;
-}
 
-.landing-page-section:nth-child(even){
-  @include landingPageSection;
-}
-
-.landing-page-country-selector-dialog {
-
-  h2 {
-    font-family: $brand-font;
-    font-weight: 700;
-    font-size: 22px;
+  .landing-page-section:nth-child(odd) {
+    @include landingPageSection;
+    background: $stone-40;
   }
 
-  .countries {
-    position: relative;
+  .landing-page-section:nth-child(even) {
+    @include landingPageSection;
   }
 
-  .button-container {
-    float: left;
-    width: 50%;
-    padding-left: 15px;
+  .landing-page-country-selector-dialog {
 
-    .button {
+    h2 {
       font-family: $brand-font;
       font-weight: 700;
-      padding: 10px 20px;
-      height: 49px;
+      font-size: 22px;
     }
-  }
 
+    .countries {
+      position: relative;
+    }
 
-  .margin-top-remove-30{
-    margin-top: -30px;
-  }
-  
-  
+    .button-container {
+      float: left;
+      width: 50%;
+      padding-left: 15px;
 
-  .tariffs-section {
-    .country-selector-dialog {
-      border: 0;
-
-      .countries {
-        position: relative;
+      .button {
+        font-family: $brand-font;
+        font-weight: 700;
+        padding: 10px 20px;
+        height: 49px;
       }
-      
-      .margin-top-remove-30{
-        margin-top: -30px;
-      }
+    }
 
-      .select-container {
-        width: 100%;
-        position: relative;
 
-        label {
-          font-size: 0;
+    .margin-top-remove-30 {
+      margin-top: -30px;
+    }
+
+
+    .tariffs-section {
+      .country-selector-dialog {
+        border: 0;
+
+        .countries {
+          position: relative;
         }
 
-        select {
+        .margin-top-remove-30 {
+          margin-top: -30px;
+        }
+
+        .select-container {
           width: 100%;
-        }
+          position: relative;
 
-        .flag-icon {
-          position: absolute;
-          top: 6px;
-          left: 10px;
-          height: 36px;
-          width: 40px;
-        }
-      }
+          label {
+            font-size: 0;
+          }
 
-      @media (max-width: 640px) {
-        .country-selector-dialog {
-          .select-container,
-          .button-container {
+          select {
             width: 100%;
           }
 
-          .button-container {
-            padding: 0;
-            margin-top: 15px;
+          .flag-icon {
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            height: 36px;
+            width: 40px;
           }
         }
-        .tariffs-content {
-          padding: 0;
+
+        @media (max-width: 640px) {
+          .country-selector-dialog {
+            .select-container,
+            .button-container {
+              width: 100%;
+            }
+
+            .button-container {
+              padding: 0;
+              margin-top: 15px;
+            }
+          }
+          .tariffs-content {
+            padding: 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .tariffs-image {
+            margin-bottom: 0;
+          }
+
+          .tariffs-content-wrapper {
+            margin-top: 45px;
+            margin-bottom: 45px;
+          }
         }
       }
 
       @media (max-width: 768px) {
+        .study-visit-cta-section {
+          .button-arrow {
+            margin-bottom: 15px;
+          }
+        }
+      }
+
+      @media (max-width: 961px) {
         .tariffs-image {
-          margin-bottom: 0;
+          width: 100%;
+          margin-bottom: 45px;
         }
 
         .tariffs-content-wrapper {
           margin-top: 45px;
-          margin-bottom: 45px;
+          width: 100%;
         }
       }
     }
 
-    @media (max-width: 768px) {
-      .study-visit-cta-section {
-        .button-arrow {
-          margin-bottom: 15px;
+    .featured-links-section {
+      .with-arrow {
+        margin: 0;
+
+        &:before {
+          display: none;
+          content: '';
         }
       }
     }
+  }
 
-    @media (max-width: 961px) {
-      .tariffs-image {
-        width: 100%;
-        margin-bottom: 45px;
-      }
-
-      .tariffs-content-wrapper {
-        margin-top: 45px;
-        width: 100%;
-      }
+  .study-visit-cta-section {
+    .container {
+      border-bottom: 1px solid $lightened-great-blue;
     }
   }
 
-  .featured-links-section {
-    .with-arrow {
-      margin: 0;
-      &:before {
-        display: none;
-        content: '';
-      }
-    }
-  }
-}
-
-.study-visit-cta-section {
-  .container {
-    border-bottom: 1px solid $lightened-great-blue;
-  }
-}
-
-// JS ENABLED STYLES
-body.js-enabled {
-  .landing-page {
-    .country-selector-dialog {
-      select {
-        padding-left: 60px;
+  // JS ENABLED STYLES
+  body.js-enabled {
+    .landing-page {
+      .country-selector-dialog {
+        select {
+          padding-left: 60px;
+        }
       }
     }
   }

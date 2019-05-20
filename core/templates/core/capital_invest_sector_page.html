@@ -35,6 +35,7 @@
   </div>
 </section>
 
+{% if page.sector_summary_intro %}
 <section class="capital-invest-sector-page-section">
 	<div class="container">
 		<div class="grid-row">
@@ -58,13 +59,16 @@
 		</div>
 	</div>
 </section>
+{% endif %}
 
 {% if page.added_related_pages %}
+{{ page.added_related_pages }}
 	<section id="news-events-section" class="capital-invest-sector-page-section">
 		<div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
 			<div class="card-grid">
 			{% for added_pages in page.added_related_pages %}
+			{{ added_pages}}
 			    {% for added_page in added_pages %}}}
 					<div class="column-third-xl column-half-l column-full">
 						<div class="card">

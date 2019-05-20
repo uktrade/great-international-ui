@@ -18,6 +18,7 @@
 	</div>
 </section>
 
+{% if page.region_summary_section_intro %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<div class="card-grid">
@@ -30,17 +31,18 @@
 				</div>
 			</div>
 			{% if page.region_summary_section_image.url %}
-			<div class="column-half-l center-vertical flex-shrink-0 max-width-100">
-				<figure class="landing-page-image flex-shrink-0">
-					<img class="width-full" src="{{page.region_summary_section_image.url}}">
-				</figure>
-			</div>
+                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.region_summary_section_image.url}}">
+                    </figure>
+                </div>
 			{%  endif %}
 		</div>
 	</div>
 </section>
+{% endif %}
 
-{% if page.child_pages %}
+{% if page.investment_opps_title and page.child_pages %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
@@ -53,17 +55,17 @@
 					<div class="card-image" role="img" style="background-image: url({{ sector_page.image.url }});">
 					</div>
 					<div class="card-inner wrap-tight padding-horizontal-45">
-						<a href=""><h3 class="heading-large">{{ sector_page.title }}</h3></a>
+						<a href="{% url 'cms-page-from-path-with-two-slugs' page.meta.slug sector_page.meta.slug %}"><h3 class="heading-large">{{ sector_page.title }}</h3></a>
 						<p class="description">{{ sector_page.featured_description }}</p>
 					</div>
 				</div>
 			</div>
 		{% endfor %}
-
 	</div>
 </section>
 {% endif %}
 
+{% if page.economics_data_title and page.economics_stats and page.location_data_title and page.location_stats %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 	<div class="padding-bottom-60">
@@ -76,7 +78,9 @@
 	</div>
 	</div>
 </section>
+{% endif %}
 
+{% if page.section_title and page.section_content %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.section_title }}</h1>
@@ -92,14 +96,15 @@
 				{{ page.section_content|add_export_elements_classes|safe }}
 			</div>
 		</div>
-
 	</div>
 </section>
+{% endif %}
 
-{% if page.case_study_title and page.case_study_cta_text %}
+{% if page.case_study_title and page.case_study_image.url %}
 	{% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
+{% if  page.next_steps_title and page.next_steps_intro %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
@@ -109,14 +114,19 @@
 			</div>
 		</div>
 		<div class="grid-row">
-			<div class="column-half">
-				{% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
-			</div>
-			<div class="column-half">
-				{% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
-			</div>
+            {% if page.invest_cta_text %}
+                <div class="column-half">
+                    {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
+                </div>
+            {% endif %}
+            {% if page.buy_cta_text %}
+                <div class="column-half">
+                    {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
+                </div>
+			{% endif %}
 		</div>
 	</div>
 </section>
+{% endif %}
 
 {% endblock %}
