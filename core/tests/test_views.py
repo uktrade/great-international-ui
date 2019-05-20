@@ -5,6 +5,7 @@ from django.urls import reverse
 from core import helpers
 from core.tests.helpers import create_response
 from core.views import CMSPageFromPathView
+from directory_constants import urls
 
 
 test_sectors = [
@@ -485,3 +486,63 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
 
     assert response.context_data['num_of_economics_statistics'] == 2
     assert response.context_data['num_of_location_statistics'] == 1
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_capital_invest_regional_sector_page_url_constants(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionalSectorPage'
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
+    assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_capital_invest_opportunity_page_url_constants(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestOpportunityPage'
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/ashton')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/opportunities/ashton')
+
+    assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
+    assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
