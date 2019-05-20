@@ -136,7 +136,9 @@ class InternationalContactPageView(CountryDisplayMixin, TemplateView):
 
 
 @context_modifiers.register('InternationalCapitalInvestLandingPage')
-def international_capital_invest_landing_page_context_modifier(context, request):
+def international_capital_invest_landing_page_context_modifier(
+        context, request
+):
 
     one_to_six = ['one', 'two', 'three', 'four', 'fix', 'six']
     return {
