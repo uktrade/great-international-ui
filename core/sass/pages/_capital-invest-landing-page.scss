@@ -46,27 +46,6 @@
     }
   }
 
-  .capital-invest-region-icons-section {
-    font-size: 17px;
-
-    .container:after {
-      padding-bottom: $spacing-3;
-    }
-
-    ul {
-      width: 100%;
-    }
-
-    .icon {
-      height: 64px;
-    }
-
-    .contact-button {
-      @extend .icon;
-      border-bottom: 0;
-    }
-  }
-
   .energy_pdf_button {
     text-align: center;
     width: 50%;
@@ -151,8 +130,6 @@
       align-items: center;
       justify-content: center;
     }
-
-
   }
 
   .flex-shrink-0 {

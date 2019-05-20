@@ -364,21 +364,6 @@ section {
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button {
   border-bottom: 0;
 }
-.capital-invest-landing-page .capital-invest-region-icons-section {
-  font-size: 17px;
-}
-.capital-invest-landing-page .capital-invest-region-icons-section .container:after {
-  padding-bottom: 30px;
-}
-.capital-invest-landing-page .capital-invest-region-icons-section ul {
-  width: 100%;
-}
-.capital-invest-landing-page .capital-invest-region-icons-section .icon, .capital-invest-landing-page .capital-invest-region-icons-section .contact-button {
-  height: 64px;
-}
-.capital-invest-landing-page .capital-invest-region-icons-section .contact-button {
-  border-bottom: 0;
-}
 .capital-invest-landing-page .energy_pdf_button {
   text-align: center;
   width: 50%;
@@ -453,6 +438,9 @@ section {
   padding: 60px 0;
   background: #f2eee8;
 }
+.capital-invest-region-page .icon, .capital-invest-region-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-region-page .contact-button {
+  height: 64px;
+}
 
 .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(odd) {
   padding: 60px 0;
@@ -469,7 +457,7 @@ section {
   padding: 60px 0;
   background: #f2eee8;
 }
-.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-region-icons-section .contact-button, .capital-invest-landing-page .capital-invest-region-icons-section .capital-invest-opportunity-page .contact-button {
+.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
   height: 64px;
 }
 

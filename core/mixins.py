@@ -85,8 +85,6 @@ class CMSPageMixin:
         this avoids /international/article-slug showing an article page
         at a url where it shouldn't exist
         """
-        print('here page type', self.page_type)
-        print(self.page['page_type'])
         if self.page['page_type'] != self.page_type:
             raise Http404
         return super().dispatch(request, *args, **kwargs)
@@ -99,7 +97,6 @@ class CMSPageMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        print("\n\n\n\n the response ===>", response.json(), "\n\n\n\n\n")
         return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
