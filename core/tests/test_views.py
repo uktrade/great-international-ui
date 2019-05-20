@@ -446,3 +446,44 @@ def test_cms_page_from_path_view(lookup_by_path, client, settings):
         path='page/from/path',
         site_id=settings.DIRECTORY_CMS_SITE_ID,
     )
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionPage',
+        'economics_stats': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ],
+        'location_stats': [
+            {'number': '1'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/capital-invest/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/capital-invest/')
+
+    assert response.context_data['num_of_economics_statistics'] == 2
+    assert response.context_data['num_of_location_statistics'] == 1
+
+
