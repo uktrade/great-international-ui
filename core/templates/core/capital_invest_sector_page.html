@@ -19,14 +19,14 @@
     <nav class="breadcrumbs padding-bottom-0" aria-label="breadcrumb" role="navigation">
       <ol>
         <li>
-          <a href="">Great.gov.uk International</a>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
         </li>
         <li>
-          <a href="">Capital Invest</a>
+          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital Invest</a>
         </li>
         {% if page.parent %}
 			<li>
-			  <a href="">{{ page.parent.title }}</a>
+			  <a href="{% url 'cms-page-from-path' page.parent.meta.slug %}">{{ page.parent.title }}</a>
 			</li>
         {% endif %}
         <li aria-current="page">{{ page.breadcrumbs_label }}</li>
@@ -62,31 +62,28 @@
 {% endif %}
 
 {% if page.added_related_pages %}
-{{ page.added_related_pages }}
 	<section id="news-events-section" class="capital-invest-sector-page-section">
 		<div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
 			<div class="card-grid">
 			{% for added_pages in page.added_related_pages %}
-			{{ added_pages}}
-			    {% for added_page in added_pages %}}}
-					<div class="column-third-xl column-half-l column-full">
-						<div class="card">
-							<div class="card-inner wrap-tight padding-horizontal-45">
-								<a href="" class="heading-medium">{{ added_page.hero_title }}</a>
-								<p>{{ added_page.location }}</p>
-								<p class="bold-small">{{ added_page.scale }}</p>
-								<p><u>Investment type: </u>{{ added_page.investment_type }}</p>
-							</div>
-						</div>
-					</div>
-				{% endfor %}
+                <div class="column-third-xl column-half-l column-full">
+                    <div class="card">
+                        <div class="card-inner wrap-tight padding-horizontal-45">
+                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' added_pages.added_related_page.meta.slug %}" class="heading-medium">{{ added_pages.added_related_page.title }}</a>
+                            <p>{{ added_pages.added_related_page.location }}</p>
+                            <p class="bold-small">{{ added_pages.added_related_page.scale }}</p>
+                            <p><u>Investment type: </u>{{ added_pages.added_related_page.investment_type }}</p>
+                        </div>
+                    </div>
+                </div>
 			{% endfor %}
 			</div>
 		</div>
 	</section>
 {% endif %}
 
+{% if  page.next_steps_title and page.next_steps_intro %}
 <section class="capital-invest-sector-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
@@ -95,15 +92,18 @@
 				{{ page.next_steps_intro }}
 			</div>
 		</div>
-		<div class="grid-row">
-			<div class="column-half">
-				{% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
-			</div>
-			<div class="column-half">
-				{% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
-			</div>
-		</div>
+		{% if page.invest_cta_text %}
+            <div class="column-half">
+                {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
+            </div>
+        {% endif %}
+        {% if page.buy_cta_text %}
+            <div class="column-half">
+                {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
+            </div>
+		{% endif %}
 	</div>
 </section>
+{%endif %}
 
 {% endblock %}

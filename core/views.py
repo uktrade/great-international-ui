@@ -172,14 +172,10 @@ def capital_invest_regional_sector_page_context_modifier(context, request):
     }
 
 
-@context_modifiers.register('CapitalInvestRegionalSectorOpportunityPage')
-def capital_invest_regional_sector_opportunity_page_context_modifier(context, request):
-
-    page = context['page']
+@context_modifiers.register('CapitalInvestOpportunityPage')
+def capital_invest_opportunity_page_context_modifier(context, request):
 
     return {
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
-        'hero_subheading': "{0} - {1}".format(
-            page['parent']['parent']['title'], page['parent']['title'])
     }
