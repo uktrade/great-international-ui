@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-14 14:19+0000\n"
+"POT-Creation-Date: 2019-05-21 11:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,17 +38,21 @@ msgstr ""
 msgid "Go to the homepage"
 msgstr ""
 
-#: core/templates/core/base.html:52
+#: core/templates/core/article_detail.html:23
+msgid "UK setup guide"
+msgstr "Guia para estabelecer no Reino Unido"
+
+#: core/templates/core/base.html:41
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/curated_topic_landing_page.html:63
-#: core/templates/core/guide_landing_page.html:81
+#: core/templates/core/guide_landing_page.html:80
+#: core/templates/core/how_to_do_business_landing_page.html:64
 msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
-#: core/templates/core/curated_topic_landing_page.html:65
-#: core/templates/core/guide_landing_page.html:83
+#: core/templates/core/guide_landing_page.html:82
+#: core/templates/core/how_to_do_business_landing_page.html:66
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
 "have questions, we can help."
@@ -56,16 +60,20 @@ msgstr ""
 "O Governo do Reino Unido ajuda as empresas a expandirem-se e a fazerem "
 "negócios com o Reino Unido. Se tiver dúvidas, podemos apoiá-lo"
 
-#: core/templates/core/curated_topic_landing_page.html:67
-#: core/templates/core/guide_landing_page.html:85
-msgid "Contact an EU Exit enquiry service"
+#: core/templates/core/guide_landing_page.html:84
+#: core/templates/core/how_to_do_business_landing_page.html:68
+msgid "Contact the EU Exit enquiry service"
 msgstr "Contacte o Serviço de informações sobre a saída da UE"
 
-#: core/templates/core/sector_page.html:132
+#: core/templates/core/sector_page.html:16
+msgid "Industries"
+msgstr "Indústrias"
+
+#: core/templates/core/sector_page.html:134
 msgid "Next steps"
 msgstr "Próximas etapas"
 
-#: core/templates/core/sector_page.html:133
+#: core/templates/core/sector_page.html:135
 msgid ""
 "The UK Government’s Department for International Trade helps connect "
 "international buyers with UK companies. Tell us what products or services "
@@ -75,10 +83,10 @@ msgstr ""
 "você a encontrar os produtos e serviços certos do Reino Unido. Mais do que "
 "isso, oferecemos assessoria e suporte financeiro competitivo."
 
-#: core/templates/core/sector_page.html:138
+#: core/templates/core/sector_page.html:140
 msgid "I want to invest in the UK"
 msgstr "Eu quero investir no Reino Unido"
 
-#: core/templates/core/sector_page.html:142
+#: core/templates/core/sector_page.html:144
 msgid "I want to buy from the UK"
 msgstr "Eu quero comprar do Reino Unido"
