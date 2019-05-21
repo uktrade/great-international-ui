@@ -52,36 +52,13 @@
                 {% include 'directory_components/card.html' with img_src=region.image.url img_alt='' title=region.title description=region.featured_description url=region_url %}
             </div>
         {% endfor %}
-		{% if page.region_card_one_title and page.region_card_one_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_one_image.url title=page.region_card_one_title pdf_text=page.region_card_one_cta_text description=page.region_card_one_summary pdf_link=page.region_card_one_pdf_document %}
-			</div>
-		{% endif %}
-		{% if page.region_card_two_title and page.region_card_two_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_two_image.url title=page.region_card_two_title pdf_text=page.region_card_two_cta_text description=page.region_card_two_summary pdf_link=page.region_card_two_pdf_document %}
-			</div>
-		{% endif %}
-		{% if page.region_card_three_title and page.region_card_three_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_three_image.url title=page.region_card_three_title pdf_text=page.region_card_three_cta_text description=page.region_card_three_summary pdf_link=page.region_card_three_pdf_document %}
-			</div>
-		{% endif %}
-		{% if page.region_card_four_title and page.region_card_four_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_four_image.url title=page.region_card_four_title pdf_text=page.region_card_four_cta_text description=page.region_card_four_summary pdf_link=page.region_card_four_pdf_document %}
-			</div>
-		{% endif %}
-		{% if page.region_card_five_title and page.region_card_five_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_five_image.url title=page.region_card_five_title pdf_text=page.region_card_five_cta_text description=page.region_card_five_summary pdf_link=page.region_card_five_pdf_document %}
-			</div>
-		{% endif %}
-		{% if page.region_card_six_title and page.region_card_six_summary %}
-			<div class="column-third-xl">
-				{% include 'core/includes/card_with_download_pdf.html' with img_src=page.region_card_six_image.url title=page.region_card_six_title pdf_text=page.region_card_six_cta_text description=page.region_card_six_summary pdf_link=page.region_card_six_pdf_document %}
-			</div>
-		{% endif %}
+        {% for region_fields in page.region_cards %}
+            {% if region_fields.title and region_fields.summary %}
+                <div class="column-third-xl">
+                    {% include 'core/includes/card_with_download_pdf.html' with img_src=region_fields.image.url title=region_fields.title pdf_text=region_fields.cta_text description=region_fields.summary pdf_link=region_fields.pdf_document %}
+                </div>
+			{% endif %}
+        {% endfor %}
 		</div>
   </div>
 </section>
