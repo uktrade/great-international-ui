@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import Http404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -52,6 +53,28 @@ class CMSPageFromPathView(
         context = super().get_context_data(page=self.page, **kwargs)
 
         modifiers = context_modifiers.get_for_page_type(self.page['page_type'])
+
+        if self.page['page_type'] == 'CapitalInvestRegionPage' and \
+                not settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON']:
+            raise Http404()
+
+        if self.page['page_type'] == 'InternationalCapitalInvestLandingPage' \
+                and not settings.FEATURE_FLAGS[
+            'CAPITAL_INVEST_LANDING_PAGE_ON'
+        ]:
+            raise Http404()
+
+        if self.page['page_type'] == 'CapitalInvestRegionalSectorPage' and \
+                not settings.FEATURE_FLAGS[
+                    'CAPITAL_INVEST_REGIONAL_SECTOR_PAGE_ON'
+                ]:
+            raise Http404()
+
+        if self.page['page_type'] == 'CapitalInvestOpportunityPage' and \
+                not settings.FEATURE_FLAGS[
+                    'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'
+                ]:
+            raise Http404()
 
         for modifier in modifiers:
             context.update(modifier(context, request=self.request))
