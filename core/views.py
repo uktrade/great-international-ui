@@ -117,6 +117,7 @@ def sector_page_context_modifier(context, request):
     page = context['page']
 
     return {
+        'invest_contact_us_url': urls.build_invest_url('contact/'),
         'num_of_statistics': count_data_with_field(
             page['statistics'], 'number'),
         'section_three_num_of_subsections': count_data_with_field(

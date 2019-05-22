@@ -99,8 +99,3 @@ def parse_date(date_string):
     if date_string:
         return dateparser.parse(date_string).strftime('%d %B %Y')
     return None
-
-
-@register.filter
-def prefix_path(path):
-    return '/international' + path
