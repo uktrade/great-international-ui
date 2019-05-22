@@ -8,6 +8,7 @@
 - CMS-1577 - Update content on EU Exit CTA buttons
 - CMS-1480 - Add translations to po files and templates
 - CI-108 - Temporarily turn off additional GA tagging.
+- CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 
 ### Fixed bugs
 
@@ -27,10 +28,6 @@
 
 ## [2019.05.13_1](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_1)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13...2019.05.13_1)
-
-### Implemented enhancements
-
-- [CMS-1465](https://uktrade.atlassian.net/browse/CMS-1465) Context modifier implementation tidying and test improvements (for tree based routing)
 
 ### Fixed bugs
 
