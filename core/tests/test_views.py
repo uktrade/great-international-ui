@@ -546,3 +546,91 @@ def test_get_capital_invest_opportunity_page_url_constants(
 
     assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
     assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
+        mock_get_page, client, settings
+):
+
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = False
+
+    page = dummy_page.copy()
+    page['page_type'] = 'InternationalCapitalInvestLandingPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = '/international/content/capital-invest/'
+
+    response = client.get(url)
+
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_region_page_returns_404_when_feature_flag_off(
+        mock_get_page, client, settings
+):
+
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
+
+    page = dummy_page.copy()
+    page['page_type'] = 'CapitalInvestRegionPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = '/international/content/midlands/'
+
+    response = client.get(url)
+
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_sector_page_returns_404_when_feature_flag_off(
+        mock_get_page, client, settings
+):
+
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGIONAL_SECTOR_PAGE_ON'] = False
+
+    page = dummy_page.copy()
+    page['page_type'] = 'CapitalInvestRegionalSectorPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = '/international/content/midlands/housing/'
+
+    response = client.get(url)
+
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
+        mock_get_page, client, settings
+):
+
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
+
+    page = dummy_page.copy()
+    page['page_type'] = 'CapitalInvestOpportunityPage'
+
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    url = '/international/content/opportunities/ashton/'
+
+    response = client.get(url)
+
+    assert response.status_code == 404
