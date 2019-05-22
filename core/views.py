@@ -74,7 +74,7 @@ class CMSPageFromPathView(
                     'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'
                 ]:
             raise Http404()
-            
+
         for modifier in context_modifier_registry.get_for_page_type(
             self.page['page_type']
         ):
