@@ -159,7 +159,7 @@ class InternationalContactPageView(CountryDisplayMixin, TemplateView):
         )
 
 
-@context_modifiers.register('CapitalInvestRegionPage')
+@register_context_modifier('CapitalInvestRegionPage')
 def capital_invest_region_page_context_modifier(context, request):
 
     def count_data_with_field(list_of_data, field):
@@ -178,7 +178,7 @@ def capital_invest_region_page_context_modifier(context, request):
     }
 
 
-@context_modifiers.register('CapitalInvestRegionalSectorPage')
+@register_context_modifier('CapitalInvestRegionalSectorPage')
 def capital_invest_regional_sector_page_context_modifier(context, request):
 
     return {
@@ -187,7 +187,7 @@ def capital_invest_regional_sector_page_context_modifier(context, request):
     }
 
 
-@context_modifiers.register('CapitalInvestOpportunityPage')
+@register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
     return {
