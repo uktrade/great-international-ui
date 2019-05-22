@@ -42,14 +42,14 @@
 </section>
 {% endif %}
 
-{% if page.investment_opps_title and page.child_pages %}
+{% if page.investment_opps_title and page.child_pages|filter_by_active_language %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.investment_opps_title }}</h1>
 		<div class="grid-row">
 			<p class="column-half-l padding-bottom-30">{{ page.investment_opps_intro }}</p>
 		</div>
-		{% for sector_page in page.child_pages %}
+		{% for sector_page in page.child_pages|filter_by_active_language %}
 			<div class="column-third-xl column-half-l column-full">
 				<div class="card">
 					<div class="card-image" role="img" style="background-image: url({{ sector_page.image.url }});">

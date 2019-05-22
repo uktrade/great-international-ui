@@ -50,8 +50,6 @@
 	</div>
 </section>
 
-
-
 <section class="capital-invest-opportunity-page-section capital-invest-region-icons-section">
 	<div class="container">
 		<div class="grid-row padding-bottom-90 ">
@@ -146,14 +144,14 @@
 	{% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
-{% if page.related_pages %}
+{% if page.related_pages|filter_by_active_language %}
 <section class="capital-invest-opportunity-page-section">
 	<div class="container">
 		<div class="grid-row">
 			<h1 class="heading-large padding-bottom-30">
 				{{ page.similar_projects_title}}
 			</h1>
-			{% for related_page in page.related_pages %}
+			{% for related_page in page.related_pages|filter_by_active_language %}
 				<div class="column-third-xl column-half-l column-full">
 					<div class="card">
 						<div class="card-inner wrap-tight padding-horizontal-45">

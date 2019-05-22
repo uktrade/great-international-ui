@@ -9,7 +9,7 @@
 {% block content %}
 
 {% if page.parent %}
-	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url hero_subheading=page.parent.title %}
+	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url hero_subheading=page.parent.hero_title %}
 {% else %}
 	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
 {% endif %}
@@ -26,7 +26,7 @@
         </li>
         {% if page.parent %}
 			<li>
-			  <a href="{% url 'cms-page-from-path' page.parent.meta.slug %}">{{ page.parent.title }}</a>
+			  <a href="{% url 'cms-page-from-path' page.parent.meta.slug %}">{{ page.parent.hero_title }}</a>
 			</li>
         {% endif %}
         <li aria-current="page">{{ page.breadcrumbs_label }}</li>
