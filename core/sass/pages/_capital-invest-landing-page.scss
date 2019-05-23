@@ -34,7 +34,7 @@
     }
 
     .icon {
-      height: 64px;
+      height: $spacing-1;
       padding-bottom: $spacing-4;
       margin-bottom: $spacing-4;
       @include red-underline
@@ -92,29 +92,13 @@
   }
 
   @media (max-width: 450px) {
-    .hero {
-      .container {
-        .hero-text {
-          .hero-subtitle {
-            width: 80%;
-          }
-
-          .button {
-            white-space: initial;
-            width: 80%;
-          }
-        }
-      }
+    .hero .container .hero-text .button {
+      white-space: initial;
+      width: 80%;
     }
 
-    .card-grid {
-      .card {
-        .card-inner {
-          p.description {
-            margin-bottom: 120px;
-          }
-        }
-      }
+    .card-grid .card .card-inner p.description {
+      margin-bottom: 120px;
     }
 
     .pdf_button {

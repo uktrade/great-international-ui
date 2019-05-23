@@ -8,8 +8,8 @@
 
 {% block content %}
 
-{% if cta_text and cta_link %}
-    {% url 'doing-business-with-the-uk' as doing_business_url %}
+{% if page.hero_cta_text %}
+    {% url 'how-to-do-business-with-the-uk' as doing_business_url %}
     {% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=doing_business_url %}
 {% else %}
     {% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url %}
