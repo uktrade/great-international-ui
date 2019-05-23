@@ -60,154 +60,108 @@
     }
   }
 
-  .landing-page-section:nth-child(odd) {
-    @include landingPageSection;
-    background: $stone-40;
-  }
+  .tariffs-section {
+    .country-selector-dialog {
+      border: 0;
 
-  .landing-page-section:nth-child(even) {
-    @include landingPageSection;
-  }
-
-  .landing-page-country-selector-dialog {
-
-    h2 {
-      font-family: $brand-font;
-      font-weight: 700;
-      font-size: 22px;
-    }
-
-    .countries {
-      position: relative;
-    }
-
-    .button-container {
-      float: left;
-      width: 50%;
-      padding-left: 15px;
-
-      .button {
-        font-family: $brand-font;
-        font-weight: 700;
-        padding: 10px 20px;
-        height: 49px;
+      .countries {
+        position: relative;
       }
-    }
 
+      .select-container {
+        width: 100%;
+        position: relative;
 
-    .margin-top-remove-30 {
-      margin-top: -30px;
-    }
-
-
-    .tariffs-section {
-      .country-selector-dialog {
-        border: 0;
-
-        .countries {
-          position: relative;
+        label {
+          font-size: 0;
         }
 
-        .margin-top-remove-30 {
-          margin-top: -30px;
-        }
-
-        .select-container {
+        select {
           width: 100%;
-          position: relative;
+        }
 
-          label {
-            font-size: 0;
-          }
+        .flag-icon {
+          position: absolute;
+          top: 6px;
+          left: 10px;
+          height: 36px;
+          width: 40px;
+        }
+      }
 
-          select {
+      @media (max-width: 640px) {
+        .country-selector-dialog {
+          .select-container,
+          .button-container {
             width: 100%;
           }
 
-          .flag-icon {
-            position: absolute;
-            top: 6px;
-            left: 10px;
-            height: 36px;
-            width: 40px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .country-selector-dialog {
-            .select-container,
-            .button-container {
-              width: 100%;
-            }
-
-            .button-container {
-              padding: 0;
-              margin-top: 15px;
-            }
-          }
-          .tariffs-content {
+          .button-container {
             padding: 0;
+            margin-top: 15px;
           }
         }
-
-        @media (max-width: 768px) {
-          .tariffs-image {
-            margin-bottom: 0;
-          }
-
-          .tariffs-content-wrapper {
-            margin-top: 45px;
-            margin-bottom: 45px;
-          }
+        .tariffs-content {
+          padding: 0;
         }
       }
 
       @media (max-width: 768px) {
-        .study-visit-cta-section {
-          .button-arrow {
-            margin-bottom: 15px;
-          }
-        }
-      }
-
-      @media (max-width: 961px) {
         .tariffs-image {
-          width: 100%;
-          margin-bottom: 45px;
+          margin-bottom: 0;
         }
 
         .tariffs-content-wrapper {
           margin-top: 45px;
-          width: 100%;
+          margin-bottom: 45px;
         }
       }
     }
 
-    .featured-links-section {
-      .with-arrow {
-        margin: 0;
-
-        &:before {
-          display: none;
-          content: '';
+    @media (max-width: 768px) {
+      .study-visit-cta-section {
+        .button-arrow {
+          margin-bottom: 15px;
         }
+      }
+    }
+
+    @media (max-width: 961px) {
+      .tariffs-image {
+        width: 100%;
+        margin-bottom: 45px;
+      }
+
+      .tariffs-content-wrapper {
+        margin-top: 45px;
+        width: 100%;
       }
     }
   }
 
-  .study-visit-cta-section {
-    .container {
-      border-bottom: 1px solid $lightened-great-blue;
+  .featured-links-section {
+    .with-arrow {
+      margin: 0;
+      &:before {
+        display: none;
+        content: '';
+      }
     }
   }
+}
 
-  // JS ENABLED STYLES
-  body.js-enabled {
-    .landing-page {
-      .country-selector-dialog {
-        select {
-          padding-left: 60px;
-        }
+.study-visit-cta-section {
+  .container {
+    border-bottom: 1px solid $lightened-great-blue;
+  }
+}
+
+// JS ENABLED STYLES
+body.js-enabled {
+  .landing-page {
+    .country-selector-dialog {
+      select {
+        padding-left: 60px;
       }
     }
   }
