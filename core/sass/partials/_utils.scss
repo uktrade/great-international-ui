@@ -8,8 +8,8 @@
   background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
 }
 
-.with-arrow {
-  @include with-arrow;
+.with-left-arrow {
+  @include with-left-arrow;
 }
 
 .button-arrow {
@@ -82,3 +82,20 @@
 .margin-top-remove-30{
   margin-top: -30px;
 }
+
+.center-vertical{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+ @media (min-width: 641px) {
+    section .container {
+      .left-half-page-text {
+        padding-right: 60px;
+      }
+
+      .right-half-page-text {
+        padding-left: 60px;
+      }
+    }
+  }

@@ -1,0 +1,31 @@
+@import '../partials/vars';
+@import '../partials/mixins';
+
+.capital-invest-opportunity-page {
+
+  .capital-invest-opportunity-page-section:nth-child(odd) {
+    @include white-section;
+  }
+
+  .capital-invest-opportunity-page-section:nth-child(even) {
+    @include stone-section;
+  }
+
+  .container:after {
+    padding-bottom: $spacing-3;
+  }
+
+  p {
+    margin-bottom: $spacing-3;
+  }
+
+  ul {
+    width: 100%;
+  }
+
+  .icon {
+    padding-bottom: $spacing-4;
+    margin-bottom: $spacing-4;
+    height: calc(#{$spacing-1} + #{$spacing-4}); // 60px x 60px icons, need to account for padding
+  }
+}
