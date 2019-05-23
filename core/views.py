@@ -54,7 +54,9 @@ class CMSPageFromPathView(
         context = super().get_context_data(page=self.page, **kwargs)
 
         if self.page['page_type'] == 'CapitalInvestRegionPage' and \
-                not settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON']:
+                not settings.FEATURE_FLAGS[
+                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
+                ]:
             raise Http404()
 
         if self.page['page_type'] == 'InternationalCapitalInvestLandingPage' \
@@ -65,13 +67,13 @@ class CMSPageFromPathView(
 
         if self.page['page_type'] == 'CapitalInvestRegionalSectorPage' and \
                 not settings.FEATURE_FLAGS[
-                    'CAPITAL_INVEST_REGIONAL_SECTOR_PAGE_ON'
+                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
                 ]:
             raise Http404()
 
         if self.page['page_type'] == 'CapitalInvestOpportunityPage' and \
                 not settings.FEATURE_FLAGS[
-                    'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'
+                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
                 ]:
             raise Http404()
 

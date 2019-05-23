@@ -575,7 +575,7 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
         mock_get_page, client, settings
 ):
 
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
     page = dummy_page.copy()
     page['page_type'] = 'CapitalInvestRegionPage'
@@ -597,7 +597,7 @@ def test_capital_invest_sector_page_returns_404_when_feature_flag_off(
         mock_get_page, client, settings
 ):
 
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGIONAL_SECTOR_PAGE_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
     page = dummy_page.copy()
     page['page_type'] = 'CapitalInvestRegionalSectorPage'
@@ -619,7 +619,7 @@ def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
         mock_get_page, client, settings
 ):
 
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
     page = dummy_page.copy()
     page['page_type'] = 'CapitalInvestOpportunityPage'
