@@ -117,23 +117,23 @@
 		</div>
 		{% endif %}
 		<div class="grid-row">
-		{% if page.project_description_title and page.project_description_content %}
-			<div class="column-half-l padding-right-60">
-				<h2 class="heading-large">{{ page.project_description_title }}</h2>
-				<div>
-					{{ page.project_description_content|add_export_elements_classes|safe }}
-				</div>
-			</div>
-		{% endif %}
-		{% if page.project_promoter_title %}
-			<div class="column-half-l padding-right-60">
-				<h2 class="heading-large">{{ page.project_promoter_title }}</h2>
-				<div>
-					{{ page.project_promoter_content|add_export_elements_classes|safe }}
-				</div>
-			</div>
+            {% if page.project_description_title and page.project_description_content %}
+                <div class="column-half-l padding-right-60">
+                    <h2 class="heading-large">{{ page.project_description_title }}</h2>
+                    <div>
+                        {{ page.project_description_content|add_export_elements_classes|safe }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if page.project_promoter_title %}
+                <div class="column-half-l padding-right-60">
+                    <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
+                    <div>
+                        {{ page.project_promoter_content|add_export_elements_classes|safe }}
+                    </div>
+                </div>
+            {% endif %}
 		</div>
-		{% endif %}
 		<div class="grid-row">
 		{% if page.project_image.url %}
 			<figure class="landing-page-image flex-shrink-0 padding-top-45" style="align-items: center; display: flex; flex-direction: column;" >
