@@ -53,29 +53,21 @@ class CMSPageFromPathView(
 
         context = super().get_context_data(page=self.page, **kwargs)
 
-        if self.page['page_type'] == 'CapitalInvestRegionPage' and \
-                not settings.FEATURE_FLAGS[
-                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
-                ]:
-            raise Http404()
+        flag_map = {
+            'CapitalInvestRegionPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'CapitalInvestRegionalSectorPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'CapitalInvestOpportunityPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'InternationalCapitalInvestLandingPage':
+                'CAPITAL_INVEST_LANDING_PAGE_ON',
+        }
 
-        if self.page['page_type'] == 'InternationalCapitalInvestLandingPage' \
-                and not settings.FEATURE_FLAGS[
-            'CAPITAL_INVEST_LANDING_PAGE_ON'
-        ]:
-            raise Http404()
+        flag_name = flag_map.get(self.page['page_type'])
 
-        if self.page['page_type'] == 'CapitalInvestRegionalSectorPage' and \
-                not settings.FEATURE_FLAGS[
-                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
-                ]:
-            raise Http404()
-
-        if self.page['page_type'] == 'CapitalInvestOpportunityPage' and \
-                not settings.FEATURE_FLAGS[
-                    'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'
-                ]:
-            raise Http404()
+        if flag_name and not settings.FEATURE_FLAGS[flag_name]:
+            raise Http404
 
         for modifier in context_modifier_registry.get_for_page_type(
             self.page['page_type']
