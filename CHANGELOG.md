@@ -11,6 +11,7 @@
 - CI-108 - Temporarily turn off additional GA tagging.
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 - CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
+- CI-145 - Use invest logo in header
 
 ### Fixed bugs
 
