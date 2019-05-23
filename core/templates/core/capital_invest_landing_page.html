@@ -47,14 +47,14 @@
 		</div>
 		<div class="card-grid">
         {% for region in page.related_regions %}
-            <div class="column-third-xl">
+            <div class="column-half-l column-third-xl">
                 {% url 'cms-page-from-path' region.meta.slug as region_url %}
                 {% include 'directory_components/card.html' with img_src=region.image.url img_alt='' title=region.title description=region.featured_description url=region_url %}
             </div>
         {% endfor %}
         {% for region_fields in page.region_cards %}
             {% if region_fields.title and region_fields.summary %}
-                <div class="column-third-xl">
+                <div class="column-half-l column-third-xl">
                     {% include 'core/includes/card_with_download_pdf.html' with img_src=region_fields.image.url title=region_fields.title pdf_text=region_fields.cta_text description=region_fields.summary pdf_link=region_fields.pdf_document %}
                 </div>
 			{% endif %}

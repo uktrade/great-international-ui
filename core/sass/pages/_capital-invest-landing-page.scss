@@ -91,12 +91,6 @@
     }
   }
 
-  @media (max-width: 1180px) and (min-width: 641px) {
-    .column-third-xl {
-      width: 50%;
-    }
-  }
-
   @media (max-width: 450px) {
     .hero {
       .container {
@@ -129,6 +123,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      bottom: 15px;
     }
   }
 

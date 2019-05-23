@@ -370,11 +370,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
     width: 100%;
   }
 }
-@media (max-width: 1180px) and (min-width: 641px) {
-  .capital-invest-landing-page .column-third-xl {
-    width: 50%;
-  }
-}
 @media (max-width: 450px) {
   .capital-invest-landing-page .hero .container .hero-text .hero-subtitle {
     width: 80%;
@@ -392,6 +387,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
     display: flex;
     align-items: center;
     justify-content: center;
+    bottom: 15px;
   }
 }
 .capital-invest-landing-page .flex-shrink-0 {
