@@ -60,6 +60,18 @@ class CMSPageFromPathView(
         return context
 
 
+class HowToDoBusinessWithTheUKView(CMSPageFromPathView):
+    def get_context_data(self, **kwargs):
+        show_find_uk_specialist = (
+            settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] and
+            translation.get_language() != settings.LANGUAGE_CODE
+        )
+        return super().get_context_data(
+            show_find_uk_specialist=show_find_uk_specialist,
+            **kwargs
+        )
+
+
 @register_context_modifier('InternationalArticlePage')
 def article_page_context_modifier(context, request):
 
