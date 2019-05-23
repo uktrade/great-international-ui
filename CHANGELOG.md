@@ -1,12 +1,15 @@
 # Changelog
 
 ## Pre-release
-
+## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
 ### Implemented enhancements:
 
+- CMS-1577 - Update content on EU Exit CTA buttons
 - CMS-1480 - Add translations to po files and templates
 - CI-108 - Temporarily turn off additional GA tagging.
+- CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 
 ### Fixed bugs
 
