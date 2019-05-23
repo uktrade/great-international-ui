@@ -27,7 +27,7 @@
 </section>
 
 {% if page.opportunity_summary_intro %}
-<section class="capital-invest-opportunity-page-section">
+<section class="padding-top-60 padding-bottom-60">
 	<div class="container">
 		<div class="card-grid">
 			<div class="column-half-l left-half-page-text">
@@ -49,60 +49,72 @@
 		</div>
 	</div>
 </section>
-
-<section class="capital-invest-opportunity-page-section capital-invest-region-icons-section">
-	<div class="container">
-		<div class="grid-row padding-bottom-90 ">
-		{% if page.location %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Location</p>
-				<p class="bold-small">{{ page.location }}</p>
-			</div>
-		{% endif %}
-		{% if page.project_promoter %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Project promoter</p>
-				<p class="bold-small">{{ page.project_promoter }}</p>
-			</div>
-		{% endif %}
-		{% if page.scale %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Scale</p>
-				<p class="bold-small">{{ page.scale }}</p>
-			</div>
-		{% endif %}
-		</div>
-		<div class="grid-row">
-		{% if page.programme %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Programme</p>
-				<p class="bold-small">{{ page.programme }}</p>
-			</div>
-		{% endif %}
-		{% if page.investment_type %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Investment type</p>
-				<p class="bold-small">{{ page.investment_type }}</p>
-			</div>
-		{% endif %}
-		{% if page.planning_status %}
-			<div class="column-third">
-				<img src="https://static.thenounproject.com/png/28190-200.png" class="icon">
-				<p>Planning status</p>
-				<p class="bold-small">{{ page.planning_status }}</p>
-			</div>
-		{% endif %}
-		</div>
-	</div>
-</section>
 {% endif %}
 
-<section class="capital-invest-opportunity-page-section">
+<section class="padding-top-60 padding-bottom-60 capital-invest-region-icons-section">
+	<div class="container">
+		<div class="grid-row padding-bottom-90 ">
+            <ul>
+                <li>
+                    {% if page.location and page.location_icon.url %}
+                        <div class="column-third">
+                            <img class="icon" src="{{page.location_icon.url}}" >
+                            <p>Location</p>
+                            <p class="bold-small">{{ page.location }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.project_promoter and page.project_promoter_icon.url %}
+                        <div class="column-third">
+                            <img src="{{page.project_promoter_icon.url}}" class="icon">
+                            <p>Project promoter</p>
+                            <p class="bold-small">{{ page.project_promoter }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.scale and page.scale_icon.url %}
+                        <div class="column-third">
+                            <img src="{{page.scale_icon.url}}" class="icon">
+                            <p>Scale</p>
+                            <p class="bold-small">{{ page.scale }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.programme and page.programme_icon.url %}
+                        <div class="column-third">
+                            <img src="{{page.programme_icon.url}}" class="icon">
+                            <p>Sector</p>
+                            <p class="bold-small">{{ page.programme }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.investment_type and page.investment_type_icon.url %}
+                        <div class="column-third">
+                            <img src="{{page.investment_type_icon.url}}" class="icon">
+                            <p>Investment type</p>
+                            <p class="bold-small">{{ page.investment_type }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if page.planning_status and page.planning_status_icon.url %}
+                        <div class="column-third">
+                            <img src="{{page.planning_status_icon.url}}" class="icon">
+                            <p>Planning status</p>
+                            <p class="bold-small">{{ page.planning_status }}</p>
+                        </div>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+	</div>
+</section>
+
+<section class="padding-top-60 padding-bottom-60 padding-bottom-60">
 	<div class="container">
 	    {% if page.project_background_title and page.project_background_intro %}
 		<div class="grid-row">

@@ -236,9 +236,6 @@ section {
 .landing-page .tariffs-section .country-selector-dialog .countries {
   position: relative;
 }
-.landing-page .tariffs-section .country-selector-dialog .margin-top-remove-30 {
-  margin-top: -30px;
-}
 .landing-page .tariffs-section .country-selector-dialog .select-container {
   width: 100%;
   position: relative;
@@ -430,8 +427,20 @@ body.js-enabled .landing-page .country-selector-dialog select {
   padding: 60px 0;
   background: #f2eee8;
 }
+.capital-invest-opportunity-page .container:after {
+  padding-bottom: 30px;
+}
+.capital-invest-opportunity-page p {
+  margin-bottom: 30px;
+}
+.capital-invest-opportunity-page ul {
+  width: 100%;
+}
 .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
-  height: 60px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e41f13;
+  height: calc(60px + 15px + 2px);
 }
 
 .article-detail-page article.grid-row {
