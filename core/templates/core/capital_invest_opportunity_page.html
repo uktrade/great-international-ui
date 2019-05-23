@@ -10,20 +10,12 @@
 
 {% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
 
-<section id="breadcrumb-section">
-  <div class="container">
-    <nav class="breadcrumbs padding-bottom-0" aria-label="breadcrumb" role="navigation">
-      <ol>
-        <li>
-          <a href="{% url 'index' %}">Great.gov.uk International</a>
-        </li>
-        <li>
-          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital Invest</a>
-        </li>
-        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
-      </ol>
-    </nav>
-  </div>
+<section>
+	<div class="container">
+		{% url 'index' as index_url %}
+		{% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
+		{% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+	</div>
 </section>
 
 {% if page.opportunity_summary_intro %}
