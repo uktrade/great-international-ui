@@ -72,7 +72,7 @@
 				<h2 class="heading-large">{{ page.energy_sector_title }}</h2>
 				<p> {{ page.energy_sector_content|add_export_elements_classes|safe}} </p>
 				{% if page.energy_sector_cta_text and page.energy_sector_pdf_document %}
-                    <a class="button button-blue button-ghost-blue energy_pdf_button" href={{page.energy_sector_pdf_document}} target="_blank">
+                    <a class="button button-blue button-ghost-blue energy_pdf_button" href="{{page.energy_sector_pdf_document}}" target="_blank">
                         {{ page.energy_sector_cta_text }}
                     </a>
 				{% endif %}
@@ -89,23 +89,23 @@
 </section>
 {% endif %}
 
-{% if page.section_title and page.section_content %}
+{% if page.homes_in_england_section_title and page.homes_in_england_section_content %}
 <section class="capital-invest-landing-page-section">
   <div class="container">
 		<div class="card-grid ci-landing-page-energy-section">
 			<div class="column-half padding-right-60">
-				<h2 class="heading-large">{{ page.section_title }}</h2>
-				<p> {{ page.section_content|add_export_elements_classes|safe}} </p>
-				{% if page.section_cta_text and page.section_pdf_document %}
-                    <a class="button button-blue button-ghost-blue energy_pdf_button" href={{page.section_pdf_document}} target="_blank">
-                        {{ page.section_cta_text }}
+				<h2 class="heading-large">{{ page.homes_in_england_section_title }}</h2>
+				<p> {{ page.homes_in_england_section_content|add_export_elements_classes|safe}} </p>
+				{% if page.homes_in_england_section_cta_text and page.homes_in_england_section_pdf_document %}
+                    <a class="button button-blue button-ghost-blue energy_pdf_button" href="{{page.homes_in_england_section_pdf_document}}" target="_blank">
+                        {{ page.homes_in_england_section_cta_text }}
                     </a>
 				{% endif %}
 			</div>
 			<div class="column-half center_vertical flex-shrink-0 max-width-100">
-				{% if page.section_image.url %}
+				{% if page.homes_in_england_section_image.url %}
 					<figure class="landing-page-image flex-shrink-0">
-						<img class="width-full" src="{{page.section_image.url}}">
+						<img class="width-full" src="{{page.homes_in_england_section_image.url}}">
 					</figure>
 				{%  endif %}
 			</div>

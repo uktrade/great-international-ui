@@ -80,20 +80,20 @@
 </section>
 {% endif %}
 
-{% if page.section_title and page.section_content %}
+{% if page.property_and_infrastructure_section_title and page.property_and_infrastructure_section_content %}
 <section class="capital-invest-region-page-section">
 	<div class="container">
-		<h1 class="heading-large">{{ page.section_title }}</h1>
+		<h1 class="heading-large">{{ page.property_and_infrastructure_section_title }}</h1>
 		<div class="card-grid">
-			{% if page.section_image.url %}
+			{% if page.property_and_infrastructure_section_image.url %}
 				<div class="column-half-xl center-vertical">
 					<figure class="landing-page-image">
-						<img class="width-full" src="{{page.section_image.url}}">
+						<img class="width-full" src="{{page.property_and_infrastructure_section_image.url}}">
 					</figure>
 				</div>
 			{% endif %}
 			<div class="column-half-xl right-half-page-text">
-				{{ page.section_content|add_export_elements_classes|safe }}
+				{{ page.property_and_infrastructure_section_content|add_export_elements_classes|safe }}
 			</div>
 		</div>
 	</div>
