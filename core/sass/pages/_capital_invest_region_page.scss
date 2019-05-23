@@ -3,16 +3,11 @@
 
 .capital-invest-region-page {
 
-  @mixin landingPageSection {
-    padding: $spacing-1 0;
-  }
-
   .capital-invest-region-page-section:nth-child(odd) {
-    @include landingPageSection;
+    @include white-section;
   }
 
   .capital-invest-region-page-section:nth-child(even) {
-    @include landingPageSection;
-    background: $stone-40;
+    @include stone-section;
   }
 }

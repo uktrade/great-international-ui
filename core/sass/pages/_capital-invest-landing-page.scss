@@ -5,17 +5,12 @@
 @import '../partials/mixins';
 .capital-invest-landing-page {
 
-  @mixin landingPageSection {
-    padding: $spacing-1 0;
-  }
-
   .capital-invest-landing-page-section:nth-child(odd) {
-    @include landingPageSection;
-    background: $stone-40;
+    @include stone-section;
   }
 
   .capital-invest-landing-page-section:nth-child(even) {
-    @include landingPageSection;
+    @include white-section;
   }
 
   .capital-invest-landing-page-how-we-help {

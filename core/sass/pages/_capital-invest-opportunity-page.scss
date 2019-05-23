@@ -3,17 +3,12 @@
 
 .capital-invest-opportunity-page {
 
-  @mixin landingPageSection {
-    padding: $spacing-1 0;
-  }
-
   .capital-invest-opportunity-page-section:nth-child(odd) {
-    @include landingPageSection;
+    @include white-section;
   }
 
   .capital-invest-opportunity-page-section:nth-child(even) {
-    @include landingPageSection;
-    background: $stone-40;
+    @include stone-section;
   }
 
   .container:after {

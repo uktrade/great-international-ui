@@ -117,3 +117,18 @@
     height: 1em;
   }
 }
+
+@mixin page-section-padding {
+    padding: $spacing-1 0;
+}
+
+@mixin white-section {
+  @include page-section-padding;
+
+}
+@mixin stone-section {
+  @include page-section-padding;
+  background: $stone-40;
+}
+
+
