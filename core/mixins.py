@@ -17,17 +17,17 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/article_detail.html',
+    'InternationalArticlePage': 'core/uk_setup_guide/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',  # noqa
-    'InternationalGuideLandingPage': 'core/guide_landing_page.html',
+    'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',  # noqa
     'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
     'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',  # noqa
-    'InternationalCapitalInvestLandingPage': 'core/capital_invest_landing_page.html',       # noqa
-    'CapitalInvestRegionPage': 'core/capital_invest_region_page.html',
-    'CapitalInvestRegionalSectorPage': 'core/capital_invest_sector_page.html',
-    'CapitalInvestOpportunityPage': 'core/capital_invest_opportunity_page.html'
+    'InternationalCapitalInvestLandingPage': 'core/capital_invest/capital_invest_landing_page.html',       # noqa
+    'CapitalInvestRegionPage': 'core/capital_invest/capital_invest_region_page.html',  # noqa
+    'CapitalInvestRegionalSectorPage': 'core/capital_invest/capital_invest_sector_page.html',  # noqa
+    'CapitalInvestOpportunityPage': 'core/capital_invest/capital_invest_opportunity_page.html'  # noqa
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
