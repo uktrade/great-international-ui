@@ -6,8 +6,10 @@
 
 ### Implemented enhancements:
 
+- CMS-1577 - Update content on EU Exit CTA buttons
 - CMS-1480 - Add translations to po files and templates
 - CI-108 - Temporarily turn off additional GA tagging.
+- CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 
 ### Fixed bugs
 
