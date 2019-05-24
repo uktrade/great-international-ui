@@ -36,7 +36,6 @@
       height: $spacing-1;
       padding-bottom: $spacing-4;
       margin-bottom: $spacing-4;
-      @include red-underline
     }
 
     .contact-button {
@@ -48,6 +47,10 @@
   .energy_pdf_button {
     text-align: center;
     width: 50%;
+  }
+
+  .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
+    margin-bottom: 100px;
   }
 
   .pdf_button {

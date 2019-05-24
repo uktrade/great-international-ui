@@ -96,16 +96,18 @@
             <p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
         </div>
         <div class="card-grid">
-        {% for region in page.related_regions %}
-            <div class="column-half-l column-third-xl">
-                {% url 'cms-page-from-path' region.meta.slug as region_url %}
-                {% include 'directory_components/card.html' with img_src=region.image.url img_alt='' url=region_url title=region.title description=region.featured_description|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe %}
-            </div>
-        {% endfor %}
-        {% for region_fields in page.region_cards %}
-            {% if region_fields.title and region_fields.summary %}
+        {% for region in page.added_regions %}
+            {% if region.related_region.title %}
                 <div class="column-half-l column-third-xl">
-                    {% include 'core/includes/card_with_pdf_button.html' with img_src=region_fields.image.url title=region_fields.title description=region_fields.summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe pdf_text=region_fields.cta_text pdf_link=region.fields.pdf_document %}
+                    {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
+                    {% include 'directory_components/card.html' with img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        {% for region_fields in page.added_region_card_fields %}
+            {% if region_fields.region_card_title and region_fields.region_card_summary %}
+                <div class="column-half-l column-third-xl">
+                    {% include 'core/includes/card_with_pdf_button.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe pdf_text=region_fields.region_card_cta_text pdf_link=region_fields.region_card_pdf_document %}
                 </div>
             {% endif %}
         {% endfor %}
@@ -144,34 +146,21 @@
 </section>
 {% endif %}
 
-{% if page.homes_in_england_section_title and page.homes_in_england_section_content %}
+{% if page.homes_in_england_section_title %}
 <section class="capital-invest-landing-page-section">
   <div class="container">
-		<div class="card-grid ci-landing-page-energy-section">
-			<div class="column-half padding-right-60">
-				<h2 class="heading-large">{{ page.homes_in_england_section_title }}</h2>
-				<p> {{ page.homes_in_england_section_content|add_export_elements_classes|safe}} </p>
-				{% if page.homes_in_england_section_cta_text and page.homes_in_england_section_pdf_document %}
-                    <a class="button button-blue button-ghost-blue energy_pdf_button" href="{{page.homes_in_england_section_pdf_document}}" target="_blank">
-                        {{ page.homes_in_england_section_cta_text }}
-                    </a>
-				{% endif %}
-			</div>
-			<div class="column-half center_vertical flex-shrink-0 max-width-100">
-				{% if page.homes_in_england_section_image.url %}
-					<figure class="landing-page-image flex-shrink-0">
-						<img class="width-full" src="{{page.homes_in_england_section_image.url}}">
-					</figure>
-				{%  endif %}
-			</div>
-			{% for card in page.homes_in_england_cards %}
-                {% if card.title and region_fields.summary %}
-                    <div class="column-half-l column-third-xl">
-                        {% include 'directory_components/card.html' with img_src=region_fields.image.url title=region_fields.title description=region_fields.summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-		</div>
+        <div class="grid-row">
+            <h2 class="column-half heading-large">{{ page.homes_in_england_section_title }}</h2>
+        </div>
+        <div class="card-grid">
+        {% for card in page.added_homes_in_england_card_fields %}
+            {% if card.homes_in_england_card_title %}
+                <div class="column-half-l column-third-xl">
+                    {% include 'directory_components/card.html' with img_src=card.homes_in_england_card_image.url title=card.homes_in_england_card_title url=card.homes_in_england_card_pdf_document %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
   </div>
 </section>
 {% endif %}

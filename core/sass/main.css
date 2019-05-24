@@ -332,7 +332,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
   height: 60px;
   padding-bottom: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #e41f13;
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button {
   border-bottom: 0;
@@ -340,6 +339,9 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-landing-page .energy_pdf_button {
   text-align: center;
   width: 50%;
+}
+.capital-invest-landing-page .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
+  margin-bottom: 100px;
 }
 .capital-invest-landing-page .pdf_button {
   text-align: center;
