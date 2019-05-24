@@ -86,7 +86,7 @@ urlpatterns = [
     ),
     url(
         r"^international/content/how-to-do-business-with-the-uk/$",
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.HowToDoBusinessWithTheUKView.as_view(),
         {'path': 'how-to-do-business-with-the-uk'},
         name="how-to-do-business-with-the-uk"
     ),

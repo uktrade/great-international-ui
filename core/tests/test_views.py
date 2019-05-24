@@ -1,6 +1,8 @@
 from unittest.mock import patch
 from bs4 import BeautifulSoup
+
 from django.urls import reverse
+from django.utils import translation
 
 from core import helpers
 from core.tests.helpers import create_response
@@ -397,14 +399,11 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
 def test_how_to_do_business_feature_off(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
 
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=dummy_page
-    )
+    mock_get_page.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
 
-    url = '/international/content/how-to-do-business-with-the-uk/'
-
-    response = client.get(url)
+    response = client.get(reverse('how-to-do-business-with-the-uk'))
 
     assert response.status_code == 404
 
@@ -413,30 +412,68 @@ def test_how_to_do_business_feature_off(mock_get_page, client, settings):
 def test_how_to_do_business_feature_on(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+    mock_get_page.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
 
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/how-to-do-business-with-the-uk/'
-
-    response = client.get(url)
+    response = client.get(reverse('how-to-do-business-with-the-uk'))
 
     assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_cms_page_from_path_view(lookup_by_path, client, settings):
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+def test_how_to_do_business_show_isd_english(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
 
-    lookup_by_path.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_get_page.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
+
+    with translation.override(settings.LANGUAGE_CODE):
+        response = client.get(reverse('how-to-do-business-with-the-uk'))
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_do_business_show_isd(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
+
+    mock_get_page.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
+
+    response = client.get(reverse('how-to-do-business-with-the-uk'))
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_do_business_hide_isd(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+
+    mock_get_page.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
+
+    with translation.override('fr'):
+        response = client.get(reverse('how-to-do-business-with-the-uk'))
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_cms_page_from_path_view(lookup_by_path, client, settings):
+    lookup_by_path.return_value = create_response(json_payload={
+        **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
+    })
+
     response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
