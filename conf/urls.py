@@ -96,4 +96,9 @@ urlpatterns = [
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
     ),
+    url(
+        r'^international/content/(?P<path>[\w\-/]*)/(?P<list>[\w\-/]*)/$',
+        core.views.CMSPageFromPathView.as_view(),
+        name="cms-page-from-path-with-two-slugs"
+    ),
 ]

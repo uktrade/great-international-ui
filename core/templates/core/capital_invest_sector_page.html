@@ -1,0 +1,109 @@
+{% extends 'core/base_cms.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load filter_by_active_language from cms_tags %}
+{% load card hero add_export_elements_classes from directory_components_tags %}
+
+{% block css_layout_class %}capital-invest-sector-page{% endblock %}
+
+{% block content %}
+
+{% if page.parent %}
+	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url hero_subheading=page.parent.hero_title %}
+{% else %}
+	{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% endif %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+    <nav class="breadcrumbs padding-bottom-0" aria-label="breadcrumb" role="navigation">
+      <ol>
+        <li>
+          <a href="{% url 'index' %}">Great.gov.uk International</a>
+        </li>
+        <li>
+          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital Invest</a>
+        </li>
+        {% if page.parent %}
+			<li>
+			  <a href="{% url 'cms-page-from-path' page.parent.meta.slug %}">{{ page.parent.hero_title }}</a>
+			</li>
+        {% endif %}
+        <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+{% if page.sector_summary_intro %}
+<section class="capital-invest-sector-page-section">
+	<div class="container">
+		<div class="grid-row">
+			<div class="font-medium padding-bottom-30 column-half-l">
+				{{ page.sector_summary_intro}}
+			</div>
+		</div>
+		<div class="card-grid">
+			<div class="column-half-l left-half-page-text">
+				<div>
+					{{ page.sector_summary_content|add_export_elements_classes|safe }}
+				</div>
+			</div>
+			<div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+				{% if page.sector_summary_image.url %}
+					<figure class="landing-page-image flex-shrink-0">
+						<img class="width-full" src="{{page.sector_summary_image.url}}">
+					</figure>
+				{%  endif %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{% if page.added_opportunities %}
+	<section id="news-events-section" class="capital-invest-sector-page-section">
+		<div class="container wrap-tight">
+		<h2 class="heading-large margin-bottom-45">{{ page.investment_opportunities_title }}</h2>
+			<div class="card-grid">
+			{% for added_pages in page.added_opportunities %}
+                <div class="column-third-xl column-half-l column-full">
+                    <div class="card">
+                        <div class="card-inner wrap-tight padding-horizontal-45">
+                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' added_pages.opportunity.meta.slug %}" class="heading-medium">{{ added_pages.opportunity.title }}</a>
+                            <p>{{ added_pages.opportunity.location }}</p>
+                            <p class="bold-small">{{ added_pages.opportunity.scale }}</p>
+                            <p><u>Investment type: </u>{{ added_pages.opportunity.investment_type }}</p>
+                        </div>
+                    </div>
+                </div>
+			{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endif %}
+
+{% if  page.next_steps_title and page.next_steps_intro %}
+<section class="capital-invest-sector-page-section">
+	<div class="container">
+		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
+		<div class="grid-row padding-bottom-45">
+			<div class="column-half-l">
+				{{ page.next_steps_intro }}
+			</div>
+		</div>
+		{% if page.invest_cta_text %}
+            <div class="column-half">
+                {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
+            </div>
+        {% endif %}
+        {% if page.buy_cta_text %}
+            <div class="column-half">
+                {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
+            </div>
+		{% endif %}
+	</div>
+</section>
+{%endif %}
+
+{% endblock %}

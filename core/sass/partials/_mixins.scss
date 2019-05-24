@@ -100,7 +100,7 @@
   margin: 2px 0 0 10px;
 }
 
-@mixin with-arrow() {
+@mixin with-left-arrow() {
   display: block;
   position: relative;
   margin-left: 30px;
@@ -117,3 +117,18 @@
     height: 1em;
   }
 }
+
+@mixin page-section-padding {
+    padding: $spacing-1 0;
+}
+
+@mixin white-section {
+  @include page-section-padding;
+
+}
+@mixin stone-section {
+  @include page-section-padding;
+  background: $stone-40;
+}
+
+

@@ -1,0 +1,13 @@
+@import '../partials/vars';
+@import '../partials/mixins';
+
+.capital-invest-region-page {
+
+  .capital-invest-region-page-section:nth-child(odd) {
+    @include white-section;
+  }
+
+  .capital-invest-region-page-section:nth-child(even) {
+    @include stone-section;
+  }
+}

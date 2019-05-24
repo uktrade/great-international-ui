@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import Http404
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -51,6 +52,22 @@ class CMSPageFromPathView(
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(page=self.page, **kwargs)
+
+        flag_map = {
+            'CapitalInvestRegionPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'CapitalInvestRegionalSectorPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'CapitalInvestOpportunityPage':
+                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+            'InternationalCapitalInvestLandingPage':
+                'CAPITAL_INVEST_LANDING_PAGE_ON',
+        }
+
+        flag_name = flag_map.get(self.page['page_type'])
+
+        if flag_name and not settings.FEATURE_FLAGS[flag_name]:
+            raise Http404
 
         for modifier in context_modifier_registry.get_for_page_type(
             self.page['page_type']
@@ -147,3 +164,40 @@ class InternationalContactPageView(CountryDisplayMixin, TemplateView):
             invest_contact_us_url=urls.build_invest_url('contact/'),
             *args, **kwargs
         )
+
+
+@register_context_modifier('CapitalInvestRegionPage')
+def capital_invest_region_page_context_modifier(context, request):
+
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    page = context['page']
+
+    return {
+        'num_of_economics_statistics': count_data_with_field(
+            page['economics_stats'], 'number'),
+        'num_of_location_statistics': count_data_with_field(
+            page['location_stats'], 'number'),
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+    }
+
+
+@register_context_modifier('CapitalInvestRegionalSectorPage')
+def capital_invest_regional_sector_page_context_modifier(context, request):
+
+    return {
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+    }
+
+
+@register_context_modifier('CapitalInvestOpportunityPage')
+def capital_invest_opportunity_page_context_modifier(context, request):
+
+    return {
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+    }
