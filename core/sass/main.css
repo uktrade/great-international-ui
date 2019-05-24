@@ -306,12 +306,15 @@ body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
 }
 
+.capital-invest-landing-page .page-section {
+  padding: 60px 0;
+}
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
   padding: 60px 0;
-  background: #f2eee8;
 }
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
   padding: 60px 0;
+  background: #f2eee8;
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help {
   font-size: 17px;
@@ -337,9 +340,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-landing-page .energy_pdf_button {
   text-align: center;
   width: 50%;
-}
-.capital-invest-landing-page .capital-invest-landing-page-section .card-grid .card .card-inner p.description {
-  margin-bottom: 100px;
 }
 .capital-invest-landing-page .pdf_button {
   text-align: center;

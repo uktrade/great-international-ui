@@ -5,12 +5,16 @@
 @import '../partials/mixins';
 .capital-invest-landing-page {
 
+  .page-section{
+    @include page-section-padding
+  }
+
   .capital-invest-landing-page-section:nth-child(odd) {
-    @include stone-section;
+    @include white-section;
   }
 
   .capital-invest-landing-page-section:nth-child(even) {
-    @include white-section;
+    @include stone-section;
   }
 
   .capital-invest-landing-page-how-we-help {
@@ -44,10 +48,6 @@
   .energy_pdf_button {
     text-align: center;
     width: 50%;
-  }
-
-  .capital-invest-landing-page-section .card-grid .card .card-inner p.description {
-    margin-bottom: 100px;
   }
 
   .pdf_button {

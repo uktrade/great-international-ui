@@ -1,0 +1,46 @@
+<div class="card {% if title and not description and not html_content %}only-title{% endif %}"
+    {% if card_id %}id="{{ card_id }}"{% endif %}>
+    {% if url %}
+        <a
+        class="card-link"
+        href="{{ url }}"
+        {% if card_id %}id="{{ card_id|add:'-link' }}"{% endif %}>
+    {% endif %}
+    {% if img_src %}
+      <div
+        class="card-image"
+        role="img"
+        style="background-image: url({{ img_src }});"
+        aria-label="{{ img_alt }}"
+        title="{{ img_alt }}"
+        {% if card_id %}id="{{ card_id|add:'-image' }}"{% endif %}>
+        <p class="visually-hidden">{{ img_alt }}</p>
+      </div>
+    {% endif %}
+    <div class="card-inner">
+      {% if html_content %}
+      {{ html_content }}
+      {% else %}
+        {% if subheading %}
+          <p class="subheading">{{ subheading }}</p>
+        {% endif %}
+        {% if title or heading %}
+
+                <h3 class="heading-large">{% firstof title heading %}</h3>
+
+        {% endif %}
+        {% if description %}
+          <p class="description">{{ description }}</p>
+        {% endif %}
+      {% endif %}
+       {% if pdf_text and pdf_link %}
+        <a href="{{ pdf_link }}" target="_blank" class="button button-blue button-ghost-blue margin-top-30 pdf_button">
+            {{ pdf_text }}
+        </a>
+      {% endif %}
+    </div>
+    {% if url %}
+        </a>
+    {% endif %}
+</div>
+
