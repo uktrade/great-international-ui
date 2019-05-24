@@ -77,7 +77,7 @@ class CMSPageFromPathView(
         return context
 
 
-class HowToDoBusinessWithTheUKView(CMSPageFromPathView):
+class HowToSetupInTheUKView(CMSPageFromPathView):
     def get_context_data(self, **kwargs):
         language_code = translation.get_language()
         show_find_uk_specialist = (
