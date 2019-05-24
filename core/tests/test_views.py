@@ -2,7 +2,6 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 
 from django.urls import reverse
-from django.utils import translation
 
 from core import helpers
 from core.tests.helpers import create_response
@@ -429,12 +428,12 @@ def test_how_to_do_business_show_isd_english(mock_get_page, client, settings):
     mock_get_page.return_value = create_response(json_payload={
         **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
     })
+    url = reverse('how-to-do-business-with-the-uk')
 
-    with translation.override(settings.LANGUAGE_CODE):
-        response = client.get(reverse('how-to-do-business-with-the-uk'))
+    response = client.get(url, {'lang': settings.LANGUAGE_CODE})
 
     assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is True
+    assert response.context_data['is_english_selected'] is True
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -449,23 +448,22 @@ def test_how_to_do_business_show_isd(mock_get_page, client, settings):
     response = client.get(reverse('how-to-do-business-with-the-uk'))
 
     assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is True
+    assert response.context_data['is_english_selected'] is True
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_do_business_hide_isd(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
     mock_get_page.return_value = create_response(json_payload={
         **dummy_page, 'page_type': 'InternationalCuratedTopicLandingPage'
     })
+    url = reverse('how-to-do-business-with-the-uk')
 
-    with translation.override('fr'):
-        response = client.get(reverse('how-to-do-business-with-the-uk'))
+    response = client.get(url, {'lang': 'fr'})
 
     assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is False
+    assert response.context_data['is_english_selected'] is False
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
