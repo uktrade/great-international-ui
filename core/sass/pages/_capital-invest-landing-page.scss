@@ -5,12 +5,16 @@
 @import '../partials/mixins';
 .capital-invest-landing-page {
 
+  .page-section{
+    @include page-section-padding
+  }
+
   .capital-invest-landing-page-section:nth-child(odd) {
-    @include stone-section;
+    @include white-section;
   }
 
   .capital-invest-landing-page-section:nth-child(even) {
-    @include white-section;
+    @include stone-section;
   }
 
   .capital-invest-landing-page-how-we-help {
@@ -32,7 +36,6 @@
       height: $spacing-1;
       padding-bottom: $spacing-4;
       margin-bottom: $spacing-4;
-      @include red-underline
     }
 
     .contact-button {
@@ -46,7 +49,7 @@
     width: 50%;
   }
 
-  .capital-invest-landing-page-section .card-grid .card .card-inner p.description {
+  .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
     margin-bottom: 100px;
   }
 

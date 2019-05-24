@@ -306,12 +306,15 @@ body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
 }
 
+.capital-invest-landing-page .page-section {
+  padding: 60px 0;
+}
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
   padding: 60px 0;
-  background: #f2eee8;
 }
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
   padding: 60px 0;
+  background: #f2eee8;
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help {
   font-size: 17px;
@@ -329,7 +332,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
   height: 60px;
   padding-bottom: 15px;
   margin-bottom: 15px;
-  border-bottom: 2px solid #e41f13;
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button {
   border-bottom: 0;
@@ -338,7 +340,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
   text-align: center;
   width: 50%;
 }
-.capital-invest-landing-page .capital-invest-landing-page-section .card-grid .card .card-inner p.description {
+.capital-invest-landing-page .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
   margin-bottom: 100px;
 }
 .capital-invest-landing-page .pdf_button {
