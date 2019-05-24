@@ -103,3 +103,10 @@ def breadcrumbs():
 @pytest.fixture(autouse=True)
 def set_language_to_default():
     translation.activate(settings.LANGUAGE_CODE)
+
+
+@pytest.fixture(autouse=True)
+def feature_flags(settings):
+    # solves this issue: https://github.com/pytest-dev/pytest-django/issues/601
+    settings.FEATURE_FLAGS = {**settings.FEATURE_FLAGS}
+    yield settings.FEATURE_FLAGS

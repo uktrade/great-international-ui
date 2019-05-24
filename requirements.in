@@ -22,3 +22,4 @@ zenpy==1.1.10
 django-redis==4.8.0
 directory-healthcheck==0.5.1
 urllib3>=1.24.2,<2.0.0
+djangorestframework==3.9.1

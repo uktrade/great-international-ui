@@ -1,11 +1,14 @@
 from unittest.mock import patch
+
 from bs4 import BeautifulSoup
+from directory_constants import urls
+import pytest
+
 from django.urls import reverse
 
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import CMSPageFromPathView
-from directory_constants import urls
+from core.views import CMSPageFromPathView, cms_api_client
 
 
 test_sectors = [
@@ -48,6 +51,53 @@ dummy_page = {
 }
 
 
+def stub_page(page):
+    value = create_response(json_payload={**dummy_page, **page})
+    stub = patch.object(cms_api_client, 'lookup_by_path', return_value=value)
+    yield stub.start()
+    stub.stop()
+
+
+@pytest.fixture
+def setup_in_uk_page():
+    yield from stub_page({
+        'page_type': 'InternationalGuideLandingPage',
+        'guides': [],
+    })
+
+
+@pytest.fixture
+def how_to_do_business_uk_page():
+    yield from stub_page({'page_type': 'InternationalCuratedTopicLandingPage'})
+
+
+@pytest.fixture
+def home_page():
+    yield from stub_page({'page_type': 'InternationalHomePage'})
+
+
+@pytest.fixture
+def international_capital_invest_page():
+    yield from stub_page({
+        'page_type': 'InternationalCapitalInvestLandingPage'
+    })
+
+
+@pytest.fixture
+def capital_invest_page():
+    yield from stub_page({'page_type': 'CapitalInvestRegionPage'})
+
+
+@pytest.fixture
+def capital_invest_sector_page():
+    yield from stub_page({'page_type': 'CapitalInvestRegionalSectorPage'})
+
+
+@pytest.fixture
+def capital_invest_opportunity_page():
+    yield from stub_page({'page_type': 'CapitalInvestOpportunityPage'})
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
 
@@ -75,18 +125,8 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
     assert response.context_data['language_switcher']['show'] is False
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_cms_language_switcher_active_language_available(
-    mock_cms_response, rf
-):
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalHomePage'
-
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
-
+@pytest.mark.usefixtures('home_page')
+def test_cms_language_switcher_active_language_available(rf):
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'
 
@@ -97,22 +137,12 @@ def test_cms_language_switcher_active_language_available(
     assert context['show'] is True
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_cms_page(mock_cms_response, rf):
-
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalHomePage'
-
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
-
+def test_get_cms_page(rf, home_page):
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'
     response = CMSPageFromPathView.as_view()(request, path='/')
 
-    assert response.context_data['page'] == page
+    assert response.context_data['page'] == home_page.return_value.json()
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -393,55 +423,63 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
     assert child_page['landing_page_title'] == 'heading'
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_how_to_do_business_feature_off(mock_get_page, client, settings):
+@pytest.mark.usefixtures('how_to_do_business_uk_page')
+def test_how_to_do_business_feature_off(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
 
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=dummy_page
-    )
-
-    url = '/international/content/how-to-do-business-with-the-uk/'
-
-    response = client.get(url)
+    response = client.get(reverse('how-to-do-business-with-the-uk'))
 
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_how_to_do_business_feature_on(mock_get_page, client, settings):
+@pytest.mark.usefixtures('how_to_do_business_uk_page')
+def test_how_to_do_business_feature_on(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
 
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalCuratedTopicLandingPage'
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/how-to-do-business-with-the-uk/'
-
-    response = client.get(url)
+    response = client.get(reverse('how-to-do-business-with-the-uk'))
 
     assert response.status_code == 200
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_cms_page_from_path_view(lookup_by_path, client, settings):
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalCuratedTopicLandingPage'
+@pytest.mark.usefixtures('setup_in_uk_page')
+def test_setup_in_uk_show_isd_english(client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
 
-    lookup_by_path.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
+    response = client.get(reverse('how-to-setup-in-the-uk'), {'lang': 'en-gb'})
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is True
+
+
+@pytest.mark.usefixtures('setup_in_uk_page')
+def test_setup_in_uk_show_isd(client, settings):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
+
+    response = client.get(reverse('how-to-setup-in-the-uk'))
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is True
+
+
+@pytest.mark.usefixtures('setup_in_uk_page')
+def test_setup_in_uk_hide_isd(client, settings, setup_in_uk_page):
+    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
+
+    response = client.get(reverse('how-to-setup-in-the-uk'), {'lang': 'fr'})
+
+    assert response.status_code == 200
+    assert response.context_data['show_find_uk_specialist'] is False
+
+
+def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
+
     response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
 
-    lookup_by_path.assert_called_with(
+    how_to_do_business_uk_page.assert_called_with(
         draft_token=None,
         language_code='en-gb',
         path='page/from/path',
@@ -548,89 +586,45 @@ def test_get_capital_invest_opportunity_page_url_constants(
     assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
-        mock_get_page, client, settings
+    client, settings
 ):
-
     settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = False
 
-    page = dummy_page.copy()
-    page['page_type'] = 'InternationalCapitalInvestLandingPage'
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/capital-invest/'
-
-    response = client.get(url)
+    response = client.get('/international/content/capital-invest/')
 
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
-        mock_get_page, client, settings
+    client, settings
 ):
-
     settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
-    page = dummy_page.copy()
-    page['page_type'] = 'CapitalInvestRegionPage'
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/midlands/'
-
-    response = client.get(url)
+    response = client.get('/international/content/midlands/')
 
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@pytest.mark.usefixtures('capital_invest_sector_page')
 def test_capital_invest_sector_page_returns_404_when_feature_flag_off(
-        mock_get_page, client, settings
+    client, settings
 ):
-
     settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
-    page = dummy_page.copy()
-    page['page_type'] = 'CapitalInvestRegionalSectorPage'
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/midlands/housing/'
-
-    response = client.get(url)
+    response = client.get('/international/content/midlands/housing/')
 
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
-        mock_get_page, client, settings
+    client, settings
 ):
-
     settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
 
-    page = dummy_page.copy()
-    page['page_type'] = 'CapitalInvestOpportunityPage'
-
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
-
-    url = '/international/content/opportunities/ashton/'
-
-    response = client.get(url)
+    response = client.get('/international/content/opportunities/ashton/')
 
     assert response.status_code == 404
