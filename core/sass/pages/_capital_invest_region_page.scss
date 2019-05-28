@@ -3,11 +3,22 @@
 
 .capital-invest-region-page {
 
-  .capital-invest-region-page-section:nth-child(odd) {
+  .page-section{
+    @include page-section-padding;
+
+  }
+
+  .capital-invest-region-page-section:nth-of-type(odd) {
     @include white-section;
   }
 
-  .capital-invest-region-page-section:nth-child(even) {
+  .capital-invest-region-page-section:nth-of-type(even) {
     @include stone-section;
+  }
+
+  .mobile-padding-bottom-30 {
+   @media (max-width: 641px) {
+      padding-bottom: $spacing-3;
+    }
   }
 }

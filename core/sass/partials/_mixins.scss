@@ -120,6 +120,10 @@
 
 @mixin page-section-padding {
     padding: $spacing-1 0;
+
+    @media (max-width: 641px) {
+      padding: $spacing-3 0;
+    }
 }
 
 @mixin white-section {

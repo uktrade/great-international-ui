@@ -109,11 +109,10 @@
     }
   }
 
-  .flex-shrink-0 {
-    flex-shrink: 0;
+  .mobile-padding-bottom-30 {
+   @media (max-width: 641px) {
+      padding-bottom: $spacing-3;
+    }
   }
 
-  .max-width-100 {
-    max-width: 100%;
-  }
 }
