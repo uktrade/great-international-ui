@@ -3,6 +3,10 @@
 
 .capital-invest-opportunity-page {
 
+  .page-section{
+    @include page-section-padding
+  }
+
   .capital-invest-opportunity-page-section:nth-child(odd) {
     @include white-section;
   }
@@ -24,8 +28,32 @@
   }
 
   .icon {
-    padding-bottom: $spacing-4;
-    margin-bottom: $spacing-4;
-    height: calc(#{$spacing-1} + #{$spacing-4}); // 60px x 60px icons, need to account for padding
+    @media (min-width: 641px) {
+      padding-bottom: $spacing-4;
+      margin-bottom: $spacing-4;
+      height: calc(#{$spacing-1} + #{$spacing-4}); // 60px x 60px icons, need to account for padding
+    }
+
+    height: calc(#{$spacing-1});
   }
+
+  .width-100 {
+    width: 100%;
+  }
+
+  li .bold-small{
+    padding-bottom: $spacing-1;
+
+    @media (max-width: 641px) {
+      padding-bottom: $spacing-1;
+    }
+
+  }
+
+  li p {
+    @media (max-width: 641px) {
+      margin-bottom: 0;
+    }
+  }
+
 }

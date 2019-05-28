@@ -17,6 +17,7 @@
 - CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
 - CI-144 - Updated capital invest landing page to match more recent invision designs
 - CI-145 - Use invest logo in header
+- CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
 
 ### Fixed bugs
 
