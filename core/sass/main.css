@@ -380,6 +380,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
   left: 45px;
   bottom: 45px;
   width: calc(100% - 90px);
+  white-space: normal;
 }
 @media (max-width: 950px) {
   .capital-invest-landing-page .ci-landing-page-energy-section {
@@ -408,12 +409,8 @@ body.js-enabled .landing-page .country-selector-dialog select {
     white-space: initial;
     width: 80%;
   }
-  .capital-invest-landing-page .card-grid .card .card-inner p.description {
-    margin-bottom: 120px;
-  }
   .capital-invest-landing-page .pdf_button {
     height: 80px;
-    white-space: normal;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -423,6 +420,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
 @media (max-width: 641px) {
   .capital-invest-landing-page .mobile-padding-bottom-30 {
     padding-bottom: 30px;
+  }
+}
+@media (min-width: 641px) {
+  .capital-invest-landing-page .desktop-padding-left-90 {
+    padding-left: 90px;
   }
 }
 
