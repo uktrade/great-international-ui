@@ -70,7 +70,7 @@ def test_article_detail_page_no_related_content():
         'page': test_article_page_no_related_content
     }
 
-    html = render_to_string('core/article_detail.html', context)
+    html = render_to_string('core/uk_setup_guide/article_detail.html', context)
 
     assert 'Related content' not in html
 
@@ -115,7 +115,7 @@ def test_article_detail_page_related_content():
         'page': article_page
     }
 
-    html = render_to_string('core/article_detail.html', context)
+    html = render_to_string('core/uk_setup_guide/article_detail.html', context)
 
     assert 'Related content' in html
     soup = BeautifulSoup(html, 'html.parser')

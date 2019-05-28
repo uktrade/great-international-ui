@@ -177,7 +177,9 @@ def test_article_detail_page_social_share_links(
     soup = BeautifulSoup(response.content, 'html.parser')
 
     assert response.status_code == 200
-    assert response.template_name == ['core/article_detail.html']
+    assert response.template_name == [
+        'core/uk_setup_guide/article_detail.html'
+    ]
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk'
@@ -234,7 +236,9 @@ def test_article_detail_page_social_share_links_no_title(
     soup = BeautifulSoup(response.content, 'html.parser')
 
     assert response.status_code == 200
-    assert response.template_name == ['core/article_detail.html']
+    assert response.template_name == [
+        'core/uk_setup_guide/article_detail.html'
+    ]
 
     twitter_link = (
         'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
