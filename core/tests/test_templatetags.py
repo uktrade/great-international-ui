@@ -9,7 +9,7 @@ from core.templatetags import cms_tags
 def test_convert_links_to_with_arrow():
     template = Template(
         '{% load add_export_elements_classes '
-        'override_elements_css_class from directory_components_tags %}'
+        'override_elements_css_class from directory_components %}'
         '{{ html|add_export_elements_classes|'
         'override_elements_css_class:\'a, link with-arrow\'|safe }}'
 
