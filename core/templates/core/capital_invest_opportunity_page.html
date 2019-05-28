@@ -11,41 +11,40 @@
 {% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
 
 <section>
-	<div class="container">
-		{% url 'index' as index_url %}
-		{% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-		{% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
-	</div>
+    <div class="container">
+        {% url 'index' as index_url %}
+        {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
+        {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+    </div>
 </section>
 
 {% if page.opportunity_summary_intro %}
 <section class="page-section">
-	<div class="container">
-		<div class="card-grid">
-			<div class="column-half-l left-half-page-text">
-				<div class="font-medium padding-bottom-30">
-					{{ page.opportunity_summary_intro}}
-				</div>
-				<div>
-					{{ page.opportunity_summary_content|add_export_elements_classes|safe }}
-				</div>
-				</div>
-				<div class="column-half-l center-vertical flex-shrink-0 max-width-100">
-					{% if page.opportunity_summary_image.url %}
-						<figure class="landing-page-image flex-shrink-0">
-							<img class="width-full" src="{{page.opportunity_summary_image.url}}">
-						</figure>
-					{%  endif %}
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="card-grid">
+            <div class="column-half-l left-half-page-text">
+                <div class="font-medium padding-bottom-30">
+                    {{ page.opportunity_summary_intro}}
+                </div>
+                <div>
+                    {{ page.opportunity_summary_content|add_export_elements_classes|safe }}
+                </div>
+            </div>
+            <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+                {% if page.opportunity_summary_image.url %}
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.opportunity_summary_image.url}}">
+                    </figure>
+                {%  endif %}
+            </div>
+        </div>
+    </div>
 </section>
 {% endif %}
 
 <section class="page-section capital-invest-region-icons-section">
-	<div class="container">
-		<div class="grid-row ">
+    <div class="container">
+        <div class="grid-row ">
             <ul>
                 <li>
                     {% if page.location and page.location_icon.url %}
@@ -103,11 +102,11 @@
                 </li>
             </ul>
         </div>
-	</div>
+    </div>
 </section>
 
 <section class="capital-invest-opportunity-page-section">
-	<div class="container">
+    <div class="container">
         <div class="card-grid">
             {% if page.project_image.url %}
                 <div class="column-half-l padding-bottom-30">
@@ -125,7 +124,7 @@
                 </div>
             {% endif %}
         </div>
-		<div class="grid-row">
+        <div class="grid-row">
             {% if page.project_description_title and page.project_description_content %}
                 <div class="column-half-l padding-right-60 padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_description_title }}</h2>
@@ -142,51 +141,51 @@
                     </div>
                 </div>
             {% endif %}
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
 {% if page.case_study_title and page.case_study_cta_text and page.case_study_image.url %}
-	{% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
 {% if page.related_pages|filter_by_active_language %}
 <section class="capital-invest-opportunity-page-section">
-	<div class="container">
-		<div class="grid-row">
-			<h1 class="heading-large padding-bottom-30">
-				{{ page.similar_projects_title}}
-			</h1>
-			{% for related_page in page.related_pages|filter_by_active_language %}
-				<div class="column-third-xl column-half-l column-full">
-					<div class="card">
-						<div class="card-inner wrap-tight padding-horizontal-45">
-							<a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
-							<p>{{ related_page.location }}</p>
-							<p class="bold-small">{{ related_page.scale }}</p>
-							<p><u>Investment type: </u>{{ related_page.investment_type }}</p>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
-		</div>
-		{% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
-		<a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
-		{% endif %}
-	</div>
+    <div class="container">
+        <div class="grid-row">
+            <h1 class="heading-large padding-bottom-30">
+            {{ page.similar_projects_title}}
+            </h1>
+            {% for related_page in page.related_pages|filter_by_active_language %}
+                <div class="column-third-xl column-half-l column-full">
+                    <div class="card">
+                        <div class="card-inner wrap-tight padding-horizontal-45">
+                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+                            <p>{{ related_page.location }}</p>
+                            <p class="bold-small">{{ related_page.scale }}</p>
+                            <p><u>Investment type: </u>{{ related_page.investment_type }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+        {% endif %}
+    </div>
 </section>
 {% endif %}
 
 {% if  page.next_steps_title and page.next_steps_intro %}
 <section class="capital-invest-opportunity-page-section">
-	<div class="container">
-		<h1 class="heading-large">{{ page.next_steps_title }}</h1>
-		<div class="grid-row padding-bottom-45">
-			<div class="column-half-l">
-				{{ page.next_steps_intro }}
-			</div>
-		</div>
-		{% if page.invest_cta_text %}
+    <div class="container">
+        <h1 class="heading-large">{{ page.next_steps_title }}</h1>
+        <div class="grid-row padding-bottom-45">
+            <div class="column-half-l">
+                {{ page.next_steps_intro }}
+            </div>
+        </div>
+        {% if page.invest_cta_text %}
             <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
             </div>
@@ -195,8 +194,8 @@
             <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
             </div>
-		{% endif %}
-	</div>
+        {% endif %}
+    </div>
 </section>
 {%endif %}
 
