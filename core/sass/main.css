@@ -446,23 +446,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
     padding: 30px 0;
   }
 }
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
-  padding: 60px 0;
-}
-@media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
-    padding: 30px 0;
-  }
-}
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
-  padding: 60px 0;
-  background: #f2eee8;
-}
-@media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
-    padding: 30px 0;
-  }
-}
 @media (max-width: 641px) {
   .capital-invest-region-page .mobile-padding-bottom-30 {
     padding-bottom: 30px;

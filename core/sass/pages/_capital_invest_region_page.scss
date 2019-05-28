@@ -1,26 +1,11 @@
 @import '../partials/vars';
 @import '../partials/mixins';
 
-
-@mixin alternating-background() {
-    &:nth-of-type(odd) {
-      @include white-section;
-    }
-
-    &:nth-of-type(even) {
-      @include stone-section;
-    }
-}
-
 .capital-invest-region-page {
 
   .page-section{
     @include page-section-padding;
 
-  }
-
-  .capital-invest-region-page-section {
-    @include alternating-background;
   }
 
   .capital-invest-region-page-section:nth-of-type(odd) {
