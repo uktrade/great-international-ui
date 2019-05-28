@@ -81,18 +81,18 @@
 {% endif %}
 
 {% if page.property_and_infrastructure_section_title and page.property_and_infrastructure_section_content %}
-<section class="capital-invest-region-page-section">
+<section class="page-section">
 	<div class="container">
 		<h1 class="heading-large">{{ page.property_and_infrastructure_section_title }}</h1>
 		<div class="card-grid">
 			{% if page.property_and_infrastructure_section_image.url %}
-				<div class="column-half-xl center-vertical">
-					<figure class="landing-page-image">
+				<div class="column-half-xl center-vertical mobile-padding-bottom-30">
+					<figure class="landing-page-image flex-shrink-0 max-width-100">
 						<img class="width-full" src="{{page.property_and_infrastructure_section_image.url}}">
 					</figure>
 				</div>
 			{% endif %}
-			<div class="column-half-xl right-half-page-text">
+			<div class="column-half-xl right-half-page-text-xl">
 				{{ page.property_and_infrastructure_section_content|add_export_elements_classes|safe }}
 			</div>
 		</div>
@@ -115,12 +115,12 @@
 		</div>
 		<div class="grid-row">
             {% if page.invest_cta_text %}
-                <div class="column-half">
+                <div class="column-half padding-bottom-30">
                     {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
                 </div>
             {% endif %}
             {% if page.buy_cta_text %}
-                <div class="column-half">
+                <div class="column-half padding-bottom-30">
                     {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
                 </div>
 			{% endif %}

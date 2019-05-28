@@ -107,3 +107,16 @@
       }
     }
   }
+
+
+ @media (min-width: 961px) {
+    section .container {
+      .left-half-page-text-xl {
+        padding-right: 60px;
+      }
+
+      .right-half-page-text-xl {
+        padding-left: 60px;
+      }
+    }
+  }

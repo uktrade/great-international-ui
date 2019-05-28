@@ -44,18 +44,19 @@
 			</div>
 		</div>
 		<div class="card-grid">
-			<div class="column-half-l left-half-page-text">
-				<div>
-					{{ page.sector_summary_content|add_export_elements_classes|safe }}
-				</div>
-			</div>
-			<div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+		    <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
 				{% if page.sector_summary_image.url %}
 					<figure class="landing-page-image flex-shrink-0">
 						<img class="width-full" src="{{page.sector_summary_image.url}}">
 					</figure>
 				{%  endif %}
 			</div>
+			<div class="column-half-l left-half-page-text">
+				<div>
+					{{ page.sector_summary_content|add_export_elements_classes|safe }}
+				</div>
+			</div>
+
 		</div>
 	</div>
 </section>
@@ -93,12 +94,12 @@
 			</div>
 		</div>
 		{% if page.invest_cta_text %}
-            <div class="column-half">
+            <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
             </div>
         {% endif %}
         {% if page.buy_cta_text %}
-            <div class="column-half">
+            <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
             </div>
 		{% endif %}
