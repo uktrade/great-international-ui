@@ -99,11 +99,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'conf.wsgi.application'
 
+VCAP_SERVICES = env.json('VCAP_SERVICES', {})
 
-if env.str('REDIS_URL', ''):
+if 'redis' in VCAP_SERVICES:
+    REDIS_URL = VCAP_SERVICES['redis'][0]['credentials']['uri']
+else:
+    REDIS_URL = env.str('REDIS_URL', '')
+
+if REDIS_URL:
     cache = {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': env.str('REDIS_URL'),
+        'LOCATION': REDIS_URL,
         'OPTIONS': {
             'CLIENT_CLASS': "django_redis.client.DefaultClient",
         }
@@ -113,6 +119,7 @@ else:
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'unique-snowflake',
     }
+
 
 CACHES = {
     'default': cache,
@@ -394,6 +401,9 @@ FEATURE_FLAGS = {
     'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON':
         env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
     'COUNTRY_SELECTOR_ON': env.bool('FEATURE_COUNTRY_SELECTOR_ENABLED', False),
+    'INVESTMENT_SUPPORT_DIRECTORY_LINK_ON': env.bool(
+        'FEATURE_INVESTMENT_SUPPORT_DIRECTORY_LINK_ENABLED', False
+    ),
     'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON': env.bool(
         'FEATURE_CAPITAL_INVEST_REGION_SECTOR_OPP_PAGE_ENABLED', False
     ),

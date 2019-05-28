@@ -80,7 +80,7 @@ urlpatterns = [
     ),
     url(
         r"^international/content/how-to-setup-in-the-uk/$",
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.HowToSetupInTheUKView.as_view(),
         {'path': 'how-to-setup-in-the-uk'},
         name="how-to-setup-in-the-uk"
     ),
