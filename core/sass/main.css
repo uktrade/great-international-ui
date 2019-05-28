@@ -420,6 +420,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
     bottom: 15px;
   }
 }
+@media (max-width: 641px) {
+  .capital-invest-landing-page .mobile-padding-bottom-30 {
+    padding-bottom: 30px;
+  }
+}
 
 .capital-invest-region-page .page-section {
   padding: 60px 0;

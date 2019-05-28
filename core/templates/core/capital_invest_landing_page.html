@@ -23,10 +23,10 @@
             <p class="font-small column-half-l margin-bottom-45">{{ page.reason_to_invest_section_intro}} </p>
         </div>
         <div class="card-grid ci-landing-page-benefit-section">
-            <div class="column-half padding-right-60">
+            <div class="column-half padding-right-60 center-vertical">
                 {{ page.reason_to_invest_section_content|add_export_elements_classes|safe }}
             </div>
-            <div class="column-half center_vertical flex-shrink-0 max-width-100">
+            <div class="column-half center_vertical flex-shrink-0 max-width-100 mobile-padding-bottom-30">
                 {% if page.reason_to_invest_section_image.url %}
                     <figure class="landing-page-image flex-shrink-0">
                         <img class="width-full" src="{{page.reason_to_invest_section_image.url}}">

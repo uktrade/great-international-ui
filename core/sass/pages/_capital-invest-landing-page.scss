@@ -109,4 +109,10 @@
     }
   }
 
+  .mobile-padding-bottom-30 {
+   @media (max-width: 641px) {
+      padding-bottom: $spacing-3;
+    }
+  }
+
 }
