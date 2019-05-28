@@ -99,11 +99,11 @@
  @media (min-width: 641px) {
     section .container {
       .left-half-page-text {
-        padding-right: 60px;
+        padding-right: $spacing-1;
       }
 
       .right-half-page-text {
-        padding-left: 60px;
+        padding-left: $spacing-1;
       }
     }
   }
@@ -112,11 +112,11 @@
  @media (min-width: 961px) {
     section .container {
       .left-half-page-text-xl {
-        padding-right: 60px;
+        padding-right: $spacing-1;
       }
 
       .right-half-page-text-xl {
-        padding-left: 60px;
+        padding-left: $spacing-1;
       }
     }
   }
