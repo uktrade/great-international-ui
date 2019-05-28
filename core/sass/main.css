@@ -153,6 +153,14 @@ a.labelled-image-card .card-header h3 {
   margin-bottom: auto;
 }
 
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.max-width-100 {
+  max-width: 100%;
+}
+
 @media (min-width: 641px) {
   section .container .left-half-page-text {
     padding-right: 60px;
@@ -309,12 +317,27 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-landing-page .page-section {
   padding: 60px 0;
 }
+@media (max-width: 641px) {
+  .capital-invest-landing-page .page-section {
+    padding: 30px 0;
+  }
+}
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
   padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
   padding: 60px 0;
   background: #f2eee8;
+}
+@media (max-width: 641px) {
+  .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help {
   font-size: 17px;
@@ -389,35 +412,67 @@ body.js-enabled .landing-page .country-selector-dialog select {
     bottom: 15px;
   }
 }
-.capital-invest-landing-page .flex-shrink-0 {
-  flex-shrink: 0;
-}
-.capital-invest-landing-page .max-width-100 {
-  max-width: 100%;
-}
 
 .capital-invest-region-page .capital-invest-region-page-section:nth-child(odd) {
   padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-region-page .capital-invest-region-page-section:nth-child(odd) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-region-page .capital-invest-region-page-section:nth-child(even) {
   padding: 60px 0;
   background: #f2eee8;
 }
+@media (max-width: 641px) {
+  .capital-invest-region-page .capital-invest-region-page-section:nth-child(even) {
+    padding: 30px 0;
+  }
+}
 
 .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(odd) {
   padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(odd) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(even) {
   padding: 60px 0;
   background: #f2eee8;
 }
+@media (max-width: 641px) {
+  .capital-invest-sector-page .capital-invest-sector-page-section:nth-child(even) {
+    padding: 30px 0;
+  }
+}
 
+.capital-invest-opportunity-page .page-section {
+  padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-page .page-section {
+    padding: 30px 0;
+  }
+}
 .capital-invest-opportunity-page .capital-invest-opportunity-page-section:nth-child(odd) {
   padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-page .capital-invest-opportunity-page-section:nth-child(odd) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-opportunity-page .capital-invest-opportunity-page-section:nth-child(even) {
   padding: 60px 0;
   background: #f2eee8;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-page .capital-invest-opportunity-page-section:nth-child(even) {
+    padding: 30px 0;
+  }
 }
 .capital-invest-opportunity-page .container:after {
   padding-bottom: 30px;
@@ -429,9 +484,30 @@ body.js-enabled .landing-page .country-selector-dialog select {
   width: 100%;
 }
 .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  height: calc(60px + 15px);
+  height: calc(60px);
+}
+@media (min-width: 641px) {
+  .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    height: calc(60px + 15px);
+  }
+}
+.capital-invest-opportunity-page .width-100 {
+  width: 100%;
+}
+.capital-invest-opportunity-page li .bold-small {
+  padding-bottom: 60px;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-page li .bold-small {
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-page li p {
+    margin-bottom: 0;
+  }
 }
 
 .article-detail-page article.grid-row {

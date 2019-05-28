@@ -88,6 +88,14 @@
   margin-bottom: auto;
 }
 
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.max-width-100 {
+  max-width: 100%;
+}
+
  @media (min-width: 641px) {
     section .container {
       .left-half-page-text {

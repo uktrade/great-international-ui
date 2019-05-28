@@ -19,7 +19,7 @@
 </section>
 
 {% if page.opportunity_summary_intro %}
-<section class="padding-top-60 padding-bottom-60">
+<section class="page-section">
 	<div class="container">
 		<div class="card-grid">
 			<div class="column-half-l left-half-page-text">
@@ -43,13 +43,13 @@
 </section>
 {% endif %}
 
-<section class="padding-top-60 padding-bottom-60 capital-invest-region-icons-section">
+<section class="page-section capital-invest-region-icons-section">
 	<div class="container">
-		<div class="grid-row padding-bottom-90 ">
+		<div class="grid-row ">
             <ul>
                 <li>
                     {% if page.location and page.location_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img class="icon" src="{{page.location_icon.url}}" >
                             <p>Location</p>
                             <p class="bold-small">{{ page.location }}</p>
@@ -58,7 +58,7 @@
                 </li>
                 <li>
                     {% if page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.project_promoter_icon.url}}" class="icon">
                             <p>Project promoter</p>
                             <p class="bold-small">{{ page.project_promoter }}</p>
@@ -67,7 +67,7 @@
                 </li>
                 <li>
                     {% if page.scale and page.scale_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.scale_icon.url}}" class="icon">
                             <p>Scale</p>
                             <p class="bold-small">{{ page.scale }}</p>
@@ -76,7 +76,7 @@
                 </li>
                 <li>
                     {% if page.sector and page.sector_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.sector_icon.url}}" class="icon">
                             <p>Sector</p>
                             <p class="bold-small">{{ page.sector }}</p>
@@ -85,7 +85,7 @@
                 </li>
                 <li>
                     {% if page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.investment_type_icon.url}}" class="icon">
                             <p>Investment type</p>
                             <p class="bold-small">{{ page.investment_type }}</p>
@@ -94,7 +94,7 @@
                 </li>
                 <li>
                     {% if page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.planning_status_icon.url}}" class="icon">
                             <p>Planning status</p>
                             <p class="bold-small">{{ page.planning_status }}</p>
@@ -108,17 +108,26 @@
 
 <section class="capital-invest-opportunity-page-section">
 	<div class="container">
-	    {% if page.project_background_title and page.project_background_intro %}
-		<div class="grid-row">
-			<h2 class="heading-large">{{ page.project_background_title }} </h2>
-			<div class="font-medium padding-bottom-30 column-half-l">
-				{{ page.project_background_intro}}
-			</div>
-		</div>
-		{% endif %}
+        <div class="card-grid">
+            {% if page.project_image.url %}
+                <div class="column-half-l padding-bottom-30">
+                    <figure class="flex-shrink-0 padding-top-45">
+                        <img class="width-100 center-vertical" src="{{page.project_image.url}}">
+                    </figure>
+                </div>
+            {%  endif %}
+            {% if page.project_background_title and page.project_background_intro %}
+                <div class="column-half-l right-half-page-text padding-bottom-30">
+                    <h2 class="heading-large">{{ page.project_background_title }} </h2>
+                    <div class="font-medium padding-bottom-30 ">
+                        {{ page.project_background_intro}}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
 		<div class="grid-row">
             {% if page.project_description_title and page.project_description_content %}
-                <div class="column-half-l padding-right-60">
+                <div class="column-half-l padding-right-60 padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_description_title }}</h2>
                     <div>
                         {{ page.project_description_content|add_export_elements_classes|safe }}
@@ -126,20 +135,13 @@
                 </div>
             {% endif %}
             {% if page.project_promoter_title %}
-                <div class="column-half-l padding-right-60">
+                <div class="column-half-l padding-right-60 right-half-page-text padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
                     <div>
                         {{ page.project_promoter_content|add_export_elements_classes|safe }}
                     </div>
                 </div>
             {% endif %}
-		</div>
-		<div class="grid-row">
-		{% if page.project_image.url %}
-			<figure class="landing-page-image flex-shrink-0 padding-top-45" style="align-items: center; display: flex; flex-direction: column;" >
-				<img class="width-half" src="{{page.project_image.url}}">
-			</figure>
-		{%  endif %}
 		</div>
 	</div>
 </section>
@@ -185,12 +187,12 @@
 			</div>
 		</div>
 		{% if page.invest_cta_text %}
-            <div class="column-half">
+            <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
             </div>
         {% endif %}
         {% if page.buy_cta_text %}
-            <div class="column-half">
+            <div class="column-half padding-bottom-30">
                 {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
             </div>
 		{% endif %}
