@@ -53,7 +53,7 @@
                     </figure>
                 {%  endif %}
             </div>
-            <div class="column-half-l left-half-page-text">
+            <div class="column-half-l {% if page.sector_summary_image.url %} right-half-page-text {% endif %}">
                 <div>
                     {{ page.sector_summary_content|add_export_elements_classes|safe }}
                 </div>

@@ -116,7 +116,7 @@
                 </div>
             {%  endif %}
             {% if page.project_background_title and page.project_background_intro %}
-                <div class="column-half-l right-half-page-text padding-bottom-30">
+                <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
                     <div class="font-medium padding-bottom-30 ">
                         {{ page.project_background_intro}}
