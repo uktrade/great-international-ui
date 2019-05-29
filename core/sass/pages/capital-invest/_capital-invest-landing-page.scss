@@ -58,7 +58,8 @@
     position: absolute;
     left: 45px;
     bottom: 45px;
-    width: calc(100% - 90px)
+    width: calc(100% - 90px);
+    white-space: normal;
   }
 
   @media (max-width: 950px) {
@@ -95,13 +96,8 @@
       width: 80%;
     }
 
-    .card-grid .card .card-inner p.description {
-      margin-bottom: 120px;
-    }
-
     .pdf_button {
       height: 80px;
-      white-space: normal;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -112,6 +108,12 @@
   .mobile-padding-bottom-30 {
    @media (max-width: 641px) {
       padding-bottom: $spacing-3;
+    }
+  }
+
+  .desktop-padding-left-90 {
+    @media (min-width: 641px) {
+      padding-left: 90px;
     }
   }
 
