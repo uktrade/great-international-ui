@@ -19,21 +19,31 @@ from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
+from core.helpers import get_ga_data_for_page
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 
 
 class CMSPageFromPathView(
-    GA360Mixin,
     RegionalContentMixin,
     CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
+    GA360Mixin,
     TemplateView
 ):
 
-    @property
-    def ga360_payload(self):
-        return {'page_type': self.page['page_type']}
+    def dispatch(self, request, *args, **kwargs):
+        dispatch_result = super().dispatch(request, *args, **kwargs)
+
+        page_type = self.page['page_type']
+        ga360_data = get_ga_data_for_page(page_type)
+        self.set_ga360_payload(
+            page_id=page_type,
+            business_unit=ga360_data['business_unit'],
+            site_section=ga360_data['site_section'],
+            site_subsection=ga360_data['site_subsection']
+        )
+        return dispatch_result
 
     @property
     def template_name(self):
@@ -155,8 +165,19 @@ def sector_page_context_modifier(context, request):
         }
 
 
-class InternationalContactPageView(CountryDisplayMixin, TemplateView):
+class InternationalContactPageView(CountryDisplayMixin,
+                                   GA360Mixin,
+                                   TemplateView):
     template_name = 'core/contact_page.html'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='InternationalContactPage',
+            business_unit='International',
+            site_section='Contact',
+            site_subsection='ContactForm'
+        )
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(

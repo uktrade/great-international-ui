@@ -47,7 +47,7 @@ dummy_page = {
             ['de', 'Deutsch'],
         ]
     },
-    'page_type': ''
+    'page_type': 'InternationalHomePage'
 }
 
 
