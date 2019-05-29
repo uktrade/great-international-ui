@@ -13,7 +13,7 @@ jsonschema==2.6.0
 django-recaptcha==1.2.0
 directory-cms-client==10.0.0
 directory-validators==5.0.0
-directory-components==14.1.0
+directory-components==15.1.0
 directory-constants==16.7.1
 directory-forms-api-client==4.0.0
 beautifulsoup4==4.6.0
