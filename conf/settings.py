@@ -15,6 +15,7 @@ import os
 import environ
 
 from directory_constants import cms
+import directory_healthcheck.backends
 
 
 env = environ.Env()
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
     'captcha',
     'directory_components',
     'crispy_forms',
-    'health_check',
+    'health_check.cache',
     'directory_healthcheck',
     'euexit'
 ]
@@ -426,4 +427,11 @@ HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
 )
 
 # Directory healthcheck
-HEALTH_CHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
+DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
+DIRECTORY_HEALTHCHECK_BACKENDS = [
+    directory_healthcheck.backends.SentryBackend,
+    directory_healthcheck.backends.FormsAPIBackend,
+    directory_healthcheck.backends.CMSAPIBackend,
+    # health_check.cache.CacheBackend is also registered in
+    # INSTALLED_APPS's health_check.cache
+]

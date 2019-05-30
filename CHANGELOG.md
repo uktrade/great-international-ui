@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Fixed bugs
+- No ticket - Fix healthchecks
+
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.

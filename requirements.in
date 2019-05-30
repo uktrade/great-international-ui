@@ -19,6 +19,6 @@ beautifulsoup4==4.6.0
 waitress==0.8.9
 zenpy==1.1.10
 django-redis==4.8.0
-directory-healthcheck==0.5.1
+directory-healthcheck==1.0.1
 urllib3>=1.24.2,<2.0.0
 djangorestframework==3.9.1
