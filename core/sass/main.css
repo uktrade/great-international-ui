@@ -369,9 +369,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
   text-align: center;
   width: 50%;
 }
-.capital-invest-landing-page .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
-  margin-bottom: 100px;
-}
 .capital-invest-landing-page .pdf_button {
   text-align: center;
   position: absolute;
