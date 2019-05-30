@@ -22,6 +22,7 @@
 - CI-144 - Updated capital invest landing page to match more recent invision designs
 - CI-145 - Use invest logo in header
 - CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
+- CI-151 - Added blank alt text to images on capital invest pages for accessibility
 
 ### Fixed bugs
 

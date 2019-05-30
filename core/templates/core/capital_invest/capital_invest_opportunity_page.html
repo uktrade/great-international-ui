@@ -33,7 +33,7 @@
             <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
                 {% if page.opportunity_summary_image.url %}
                     <figure class="landing-page-image flex-shrink-0">
-                        <img class="width-full" src="{{page.opportunity_summary_image.url}}">
+                        <img class="width-full" src="{{page.opportunity_summary_image.url}}" alt="">
                     </figure>
                 {%  endif %}
             </div>
@@ -49,7 +49,7 @@
                 <li>
                     {% if page.location and page.location_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img class="icon" src="{{page.location_icon.url}}" >
+                            <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p>Location</p>
                             <p class="bold-small">{{ page.location }}</p>
                         </div>
@@ -58,7 +58,7 @@
                 <li>
                     {% if page.project_promoter and page.project_promoter_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img src="{{page.project_promoter_icon.url}}" class="icon">
+                            <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p>Project promoter</p>
                             <p class="bold-small">{{ page.project_promoter }}</p>
                         </div>
@@ -67,7 +67,7 @@
                 <li>
                     {% if page.scale and page.scale_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img src="{{page.scale_icon.url}}" class="icon">
+                            <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p>Scale</p>
                             <p class="bold-small">{{ page.scale }}</p>
                         </div>
@@ -76,7 +76,7 @@
                 <li>
                     {% if page.sector and page.sector_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img src="{{page.sector_icon.url}}" class="icon">
+                            <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p>Sector</p>
                             <p class="bold-small">{{ page.sector }}</p>
                         </div>
@@ -85,7 +85,7 @@
                 <li>
                     {% if page.investment_type and page.investment_type_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img src="{{page.investment_type_icon.url}}" class="icon">
+                            <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p>Investment type</p>
                             <p class="bold-small">{{ page.investment_type }}</p>
                         </div>
@@ -94,7 +94,7 @@
                 <li>
                     {% if page.planning_status and page.planning_status_icon.url %}
                         <div class="column-third-l column-half-m">
-                            <img src="{{page.planning_status_icon.url}}" class="icon">
+                            <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p>Planning status</p>
                             <p class="bold-small">{{ page.planning_status }}</p>
                         </div>
@@ -111,7 +111,7 @@
             {% if page.project_image.url %}
                 <div class="column-half-l padding-bottom-30">
                     <figure class="flex-shrink-0 padding-top-45">
-                        <img class="width-100 center-vertical" src="{{page.project_image.url}}">
+                        <img class="width-100 center-vertical" src="{{page.project_image.url}}" alt="">
                     </figure>
                 </div>
             {%  endif %}
