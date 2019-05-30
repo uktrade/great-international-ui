@@ -45,14 +45,6 @@
   .energy_pdf_button {
     text-align: center;
     width: 50%;
-  }
-
-  .pdf_button {
-    text-align: center;
-    position: absolute;
-    left: 45px;
-    bottom: 45px;
-    width: calc(100% - 90px);
     white-space: normal;
   }
 
@@ -88,14 +80,6 @@
     .hero .container .hero-text .button {
       white-space: initial;
       width: 80%;
-    }
-
-    .pdf_button {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      bottom: 15px;
     }
   }
 
