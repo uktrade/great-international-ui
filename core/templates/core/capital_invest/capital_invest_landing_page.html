@@ -89,36 +89,38 @@
 {% endif %}
 
 {% if page.region_ops_section_title %}
-<section class="capital-invest-landing-page-section">
-    <div class="container">
-        <h2 class="heading-large">{{ page.region_ops_section_title }} </h2>
-        <div class="grid-row">
-            <p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
-        </div>
-        <div class="card-grid">
-            {% for region in page.added_regions %}
-                {% if region.related_region.title %}
-                    <div class="column-half-l column-third-xl">
-                        {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
-                        {% include 'directory_components/card.html' with img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-            {% for region_fields in page.added_region_card_fields %}
-                {% if region_fields.region_card_title and region_fields.region_card_summary %}
-                    <div class="column-half-l column-third-xl">
-                        {% include 'core/includes/card_with_pdf_button.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe pdf_text=region_fields.region_card_cta_text pdf_link=region_fields.region_card_pdf_document %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    {% if page.banner_information %}
-        <div class="padding-top-30 desktop-padding-left-90">
-        {% include 'directory_components/informative_banner.html' with banner_content=page.banner_information %}
-        </div>
+    {% if page.added_regions or page.added_region_card_fields %}
+        <section class="capital-invest-landing-page-section">
+            <div class="container">
+                <h2 class="heading-large">{{ page.region_ops_section_title }} </h2>
+                <div class="grid-row">
+                    <p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
+                </div>
+                <div class="card-grid">
+                    {% for region in page.added_regions %}
+                        {% if region.related_region.title %}
+                            <div class="column-half-l column-third-xl">
+                                {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
+                                {% include 'directory_components/card.html' with img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for region_fields in page.added_region_card_fields %}
+                        {% if region_fields.region_card_title and region_fields.region_card_summary %}
+                            <div class="column-half-l column-third-xl">
+                                {% include 'core/includes/card_with_pdf_button.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe pdf_text=region_fields.region_card_cta_text pdf_link=region_fields.region_card_pdf_document %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% if page.banner_information %}
+                <div class="padding-top-30 desktop-padding-left-90">
+                {% include 'directory_components/informative_banner.html' with banner_content=page.banner_information %}
+                </div>
+            {% endif %}
+        </section>
     {% endif %}
-</section>
 {% endif %}
 
 {% if page.energy_sector_title and page.energy_sector_content %}
