@@ -35,58 +35,35 @@
             </div>
         </div>
     </div>
-</section>
-{% endif %}
-
-
-{% if page.how_we_help_title %}
-<section class="capital-invest-landing-page-how-we-help page-section ">
-    <div class="container">
-        <h2 class="heading-large">{{ page.how_we_help_title }} </h2>
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                <p> {{ page.how_we_help_intro }}</p>
+    {% if page.how_we_help_title %}
+        <div class="container capital-invest-landing-page-how-we-help">
+            <h2 class="heading-large">{{ page.how_we_help_title }} </h2>
+            <div class="grid-row">
+                <div class="column-two-thirds">
+                    <p> {{ page.how_we_help_intro }}</p>
+                </div>
+            </div>
+            <div class="grid-row">
+                <ul>
+                {% for how_we_help in page.how_we_help_icon_and_text %}
+                    {% if how_we_help.text and how_we_help.icon.url %}
+                        <li>
+                            <div class="column-quarter">
+                                <img class="icon" src="{{how_we_help.icon.url}}" alt="">
+                                <p>{{ how_we_help.text }} </p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
             </div>
         </div>
-        <div class="grid-row">
-            <ul>
-                {% if page.how_we_help_one_text and page.how_we_help_one_icon.url %}
-                    <li>
-                        <div class="column-quarter">
-                            <img class="icon" src="{{page.how_we_help_one_icon.url}}" alt="">
-                            <p>{{ page.how_we_help_one_text }} </p>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if page.how_we_help_two_text and page.how_we_help_two_icon.url %}
-                    <li>
-                        <div class="column-quarter">
-                            <img class="icon" src="{{page.how_we_help_two_icon.url}}" alt="">
-                            <p>{{ page.how_we_help_two_text }}</p>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if page.how_we_help_three_text and page.how_we_help_three_icon.url %}
-                    <li>
-                        <div class="column-quarter">
-                            <img class="icon" src="{{page.how_we_help_three_icon.url}}" alt="">
-                            <p>{{ page.how_we_help_three_text }} </p>
-                        </div>
-                    </li>
-                {% endif %}
-                {% if page.how_we_help_four_text and page.how_we_help_four_icon.url %}
-                    <li>
-                        <div class="column-quarter">
-                            <img class="icon" src="{{page.how_we_help_four_icon.url}}" alt="">
-                            <p>{{ page.how_we_help_four_text }} </p>
-                        </div>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
+    {% endif %}
 </section>
 {% endif %}
+
+
+
 
 {% if page.region_ops_section_title %}
     {% if page.added_regions or page.added_region_card_fields %}
