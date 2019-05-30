@@ -1,0 +1,120 @@
+
+// Capital Invest/landing page
+
+@import '../../partials/vars';
+@import '../../partials/mixins';
+.capital-invest-landing-page {
+
+  .page-section{
+    @include page-section-padding
+  }
+
+  .capital-invest-landing-page-section:nth-child(odd) {
+    @include white-section;
+  }
+
+  .capital-invest-landing-page-section:nth-child(even) {
+    @include stone-section;
+  }
+
+  .capital-invest-landing-page-how-we-help {
+    font-size: 17px;
+
+    .container:after {
+      padding-bottom: $spacing-3;
+    }
+
+    p {
+      margin-bottom: $spacing-3;
+    }
+
+    ul {
+      width: 100%;
+    }
+
+    .icon {
+      height: $spacing-1;
+      padding-bottom: $spacing-4;
+      margin-bottom: $spacing-4;
+    }
+
+    .contact-button {
+      @extend .icon;
+      border-bottom: 0;
+    }
+  }
+
+  .energy_pdf_button {
+    text-align: center;
+    width: 50%;
+  }
+
+  .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
+    margin-bottom: 100px;
+  }
+
+  .pdf_button {
+    text-align: center;
+    position: absolute;
+    left: 45px;
+    bottom: 45px;
+    width: calc(100% - 90px);
+    white-space: normal;
+  }
+
+  @media (max-width: 950px) {
+    .ci-landing-page-energy-section {
+      flex-direction: column-reverse;
+
+      .column-half {
+        width: 100%;
+
+        .energy_pdf_button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 950px) {
+    .ci-landing-page-benefit-section {
+      flex-direction: column-reverse;
+
+      .column-half {
+        width: 100%;
+
+        .energy_pdf_button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .hero .container .hero-text .button {
+      white-space: initial;
+      width: 80%;
+    }
+
+    .pdf_button {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      bottom: 15px;
+    }
+  }
+
+  .mobile-padding-bottom-30 {
+   @media (max-width: 641px) {
+      padding-bottom: $spacing-3;
+    }
+  }
+
+  .desktop-padding-left-90 {
+    @media (min-width: 641px) {
+      padding-left: 90px;
+    }
+  }
+
+}

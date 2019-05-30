@@ -1,0 +1,14 @@
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.capital-invest-sector-page {
+
+  .capital-invest-sector-page-section:nth-child(odd) {
+    @include white-section;
+  }
+
+  .capital-invest-sector-page-section:nth-child(even) {
+    @include stone-section;
+  }
+
+}

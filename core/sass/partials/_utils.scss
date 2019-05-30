@@ -8,8 +8,8 @@
   background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
 }
 
-.with-arrow {
-  @include with-arrow;
+.with-left-arrow {
+  @include with-left-arrow;
 }
 
 .button-arrow {
@@ -82,3 +82,41 @@
 .margin-top-remove-30{
   margin-top: -30px;
 }
+
+.center-vertical{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.max-width-100 {
+  max-width: 100%;
+}
+
+ @media (min-width: 641px) {
+    section .container {
+      .left-half-page-text {
+        padding-right: $spacing-1;
+      }
+
+      .right-half-page-text {
+        padding-left: $spacing-1;
+      }
+    }
+  }
+
+
+ @media (min-width: 961px) {
+    section .container {
+      .left-half-page-text-xl {
+        padding-right: $spacing-1;
+      }
+
+      .right-half-page-text-xl {
+        padding-left: $spacing-1;
+      }
+    }
+  }

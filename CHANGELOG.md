@@ -1,6 +1,11 @@
 # Changelog
 
 ## Pre-release
+
+### Implemented enhancements
+- TT-1432 - Added link to Investment Support Directory on UK setup guide page
+- CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
+
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
@@ -10,6 +15,10 @@
 - CMS-1480 - Add translations to po files and templates
 - CI-108 - Temporarily turn off additional GA tagging.
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
+- CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
+- CI-144 - Updated capital invest landing page to match more recent invision designs
+- CI-145 - Use invest logo in header
+- CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
 
 ### Fixed bugs
 

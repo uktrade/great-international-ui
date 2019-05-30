@@ -80,7 +80,7 @@ urlpatterns = [
     ),
     url(
         r"^international/content/how-to-setup-in-the-uk/$",
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.HowToSetupInTheUKView.as_view(),
         {'path': 'how-to-setup-in-the-uk'},
         name="how-to-setup-in-the-uk"
     ),
@@ -95,5 +95,10 @@ urlpatterns = [
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
+    ),
+    url(
+        r'^international/content/(?P<path>[\w\-/]*)/(?P<list>[\w\-/]*)/$',
+        core.views.CMSPageFromPathView.as_view(),
+        name="cms-page-from-path-with-two-slugs"
     ),
 ]

@@ -1,4 +1,4 @@
-from directory_components.mixins import CountryDisplayMixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin
 from directory_constants import slugs
 from directory_forms_api_client.helpers import Sender
 
@@ -18,6 +18,7 @@ SESSION_KEY_FORM_INGRESS_URL = 'FORM_INGRESS_URL'
 class InternationalContactFormView(
     CMSPageMixin,
     CountryDisplayMixin,
+    GA360Mixin,
     FormView,
 ):
     slug = slugs.EUEXIT_INTERNATIONAL_FORM
@@ -25,6 +26,15 @@ class InternationalContactFormView(
     success_url = reverse_lazy('eu-exit-international-contact-form-success')
     subject = 'EU exit international contact form'
     page_type = 'InternationalEUExitFormPage'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id=self.page_type,
+            business_unit='International',
+            site_section='EUExit',
+            site_subsection='ContactForm'
+        )
 
     def get(self, *args, **kwargs):
         translation.activate('en-gb')  # make sure header is in English
@@ -60,6 +70,15 @@ class InternationalContactFormView(
         return super().form_valid(form)
 
 
-class InternationalContactSuccessView(CMSPageMixin, TemplateView):
+class InternationalContactSuccessView(CMSPageMixin, GA360Mixin, TemplateView):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id=self.page_type,
+            business_unit='International',
+            site_section='EUExit',
+            site_subsection='ContactFormSuccess'
+        )
