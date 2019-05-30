@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
+    'directory_components.middleware.CheckGATags'
 ]
 
 ROOT_URLCONF = 'conf.urls'

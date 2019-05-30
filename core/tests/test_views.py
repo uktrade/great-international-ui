@@ -47,7 +47,7 @@ dummy_page = {
             ['de', 'Deutsch'],
         ]
     },
-    'page_type': ''
+    'page_type': 'InternationalHomePage'
 }
 
 
@@ -632,3 +632,16 @@ def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
     response = client.get('/international/content/opportunities/ashton/')
 
     assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_international_contact_form(mock_cms_response, client):
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload=dummy_page
+    )
+
+    url = reverse('contact-page-international')
+    response = client.get(url)
+
+    assert response.status_code == 200

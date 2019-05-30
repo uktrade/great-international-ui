@@ -32,23 +32,25 @@ dit.tagging.international = new function() {
             }
         });
 
-        function addTaggingForFeaturedCards(label) {
+        function addTaggingForFeaturedCards(element) {
             // Find any link within the featured card (as the card content is just editor defined markdown)
             $("[data-ga-class='large-feature']").find('a').on("click", function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Large Feature',
-                    'eventLabel': label,
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'LargeFeature',
+                    'element': element,
+                    'value': $(this).text()
                 });
             });
 
             $("[data-ga-class='small-feature']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Small Feature',
-                    'eventLabel': label,
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'SmallFeature',
+                    'element': element,
+                    'value': $(this).text()
                 });
             })
         }
@@ -56,10 +58,11 @@ dit.tagging.international = new function() {
         function addTaggingForGuideLinks() {
             $("[data-ga-class='guide-card']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Setup Guide Link',
-                    'eventLabel': 'Setup Guide Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'SetupGuideLink',
+                    'element': 'SetupGuidePage',
+                    'value': $(this).text()
                 });
             });
         }
@@ -67,10 +70,11 @@ dit.tagging.international = new function() {
         function addTaggingForArticleHyperlinks() {
             $("[data-ga-class='article-content']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Article Content Link',
-                    'eventLabel': 'Article Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'ArticleContentLink',
+                    'element': 'ArticlePage',
+                    'value': $(this).text()
                 });
             })
         }
@@ -78,10 +82,11 @@ dit.tagging.international = new function() {
         function addTaggingForRelatedArticles() {
             $("[data-ga-class='related-content-card']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Related Content',
-                    'eventLabel': 'Article Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'RelatedContent',
+                    'element': 'ArticlePage',
+                    'value': $(this).text()
                 });
             });
         }
@@ -89,10 +94,11 @@ dit.tagging.international = new function() {
         function addTaggingForRelatedPages() {
             $("[data-ga-class='related-pages']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Related Content',
-                    'eventLabel': 'Industry Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'RelatedContent',
+                    'element': 'IndustryPage',
+                    'value': $(this).text()
                 });
             });
         }
@@ -100,10 +106,11 @@ dit.tagging.international = new function() {
         function addTaggingForNextSteps() {
             $("[data-ga-class='next-steps-links']").find('a').on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Next Steps',
-                    'eventLabel': 'Industry Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'NextSteps',
+                    'element': 'IndustryPage',
+                    'value': $(this).text()
                 });
             });
         }
@@ -111,10 +118,11 @@ dit.tagging.international = new function() {
         function addTaggingForCaseStudies() {
             $("[data-ga-class='case-study-link']").on('click', function () {
                 window.dataLayer.push({
-                    'eventAction': 'Link',
-                    'eventCategory': 'Case Study',
-                    'eventLabel': 'Industry Page',
-                    'eventValue': $(this).text()
+                    'event': 'gaEvent',
+                    'action': 'Link',
+                    'type': 'CaseStudy',
+                    'element': 'IndustryPage',
+                    'value': $(this).text()
                 });
             })
         }
