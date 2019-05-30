@@ -85,7 +85,7 @@
                     {% for region_fields in page.added_region_card_fields %}
                         {% if region_fields.region_card_title and region_fields.region_card_summary %}
                             <div class="column-half-l column-third-xl">
-                                {% include 'core/includes/card_with_pdf_button.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe pdf_text=region_fields.region_card_cta_text pdf_link=region_fields.region_card_pdf_document %}
+                                {% include 'directory_components/card.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
                             </div>
                         {% endif %}
                     {% endfor %}
