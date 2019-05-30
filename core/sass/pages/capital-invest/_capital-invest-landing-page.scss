@@ -10,11 +10,11 @@
   }
 
   .capital-invest-landing-page-section:nth-child(odd) {
-    @include white-section;
+    @include stone-section;
   }
 
   .capital-invest-landing-page-section:nth-child(even) {
-    @include stone-section;
+    @include white-section;
   }
 
   .capital-invest-landing-page-how-we-help {
@@ -34,8 +34,6 @@
 
     .icon {
       height: $spacing-1;
-      padding-bottom: $spacing-4;
-      margin-bottom: $spacing-4;
     }
 
     .contact-button {
@@ -47,18 +45,6 @@
   .energy_pdf_button {
     text-align: center;
     width: 50%;
-  }
-
-  .capital-invest-landing-page-section .card-grid .card .card-inner-with-pdf p.body-text {
-    margin-bottom: 100px;
-  }
-
-  .pdf_button {
-    text-align: center;
-    position: absolute;
-    left: 45px;
-    bottom: 45px;
-    width: calc(100% - 90px);
     white-space: normal;
   }
 
@@ -94,14 +80,6 @@
     .hero .container .hero-text .button {
       white-space: initial;
       width: 80%;
-    }
-
-    .pdf_button {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      bottom: 15px;
     }
   }
 

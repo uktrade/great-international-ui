@@ -33,7 +33,7 @@
             {% if page.region_summary_section_image.url %}
                 <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
                     <figure class="landing-page-image flex-shrink-0">
-                        <img class="width-full" src="{{page.region_summary_section_image.url}}">
+                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
                     </figure>
                 </div>
             {%  endif %}
@@ -88,7 +88,7 @@
             {% if page.property_and_infrastructure_section_image.url %}
                 <div class="column-half-xl center-vertical mobile-padding-bottom-30">
                     <figure class="landing-page-image flex-shrink-0 max-width-100">
-                        <img class="width-full" src="{{page.property_and_infrastructure_section_image.url}}">
+                        <img class="width-full" src="{{page.property_and_infrastructure_section_image.url}}" alt="">
                     </figure>
                 </div>
             {% endif %}
@@ -104,29 +104,17 @@
     {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
-{% if  page.next_steps_title and page.next_steps_intro %}
+{% if  page.contact_title and page.contact_text %}
 <section class="capital-invest-region-page-section">
     <div class="container">
-        <h1 class="heading-large">{{ page.next_steps_title }}</h1>
-        <div class="grid-row padding-bottom-45">
-            <div class="column-half-l">
-                {{ page.next_steps_intro }}
-            </div>
-        </div>
+        <h1 class="heading-large">{{ page.contact_title }}</h1>
         <div class="grid-row">
-            {% if page.invest_cta_text %}
-                <div class="column-half padding-bottom-30">
-                    {% include 'directory_components/cta_link.html' with with_arrow=True url=invest_cta_link text=page.invest_cta_text %}
-                </div>
-            {% endif %}
-            {% if page.buy_cta_text %}
-                <div class="column-half padding-bottom-30">
-                    {% include 'directory_components/cta_link.html' with with_arrow=True url=buy_cta_link text=page.buy_cta_text %}
-                </div>
-            {% endif %}
+            <div class="column-half-l">
+                {{ page.contact_text|add_export_elements_classes|safe }}
+            </div>
         </div>
     </div>
 </section>
-{% endif %}
+{%endif %}
 
 {% endblock %}

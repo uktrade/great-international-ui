@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Fixed bugs
+- No ticket - Fix healthchecks
+
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
@@ -19,6 +22,9 @@
 - CI-144 - Updated capital invest landing page to match more recent invision designs
 - CI-145 - Use invest logo in header
 - CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
+- CI-151 - Added blank alt text to images on capital invest pages for accessibility
+- CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
+- CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
 
 ### Fixed bugs
 
