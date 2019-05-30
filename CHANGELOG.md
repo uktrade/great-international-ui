@@ -23,6 +23,7 @@
 - CI-145 - Use invest logo in header
 - CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
 - CI-151 - Added blank alt text to images on capital invest pages for accessibility
+- CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
 
 ### Fixed bugs
 
