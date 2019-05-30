@@ -86,12 +86,12 @@
 {% endif %}
 
 {% if  page.contact_title and page.contact_text %}
-<section class="capital-invest-opportunity-page-section">
+<section class="capital-invest-sector-page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.contact_title }}</h1>
-        <div class="grid-row padding-bottom-45">
+        <div class="grid-row">
             <div class="column-half-l">
-                {{ page.contact_text }}
+                {{ page.contact_text|add_export_elements_classes|safe }}
             </div>
         </div>
     </div>

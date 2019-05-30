@@ -332,6 +332,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
   padding: 60px 0;
+  background: #f2eee8;
 }
 @media (max-width: 641px) {
   .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(odd) {
@@ -340,7 +341,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
   padding: 60px 0;
-  background: #f2eee8;
 }
 @media (max-width: 641px) {
   .capital-invest-landing-page .capital-invest-landing-page-section:nth-child(even) {
@@ -361,8 +361,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help .icon, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button {
   height: 60px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
 }
 .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button {
   border-bottom: 0;
