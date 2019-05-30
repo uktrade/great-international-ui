@@ -96,4 +96,3 @@ GA_DATA_MAPPING = {
 
 def get_ga_data_for_page(page_type):
     return GA_DATA_MAPPING[page_type]
-
