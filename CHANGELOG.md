@@ -4,6 +4,7 @@
 
 ### Fixed bugs
 - No ticket - Fix healthchecks
+- Upgrade cms client to prevent uncached pages being treated as cached
 
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
