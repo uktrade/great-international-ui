@@ -37,7 +37,7 @@ urlpatterns = [
     url(
         r"^international/$",
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'international/'},
+        {'path': '/'},
         name="index"
     ),
     url(
