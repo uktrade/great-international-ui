@@ -9,6 +9,9 @@
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
 
+### Fixed bugs
+- no ticket - Fix typo on sector pages.
+
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
