@@ -10,6 +10,9 @@
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
 
+### Fixed bugs
+- no ticket - Fix typo on sector pages.
+
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
@@ -26,6 +29,7 @@
 - CI-151 - Added blank alt text to images on capital invest pages for accessibility
 - CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
 - CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
+- CI-154 - Changed hard coded text in guide landing page to come from cms
 
 ### Fixed bugs
 
