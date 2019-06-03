@@ -30,6 +30,7 @@
 - CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
 - CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
 - CI-154 - Changed hard coded text in guide landing page to come from cms
+- CI-166 - Added gradient to hero image for Capital Invest landing page
 
 ### Fixed bugs
 

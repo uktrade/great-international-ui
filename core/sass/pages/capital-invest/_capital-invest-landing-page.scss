@@ -5,6 +5,21 @@
 @import '../../partials/mixins';
 .capital-invest-landing-page {
 
+  .hero {
+
+    position: relative;
+
+    &:before {
+    background-image: linear-gradient(to left, transparent 20%, rgba(0,0,0.7,0.7) 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    }
+  }
+
   .page-section{
     @include page-section-padding
   }
