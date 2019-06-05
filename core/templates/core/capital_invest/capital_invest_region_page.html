@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes statistics_card_grid case_study from directory_components %}
+{% load card hero add_export_elements_classes statistics_card_grid case_study breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-region-page{% endblock %}
 
@@ -12,9 +12,8 @@
 
 <section>
     <div class="container">
-        {% url 'index' as index_url %}
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
     </div>
 </section>
 

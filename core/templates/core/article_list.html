@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
-{% load add_export_elements_classes ga360_tracker from directory_components %}
+{% load add_export_elements_classes ga360_tracker breadcrumbs from directory_components %}
 {% load filter_by_active_language from cms_tags %}
 {% load parse_date from cms_tags %}
 
@@ -23,11 +23,11 @@
 
 <section id="{% block page_id %}article-list-page{% endblock %}">
 
-  {% block breadcrumbs %}
+  <div class="container">
     {% ga360_tracker "breadcrumbs" %}
-      {% include 'core/includes/breadcrumbs.html' with breadcrumbs=breadcrumbs %}
+      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.display_title %}
     {% endga360_tracker %}
-  {% endblock %}
+  </div>
 
   <div class="container">
     {% if page.list_teaser %}
