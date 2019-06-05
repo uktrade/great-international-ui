@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components %}
+{% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid ga360_tracker from directory_components %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
@@ -15,7 +15,9 @@
     {% url 'industries' as industries_url %}
     {% trans 'Industries' as industries_label %}
 
-    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=industries_url middle_label=industries_label right_label=page.heading %}
+    {% ga360_tracker "breadcrumbs" %}
+      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=industries_url middle_label=industries_label right_label=page.heading %}
+    {% endga360_tracker %}
   </div>
 </section>
 
@@ -84,7 +86,9 @@
         <h2 class="heading-large">{{ page.case_study_title }}</h2>
         <p>{{ page.case_study_description }}</p>
         {% if page.case_study_cta_page and page.case_study_cta_text %}
-        <a class="button" href="{{ page.case_study_cta_page.full_path }}" data-ga-class="case-study-link">{{ page.case_study_cta_text }}</a>
+            {% ga360_tracker "case-study-link" %}
+              <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}</a>
+            {% endga360_tracker %}
         {% endif %}
       </div>
     </div>
@@ -136,14 +140,18 @@
         <p>{% trans 'Whether you’re looking for a supplier or starting a business in the UK, we can help. Get in touch with us for simple, straightforward help and advice on how to do business in the UK.' %}</p>
       </div>
     </div>
-    <div class="grid-row" data-ga-class="next-steps-links">
+    <div class="grid-row">
       <div class="column-full column-half-l margin-bottom-30">
         {% trans "I want to invest in the UK" as want_to_invest %}
-        {% cta_link with_arrow=True url=invest_contact_us_url text=want_to_invest %}
+        {% ga360_tracker "next-steps-links" %}
+            {% cta_link with_arrow=True url=invest_contact_us_url text=want_to_invest %}
+        {% endga360_tracker %}
       </div>
       <div class="column-full column-half-l margin-bottom-30">
         {% trans "I want to buy from the UK" as want_to_buy %}
-        {% cta_link with_arrow=True url=services_urls.fas text=want_to_buy %}
+        {% ga360_tracker "next-steps-links" %}
+          {% cta_link with_arrow=True url=services_urls.fas text=want_to_buy %}
+        {% endga360_tracker %}
       </div>
     </div>
   </div>
@@ -156,12 +164,14 @@
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="card-grid">
       {% for related_page in related_pages %}
-        <div class="column-full column-half-l column-third-xl" data-ga-class="related-pages">
+        <div class="column-full column-half-l column-third-xl">
+          {% ga360_tracker "related-page-card" ga-value=related_page.title %}
           {% if related_page.page_type == 'InternationalArticlePage' %}
             {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
           {% else %}
             {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Campaign' title=related_page.title description=related_page.teaser %}
           {% endif %}
+          {% endga360_tracker %}
         </div>
       {% endfor %}
     </div>

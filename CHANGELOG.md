@@ -6,6 +6,8 @@
 - No ticket - Fix healthchecks
 - Upgrade cms client to prevent uncached pages being treated as cached
 - no ticket - Fix typo on sector pages.
+- Fix Article Listing Page failing to render
+- Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
 
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
@@ -21,6 +23,7 @@
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 - CI-145 - Use invest logo in header
 - CMS-1577 - Update content on EU Exit CTA buttons
+- no-ticket - Make the 'home' breadcrumb label translatable.
 
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)

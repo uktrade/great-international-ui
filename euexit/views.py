@@ -31,7 +31,7 @@ class InternationalContactFormView(
         super().__init__()
         self.set_ga360_payload(
             page_id=self.page_type,
-            business_unit='International',
+            business_unit='GreatInternational',
             site_section='EUExit',
             site_subsection='ContactForm'
         )
@@ -78,7 +78,7 @@ class InternationalContactSuccessView(CMSPageMixin, GA360Mixin, TemplateView):
         super().__init__()
         self.set_ga360_payload(
             page_id=self.page_type,
-            business_unit='International',
+            business_unit='GreatInternational',
             site_section='EUExit',
             site_subsection='ContactFormSuccess'
         )
