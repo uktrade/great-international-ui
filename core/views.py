@@ -161,7 +161,7 @@ class InternationalContactPageView(CountryDisplayMixin,
         super().__init__()
         self.set_ga360_payload(
             page_id='InternationalContactPage',
-            business_unit='International',
+            business_unit='GreatInternational',
             site_section='Contact',
             site_subsection='ContactForm'
         )

@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study from directory_components %}
+{% load card hero add_export_elements_classes case_study ga360_tracker from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
@@ -14,7 +14,9 @@
     <div class="container">
         {% url 'index' as index_url %}
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% ga360_tracker "breadcrumbs" %}
+            {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% endga360_tracker %}
     </div>
 </section>
 
@@ -146,7 +148,9 @@
 </section>
 
 {% if page.case_study_title and page.case_study_cta_text and page.case_study_image.url %}
-    {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% ga360_tracker "case-study-link" %}
+        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% endga360_tracker %}
 {% endif %}
 
 {% if page.related_pages|filter_by_active_language %}
@@ -160,7 +164,9 @@
                 <div class="column-third-xl column-half-l column-full">
                     <div class="card">
                         <div class="card-inner wrap-tight padding-horizontal-45">
-                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+                            {% ga360_tracker "related-page-link" %}
+                                <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+                            {% endga360_tracker %}
                             <p>{{ related_page.location }}</p>
                             <p class="bold-small">{{ related_page.scale }}</p>
                             <p><u>Investment type: </u>{{ related_page.investment_type }}</p>
@@ -170,7 +176,9 @@
             {% endfor %}
         </div>
         {% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
-            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+            {% ga360_tracker "related-page-link" %}
+                <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+            {% endga360_tracker %}
         {% endif %}
     </div>
 </section>
