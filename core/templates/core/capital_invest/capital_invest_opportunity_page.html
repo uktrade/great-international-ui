@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study ga360_tracker from directory_components %}
+{% load card hero add_export_elements_classes case_study ga360_tracker breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
@@ -14,7 +14,7 @@
     <div class="container">
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
         {% ga360_tracker "breadcrumbs" %}
-            {% include 'directory_components/breadcrumbs.html' with left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+            {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
         {% endga360_tracker %}
     </div>
 </section>
