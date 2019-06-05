@@ -445,38 +445,6 @@ def test_how_to_do_business_feature_on(client, settings):
     assert response.status_code == 200
 
 
-@pytest.mark.usefixtures('setup_in_uk_page')
-def test_setup_in_uk_show_isd_english(client, settings):
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
-    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
-
-    response = client.get(reverse('how-to-setup-in-the-uk'), {'lang': 'en-gb'})
-
-    assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is True
-
-
-@pytest.mark.usefixtures('setup_in_uk_page')
-def test_setup_in_uk_show_isd(client, settings):
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
-    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_LINK_ON'] = True
-
-    response = client.get(reverse('how-to-setup-in-the-uk'))
-
-    assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is True
-
-
-@pytest.mark.usefixtures('setup_in_uk_page')
-def test_setup_in_uk_hide_isd(client, settings, setup_in_uk_page):
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
-
-    response = client.get(reverse('how-to-setup-in-the-uk'), {'lang': 'fr'})
-
-    assert response.status_code == 200
-    assert response.context_data['show_find_uk_specialist'] is False
-
-
 def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
 
     response = client.get('/international/content/page/from/path/')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-21 11:17+0100\n"
+"POT-Creation-Date: 2019-06-04 09:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,20 +38,14 @@ msgstr ""
 msgid "Go to the homepage"
 msgstr ""
 
-#: core/templates/core/article_detail.html:23
-msgid "UK setup guide"
-msgstr "Guía para establecerse en el Reino Unido"
-
-#: core/templates/core/base.html:41
+#: core/templates/core/base.html:53
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/guide_landing_page.html:80
 #: core/templates/core/how_to_do_business_landing_page.html:64
 msgid "Need help?"
 msgstr "¿Necesita ayuda?"
 
-#: core/templates/core/guide_landing_page.html:82
 #: core/templates/core/how_to_do_business_landing_page.html:66
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
@@ -60,7 +54,6 @@ msgstr ""
 "El gobierno británico ayuda a las empresas a expandirse y comerciar con el "
 "Reino Unido. Si tiene alguna duda, podemos ayudarle"
 
-#: core/templates/core/guide_landing_page.html:84
 #: core/templates/core/how_to_do_business_landing_page.html:68
 msgid "Contact the EU Exit enquiry service"
 msgstr ""
@@ -70,25 +63,44 @@ msgstr ""
 msgid "Industries"
 msgstr "Sectores"
 
-#: core/templates/core/sector_page.html:134
+#: core/templates/core/sector_page.html:135
 msgid "Next steps"
 msgstr "Próximos pasos"
 
-#: core/templates/core/sector_page.html:135
+#: core/templates/core/sector_page.html:136
 msgid ""
-"The UK Government’s Department for International Trade helps connect "
-"international buyers with UK companies. Tell us what products or services "
-"you’re looking for an we’ll find your ideal business partner."
+"Whether you’re looking for a supplier or starting a business in the UK, we "
+"can help. Get in touch with us for simple, straightforward help and advice "
+"on how to do business in the UK."
 msgstr ""
 "El Departamento de Comercio Internacional (DIT) del gobierno del Reino Unido "
 "ayuda a los compradores internacionales a conectar con empresas del Reino "
 "Unido. Díganos qué productos o servicios busca y encontraremos el socio "
 "comercial perfecto para usted."
 
-#: core/templates/core/sector_page.html:140
+#: core/templates/core/sector_page.html:141
 msgid "I want to invest in the UK"
 msgstr "Quiero invertir en el Reino Unido"
 
-#: core/templates/core/sector_page.html:144
+#: core/templates/core/sector_page.html:145
 msgid "I want to buy from the UK"
 msgstr "Quiero comprar desde el Reino Unido"
+
+#: core/templates/core/uk_setup_guide/article_detail.html:23
+msgid "UK setup guide"
+msgstr "Guía para establecerse en el Reino Unido"
+
+#, fuzzy
+#~| msgid ""
+#~| "The UK Government’s Department for International Trade helps connect "
+#~| "international buyers with UK companies. Tell us what products or "
+#~| "services you’re looking for an we’ll find your ideal business partner."
+#~ msgid ""
+#~ "The UK Government’s Department for International Trade helps connect "
+#~ "international buyers with UK companies. Tell us what products or services "
+#~ "you’re looking for and we’ll find your ideal business partner."
+#~ msgstr ""
+#~ "El Departamento de Comercio Internacional (DIT) del gobierno del Reino "
+#~ "Unido ayuda a los compradores internacionales a conectar con empresas del "
+#~ "Reino Unido. Díganos qué productos o servicios busca y encontraremos el "
+#~ "socio comercial perfecto para usted."

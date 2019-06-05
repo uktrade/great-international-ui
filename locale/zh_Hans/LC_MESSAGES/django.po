@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-21 11:17+0100\n"
+"POT-Creation-Date: 2019-06-04 09:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,20 +37,14 @@ msgstr ""
 msgid "Go to the homepage"
 msgstr ""
 
-#: core/templates/core/article_detail.html:23
-msgid "UK setup guide"
-msgstr "英国创业指南"
-
-#: core/templates/core/base.html:41
+#: core/templates/core/base.html:53
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/guide_landing_page.html:80
 #: core/templates/core/how_to_do_business_landing_page.html:64
 msgid "Need help?"
 msgstr "需要帮助？"
 
-#: core/templates/core/guide_landing_page.html:82
 #: core/templates/core/how_to_do_business_landing_page.html:66
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
@@ -59,7 +53,6 @@ msgstr ""
 "英国政府帮助企业在英国拓展业务并与英国开展贸易。如果您有任何疑问，我们可以帮"
 "助您"
 
-#: core/templates/core/guide_landing_page.html:84
 #: core/templates/core/how_to_do_business_landing_page.html:68
 msgid "Contact the EU Exit enquiry service"
 msgstr "联系脱欧咨询服务部门"
@@ -68,23 +61,40 @@ msgstr "联系脱欧咨询服务部门"
 msgid "Industries"
 msgstr "行业"
 
-#: core/templates/core/sector_page.html:134
+#: core/templates/core/sector_page.html:135
 msgid "Next steps"
 msgstr "下一步"
 
-#: core/templates/core/sector_page.html:135
+#: core/templates/core/sector_page.html:136
 msgid ""
-"The UK Government’s Department for International Trade helps connect "
-"international buyers with UK companies. Tell us what products or services "
-"you’re looking for an we’ll find your ideal business partner."
+"Whether you’re looking for a supplier or starting a business in the UK, we "
+"can help. Get in touch with us for simple, straightforward help and advice "
+"on how to do business in the UK."
 msgstr ""
 "作为英国的国际贸易部门，我们可以帮助您从英国找到合适的产品和服务。更重要的"
 "是，我们提供专家建议和有竞争力的财务支持。"
 
-#: core/templates/core/sector_page.html:140
+#: core/templates/core/sector_page.html:141
 msgid "I want to invest in the UK"
 msgstr "我想投资英国"
 
-#: core/templates/core/sector_page.html:144
+#: core/templates/core/sector_page.html:145
 msgid "I want to buy from the UK"
 msgstr "我想从英国购买"
+
+#: core/templates/core/uk_setup_guide/article_detail.html:23
+msgid "UK setup guide"
+msgstr "英国创业指南"
+
+#, fuzzy
+#~| msgid ""
+#~| "The UK Government’s Department for International Trade helps connect "
+#~| "international buyers with UK companies. Tell us what products or "
+#~| "services you’re looking for an we’ll find your ideal business partner."
+#~ msgid ""
+#~ "The UK Government’s Department for International Trade helps connect "
+#~ "international buyers with UK companies. Tell us what products or services "
+#~ "you’re looking for and we’ll find your ideal business partner."
+#~ msgstr ""
+#~ "作为英国的国际贸易部门，我们可以帮助您从英国找到合适的产品和服务。更重要的"
+#~ "是，我们提供专家建议和有竞争力的财务支持。"
