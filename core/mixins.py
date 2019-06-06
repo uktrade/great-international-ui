@@ -26,7 +26,6 @@ TEMPLATE_MAPPING = {
     'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',  # noqa
     'InternationalCapitalInvestLandingPage': 'core/capital_invest/capital_invest_landing_page.html',       # noqa
     'CapitalInvestRegionPage': 'core/capital_invest/capital_invest_region_page.html',  # noqa
-    'CapitalInvestRegionalSectorPage': 'core/capital_invest/capital_invest_sector_page.html',  # noqa
     'CapitalInvestOpportunityPage': 'core/capital_invest/capital_invest_opportunity_page.html'  # noqa
 }
 
