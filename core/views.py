@@ -141,12 +141,19 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
+    prioritised_opportunities = []
+    if page['related_opportunities']:
+        for opportunity in page['related_opportunities']['opportunities']:
+            if opportunity['prioritised_opportunity']:
+                prioritised_opportunities.append(opportunity)
+
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
         'num_of_statistics': count_data_with_field(
             page['statistics'], 'number'),
         'section_three_num_of_subsections': count_data_with_field(
             page['section_three_subsections'], 'heading'),
+        'prioritised_opportunities': prioritised_opportunities
         }
 
 

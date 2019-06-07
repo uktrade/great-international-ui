@@ -134,7 +134,7 @@
                     </div>
                 </div>
             {% endif %}
-            {% if page.project_promoter_title %}
+            {% if page.project_promoter_title and page.project_promoter_content %}
                 <div class="column-half-l padding-right-60 right-half-page-text padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
                     <div>
@@ -146,13 +146,13 @@
     </div>
 </section>
 
-{% if page.case_study_title and page.case_study_cta_text and page.case_study_image.url %}
+{% if page.case_study_title and page.case_study_image.url %}
     {% ga360_tracker "case-study-link" %}
         {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
     {% endga360_tracker %}
 {% endif %}
 
-{% if page.related_pages|filter_by_active_language %}
+{% if page.similar_projects_title and page.related_pages|filter_by_active_language %}
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
         <div class="grid-row">
