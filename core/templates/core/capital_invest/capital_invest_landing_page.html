@@ -75,7 +75,6 @@
                 </div>
                 <div class="card-grid">
                     {% for region in page.added_regions %}
-                    {{region.related_region}}
                         {% if region.related_region.title %}
                             <div class="column-half-m column-third-xl">
                                 {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
