@@ -143,7 +143,7 @@ def sector_page_context_modifier(context, request):
 
     prioritised_opportunities = []
     if 'related_opportunities' in page:
-        for opportunity in page['related_opportunities']['opportunities']:
+        for opportunity in page['related_opportunities']:
             if opportunity['prioritised_opportunity']:
                 prioritised_opportunities.append(opportunity)
 
