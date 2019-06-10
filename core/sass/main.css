@@ -500,6 +500,14 @@ body.js-enabled .landing-page .country-selector-dialog select {
     margin-bottom: 0;
   }
 }
+@media (min-width: 769px) {
+  .capital-invest-opportunity-page section .container .left-half-page-text {
+    padding-right: 60px;
+  }
+  .capital-invest-opportunity-page section .container .right-half-page-text {
+    padding-left: 60px;
+  }
+}
 
 .article-detail-page article.grid-row {
   margin-bottom: 100px;
