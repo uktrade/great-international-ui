@@ -363,6 +363,9 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
             ]
         },
         'page_type': 'InternationalSectorPage',
+        'related_opportunities': {
+            'opportunities': []
+        },
         'statistics': [
             {'number': '1'},
             {'number': '2', 'heading': 'heading'},
@@ -591,7 +594,7 @@ def test_get_prioritised_opportunities_for_sector_page(
                     'hero_image': {'url': 'article_list.png'},
                     'sector': 'some sector',
                     'scale': 'scale',
-                    'prioritised_opportunity': False
+                    'prioritised_opportunity': True
                 },
                 {
                     'title': 'TrueSector',
@@ -625,4 +628,4 @@ def test_get_prioritised_opportunities_for_sector_page(
     response = CMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector')
 
-    assert len(response.context_data['prioritised_opportunities']) == 0
+    assert len(response.context_data['prioritised_opportunities']) == 1
