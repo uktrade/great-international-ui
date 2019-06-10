@@ -164,7 +164,7 @@
                     <div class="card">
                         <div class="card-inner wrap-tight padding-horizontal-45">
                             {% ga360_tracker "related-page-link" %}
-                                <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
+                                <a href="{{ related_page.full_url }}" class="heading-medium">{{ related_page.title }}</a>
                             {% endga360_tracker %}
                             <p>{{ related_page.location }}</p>
                             <p class="bold-small">{{ related_page.scale }}</p>

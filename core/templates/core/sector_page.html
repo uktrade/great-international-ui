@@ -118,7 +118,7 @@
                             <p class="visually-hidden">{{ img_alt }}</p>
                         </div>
                         <div class="card-inner wrap-tight padding-horizontal-45">
-                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' opportunity.meta.slug %}" class="heading-medium">{{ opportunity.title }}</a>
+                            <a href="{{ opportunity.full_url }}" class="heading-medium">{{ opportunity.title }}</a>
                             <p class="bold-small">{{ opportunity.scale }}</p>
                             <p class="font-small">{{ opportunity.sector }}</p>
                         </div>
