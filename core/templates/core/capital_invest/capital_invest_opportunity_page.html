@@ -49,7 +49,7 @@
             <ul>
                 <li>
                     {% if page.location and page.location_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p class="bold-medium">Location</p>
                             <p class="icon-text">{{ page.location }}</p>
@@ -58,7 +58,7 @@
                 </li>
                 <li>
                     {% if page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Project promoter</p>
                             <p class="icon-text">{{ page.project_promoter }}</p>
@@ -67,16 +67,20 @@
                 </li>
                 <li>
                     {% if page.scale and page.scale_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Scale</p>
                             <p class="icon-text">{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
+            </ul>
+        </div>
+        <div class="grid-row">
+            <ul>
                 <li>
                     {% if page.sector and page.sector_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Sector</p>
                             <p class="icon-text">{{ page.sector }}</p>
@@ -85,7 +89,7 @@
                 </li>
                 <li>
                     {% if page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Investment type</p>
                             <p class="icon-text">{{ page.investment_type }}</p>
@@ -94,7 +98,7 @@
                 </li>
                 <li>
                     {% if page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Planning status</p>
                             <p class="icon-text">{{ page.planning_status }}</p>
