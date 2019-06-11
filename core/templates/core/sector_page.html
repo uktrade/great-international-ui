@@ -110,7 +110,9 @@
         <h2 class="heading-large margin-bottom-45">{{ page.project_opportunities_title }}</h2>
         <div class="card-grid">
             {% for opportunity in prioritised_opportunities %}
-                {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sector %}
+                <div class="column-third-xl column-half-m">
+                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sector %}
+                </div>
             {% endfor %}
         </div>
     </div>
