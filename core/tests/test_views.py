@@ -632,3 +632,44 @@ def test_get_prioritised_opportunities_for_sector_page(
         request, path='/international/content/industries/sector')
 
     assert len(response.context_data['prioritised_opportunities']) == 1
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_homepageold_renders_as_homepage(mock_cms_response, rf):
+    url = reverse('index')
+    request = rf.get(url)
+    request.LANGUAGE_CODE = 'en-gb'
+
+    # this same data will be used for both page types
+    page_data = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+    }
+
+    # First we render a homepage
+    homepage_data = page_data.copy()
+    homepage_data['page_type'] = 'InternationalHomePage'
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=homepage_data
+    )
+    homepage_response = CMSPageFromPathView.as_view()(
+        request, path='international'
+    ).render()
+
+    # Now we render a homepageold
+    homepageold_data = page_data.copy()
+    homepageold_data['page_type'] = 'InternationalHomePageOld'
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=homepageold_data
+    )
+    homepageold_response = CMSPageFromPathView.as_view()(
+        request, path='international'
+    ).render()
+
+    assert homepageold_response.content == homepage_response.content

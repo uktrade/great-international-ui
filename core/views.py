@@ -57,7 +57,13 @@ class CMSPageFromPathView(
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
-        return handle_cms_response(response)
+        page_data = handle_cms_response(response)
+
+        # TODO: Remove this override when updating to use the new home page
+        if page_data.get('page_type') == 'InternationalHomePageOld':
+            page_data['page_type'] = 'InternationalHomePage'
+
+        return page_data
 
     def get_context_data(self, **kwargs):
 
