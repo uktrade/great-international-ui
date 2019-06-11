@@ -596,10 +596,10 @@ def test_get_prioritised_opportunities_for_sector_page(
         'related_opportunities': [
             {
                 'title': 'FalseSector',
-                 'hero_image': {'url': 'article_list.png'},
-                 'sector': 'some sector',
-                 'scale': 'scale',
-                 'prioritised_opportunity': False
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
             },
             {
                 'title': 'TrueSector',
