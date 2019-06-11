@@ -65,9 +65,9 @@ class CMSPageFromPathView(
 
         flag_map = {
             'CapitalInvestRegionPage':
-                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+                'CAPITAL_INVEST_REGION_PAGE_ON',
             'CapitalInvestOpportunityPage':
-                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
+                'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
             'InternationalCapitalInvestLandingPage':
                 'CAPITAL_INVEST_LANDING_PAGE_ON',
         }
@@ -190,7 +190,7 @@ def capital_invest_region_page_context_modifier(context, request):
         return len(filtered_list)
 
     page = context['page']
-
+    print('\n\n\n\n\n page ', page)
     return {
         'num_of_economics_statistics': count_data_with_field(
             page['economics_stats'], 'number'),

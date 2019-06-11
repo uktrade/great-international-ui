@@ -493,10 +493,10 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
         json_payload=page
     )
 
-    request = rf.get('/international/content/capital-invest/')
+    request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
     response = CMSPageFromPathView.as_view()(
-        request, path='/international/content/capital-invest/')
+        request, path='/international/content/midlands/')
 
     assert response.context_data['num_of_economics_statistics'] == 2
     assert response.context_data['num_of_location_statistics'] == 1
@@ -543,11 +543,22 @@ def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.usefixtures('international_capital_invest_page')
+def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = True
+
+    response = client.get('/international/content/capital-invest/')
+
+    assert response.status_code == 200
+
+
 @pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
     client, settings
 ):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
 
     response = client.get('/international/content/midlands/')
 
@@ -558,11 +569,22 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
     client, settings
 ):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
 
     response = client.get('/international/content/opportunities/ashton/')
 
     assert response.status_code == 404
+
+
+@pytest.mark.usefixtures('capital_invest_opportunity_page')
+def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = True
+
+    response = client.get('/international/content/opportunities/ashton/')
+
+    assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
