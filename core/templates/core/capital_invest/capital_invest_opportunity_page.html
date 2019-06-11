@@ -49,7 +49,7 @@
             <ul>
                 <li>
                     {% if page.location and page.location_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p class="bold-medium">Location</p>
                             <p class="icon-text">{{ page.location }}</p>
@@ -58,7 +58,7 @@
                 </li>
                 <li>
                     {% if page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Project promoter</p>
                             <p class="icon-text">{{ page.project_promoter }}</p>
@@ -67,16 +67,20 @@
                 </li>
                 <li>
                     {% if page.scale and page.scale_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Scale</p>
                             <p class="icon-text">{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
+            </ul>
+        </div>
+        <div class="grid-row">
+            <ul>
                 <li>
                     {% if page.sector and page.sector_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Sector</p>
                             <p class="icon-text">{{ page.sector }}</p>
@@ -85,7 +89,7 @@
                 </li>
                 <li>
                     {% if page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Investment type</p>
                             <p class="icon-text">{{ page.investment_type }}</p>
@@ -94,7 +98,7 @@
                 </li>
                 <li>
                     {% if page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third-l column-half-m">
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">Planning status</p>
                             <p class="icon-text">{{ page.planning_status }}</p>
@@ -117,7 +121,7 @@
                 </div>
             {%  endif %}
             {% if page.project_background_title and page.project_background_intro %}
-                <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
+                <div class="column-half-l {% if page.project_image.url %} right-half-page-text-l {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
                     <div class="font-small padding-bottom-30 ">
                         {{ page.project_background_intro|add_export_elements_classes|safe }}
@@ -135,7 +139,7 @@
                 </div>
             {% endif %}
             {% if page.project_promoter_title and page.project_promoter_content %}
-                <div class="column-half-l padding-right-60 right-half-page-text padding-bottom-30">
+                <div class="column-half-l padding-right-60 right-half-page-text-l padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
                     <div class="font-small">
                         {{ page.project_promoter_content|add_export_elements_classes|safe }}
