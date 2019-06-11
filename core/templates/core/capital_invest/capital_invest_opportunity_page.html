@@ -187,32 +187,6 @@
 </section>
 {% endif %}
 
-{% if page.project_opportunities_title and prioritised_opportunities %}
-<section id="related-opportunity-section" class="related-opportunity-section">
-    <div class="container wrap-tight">
-        <h2 class="heading-large margin-bottom-45">{{ page.project_opportunities_title }}</h2>
-        <div class="card-grid">
-            {% for opportunity in prioritised_opportunities %}
-                <div class="column-third-xl column-half-m">
-                    <div class="card">
-                        <div class="card-image"
-                            role="img"
-                            style="background-image: url({{ opportunity.hero_image.url }});">
-                            <p class="visually-hidden">{{ img_alt }}</p>
-                        </div>
-                        <div class="card-inner wrap-tight padding-horizontal-45">
-                            <a href="{{ opportunity.full_url }}" class="heading-medium">{{ opportunity.title }}</a>
-                            <p class="bold-small">{{ opportunity.scale }}</p>
-                            <p class="font-small">{{ opportunity.sector }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
 {% if  page.contact_title and page.contact_text %}
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
