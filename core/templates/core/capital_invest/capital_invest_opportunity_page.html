@@ -48,28 +48,28 @@
         <div class="grid-row ">
             <ul>
                 <li>
-                    {% if page.location and page.location_icon.url %}
+                    {% if page.location_heading and page.location and page.location_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
-                            <p class="bold-medium">Location</p>
+                            <p class="bold-medium">{{ page.location_heading }}</p>
                             <p class="icon-text">{{ page.location }}</p>
                         </div>
                     {% endif %}
                 </li>
                 <li>
-                    {% if page.project_promoter and page.project_promoter_icon.url %}
+                    {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">Project promoter</p>
+                            <p class="bold-medium">{{ page.project_promoter_heading }}</p>
                             <p class="icon-text">{{ page.project_promoter }}</p>
                         </div>
                     {% endif %}
                 </li>
                 <li>
-                    {% if page.scale and page.scale_icon.url %}
+                    {% if page.scale_heading and page.scale and page.scale_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">Scale</p>
+                            <p class="bold-medium">{{ page.scale_heading }}</p>
                             <p class="icon-text">{{ page.scale }}</p>
                         </div>
                     {% endif %}
@@ -79,28 +79,28 @@
         <div class="grid-row">
             <ul>
                 <li>
-                    {% if page.sector and page.sector_icon.url %}
+                    {% if page.sector_heading and page.sector and page.sector_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">Sector</p>
+                            <p class="bold-medium">{{ page.sector_heading }}</p>
                             <p class="icon-text">{{ page.sector }}</p>
                         </div>
                     {% endif %}
                 </li>
                 <li>
-                    {% if page.investment_type and page.investment_type_icon.url %}
+                    {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">Investment type</p>
+                            <p class="bold-medium">{{ page.investment_type_heading }}</p>
                             <p class="icon-text">{{ page.investment_type }}</p>
                         </div>
                     {% endif %}
                 </li>
                 <li>
-                    {% if page.planning_status and page.planning_status_icon.url %}
+                    {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">Planning status</p>
+                            <p class="bold-medium">{{ page.planning_status_heading }}</p>
                             <p class="icon-text">{{ page.planning_status }}</p>
                         </div>
                     {% endif %}
