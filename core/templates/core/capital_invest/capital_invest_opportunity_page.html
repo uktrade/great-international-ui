@@ -117,7 +117,7 @@
                 </div>
             {%  endif %}
             {% if page.project_background_title and page.project_background_intro %}
-                <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
+                <div class="column-half-l {% if page.project_image.url %} right-half-page-text-l {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
                     <div class="font-small padding-bottom-30 ">
                         {{ page.project_background_intro|add_export_elements_classes|safe }}
@@ -135,7 +135,7 @@
                 </div>
             {% endif %}
             {% if page.project_promoter_title and page.project_promoter_content %}
-                <div class="column-half-l padding-right-60 right-half-page-text padding-bottom-30">
+                <div class="column-half-l padding-right-60 right-half-page-text-l padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
                     <div class="font-small">
                         {{ page.project_promoter_content|add_export_elements_classes|safe }}

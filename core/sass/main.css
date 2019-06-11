@@ -177,6 +177,14 @@ a.labelled-image-card .card-header h3 {
     padding-left: 60px;
   }
 }
+@media (min-width: 769px) {
+  section .container .left-half-page-text-l {
+    padding-right: 60px;
+  }
+  section .container .right-half-page-text-l {
+    padding-left: 60px;
+  }
+}
 section {
   padding-bottom: 0;
 }
@@ -498,14 +506,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 @media (max-width: 641px) {
   .capital-invest-opportunity-page li p {
     margin-bottom: 0;
-  }
-}
-@media (min-width: 769px) {
-  .capital-invest-opportunity-page section .container .left-half-page-text {
-    padding-right: 60px;
-  }
-  .capital-invest-opportunity-page section .container .right-half-page-text {
-    padding-left: 60px;
   }
 }
 
