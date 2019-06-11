@@ -120,7 +120,7 @@
                 <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
                     <div class="font-small padding-bottom-30 ">
-                        {{ page.project_background_intro}}
+                        {{ page.project_background_intro|add_export_elements_classes|safe }}
                     </div>
                 </div>
             {% endif %}
@@ -160,17 +160,8 @@
             {{ page.similar_projects_title}}
             </h1>
             {% for related_page in page.related_pages|filter_by_active_language %}
-                <div class="column-third-xl column-half-l column-full">
-                    <div class="card">
-                        <div class="card-inner wrap-tight padding-horizontal-45">
-                            {% ga360_tracker "related-page-link" %}
-                                <a href="{{ related_page.full_url }}" class="heading-medium">{{ related_page.title }}</a>
-                            {% endga360_tracker %}
-                            <p>{{ related_page.location }}</p>
-                            <p class="bold-small">{{ related_page.scale }}</p>
-                            <p><u>Investment type: </u>{{ related_page.investment_type }}</p>
-                        </div>
-                    </div>
+                <div class="column-third-xl column-half-m">
+                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sector %}
                 </div>
             {% endfor %}
         </div>

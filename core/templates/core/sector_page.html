@@ -111,18 +111,7 @@
         <div class="card-grid">
             {% for opportunity in prioritised_opportunities %}
                 <div class="column-third-xl column-half-m">
-                    <div class="card">
-                        <div class="card-image"
-                            role="img"
-                            style="background-image: url({{ opportunity.hero_image.url }});">
-                            <p class="visually-hidden">{{ img_alt }}</p>
-                        </div>
-                        <div class="card-inner wrap-tight padding-horizontal-45">
-                            <a href="{{ opportunity.full_url }}" class="heading-medium">{{ opportunity.title }}</a>
-                            <p class="bold-small">{{ opportunity.scale }}</p>
-                            <p class="font-small">{{ opportunity.sector }}</p>
-                        </div>
-                    </div>
+                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sector %}
                 </div>
             {% endfor %}
         </div>
