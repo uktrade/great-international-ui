@@ -66,8 +66,6 @@ class CMSPageFromPathView(
         flag_map = {
             'CapitalInvestRegionPage':
                 'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
-            'CapitalInvestRegionalSectorPage':
-                'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
             'CapitalInvestOpportunityPage':
                 'CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON',
             'InternationalCapitalInvestLandingPage':
@@ -143,12 +141,20 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
+    all_opportunities = page['related_opportunities']
+    prioritised_opportunities = [
+        opportunity for opportunity in all_opportunities if opportunity[
+            'prioritised_opportunity'
+        ]
+    ]
+
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
         'num_of_statistics': count_data_with_field(
             page['statistics'], 'number'),
         'section_three_num_of_subsections': count_data_with_field(
             page['section_three_subsections'], 'heading'),
+        'prioritised_opportunities': prioritised_opportunities
         }
 
 
@@ -188,15 +194,6 @@ def capital_invest_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': count_data_with_field(
             page['location_stats'], 'number'),
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
-    }
-
-
-@register_context_modifier('CapitalInvestRegionalSectorPage')
-def capital_invest_regional_sector_page_context_modifier(context, request):
-
-    return {
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
     }

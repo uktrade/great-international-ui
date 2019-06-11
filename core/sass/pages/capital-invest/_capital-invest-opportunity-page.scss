@@ -41,7 +41,7 @@
     width: 100%;
   }
 
-  li .bold-small{
+  li .icon-text{
     padding-bottom: $spacing-1;
 
     @media (max-width: 641px) {
@@ -55,5 +55,17 @@
       margin-bottom: 0;
     }
   }
+
+ @media (min-width: 769px) {
+    section .container {
+      .left-half-page-text {
+        padding-right: $spacing-1;
+      }
+
+      .right-half-page-text {
+        padding-left: $spacing-1;
+      }
+    }
+ }
 
 }

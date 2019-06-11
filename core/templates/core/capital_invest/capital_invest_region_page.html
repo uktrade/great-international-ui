@@ -41,29 +41,6 @@
 </section>
 {% endif %}
 
-{% if page.investment_opps_title and page.child_pages|filter_by_active_language %}
-<section class="capital-invest-region-page-section">
-    <div class="container">
-        <h1 class="heading-large">{{ page.investment_opps_title }}</h1>
-        <div class="grid-row">
-            <p class="column-half-l padding-bottom-30">{{ page.investment_opps_intro }}</p>
-        </div>
-        {% for sector_page in page.child_pages|filter_by_active_language %}
-            <div class="column-third-xl column-half-l column-full">
-                <div class="card">
-                    <div class="card-image" role="img" style="background-image: url({{ sector_page.image.url }});">
-                    </div>
-                    <div class="card-inner wrap-tight padding-horizontal-45">
-                        <a href="{% url 'cms-page-from-path-with-two-slugs' page.meta.slug sector_page.meta.slug %}"><h3 class="heading-large">{{ sector_page.title }}</h3></a>
-                        <p class="description">{{ sector_page.featured_description }}</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-</section>
-{% endif %}
-
 {% if page.economics_data_title and page.economics_stats and page.location_data_title and page.location_stats %}
 <section class="capital-invest-region-page-section">
     <div class="container">
