@@ -34,6 +34,7 @@ dit.tagging.international = new function() {
                     addTaggingForRelatedPageCards();
                     addTaggingForNextSteps();
                     addTaggingForCaseStudies();
+                    addTaggingForRelatedPageLinks();
                     break;
 
                 case("InternationalCapitalInvestLandingPage"):
