@@ -190,7 +190,6 @@ def capital_invest_region_page_context_modifier(context, request):
         return len(filtered_list)
 
     page = context['page']
-    
     return {
         'num_of_economics_statistics': count_data_with_field(
             page['economics_stats'], 'number'),
