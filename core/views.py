@@ -141,12 +141,14 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
-    all_opportunities = page['related_opportunities']
-    prioritised_opportunities = [
-        opportunity for opportunity in all_opportunities if opportunity[
-            'prioritised_opportunity'
+    prioritised_opportunities = []
+    if 'related_opportunities' in page:
+        all_opportunities = page['related_opportunities']
+        prioritised_opportunities = [
+            opportunity for opportunity in all_opportunities if opportunity[
+                'prioritised_opportunity'
+            ]
         ]
-    ]
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
