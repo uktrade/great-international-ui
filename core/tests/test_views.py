@@ -363,9 +363,15 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
             ]
         },
         'page_type': 'InternationalSectorPage',
-        'related_opportunities': {
-            'opportunities': []
-        },
+        'related_opportunities': [
+            {
+                'title': 'Sector',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+        ],
         'statistics': [
             {'number': '1'},
             {'number': '2', 'heading': 'heading'},
@@ -587,25 +593,22 @@ def test_get_prioritised_opportunities_for_sector_page(
             'slug': 'sector'
         },
         'page_type': 'InternationalSectorPage',
-        'related_opportunities': {
-            'opportunities': [
-                {
-                    'title': 'FalseSector',
-                    'hero_image': {'url': 'article_list.png'},
-                    'sector': 'some sector',
-                    'scale': 'scale',
-                    'prioritised_opportunity': True
-                },
-                {
-                    'title': 'TrueSector',
-                    'hero_image': {'url': 'article_list.png'},
-                    'sector': 'some sector',
-                    'scale': 'scale',
-                    'prioritised_opportunity': False
-                }
-            ]
-
-        },
+        'related_opportunities': [
+            {
+                'title': 'FalseSector',
+                 'hero_image': {'url': 'article_list.png'},
+                 'sector': 'some sector',
+                 'scale': 'scale',
+                 'prioritised_opportunity': False
+            },
+            {
+                'title': 'TrueSector',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': True
+            },
+        ],
         'statistics': [
             {'number': '1'},
             {'number': '2', 'heading': 'heading'},
