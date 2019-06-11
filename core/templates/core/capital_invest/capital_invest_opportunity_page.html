@@ -120,7 +120,7 @@
                 <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
                     <div class="font-small padding-bottom-30 ">
-                        {{ page.project_background_intro}}
+                        {{ page.project_background_intro|add_export_elements_classes|safe }}
                     </div>
                 </div>
             {% endif %}
@@ -160,15 +160,19 @@
             {{ page.similar_projects_title}}
             </h1>
             {% for related_page in page.related_pages|filter_by_active_language %}
-                <div class="column-third-xl column-half-l column-full">
+                <div class="column-third-xl column-half-m">
                     <div class="card">
+                        <div class="card-image"
+                            role="img"
+                            style="background-image: url({{ related_page.hero_image.url }});">
+                            <p class="visually-hidden">{{ img_alt }}</p>
+                        </div>
                         <div class="card-inner wrap-tight padding-horizontal-45">
                             {% ga360_tracker "related-page-link" %}
                                 <a href="{{ related_page.full_url }}" class="heading-medium">{{ related_page.title }}</a>
                             {% endga360_tracker %}
-                            <p>{{ related_page.location }}</p>
                             <p class="bold-small">{{ related_page.scale }}</p>
-                            <p><u>Investment type: </u>{{ related_page.investment_type }}</p>
+                            <p class="font-small">{{ related_page.sector }}</p>
                         </div>
                     </div>
                 </div>
@@ -179,6 +183,32 @@
                 <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
             {% endga360_tracker %}
         {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if page.project_opportunities_title and prioritised_opportunities %}
+<section id="related-opportunity-section" class="related-opportunity-section">
+    <div class="container wrap-tight">
+        <h2 class="heading-large margin-bottom-45">{{ page.project_opportunities_title }}</h2>
+        <div class="card-grid">
+            {% for opportunity in prioritised_opportunities %}
+                <div class="column-third-xl column-half-m">
+                    <div class="card">
+                        <div class="card-image"
+                            role="img"
+                            style="background-image: url({{ opportunity.hero_image.url }});">
+                            <p class="visually-hidden">{{ img_alt }}</p>
+                        </div>
+                        <div class="card-inner wrap-tight padding-horizontal-45">
+                            <a href="{{ opportunity.full_url }}" class="heading-medium">{{ opportunity.title }}</a>
+                            <p class="bold-small">{{ opportunity.scale }}</p>
+                            <p class="font-small">{{ opportunity.sector }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endif %}
