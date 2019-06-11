@@ -13,6 +13,12 @@ dit.tagging.international = new function() {
                     addTaggingForFeaturedArticles();
                     break;
 
+                case ("InternationalHomePageOld"):
+                    addTaggingForHeroCTAs();
+                    addTaggingForMarkdownLinksWithinFeaturedCard();
+                    addTaggingForFeaturedArticles();
+                    break;
+
                 case ("InternationalCuratedTopicLandingPage"):
                     addTaggingForMarkdownLinksWithinFeaturedCard();
                     addTaggingForContactLinks();

@@ -100,7 +100,10 @@ def article_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('InternationalHomePage')
+@register_context_modifier([
+    'InternationalHomePage',
+    'InternationalHomePageOld',
+])
 def home_page_context_modifier(context, request):
 
     country_code = get_user_country(request)
