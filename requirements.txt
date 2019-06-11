@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements.in
 #
+-e git+https://github.com/uktrade/directory-components@nav-prototype#egg=directory_components
 attrs==19.1.0             # via jsonschema
 beautifulsoup4==4.6.0
 boto3==1.7.55
@@ -14,7 +15,6 @@ chardet==3.0.4            # via requests
 dateparser==0.7.0
 directory-client-core==5.1.0  # via directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.0.1
-directory-components==18.1.0
 directory-constants==17.0.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
@@ -33,7 +33,7 @@ docutils==0.14            # via botocore
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore
-jsonschema==3.0.1         # via directory-components
+jsonschema==3.0.1
 mohawk==0.3.4             # via sigauth
 monotonic==1.4            # via directory-client-core
 olefile==0.44             # via directory-validators, pillow
