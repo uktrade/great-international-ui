@@ -12,7 +12,10 @@ from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin)
+    GA360Mixin,
+    InternationalHeaderMixin,
+    CountryDisplayMixin
+)
 
 from core import forms
 from core.context_modifiers import (
@@ -21,10 +24,14 @@ from core.context_modifiers import (
 )
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
-    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+    TEMPLATE_MAPPING,
+    INTERNATIONAL_HEADER_AREA_MAPPING,
+    NotFoundOnDisabledFeature,
+    RegionalContentMixin)
 
 
 class CMSPageFromPathView(
+    InternationalHeaderMixin,
     RegionalContentMixin,
     CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
@@ -48,6 +55,12 @@ class CMSPageFromPathView(
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+    @property
+    def international_header_area(self):
+        if self.page['page_type'] not in INTERNATIONAL_HEADER_AREA_MAPPING:
+            return ""
+        return INTERNATIONAL_HEADER_AREA_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
