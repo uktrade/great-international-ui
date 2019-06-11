@@ -15,7 +15,6 @@ from directory_cms_client.helpers import handle_cms_response
 
 TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
-    'InternationalHomePageOld': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/uk_setup_guide/article_detail.html',
