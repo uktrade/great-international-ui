@@ -8,6 +8,7 @@
 - no ticket - Fix typo on sector pages.
 - Fix Article Listing Page failing to render
 - Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
+- CI-217: Update Django Version to fix security vulnerability.
 
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
