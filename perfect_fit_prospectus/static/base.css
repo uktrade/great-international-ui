@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#country-selector-dialog,
+#country-select-activator-container {
+    display: none;
+}
+
+article.grid-row {
+  margin-bottom: 100px;
+}
+
+#heading_hero {
+   padding-bottom: 35px;
+}
+
+#heading_hero .jumbotron {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0,84,159,0.8);
+    padding: 0;
+    min-height: 295px;
+    margin-bottom: 0;
+    display: flex;
+}
+.jumbotron {
+    border-radius: 0;
+}
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 4rem 2rem;
+    }
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+}
+
+.jumbotron .container {
+    width: 100%;
+}
+
+#heading_hero .jumbotron .container .heading-container {
+    display: table;
+    min-height: inherit;
+}
+#heading_hero .heading-container {
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 50%;
+    color: white;
+}
+
+#heading_hero .heading {
+    max-width: 400px;
+    display: table-cell;
+    vertical-align: bottom;
+}
+@media (max-width: 1200px) {
+    #heading_hero .heading {
+        max-width: 400px;
+    }
+}
+
+#heading_hero .jumbotron .container .heading-container .heading h1 {
+    background-color: rgba(0,84,159,0.8);
+    border-bottom: 4px solid #e41f13;
+}
+#heading_hero .heading h1 {
+    padding: 20px;
+    margin-bottom: 0;
+    line-height: 1.3em;
+    text-transform: uppercase;
+}
+.heading h1 {
+    font-family: 'Overpass', 'verdana', 'helvetica', 'arial', sans-serif;
+    font-size: 2.25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#heading_hero .jumbotron .container .heading-container .heading {
+    display: table-cell;
+    vertical-align: bottom;
+}
+@media (max-width: 1200px) {
+    #heading_hero .heading {
+        max-width: 400px;
+    }
+}
+
+
+#heading_hero .jumbotron .container {
+    min-height: inherit;
+    position: relative;
+}
+
+.check-label {
+   margin-left: 50px;
+   margin-top: -15px;
+}
+
+.tandc-gdpr {
+    margin-top: 60px;
+}
+
+.form-group.tandc {
+    margin-bottom: 0;
+}
+
+
+@media (min-width: 641px) {
+    .check-label {
+        width: 50%;
+    }
+}
+
+
+.button[type=submit] {
+    margin-top: 60px;
+}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block head_title %}{% trans "Perfect Fit Prospectus" %}{% endblock %}
+
+
+{% block body_header %}
+        {{ block.super }}
+        <section id="heading_hero">
+            <div class="jumbotron" style="background-image: url({% static 'header-image.jpg' %});">
+            <div class="container">
+                <div class="heading-container">
+                  <div class="heading">
+                  <h1>{% trans "PERFECT FIT" %}</h1>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </section>
+{% endblock %}
+
+{% block content %}
+<section>
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        {% if error %}
+                <p> {{ error }} </p>
+        {% elif form %}
+
+        <div id="formexplain">
+              {% blocktrans %}
+              <p>
+              If you're thinking about expanding your business
+              internationally, the UK could be the perfect fit.
+              To explore what the UK has to offer, download your
+              <span class="bold">Perfect Fit Prospectus</span> today.
+              </p>
+              <p>
+              Simply enter your details below to access a wealth of
+              insight into the UK's business environment tailored to
+              your business together with help and advice.
+              </p>
+              {% endblocktrans %}
+        </div>
+      </div>
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+
+      <div class="form-group{% if form.name.errors %} form-group-error{% endif %}">
+        {% if form.name.label %}{{ form.name.label_tag }}{% endif %}
+        <span class="error-message">{{ form.name.errors }}</span>
+        {{ form.name }}
+      </div>
+
+      <div class="form-group{% if form.company.errors %} form-group-error{% endif %}">
+        {% if form.company.label %}{{ form.company.label_tag }}{% endif %}
+        <span class="error-message">{{ form.company.errors }}</span>
+        {{ form.company }}
+      </div>
+
+      <div class="form-group{% if form.email.errors %} form-group-error{% endif %}">
+        {% if form.email.label %}{{ form.email.label_tag }}{% endif %}
+        <span class="error-message">{{ form.email.errors }}</span>
+        {{ form.email }}
+      </div>
+
+      <div class="form-group{% if form.phone_number.errors %} form-group-error{% endif %}">
+        {% if form.phone_number.label %}{{ form.phone_number.label_tag }}{% endif %}
+        <span class="error-message">{{ form.phone_number.errors }}</span>
+        {{ form.phone_number }}
+      </div>
+
+      <div class="form-group{% if form.country.errors %} form-group-error{% endif %}">
+        {% if form.country.label %}{{ form.country.label_tag }}{% endif %}
+        <span class="error-message">{{ form.country.errors }}</span>
+        {{ form.country }}
+      </div>
+
+      <div class="form-group{% if form.sector.errors %} form-group-error{% endif %}">
+        {% if form.sector.label %}{{ form.sector.label_tag }}{% endif %}
+        <span class="error-message">{{ form.sector.errors }}</span>
+        {{ form.sector }}
+      </div>
+
+        <div class="grid-row tandc-gdpr">
+              <div class="column-two-thirds">
+                <div>
+                      {% blocktrans %}
+                      <p>
+                      The Department for International Trade will use the information provided in this form to send you your report. You can read about how we protect your data through our <a href="https://invest.great.gov.uk/privacy-and-cookies/" target="_blank">privacy policy</a>.
+                      </p>
+                      <p>
+If you would like to receive further information about setting up your business in the UK, you can subscribe to our mailing list.
+                </p>
+                      {% endblocktrans %}
+                </div>
+            </div>
+        </div>
+
+      <p class="form-group tandc {% if form.gdpr_optin.errors %} form-group-error{% endif %}">
+        <span class="error-message">{{ form.gdpr_optin.errors }}</span>
+        {{ form.gdpr_optin }}
+        <label  class="check-label form-label" for="{{ form.gdpr_optin.id_for_label }}">
+        {% blocktrans %}
+        I would like to receive further information.
+        {% endblocktrans %}
+        </label>
+      </p>
+
+      <div class="form-group{% if form.captcha.errors %} form-group-error{% endif %}">
+        {% if form.captcha.label %}{{ form.captcha.label_tag }}{% endif %}
+        <span class="error-message">{{ form.captcha.errors }}</span>
+        {{ form.captcha }}
+      </div>
+
+    <div>
+      <input class="button" type="submit" value="{% trans "Submit" %}" />
+    </div>
+
+    </form>
+    {% else %}
+            <p id="perfectFitSubmitted">
+        {% blocktrans %}
+          Thank You. Your Perfect Fit Prospectus has been emailed to {{ email }}
+        {% endblocktrans %}
+            </p>
+    {% endif %}
+
+  </div>
+</section>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+{% endblock %}
