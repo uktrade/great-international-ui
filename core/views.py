@@ -47,6 +47,7 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
+
         return TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
@@ -70,6 +71,8 @@ class CMSPageFromPathView(
                 'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
             'InternationalCapitalInvestLandingPage':
                 'CAPITAL_INVEST_LANDING_PAGE_ON',
+            'CapitalInvestOpportunityListingPage':
+                'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'
         }
 
         flag_name = flag_map.get(self.page['page_type'])
