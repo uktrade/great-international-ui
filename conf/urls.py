@@ -1,7 +1,8 @@
 import directory_components.views
+from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
 
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
 from django.urls import reverse_lazy
@@ -16,33 +17,21 @@ sitemaps = {
 }
 
 
-healthcheck_urls = [
-    url(
-        r'^sentry/$',
-        directory_healthcheck.views.SentryHealthcheckView.as_view(),
-        name='sentry'
-    ),
-    url(
-        r'^forms-api/$',
-        directory_healthcheck.views.FormsAPIBackendHealthcheckView.as_view(),
-        name='forms-api'
-    ),
-]
-
 urlpatterns = [
     url(
         r'^international/healthcheck/',
-        include(
-            healthcheck_urls, namespace='healthcheck', app_name='healthcheck'
-        )
+        skip_ga360(directory_healthcheck.views.HealthcheckView.as_view()),
+        name='healthcheck'
     ),
     url(
-        r"^international/sitemap\.xml$", sitemap, {'sitemaps': sitemaps},
+        r"^international/sitemap\.xml$",
+        skip_ga360(sitemap),
+        {'sitemaps': sitemaps},
         name='sitemap'
     ),
     url(
         r"^international/robots\.txt$",
-        directory_components.views.RobotsView.as_view(),
+        skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
     url(
@@ -90,10 +79,21 @@ urlpatterns = [
         {'path': 'how-to-do-business-with-the-uk'},
         name="how-to-do-business-with-the-uk"
     ),
+    url(
+        r"^international/content/opportunities/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'opportunities'},
+        name="opportunities"
+    ),
     # ----
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
+    ),
+    url(
+        r'^international/content/(?P<path>[\w\-/]*)/(?P<list>[\w\-/]*)/$',
+        core.views.CMSPageFromPathView.as_view(),
+        name="cms-page-from-path-with-two-slugs"
     ),
 ]

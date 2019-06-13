@@ -50,7 +50,7 @@ def test_site_home_link():
     actual = context_processors.site_home_link(None)
     assert actual == {
         'site_home_link': {
-            'label': 'great.gov.uk International',
+            'label': 'Great.gov.uk International',
             'url': reverse_lazy('index')
         }
     }

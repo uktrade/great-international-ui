@@ -3,7 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes render_form override_elements_css_class cta_card from directory_components_tags %}
+{% load card hero add_export_elements_classes render_form override_elements_css_class cta_card ga360_tracker from directory_components %}
 
 {% block css_layout_class %}landing-page{% endblock %}
 
@@ -20,24 +20,28 @@
   <div class="container">
     <div class="card-grid">
       <div class="column-half">
-        <div class="card cta-image-card" data-ga-class="large-feature">
+        <div class="card cta-image-card">
           <img class="width-full" src="{{ page.invest_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.invest_title }}</h2>
+            {% ga360_tracker "featured-card" %}
             <div class="padding-30">
-              {{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
+              {{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
             </div>
+            {% endga360_tracker %}
           </div>
         </div>
       </div>
       <div class="column-half">
-        <div class="card cta-image-card" data-ga-class="large-feature">
+        <div class="card cta-image-card">
           <img class="width-full" src="{{ page.trade_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.trade_title }}</h2>
+            {% ga360_tracker "featured-card" %}
             <div class="padding-30">
-              {{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-arrow'|safe }}
+              {{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
             </div>
+            {% endga360_tracker %}
           </div>
         </div>
       </div>
@@ -123,13 +127,19 @@
     </div>
     <div class="card-grid">
       <div class="column-third-xl column-half-l column-full">
-        {% cta_card with_arrow=True url=header_footer_urls.industries image_url=page.featured_links.0.image.url text=page.featured_links.0.heading %}
+        {% ga360_tracker "cta" %}
+          {% cta_card with_arrow=True url=header_footer_urls.industries image_url=page.featured_links.0.image.url text=page.featured_links.0.heading %}
+        {% endga360_tracker %}
       </div>
       <div class="column-third-xl column-half-l column-full">
-        {% cta_card with_arrow=True url=services_urls.uk_setup_guide image_url=page.featured_links.1.image.url text=page.featured_links.1.heading %}
+        {% ga360_tracker "cta" %}
+          {% cta_card with_arrow=True url=services_urls.uk_setup_guide image_url=page.featured_links.1.image.url text=page.featured_links.1.heading %}
+        {% endga360_tracker %}
       </div>
       <div class="column-third-xl column-half-l column-full">
-        {% cta_card with_arrow=True url=services_urls.contact_us image_url=page.featured_links.2.image.url text=page.featured_links.2.heading %}
+        {% ga360_tracker "cta" %}
+          {% cta_card with_arrow=True url=services_urls.contact_us image_url=page.featured_links.2.image.url text=page.featured_links.2.heading %}
+        {% endga360_tracker %}
       </div>
     </div>
   </div>
@@ -161,10 +171,14 @@
   <div class="container padding-vertical-30">
     <div class="grid-row">
       <div class="column-full column-half-l column-third-xl">
-        <a href="https://study-uk.britishcouncil.org/" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.study_in_uk_cta_text }}</a>
+        {% ga360_tracker "cta" %}
+          <a href="https://study-uk.britishcouncil.org/" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.study_in_uk_cta_text }}</a>
+        {% endga360_tracker %}
       </div>
       <div class="column-full column-half-l column-third-xl">
-        <a href="https://www.visitbritain.com/gb/en" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.visit_uk_cta_text }}</a>
+        {% ga360_tracker "cta" %}
+          <a href="https://www.visitbritain.com/gb/en" rel="noopener noreferrer" target="_blank" class="button button-ghost-white button-arrow">{{ page.visit_uk_cta_text }}</a>
+        {% endga360_tracker %}
       </div>
     </div>
   </div>

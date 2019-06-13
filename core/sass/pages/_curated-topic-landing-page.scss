@@ -16,7 +16,7 @@
 
     .card-inner {
         a {
-            @include with-arrow;
+            @include with-left-arrow;
             color: $active-blue;
             margin-top: 15px;
             margin-bottom: 15px;

@@ -1,9 +1,9 @@
-{% extends 'core/base_cms.html' %}
+{% extends 'core/base_cms_with_invest_header.html' %}
 
 {% load static %}
 {% load trans from i18n %}
 {% load parse_date from cms_tags %}
-{% load breadcrumbs add_export_elements_classes from directory_components_tags %}
+{% load breadcrumbs add_export_elements_classes ga360_tracker from directory_components %}
 
 {% block head_title %}{{ page.article_title }} - {{ site_home_link.label }}{% endblock %}
 
@@ -21,8 +21,9 @@
   <div class="container">
     {% url 'how-to-setup-in-the-uk' as setup_url %}
     {% trans 'UK setup guide' as setup_label %}
-
-    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=setup_url middle_label=setup_label right_label=page.display_title %}
+    {% ga360_tracker "breadcrumbs" %}
+        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=setup_url middle_label=setup_label right_label=page.display_title %}
+    {% endga360_tracker %}
   </div>
   {% endblock %}
 
@@ -50,7 +51,9 @@
                   <ul class="tag-list">
                     {% for tag in page.tags %}
                     <li>
-                      <a href="{% url 'tag-list' tag.slug %}" class="link">{{ tag.name }}</a>
+                      {% ga360_tracker "article-tag-link" %}
+                        <a href="{% url 'tag-list' tag.slug %}" class="link">{{ tag.name }}</a>
+                      {% endga360_tracker %}
                     </li>
                     {% endfor %}
                   </ul>
@@ -68,9 +71,11 @@
             <img src="{{ page.article_image.url }}" alt="" class="width-full">
           {% endif %}
           <section class="grid-row">
-            <div class="column-seven-ninths article-content" data-ga-class="article-content">
-              {{ page.article_body_text|add_export_elements_classes }}
-            </div>
+            {% ga360_tracker "article-content" %}
+                <div class="column-seven-ninths article-content" data-ga-class="article-content">
+                  {{ page.article_body_text|add_export_elements_classes }}
+                </div>
+            {% endga360_tracker %}
           </section>
         </div>
 

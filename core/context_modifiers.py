@@ -35,5 +35,20 @@ class Registry(defaultdict):
 
         return fn
 
+    def unregister(self, fn=None):
+        """
+        Unregisters a function as a context modifier for any page types
+        that it might be registered for.
+        """
+        for key in self.keys():
+            try:
+                self[key].remove(fn)
+            except ValueError:
+                pass
+
     def get_for_page_type(self, page_type):
         return self[page_type]
+
+
+registry = Registry()
+register_context_modifier = registry.register

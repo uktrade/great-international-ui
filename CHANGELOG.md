@@ -2,11 +2,41 @@
 
 ## Pre-release
 
+### Fixed bugs
+- No ticket - Fix healthchecks
+- Upgrade cms client to prevent uncached pages being treated as cached
+- no ticket - Fix typo on sector pages.
+- Fix Article Listing Page failing to render
+- Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
+- CI-217: Update Django Version to fix security vulnerability.
+
+### Implemented enhancements
+- TT-1432 - Added link to Investment Support Directory on UK setup guide page
+- CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
+- CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
+- CI-144 - Updated capital invest landing page to match more recent invision designs
+- CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
+- CI-151 - Added blank alt text to images on capital invest pages for accessibility
+- CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
+- CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
+- CI-154 - Changed hard coded text in guide landing page to come from cms
+- CI-146 - Changed English copy that was hard coded text in sector page 
+- CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
+- CI-145 - Use invest logo in header
+- CMS-1577 - Update content on EU Exit CTA buttons
+- no-ticket - Make the 'home' breadcrumb label translatable.
+- CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
+- CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
+- CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
+- CI-250 - Added an opportunity listing page template and put it behind a feature flag
+
+## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
 ### Implemented enhancements:
 
-- CMS-1480 - Add translations to po files and templates
 - CI-108 - Temporarily turn off additional GA tagging.
+- CMS-1480 - Add translations to po files and templates
 
 ### Fixed bugs
 

@@ -15,6 +15,7 @@ import os
 import environ
 
 from directory_constants import cms
+import directory_healthcheck.backends
 
 
 env = environ.Env()
@@ -53,7 +54,7 @@ INSTALLED_APPS = [
     'captcha',
     'directory_components',
     'crispy_forms',
-    'health_check',
+    'health_check.cache',
     'directory_healthcheck',
     'euexit'
 ]
@@ -68,6 +69,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
+    'directory_components.middleware.CheckGATags'
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -134,8 +136,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+LANGUAGE_COOKIE_NAME = env.str('LANGUAGE_COOKIE_NAME', 'django_language')
+
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-LANGUAGE_COOKIE_NAME
 LANGUAGE_COOKIE_DEPRECATED_NAME = 'django-language'
+
 # Django's default value for LANGUAGE_COOKIE_DOMAIN is None
 LANGUAGE_COOKIE_DOMAIN = env.str('LANGUAGE_COOKIE_DOMAIN', None)
 
@@ -397,7 +402,19 @@ FEATURE_FLAGS = {
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
     'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON':
         env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
-    'COUNTRY_SELECTOR_ON': env.bool('FEATURE_COUNTRY_SELECTOR_ENABLED', False)
+    'COUNTRY_SELECTOR_ON': env.bool('FEATURE_COUNTRY_SELECTOR_ENABLED', False),
+    'CAPITAL_INVEST_REGION_PAGE_ON': env.bool(
+        'FEATURE_CAPITAL_INVEST_REGION_PAGE_ENABLED', False
+    ),
+    'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON': env.bool(
+        'FEATURE_CAPITAL_INVEST_OPPORTUNITY_PAGE_ENABLED', False
+    ),
+    'CAPITAL_INVEST_LANDING_PAGE_ON': env.bool(
+        'FEATURE_CAPITAL_INVEST_LANDING_PAGE_ENABLED', False
+    ),
+    'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON': env.bool(
+        'FEATURE_CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ENABLED', False
+    ),
 }
 
 # Invest High Potential Opportunities
@@ -413,4 +430,11 @@ HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
 )
 
 # Directory healthcheck
-HEALTH_CHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
+DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
+DIRECTORY_HEALTHCHECK_BACKENDS = [
+    directory_healthcheck.backends.SentryBackend,
+    directory_healthcheck.backends.FormsAPIBackend,
+    directory_healthcheck.backends.CMSAPIBackend,
+    # health_check.cache.CacheBackend is also registered in
+    # INSTALLED_APPS's health_check.cache
+]
