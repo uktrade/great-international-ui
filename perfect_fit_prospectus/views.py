@@ -8,14 +8,15 @@ from django.views.generic import FormView
 from django.views.generic.base import View
 from requests import HTTPError
 
-from perfect_fit_prospectus.forms import PIRForm
+from perfect_fit_prospectus.forms import PerfectFitProspectusForm
 from directory_components.mixins import CountryDisplayMixin
 
 from pir_client.client import pir_api_client
 
 
 class PerfectFitProspectusMainView(CountryDisplayMixin, FormView):
-    form_class = PIRForm
+    form_class = PerfectFitProspectusForm
+    template_name = 'index.html'
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -24,18 +25,19 @@ class PerfectFitProspectusMainView(CountryDisplayMixin, FormView):
             pir_api_client.create_report(data)
         except HTTPError:
             return render(
-                self.request, 'index.html', {
+                self.request,
+                'index.html',
+                {
                     'error': (
                         'Something is wrong with the service.'
                         ' Please try again later'
                     )
-                },
-                status=500
+                }
             )
-
         return render(
-            self.request, 'index.html', {'email': data['email']},
-            status=201
+            self.request,
+            'index.html',
+            {'email': data['email']}
         )
 
 

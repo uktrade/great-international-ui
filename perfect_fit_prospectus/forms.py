@@ -1,14 +1,14 @@
+from captcha.fields import ReCaptchaField
 from django.utils.translation import ugettext_lazy as _
 from django.forms import TextInput
 
 from directory_components import forms, fields
 from django_countries.data import COUNTRIES
-from nocaptcha_recaptcha.fields import NoReCaptchaField
 
 from pir_client.client import pir_api_client
 
 
-class PIRForm(forms.Form):
+class PerfectFitProspectusForm(forms.Form):
     name = fields.CharField(
         required=True,
         label=_('Name'),
@@ -39,9 +39,13 @@ class PIRForm(forms.Form):
     )
 
     gdpr_optin = fields.BooleanField(initial=False, required=False)
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+    )
 
     def __init__(self, *args, **kwargs):
-        super(PIRForm, self).__init__(*args, **kwargs)
+        super(PerfectFitProspectusForm, self).__init__(*args, **kwargs)
         options = pir_api_client.get_options()
 
         sector_choices = [
@@ -54,5 +58,3 @@ class PIRForm(forms.Form):
             label='Sector',
             choices=sector_choices
         )
-
-        self.fields['captcha'] = NoReCaptchaField()

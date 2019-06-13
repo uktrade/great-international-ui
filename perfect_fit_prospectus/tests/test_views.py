@@ -1,7 +1,10 @@
+from unittest import mock
+
 from botocore.exceptions import ClientError
-from django.test import TestCase
 from unittest.mock import patch, MagicMock
 
+from django.urls import reverse
+from requests import HTTPError
 
 OPTIONS_DATA = {
     "country": {
@@ -39,49 +42,91 @@ OPTIONS_DATA = {
 }
 
 
-class ViewTest(TestCase):
+@patch('pir_client.client.pir_api_client.get_options')
+def test_perfect_fit_main_view_get(mock_get_options, client):
+    mock_get_options.return_value = OPTIONS_DATA
+    url = reverse('perfect_fit_prospectus:main')
+    response = client.get(url)
+    assert response.status_code == 200
 
-    @patch('perfect_fit_prospectus.forms.PIRAPIClient')
-    def test_pir_view(self, client_instance_mock):
-        client_instance_mock().get_options.return_value = OPTIONS_DATA
 
-        valid_data = {
-            'name': 'Ted',
-            'company': 'Corp',
-            'email': 'ted@example.com',
-            'country': 'US',
-            'sector': 'tech',
-            'g-recaptcha-response': 'PASSED',
-            'gdpr_optin': 'on'
-        }
+@patch('pir_client.client.pir_api_client.create_report')
+@patch('pir_client.client.pir_api_client.get_options')
+def test_perfect_fit_main_view_post_client_error(mock_get_options,
+                                                 mock_create_report,
+                                                 client,
+                                                 captcha_stub):
+    mock_get_options.return_value = OPTIONS_DATA
+    mock_create_report.side_effect = HTTPError
 
-        res = self.client.get('/')
-        self.assertEquals(res.status_code, 200)
+    valid_data = {
+        'name': 'Ted',
+        'company': 'Corp',
+        'email': 'ted@example.com',
+        'country': 'US',
+        'sector': 'tech',
+        'g-recaptcha-response': captcha_stub,
+        'gdpr_optin': 'on'
+    }
+    url = reverse('perfect_fit_prospectus:main')
+    response = client.post(url, data=valid_data)
+    assert response.context['error'] == 'Something is wrong with ' \
+                                        'the service. ' \
+                                        'Please try again later'
 
-        res = self.client.post('/', data=valid_data)
-        self.assertEquals(res.status_code, 201)
 
-        res = self.client.post('/', data={'name': 'Ted', })
-        self.assertEquals(res.status_code, 400)
+@patch('pir_client.client.pir_api_client.create_report')
+@patch('pir_client.client.pir_api_client.get_options')
+def test_perfect_fit_main_view_post_valid_data(mock_get_options,
+                                               mock_create_report,
+                                               captcha_stub, client):
+    mock_get_options.return_value = OPTIONS_DATA
 
-        client_instance_mock().create_report.side_effect = ValueError()
-        res = self.client.post('/', data=valid_data)
-        self.assertEquals(res.status_code, 500)
+    valid_data = {
+        'name': 'Ted',
+        'company': 'Corp',
+        'email': 'ted@example.com',
+        'country': 'US',
+        'sector': 'tech',
+        'g-recaptcha-response': captcha_stub,
+        'gdpr_optin': 'on'
+    }
 
-    @patch('perfect_fit_prospectus.views.boto3')
-    def test_proxy_view(self, boto3):
-        boto3.client().generate_presigned_url.return_value = (
-            'http://www.example.com/test.pdf'
-        )
+    url = reverse('perfect_fit_prospectus:main')
+    response = client.post(url, data=valid_data)
+    assert response.context['email'] == 'ted@example.com'
+    assert mock_create_report.called is True
+    assert mock_create_report.call_args == mock.call(
+        {
+                 'name': 'Ted', 'company': 'Corp', 'email': 'ted@example.com',
+                 'phone_number': '', 'country': 'US', 'gdpr_optin': True,
+                 'captcha': 'PASSED', 'sector': 'tech'
+             }
+    )
 
-        res = self.client.get('/reports/test.pdf')
-        self.assertEquals(
-            res.get('location'), 'http://www.example.com/test.pdf'
-        )
 
-        boto3.client().head_object.side_effect = ClientError(
-            MagicMock(), MagicMock()
-        )
-        # key doesn't exist
-        res = self.client.get('/reports/test.pdf')
-        self.assertEquals(res.status_code, 404)
+@patch('perfect_fit_prospectus.views.boto3')
+def test_perfect_fit_report_proxy_view_success(mock_boto3, client):
+    mock_boto3.client().generate_presigned_url.return_value = (
+        'http://www.example.com/test.pdf'
+    )
+
+    url = reverse(
+        'perfect_fit_prospectus:report',
+        kwargs={'filename': 'test.pdf'}
+    )
+    response = client.get(url)
+    assert response['location'] == 'http://www.example.com/test.pdf'
+
+
+@patch('perfect_fit_prospectus.views.boto3')
+def test_perfect_fit_report_proxy_view_key_not_found(mock_boto3, client):
+    mock_boto3.client().head_object.side_effect = ClientError(
+        MagicMock(), MagicMock()
+    )
+    url = reverse(
+        'perfect_fit_prospectus:report',
+        kwargs={'filename': 'test.pdf'}
+    )
+    response = client.get(url)
+    assert response.status_code == 404
