@@ -41,10 +41,9 @@
     width: 100%;
   }
 
-  li .icon-text{
-    padding-bottom: $spacing-1;
+  li .mobile-padding-bottom-60{
 
-    @media (max-width: 641px) {
+    @media (max-width: 769px) {
       padding-bottom: $spacing-1;
     }
 

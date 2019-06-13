@@ -45,14 +45,14 @@
 
 <section class="page-section capital-invest-region-icons-section">
     <div class="container">
-        <div class="grid-row ">
+        <div class="grid-row margin-bottom-60">
             <ul>
                 <li>
                     {% if page.location_heading and page.location and page.location_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p class="bold-medium">{{ page.location_heading }}</p>
-                            <p class="icon-text">{{ page.location }}</p>
+                            <p class="mobile-padding-bottom-60">{{ page.location }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -61,7 +61,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.project_promoter_heading }}</p>
-                            <p class="icon-text">{{ page.project_promoter }}</p>
+                            <p class="mobile-padding-bottom-60">{{ page.project_promoter }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -70,7 +70,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.scale_heading }}</p>
-                            <p class="icon-text">{{ page.scale }}</p>
+                            <p class="mobile-padding-bottom-60">{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -83,7 +83,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.sector_heading }}</p>
-                            <p class="icon-text">{{ page.sector }}</p>
+                            <p class="mobile-padding-bottom-60">{{ page.sector }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -92,7 +92,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.investment_type_heading }}</p>
-                            <p class="icon-text">{{ page.investment_type }}</p>
+                            <p class="mobile-padding-bottom-60">{{ page.investment_type }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -101,7 +101,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.planning_status_heading }}</p>
-                            <p class="icon-text">{{ page.planning_status }}</p>
+                            <p>{{ page.planning_status }}</p>
                         </div>
                     {% endif %}
                 </li>
