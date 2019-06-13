@@ -496,8 +496,8 @@ body.js-enabled .landing-page .country-selector-dialog select {
   width: 100%;
 }
 @media (max-width: 769px) {
-  .capital-invest-opportunity-page li .mobile-padding-bottom-60 {
-    padding-bottom: 60px;
+  .capital-invest-opportunity-page .mobile-margin-bottom-60 {
+    margin-bottom: 60px;
   }
 }
 @media (max-width: 641px) {

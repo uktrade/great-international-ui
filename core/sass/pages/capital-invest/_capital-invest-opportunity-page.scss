@@ -41,10 +41,10 @@
     width: 100%;
   }
 
-  li .mobile-padding-bottom-60{
+  .mobile-margin-bottom-60{
 
     @media (max-width: 769px) {
-      padding-bottom: $spacing-1;
+      margin-bottom: $spacing-1;
     }
 
   }
