@@ -81,11 +81,6 @@ GA_DATA_MAPPING = {
         'site_section': 'Region',
         'site_subsection': 'DetailPage'
     },
-    'CapitalInvestRegionalSectorPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Region',
-        'site_subsection': 'SectorPage'
-    },
     'CapitalInvestOpportunityPage': {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Opportunity',

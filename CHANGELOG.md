@@ -8,6 +8,7 @@
 - no ticket - Fix typo on sector pages.
 - Fix Article Listing Page failing to render
 - Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
+- CI-217: Update Django Version to fix security vulnerability.
 
 ### Implemented enhancements
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
@@ -24,6 +25,9 @@
 - CI-145 - Use invest logo in header
 - CMS-1577 - Update content on EU Exit CTA buttons
 - no-ticket - Make the 'home' breadcrumb label translatable.
+- CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
+- CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
+- CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
 
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)

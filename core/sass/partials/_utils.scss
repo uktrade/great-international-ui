@@ -106,7 +106,7 @@
         padding-left: $spacing-1;
       }
     }
-  }
+ }
 
 
  @media (min-width: 961px) {
@@ -119,4 +119,16 @@
         padding-left: $spacing-1;
       }
     }
-  }
+ }
+
+ @media (min-width: 769px) {
+    section .container {
+      .left-half-page-text-l {
+        padding-right: $spacing-1;
+      }
+
+      .right-half-page-text-l {
+        padding-left: $spacing-1;
+      }
+    }
+ }

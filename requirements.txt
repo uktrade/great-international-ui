@@ -26,7 +26,7 @@ django-health-check==3.8.0  # via directory-healthcheck
 django-recaptcha==1.2.0
 django-redis==4.8.0
 django-storages==1.5.1
-django==1.11.20
+django==1.11.21
 djangorestframework==3.9.1
 docutils==0.14            # via botocore
 gunicorn==19.5.0
