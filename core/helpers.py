@@ -86,6 +86,11 @@ GA_DATA_MAPPING = {
         'site_section': 'Opportunity',
         'site_subsection': 'DetailPage'
     },
+    'CapitalInvestOpportunityListingPage': {
+        'business_unit': 'CapitalInvestment',
+        'site_section': 'Opportunity',
+        'site_subsection': 'ListingPage'
+    },
 }
 
 
