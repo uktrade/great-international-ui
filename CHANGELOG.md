@@ -28,7 +28,7 @@
 - CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
 - CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
 - CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
-- CI-250 - Gave opportunity listing page a feature flag so shows page not found when off
+- CI-250 - Gave opportunity listing page a template and feature flag so shows page not found when off
 
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)

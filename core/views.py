@@ -48,7 +48,6 @@ class CMSPageFromPathView(
     @property
     def template_name(self):
 
-        print('\n\n\n\n\n\n self.page_type ', self.page, '\n\n\n\n\n\n')
         return TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
