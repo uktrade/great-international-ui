@@ -30,6 +30,7 @@
 - CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
 - CI-250 - Gave opportunity listing page a template and put it behind a feature flag
 - CMS-1594 - Add perfect fit prospectus views to International UI
+- CI-250 - Added an opportunity listing page template and put it behind a feature flag
 
 
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
