@@ -14,7 +14,7 @@ whitenoise==3.3.1
 django-recaptcha==1.2.0
 directory-cms-client==10.0.1
 directory-validators==5.0.0
--e git+https://github.com/uktrade/directory-components@nav-prototype#egg=directory_components
+-e git+https://github.com/uktrade/directory-components@nav-prototype-no-js#egg=directory_components
 directory-constants==17.0.0
 directory-forms-api-client==4.0.0
 beautifulsoup4==4.6.0

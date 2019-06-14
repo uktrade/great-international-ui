@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
--e git+https://github.com/uktrade/directory-components@nav-prototype#egg=directory_components
+-e git+https://github.com/uktrade/directory-components@nav-prototype-no-js#egg=directory_components
 attrs==19.1.0             # via jsonschema
 beautifulsoup4==4.6.0
 boto3==1.7.55
