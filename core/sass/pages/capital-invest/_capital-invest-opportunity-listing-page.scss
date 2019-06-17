@@ -1,0 +1,48 @@
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.capital-invest-opportunity-listing-page {
+
+  .page-section{
+    @include page-section-padding
+  }
+
+  .opportunity-listing-page-section {
+    @include white-section;
+  }
+
+  .opportunity-listing-page-stone-section {
+    @include stone-section;
+  }
+
+  .down-arrow {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 20px 20px 0 20px;
+    border-color: $stone-40 transparent transparent transparent;
+    line-height: 0px;
+}
+
+  .card-image-left {
+    margin: 0;
+    min-height: 200px;
+    background-size: cover;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-color: #fff;
+  }
+
+  .opportunity-list-card{
+    height: 200px;
+    border: 1px solid #ccc
+  }
+
+  .card-inner{
+
+    @media (max-width: 641px) {
+      padding-top: 20px;
+    }
+  }
+}
