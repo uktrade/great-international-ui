@@ -546,11 +546,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
   background-size: cover;
   background-position: 100%;
   background-repeat: no-repeat;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .capital-invest-opportunity-listing-page .opportunity-list-card {
   height: 200px;
-  border: 1px solid #ccc;
+  border: 1px solid #d8d8d8;
 }
 @media (max-width: 641px) {
   .capital-invest-opportunity-listing-page .card-inner {
