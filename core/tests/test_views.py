@@ -658,3 +658,92 @@ def test_get_prioritised_opportunities_for_sector_page(
         request, path='/international/content/industries/sector')
 
     assert len(response.context_data['prioritised_opportunities']) == 1
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_opp_listing_page_num_of_opps(mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'title': 'Opp1',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+            {
+                'title': 'Opp2',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/opportunities/')
+
+    assert response.context_data['num_of_opportunities'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_opp_listing_page_gets_all_opps(mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'title': 'Opp1',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+            {
+                'title': 'Opp2',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/opportunities/')
+
+    for opportunity in response.context_data['all_opportunities']:
+        assert opportunity['scale'] == 'scale'
