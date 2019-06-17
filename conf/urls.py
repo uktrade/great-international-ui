@@ -41,7 +41,7 @@ urlpatterns = [
         name="index"
     ),
     url(
-        r'^international/perfectfit/',
+        r'^international/invest/perfectfit/',
         include(
             'perfect_fit_prospectus.urls',
             namespace='perfect_fit_prospectus'
