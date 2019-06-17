@@ -210,3 +210,16 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
     }
+
+
+@register_context_modifier('CapitalInvestOpportunityListingPage')
+def capital_invest_opportunity_listing_page_context_modifier(context, request):
+
+    opportunities = context['page']['opportunity_list']
+    num_of_opportunities = len(opportunities)
+
+    return {
+        'invest_url': urls.SERVICES_INVEST,
+        'num_of_opportunities': num_of_opportunities,
+        'all_opportunities': opportunities
+    }
