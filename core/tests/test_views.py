@@ -658,27 +658,28 @@ def test_get_prioritised_opportunities_for_sector_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_opportunity_search_form(mock_cms_response, client):
+def test_opportunity_search_form(mock_cms_response, client, settings):
+
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
     mock_cms_response.return_value = create_response(
         status_code=200,
         json_payload=dummy_page
     )
 
-    url = reverse('opportunities')
-    response = client.get(url)
+    response = client.get('/international/content/opportunities/')
 
     assert response.status_code == 200
 
 
 @mock.patch.object(OpportunitySearchView, 'get_results_and_count')
 def test_opportunity_search_pagination_count(
-    mock_get_results_and_count, client
+    mock_get_results_and_count, client, settings
 ):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
     results = [{'number': '1234567', 'slug': 'thing'}]
     mock_get_results_and_count.return_value = (results, 20)
 
-    url = reverse('opportunities')
-    response = client.get(url)
+    response = client.get('/international/content/opportunities/')
 
     assert response.status_code == 200
     assert response.context_data['pagination'].paginator.count == 20
