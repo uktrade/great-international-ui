@@ -288,6 +288,7 @@ class OpportunitySearchView(
             page_type="great_international.CapitalInvestOpportunityPage"
         )
         cms_response = handle_cms_response(response)
+        print('\n\n\n\n\n\n\n this will be the reuslts ', cms_response['items'])
         return cms_response['items'], cms_response['meta']['total_count']
 
     @staticmethod
