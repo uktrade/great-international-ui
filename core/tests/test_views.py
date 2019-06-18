@@ -658,6 +658,18 @@ def test_get_prioritised_opportunities_for_sector_page(
 
     assert len(response.context_data['prioritised_opportunities']) == 1
 
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_opportunity_search_form(mock_cms_response, client):
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload=dummy_page
+    )
+
+    url = reverse('opportunities')
+    response = client.get(url)
+
+    assert response.status_code == 200
 #
 # @mock.patch.object(OpportunitySearchView, 'get_results_and_count')
 # def test_opportunity_search_pagination_count(
