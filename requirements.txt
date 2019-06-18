@@ -13,7 +13,7 @@ certifi==2018.1.18        # via requests
 chardet==3.0.4            # via requests
 dateparser==0.7.0
 directory-client-core==5.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
-directory-cms-client==10.0.1
+directory-cms-client==10.1.0
 directory-components==16.1.0
 directory-constants==17.0.0
 directory-forms-api-client==4.0.0

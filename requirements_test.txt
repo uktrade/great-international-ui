@@ -17,7 +17,7 @@ codecov==2.0.9
 coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
 directory-client-core==5.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
-directory-cms-client==10.0.1
+directory-cms-client==10.1.0
 directory-components==16.1.0
 directory-constants==17.0.0
 directory-forms-api-client==4.0.0
