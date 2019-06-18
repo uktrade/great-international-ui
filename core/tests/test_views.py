@@ -656,16 +656,16 @@ def test_get_prioritised_opportunities_for_sector_page(
 
     assert len(response.context_data['prioritised_opportunities']) == 1
 
-
-@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
-def test_opportunity_search_pagination_count(
-    mock_get_results_and_count, client, search_results
-):
-    results = [{'number': '1234567', 'slug': 'thing'}]
-    mock_get_results_and_count.return_value = (results, 20)
-
-    url = reverse('opportunities')
-    response = client.get(url)
-
-    assert response.status_code == 200
-    assert response.context_data['pagination'].paginator.count == 20
+#
+# @mock.patch.object(OpportunitySearchView, 'get_results_and_count')
+# def test_opportunity_search_pagination_count(
+#     mock_get_results_and_count, client, search_results
+# ):
+#     results = [{'number': '1234567', 'slug': 'thing'}]
+#     mock_get_results_and_count.return_value = (results, 20)
+#
+#     url = reverse('opportunities')
+#     response = client.get(url)
+#
+#     assert response.status_code == 200
+#     assert response.context_data['pagination'].paginator.count == 20
