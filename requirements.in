@@ -12,7 +12,7 @@ raven==6.9.0
 requests==2.21.0
 whitenoise==3.3.1
 django-recaptcha==1.2.0
-directory-cms-client==10.0.1
+directory-cms-client==10.1.0
 directory-validators==5.0.0
 directory-components==16.1.0
 directory-constants==17.0.0
