@@ -9,8 +9,7 @@ from django.urls import reverse
 
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import CMSPageFromPathView, cms_api_client, \
-    OpportunitySearchView
+from core.views import CMSPageFromPathView, cms_api_client
 
 test_sectors = [
     {
