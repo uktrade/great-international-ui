@@ -763,4 +763,3 @@ def test_opportunity_search_pagination_count(
 
     assert response.status_code == 200
     assert response.context_data['pagination'].paginator.count == 20
-
