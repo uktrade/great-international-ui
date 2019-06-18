@@ -657,10 +657,12 @@ def test_get_prioritised_opportunities_for_sector_page(
     assert len(response.context_data['prioritised_opportunities']) == 1
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_opportunity_search_form(mock_get_results_and_count, client):
+@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
+def test_opportunity_search_form(mock_get_results_and_count, client, settings):
 
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
     results = [{'number': '1234567', 'slug': 'thing'}]
+
     mock_get_results_and_count.return_value = (results, 20)
 
     response = client.get(
