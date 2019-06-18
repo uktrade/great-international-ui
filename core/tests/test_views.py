@@ -661,7 +661,7 @@ def test_get_prioritised_opportunities_for_sector_page(
 def test_opportunity_search_form(mock_cms_response, client, settings):
 
     settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
-    mock_cms_response.return_value = create_response(
+    mock_cms_response.return_value = helpers.create_response(
         status_code=200,
         json_payload=dummy_page
     )
