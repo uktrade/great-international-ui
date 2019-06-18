@@ -295,4 +295,3 @@ class OpportunitySearchView(
     def handle_empty_page(form):
         # get_paginator_url returns urls wih all active filters except `page`
         return redirect(helpers.get_paginator_url(form.cleaned_data))
-

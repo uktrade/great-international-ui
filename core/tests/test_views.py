@@ -764,28 +764,3 @@ def test_opportunity_search_pagination_count(
     assert response.status_code == 200
     assert response.context_data['pagination'].paginator.count == 20
 
-
-@mock.patch.object(api_client.company, 'search_investment_search_directory')
-def test_opportunity_search_pagination_param(
-    mock_search, client, search_results, api_response_search_200
-):
-    mock_search.return_value = api_response_search_200
-
-    url = reverse('investment-support-directory:search')
-    response = client.get(
-        url, {'q': '123', 'page': 1, 'expertise_industries': ['AEROSPACE']}
-    )
-
-    assert response.status_code == 200
-    assert mock_search.call_count == 1
-    assert mock_search.call_args == mock.call(
-        expertise_countries=[],
-        expertise_financial=None,
-        expertise_industries=['AEROSPACE'],
-        expertise_languages=[],
-        expertise_products_services_labels=[],
-        expertise_regions=[],
-        page=1,
-        size=10,
-        term='123'
-    )
