@@ -668,9 +668,8 @@ def test_opportunity_search_pagination_count(
     results = [{'number': '1234567', 'slug': 'thing'}]
     mock_get_results_and_count.return_value = (results, 20)
 
-    response = client.get(
-        reverse('opportunities'), {'q': '123'}
-    )
+    url = reverse('opportunities')
+    response = client.get(url)
 
     assert response.status_code == 200
     assert response.context_data['pagination'].paginator.count == 20
