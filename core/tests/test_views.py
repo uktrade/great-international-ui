@@ -1,3 +1,4 @@
+from unittest import mock
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
@@ -8,8 +9,8 @@ from django.urls import reverse
 
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import CMSPageFromPathView, cms_api_client
-
+from core.views import CMSPageFromPathView, cms_api_client, \
+    OpportunitySearchView
 
 test_sectors = [
     {
@@ -747,3 +748,44 @@ def test_get_opp_listing_page_gets_all_opps(mock_cms_response, rf):
 
     for opportunity in response.context_data['all_opportunities']:
         assert opportunity['scale'] == 'scale'
+
+
+@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
+def test_opportunity_search_pagination_count(
+    mock_get_results_and_count, client, search_results
+):
+    results = [{'number': '1234567', 'slug': 'thing'}]
+    mock_get_results_and_count.return_value = (results, 20)
+
+    response = client.get(
+        reverse('opportunities'), {'q': '123'}
+    )
+
+    assert response.status_code == 200
+    assert response.context_data['pagination'].paginator.count == 20
+
+
+@mock.patch.object(api_client.company, 'search_investment_search_directory')
+def test_opportunity_search_pagination_param(
+    mock_search, client, search_results, api_response_search_200
+):
+    mock_search.return_value = api_response_search_200
+
+    url = reverse('investment-support-directory:search')
+    response = client.get(
+        url, {'q': '123', 'page': 1, 'expertise_industries': ['AEROSPACE']}
+    )
+
+    assert response.status_code == 200
+    assert mock_search.call_count == 1
+    assert mock_search.call_args == mock.call(
+        expertise_countries=[],
+        expertise_financial=None,
+        expertise_industries=['AEROSPACE'],
+        expertise_languages=[],
+        expertise_products_services_labels=[],
+        expertise_regions=[],
+        page=1,
+        size=10,
+        term='123'
+    )
