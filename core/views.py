@@ -1,5 +1,8 @@
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -14,14 +17,16 @@ from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin)
 
-from core import forms
+from core import forms, helpers
 from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
-    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin,
+    SubmitFormOnGetMixin, PersistSearchQuerystringMixin)
+from django.views.generic.edit import FormView
 
 
 class CMSPageFromPathView(
@@ -47,7 +52,6 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
-
         return TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
@@ -212,14 +216,83 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('CapitalInvestOpportunityListingPage')
-def capital_invest_opportunity_listing_page_context_modifier(context, request):
+class OpportunitySearchView(
+    CountryDisplayMixin,
+    SubmitFormOnGetMixin,
+    PersistSearchQuerystringMixin,
+    GA360Mixin,
+    FormView,
+    TemplateView
+):
+    form_class = forms.OpportunitySearchForm
+    page_size = 5
+    template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
 
-    opportunities = context['page']['opportunity_list']
-    num_of_opportunities = len(opportunities)
+    def __init__(self):
+        super().__init__()
 
-    return {
-        'invest_url': urls.SERVICES_INVEST,
-        'num_of_opportunities': num_of_opportunities,
-        'all_opportunities': opportunities
-    }
+        self.set_ga360_payload(
+            page_id='FindASupplierISDCompanySearch',
+            business_unit='FindASupplier',
+            site_section='InvestmentSupportDirectory',
+            site_subsection='CompanySearch'
+        )
+
+    @cached_property
+    def page(self):
+        response = cms_api_client.lookup_by_path(
+            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            path=self.kwargs['path'],
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
+        return handle_cms_response(response)
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            show_search_guide='show-guide' in self.request.GET,
+            page=self.page,
+            invest_url=urls.SERVICES_INVEST,
+            **kwargs,
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if 'data' not in kwargs:
+            kwargs['data'] = {}
+        return kwargs
+
+    def form_valid(self, form):
+        results, count = self.get_results_and_count(form)
+        try:
+            paginator = Paginator(range(count), self.page_size)
+            pagination = paginator.page(form.cleaned_data['page'])
+        except EmptyPage:
+            return self.handle_empty_page(form)
+        else:
+            context = self.get_context_data(
+                results=results,
+                pagination=pagination,
+                form=form,
+                pages_after_current=paginator.num_pages - pagination.number,
+                paginator_url=helpers.get_paginator_url(form.cleaned_data)
+            )
+            return TemplateResponse(self.request, self.template_name, context)
+
+    def get_results_and_count(self, form):
+        data = form.cleaned_data
+        response = cms_api_client.list_by_page_type(
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+            offset=(data['page']-1)*self.page_size,
+            limit=self.page_size,
+            page_type="great_international.CapitalInvestOpportunityPage"
+        )
+        cms_response = handle_cms_response(response)
+        return cms_response['items'], cms_response['meta']['total_count']
+
+    @staticmethod
+    def handle_empty_page(form):
+        # get_paginator_url returns urls wih all active filters except `page`
+        return redirect(helpers.get_paginator_url(form.cleaned_data))
+

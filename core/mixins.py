@@ -111,3 +111,29 @@ class SetEtagMixin:
         if request.method == 'GET':
             response.add_post_render_callback(set_response_etag)
         return response
+
+
+class SubmitFormOnGetMixin:
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        data = self.request.GET or {}
+        if data:
+            kwargs['data'] = data
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+
+class PersistSearchQuerystringMixin:
+
+    @property
+    def search_querystring(self):
+        return self.request.GET.urlencode()
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            search_querystring=self.search_querystring,
+            **kwargs,
+        )

@@ -15,33 +15,124 @@
     @include stone-section;
   }
 
+  .page-title{
+    background-color: $stone-40;
+    padding-bottom: 30px;
+    h2 {
+      display: inline-block;
+    }
+    span {
+      display: inline-block;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+    }
+    label {
+      color: $grey;
+    }
+  }
+
   .down-arrow {
     width: 0px;
     height: 0px;
     border-style: solid;
-    margin: auto;
     border-width: 20px 20px 0 20px;
     border-color: $stone-40 transparent transparent transparent;
     line-height: 0px;
-}
+    margin: auto auto 30px;
+  }
 
   .card-image-left {
     margin: 0;
-    min-height: 200px;
+    min-height: 225px;
     background-size: cover;
     background-position: 100%;
     background-repeat: no-repeat;
     background-color: $white;
+    @media (max-width: 641px) {
+      min-height: 200px;
+    }
+  }
+
+  .opportunity-card{
+    @media (max-width: 961px) {
+      min-width: 300px;
+    }
   }
 
   .opportunity-list-card{
-    height: 200px;
-    border: 1px solid $light-grey
+    border: 1px solid $light-grey;
+    min-height: 225px;
+
+    @media (max-width: 641px) {
+      min-height: 200px;
+    }
   }
 
   .card-inner{
+    overflow: hidden;
     @media (max-width: 641px) {
       padding-top: 20px;
     }
   }
+
+  .paginator {
+  margin-top: 60px;
+    a {
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      padding-top: 0;
+    }
+    ol {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      @media (min-width: 641px) {
+        text-align: left;
+      }
+      li {
+        display: inline-block;
+        a {
+          padding: 0;
+          width: 50px;
+          vertical-align: bottom;
+        }
+      }
+    }
+  }
+
+    #main-content > div {
+      flex-flow: row;
+    }
+    .page-title {
+      padding-bottom: 0;
+      h2 {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+      span {
+        margin-top: 36px;
+      }
+      mark {
+        font-size: 24px;
+      }
+    }
+
 }
+
+mark {
+  font-weight: bold;
+  line-height: 1.5;
+  background: $stone;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+#main-content > div {
+  display: flex;
+  flex-flow: column;
+}
+
+
