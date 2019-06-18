@@ -25,7 +25,7 @@ from core.context_modifiers import (
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin,
-    SubmitFormOnGetMixin, PersistSearchQuerystringMixin)
+    SubmitFormOnGetMixin)
 from django.views.generic.edit import FormView
 
 
@@ -219,7 +219,6 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 class OpportunitySearchView(
     CountryDisplayMixin,
     SubmitFormOnGetMixin,
-    PersistSearchQuerystringMixin,
     GA360Mixin,
     FormView,
     TemplateView
