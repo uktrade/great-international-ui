@@ -1,3 +1,4 @@
+from unittest import mock
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
@@ -8,7 +9,8 @@ from django.urls import reverse
 
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import CMSPageFromPathView, cms_api_client
+from core.views import CMSPageFromPathView, cms_api_client, \
+    OpportunitySearchView
 
 test_sectors = [
     {
@@ -670,16 +672,17 @@ def test_opportunity_search_form(mock_cms_response, client):
     response = client.get(url)
 
     assert response.status_code == 200
-#
-# @mock.patch.object(OpportunitySearchView, 'get_results_and_count')
-# def test_opportunity_search_pagination_count(
-#     mock_get_results_and_count, client
-# ):
-#     results = [{'number': '1234567', 'slug': 'thing'}]
-#     mock_get_results_and_count.return_value = (results, 20)
-#
-#     url = reverse('opportunities')
-#     response = client.get(url)
-#
-#     assert response.status_code == 200
-#     assert response.context_data['pagination'].paginator.count == 20
+
+
+@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
+def test_opportunity_search_pagination_count(
+    mock_get_results_and_count, client
+):
+    results = [{'number': '1234567', 'slug': 'thing'}]
+    mock_get_results_and_count.return_value = (results, 20)
+
+    url = reverse('opportunities')
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.context_data['pagination'].paginator.count == 20
