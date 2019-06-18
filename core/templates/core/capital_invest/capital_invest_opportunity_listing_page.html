@@ -1,13 +1,11 @@
-{% extends 'core/base_cms_with_invest_header.html' %}
-{% load i18n %}
+{% extends 'core/base.html' %}
 {% load static from staticfiles %}
-{% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study ga360_tracker breadcrumbs from directory_components %}
+
+{% load breadcrumbs ga360_tracker from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
 
 {% block content %}
-
 <section id="breadcrumb-section">
   <div class="container">
     {% ga360_tracker "breadcrumbs" %}
@@ -15,37 +13,88 @@
     {% endga360_tracker %}
   </div>
 </section>
-
-<section class="opportunity-listing-page-stone-section title-section">
-    <div class="container">
-        <div class="bold-small">
-            {{ num_of_opportunities }} {{ page.search_results_title }}
+<form>
+    <div class="page-title">
+        <div class="container">
+            <div class="grid-row">
+                <div class="column-two-thirds">
+                    {% if pagination.paginator.count %}
+                        <h2 class="heading-medium">{{ pagination.paginator.count }} {% if page.search_results_title %} {{page.search_results_title}} {% else %} {{pagination.paginator.count|pluralize:'result,results'}} found {% endif %} </h2>
+                    {% else %}
+                        <h2 class="heading-medium">No results found {% if form.q.value %}for <mark>{{ form.q.value }}</mark>{% endif %}</h2>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
-</section>
-<div class="down-arrow"></div>
+    <div class="down-arrow"></div>
 
-
-<section class="opportunity-listing-page-section">
-    <div class="container">
-        <div>
-            {% for opportunity in all_opportunities %}
-                <div class="card-image-left column-half-m margin-bottom-30"
-                    role="img"
-                    style="background-image: url({{ opportunity.hero_image.url }});">
-                    <p class="visually-hidden"></p>
-                </div>
-                <div class="card-inner padding-horizontal-45 column-half-m opportunity-list-card margin-bottom-30">
-                    {% ga360_tracker "related-page-link" %}
-                        <a href="{{ link }}" class="heading-medium margin-top-15">{{ opportunity.title }}</a>
-                    {% endga360_tracker %}
-                    <p class="bold-small margin-top-30">{{ opportunity.scale }}</p>
-                    <p class="font-small margin-top-30">{{ opportunity.sector }}</p>
-                </div>
-            {% endfor %}
+    <div class="container" id="main-content">
+        <div class="grid-row">
+            <div class="column-three-quarters-xl">
+                <ul>
+                    {% for opportunity in results %}
+                        <li class="opportunity-card">
+                            <div class="card-image-left column-third-xl margin-bottom-30"
+                                role="img"
+                                style="background-image: url({{ opportunity.hero_image.url }});">
+                                <p class="visually-hidden"></p>
+                            </div>
+                            <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
+                                {% ga360_tracker "opportunities-listed-link" %}
+                                    <a href="{{ opportunity.full_path }}" class="heading-small margin-top-30">{{ opportunity.title }}</a>
+                                {% endga360_tracker %}
+                                <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
+                                <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <h2 class="heading-medium">No results</h2>
+                    {% endfor %}
+                </ul>
+                {% if pagination.paginator.num_pages > 1 %}
+                    <div class="paginator">
+                        {% if pagination.has_previous %}
+                            <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
+                        {% endif %}
+                            <ol class="margin-top-15 margin-bottom-15">
+                                {% if pagination.paginator.num_pages <= 5 %}
+                                    {% for number in pagination.paginator.page_range %}
+                                        {% include 'core/paginator-item.html' %}
+                                    {% endfor %}
+                                {% elif pagination.number < 5 %}
+                                    {% for number in pagination.paginator.page_range|slice:'0:4' %}
+                                        {% include 'core/paginator-item.html' %}
+                                    {% endfor %}
+                                    <li class="active-blue-text margin-15"><span>...</span></li>
+                                    {% include 'investment_support_directory/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                {% elif pages_after_current < 4 %}
+                                    {% include 'core/paginator-item.html' with number='1' %}
+                                    <li class="active-blue-text margin-15"><span>...</span></li>
+                                    {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
+                                        {% include 'core/paginator-item.html' %}
+                                    {% endfor %}
+                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                {% else %}
+                                    {% include 'core/paginator-item.html' with number='1'%}
+                                    <li class="active-blue-text margin-15"><span>...</span></li>
+                                    {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
+                                    {% include 'core/paginator-item.html' with number=pagination.number %}
+                                    {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
+                                    <li class="active-blue-text margin-15"><span>...</span></li>
+                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                {% endif %}
+                            </ol>
+                        </span>
+                        {% if pagination.has_next %}
+                            <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
-</section>
+</form>
+{% endblock content %}
 
 
-{% endblock %}

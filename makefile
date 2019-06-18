@@ -74,7 +74,9 @@ DEBUG_SET_ENV_VARS := \
 	export PFP_API_CLIENT_BASE_URL=foo; \
 	export PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID=foo; \
     export PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY=foo; \
-    export PFP_AWS_S3_PDF_STORE_BUCKET_NAME=foo
+    export PFP_AWS_S3_PDF_STORE_BUCKET_NAME=foo; \
+    export DIRECTORY_API_CLIENT_BASE_URL=http://api.trade.great:8000; \
+    export DIRECTORY_API_CLIENT_API_KEY=debug
 
 TEST_SET_ENV_VARS := \
 	export DIRECTORY_FORMS_API_BASE_URL=http://forms.trade.great:8011; \

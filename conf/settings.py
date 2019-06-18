@@ -127,6 +127,7 @@ else:
 CACHES = {
     'default': cache,
     'cms_fallback': cache,
+    'api_fallback': cache,
 }
 
 # Internationalization
@@ -173,6 +174,16 @@ DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
 )
 DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
     'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
+)
+
+# directory API client
+DIRECTORY_API_CLIENT_BASE_URL = env.str('DIRECTORY_API_CLIENT_BASE_URL')
+DIRECTORY_API_CLIENT_API_KEY = env.str('DIRECTORY_API_CLIENT_API_KEY')
+DIRECTORY_API_CLIENT_SENDER_ID = env.str(
+    'DIRECTORY_API_CLIENT_SENDER_ID', 'directory'
+)
+DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT', 15
 )
 
 # EU exit

@@ -1,3 +1,5 @@
+from urllib.parse import urlencode
+from django.urls import reverse
 from django.utils import translation
 import requests
 
@@ -96,3 +98,14 @@ GA_DATA_MAPPING = {
 
 def get_ga_data_for_page(page_type):
     return GA_DATA_MAPPING[page_type]
+
+
+def get_paginator_url(filters):
+    url = reverse('opportunities')
+
+    querystring = urlencode({
+        key: value
+        for key, value in filters.items()
+        if value and key != 'page'
+    }, doseq=True)
+    return f'{url}?{querystring}'
