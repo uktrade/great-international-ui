@@ -41,4 +41,3 @@ def test_get_paginator_url():
     assert helpers.get_paginator_url(filters) == (
         reverse('opportunities') + '?'
     )
-
