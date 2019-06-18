@@ -124,16 +124,3 @@ class SubmitFormOnGetMixin:
 
     def get(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
-
-
-class PersistSearchQuerystringMixin:
-
-    @property
-    def search_querystring(self):
-        return self.request.GET.urlencode()
-
-    def get_context_data(self, **kwargs):
-        return super().get_context_data(
-            search_querystring=self.search_querystring,
-            **kwargs,
-        )
