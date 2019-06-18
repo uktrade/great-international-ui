@@ -41,4 +41,3 @@ class OpportunitySearchForm(forms.Form):
 
     def clean_page(self):
         return self.cleaned_data['page'] or self.fields['page'].initial
-
