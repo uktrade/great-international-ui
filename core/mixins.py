@@ -36,7 +36,8 @@ INTERNATIONAL_HEADER_AREA_MAPPING = {
     'InternationalCapitalInvestLandingPage': 'capital_invest',
     'CapitalInvestRegionPage': 'capital_invest',
     'CapitalInvestRegionalSectorPage': 'capital_invest',
-    'CapitalInvestOpportunityPage': 'capital_invest'
+    'CapitalInvestOpportunityPage': 'capital_invest',
+    'InternationalGuideLandingPage': 'expand'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
