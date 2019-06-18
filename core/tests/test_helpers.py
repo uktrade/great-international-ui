@@ -33,3 +33,12 @@ unslugify_slugs = [
 @pytest.mark.parametrize('slug,exp', unslugify_slugs)
 def test_unslugify(slug, exp):
     assert helpers.unslugify(slug) == exp
+
+
+def test_get_paginator_url():
+    filters = {'page': 2}
+
+    assert helpers.get_paginator_url(filters) == (
+        reverse('opportunities') + '?'
+    )
+
