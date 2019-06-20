@@ -41,11 +41,10 @@
     width: 100%;
   }
 
-  li .bold-small{
-    padding-bottom: $spacing-1;
+  .mobile-margin-bottom-60{
 
-    @media (max-width: 641px) {
-      padding-bottom: $spacing-1;
+    @media (max-width: 768px) {
+      margin-bottom: $spacing-1;
     }
 
   }

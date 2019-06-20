@@ -89,11 +89,6 @@ def capital_invest_page():
 
 
 @pytest.fixture
-def capital_invest_sector_page():
-    yield from stub_page({'page_type': 'CapitalInvestRegionalSectorPage'})
-
-
-@pytest.fixture
 def capital_invest_opportunity_page():
     yield from stub_page({'page_type': 'CapitalInvestOpportunityPage'})
 
@@ -368,6 +363,15 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
             ]
         },
         'page_type': 'InternationalSectorPage',
+        'related_opportunities': [
+            {
+                'title': 'Sector',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+        ],
         'statistics': [
             {'number': '1'},
             {'number': '2', 'heading': 'heading'},
@@ -489,43 +493,13 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
         json_payload=page
     )
 
-    request = rf.get('/international/content/capital-invest/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
-        request, path='/international/content/capital-invest/')
-
-    assert response.context_data['num_of_economics_statistics'] == 2
-    assert response.context_data['num_of_location_statistics'] == 1
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_capital_invest_regional_sector_page_url_constants(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestRegionalSectorPage'
-    }
-
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
-
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
     response = CMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
 
-    assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
-    assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
+    assert response.context_data['num_of_economics_statistics'] == 2
+    assert response.context_data['num_of_location_statistics'] == 1
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -569,24 +543,24 @@ def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.usefixtures('international_capital_invest_page')
+def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = True
+
+    response = client.get('/international/content/capital-invest/')
+
+    assert response.status_code == 200
+
+
 @pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
     client, settings
 ):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
 
     response = client.get('/international/content/midlands/')
-
-    assert response.status_code == 404
-
-
-@pytest.mark.usefixtures('capital_invest_sector_page')
-def test_capital_invest_sector_page_returns_404_when_feature_flag_off(
-    client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
-
-    response = client.get('/international/content/midlands/housing/')
 
     assert response.status_code == 404
 
@@ -595,11 +569,22 @@ def test_capital_invest_sector_page_returns_404_when_feature_flag_off(
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
     client, settings
 ):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_SECTOR_OPP_PAGES_ON'] = False
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
 
     response = client.get('/international/content/opportunities/ashton/')
 
     assert response.status_code == 404
+
+
+@pytest.mark.usefixtures('capital_invest_opportunity_page')
+def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = True
+
+    response = client.get('/international/content/opportunities/ashton/')
+
+    assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -613,3 +598,59 @@ def test_international_contact_form(mock_cms_response, client):
     response = client.get(url)
 
     assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_prioritised_opportunities_for_sector_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'sector'
+        },
+        'page_type': 'InternationalSectorPage',
+        'related_opportunities': [
+            {
+                'title': 'FalseSector',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': False
+            },
+            {
+                'title': 'TrueSector',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'some sector',
+                'scale': 'scale',
+                'prioritised_opportunity': True
+            },
+        ],
+        'statistics': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ],
+        'section_three_subsections': [
+            {'heading': 'heading'},
+            {'heading': 'heading-with-teaser', 'teaser': 'teaser'},
+            {'heading': None, 'teaser': 'teaser-without-heading'}
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/industries/sector')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/industries/sector')
+
+    assert len(response.context_data['prioritised_opportunities']) == 1
