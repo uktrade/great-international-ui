@@ -30,6 +30,16 @@ TEMPLATE_MAPPING = {
     'CapitalInvestOpportunityListingPage': 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # noqa
 }
 
+INTERNATIONAL_HEADER_AREA_MAPPING = {
+    'InternationalTopicLandingPage': 'industries',
+    'InternationalSectorPage': 'industries',
+    'InternationalCapitalInvestLandingPage': 'capital_invest',
+    'CapitalInvestRegionPage': 'capital_invest',
+    'CapitalInvestRegionalSectorPage': 'capital_invest',
+    'CapitalInvestOpportunityPage': 'capital_invest',
+    'InternationalGuideLandingPage': 'expand'
+}
+
 FEATURE_FLAGGED_URLS_MAPPING = {
     '/international/content/how-to-do-business-with-the-uk/': (
         'HOW_TO_DO_BUSINESS_ON'),
@@ -76,6 +86,12 @@ class CMSPageMixin:
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+    @property
+    def international_header_area(self):
+        if self.page['page_type'] not in INTERNATIONAL_HEADER_AREA_MAPPING:
+            return ""
+        return INTERNATIONAL_HEADER_AREA_MAPPING[self.page['page_type']]
 
     def dispatch(self, request, *args, **kwargs):
         """
