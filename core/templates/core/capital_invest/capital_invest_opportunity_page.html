@@ -8,7 +8,8 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% trans 'Opportunity' as hero_subtitle %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subtitle=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
     <div class="container">
