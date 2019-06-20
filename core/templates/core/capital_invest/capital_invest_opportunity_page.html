@@ -9,7 +9,7 @@
 {% block content %}
 
 {% trans 'Opportunity' as hero_subtitle %}
-{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subtitle=hero_subtitle background_image_url=page.hero_image.url %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subheading=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
     <div class="container">
@@ -20,7 +20,7 @@
                     <li><a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a></li>
                     <li><a href="{{ capital_invest_url }}">{% trans 'Invest Capital' %}</a></li>
                     <li><a href="{% url 'opportunities' %}">{% trans 'Opportunities' %}</a></li>
-                    <li aria-current="page">{{ breadcrumbs_label }}</li>
+                    <li aria-current="page">{{ page.breadcrumbs_label }}</li>
                 </ol>
             </nav>
         {% endga360_tracker %}
