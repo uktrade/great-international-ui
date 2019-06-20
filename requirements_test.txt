@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements_test.in
 #
--e git+https://github.com/uktrade/directory-components@nav-prototype-no-js#egg=directory_components
+-e git+https://github.com/uktrade/directory-components@nav-prototype-tabbed#egg=directory_components
 apipkg==1.5               # via execnet
 atomicwrites==1.2.1       # via pytest
 attrs==18.2.0             # via jsonschema, pytest
