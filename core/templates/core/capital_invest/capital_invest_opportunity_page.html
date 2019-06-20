@@ -15,7 +15,14 @@
     <div class="container">
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
         {% ga360_tracker "breadcrumbs" %}
-            {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+            <nav aria-label="Breadcrumb" class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a></li>
+                    <li><a href="{{ capital_invest_url }}">{% trans 'Invest Capital' %}</a></li>
+                    <li><a href="{% url 'opportunities' %}">{% trans 'Opportunities' %}</a></li>
+                    <li aria-current="page">{{ breadcrumbs_label }}</li>
+                </ol>
+            </nav>
         {% endga360_tracker %}
     </div>
 </section>

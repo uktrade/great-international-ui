@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-20 05:56+0000\n"
+"POT-Creation-Date: 2019-06-20 06:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,14 @@ msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
 msgid "Opportunity"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:21
+msgid "Invest Capital"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:22
+msgid "Opportunities"
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:68
