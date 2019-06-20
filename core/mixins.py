@@ -31,8 +31,8 @@ TEMPLATE_MAPPING = {
 }
 
 INTERNATIONAL_HEADER_AREA_MAPPING = {
-    'InternationalTopicLandingPage': 'industries',
-    'InternationalSectorPage': 'industries',
+    'InternationalTopicLandingPage': 'about_uk',
+    'InternationalSectorPage': 'about_uk',
     'InternationalCapitalInvestLandingPage': 'capital_invest',
     'CapitalInvestRegionPage': 'capital_invest',
     'CapitalInvestRegionalSectorPage': 'capital_invest',
