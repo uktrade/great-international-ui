@@ -2,19 +2,28 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study from directory_components %}
+{% load card hero add_export_elements_classes case_study ga360_tracker breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% trans 'Opportunity' as hero_subtitle %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subheading=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
     <div class="container">
-        {% url 'index' as index_url %}
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% ga360_tracker "breadcrumbs" %}
+            <nav aria-label="Breadcrumb" class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a></li>
+                    <li><a href="{{ capital_invest_url }}">{% trans 'Invest Capital' %}</a></li>
+                    <li><a href="{% url 'opportunities' %}">{% trans 'Opportunities' %}</a></li>
+                    <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+                </ol>
+            </nav>
+        {% endga360_tracker %}
     </div>
 </section>
 
@@ -44,59 +53,63 @@
 
 <section class="page-section capital-invest-region-icons-section">
     <div class="container">
-        <div class="grid-row ">
+        <div class="grid-row margin-bottom-60">
             <ul>
-                <li>
-                    {% if page.location and page.location_icon.url %}
-                        <div class="column-third-l column-half-m">
+                <li class="mobile-margin-bottom-60">
+                    {% if page.location_heading and page.location and page.location_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
-                            <p>Location</p>
-                            <p class="bold-small">{{ page.location }}</p>
+                            <p class="bold-medium">{{ page.location_heading }}</p>
+                            <p>{{ page.location }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
-                    {% if page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third-l column-half-m">
+                <li class="mobile-margin-bottom-60">
+                    {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
-                            <p>Project promoter</p>
-                            <p class="bold-small">{{ page.project_promoter }}</p>
+                            <p class="bold-medium">{{ page.project_promoter_heading }}</p>
+                            <p>{{ page.project_promoter }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
-                    {% if page.scale and page.scale_icon.url %}
-                        <div class="column-third-l column-half-m">
+                <li class="mobile-margin-bottom-60">
+                    {% if page.scale_heading and page.scale and page.scale_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
-                            <p>Scale</p>
-                            <p class="bold-small">{{ page.scale }}</p>
+                            <p class="bold-medium">{{ page.scale_heading }}</p>
+                            <p>{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
-                    {% if page.sector and page.sector_icon.url %}
-                        <div class="column-third-l column-half-m">
+            </ul>
+        </div>
+        <div class="grid-row">
+            <ul>
+                <li class="mobile-margin-bottom-60">
+                    {% if page.sector_heading and page.sector and page.sector_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
-                            <p>Sector</p>
-                            <p class="bold-small">{{ page.sector }}</p>
+                            <p class="bold-medium">{{ page.sector_heading }}</p>
+                            <p>{{ page.sector }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
-                    {% if page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third-l column-half-m">
+                <li class="mobile-margin-bottom-60">
+                    {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
-                            <p>Investment type</p>
-                            <p class="bold-small">{{ page.investment_type }}</p>
+                            <p class="bold-medium">{{ page.investment_type_heading }}</p>
+                            <p>{{ page.investment_type }}</p>
                         </div>
                     {% endif %}
                 </li>
                 <li>
-                    {% if page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third-l column-half-m">
+                    {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
+                        <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
-                            <p>Planning status</p>
-                            <p class="bold-small">{{ page.planning_status }}</p>
+                            <p class="bold-medium">{{ page.planning_status_heading }}</p>
+                            <p>{{ page.planning_status }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -116,10 +129,10 @@
                 </div>
             {%  endif %}
             {% if page.project_background_title and page.project_background_intro %}
-                <div class="column-half-l {% if page.project_image.url %} right-half-page-text {% endif %} padding-bottom-30">
+                <div class="column-half-l {% if page.project_image.url %} right-half-page-text-l {% endif %} padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_background_title }} </h2>
-                    <div class="font-medium padding-bottom-30 ">
-                        {{ page.project_background_intro}}
+                    <div class="font-small padding-bottom-30 ">
+                        {{ page.project_background_intro|add_export_elements_classes|safe }}
                     </div>
                 </div>
             {% endif %}
@@ -128,15 +141,15 @@
             {% if page.project_description_title and page.project_description_content %}
                 <div class="column-half-l padding-right-60 padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_description_title }}</h2>
-                    <div>
+                    <div class="font-small">
                         {{ page.project_description_content|add_export_elements_classes|safe }}
                     </div>
                 </div>
             {% endif %}
-            {% if page.project_promoter_title %}
-                <div class="column-half-l padding-right-60 right-half-page-text padding-bottom-30">
+            {% if page.project_promoter_title and page.project_promoter_content %}
+                <div class="column-half-l padding-right-60 right-half-page-text-l padding-bottom-30">
                     <h2 class="heading-large">{{ page.project_promoter_title }}</h2>
-                    <div>
+                    <div class="font-small">
                         {{ page.project_promoter_content|add_export_elements_classes|safe }}
                     </div>
                 </div>
@@ -145,11 +158,13 @@
     </div>
 </section>
 
-{% if page.case_study_title and page.case_study_cta_text and page.case_study_image.url %}
-    {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+{% if page.case_study_title and page.case_study_image.url %}
+    {% ga360_tracker "case-study-link" %}
+        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% endga360_tracker %}
 {% endif %}
 
-{% if page.related_pages|filter_by_active_language %}
+{% if page.similar_projects_title and page.related_pages|filter_by_active_language %}
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
         <div class="grid-row">
@@ -157,20 +172,15 @@
             {{ page.similar_projects_title}}
             </h1>
             {% for related_page in page.related_pages|filter_by_active_language %}
-                <div class="column-third-xl column-half-l column-full">
-                    <div class="card">
-                        <div class="card-inner wrap-tight padding-horizontal-45">
-                            <a href="{% url 'cms-page-from-path-with-two-slugs' 'opportunities' related_page.meta.slug %}" class="heading-medium">{{ related_page.title }}</a>
-                            <p>{{ related_page.location }}</p>
-                            <p class="bold-small">{{ related_page.scale }}</p>
-                            <p><u>Investment type: </u>{{ related_page.investment_type }}</p>
-                        </div>
-                    </div>
+                <div class="column-third-xl column-half-m">
+                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sector %}
                 </div>
             {% endfor %}
         </div>
         {% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
-            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+            {% ga360_tracker "related-page-link" %}
+                <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+            {% endga360_tracker %}
         {% endif %}
     </div>
 </section>

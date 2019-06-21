@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs card from directory_components %}
+{% load breadcrumbs card ga360_tracker from directory_components %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
 
@@ -22,7 +22,9 @@
 
     {% url 'industries' as industries_url %}
 
-    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.landing_page_title %}
+    {% ga360_tracker "breadcrumbs" %}
+      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.landing_page_title %}
+    {% endga360_tracker %}
   </div>
 </section>
 
@@ -32,7 +34,9 @@
       <div class="card-grid">
         {% for listing in page.child_pages|filter_by_active_language %}
           <div class="column-full column-third-l column-half-m">
-            {% include 'core/includes/card_with_publish_date.html' with listin=listing %}
+            {% ga360_tracker "related_page" ga-value=listing.heading %}
+              {% include 'core/includes/card_with_publish_date.html' with listing=listing %}
+            {% endga360_tracker %}
           </div>
         {% endfor %}
       </div>

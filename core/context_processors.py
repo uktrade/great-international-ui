@@ -25,6 +25,6 @@ def site_home_link(request):
     return {
         'site_home_link': {
             'url': reverse_lazy('index'),
-            'label': 'great.gov.uk International'
+            'label': translation.gettext('Great.gov.uk International')
         }
     }

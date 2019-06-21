@@ -22,37 +22,37 @@ def get_language_from_querystring(request):
 
 GA_DATA_MAPPING = {
     'InternationalHomePage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'HomePage',
         'site_subsection': ''
     },
     'InternationalTopicLandingPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'Topic',
         'site_subsection': 'ListingPage'
     },
     'InternationalArticleListingPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'Article',
         'site_subsection': 'ListingPage'
     },
     'InternationalArticlePage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'Article',
         'site_subsection': 'DetailPage'
     },
     'InternationalCampaignPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'Campaign',
         'site_subsection': 'LandingPage'
     },
     'InternationalSectorPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'Sector',
         'site_subsection': 'DetailPage'
     },
     'InternationalCuratedTopicLandingPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'CuratedTopic',
         'site_subsection': 'LandingPage'
     },
@@ -62,12 +62,12 @@ GA_DATA_MAPPING = {
         'site_subsection': 'ListingPage'
     },
     'InternationalEUExitFormPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'EUExit',
         'site_subsection': 'FormPage'
     },
     'InternationalEUExitFormSuccessPage': {
-        'business_unit': 'International',
+        'business_unit': 'GreatInternational',
         'site_section': 'EUExit',
         'site_subsection': 'FormSuccessPage'
     },
@@ -81,15 +81,15 @@ GA_DATA_MAPPING = {
         'site_section': 'Region',
         'site_subsection': 'DetailPage'
     },
-    'CapitalInvestRegionalSectorPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Region',
-        'site_subsection': 'SectorPage'
-    },
     'CapitalInvestOpportunityPage': {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Opportunity',
         'site_subsection': 'DetailPage'
+    },
+    'CapitalInvestOpportunityListingPage': {
+        'business_unit': 'CapitalInvestment',
+        'site_section': 'Opportunity',
+        'site_subsection': 'ListingPage'
     },
 }
 

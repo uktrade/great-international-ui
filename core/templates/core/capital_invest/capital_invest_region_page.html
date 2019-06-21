@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes statistics_card_grid case_study from directory_components %}
+{% load card hero add_export_elements_classes statistics_card_grid case_study breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-region-page{% endblock %}
 
@@ -12,9 +12,8 @@
 
 <section>
     <div class="container">
-        {% url 'index' as index_url %}
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% include 'directory_components/breadcrumbs.html' with left_url=index_url left_label='Great.gov.uk International' middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
     </div>
 </section>
 
@@ -38,29 +37,6 @@
                 </div>
             {%  endif %}
         </div>
-    </div>
-</section>
-{% endif %}
-
-{% if page.investment_opps_title and page.child_pages|filter_by_active_language %}
-<section class="capital-invest-region-page-section">
-    <div class="container">
-        <h1 class="heading-large">{{ page.investment_opps_title }}</h1>
-        <div class="grid-row">
-            <p class="column-half-l padding-bottom-30">{{ page.investment_opps_intro }}</p>
-        </div>
-        {% for sector_page in page.child_pages|filter_by_active_language %}
-            <div class="column-third-xl column-half-l column-full">
-                <div class="card">
-                    <div class="card-image" role="img" style="background-image: url({{ sector_page.image.url }});">
-                    </div>
-                    <div class="card-inner wrap-tight padding-horizontal-45">
-                        <a href="{% url 'cms-page-from-path-with-two-slugs' page.meta.slug sector_page.meta.slug %}"><h3 class="heading-large">{{ sector_page.title }}</h3></a>
-                        <p class="description">{{ sector_page.featured_description }}</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
     </div>
 </section>
 {% endif %}

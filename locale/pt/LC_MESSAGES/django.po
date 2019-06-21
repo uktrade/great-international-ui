@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-31 07:29+0000\n"
+"POT-Creation-Date: 2019-06-20 06:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/context_processors.py:28
+msgid "Great.gov.uk International"
+msgstr ""
 
 #: core/templates/404.html:12
 msgid "This page cannot be found"
@@ -42,13 +46,23 @@ msgstr ""
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:64
-#: core/templates/core/uk_setup_guide/guide_landing_page.html:91
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
+msgid "Opportunity"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:21
+msgid "Invest Capital"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:22
+msgid "Opportunities"
+msgstr ""
+
+#: core/templates/core/how_to_do_business_landing_page.html:68
 msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
-#: core/templates/core/how_to_do_business_landing_page.html:66
-#: core/templates/core/uk_setup_guide/guide_landing_page.html:92
+#: core/templates/core/how_to_do_business_landing_page.html:70
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
 "have questions, we can help."
@@ -56,8 +70,7 @@ msgstr ""
 "O Governo do Reino Unido ajuda as empresas a expandirem-se e a fazerem "
 "negócios com o Reino Unido. Se tiver dúvidas, podemos apoiá-lo"
 
-#: core/templates/core/how_to_do_business_landing_page.html:68
-#: core/templates/core/uk_setup_guide/guide_landing_page.html:93
+#: core/templates/core/how_to_do_business_landing_page.html:73
 msgid "Contact the EU Exit enquiry service"
 msgstr "Contacte o Serviço de informações sobre a saída da UE"
 
@@ -65,33 +78,123 @@ msgstr "Contacte o Serviço de informações sobre a saída da UE"
 msgid "Industries"
 msgstr "Indústrias"
 
-#: core/templates/core/sector_page.html:134
+#: core/templates/core/sector_page.html:162
 msgid "Next steps"
 msgstr "Próximas etapas"
 
-#: core/templates/core/sector_page.html:135
-#, fuzzy
-#| msgid ""
-#| "The UK Government’s Department for International Trade helps connect "
-#| "international buyers with UK companies. Tell us what products or services "
-#| "you’re looking for an we’ll find your ideal business partner."
+#: core/templates/core/sector_page.html:163
 msgid ""
-"The UK Government’s Department for International Trade helps connect "
-"international buyers with UK companies. Tell us what products or services "
-"you’re looking for and we’ll find your ideal business partner."
+"Whether you’re looking for a supplier or starting a business in the UK, we "
+"can help. Get in touch with us for simple, straightforward help and advice "
+"on how to do business in the UK."
 msgstr ""
 "No departamento de comércio internacional do Reino Unido, podemos ajudar "
 "você a encontrar os produtos e serviços certos do Reino Unido. Mais do que "
 "isso, oferecemos assessoria e suporte financeiro competitivo."
 
-#: core/templates/core/sector_page.html:140
+#: core/templates/core/sector_page.html:168
 msgid "I want to invest in the UK"
 msgstr "Eu quero investir no Reino Unido"
 
-#: core/templates/core/sector_page.html:144
+#: core/templates/core/sector_page.html:174
 msgid "I want to buy from the UK"
 msgstr "Eu quero comprar do Reino Unido"
 
 #: core/templates/core/uk_setup_guide/article_detail.html:23
 msgid "UK setup guide"
 msgstr "Guia para estabelecer no Reino Unido"
+
+#: perfect_fit_prospectus/forms.py:14
+msgid "Name"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:18
+msgid "Company"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:23
+msgid "Email"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:28
+msgid "Phone number (optional)"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:34
+msgid "Country"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:4
+msgid "Perfect Fit Prospectus"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:14
+msgid "PERFECT FIT"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:32
+msgid ""
+"\n"
+"              <p>\n"
+"              If you're thinking about expanding your business\n"
+"              internationally, the UK could be the perfect fit.\n"
+"              To explore what the UK has to offer, download your\n"
+"              <span class=\"bold\">Perfect Fit Prospectus</span> today.\n"
+"              </p>\n"
+"              <p>\n"
+"              Simply enter your details below to access a wealth of\n"
+"              insight into the UK's business environment tailored to\n"
+"              your business together with help and advice.\n"
+"              </p>\n"
+"              "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:90
+msgid ""
+"\n"
+"                      <p>\n"
+"                      The Department for International Trade will use the "
+"information provided in this form to send you your report. You can read "
+"about how we protect your data through our <a href=\"https://invest.great."
+"gov.uk/privacy-and-cookies/\" target=\"_blank\">privacy policy</a>.\n"
+"                      </p>\n"
+"                      <p>\n"
+"If you would like to receive further information about setting up your "
+"business in the UK, you can subscribe to our mailing list.\n"
+"                </p>\n"
+"                      "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:106
+msgid ""
+"\n"
+"        I would like to receive further information.\n"
+"        "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:119
+msgid "Submit"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:125
+#, python-format
+msgid ""
+"\n"
+"          Thank You. Your Perfect Fit Prospectus has been emailed to "
+"%(email)s\n"
+"        "
+msgstr ""
+
+#, fuzzy
+#~| msgid ""
+#~| "The UK Government’s Department for International Trade helps connect "
+#~| "international buyers with UK companies. Tell us what products or "
+#~| "services you’re looking for an we’ll find your ideal business partner."
+#~ msgid ""
+#~ "The UK Government’s Department for International Trade helps connect "
+#~ "international buyers with UK companies. Tell us what products or services "
+#~ "you’re looking for and we’ll find your ideal business partner."
+#~ msgstr ""
+#~ "No departamento de comércio internacional do Reino Unido, podemos ajudar "
+#~ "você a encontrar os produtos e serviços certos do Reino Unido. Mais do "
+#~ "que isso, oferecemos assessoria e suporte financeiro competitivo."
