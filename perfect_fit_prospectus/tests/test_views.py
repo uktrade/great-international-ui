@@ -1,3 +1,4 @@
+import pytest
 from unittest import mock
 
 from botocore.exceptions import ClientError
@@ -52,10 +53,9 @@ def test_perfect_fit_main_view_get(mock_get_options, client):
 
 @patch('pir_client.client.pir_api_client.create_report')
 @patch('pir_client.client.pir_api_client.get_options')
-def test_perfect_fit_main_view_post_client_error(mock_get_options,
-                                                 mock_create_report,
-                                                 client,
-                                                 captcha_stub):
+def test_perfect_fit_main_view_post_client_error(
+    mock_get_options, mock_create_report, client, captcha_stub
+):
     mock_get_options.return_value = OPTIONS_DATA
     mock_create_report.side_effect = HTTPError
 
@@ -69,17 +69,15 @@ def test_perfect_fit_main_view_post_client_error(mock_get_options,
         'gdpr_optin': 'on'
     }
     url = reverse('perfect_fit_prospectus:main')
-    response = client.post(url, data=valid_data)
-    assert response.context['error'] == 'Something is wrong with ' \
-                                        'the service. ' \
-                                        'Please try again later'
+    with pytest.raises(HTTPError):
+        client.post(url, data=valid_data)
 
 
 @patch('pir_client.client.pir_api_client.create_report')
 @patch('pir_client.client.pir_api_client.get_options')
-def test_perfect_fit_main_view_post_valid_data(mock_get_options,
-                                               mock_create_report,
-                                               captcha_stub, client):
+def test_perfect_fit_main_view_post_valid_data(
+    mock_get_options, mock_create_report, captcha_stub, client
+):
     mock_get_options.return_value = OPTIONS_DATA
 
     valid_data = {
@@ -94,14 +92,24 @@ def test_perfect_fit_main_view_post_valid_data(mock_get_options,
 
     url = reverse('perfect_fit_prospectus:main')
     response = client.post(url, data=valid_data)
-    assert response.context['email'] == 'ted@example.com'
+    assert response.status_code == 302
+
+    success_response = client.post(
+        url, data=valid_data, follow=True)
+    assert success_response.status_code == 200
+
+    messages = [
+        message.message for message in
+        list(success_response.context['messages'])]
+    assert 'ted@example.com' in messages[0]
+
     assert mock_create_report.called is True
     assert mock_create_report.call_args == mock.call(
         {
-                 'name': 'Ted', 'company': 'Corp', 'email': 'ted@example.com',
-                 'phone_number': '', 'country': 'US', 'gdpr_optin': True,
-                 'captcha': 'PASSED', 'sector': 'tech'
-             }
+            'name': 'Ted', 'company': 'Corp', 'email': 'ted@example.com',
+            'phone_number': '', 'country': 'US', 'gdpr_optin': True,
+            'captcha': 'PASSED', 'sector': 'tech'
+        }
     )
 
 
