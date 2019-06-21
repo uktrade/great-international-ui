@@ -22,6 +22,7 @@
 - CI-217: Update Django Version to fix security vulnerability.
 
 ### Implemented enhancements
+- CMS-1677 - Refactored and tidied up Perfect Fit Prospectus. Upgraded directory-components to use new style breadcrumbs.
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
 - CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
@@ -31,7 +32,7 @@
 - CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
 - CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
 - CI-154 - Changed hard coded text in guide landing page to come from cms
-- CI-146 - Changed English copy that was hard coded text in sector page 
+- CI-146 - Changed English copy that was hard coded text in sector page
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 - CI-145 - Use invest logo in header
 - CMS-1577 - Update content on EU Exit CTA buttons
