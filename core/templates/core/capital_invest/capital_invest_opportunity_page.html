@@ -13,6 +13,7 @@
 
 <section>
     <div class="container">
+      {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
         {% ga360_tracker "breadcrumbs" %}
           {% breadcrumbs page.breadcrumbs_label %}
             <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
