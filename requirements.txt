@@ -56,3 +56,6 @@ w3lib==1.19.0             # via directory-client-core
 waitress==0.8.9
 whitenoise==3.3.1
 zenpy==1.1.10
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools==41.0.1        # via jsonschema, waitress
