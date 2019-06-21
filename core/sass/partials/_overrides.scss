@@ -10,3 +10,9 @@
 section {
   padding-bottom: 0;
 }
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+  width: 100%;
+}
