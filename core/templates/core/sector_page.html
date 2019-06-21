@@ -12,11 +12,11 @@
 <section id="breadcrumb-section">
   <div class="container">
 
-    {% url 'industries' as industries_url %}
-    {% trans 'Industries' as industries_label %}
-
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.heading %}<a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>{% endbreadcrumbs %}
+      {% breadcrumbs page.heading %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'industries' %}">{% trans 'Industries' %}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 </section>

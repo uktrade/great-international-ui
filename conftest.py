@@ -7,6 +7,8 @@ import pytest
 from django.conf import settings
 from django.utils import translation
 
+from core import context_processors
+
 
 @pytest.fixture()
 def captcha_stub():
@@ -14,6 +16,11 @@ def captcha_stub():
     os.environ['RECAPTCHA_TESTING'] = 'True'
     yield 'PASSED'
     os.environ['RECAPTCHA_TESTING'] = 'False'
+
+
+@pytest.fixture
+def default_context():
+    return context_processors.site_home_link(None)
 
 
 @pytest.fixture

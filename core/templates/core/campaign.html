@@ -10,7 +10,9 @@
 
   <div class="container white-text">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.campaign_heading %}<a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>{% endbreadcrumbs %}
+      {% breadcrumbs page.campaign_heading %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
 
     <div class="hero-title">

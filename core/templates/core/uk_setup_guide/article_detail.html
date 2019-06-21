@@ -19,10 +19,12 @@
 
   {% block breadcrumbs %}
   <div class="container">
-    {% url 'how-to-setup-in-the-uk' as setup_url %}
-    {% trans 'UK setup guide' as setup_label %}
+
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.display_title %}<a href="{{ site_home_link.url }}"></a><a href="{{ setup_url }}">{{ setup_label }}</a>{% endbreadcrumbs %}
+      {% breadcrumbs page.display_title %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'how-to-setup-in-the-uk' %}">{% trans 'UK setup guide' %}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
   {% endblock %}
