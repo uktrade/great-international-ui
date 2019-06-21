@@ -1,7 +1,7 @@
 import boto3
 from botocore.exceptions import ClientError
 
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import FormView, TemplateView
@@ -15,6 +15,10 @@ from perfect_fit_prospectus.forms import PerfectFitProspectusForm
 from directory_components.mixins import CountryDisplayMixin
 
 from pir_client.client import pir_api_client
+
+
+class PFPClientError(HTTPError):
+    pass
 
 
 class PerfectFitProspectusMainView(
@@ -38,8 +42,8 @@ class PerfectFitProspectusMainView(
 
         try:
             options = pir_api_client.get_options()
-        except HTTPError:
-            raise HTTPError(status=500)
+        except PFPClientError:
+            raise HttpResponse(status=500)
 
         sector_choices = [
             (sector['value'], sector['display_name'])

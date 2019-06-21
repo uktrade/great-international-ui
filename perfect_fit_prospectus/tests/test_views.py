@@ -51,6 +51,15 @@ def test_perfect_fit_main_view_get(mock_get_options, client):
     assert response.status_code == 200
 
 
+@patch('pir_client.client.pir_api_client.get_options')
+def test_perfect_fit_main_view_get_error(mock_get_options, client):
+    mock_get_options.side_effect = HTTPError
+    with pytest.raises(HTTPError):
+        url = reverse('perfect_fit_prospectus:main')
+        response = client.get(url)
+        assert response.status_code == 500
+
+
 @patch('pir_client.client.pir_api_client.create_report')
 @patch('pir_client.client.pir_api_client.get_options')
 def test_perfect_fit_main_view_post_client_error(
