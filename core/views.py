@@ -223,3 +223,21 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
     }
+
+
+class BlankPage(InternationalHeaderMixin, TemplateView):
+
+    @property
+    def template_name(self):
+        return self.kwargs['template']
+
+    @property
+    def international_header_area(self):
+        return self.kwargs['header_area']
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            blank_page_title=self.kwargs['title'],
+            *args,
+            **kwargs
+        )

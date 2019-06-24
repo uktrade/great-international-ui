@@ -103,4 +103,121 @@ urlpatterns = [
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path-with-two-slugs"
     ),
+    url(
+        r'^international/the-uk/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'About the UK',
+            'header_area': 'about_uk'
+        }
+    ),
+    url(
+        r'^international/the-uk/regions/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank_regions.html",
+            'title': 'UK regions',
+            'header_area': 'about_uk'
+        }
+    ),
+    url(
+        r'^international/invest-capital/types/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank_investment_types.html",
+            'title': 'Investment types',
+            'header_area': 'capital_invest'
+         }
+    ),
+    url(
+        r'^international/invest-capital/types/venture-capital/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Venture capital',
+            'header_area': 'capital_invest'
+         }
+    ),
+    url(
+        r'^international/invest-capital/types/invest-in-infrastructure/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Invest in infrastructure',
+            'header_area': 'capital_invest'
+         }
+    ),
+    url(
+        r'^international/invest-capital/types/invest-in-energy/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Invest in energy',
+            'header_area': 'capital_invest'
+         }
+    ),
+    url(
+        r'^international/invest-capital/types/invest-in-real-estate/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Invest in real estate',
+            'header_area': 'capital_invest'
+         }
+    ),
+    url(
+        r'^international/invest-capital/opportunities/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Investment opportunities',
+            'header_area': 'capital_invest'
+        }
+    ),
+    url(
+        r'^international/invest-capital/guides/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Investment guides',
+            'header_area': 'capital_invest'
+        }
+    ),
+    url(
+        r'^international/import/guides/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Buying guides',
+            'header_area': 'find_a_supplier'
+        }
+    ),
+    url(
+        r'^international/about-dit/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'About DIT',
+            'header_area': 'about_dit'
+        }
+    ),
+    url(
+        r'^international/about-dit/case-studies/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'Success stories',
+            'header_area': 'about_dit'
+        }
+    ),
+    url(
+        r'^international/latest/$',
+        skip_ga360(core.views.BlankPage.as_view()),
+        {
+            'template': "core/blank.html",
+            'title': 'News and events',
+            'header_area': 'news_and_events'
+        }
+    )
 ]
