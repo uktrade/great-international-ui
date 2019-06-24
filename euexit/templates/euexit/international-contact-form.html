@@ -10,7 +10,7 @@
 {% block content %}
   {% block breadcrumbs %}
   <div class="container">
-    {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.breadcrumbs_label %}
+      {% breadcrumbs page.breadcrumbs_label %}<a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>{% endbreadcrumbs %}
   </div>
   {% endblock %}
 

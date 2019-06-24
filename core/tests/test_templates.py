@@ -64,10 +64,15 @@ def test_article_detail_page_no_related_content():
             'slug': 'foo',
         },
         'page_type': 'InternationalArticlePage',
+        'display_title': 'test display title'
     }
 
     context = {
-        'page': test_article_page_no_related_content
+        'page': test_article_page_no_related_content,
+        'site_home_link': {
+            'url': 'test_home_link_url',
+            'label': 'test_home_link_label'
+        }
     }
 
     html = render_to_string('core/uk_setup_guide/article_detail.html', context)
@@ -109,10 +114,15 @@ def test_article_detail_page_related_content():
             'slug': 'foo',
         },
         'page_type': 'InternationalArticlePage',
+        'display_title': 'test display title'
     }
 
     context = {
-        'page': article_page
+        'page': article_page,
+        'site_home_link': {
+            'url': 'test_home_link_url',
+            'label': 'test_home_link_label'
+        }
     }
 
     html = render_to_string('core/uk_setup_guide/article_detail.html', context)
@@ -211,7 +221,11 @@ campaign_page_all_fields = {
 def test_marketing_campaign_page_all_fields():
 
     context = {
-        'page': campaign_page_all_fields
+        'page': campaign_page_all_fields,
+        'site_home_link': {
+            'url': 'test_home_link_url',
+            'label': 'test_home_link_label'
+        }
     }
 
     html = render_to_string('core/campaign.html', context)
@@ -318,7 +332,11 @@ campaign_page_required_fields = {
 def test_marketing_campaign_page_required_fields():
 
     context = {
-        'page': campaign_page_required_fields
+        'page': campaign_page_required_fields,
+        'site_home_link': {
+            'url': 'test_home_link_url',
+            'label': 'test_home_link_label'
+        }
     }
 
     html = render_to_string('core/campaign.html', context)
@@ -509,6 +527,11 @@ def test_article_count_with_regional_articles(
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
             },
+            'display_title': 'test display title'
+        },
+        'site_home_link': {
+            'url': 'test_home_link_url',
+            'label': 'test_home_link_label'
         }
     }
 
