@@ -2,6 +2,17 @@
 
 ## Pre-release
 
+### Fixed bugs:
+
+### Implemented enhancements
+- CMS-1594 - Add perfect fit prospectus views to International UI
+- CI-250 - Added an opportunity listing page template and put it behind a feature flag
+- No ticket - Added 'Opportunity' Subheading for opportunity pages
+- No ticket - Update breadcrumbs on opportunity pages.
+
+## [2019.06.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.06.13)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.16...2019.06.13)
+
 ### Fixed bugs
 - No ticket - Fix healthchecks
 - Upgrade cms client to prevent uncached pages being treated as cached
@@ -29,11 +40,6 @@
 - CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
 - CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
 - CI-250 - Gave opportunity listing page a template and put it behind a feature flag
-- CMS-1594 - Add perfect fit prospectus views to International UI
-- CI-250 - Added an opportunity listing page template and put it behind a feature flag
-- No ticket - Added 'Opportunity' Subheading for opportunity pages
-- No ticket - Update breadcrumbs on opportunity pages.
-- No ticket - Update `directory-components` to `18.1.0`
 
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
