@@ -21,7 +21,7 @@
     <div class="flex-grid">
       <div class="column-half">
         <div class="card cta-image-card">
-          <img class="width-full" src="{{ page.invest_image.url }}" alt="">
+          <img class="width-full lazyload" data-src="{{ page.invest_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.invest_title }}</h2>
             <div class="padding-30">
@@ -32,7 +32,7 @@
       </div>
       <div class="column-half">
         <div class="card cta-image-card">
-          <img class="width-full" src="{{ page.trade_image.url }}" alt="">
+          <img class="width-full lazyload" data-src="{{ page.trade_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.trade_title }}</h2>
             <div class="padding-30">
@@ -56,7 +56,7 @@
     <div class="grid-row">
       {% for subsection in page.section_two_subsections %}
         <div class="column-full column-third-l">
-          <img class="features-highlight-icon" src="{{ subsection.icon.url }}"/>
+          <img class="features-highlight-icon lazyload" data-src="{{ subsection.icon.url }}"/>
           <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
           <p class="font-xsmall">{{ subsection.body }}</p>
         </div>
@@ -70,7 +70,7 @@
 	<div class="container">
 		<div class="grid-row" >
 			<div class="column-full column-half-l margin-vertical-60 tariffs-image">
-				<img class="width-full" src="{{ page.tariffs_image.url }}" alt="">
+				<img class="width-full lazyload" data-src="{{ page.tariffs_image.url }}" alt="">
 			</div>
 			<div class="column-full column-half-l margin-vertical-60 tariffs-content-wrapper">
 				<div class="padding-horizontal-45 wrap-tight tariffs-content">
