@@ -92,7 +92,12 @@ urlpatterns = [
         {'path': 'opportunities'},
         name="opportunities"
     ),
-    # ----
+    url(
+        r"^international/invest-capital/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'capital-invest'},
+        name="invest-capital-home"
+    ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
