@@ -22,7 +22,7 @@
     {% url 'how-to-setup-in-the-uk' as setup_url %}
     {% trans 'UK setup guide' as setup_label %}
     {% ga360_tracker "breadcrumbs" %}
-        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=setup_url middle_label=setup_label right_label=page.display_title %}
+      {% breadcrumbs page.display_title %}<a href="{{ site_home_link.url }}"></a><a href="{{ setup_url }}">{{ setup_label }}</a>{% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
   {% endblock %}

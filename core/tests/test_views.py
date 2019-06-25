@@ -47,7 +47,8 @@ dummy_page = {
             ['de', 'Deutsch'],
         ]
     },
-    'page_type': 'InternationalHomePage'
+    'page_type': 'InternationalHomePage',
+    'display_title': 'test display title'
 }
 
 
@@ -159,6 +160,7 @@ def test_article_detail_page_social_share_links(
             'languages': [('en-gb', 'English')],
         },
         'page_type': 'InternationalArticlePage',
+        'display_title': 'test display title'
     }
 
     url = '/international/content/topic/bar/foo/'
@@ -218,6 +220,7 @@ def test_article_detail_page_social_share_links_no_title(
             'languages': [('en-gb', 'English')],
         },
         'page_type': 'InternationalArticlePage',
+        'display_title': 'test display title'
     }
 
     url = '/international/content/topic/bar/foo/'
@@ -416,7 +419,8 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
         'meta': {
             'slug': 'slug',
             'languages': [('en-gb', 'English')],
-        }
+        },
+        'landing_page_title': 'test page title'
     }
 
     mock_get_page.return_value = create_response(

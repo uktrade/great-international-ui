@@ -15,7 +15,8 @@ def test_international_form(mock_lookup_by_slug, client):
     mock_lookup_by_slug.return_value = create_response(
         status_code=200, json_payload={
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage'
+            'page_type': 'InternationalEUExitFormPage',
+            'breadcrumbs_label': 'breadcrumb'
         }
     )
 
@@ -50,7 +51,8 @@ def test_international_form_cms_retrieval_ok(
                 'label': 'Family name'
             },
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage'
+            'page_type': 'InternationalEUExitFormPage',
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
     url = reverse('eu-exit-international-contact-form')
@@ -73,7 +75,8 @@ def test_international_form_submit(
     mock_lookup_by_slug.return_value = create_response(
         status_code=200, json_payload={
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage'
+            'page_type': 'InternationalEUExitFormPage',
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
     settings.EU_EXIT_ZENDESK_SUBDOMAIN = 'eu-exit-subdomain'
@@ -118,7 +121,8 @@ def test_form_success_page(mock_lookup_by_slug, client):
         json_payload={
             'body_text': 'what next',
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormSuccessPage'
+            'page_type': 'InternationalEUExitFormSuccessPage',
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
     url = reverse('eu-exit-international-contact-form-success')
@@ -131,7 +135,8 @@ def test_form_success_page(mock_lookup_by_slug, client):
     assert response.context_data['page'] == {
         'body_text': 'what next',
         'disclaimer': 'disclaim',
-        'page_type': 'InternationalEUExitFormSuccessPage'
+        'page_type': 'InternationalEUExitFormSuccessPage',
+        'breadcrumbs_label': 'breadcrumbs label'
     }
 
 
@@ -140,7 +145,8 @@ def test_form_urls(mock_lookup_by_slug, client):
     mock_lookup_by_slug.return_value = create_response(
         status_code=200, json_payload={
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage'
+            'page_type': 'InternationalEUExitFormPage',
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
     url = reverse('eu-exit-international-contact-form')
@@ -159,7 +165,8 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
         status_code=200,
         json_payload={
             'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage'
+            'page_type': 'InternationalEUExitFormPage',
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
 
@@ -208,6 +215,7 @@ def test_page_url_mismatch_404_template_mapping(
             'localised_child_pages': [],
             'child_pages': [],
             'related_pages': [],
+            'breadcrumbs_label': 'breadcrumbs label'
         }
     )
 
