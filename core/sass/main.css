@@ -495,12 +495,9 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-page .width-100 {
   width: 100%;
 }
-.capital-invest-opportunity-page li .icon-text {
-  padding-bottom: 60px;
-}
-@media (max-width: 641px) {
-  .capital-invest-opportunity-page li .icon-text {
-    padding-bottom: 60px;
+@media (max-width: 768px) {
+  .capital-invest-opportunity-page .mobile-margin-bottom-60 {
+    margin-bottom: 60px;
   }
 }
 @media (max-width: 641px) {

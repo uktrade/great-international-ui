@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 09:38+0000\n"
+"POT-Creation-Date: 2019-06-20 06:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,18 @@ msgstr ""
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
+msgid "Opportunity"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:21
+msgid "Invest Capital"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:22
+msgid "Opportunities"
+msgstr ""
+
 #: core/templates/core/how_to_do_business_landing_page.html:68
 msgid "Need help?"
 msgstr "Sie brauchen Hilfe?"
@@ -67,11 +79,11 @@ msgstr "Wenden Sie sich an den Auskunftsdienst zum EU-Austritt."
 msgid "Industries"
 msgstr "Branchen"
 
-#: core/templates/core/sector_page.html:139
+#: core/templates/core/sector_page.html:162
 msgid "Next steps"
 msgstr "Nächste Schritte"
 
-#: core/templates/core/sector_page.html:140
+#: core/templates/core/sector_page.html:163
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
@@ -82,17 +94,98 @@ msgstr ""
 "finden. Darüber hinaus bieten wir Ihnen kompetente Beratung und "
 "Unterstützung bei einer wettbewerbsfähigen Finanzierung."
 
-#: core/templates/core/sector_page.html:145
+#: core/templates/core/sector_page.html:168
 msgid "I want to invest in the UK"
 msgstr "Ich möchte in Großbritannien investieren"
 
-#: core/templates/core/sector_page.html:151
+#: core/templates/core/sector_page.html:174
 msgid "I want to buy from the UK"
 msgstr "Ich möchte aus Großbritannien einkaufen"
 
 #: core/templates/core/uk_setup_guide/article_detail.html:23
 msgid "UK setup guide"
 msgstr "Leitfaden Unternehmensgründung"
+
+#: perfect_fit_prospectus/forms.py:14
+msgid "Name"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:18
+msgid "Company"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:23
+msgid "Email"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:28
+msgid "Phone number (optional)"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:34
+msgid "Country"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:4
+msgid "Perfect Fit Prospectus"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:14
+msgid "PERFECT FIT"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:32
+msgid ""
+"\n"
+"              <p>\n"
+"              If you're thinking about expanding your business\n"
+"              internationally, the UK could be the perfect fit.\n"
+"              To explore what the UK has to offer, download your\n"
+"              <span class=\"bold\">Perfect Fit Prospectus</span> today.\n"
+"              </p>\n"
+"              <p>\n"
+"              Simply enter your details below to access a wealth of\n"
+"              insight into the UK's business environment tailored to\n"
+"              your business together with help and advice.\n"
+"              </p>\n"
+"              "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:90
+msgid ""
+"\n"
+"                      <p>\n"
+"                      The Department for International Trade will use the "
+"information provided in this form to send you your report. You can read "
+"about how we protect your data through our <a href=\"https://invest.great."
+"gov.uk/privacy-and-cookies/\" target=\"_blank\">privacy policy</a>.\n"
+"                      </p>\n"
+"                      <p>\n"
+"If you would like to receive further information about setting up your "
+"business in the UK, you can subscribe to our mailing list.\n"
+"                </p>\n"
+"                      "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:106
+msgid ""
+"\n"
+"        I would like to receive further information.\n"
+"        "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:119
+msgid "Submit"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/index.html:125
+#, python-format
+msgid ""
+"\n"
+"          Thank You. Your Perfect Fit Prospectus has been emailed to "
+"%(email)s\n"
+"        "
+msgstr ""
 
 #, fuzzy
 #~| msgid ""

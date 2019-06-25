@@ -8,13 +8,21 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% trans 'Opportunity' as hero_subtitle %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subheading=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
     <div class="container">
         {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
         {% ga360_tracker "breadcrumbs" %}
-            {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+            <nav aria-label="Breadcrumb" class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a></li>
+                    <li><a href="{{ capital_invest_url }}">{% trans 'Invest Capital' %}</a></li>
+                    <li><a href="{% url 'opportunities' %}">{% trans 'Opportunities' %}</a></li>
+                    <li aria-current="page">{{ page.breadcrumbs_label }}</li>
+                </ol>
+            </nav>
         {% endga360_tracker %}
     </div>
 </section>
@@ -45,32 +53,32 @@
 
 <section class="page-section capital-invest-region-icons-section">
     <div class="container">
-        <div class="grid-row ">
+        <div class="grid-row margin-bottom-60">
             <ul>
-                <li>
+                <li class="mobile-margin-bottom-60">
                     {% if page.location_heading and page.location and page.location_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p class="bold-medium">{{ page.location_heading }}</p>
-                            <p class="icon-text">{{ page.location }}</p>
+                            <p>{{ page.location }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
+                <li class="mobile-margin-bottom-60">
                     {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.project_promoter_heading }}</p>
-                            <p class="icon-text">{{ page.project_promoter }}</p>
+                            <p>{{ page.project_promoter }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
+                <li class="mobile-margin-bottom-60">
                     {% if page.scale_heading and page.scale and page.scale_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.scale_heading }}</p>
-                            <p class="icon-text">{{ page.scale }}</p>
+                            <p>{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -78,21 +86,21 @@
         </div>
         <div class="grid-row">
             <ul>
-                <li>
+                <li class="mobile-margin-bottom-60">
                     {% if page.sector_heading and page.sector and page.sector_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.sector_heading }}</p>
-                            <p class="icon-text">{{ page.sector }}</p>
+                            <p>{{ page.sector }}</p>
                         </div>
                     {% endif %}
                 </li>
-                <li>
+                <li class="mobile-margin-bottom-60">
                     {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.investment_type_heading }}</p>
-                            <p class="icon-text">{{ page.investment_type }}</p>
+                            <p>{{ page.investment_type }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -101,7 +109,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.planning_status_heading }}</p>
-                            <p class="icon-text">{{ page.planning_status }}</p>
+                            <p>{{ page.planning_status }}</p>
                         </div>
                     {% endif %}
                 </li>
