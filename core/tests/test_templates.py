@@ -17,7 +17,7 @@ dummy_page = {
 }
 
 
-def test_homepage_button_how_to_do_business_feature_off():
+def test_homepage_button_how_to_do_business_feature_off(default_context):
 
     page = dummy_page.copy()
     page['hero_cta_text'] = 'Hero CTA text'
@@ -26,7 +26,8 @@ def test_homepage_button_how_to_do_business_feature_off():
         'page': page,
         'features': {
             'HOW_TO_DO_BUSINESS_ON': False,
-        }
+        },
+        **default_context
     }
 
     template_name = 'core/landing_page.html'
@@ -35,7 +36,7 @@ def test_homepage_button_how_to_do_business_feature_off():
     assert 'Hero CTA text' not in html
 
 
-def test_homepage_button_how_to_do_business_feature_on():
+def test_homepage_button_how_to_do_business_feature_on(default_context):
 
     page = dummy_page.copy()
     page['hero_cta_text'] = 'Hero CTA text'
@@ -44,7 +45,8 @@ def test_homepage_button_how_to_do_business_feature_on():
         'page': page,
         'features': {
             'HOW_TO_DO_BUSINESS_ON': True,
-        }
+        },
+        **default_context
     }
 
     template_name = 'core/landing_page.html'
@@ -52,9 +54,10 @@ def test_homepage_button_how_to_do_business_feature_on():
     assert 'Hero CTA text' in html
 
 
-def test_article_detail_page_no_related_content():
+def test_article_detail_page_no_related_content(default_context):
     test_article_page_no_related_content = {
         'title': 'Test article',
+        'display_title': 'Test article',
         'subheading': 'Test teaser',
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
@@ -67,7 +70,8 @@ def test_article_detail_page_no_related_content():
     }
 
     context = {
-        'page': test_article_page_no_related_content
+        'page': test_article_page_no_related_content,
+        **default_context
     }
 
     html = render_to_string('core/uk_setup_guide/article_detail.html', context)
@@ -75,10 +79,11 @@ def test_article_detail_page_no_related_content():
     assert 'Related content' not in html
 
 
-def test_article_detail_page_related_content():
+def test_article_detail_page_related_content(default_context):
 
     article_page = {
         'title': 'Test article',
+        'display_title': 'Test article',
         'subheading': 'Test teaser',
         'article_image': {'url': 'foobar.png'},
         'article_body_text': '<p>Lorem ipsum</p>',
@@ -112,7 +117,8 @@ def test_article_detail_page_related_content():
     }
 
     context = {
-        'page': article_page
+        'page': article_page,
+        **default_context
     }
 
     html = render_to_string('core/uk_setup_guide/article_detail.html', context)
@@ -208,10 +214,11 @@ campaign_page_all_fields = {
 }
 
 
-def test_marketing_campaign_page_all_fields():
+def test_marketing_campaign_page_all_fields(default_context):
 
     context = {
-        'page': campaign_page_all_fields
+        'page': campaign_page_all_fields,
+        **default_context
     }
 
     html = render_to_string('core/campaign.html', context)
@@ -315,10 +322,11 @@ campaign_page_required_fields = {
 }
 
 
-def test_marketing_campaign_page_required_fields():
+def test_marketing_campaign_page_required_fields(default_context):
 
     context = {
-        'page': campaign_page_required_fields
+        'page': campaign_page_required_fields,
+        **default_context
     }
 
     html = render_to_string('core/campaign.html', context)
@@ -365,7 +373,7 @@ def test_marketing_campaign_page_required_fields():
         )[0].text == campaign_page_required_fields['campaign_heading']
 
 
-def test_homepage_no_related_pages():
+def test_homepage_no_related_pages(default_context):
     context = {
         'page': {
             'page_type': 'InternationalHomePage',
@@ -375,7 +383,8 @@ def test_homepage_no_related_pages():
                 'languages': [('en-gb', 'English')],
             },
             'related_pages': []
-        }
+        },
+        **default_context
     }
 
     html = render_to_string('core/landing_page.html', context)
@@ -383,7 +392,7 @@ def test_homepage_no_related_pages():
     assert 'News title' not in html
 
 
-def test_homepage_related_pages():
+def test_homepage_related_pages(default_context):
     context = {
         'page': {
             'page_type': 'InternationalHomePage',
@@ -424,7 +433,8 @@ def test_homepage_related_pages():
                     'https://great.gov.uk/international/campaigns/campaign',
                 },
             ]
-        }
+        },
+        **default_context
     }
 
     html = render_to_string('core/landing_page.html', context)
@@ -497,11 +507,12 @@ test_localised_child_pages = [
     ),
 ))
 def test_article_count_with_regional_articles(
-    localised_articles, total_articles
+    localised_articles, total_articles, default_context
 ):
     context = {
         'page': {
             'page_type': 'InternationalArticleListingPage',
+            'display_title': 'Article list',
             'articles_count': 4,
             'localised_child_pages': localised_articles,
             'child_pages': [],
@@ -509,7 +520,8 @@ def test_article_count_with_regional_articles(
                 'slug': 'slug',
                 'languages': [('en-gb', 'English')],
             },
-        }
+        },
+        **default_context
     }
 
     html = render_to_string('core/article_list.html', context)

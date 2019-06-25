@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load i18n static %}
+{% load hero breadcrumbs message_box from directory_components %}
+
+{% block head_title %}{% trans "Perfect Fit Prospectus" %}{% endblock %}
+
+{% block css_layout_class %}perfect-fit{% endblock %}
+
+{% block content %}
+
+<section>
+  <div class="container">
+    {% breadcrumbs 'Success' %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      <a href="{% url 'perfect_fit_prospectus:main' %}">Perfect fit</a>
+    {% endbreadcrumbs %}
+
+    <div class="width-two-thirds">
+      {% if messages %}
+        {% for message in messages %}
+          {% message_box heading_level='h1' heading='Complete' description=message %}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

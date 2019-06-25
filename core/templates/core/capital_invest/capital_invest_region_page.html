@@ -12,8 +12,10 @@
 
 <section>
     <div class="container">
-        {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% breadcrumbs page.breadcrumbs_label %}
+          <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+        {% endbreadcrumbs %}
     </div>
 </section>
 
