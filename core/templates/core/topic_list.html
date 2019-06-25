@@ -23,7 +23,9 @@
     {% url 'industries' as industries_url %}
 
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.landing_page_title %}<a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>{% endbreadcrumbs %}
+      {% breadcrumbs page.landing_page_title %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 </section>

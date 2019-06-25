@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
@@ -85,6 +86,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
+                'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
                 'core.context_processors.site_home_link',
                 'directory_components.context_processors.analytics',

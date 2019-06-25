@@ -5,8 +5,6 @@ from django.forms import TextInput
 from directory_components import forms, fields
 from django_countries.data import COUNTRIES
 
-from pir_client.client import pir_api_client
-
 
 class PerfectFitProspectusForm(forms.Form):
     name = fields.CharField(
@@ -38,22 +36,19 @@ class PerfectFitProspectusForm(forms.Form):
         )
     )
 
-    gdpr_optin = fields.BooleanField(initial=False, required=False)
+    gdpr_optin = fields.BooleanField(
+        label=_('I would like to receive further information.'),
+        initial=False,
+        required=False
+    )
+
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
     )
 
-    def __init__(self, *args, **kwargs):
-        super(PerfectFitProspectusForm, self).__init__(*args, **kwargs)
-        options = pir_api_client.get_options()
-
-        sector_choices = [
-            (
-                o['value'],
-                o['display_name']) for o in options['sector']['choices']
-        ]
-
+    def __init__(self, sector_choices, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.fields['sector'] = fields.ChoiceField(
             label='Sector',
             choices=sector_choices

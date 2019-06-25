@@ -7,7 +7,9 @@
 <section class="background-white">
   <div class="container">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs 'Contact us' %}<a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>{% endbreadcrumbs %}
+      {% breadcrumbs 'Contact us' %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 
