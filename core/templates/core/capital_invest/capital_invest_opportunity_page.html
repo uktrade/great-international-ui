@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study ga360_tracker breadcrumbs from directory_components %}
+{% load card hero add_export_elements_classes case_study breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
@@ -12,15 +12,13 @@
 {% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subheading=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
-    <div class="container">
-      {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% ga360_tracker "breadcrumbs" %}
-          {% breadcrumbs page.breadcrumbs_label %}
-            <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-            <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
-          {% endbreadcrumbs %}
-        {% endga360_tracker %}
-    </div>
+  <div class="container">
+    {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
+      {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+      {% endbreadcrumbs %}
+  </div>
 </section>
 
 {% if page.opportunity_summary_intro %}
@@ -155,9 +153,7 @@
 </section>
 
 {% if page.case_study_title and page.case_study_image.url %}
-    {% ga360_tracker "case-study-link" %}
-        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
-    {% endga360_tracker %}
+    {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
 {% if page.similar_projects_title and page.related_pages|filter_by_active_language %}
@@ -174,9 +170,7 @@
             {% endfor %}
         </div>
         {% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
-            {% ga360_tracker "related-page-link" %}
-                <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
-            {% endga360_tracker %}
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
         {% endif %}
     </div>
 </section>

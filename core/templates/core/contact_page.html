@@ -1,16 +1,14 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
 {% load trans from i18n %}
-{% load breadcrumbs banner ga360_tracker from directory_components %}
+{% load breadcrumbs banner from directory_components %}
 
 {% block content %}
 <section class="background-white">
   <div class="container">
-    {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs 'Contact us' %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
-    {% endga360_tracker %}
+    {% breadcrumbs 'Contact us' %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
   </div>
 
   <div class="container">
@@ -20,19 +18,13 @@
         <p>Contact us if you:</p>
         <ul class="list list-bullet">
           <li>
-            {% ga360_tracker "contact-link" %}
-              <a class="link" href="{{ invest_contact_us_url }}">want to set up your business in the UK</a>
-            {% endga360_tracker %}
+            <a class="link" href="{{ invest_contact_us_url }}">want to set up your business in the UK</a>
           </li>
           <li>
-            {% ga360_tracker "contact-link" %}
-              <a class="link" href="{{ services_urls.fas }}industries/contact/">want to contact or buy from UK companies</a>
-            {% endga360_tracker %}
+            <a class="link" href="{{ services_urls.fas }}industries/contact/">want to contact or buy from UK companies</a>
           </li>
           <li>
-            {% ga360_tracker "contact-link" %}
-              <a class="link" href="{% url 'eu-exit-international-contact-form' %}">have a question about the UK’s exit from the European Union</a>
-            {% endga360_tracker %}
+            <a class="link" href="{% url 'eu-exit-international-contact-form' %}">have a question about the UK’s exit from the European Union</a>
           </li>
         </ul>
       </div>
