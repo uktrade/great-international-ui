@@ -25,7 +25,7 @@ from core.context_modifiers import (
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
     TEMPLATE_MAPPING,
-    INTERNATIONAL_HEADER_AREA_MAPPING,
+    INTERNATIONAL_HEADER_MAPPING,
     NotFoundOnDisabledFeature,
     RegionalContentMixin)
 
@@ -54,14 +54,19 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
-
         return TEMPLATE_MAPPING[self.page['page_type']]
 
     @property
     def international_header_area(self):
-        if self.page['page_type'] not in INTERNATIONAL_HEADER_AREA_MAPPING:
+        if self.page['page_type'] not in INTERNATIONAL_HEADER_MAPPING:
             return ""
-        return INTERNATIONAL_HEADER_AREA_MAPPING[self.page['page_type']]
+        return INTERNATIONAL_HEADER_MAPPING[self.page['page_type']]['area']  # noqa
+
+    @property
+    def international_header_selected_page(self):
+        if self.page['page_type'] not in INTERNATIONAL_HEADER_MAPPING:
+            return ""
+        return INTERNATIONAL_HEADER_MAPPING[self.page['page_type']]['selected_page']  # noqa
 
     @cached_property
     def page(self):
@@ -234,6 +239,10 @@ class BlankPage(InternationalHeaderMixin, TemplateView):
     @property
     def international_header_area(self):
         return self.kwargs['header_area']
+
+    @property
+    def international_header_selected_page(self):
+        return self.kwargs['header_selected_page']
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(

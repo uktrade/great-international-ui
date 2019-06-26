@@ -30,14 +30,37 @@ TEMPLATE_MAPPING = {
     'CapitalInvestOpportunityListingPage': 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # noqa
 }
 
-INTERNATIONAL_HEADER_AREA_MAPPING = {
-    'InternationalTopicLandingPage': 'about_uk',
-    'InternationalSectorPage': 'about_uk',
-    'InternationalCapitalInvestLandingPage': 'capital_invest',
-    'CapitalInvestRegionPage': 'capital_invest',
-    'CapitalInvestRegionalSectorPage': 'capital_invest',
-    'CapitalInvestOpportunityPage': 'capital_invest',
-    'InternationalGuideLandingPage': 'expand'
+INTERNATIONAL_HEADER_MAPPING = {
+    'InternationalTopicLandingPage': {
+        'area': 'about_uk',
+        'selected_page': 'industries'
+    },
+    'InternationalSectorPage': {
+        'area': 'about_uk',
+        'selected_page': 'industries'
+    },
+    'InternationalCapitalInvestLandingPage': {
+        'area': 'capital_invest',
+        'selected_page': 'capital_invest_home'
+    },
+    'CapitalInvestRegionPage': {
+        'area': 'capital_invest'
+    },
+    'CapitalInvestRegionalSectorPage': {
+        'area': 'capital_invest'
+    },
+    'CapitalInvestOpportunityPage': {
+        'area': 'capital_invest',
+        'selected_page': 'investment_opportunities'
+    },
+    'InternationalGuideLandingPage': {
+        'area': 'expand',
+        'selected_page': 'uk_setup_guide'
+    },
+    'InternationalArticlePage': {
+        'area': 'expand',
+        'selected_page': 'uk_setup_guide'
+    }
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {

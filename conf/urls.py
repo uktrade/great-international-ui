@@ -109,7 +109,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'About the UK',
-            'header_area': 'about_uk'
+            'header_area': 'about_uk',
+            'header_selected_page': 'about_uk_home'
         }
     ),
     url(
@@ -118,7 +119,8 @@ urlpatterns = [
         {
             'template': "core/blank_regions.html",
             'title': 'UK regions',
-            'header_area': 'about_uk'
+            'header_area': 'about_uk',
+            'header_selected_page': 'regions'
         }
     ),
     url(
@@ -127,7 +129,8 @@ urlpatterns = [
         {
             'template': "core/blank_investment_types.html",
             'title': 'Investment types',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_types'
          }
     ),
     url(
@@ -136,7 +139,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Venture capital',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_types'
          }
     ),
     url(
@@ -145,7 +149,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Invest in infrastructure',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_types'
          }
     ),
     url(
@@ -154,7 +159,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Invest in energy',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_types'
          }
     ),
     url(
@@ -163,7 +169,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Invest in real estate',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_types'
          }
     ),
     url(
@@ -172,7 +179,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Investment opportunities',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_opportunities'
         }
     ),
     url(
@@ -181,7 +189,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Investment guides',
-            'header_area': 'capital_invest'
+            'header_area': 'capital_invest',
+            'header_selected_page': 'investment_guides'
         }
     ),
     url(
@@ -190,7 +199,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Buying guides',
-            'header_area': 'find_a_supplier'
+            'header_area': 'find_a_supplier',
+            'header_selected_page': 'import_guides'
         }
     ),
     url(
@@ -199,7 +209,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'About DIT',
-            'header_area': 'about_dit'
+            'header_area': 'about_dit',
+            'header_selected_page': 'about_dit_home'
         }
     ),
     url(
@@ -208,7 +219,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'Success stories',
-            'header_area': 'about_dit'
+            'header_area': 'about_dit',
+            'header_selected_page': 'dit_case_studies'
         }
     ),
     url(
@@ -217,7 +229,8 @@ urlpatterns = [
         {
             'template': "core/blank.html",
             'title': 'News and events',
-            'header_area': 'news_and_events'
+            'header_area': 'news_and_events',
+            'header_selected_page': ''
         }
     )
 ]
