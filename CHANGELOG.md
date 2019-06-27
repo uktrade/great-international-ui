@@ -3,6 +3,9 @@
 ## Pre-release
 
 ### Fixed bugs:
+- No ticket - Changed `card-grid` to `flex-grid` on CI landing page, region and opp pages
+- No ticket - Opportunity card changes to reflect new card component changes
+
 
 ### Implemented enhancements
 - CMS-1594 - Add perfect fit prospectus views to International UI
@@ -21,7 +24,7 @@
 - Fix Article Listing Page failing to render
 - Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
 - CI-217: Update Django Version to fix security vulnerability.
-- No ticket - Changed `card-grid` to `flex-grid` on CI landing page, region and opp pages
+
 
 ### Implemented enhancements
 - CMS-1677 - Refactored and tidied up Perfect Fit Prospectus. Upgraded directory-components to use new style breadcrumbs.
