@@ -50,7 +50,7 @@ olefile==0.44             # via directory-validators, pillow
 phonenumberslite==7.7.4   # via directory-validators
 pillow==4.2.1             # via directory-validators
 pip-tools==3.8.0
-pir-client==0.2.0
+pir-client==1.0.0
 pluggy==0.7.1             # via pytest
 py==1.5.2                 # via pytest, pytest-catchlog
 pycodestyle==2.0.0        # via flake8

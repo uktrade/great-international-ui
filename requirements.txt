@@ -39,7 +39,7 @@ monotonic==1.4            # via directory-client-core
 olefile==0.44             # via directory-validators, pillow
 phonenumberslite==7.7.4   # via directory-validators
 pillow==4.2.1             # via directory-validators
-pir-client==0.2.0
+pir-client==1.0.0
 pyrsistent==0.15.2        # via jsonschema
 python-dateutil==2.6.1    # via botocore, dateparser, zenpy
 pytz==2017.2              # via dateparser, directory-validators, django, tzlocal
