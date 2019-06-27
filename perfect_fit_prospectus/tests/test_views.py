@@ -8,37 +8,41 @@ from django.urls import reverse
 from requests import HTTPError
 
 OPTIONS_DATA = {
-    "country": {
-        "choices": [
-            {
-                "value": "AF",
-                "display_name": "Afghanistan"
+    'actions': {
+        'POST': {
+            'country': {
+                'choices': [
+                    {
+                        'value': 'AF',
+                        'display_name': 'Afghanistan'
+                    },
+                ]
             },
-        ]
-    },
-    "market": {
-        "choices": [
-            {
-                "value": "africa",
-                "display_name": "africa"
+            'market': {
+                'choices': [
+                    {
+                        'value': 'africa',
+                        'display_name': 'africa'
+                    },
+                    {
+                        'value': 'canada',
+                        'display_name': 'canada'
+                    }
+                ]
             },
-            {
-                "value": "canada",
-                "display_name": "canada"
+            'sector': {
+                'choices': [
+                    {
+                        'value': 'tech',
+                        'display_name': 'Technology'
+                    },
+                    {
+                        'value': 'automotive',
+                        'display_name': 'Automotive'
+                    },
+                ]
             }
-        ]
-    },
-    "sector": {
-        "choices": [
-            {
-                "value": "tech",
-                "display_name": "Technology"
-            },
-            {
-                "value": "automotive",
-                "display_name": "Automotive"
-            },
-        ]
+        }
     }
 }
 
