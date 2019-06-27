@@ -35,7 +35,7 @@ class PerfectFitProspectusMainView(
         kwargs = super().get_form_kwargs()
 
         response = pir_api_client.get_options()
-        options = response['actions']['POST']
+        options = response.json()['actions']['POST']
 
         sector_choices = [
             (sector['value'], sector['display_name'])
