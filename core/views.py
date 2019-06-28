@@ -255,20 +255,30 @@ class OpportunitySearchView(
 
     @property
     def filtered_opportunities(self):
-        filtered_opportunities = self.opportunities
 
-        if 'sector' in self.kwargs:
-            filtered_opportunities = [opportunity for opportunity in
-                                      filtered_opportunities if
-                                      opportunity.sector == self.kwargs[
-                                          'sector']]
+        not_filtered_opportunities = self.opportunities
+        filtered_opportunities = []
 
-        if 'scale' in self.kwargs:
-            filtered_opportunities = [opportunity for opportunity in
-                                      filtered_opportunities if
-                                      opportunity.scale == self.kwargs[
-                                          'scale']]
-        return filtered_opportunities
+        if self.scale and self.sector:
+            for opp in not_filtered_opportunities:
+                if opp['sector'] == self.sector and opp['scale'] == self.scale:
+                    filtered_opportunities.append(opp)
+            return filtered_opportunities
+
+        if self.sector:
+            for opp in not_filtered_opportunities:
+                if opp['sector'] == self.sector:
+                    filtered_opportunities.append(opp)
+            return filtered_opportunities
+
+        if self.scale:
+            for opp in not_filtered_opportunities:
+                if opp['scale'] == self.scale:
+                    filtered_opportunities.append(opp)
+            return filtered_opportunities
+
+        else:
+            return not_filtered_opportunities
 
     @property
     def num_of_opportunities(self):
