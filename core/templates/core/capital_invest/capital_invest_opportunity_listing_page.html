@@ -6,31 +6,61 @@
 {% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
 
 {% block content %}
+
 <section id="breadcrumb-section">
   <div class="container">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=invest_url middle_label="Invest" right_label=page.breadcrumbs_label %}
+      {% breadcrumbs page.breadcrumbs_label %}
+          <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+        {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 </section>
+
 <form>
     <div class="page-title">
         <div class="container">
             <div class="grid-row">
                 <div class="column-two-thirds">
-                    {% if pagination.paginator.count %}
-                        <h2 class="heading-medium">{{ pagination.paginator.count }} {% if page.search_results_title %} {{page.search_results_title}} {% else %} {{pagination.paginator.count|pluralize:'result,results'}} found {% endif %} </h2>
-                    {% else %}
-                        <h2 class="heading-medium">No results found {% if form.q.value %}for <mark>{{ form.q.value }}</mark>{% endif %}</h2>
-                    {% endif %}
+                    <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="down-arrow"></div>
+
+    <div class="container" >
+        <div class="grid-row">
+            <div class="column-quarter-xl">
+                <section class="margin-bottom-15 font-small">
+                    <span>Filter results</span>
+                </section>
+            </div>
+        </div>
+    </div>
 
     <div class="container" id="main-content">
         <div class="grid-row">
+
+            <div class="column-quarter-xl">
+                <section class="margin-bottom-15">
+                    <select name="sectors" class="filter-options max-width-100 font-small margin-bottom-30">
+                        <option value="" >Sector</option>
+                        {% for sector in sectors %}
+                            <option value="{{sector}}">{{ sector }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="sectors" class="filter-options max-width-100 font-small">
+                        <option value="">Scale</option>
+                       {% for scale in scales %}
+                       <option value="{{scale}}">{{ scale }} </option>
+                       {% endfor %}
+                    </select>
+                </section>
+            </div>
+
             <div class="column-three-quarters-xl">
                 <ul>
                     {% for opportunity in results %}
@@ -52,7 +82,8 @@
                         <h2 class="heading-medium">No results</h2>
                     {% endfor %}
                 </ul>
-                {% if pagination.paginator.num_pages > 1 %}
+
+                 {% if pagination.paginator.num_pages > 1 %}
                     <div class="paginator">
                         {% if pagination.has_previous %}
                             <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
@@ -67,7 +98,7 @@
                                         {% include 'core/paginator-item.html' %}
                                     {% endfor %}
                                     <li class="active-blue-text margin-15"><span>...</span></li>
-                                    {% include 'investment_support_directory/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
                                 {% elif pages_after_current < 4 %}
                                     {% include 'core/paginator-item.html' with number='1' %}
                                     <li class="active-blue-text margin-15"><span>...</span></li>
@@ -91,7 +122,9 @@
                         {% endif %}
                     </div>
                 {% endif %}
+
             </div>
+
         </div>
     </div>
 </form>

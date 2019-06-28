@@ -1,8 +1,11 @@
+from urllib.parse import urlencode
+
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
+from django.urls import reverse
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -218,7 +221,6 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 
 class OpportunitySearchView(
     CountryDisplayMixin,
-    SubmitFormOnGetMixin,
     GA360Mixin,
     FormView,
     TemplateView
@@ -247,51 +249,77 @@ class OpportunitySearchView(
         )
         return handle_cms_response(response)
 
-    def get_context_data(self, **kwargs):
+    @property
+    def opportunities(self):
+        return self.page['opportunity_list']
+
+    @property
+    def filtered_opportunities(self):
+        filtered_opportunities = self.opportunities
+
+        if 'sector' in self.kwargs:
+            filtered_opportunities = [opportunity for opportunity in
+                                      filtered_opportunities if
+                                      opportunity.sector == self.kwargs[
+                                          'sector']]
+
+        if 'scale' in self.kwargs:
+            filtered_opportunities = [opportunity for opportunity in
+                                      filtered_opportunities if
+                                      opportunity.scale == self.kwargs[
+                                          'scale']]
+        return filtered_opportunities
+
+    @property
+    def num_of_opportunities(self):
+        return len(self.filtered_opportunities)
+
+    @property
+    def page_number(self):
+        return self.request.GET.get('page', '1')
+
+    @property
+    def sector(self):
+        return self.request.GET.get('sector', '')
+
+    @property
+    def scale(self):
+        return self.request.GET.get('scale', '')
+
+    @property
+    def pagination(self):
+        paginator = Paginator(range(self.num_of_opportunities), self.page_size)
+        return paginator.page(self.page_number)
+
+    @property
+    def results_for_page(self):
+        max_value = self.page_size*int(self.page_number)
+        min_value = max_value - self.page_size
+        return self.filtered_opportunities[min_value:max_value:1]
+
+    def get_context_data(self, *args, **kwargs):
+
+        sectors = []
+        for opp in self.opportunities:
+            if opp['sector'] not in sectors:
+                sectors.append(opp['sector'])
+
+        scales = []
+        for opp in self.opportunities:
+            if opp['scale'] not in scales:
+                scales.append(opp['scale'])
+
         return super().get_context_data(
             show_search_guide='show-guide' in self.request.GET,
             page=self.page,
             invest_url=urls.SERVICES_INVEST,
-            **kwargs,
+            num_of_opportunities=self.num_of_opportunities,
+            opportunities=self.opportunities,
+            filtered_opportunities=self.filtered_opportunities,
+            sectors=sectors,
+            scales=scales,
+            pagination=self.pagination,
+            paginator_url=helpers.get_paginator_url(self.request.GET),
+            results=self.results_for_page,
+            *args, **kwargs,
         )
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        if 'data' not in kwargs:
-            kwargs['data'] = {}
-        return kwargs
-
-    def form_valid(self, form):
-        results, count = self.get_results_and_count(form)
-        try:
-            paginator = Paginator(range(count), self.page_size)
-            pagination = paginator.page(form.cleaned_data['page'])
-        except EmptyPage:
-            return self.handle_empty_page(form)
-        else:
-            context = self.get_context_data(
-                results=results,
-                pagination=pagination,
-                form=form,
-                pages_after_current=paginator.num_pages - pagination.number,
-                paginator_url=helpers.get_paginator_url(form.cleaned_data)
-            )
-            return TemplateResponse(self.request, self.template_name, context)
-
-    def get_results_and_count(self, form):
-        data = form.cleaned_data
-        response = cms_api_client.list_by_page_type(
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-            offset=(data['page']-1)*self.page_size,
-            limit=self.page_size,
-            page_type="great_international.CapitalInvestOpportunityPage"
-        )
-        cms_response = handle_cms_response(response)
-        print('\n\n\n\n\n\n\n this will be the reuslts ', cms_response['items'])
-        return cms_response['items'], cms_response['meta']['total_count']
-
-    @staticmethod
-    def handle_empty_page(form):
-        # get_paginator_url returns urls wih all active filters except `page`
-        return redirect(helpers.get_paginator_url(form.cleaned_data))

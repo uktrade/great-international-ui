@@ -189,6 +189,12 @@ section {
   padding-bottom: 0;
 }
 
+input.form-control,
+textarea.form-control,
+select.form-control {
+  width: 100%;
+}
+
 .cta-block .cta-block-image {
   width: 100%;
   height: auto;
@@ -556,6 +562,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
   border-color: #f2eee8 transparent transparent transparent;
   line-height: 0px;
   margin: auto auto 30px;
+}
+.capital-invest-opportunity-listing-page .filter-options {
+  border: 0px;
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 5px;
 }
 .capital-invest-opportunity-listing-page .card-image-left {
   margin: 0;

@@ -39,5 +39,9 @@ class OpportunitySearchForm(forms.Form):
         initial=1,
     )
 
+    sector = fields.CharField(max_length=255, required=False)
+
+    scale = fields.CharField(max_length=255, required=False)
+
     def clean_page(self):
         return self.cleaned_data['page'] or self.fields['page'].initial

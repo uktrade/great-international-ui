@@ -43,6 +43,12 @@
     margin: auto auto 30px;
   }
 
+  .filter-options{
+    border: 0px;
+    border-bottom: 1px solid $light-grey;
+    padding-bottom: 5px;
+  }
+
   .card-image-left {
     margin: 0;
     min-height: 225px;
