@@ -25,7 +25,9 @@
 
   <div class="container">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.display_title %}
+      {% breadcrumbs page.display_title %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 

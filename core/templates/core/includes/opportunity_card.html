@@ -1,11 +1,9 @@
 {% load ga360_tracker from directory_components %}
 
 <div class="card">
-    <div class="card-image"
-        role="img"
-        style="background-image: url({{ image_url }});">
-        <p class="visually-hidden">{{ img_alt }}</p>
-    </div>
+    {% if image_url %}
+      <img class="card-image" src="{{ image_url }}" alt="{{ img_alt }}" >
+    {% endif %}
     <div class="card-inner wrap-tight padding-horizontal-45">
         {% ga360_tracker "related-page-link" %}
             <a href="{{ link }}" class="heading-medium">{{ title }}</a>

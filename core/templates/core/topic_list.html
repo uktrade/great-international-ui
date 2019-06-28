@@ -23,7 +23,9 @@
     {% url 'industries' as industries_url %}
 
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.landing_page_title %}
+      {% breadcrumbs page.landing_page_title %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 </section>
@@ -31,7 +33,7 @@
 <section class="topic-list-section background-stone-30 padding-vertical-60">
     <div class="container">
       {% block child_pages %}
-      <div class="card-grid">
+      <div class="flex-grid">
         {% for listing in page.child_pages|filter_by_active_language %}
           <div class="column-full column-third-l column-half-m">
             {% ga360_tracker "related_page" ga-value=listing.heading %}

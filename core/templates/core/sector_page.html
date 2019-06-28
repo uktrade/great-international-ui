@@ -12,11 +12,11 @@
 <section id="breadcrumb-section">
   <div class="container">
 
-    {% url 'industries' as industries_url %}
-    {% trans 'Industries' as industries_label %}
-
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=industries_url middle_label=industries_label right_label=page.heading %}
+      {% breadcrumbs page.heading %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'industries' %}">{% trans 'Industries' %}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
   </div>
 </section>
@@ -108,7 +108,7 @@
 <section id="related-opportunity-section" class="related-opportunity-section">
     <div class="container wrap-tight">
         <h2 class="heading-large margin-bottom-45">{{ page.project_opportunities_title }}</h2>
-        <div class="card-grid">
+        <div class="flex-grid">
             {% for opportunity in prioritised_opportunities %}
                 <div class="column-third-xl column-half-m">
                     {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sector %}
@@ -185,7 +185,7 @@
 <section id="sector-news-events-section" class="news-events background-stone-30 padding-vertical-60">
   <div class="container">
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
-    <div class="card-grid">
+    <div class="flex-grid">
       {% for related_page in related_pages %}
         <div class="column-full column-half-l column-third-xl">
           {% ga360_tracker "related-page-card" ga-value=related_page.title %}

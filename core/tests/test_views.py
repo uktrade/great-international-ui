@@ -40,6 +40,8 @@ test_sectors = [
 
 dummy_page = {
     'title': 'test',
+    'display_title': 'Title',
+    'breadcrumbs_label': 'Title',
     'meta': {
         'languages': [
             ['en-gb', 'English'],
@@ -47,7 +49,7 @@ dummy_page = {
             ['de', 'Deutsch'],
         ]
     },
-    'page_type': 'InternationalHomePage'
+    'page_type': 'InternationalHomePage',
 }
 
 
@@ -146,7 +148,8 @@ def test_article_detail_page_social_share_links(
 ):
 
     test_article_page = {
-        'title': 'Test article admin title',
+        'title': 'Test article',
+        'display_title': 'Test article',
         'article_title': 'Test article',
         'article_image': {'url': 'foobar.png'},
         'article_body_text': '<p>Lorem ipsum</p>',
@@ -207,6 +210,7 @@ def test_article_detail_page_social_share_links_no_title(
 
     test_article_page = {
         'title': 'Test article admin title',
+        'display_title': 'Test article',
         'article_image': {'url': 'foobar.png'},
         'article_body_text': '<p>Lorem ipsum</p>',
         'related_pages': [],
@@ -399,11 +403,10 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_industries_page_renames_heading_to_landing_page_title(
-    mock_get_page, client
-):
+def test_industry_page_context_modifier_renames_heading(mock_get_page, client):
     page = {
         'title': 'test',
+        'landing_page_title': 'Industries',
         'page_type': 'InternationalTopicLandingPage',
         'child_pages': [
             {
@@ -413,12 +416,13 @@ def test_get_industries_page_renames_heading_to_landing_page_title(
                 },
             }
         ],
+        'statistics': [],
+        'section_three_subsections': [],
         'meta': {
             'slug': 'slug',
             'languages': [('en-gb', 'English')],
-        }
+        },
     }
-
     mock_get_page.return_value = create_response(
         status_code=200,
         json_payload=page

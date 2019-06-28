@@ -37,11 +37,11 @@ urlpatterns = [
     url(
         r"^international/$",
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'international/'},
+        {'path': '/'},
         name="index"
     ),
     url(
-        r'^international/perfectfit/',
+        r'^international/invest/perfectfit/',
         include(
             'perfect_fit_prospectus.urls',
             namespace='perfect_fit_prospectus'
@@ -92,7 +92,12 @@ urlpatterns = [
         {'path': 'opportunities'},
         name="opportunities"
     ),
-    # ----
+    url(
+        r"^international/invest-capital/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'capital-invest'},
+        name="invest-capital-home"
+    ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),

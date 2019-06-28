@@ -8,13 +8,17 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url %}
+{% trans 'Opportunity' as hero_subtitle %}
+{% include 'directory_components/hero.html' with hero_text=page.hero_title hero_subheading=hero_subtitle background_image_url=page.hero_image.url %}
 
 <section>
     <div class="container">
-        {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
+      {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
         {% ga360_tracker "breadcrumbs" %}
-            {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+          {% breadcrumbs page.breadcrumbs_label %}
+            <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+            <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+          {% endbreadcrumbs %}
         {% endga360_tracker %}
     </div>
 </section>
@@ -22,7 +26,7 @@
 {% if page.opportunity_summary_intro %}
 <section class="page-section">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             <div class="column-half-l left-half-page-text">
                 <div class="font-medium padding-bottom-30">
                     {{ page.opportunity_summary_intro}}
@@ -112,7 +116,7 @@
 
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             {% if page.project_image.url %}
                 <div class="column-half-l padding-bottom-30">
                     <figure class="flex-shrink-0 padding-top-45">

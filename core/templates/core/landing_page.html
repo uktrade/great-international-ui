@@ -18,7 +18,7 @@
 
 <section id="featured-cards-section" class="featured-cards-section padding-vertical-60 landing-page-section">
   <div class="container">
-    <div class="card-grid">
+    <div class="flex-grid">
       <div class="column-half">
         <div class="card cta-image-card">
           <img class="width-full" src="{{ page.invest_image.url }}" alt="">
@@ -125,7 +125,7 @@
         <p>{{ page.featured_links_summary }}</p>
       </div>
     </div>
-    <div class="card-grid">
+    <div class="flex-grid">
       <div class="column-third-xl column-half-l column-full">
         {% ga360_tracker "cta" %}
           {% cta_card with_arrow=True url=header_footer_urls.industries image_url=page.featured_links.0.image.url text=page.featured_links.0.heading %}
@@ -151,7 +151,7 @@
 <section id="news-events-section" class="news-events-section padding-vertical-60 landing-page-section">
   <div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
-    <div class="card-grid">
+    <div class="flex-grid">
     {% for related_page in related_pages %}
       {% if related_page.page_type == 'InternationalArticlePage' %}
         {% include 'core/includes/featured_article_card.html' with url=related_page.meta.url default_subheading="Article" %}

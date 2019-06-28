@@ -10,7 +10,9 @@
 
   <div class="container white-text">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label right_label=page.campaign_heading %}
+      {% breadcrumbs page.campaign_heading %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
     {% endga360_tracker %}
 
     <div class="hero-title">
@@ -31,7 +33,7 @@
       </div>
     </div>
 
-    <div class="card-grid reverse-columns-s">
+    <div class="flex-grid reverse-columns-s">
 
       <div class="column-third">
         <ul class="selling-points-list" id="campaign-selling-points">
@@ -83,7 +85,7 @@
 
 <section id="campaign-section-two" class="background-stone-50 padding-vertical-60">
   <div class="container">
-    <div class="card-grid margin-bottom-30 reverse-columns-s">
+    <div class="flex-grid margin-bottom-30 reverse-columns-s">
 
       <div class="column-third">
         <h2 id="section-two-heading" class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>

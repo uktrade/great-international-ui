@@ -1,7 +1,7 @@
 from directory_components.decorators import skip_ga360
 from django.conf.urls import url
 from perfect_fit_prospectus.views import PerfectFitProspectusMainView, \
-    PerfectFitProspectusReportProxyView
+    PerfectFitProspectusReportProxyView, PerfectFitProspectusSuccessView
 
 
 urlpatterns = [
@@ -9,6 +9,11 @@ urlpatterns = [
         '^$',
         skip_ga360(PerfectFitProspectusMainView.as_view()),
         name='main'
+    ),
+    url(
+        '^success/$',
+        skip_ga360(PerfectFitProspectusSuccessView.as_view()),
+        name='success'
     ),
     url(
         '^reports/(?P<filename>.*)$',

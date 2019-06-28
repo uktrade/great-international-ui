@@ -1,12 +1,13 @@
 import boto3
 from botocore.exceptions import ClientError
 
-from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.conf import settings
-from django.views.generic import FormView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
-from requests import HTTPError
+from django.urls import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 
 from perfect_fit_prospectus.forms import PerfectFitProspectusForm
 from directory_components.mixins import CountryDisplayMixin
@@ -14,31 +15,39 @@ from directory_components.mixins import CountryDisplayMixin
 from pir_client.client import pir_api_client
 
 
-class PerfectFitProspectusMainView(CountryDisplayMixin, FormView):
+class PerfectFitProspectusMainView(
+    CountryDisplayMixin, SuccessMessageMixin, FormView
+):
     form_class = PerfectFitProspectusForm
-    template_name = 'index.html'
+    template_name = 'perfect_fit_prospectus/index.html'
+    success_url = reverse_lazy('perfect_fit_prospectus:success')
+    success_message = _(
+        'Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s'
+    )
 
     def form_valid(self, form):
         data = form.cleaned_data
+        response = pir_api_client.create_report(data)
+        response.raise_for_status()
+        return super().form_valid(form)
 
-        try:
-            pir_api_client.create_report(data)
-        except HTTPError:
-            return render(
-                self.request,
-                'index.html',
-                {
-                    'error': (
-                        'Something is wrong with the service.'
-                        ' Please try again later'
-                    )
-                }
-            )
-        return render(
-            self.request,
-            'index.html',
-            {'email': data['email']}
-        )
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+
+        response = pir_api_client.get_options()
+        options = response.json()['actions']['POST']
+
+        sector_choices = [
+            (sector['value'], sector['display_name'])
+            for sector in options['sector']['choices']
+        ]
+
+        kwargs['sector_choices'] = sector_choices
+        return kwargs
+
+
+class PerfectFitProspectusSuccessView(TemplateView):
+    template_name = 'perfect_fit_prospectus/success.html'
 
 
 class PerfectFitProspectusReportProxyView(CountryDisplayMixin, View):
