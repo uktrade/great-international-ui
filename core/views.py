@@ -239,6 +239,18 @@ class OpportunitySearchView(
             site_subsection='CompanySearch'
         )
 
+    @property
+    def page_number(self):
+        return self.request.GET.get('page', '1')
+
+    @property
+    def sector(self):
+        return self.request.GET.get('sector', '')
+
+    @property
+    def scale(self):
+        return self.request.GET.get('scale', '')
+
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
@@ -254,47 +266,37 @@ class OpportunitySearchView(
         return self.page['opportunity_list']
 
     @property
+    def all_sectors(self):
+        sectors = []
+        for opp in self.opportunities:
+            if opp['sector'] not in sectors:
+                sectors.append(opp['sector'])
+        return sectors
+
+    @property
+    def all_scales(self):
+        scales = []
+        for opp in self.opportunities:
+            if opp['scale'] not in scales:
+                scales.append(opp['scale'])
+        return scales
+
+    @property
     def filtered_opportunities(self):
 
-        not_filtered_opportunities = self.opportunities
-        filtered_opportunities = []
-
-        if self.scale and self.sector:
-            for opp in not_filtered_opportunities:
-                if opp['sector'] == self.sector and opp['scale'] == self.scale:
-                    filtered_opportunities.append(opp)
-            return filtered_opportunities
+        filtered_opportunities = [opp for opp in self.opportunities]
 
         if self.sector:
-            for opp in not_filtered_opportunities:
-                if opp['sector'] == self.sector:
-                    filtered_opportunities.append(opp)
-            return filtered_opportunities
+            filtered_opportunities = [opp for opp in filtered_opportunities if opp['sector'] == self.sector]
 
         if self.scale:
-            for opp in not_filtered_opportunities:
-                if opp['scale'] == self.scale:
-                    filtered_opportunities.append(opp)
-            return filtered_opportunities
+            filtered_opportunities = [opp for opp in filtered_opportunities if opp['scale'] == self.scale]
 
-        else:
-            return not_filtered_opportunities
+        return filtered_opportunities
 
     @property
     def num_of_opportunities(self):
         return len(self.filtered_opportunities)
-
-    @property
-    def page_number(self):
-        return self.request.GET.get('page', '1')
-
-    @property
-    def sector(self):
-        return self.request.GET.get('sector', '')
-
-    @property
-    def scale(self):
-        return self.request.GET.get('scale', '')
 
     @property
     def pagination(self):
@@ -308,26 +310,13 @@ class OpportunitySearchView(
         return self.filtered_opportunities[min_value:max_value:1]
 
     def get_context_data(self, *args, **kwargs):
-
-        sectors = []
-        for opp in self.opportunities:
-            if opp['sector'] not in sectors:
-                sectors.append(opp['sector'])
-
-        scales = []
-        for opp in self.opportunities:
-            if opp['scale'] not in scales:
-                scales.append(opp['scale'])
-
         return super().get_context_data(
             show_search_guide='show-guide' in self.request.GET,
             page=self.page,
             invest_url=urls.SERVICES_INVEST,
             num_of_opportunities=self.num_of_opportunities,
-            opportunities=self.opportunities,
-            filtered_opportunities=self.filtered_opportunities,
-            sectors=sectors,
-            scales=scales,
+            sectors=self.all_sectors,
+            scales=self.all_scales,
             pagination=self.pagination,
             paginator_url=helpers.get_paginator_url(self.request.GET),
             results=self.results_for_page,
