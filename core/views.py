@@ -1,7 +1,7 @@
 from urllib.parse import urlencode
 
 from django.conf import settings
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
@@ -238,6 +238,17 @@ class OpportunitySearchView(
             site_section='InvestmentSupportDirectory',
             site_subsection='CompanySearch'
         )
+
+    def get(self, request, *args, **kwargs):
+        try:
+            context = self.get_context_data(**kwargs)
+            return self.render_to_response(context)
+        except EmptyPage:
+            url = helpers.get_paginator_url(self.request.GET) + "&page=1"
+            return redirect(url)
+        except PageNotAnInteger:
+            url = helpers.get_paginator_url(self.request.GET) + "&page=1"
+            return redirect(url)
 
     @property
     def page_number(self):
