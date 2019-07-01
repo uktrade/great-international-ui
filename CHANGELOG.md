@@ -14,6 +14,8 @@
 - No ticket - Added 'Opportunity' Subheading for opportunity pages
 - No ticket - Update breadcrumbs on opportunity pages.
 - CI-271 - Add new URL for 'Invest Capital Homepage'
+- CMS-1677 - Perfect fit prospectus cosmetic changes
+
 
 ## [2019.06.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.06.13)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.16...2019.06.13)
