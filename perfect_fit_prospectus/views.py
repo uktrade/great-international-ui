@@ -42,7 +42,13 @@ class PerfectFitProspectusMainView(
             for sector in options['sector']['choices']
         ]
 
+        country_choices = [
+            (country['value'], country['display_name'])
+            for country in options['country']['choices']
+        ]
+
         kwargs['sector_choices'] = sector_choices
+        kwargs['country_choices'] = country_choices
         return kwargs
 
 
