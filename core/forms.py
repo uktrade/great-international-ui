@@ -1,6 +1,8 @@
 from directory_components import forms, fields, helpers, widgets
 from django.forms import Select
 from django.db.models.fields import BLANK_CHOICE_DASH
+from django.forms.widgets import HiddenInput
+from core.fields import IntegerField
 
 from directory_constants.choices import COUNTRY_CHOICES
 
