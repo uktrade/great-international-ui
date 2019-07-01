@@ -46,6 +46,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.messages',
     'raven.contrib.django.raven_compat',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
