@@ -9,29 +9,6 @@
 <section id="breadcrumb-section">
   <div class="container">
     {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=invest_url middle_label="Invest" right_label=page.breadcrumbs_label %}
-    {% endga360_tracker %}
-  </div>
-</section>
-<form>
-    <div class="page-title">
-        <div class="container">
-            <div class="grid-row">
-                <div class="column-two-thirds">
-                    {% if pagination.paginator.count %}
-                        <h2 class="heading-medium">{{ pagination.paginator.count }} {% if page.search_results_title %} {{page.search_results_title}} {% else %} {{pagination.paginator.count|pluralize:'result,results'}} found {% endif %} </h2>
-                    {% else %}
-                        <h2 class="heading-medium">No results found {% if form.q.value %}for <mark>{{ form.q.value }}</mark>{% endif %}</h2>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="down-arrow"></div>
-
-<section id="breadcrumb-section">
-  <div class="container">
-    {% ga360_tracker "breadcrumbs" %}
       {% breadcrumbs page.breadcrumbs_label %}
           <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
           <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
