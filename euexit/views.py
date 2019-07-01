@@ -70,7 +70,9 @@ class InternationalContactFormView(
         return super().form_valid(form)
 
 
-class InternationalContactSuccessView(CMSPageFromSlugMixin, GA360Mixin, TemplateView):
+class InternationalContactSuccessView(
+    CMSPageFromSlugMixin, GA360Mixin, TemplateView
+):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
 
