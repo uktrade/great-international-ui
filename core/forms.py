@@ -1,10 +1,9 @@
-from directory_components import forms, fields, helpers
+from directory_components import forms, fields, helpers, widgets
 from django.forms import Select
 from django.db.models.fields import BLANK_CHOICE_DASH
-from django.forms.widgets import HiddenInput
-from core.fields import IntegerField
 
 from directory_constants.choices import COUNTRY_CHOICES
+
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 
@@ -30,18 +29,3 @@ class TariffsCountryForm(forms.Form):
         choices=COUNTRIES
     )
 
-
-class OpportunitySearchForm(forms.Form):
-
-    page = IntegerField(
-        required=False,
-        widget=HiddenInput,
-        initial=1,
-    )
-
-    sector = fields.CharField(max_length=255, required=False)
-
-    scale = fields.CharField(max_length=255, required=False)
-
-    def clean_page(self):
-        return self.cleaned_data['page'] or self.fields['page'].initial

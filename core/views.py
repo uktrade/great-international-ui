@@ -222,11 +222,9 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 class OpportunitySearchView(
     CountryDisplayMixin,
     GA360Mixin,
-    FormView,
     TemplateView
 ):
-    form_class = forms.OpportunitySearchForm
-    page_size = 5
+    page_size = 10
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
 
     def __init__(self):
@@ -256,11 +254,15 @@ class OpportunitySearchView(
 
     @property
     def sector(self):
-        return self.request.GET.get('sector', '')
+        return self.request.GET.getlist('sector', '')
 
     @property
     def scale(self):
-        return self.request.GET.get('scale', '')
+        return self.request.GET.getlist('scale', '')
+
+    @property
+    def region(self):
+        return self.request.GET.getlist('region', '')
 
     @cached_property
     def page(self):
@@ -280,30 +282,66 @@ class OpportunitySearchView(
     def all_sectors(self):
         sectors = []
         for opp in self.opportunities:
-            if opp['sector'] not in sectors:
-                sectors.append(opp['sector'])
+            for sector in opp['related_sectors']:
+                if sector['related_sector']['title'] \
+                        and sector['related_sector']['title'] not in sectors:
+                    sectors.append(sector['related_sector']['title'])
         return sectors
 
     @property
     def all_scales(self):
         scales = []
         for opp in self.opportunities:
-            if opp['scale'] not in scales:
-                scales.append(opp['scale'])
+            if opp['scale_value'] and opp['scale_value'] not in scales:
+                scales.append(opp['scale_value'])
         return scales
+
+    @property
+    def all_regions(self):
+        regions = []
+        for opp in self.opportunities:
+            if opp['related_region'] and \
+                    opp['related_region']['title'] not in regions:
+                regions.append(opp['related_region']['title'])
+        return regions
 
     @property
     def filtered_opportunities(self):
 
-        filtered_opportunities = [opp for opp in self.opportunities]
+        opportunities = [opp for opp in self.opportunities]
+        filtered_opportunities = []
 
         if self.sector:
-            filtered_opportunities = [opp for opp in filtered_opportunities if opp['sector'] == self.sector]
+            for sector in self.sector:
+                for opp in opportunities:
+                    if opp['related_sectors']:
+                        for opp_sector in opp['related_sectors']:
+                            if opp_sector['related_sector']['title'] \
+                                    == sector and opp not in \
+                                    filtered_opportunities:
+                                filtered_opportunities.append(opp)
 
         if self.scale:
-            filtered_opportunities = [opp for opp in filtered_opportunities if opp['scale'] == self.scale]
+            for scale in self.scale:
+                scale = int(scale)
+                for opp in opportunities:
+                    if opp['scale_value']:
+                        if opp['scale_value'] == scale \
+                                and opp not in filtered_opportunities:
+                            filtered_opportunities.append(opp)
 
-        return filtered_opportunities
+        if self.region:
+            for region in self.region:
+                for opp in opportunities:
+                    if opp['related_region']:
+                        if opp['related_region']['title'] == region \
+                                and opp not in filtered_opportunities:
+                            filtered_opportunities.append(opp)
+
+        if self.filters_chosen:
+            return filtered_opportunities
+        else:
+            return opportunities
 
     @property
     def num_of_opportunities(self):
@@ -320,6 +358,17 @@ class OpportunitySearchView(
         min_value = max_value - self.page_size
         return self.filtered_opportunities[min_value:max_value:1]
 
+    @property
+    def filters_chosen(self):
+        filters = []
+        for sector in self.sector:
+            filters.append(sector)
+        for scale in self.scale:
+            filters.append(scale)
+        for region in self.region:
+            filters.append(region)
+        return filters
+
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             show_search_guide='show-guide' in self.request.GET,
@@ -328,8 +377,10 @@ class OpportunitySearchView(
             num_of_opportunities=self.num_of_opportunities,
             sectors=self.all_sectors,
             scales=self.all_scales,
+            regions=self.all_regions,
             pagination=self.pagination,
             paginator_url=helpers.get_paginator_url(self.request.GET),
             results=self.results_for_page,
+            filters=self.filters_chosen,
             *args, **kwargs,
         )

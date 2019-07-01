@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_cms_with_invest_header.html' %}
 {% load static from staticfiles %}
 
 {% load breadcrumbs ga360_tracker from directory_components %}
@@ -18,7 +18,7 @@
   </div>
 </section>
 
-<form>
+<section>
     <div class="page-title">
         <div class="container">
             <div class="grid-row">
@@ -31,7 +31,7 @@
 
     <div class="down-arrow"></div>
 
-    <div class="container" >
+    <div class="container">
         <div class="grid-row">
             <div class="column-quarter-xl">
                 <section class="margin-bottom-15 font-small">
@@ -41,24 +41,74 @@
         </div>
     </div>
 
-    <div class="container" id="main-content">
-        <div class="grid-row">
+    <div class="container" >
+        <div class="flex-grid">
 
             <div class="column-quarter-xl">
                 <section class="margin-bottom-15">
-                    <select name="sectors" class="filter-options max-width-100 font-small margin-bottom-30">
-                        <option value="" >Sector</option>
-                        {% for sector in sectors %}
-                            <option value="{{sector}}">{{ sector }}</option>
-                        {% endfor %}
-                    </select>
-                    <select name="sectors" class="filter-options max-width-100 font-small">
-                        <option value="">Scale</option>
-                       {% for scale in scales %}
-                       <option value="{{scale}}">{{ scale }} </option>
-                       {% endfor %}
-                    </select>
+                    {% if filters %}
+                        <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
+                            <label>Selected filters</label>
+                            {% for value in filters %}
+                                <mark>{{ value }}</mark>
+                            {% endfor %}
+                            {% ga360_tracker "clear-filter" %}
+                            <a href="{% url 'opportunities' %}" class="link">Clear all filters</a>
+                            {% endga360_tracker %}
+                        </div>
+                    {% endif %}
+
+                    <form action="{{ paginator_url }}">
+                        <fieldset>
+                            <legend>Filter by Sector</legend>
+                            <div>
+                                <div aria-expanded="true" class="form-group" id="toggle_sectors">
+                                    <ul class="select-multiple" id="checkbox">
+                                        {% for sector in sectors %}
+                                            <li class="multiple-choice">
+                                                <input class="select-multiple" name="sector" type="checkbox" value="{{sector}}">
+                                                <label class="form-label" for="checkbox">{{sector}}</label>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Filter by Region</legend>
+                            <div>
+                                <div class="form-group">
+                                    <ul class="select-multiple" id="checkbox">
+                                        {% for region in regions %}
+                                            <li class="multiple-choice">
+                                                <input class="select-multiple" name="region" type="checkbox" value="{{region}}">
+                                                <label class="form-label" for="checkbox">{{region}}</label>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Filter by Scale</legend>
+                            <div>
+                                <div class="form-group">
+                                    <ul class="select-multiple" id="checkbox">
+                                        {% for scale in scales %}
+                                            <li class="multiple-choice">
+                                                <input class="select-multiple" name="scale" type="checkbox" value="{{scale}}">
+                                                <label class="form-label" for="checkbox">{{scale}}</label>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button class="button" type="submit">Update results</button>
+                    </form>
+
                 </section>
+
             </div>
 
             <div class="column-three-quarters-xl">
@@ -127,7 +177,8 @@
 
         </div>
     </div>
-</form>
+</section>
 {% endblock content %}
+
 
 
