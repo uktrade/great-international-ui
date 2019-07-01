@@ -8,7 +8,7 @@ from django.utils import translation
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
-from core.mixins import CMSPageMixin
+from core.mixins import CMSPageFromSlugMixin
 from euexit import forms
 
 
@@ -16,7 +16,7 @@ SESSION_KEY_FORM_INGRESS_URL = 'FORM_INGRESS_URL'
 
 
 class InternationalContactFormView(
-    CMSPageMixin,
+    CMSPageFromSlugMixin,
     CountryDisplayMixin,
     GA360Mixin,
     FormView,
@@ -70,7 +70,7 @@ class InternationalContactFormView(
         return super().form_valid(form)
 
 
-class InternationalContactSuccessView(CMSPageMixin, GA360Mixin, TemplateView):
+class InternationalContactSuccessView(CMSPageFromSlugMixin, GA360Mixin, TemplateView):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
 

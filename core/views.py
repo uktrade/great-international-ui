@@ -36,6 +36,8 @@ class CMSPageFromPathView(
     GA360Mixin,
     TemplateView
 ):
+    cms_site_id = settings.DIRECTORY_CMS_SITE_ID
+
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
 
@@ -56,7 +58,7 @@ class CMSPageFromPathView(
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
-            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            site_id=self.cms_site_id,
             path=self.kwargs['path'],
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
@@ -160,28 +162,6 @@ def sector_page_context_modifier(context, request):
         }
 
 
-class InternationalContactPageView(CountryDisplayMixin,
-                                   GA360Mixin,
-                                   TemplateView):
-    template_name = 'core/contact_page.html'
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='InternationalContactPage',
-            business_unit='GreatInternational',
-            site_section='Contact',
-            site_subsection='ContactForm'
-        )
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            hide_language_selector=True,
-            invest_contact_us_url=urls.build_invest_url('contact/'),
-            *args, **kwargs
-        )
-
-
 @register_context_modifier('CapitalInvestRegionPage')
 def capital_invest_region_page_context_modifier(context, request):
 
@@ -209,6 +189,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     }
 
 
+<<<<<<< HEAD
 class OpportunitySearchView(
     CountryDisplayMixin,
     GA360Mixin,
@@ -378,10 +359,25 @@ class OpportunitySearchView(
                 'region': self.filters_chosen,
                 'sort_by': self.sorting_chosen,
             },
+=======
+class InternationalContactPageView(
+    CountryDisplayMixin, GA360Mixin, TemplateView
+):
+    template_name = 'core/contact_page.html'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='InternationalContactPage',
+            business_unit='GreatInternational',
+            site_section='Contact',
+            site_subsection='ContactForm'
+>>>>>>> Add invest homepage
         )
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
+<<<<<<< HEAD
             page=self.page,
             invest_url=urls.SERVICES_INVEST,
             num_of_opportunities=self.num_of_opportunities,
@@ -395,4 +391,9 @@ class OpportunitySearchView(
             current_page_num=self.page_number,
             form=self.opportunity_search_form,
             *args, **kwargs,
+=======
+            hide_language_selector=True,
+            invest_contact_us_url=urls.build_invest_url('contact/'),
+            *args, **kwargs
+>>>>>>> Add invest homepage
         )

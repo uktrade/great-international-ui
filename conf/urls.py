@@ -41,13 +41,6 @@ urlpatterns = [
         name="index"
     ),
     url(
-        r'^international/invest/perfectfit/',
-        include(
-            'perfect_fit_prospectus.urls',
-            namespace='perfect_fit_prospectus'
-        )
-    ),
-    url(
         r'^international/content/$',
         RedirectView.as_view(url=reverse_lazy('index')),
         name="content-index-redirect"
@@ -67,7 +60,7 @@ urlpatterns = [
         euexit.views.InternationalContactSuccessView.as_view(),
         name='eu-exit-international-contact-form-success'
     ),
-    # these 3 named urls are required for breadcrumbs in templates
+    # these next 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',
         core.views.CMSPageFromPathView.as_view(),
@@ -109,3 +102,26 @@ urlpatterns = [
         name="cms-page-from-path-with-two-slugs"
     ),
 ]
+
+invest = [
+    url(
+        r'^international/invest/',
+        include(
+            'invest.urls',
+            namespace='invest'
+        )
+    ),
+]
+
+perfectfit = [
+    url(
+        r'^international/invest/perfectfit/',
+        include(
+            'perfect_fit_prospectus.urls',
+            namespace='perfect_fit_prospectus'
+        )
+    ),
+]
+
+urlpatterns += perfectfit
+urlpatterns += invest
