@@ -47,19 +47,21 @@
                 <section class="margin-bottom-15">
                     {% if filters %}
                         <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
-                            <label>Selected filters</label>
-                            {% for value in filters %}
-                                <mark>{{ value }}</mark>
-                            {% endfor %}
-                            {% ga360_tracker "clear-filter" %}
-                            <a href="{% url 'opportunities' %}" class="link">Clear all filters</a>
-                            {% endga360_tracker %}
+                            <div class="padding-15">
+                                <label class="selected-filters-label padding-bottom-15">Selected filters</label>
+                                {% for value in filters %}
+                                    <mark>{{ value }}</mark>
+                                {% endfor %}
+                                {% ga360_tracker "clear-filter" %}
+                                <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">Clear all filters</a>
+                                {% endga360_tracker %}
+                            </div>
                         </div>
                     {% endif %}
 
                     <form action="{{ paginator_url }}">
                         <fieldset>
-                            <legend>Filter by Sector</legend>
+                            <legend>Sector</legend>
                             <div>
                                 <div aria-expanded="true" class="form-group" id="toggle_sectors">
                                     <ul class="select-multiple" id="checkbox">
@@ -74,22 +76,7 @@
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend>Filter by Region</legend>
-                            <div>
-                                <div class="form-group">
-                                    <ul class="select-multiple" id="checkbox">
-                                        {% for region in regions %}
-                                            <li class="multiple-choice">
-                                                <input class="select-multiple" name="region" type="checkbox" value="{{region}}">
-                                                <label class="form-label" for="checkbox">{{region}}</label>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Filter by Scale</legend>
+                            <legend>Scale (GDV)</legend>
                             <div>
                                 <div class="form-group">
                                     <ul class="select-multiple" id="checkbox">
@@ -97,6 +84,21 @@
                                             <li class="multiple-choice">
                                                 <input class="select-multiple" name="scale" type="checkbox" value="{{scale}}">
                                                 <label class="form-label" for="checkbox">{{scale}}</label>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Region</legend>
+                            <div>
+                                <div class="form-group">
+                                    <ul class="select-multiple" id="checkbox">
+                                        {% for region in regions %}
+                                            <li class="multiple-choice">
+                                                <input class="select-multiple" name="region" type="checkbox" value="{{region}}">
+                                                <label class="form-label" for="checkbox">{{region}}</label>
                                             </li>
                                         {% endfor %}
                                     </ul>

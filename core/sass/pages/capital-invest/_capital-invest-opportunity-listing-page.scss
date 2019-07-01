@@ -51,7 +51,18 @@
     height: 200px;
   }
 
-  #filter-column #selected-filters-container mark {
+  .selected-filters-label {
+    display: block;
+  }
+
+  #selected-filters-container{
+    background-color: $stone-40;
+    .clear-all-link{
+      display: block;
+    }
+  }
+
+  #selected-filters-container mark {
     margin-bottom: 5px;
     display: inline-block;
   }

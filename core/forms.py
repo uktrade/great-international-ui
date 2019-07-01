@@ -1,9 +1,8 @@
-from directory_components import forms, fields, helpers, widgets
+from directory_components import forms, fields, helpers
 from django.forms import Select
 from django.db.models.fields import BLANK_CHOICE_DASH
 
 from directory_constants.choices import COUNTRY_CHOICES
-
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 
@@ -28,4 +27,3 @@ class TariffsCountryForm(forms.Form):
         widget=Select(attrs={'id': 'js-tariffs-country-select'}),
         choices=COUNTRIES
     )
-

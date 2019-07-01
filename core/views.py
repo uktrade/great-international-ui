@@ -27,8 +27,7 @@ from core.context_modifiers import (
 )
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
-    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin,
-    SubmitFormOnGetMixin)
+    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 from django.views.generic.edit import FormView
 
 
@@ -290,11 +289,13 @@ class OpportunitySearchView(
 
     @property
     def all_scales(self):
-        scales = []
-        for opp in self.opportunities:
-            if opp['scale_value'] and opp['scale_value'] not in scales:
-                scales.append(opp['scale_value'])
-        return scales
+        return [
+            '< £100m',
+            '£100m - £499m',
+            '£500m - £999m',
+            '< £1bn',
+            'Value unknown'
+        ]
 
     @property
     def all_regions(self):
@@ -323,12 +324,28 @@ class OpportunitySearchView(
 
         if self.scale:
             for scale in self.scale:
-                scale = int(scale)
                 for opp in opportunities:
                     if opp['scale_value']:
-                        if opp['scale_value'] == scale \
-                                and opp not in filtered_opportunities:
-                            filtered_opportunities.append(opp)
+                        if '< £100m' in scale:
+                            if 1 <= float(opp['scale_value']) < 100.0 \
+                                    and opp not in filtered_opportunities:
+                                filtered_opportunities.append(opp)
+                        if '£100m - £499m' in scale:
+                            if 100 <= float(opp['scale_value']) <= 499 \
+                                    and opp not in filtered_opportunities:
+                                filtered_opportunities.append(opp)
+                        if '£500m - £999m' in scale:
+                            if 500 <= float(opp['scale_value']) <= 999 \
+                                    and opp not in filtered_opportunities:
+                                filtered_opportunities.append(opp)
+                        if '< £1bn' in scale:
+                            if float(opp['scale_value']) >= 1000 \
+                                    and opp not in filtered_opportunities:
+                                filtered_opportunities.append(opp)
+                        if 'Value unknown' in scale:
+                            if float(opp['scale_value']) < 1\
+                                    and opp not in filtered_opportunities:
+                                filtered_opportunities.append(opp)
 
         if self.region:
             for region in self.region:

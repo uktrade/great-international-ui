@@ -129,7 +129,6 @@ else:
 CACHES = {
     'default': cache,
     'cms_fallback': cache,
-    'api_fallback': cache,
 }
 
 # Internationalization

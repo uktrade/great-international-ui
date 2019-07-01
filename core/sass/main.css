@@ -570,7 +570,16 @@ body.js-enabled .landing-page .country-selector-dialog select {
   width: 100%;
   height: 200px;
 }
-.capital-invest-opportunity-listing-page #filter-column #selected-filters-container mark {
+.capital-invest-opportunity-listing-page .selected-filters-label {
+  display: block;
+}
+.capital-invest-opportunity-listing-page #selected-filters-container {
+  background-color: #f2eee8;
+}
+.capital-invest-opportunity-listing-page #selected-filters-container .clear-all-link {
+  display: block;
+}
+.capital-invest-opportunity-listing-page #selected-filters-container mark {
   margin-bottom: 5px;
   display: inline-block;
 }
