@@ -47,9 +47,13 @@ class PerfectFitProspectusForm(forms.Form):
         label_suffix='',
     )
 
-    def __init__(self, sector_choices, *args, **kwargs):
+    def __init__(self, sector_choices, country_choices, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['sector'] = fields.ChoiceField(
             label='Sector',
             choices=sector_choices
+        )
+        self.fields['country'] = fields.ChoiceField(
+            label='Country',
+            choices=country_choices
         )
