@@ -86,7 +86,7 @@ def test_perfect_fit_main_view_post_client_error(
         'name': 'Ted',
         'company': 'Corp',
         'email': 'ted@example.com',
-        'country': 'US',
+        'country': 'AF',
         'sector': 'tech',
         'g-recaptcha-response': captcha_stub,
         'gdpr_optin': 'on'
@@ -110,7 +110,7 @@ def test_perfect_fit_main_view_post_valid_data(
         'name': 'Ted',
         'company': 'Corp',
         'email': 'ted@example.com',
-        'country': 'US',
+        'country': 'AF',
         'sector': 'tech',
         'g-recaptcha-response': captcha_stub,
         'gdpr_optin': 'on'
@@ -133,7 +133,7 @@ def test_perfect_fit_main_view_post_valid_data(
     assert mock_create_report.call_args == mock.call(
         {
             'name': 'Ted', 'company': 'Corp', 'email': 'ted@example.com',
-            'phone_number': '', 'country': 'US', 'gdpr_optin': True,
+            'phone_number': '', 'country': 'AF', 'gdpr_optin': True,
             'captcha': 'PASSED', 'sector': 'tech'
         }
     )
