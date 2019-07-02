@@ -626,6 +626,9 @@ body.js-enabled .landing-page .country-selector-dialog select {
   text-decoration: none;
   color: black;
 }
+.capital-invest-opportunity-listing-page .right-float {
+  float: right;
+}
 .capital-invest-opportunity-listing-page .paginator {
   margin-top: 60px;
 }

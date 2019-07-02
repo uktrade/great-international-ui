@@ -285,17 +285,28 @@ class OpportunitySearchView(
                 if sector['related_sector']['title'] \
                         and sector['related_sector']['title'] not in sectors:
                     sectors.append(sector['related_sector']['title'])
-        return sectors
+
+        sectors_with_check_status = \
+            {sector: "checked" if sector in self.filters_chosen else ""
+             for sector in sectors}
+
+        return sectors_with_check_status
 
     @property
     def all_scales(self):
-        return [
+        scales = [
             '< £100m',
             '£100m - £499m',
             '£500m - £999m',
             '> £1bn',
             'Value unknown'
         ]
+
+        scales_with_check_status = \
+            {scale: "checked" if scale in self.filters_chosen else ""
+             for scale in scales}
+
+        return scales_with_check_status
 
     @property
     def all_regions(self):
@@ -304,7 +315,12 @@ class OpportunitySearchView(
             if opp['related_region'] and \
                     opp['related_region']['title'] not in regions:
                 regions.append(opp['related_region']['title'])
-        return regions
+
+        regions_with_check_status = \
+            {region: "checked" if region in self.filters_chosen else ""
+             for region in regions}
+
+        return regions_with_check_status
 
     @property
     def filtered_opportunities(self):
