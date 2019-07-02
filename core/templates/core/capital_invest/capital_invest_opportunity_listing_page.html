@@ -90,11 +90,13 @@
                                 </div>
                             </div>
                         </fieldset>
+                        {% if regions|length > 1 %}
                         <fieldset>
                             <legend>Region</legend>
                             <div>
                                 <div class="form-group">
                                     <ul class="select-multiple" id="checkbox">
+
                                         {% for region in regions %}
                                             <li class="multiple-choice">
                                                 <input class="select-multiple" name="region" type="checkbox" value="{{region}}">
@@ -105,6 +107,7 @@
                                 </div>
                             </div>
                         </fieldset>
+                        {% endif %}
                         <button class="button" type="submit">Update results</button>
                     </form>
 
@@ -116,18 +119,20 @@
                 <ul>
                     {% for opportunity in results %}
                         <li class="opportunity-card">
-                            <div class="card-image-left column-third-xl margin-bottom-30"
-                                role="img"
-                                style="background-image: url({{ opportunity.hero_image.url }});">
-                                <p class="visually-hidden"></p>
-                            </div>
-                            <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
-                                {% ga360_tracker "opportunities-listed-link" %}
-                                    <a href="{{ opportunity.full_path }}" class="heading-small margin-top-30">{{ opportunity.title }}</a>
-                                {% endga360_tracker %}
-                                <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
-                                <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
-                            </div>
+                            <a class="card-link" href="{{ opportunity.full_path }}">
+                                <div class="card-image-left column-third-xl margin-bottom-30"
+                                    role="img"
+                                    style="background-image: url({{ opportunity.hero_image.url }});">
+                                    <p class="visually-hidden"></p>
+                                </div>
+                                <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
+                                    {% ga360_tracker "opportunities-listed-link" %}
+                                         <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
+                                    {% endga360_tracker %}
+                                    <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
+                                    <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
+                                </div>
+                            </a>
                         </li>
                     {% empty %}
                         <h2 class="heading-medium">No results</h2>
@@ -180,6 +185,22 @@
     </div>
 </section>
 {% endblock content %}
+
+{% block body_js %}
+<script type="text/javascript">
+
+  function handleTogle(event) {
+    var element = event.target;
+    element.classList.toggle('checked');
+    var formGroup = document.getElementById(element.getAttribute('aria-controls'));
+    formGroup.setAttribute('aria-expanded', !(formGroup.getAttribute('aria-expanded') == 'true'));
+  }
+  var elements = document.getElementsByClassName('filter-collapse');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', handleTogle);
+  }
+</script>
+{% endblock %}
 
 
 

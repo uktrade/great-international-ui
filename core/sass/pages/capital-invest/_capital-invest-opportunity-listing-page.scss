@@ -94,10 +94,18 @@
     }
   }
 
-  .card-inner{
+  .card-link .card-inner{
     overflow: hidden;
     @media (max-width: 641px) {
       padding-top: 20px;
+    }
+    span{
+      text-decoration: underline;
+      color: #006ccc;
+    }
+    p{
+      text-decoration: none;
+      color: black;
     }
   }
 
