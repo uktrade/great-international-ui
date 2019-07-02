@@ -15,6 +15,7 @@
 - No ticket - Update breadcrumbs on opportunity pages.
 - CI-271 - Add new URL for 'Invest Capital Homepage'
 - CMS-1677 - Perfect fit prospectus cosmetic changes
+- CI-267 - Added cta text and link for sector page for related opportunities section
 
 
 ## [2019.06.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.06.13)
