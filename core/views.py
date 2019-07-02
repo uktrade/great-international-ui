@@ -293,7 +293,7 @@ class OpportunitySearchView(
             '< £100m',
             '£100m - £499m',
             '£500m - £999m',
-            '< £1bn',
+            '> £1bn',
             'Value unknown'
         ]
 
