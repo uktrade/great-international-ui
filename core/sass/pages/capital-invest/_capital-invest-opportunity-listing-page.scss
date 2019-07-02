@@ -113,6 +113,66 @@
     float: right;
   }
 
+fieldset {
+  position: relative;
+
+  legend {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding-bottom: 15px;
+    font-size: 14px;
+  }
+
+  button.filter-collapse {
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    cursor: pointer;
+  }
+
+  button.filter-collapse.checked {
+    padding-bottom: 9px;
+    padding-right: 6px;
+    padding-top: 0;
+  }
+
+  button.filter-collapse::after {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: "";
+    border-style: solid;
+    display: inline-block;
+    height: 5px;
+    position: relative;
+    vertical-align: middle;
+    border-color: #000000;
+    border-width: 2px 0 0 2px;
+    height: 8px;
+    width: 8px;
+  }
+
+  button.filter-collapse.checked::after {
+    border-width: 0 2px 2px 0;
+    margin: 5px 0 0 0;
+
+  }
+}
+
+  button[type=submit] {
+    width: 100%;
+    margin-top: 25px;
+  }
+
+
   .paginator {
   margin-top: 60px;
     a {
@@ -158,7 +218,6 @@
     width: 100%;
     cursor: pointer;
     padding-bottom: 15px;
-    font-size: 15px;
   }
 
 }
@@ -172,4 +231,17 @@ mark {
 }
 
 
-
+body.js-enabled {
+  #filter-column {
+    button.filter-collapse.checked + .form-group {
+      display: none;
+    }
+  }
+}
+body:not(.js-enabled) {
+  #filter-column {
+    button.filter-collapse {
+      display: none;
+    }
+  }
+}

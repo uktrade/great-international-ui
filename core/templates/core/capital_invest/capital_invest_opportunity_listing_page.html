@@ -37,23 +37,23 @@
                     <span>Filter results</span>
                 </section>
             </div>
-            <div class="column-quarter-xl right-float">
-                <span>Sort by: </span>
-                <select id="sort-by" onchange="sortProjects()">
-                    <option value="" disabled selected>Sort by</option>
-                    <option value="a-z">Project name: A to Z</option>
-                    <option value="z-a">Project name: Z to A</option>
-                    <option value="scale-low-high">Scale: Low to High</option>
-                    <option value="scale-high-low">Scale: High to Low</option>
-                </select>
-            </div>
+                <div class="column-quarter-xl right-float">
+                    <span>Sort by: </span>
+                    <select id="sort-by" >
+                        <option value="" disabled selected>Sort by</option>
+                        <option name="a-z" value="a-z" >Project name: A to Z</option>
+                        <option name="z-a" value="z-a">Project name: Z to A</option>
+                        <option name="scale-low-high" value="scale-low-high">Scale: Low to High</option>
+                        <option name="scale-high-low" value="scale-high-low">Scale: High to Low</option>
+                    </select>
+                </div>
         </div>
     </div>
 
     <div class="container" >
         <div class="flex-grid">
 
-            <div class="column-quarter-xl">
+            <div class="column-quarter-xl" id="filter-column">
                 <section class="margin-bottom-15">
                     {% if filters %}
                         <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
@@ -72,31 +72,37 @@
                     <form action="{{ paginator_url }}">
                         {% if sectors %}
                             <fieldset>
-                                <legend>Sector</legend>
                                 <div>
-                                    <div aria-expanded="true" class="form-group" id="toggle_sectors">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for sector_name, sector_checked_status in sectors.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
-                                                    <label class="form-label" for="checkbox">{{ sector_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                    <label for="toggle_id_sector">Sector</label>
+                                    <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                    <div class="form-group" id="id_sector-container" aria-expanded="false">
+                                        <div>
+                                            <div aria-expanded="true" class="form-group" id="toggle_sectors">
+                                                <ul class="select-multiple" id="checkbox">
+                                                    {% for sector_name, sector_checked_status in sectors.items %}
+                                                        <li class="multiple-choice">
+                                                            <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
+                                                            <label class="form-label" for="checkbox">{{ sector_name }}</label>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
                         {% endif %}
                         {% if scales %}
                             <fieldset>
-                                <legend>Scale (GDV)</legend>
                                 <div>
+                                    <label for="toggle_id_scale">Scale (GDV)</label>
+                                    <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
                                     <div class="form-group">
                                         <ul class="select-multiple" id="checkbox">
                                             {% for scale_name, scale_check_status in scales.items %}
                                                 <li class="multiple-choice">
                                                     <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
-                                                    <label class="form-label" for="checkbox">{{ scale_name }}</label>
+                                                    <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -106,8 +112,9 @@
                         {% endif %}
                         {% if regions|length > 1 %}
                             <fieldset>
-                                <legend>Region</legend>
                                 <div>
+                                    <label for="toggle_id_region">Region</label>
+                                    <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
                                     <div class="form-group">
                                         <ul class="select-multiple" id="checkbox">
                                             {% for region_name, region_check_status in regions.items %}
@@ -121,7 +128,7 @@
                                 </div>
                             </fieldset>
                         {% endif %}
-                        <button class="button" onclick="handleTogle()" type="submit">Update results</button>
+                        <button class="button" type="submit">Update results</button>
                     </form>
 
                 </section>
@@ -199,7 +206,18 @@
 </section>
 {% endblock content %}
 
+{% block body_js %}
+<script type="text/javascript">
 
-
-
-
+  function handleTogle(event) {
+    var element = event.target;
+    element.classList.toggle('checked');
+    var formGroup = document.getElementById(element.getAttribute('aria-controls'));
+    formGroup.setAttribute('aria-expanded', !(formGroup.getAttribute('aria-expanded') == 'true'));
+  }
+  var elements = document.getElementsByClassName('filter-collapse');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', handleTogle);
+  }
+</script>
+{% endblock %}
