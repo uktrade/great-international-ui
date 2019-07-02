@@ -629,6 +629,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-listing-page .right-float {
   float: right;
 }
+.capital-invest-opportunity-listing-page #sort-by-drop-down {
+  border-width: 2px;
+  border-color: black;
+  padding: 6px;
+}
 .capital-invest-opportunity-listing-page fieldset {
   position: relative;
 }
@@ -640,7 +645,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
   width: 100%;
   cursor: pointer;
   padding-bottom: 15px;
-  font-size: 14px;
+  font-size: 15px;
 }
 .capital-invest-opportunity-listing-page fieldset button.filter-collapse {
   background: transparent;

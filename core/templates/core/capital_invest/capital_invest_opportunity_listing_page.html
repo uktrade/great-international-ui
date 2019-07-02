@@ -17,193 +17,194 @@
   </div>
 </section>
 
-<section>
-    <div class="page-title">
+<form action="{{ paginator_url }}">
+    <section>
+        <div class="page-title">
+            <div class="container">
+                <div class="grid-row">
+                    <div class="column-two-thirds">
+                        <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="down-arrow"></div>
+
         <div class="container">
             <div class="grid-row">
-                <div class="column-two-thirds">
-                    <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
+                <div class="column-quarter-xl">
+                    <section class="margin-bottom-15 font-small">
+                        <span>Filter results</span>
+                    </section>
                 </div>
+                    <div class="column-quarter-xl right-float">
+                        <span>Sort by: </span>
+                        <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
+                            <option name="sort-by" value="" >Sort by</option>
+                            {% for filter_name, filter_select_status in sorting_filters.items %}
+                                <option value="{{ filter_name }}" {{ filter_select_status }}>{{ filter_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
             </div>
         </div>
-    </div>
 
-    <div class="down-arrow"></div>
+        <div class="container" >
+            <div class="flex-grid">
 
-    <div class="container">
-        <div class="grid-row">
-            <div class="column-quarter-xl">
-                <section class="margin-bottom-15 font-small">
-                    <span>Filter results</span>
-                </section>
-            </div>
-                <div class="column-quarter-xl right-float">
-                    <span>Sort by: </span>
-                    <select id="sort-by" >
-                        <option value="" disabled selected>Sort by</option>
-                        <option name="a-z" value="a-z" >Project name: A to Z</option>
-                        <option name="z-a" value="z-a">Project name: Z to A</option>
-                        <option name="scale-low-high" value="scale-low-high">Scale: Low to High</option>
-                        <option name="scale-high-low" value="scale-high-low">Scale: High to Low</option>
-                    </select>
-                </div>
-        </div>
-    </div>
-
-    <div class="container" >
-        <div class="flex-grid">
-
-            <div class="column-quarter-xl" id="filter-column">
-                <section class="margin-bottom-15">
-                    {% if filters %}
-                        <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
-                            <div class="padding-15">
-                                <label class="selected-filters-label padding-bottom-15">Selected filters</label>
-                                {% for value in filters %}
-                                    <mark>{{ value }}</mark>
-                                {% endfor %}
-                                {% ga360_tracker "clear-filter" %}
-                                <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">Clear all filters</a>
-                                {% endga360_tracker %}
+                <div class="column-quarter-xl" id="filter-column">
+                    <section class="margin-bottom-15">
+                        {% if filters or sorting_chosen %}
+                            <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
+                                <div class="padding-15">
+                                    <label class="selected-filters-label padding-bottom-15">Selected filters</label>
+                                    {% for value in filters %}
+                                        <mark>{{ value }}</mark>
+                                    {% endfor %}
+                                    {% if sorting_chosen %}
+                                        <mark>{{ sorting_chosen }}</mark>
+                                    {% endif %}
+                                    {% ga360_tracker "clear-filter" %}
+                                    <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">Clear all filters</a>
+                                    {% endga360_tracker %}
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
 
-                    <form action="{{ paginator_url }}">
-                        {% if sectors %}
-                            <fieldset>
-                                <div>
-                                    <label for="toggle_id_sector">Sector</label>
-                                    <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group" id="id_sector-container" aria-expanded="false">
-                                        <div>
-                                            <div aria-expanded="true" class="form-group" id="toggle_sectors">
-                                                <ul class="select-multiple" id="checkbox">
-                                                    {% for sector_name, sector_checked_status in sectors.items %}
-                                                        <li class="multiple-choice">
-                                                            <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
-                                                            <label class="form-label" for="checkbox">{{ sector_name }}</label>
-                                                        </li>
-                                                    {% endfor %}
-                                                </ul>
+                            {% if sectors %}
+                                <fieldset>
+                                    <div>
+                                        <label for="toggle_id_sector" >Sector</label>
+                                        <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                        <div class="form-group" id="id_sector-container" aria-expanded="false">
+                                            <div>
+                                                <div aria-expanded="true" class="form-group" id="toggle_sectors">
+                                                    <ul class="select-multiple" id="checkbox">
+                                                        {% for sector_name, sector_checked_status in sectors.items %}
+                                                            <li class="multiple-choice">
+                                                                <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
+                                                                <label class="form-label" for="checkbox">{{ sector_name }}</label>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </fieldset>
-                        {% endif %}
-                        {% if scales %}
-                            <fieldset>
-                                <div>
-                                    <label for="toggle_id_scale">Scale (GDV)</label>
-                                    <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for scale_name, scale_check_status in scales.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
-                                                    <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                </fieldset>
+                            {% endif %}
+                            {% if scales %}
+                                <fieldset>
+                                    <div>
+                                        <label for="toggle_id_scale">Scale (GDV)</label>
+                                        <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                        <div class="form-group">
+                                            <ul class="select-multiple" id="checkbox">
+                                                {% for scale_name, scale_check_status in scales.items %}
+                                                    <li class="multiple-choice">
+                                                        <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
+                                                        <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            </fieldset>
-                        {% endif %}
-                        {% if regions|length > 1 %}
-                            <fieldset>
-                                <div>
-                                    <label for="toggle_id_region">Region</label>
-                                    <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for region_name, region_check_status in regions.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="region" type="checkbox" value="{{ region_name }}" {{ region_check_status }}>
-                                                    <label class="form-label" for="checkbox">{{ region_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
+                                </fieldset>
+                            {% endif %}
+                            {% if regions|length > 1 %}
+                                <fieldset>
+                                    <div>
+                                        <label for="toggle_id_region">Region</label>
+                                        <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                        <div class="form-group">
+                                            <ul class="select-multiple" id="checkbox">
+                                                {% for region_name, region_check_status in regions.items %}
+                                                    <li class="multiple-choice">
+                                                        <input class="select-multiple" name="region" type="checkbox" value="{{ region_name }}" {{ region_check_status }}>
+                                                        <label class="form-label" for="checkbox">{{ region_name }}</label>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                            </fieldset>
-                        {% endif %}
-                        <button class="button" type="submit">Update results</button>
-                    </form>
+                                </fieldset>
+                            {% endif %}
+                            <button class="button" type="submit">Update results</button>
+                    </section>
 
-                </section>
+                </div>
+
+                <div class="column-three-quarters-xl">
+                    <ul>
+                        {% for opportunity in results %}
+                            <li class="opportunity-card">
+                                <a class="card-link" href="{{ opportunity.full_path }}">
+                                    <div class="card-image-left column-third-xl margin-bottom-30"
+                                        role="img"
+                                        style="background-image: url({{ opportunity.hero_image.url }});">
+                                        <p class="visually-hidden"></p>
+                                    </div>
+                                    <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
+                                        {% ga360_tracker "opportunities-listed-link" %}
+                                             <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
+                                        {% endga360_tracker %}
+                                        <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
+                                        <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        {% empty %}
+                            <h2 class="heading-medium">No results</h2>
+                        {% endfor %}
+                    </ul>
+
+                     {% if pagination.paginator.num_pages > 1 %}
+                        <div class="paginator">
+                            {% if pagination.has_previous %}
+                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
+                            {% endif %}
+                                <ol class="margin-top-15 margin-bottom-15">
+                                    {% if pagination.paginator.num_pages <= 5 %}
+                                        {% for number in pagination.paginator.page_range %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                    {% elif pagination.number < 5 %}
+                                        {% for number in pagination.paginator.page_range|slice:'0:4' %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% elif pages_after_current < 4 %}
+                                        {% include 'core/paginator-item.html' with number='1' %}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% else %}
+                                        {% include 'core/paginator-item.html' with number='1'%}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
+                                        {% include 'core/paginator-item.html' with number=pagination.number %}
+                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% endif %}
+                                </ol>
+                            </span>
+                            {% if pagination.has_next %}
+                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                </div>
 
             </div>
-
-            <div class="column-three-quarters-xl">
-                <ul>
-                    {% for opportunity in results %}
-                        <li class="opportunity-card">
-                            <a class="card-link" href="{{ opportunity.full_path }}">
-                                <div class="card-image-left column-third-xl margin-bottom-30"
-                                    role="img"
-                                    style="background-image: url({{ opportunity.hero_image.url }});">
-                                    <p class="visually-hidden"></p>
-                                </div>
-                                <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
-                                    {% ga360_tracker "opportunities-listed-link" %}
-                                         <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
-                                    {% endga360_tracker %}
-                                    <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
-                                    <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
-                                </div>
-                            </a>
-                        </li>
-                    {% empty %}
-                        <h2 class="heading-medium">No results</h2>
-                    {% endfor %}
-                </ul>
-
-                 {% if pagination.paginator.num_pages > 1 %}
-                    <div class="paginator">
-                        {% if pagination.has_previous %}
-                            <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
-                        {% endif %}
-                            <ol class="margin-top-15 margin-bottom-15">
-                                {% if pagination.paginator.num_pages <= 5 %}
-                                    {% for number in pagination.paginator.page_range %}
-                                        {% include 'core/paginator-item.html' %}
-                                    {% endfor %}
-                                {% elif pagination.number < 5 %}
-                                    {% for number in pagination.paginator.page_range|slice:'0:4' %}
-                                        {% include 'core/paginator-item.html' %}
-                                    {% endfor %}
-                                    <li class="active-blue-text margin-15"><span>...</span></li>
-                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                {% elif pages_after_current < 4 %}
-                                    {% include 'core/paginator-item.html' with number='1' %}
-                                    <li class="active-blue-text margin-15"><span>...</span></li>
-                                    {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
-                                        {% include 'core/paginator-item.html' %}
-                                    {% endfor %}
-                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                {% else %}
-                                    {% include 'core/paginator-item.html' with number='1'%}
-                                    <li class="active-blue-text margin-15"><span>...</span></li>
-                                    {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
-                                    {% include 'core/paginator-item.html' with number=pagination.number %}
-                                    {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
-                                    <li class="active-blue-text margin-15"><span>...</span></li>
-                                    {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                {% endif %}
-                            </ol>
-                        </span>
-                        {% if pagination.has_next %}
-                            <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
-                        {% endif %}
-                    </div>
-                {% endif %}
-
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
+</form>
 {% endblock content %}
 
 {% block body_js %}

@@ -263,6 +263,10 @@ class OpportunitySearchView(
     def region(self):
         return self.request.GET.getlist('region', '')
 
+    @property
+    def sort_filter(self):
+        return self.request.GET.get('sort-by', '')
+
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
@@ -323,6 +327,23 @@ class OpportunitySearchView(
         return regions_with_check_status
 
     @property
+    def all_sort_filters(self):
+        all_sort_filters = [
+            'Project name: A to Z',
+            'Project name: Z to A',
+            'Scale: Low to High',
+            'Scale: High to Low',
+        ]
+
+        sort_filters_with_selected_status = {
+            sort_filter: "selected"
+            if sort_filter in self.sorting_chosen else ""
+            for sort_filter in all_sort_filters
+        }
+
+        return sort_filters_with_selected_status
+
+    @property
     def filtered_opportunities(self):
 
         opportunities = [opp for opp in self.opportunities]
@@ -354,7 +375,7 @@ class OpportunitySearchView(
                             if 500 <= float(opp['scale_value']) <= 999 \
                                     and opp not in filtered_opportunities:
                                 filtered_opportunities.append(opp)
-                        if '< £1bn' in scale:
+                        if '> £1bn' in scale:
                             if float(opp['scale_value']) >= 1000 \
                                     and opp not in filtered_opportunities:
                                 filtered_opportunities.append(opp)
@@ -366,10 +387,34 @@ class OpportunitySearchView(
         if self.region:
             for region in self.region:
                 for opp in opportunities:
-                    if opp['related_region']:
-                        if opp['related_region']['title'] == region \
-                                and opp not in filtered_opportunities:
+                    if opp['related_region'] \
+                            and opp['related_region']['title'] == region \
+                            and opp not in filtered_opportunities:
                             filtered_opportunities.append(opp)
+
+        if self.sort_filter and self.sort_filter == 'Project name: A to Z':
+            filtered_opportunities.sort(key=lambda x: x['title'])
+            opportunities.sort(key=lambda x: x['title'])
+
+        if self.sort_filter and self.sort_filter == 'Project name: Z to A':
+            filtered_opportunities.sort(
+                key=lambda x: x['title'], reverse=True
+            )
+            opportunities.sort(
+                key=lambda x: x['title'], reverse=True
+            )
+
+        if self.sort_filter and self.sort_filter == 'Scale: Low to High':
+            filtered_opportunities.sort(key=lambda x: x['scale_value'])
+            opportunities.sort(key=lambda x: x['scale_value'])
+
+        if self.sort_filter and self.sort_filter == 'Scale: High to Low':
+            filtered_opportunities.sort(
+                key=lambda x: x['scale_value'], reverse=True
+            )
+            opportunities.sort(
+                key=lambda x: x['scale_value'], reverse=True
+            )
 
         if self.filters_chosen:
             return filtered_opportunities
@@ -402,6 +447,10 @@ class OpportunitySearchView(
             filters.append(region)
         return filters
 
+    @property
+    def sorting_chosen(self):
+        return self.sort_filter
+
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             show_search_guide='show-guide' in self.request.GET,
@@ -411,9 +460,11 @@ class OpportunitySearchView(
             sectors=self.all_sectors,
             scales=self.all_scales,
             regions=self.all_regions,
+            sorting_filters=self.all_sort_filters,
             pagination=self.pagination,
             paginator_url=helpers.get_paginator_url(self.request.GET),
             results=self.results_for_page,
             filters=self.filters_chosen,
+            sorting_chosen=self.sorting_chosen,
             *args, **kwargs,
         )

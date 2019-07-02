@@ -113,6 +113,12 @@
     float: right;
   }
 
+  #sort-by-drop-down{
+    border-width: 2px;
+    border-color: black;
+    padding: 6px;
+  }
+
 fieldset {
   position: relative;
 
@@ -125,7 +131,7 @@ fieldset {
     width: 100%;
     cursor: pointer;
     padding-bottom: 15px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   button.filter-collapse {
