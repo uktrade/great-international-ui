@@ -115,7 +115,13 @@
                 </div>
             {% endfor %}
         </div>
+    {% if page.related_opportunities_cta_link and page.related_opportunities_cta_text %}
+        <div class="grid-row">
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{ page.related_opportunities_cta_link }}">{{ page.related_opportunities_cta_text }}</a>
+        </div>
+    {% endif %}
     </div>
+
 </section>
 {% endif %}
 
