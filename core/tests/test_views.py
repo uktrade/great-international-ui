@@ -661,34 +661,473 @@ def test_get_prioritised_opportunities_for_sector_page(
     assert len(response.context_data['prioritised_opportunities']) == 1
 
 
-@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
-def test_opportunity_search_form(mock_get_results_and_count, client, settings):
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_all_sectors_for_opportunity_search(
+        mock_cms_response, rf):
 
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
-    results = [{'number': '1234567', 'slug': 'thing'}]
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
 
-    mock_get_results_and_count.return_value = (results, 20)
-
-    response = client.get(
-        reverse('opportunities'), {'q': '123'}
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
     )
 
-    assert response.status_code == 200
-    assert response.context_data['results'] == results
+    request = rf.get('/international/content/opportunities')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities')
+
+    assert len(response.context_data['sectors']) == 2
 
 
-@mock.patch.object(OpportunitySearchView, 'get_results_and_count')
-def test_opportunity_search_pagination_count(
-    mock_get_results_and_count, client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'] = True
-    results = [{'number': '1234567', 'slug': 'thing'}]
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_all_regions_for_opportunity_search(
+        mock_cms_response, rf):
 
-    mock_get_results_and_count.return_value = (results, 20)
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': ''
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
 
-    response = client.get(
-        reverse('opportunities'), {'q': '123'}
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
     )
 
-    assert response.status_code == 200
-    assert response.context_data['pagination'].paginator.count == 20
+    request = rf.get('/international/content/opportunities')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities')
+
+    assert len(response.context_data['regions']) == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_all_scales_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities')
+
+    assert len(response.context_data['scales']) == 5
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_sort_scales_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '2.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sector': 'real-estate',
+                'scale_value': '100.00',
+                'related_region': {
+                    'title': ''
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request_low_to_high = rf.get(
+        '/international/content/opportunities/?sort-by=Scale%3A+Low+to+High'
+    )
+    request_low_to_high.LANGUAGE_CODE = 'en-gb'
+    response_low_to_high = OpportunitySearchView.as_view()(
+        request_low_to_high,
+        path='/international/content/opportunities/'
+             '?sort-by=Scale%3A+Low+to+High'
+    )
+
+    assert response_low_to_high.context_data['results'][0]['scale_value'] == '2.00'  # NOQA
+    assert response_low_to_high.context_data['results'][1]['scale_value'] == '100.00'  # NOQA
+    assert response_low_to_high.context_data['results'][2]['scale_value'] == '1000.00'  # NOQA
+
+    request_high_to_low = rf.get(
+        '/international/content/opportunities/?sort-by=Scale%3A+High+to+Low'
+    )
+    request_high_to_low.LANGUAGE_CODE = 'en-gb'
+    response_high_to_low = OpportunitySearchView.as_view()(
+        request_high_to_low,
+        path='/international/content/opportunities/'
+             '?sort-by=Scale%3A+High+to+Low'
+    )
+
+    assert response_high_to_low.context_data['results'][2]['scale_value'] == '2.00'  # NOQA
+    assert response_high_to_low.context_data['results'][1]['scale_value'] == '100.00'  # NOQA
+    assert response_high_to_low.context_data['results'][0]['scale_value'] == '1000.00'  # NOQA
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_num_of_opportunities_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities')
+
+    assert response.context_data['num_of_opportunities'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_filters_chosen_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?scale=<+£100m')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/?scale=<+£100m')
+
+    assert len(response.context_data['filters']) == 1
+    assert '< £100m' in response.context_data['filters']
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_sorting_filters_chosen_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&scale=<+£100m')  # NOQA
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&scale=<+£100m')  # NOQA
+
+    assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
+
+

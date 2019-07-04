@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from urllib.parse import urlencode
 
 from django.conf import settings
@@ -28,7 +29,6 @@ from core.context_modifiers import (
 from core.helpers import get_ga_data_for_page
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
-from django.views.generic.edit import FormView
 
 
 class CMSPageFromPathView(
@@ -286,7 +286,8 @@ class OpportunitySearchView(
         sectors = []
         for opp in self.opportunities:
             for sector in opp['related_sectors']:
-                if sector['related_sector']['title'] \
+                if sector['related_sector'] \
+                        and sector['related_sector']['title'] \
                         and sector['related_sector']['title'] not in sectors:
                     sectors.append(sector['related_sector']['title'])
 
@@ -316,7 +317,7 @@ class OpportunitySearchView(
     def all_regions(self):
         regions = []
         for opp in self.opportunities:
-            if opp['related_region'] and \
+            if opp['related_region'] and opp['related_region']['title'] and \
                     opp['related_region']['title'] not in regions:
                 regions.append(opp['related_region']['title'])
 
@@ -405,15 +406,15 @@ class OpportunitySearchView(
             )
 
         if self.sort_filter and self.sort_filter == 'Scale: Low to High':
-            filtered_opportunities.sort(key=lambda x: x['scale_value'])
-            opportunities.sort(key=lambda x: x['scale_value'])
+            filtered_opportunities.sort(key=lambda x: float(x['scale_value']))
+            opportunities.sort(key=lambda x: float(x['scale_value']))
 
         if self.sort_filter and self.sort_filter == 'Scale: High to Low':
             filtered_opportunities.sort(
-                key=lambda x: x['scale_value'], reverse=True
+                key=lambda x: float(x['scale_value']), reverse=True
             )
             opportunities.sort(
-                key=lambda x: x['scale_value'], reverse=True
+                key=lambda x: float(x['scale_value']), reverse=True
             )
 
         if self.filters_chosen:
@@ -465,6 +466,6 @@ class OpportunitySearchView(
             paginator_url=helpers.get_paginator_url(self.request.GET),
             results=self.results_for_page,
             filters=self.filters_chosen,
-            sorting_chosen=self.sorting_chosen,
+            sorting_chosen=self.sort_filter,
             *args, **kwargs,
         )
