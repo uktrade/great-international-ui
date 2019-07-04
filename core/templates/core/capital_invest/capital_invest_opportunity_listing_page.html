@@ -55,16 +55,13 @@
 
                 <div class="column-quarter-xl" id="filter-column">
                     <section class="margin-bottom-15">
-                        {% if filters or sorting_chosen %}
+                        {% if filters %}
                             <div class="selected-filters-container underline-flag-red margin-bottom-30">
                                 <div class="padding-15">
                                     <label class="selected-filters-label padding-bottom-15">Selected filters</label>
                                     {% for value in filters %}
                                         <mark>{{ value }}</mark>
                                     {% endfor %}
-                                    {% if sorting_chosen %}
-                                        <mark>{{ sorting_chosen }}</mark>
-                                    {% endif %}
                                     {% ga360_tracker "clear-filter" %}
                                     <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">Clear all filters</a>
                                     {% endga360_tracker %}
@@ -148,7 +145,7 @@
                                         {% ga360_tracker "opportunities-listed-link" %}
                                              <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
                                         {% endga360_tracker %}
-                                        <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
+                                        <p class="bold-xsmall margin-top-15">{{ opportunity.scale }}</p>
                                         <p class="font-xsmall margin-bottom-30">{{ opportunity.sector }}</p>
                                     </div>
                                 </a>
