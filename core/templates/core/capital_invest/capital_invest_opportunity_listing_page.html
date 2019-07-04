@@ -1,5 +1,6 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load static from staticfiles %}
+{% load i18n %}
 
 {% load breadcrumbs ga360_tracker from directory_components %}
 
@@ -35,13 +36,13 @@
             <div class="grid-row">
                 <div class="column-quarter-xl">
                     <section class="margin-bottom-15 font-small">
-                        <span>Filter results</span>
+                        <span>{% trans 'Filter results' %}</span>
                     </section>
                 </div>
                 <div class="sort-by-container margin-bottom-15">
-                    <span>Sort by:</span>
+                    <span>{% trans 'Sort by' %}:</span>
                     <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
-                        <option name="sort-by" value="" >Sort by</option>
+                        <option name="sort-by" value="" >{% trans 'Sort by' %}</option>
                         {% for filter_name, filter_select_status in sorting_filters.items %}
                             <option value="{{ filter_name }}" {{ filter_select_status }}>{{ filter_name }}</option>
                         {% endfor %}
@@ -58,12 +59,12 @@
                         {% if filters %}
                             <div class="selected-filters-container underline-flag-red margin-bottom-30">
                                 <div class="padding-15">
-                                    <label class="selected-filters-label padding-bottom-15">Selected filters</label>
+                                    <label class="selected-filters-label padding-bottom-15">{% trans 'Selected filters' %}</label>
                                     {% for value in filters %}
                                         <mark>{{ value }}</mark>
                                     {% endfor %}
                                     {% ga360_tracker "clear-filter" %}
-                                    <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">Clear all filters</a>
+                                    <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">{% trans 'Clear all filters' %}</a>
                                     {% endga360_tracker %}
                                 </div>
                             </div>
@@ -71,7 +72,7 @@
 
                             {% if sectors %}
                                 <fieldset>
-                                        <label for="toggle_id_sector" >Sector</label>
+                                        <label for="toggle_id_sector" >{% trans 'Sector' %}</label>
                                         <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
                                         <div class="form-group">
                                             <ul class="select-multiple" id="checkbox">
@@ -87,7 +88,7 @@
                             {% endif %}
                             {% if scales %}
                                 <fieldset>
-                                        <label for="toggle_id_scale">Scale (GDV)</label>
+                                        <label for="toggle_id_scale">{% trans 'Scale (GDV)' %}</label>
                                         <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
                                         <div class="form-group">
                                             <ul class="select-multiple" id="checkbox">
@@ -103,7 +104,7 @@
                             {% endif %}
                             {% if regions|length > 1 %}
                                 <fieldset>
-                                        <label for="toggle_id_region">Region</label>
+                                        <label for="toggle_id_region">{% trans 'Region' %}</label>
                                         <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
                                         <div class="form-group">
                                             <ul class="select-multiple" id="checkbox">
@@ -117,7 +118,7 @@
                                         </div>
                                 </fieldset>
                             {% endif %}
-                            <button class="button" type="submit">Update results</button>
+                            <button class="button" type="submit">{% trans 'Update results' %}</button>
                     </section>
 
                 </div>
@@ -141,7 +142,7 @@
                                 </a>
                             </li>
                         {% empty %}
-                            <h2 class="heading-medium">No results</h2>
+                            <h2 class="heading-medium">{% trans 'No results' %}</h2>
                         {% endfor %}
                     </ul>
 
@@ -180,7 +181,7 @@
                                 </ol>
                             </span>
                             {% if pagination.has_next %}
-                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
+                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">{% trans 'Next' %}</a>
                             {% endif %}
                         </div>
                     {% endif %}
