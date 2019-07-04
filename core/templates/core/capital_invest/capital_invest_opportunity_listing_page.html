@@ -38,7 +38,7 @@
                         <span>Filter results</span>
                     </section>
                 </div>
-                    <div class="column-quarter-xl sort-by-container margin-bottom-15">
+                    <div class="sort-by-container margin-bottom-15">
                         <span>Sort by: </span>
                         <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
                             <option name="sort-by" value="" >Sort by</option>
@@ -140,17 +140,16 @@
                         {% for opportunity in results %}
                             <li class="opportunity-card">
                                 <a class="card-link" href="{{ opportunity.full_path }}">
-                                    <div class="card-image-left column-third-xl margin-bottom-30"
+                                    <div class="card-image-left column-third-l margin-bottom-30"
                                         role="img"
                                         style="background-image: url({{ opportunity.hero_image.url }});">
-                                        <p class="visually-hidden"></p>
                                     </div>
-                                    <div class="card-inner padding-horizontal-45 column-two-thirds-xl margin-bottom-30">
+                                    <div class="card-inner padding-horizontal-45 column-two-thirds-l margin-bottom-30">
                                         {% ga360_tracker "opportunities-listed-link" %}
                                              <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
                                         {% endga360_tracker %}
                                         <p class="bold-small margin-top-15">{{ opportunity.scale }}</p>
-                                        <p class="font-xsmall margin-top-30 margin-bottom-30">{{ opportunity.sector }}</p>
+                                        <p class="font-xsmall margin-bottom-30">{{ opportunity.sector }}</p>
                                     </div>
                                 </a>
                             </li>

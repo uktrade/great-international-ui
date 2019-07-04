@@ -580,7 +580,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
   margin: 0;
-  min-height: 225px;
+  min-height: 220px;
   background-size: cover;
   background-position: 100%;
   background-repeat: no-repeat;
@@ -593,13 +593,13 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 @media (max-width: 961px) {
   .capital-invest-opportunity-listing-page .opportunity-card {
-    min-width: 300px;
+    min-width: 280px;
   }
 }
 .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
   overflow: hidden;
   border: 1px solid #d8d8d8;
-  min-height: 225px;
+  min-height: 220px;
 }
 @media (max-width: 641px) {
   .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
