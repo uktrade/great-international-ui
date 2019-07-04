@@ -236,7 +236,7 @@ class OpportunitySearchView(
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
         except (EmptyPage, PageNotAnInteger):
-            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"
+            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"  # NOQA
             return redirect(url)
 
     @property

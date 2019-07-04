@@ -39,7 +39,7 @@
                     </section>
                 </div>
                     <div class="sort-by-container margin-bottom-15">
-                        <span>Sort by: </span>
+                        <span>{% trans 'Sort by:' %}</span>
                         <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
                             <option name="sort-by" value="" >Sort by</option>
                             {% for filter_name, filter_select_status in sorting_filters.items %}
