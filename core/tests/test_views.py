@@ -1128,3 +1128,95 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
         request, path='/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&scale=<+£100m')  # NOQA
 
     assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_gets_correct_opps_from_filters_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'scale_value': '90.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'scale_value': '3000.00',
+                'related_region': {
+                    'title': 'Scotland'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Real Estate'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'scale_value': '50.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'scale_value': '20.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?scale=<+£100m&sector=Automotive&region=South+of+England')  # NOQA
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/?scale=<+£100m&sector=Automotive&region=South+of+England')  # NOQA
+
+    assert len(response.context_data['results']) == 3

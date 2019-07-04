@@ -386,7 +386,8 @@ class OpportunitySearchView(
                     if opp['related_region'] \
                             and opp['related_region']['title'] == region \
                             and opp not in filtered_opportunities:
-                            filtered_opportunities.append(opp)
+                        filtered_opportunities.append(opp)
+                            
 
         if self.sort_filter and self.sort_filter == 'Project name: A to Z':
             filtered_opportunities.sort(key=lambda x: x['title'])
