@@ -17,20 +17,20 @@
   </div>
 </section>
 
-<form action="{{ paginator_url }}">
-    <section>
-        <div class="page-title">
-            <div class="container">
-                <div class="grid-row">
-                    <div class="column-two-thirds">
-                        <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
-                    </div>
+<section>
+    <div class="page-title">
+        <div class="container">
+            <div class="grid-row">
+                <div class="column-two-thirds">
+                    <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="down-arrow"></div>
+    <div class="down-arrow"></div>
 
+    <form action="{{ paginator_url }}">
         <div class="container">
             <div class="grid-row">
                 <div class="column-quarter-xl">
@@ -199,8 +199,9 @@
 
             </div>
         </div>
-    </section>
-</form>
+    </form>
+</section>
+
 {% endblock content %}
 
 {% block body_js %}

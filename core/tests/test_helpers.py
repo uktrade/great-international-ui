@@ -38,6 +38,6 @@ def test_unslugify(slug, exp):
 def test_get_paginator_url():
     filters = {'page': 2}
 
-    assert helpers.get_paginator_url(filters) == (
+    assert helpers.get_paginator_url(filters, 'opportuniities') == (
         reverse('opportunities') + '?'
     )
