@@ -225,10 +225,10 @@ class OpportunitySearchView(
         super().__init__()
 
         self.set_ga360_payload(
-            page_id='FindASupplierISDCompanySearch',
-            business_unit='FindASupplier',
-            site_section='InvestmentSupportDirectory',
-            site_subsection='CompanySearch'
+            page_id='GreatInternationalCapitalInvestmentOpportunitySearch',
+            business_unit='CapitalInvestment',
+            site_section='Opportunities',
+            site_subsection='Search'
         )
 
     def get(self, request, *args, **kwargs):
