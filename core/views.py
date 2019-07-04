@@ -1,12 +1,7 @@
-from collections import OrderedDict
-from urllib.parse import urlencode
-
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.template.response import TemplateResponse
-from django.urls import reverse
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation

@@ -1,4 +1,3 @@
-from unittest import mock
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
@@ -1129,5 +1128,3 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
         request, path='/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&scale=<+£100m')  # NOQA
 
     assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
-
-
