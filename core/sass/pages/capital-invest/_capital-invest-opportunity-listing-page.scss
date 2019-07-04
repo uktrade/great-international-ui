@@ -17,170 +17,156 @@
 
   .page-title{
     background-color: $stone-40;
-    padding-bottom: 30px;
+    padding-bottom: 0;
     h2 {
+      margin-top: 60px;
+      margin-bottom: 60px;
       display: inline-block;
-    }
-    span {
-      display: inline-block;
-    }
-    input {
-      width: 100%;
-      padding: 15px;
-    }
-    label {
-      color: $grey;
     }
   }
 
   .down-arrow {
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-style: solid;
     border-width: 20px 20px 0 20px;
     border-color: $stone-40 transparent transparent transparent;
-    line-height: 0px;
+    line-height: 0;
     margin: auto auto 30px;
   }
 
-  .filter-options{
-    border: 0px;
-    border-bottom: 1px solid $light-grey;
-    padding-bottom: 5px;
-    width: 100%;
-    height: 200px;
-  }
+  .sort-by-container{
+     @media (min-width: 961px) {
+        float: right;
+      }
 
-  .selected-filters-label {
-    display: block;
-  }
-
-  #selected-filters-container{
-    background-color: $stone-40;
-    .clear-all-link{
-      display: block;
+    #sort-by-drop-down{
+      border-width: 2px;
+      border-color: black;
+      padding: 6px;
     }
   }
 
-  #selected-filters-container mark {
-    margin-bottom: 5px;
-    display: inline-block;
-  }
+  #filter-column {
+      .selected-filters-container{
+        background-color: $stone-40;
 
-  .card-image-left {
-    margin: 0;
-    min-height: 225px;
-    background-size: cover;
-    background-position: 100%;
-    background-repeat: no-repeat;
-    background-color: $white;
-    @media (max-width: 641px) {
-      min-height: 200px;
+        mark {
+          margin-bottom: 5px;
+          display: inline-block;
+        }
+
+        .selected-filters-label {
+          display: block;
+        }
+
+        .clear-all-link{
+          display: block;
+        }
     }
   }
 
   .opportunity-card{
+    .card-image-left {
+      margin: 0;
+      min-height: 225px;
+      background-size: cover;
+      background-position: 100%;
+      background-repeat: no-repeat;
+      background-color: $white;
+
+      @media (max-width: 641px) {
+        min-height: 200px;
+      }
+    }
+
     @media (max-width: 961px) {
       min-width: 300px;
     }
-  }
 
-  .opportunity-list-card{
-    border: 1px solid $light-grey;
-    min-height: 225px;
+    .card-link .card-inner{
+      overflow: hidden;
+      @media (max-width: 641px) {
+        padding-top: 20px;
+      }
+      span{
+        text-decoration: underline;
+        color: #006ccc;
+      }
+      p{
+        text-decoration: none;
+        color: black;
+      }
 
-    @media (max-width: 641px) {
-      min-height: 200px;
+      border: 1px solid $light-grey;
+      min-height: 225px;
+
+      @media (max-width: 641px) {
+        min-height: 200px;
+      }
     }
   }
 
-  .card-link .card-inner{
-    overflow: hidden;
-    @media (max-width: 641px) {
-      padding-top: 20px;
-    }
-    span{
-      text-decoration: underline;
-      color: #006ccc;
-    }
-    p{
-      text-decoration: none;
-      color: black;
-    }
-  }
-
-  .right-float{
-    float: right;
-  }
-
-  #sort-by-drop-down{
-    border-width: 2px;
-    border-color: black;
-    padding: 6px;
-  }
-
-fieldset {
-  position: relative;
-
-  legend {
-    margin-bottom: 20px;
-  }
-
-  label {
-    display: inline-block;
-    width: 100%;
-    cursor: pointer;
-    padding-bottom: 15px;
-    font-size: 15px;
-  }
-
-  button.filter-collapse {
-    background: transparent;
-    border: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding-top: 6px;
-    padding-bottom: 4px;
-    cursor: pointer;
-  }
-
-  button.filter-collapse.checked {
-    padding-bottom: 9px;
-    padding-right: 6px;
-    padding-top: 0;
-  }
-
-  button.filter-collapse::after {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    content: "";
-    border-style: solid;
-    display: inline-block;
-    height: 5px;
+  fieldset {
     position: relative;
-    vertical-align: middle;
-    border-color: #000000;
-    border-width: 2px 0 0 2px;
-    height: 8px;
-    width: 8px;
-  }
 
-  button.filter-collapse.checked::after {
-    border-width: 0 2px 2px 0;
-    margin: 5px 0 0 0;
+    legend {
+      margin-bottom: 20px;
+    }
 
+    label {
+      display: inline-block;
+      width: 100%;
+      cursor: pointer;
+      padding-bottom: 15px;
+      font-size: 15px;
+    }
+
+    button.filter-collapse {
+      background: transparent;
+      border: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding-top: 6px;
+      padding-bottom: 4px;
+      cursor: pointer;
+    }
+
+    button.filter-collapse.checked {
+      padding-bottom: 9px;
+      padding-right: 6px;
+      padding-top: 0;
+    }
+
+    button.filter-collapse::after {
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      content: "";
+      border-style: solid;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      border-color: #000000;
+      border-width: 2px 0 0 2px;
+      height: 8px;
+      width: 8px;
+    }
+
+    button.filter-collapse.checked::after {
+      border-width: 0 2px 2px 0;
+      margin: 5px 0 0 0;
+
+    }
   }
-}
 
   button[type=submit] {
     width: 100%;
     margin-top: 25px;
   }
 
-
   .paginator {
-  margin-top: 60px;
+    margin-top: 60px;
     a {
       height: 50px;
       text-align: center;
@@ -205,20 +191,6 @@ fieldset {
     }
   }
 
-  .page-title {
-    padding-bottom: 0;
-    h2 {
-      margin-top: 60px;
-      margin-bottom: 60px;
-    }
-    span {
-      margin-top: 36px;
-    }
-    mark {
-      font-size: 24px;
-    }
-  }
-
   fieldset label {
     display: inline-block;
     width: 100%;
@@ -226,16 +198,15 @@ fieldset {
     padding-bottom: 15px;
   }
 
-}
+  mark {
+    font-weight: bold;
+    line-height: 1.5;
+    background: $stone;
+    padding: 5px;
+    border-radius: 4px;
+  }
 
-mark {
-  font-weight: bold;
-  line-height: 1.5;
-  background: $stone;
-  padding: 5px;
-  border-radius: 4px;
 }
-
 
 body.js-enabled {
   #filter-column {

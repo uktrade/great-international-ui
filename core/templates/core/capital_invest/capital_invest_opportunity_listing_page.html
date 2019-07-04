@@ -38,7 +38,7 @@
                         <span>Filter results</span>
                     </section>
                 </div>
-                    <div class="column-quarter-xl right-float">
+                    <div class="column-quarter-xl sort-by-container margin-bottom-15">
                         <span>Sort by: </span>
                         <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
                             <option name="sort-by" value="" >Sort by</option>
@@ -56,7 +56,7 @@
                 <div class="column-quarter-xl" id="filter-column">
                     <section class="margin-bottom-15">
                         {% if filters or sorting_chosen %}
-                            <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
+                            <div class="selected-filters-container underline-flag-red margin-bottom-30">
                                 <div class="padding-15">
                                     <label class="selected-filters-label padding-bottom-15">Selected filters</label>
                                     {% for value in filters %}
@@ -145,7 +145,7 @@
                                         style="background-image: url({{ opportunity.hero_image.url }});">
                                         <p class="visually-hidden"></p>
                                     </div>
-                                    <div class="card-inner padding-horizontal-45 column-two-thirds-xl opportunity-list-card margin-bottom-30">
+                                    <div class="card-inner padding-horizontal-45 column-two-thirds-xl margin-bottom-30">
                                         {% ga360_tracker "opportunities-listed-link" %}
                                              <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
                                         {% endga360_tracker %}
