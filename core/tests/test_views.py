@@ -970,6 +970,103 @@ def test_sort_scales_for_opportunity_search(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_sorts_by_title_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Ashton Green',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Birmingham Curzon',
+                'sector': 'real-estate',
+                'scale_value': '2.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Drakelow Park',
+                'sector': 'real-estate',
+                'scale_value': '100.00',
+                'related_region': {
+                    'title': ''
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request_a_to_z = rf.get(
+        '/international/content/opportunities/?sort-by=Project+name%3A+A+to+Z'
+    )
+    request_a_to_z.LANGUAGE_CODE = 'en-gb'
+    response_a_to_z = OpportunitySearchView.as_view()(
+        request_a_to_z,
+        path='/international/content/opportunities/'
+             '?sort-by=Project+name%3A+A+to+Z'
+    )
+
+    assert response_a_to_z.context_data['results'][0]['title'] == 'Ashton Green'  # NOQA
+
+    request_z_to_a = rf.get(
+        '/international/content/opportunities/?sort-by=Project+name%3A+Z+to+A'
+    )
+    request_z_to_a.LANGUAGE_CODE = 'en-gb'
+    response_z_to_a = OpportunitySearchView.as_view()(
+        request_z_to_a,
+        path='/international/content/opportunities/'
+             '?sort-by=Project+name%3A+Z+to+A'
+    )
+
+    assert response_z_to_a.context_data['results'][2]['title'] == 'Drakelow Park'  # NOQA
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_num_of_opportunities_for_opportunity_search(
         mock_cms_response, rf):
 
@@ -1295,13 +1392,13 @@ def test_scale_less_than_100_for_opportunity_search(
     )
 
     request = rf.get(
-        '/international/content/opportunities/?scale=<+£100m'
+        '/international/content/opportunities/?scale=<+£100m&sort-by=Project+name%3A+Z+to+A'  # NOQA
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = OpportunitySearchView.as_view()(
         request,
         path='/international/content/opportunities/'
-             '?scale=<+£100m'
+             '?scale=<+£100m&sort-by=Project+name%3A+Z+to+A'
     )
 
     assert len(response.context_data['results']) == 2
@@ -1549,13 +1646,13 @@ def test_scale_greater_than_1000_for_opportunity_search(
     )
 
     request = rf.get(
-        '/international/content/opportunities/?scale=>+£1bn'
+        '/international/content/opportunities/?scale=>+£1bn&Project+name%3A+A+to+Z'  # NOQA
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = OpportunitySearchView.as_view()(
         request,
         path='/international/content/opportunities/'
-             '?scale=>+£1bn'
+             '?scale=>+£1bn&Project+name%3A+A+to+Z'
     )
 
     assert len(response.context_data['results']) == 1
