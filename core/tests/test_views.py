@@ -1063,7 +1063,7 @@ def test_sorts_by_title_for_opportunity_search(
              '?sort-by=Project+name%3A+Z+to+A'
     )
 
-    assert response_z_to_a.context_data['results'][2]['title'] == 'Drakelow Park'  # NOQA
+    assert response_z_to_a.context_data['results'][0]['title'] == 'Drakelow Park'  # NOQA
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
