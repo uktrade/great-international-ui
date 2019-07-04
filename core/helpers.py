@@ -100,8 +100,8 @@ def get_ga_data_for_page(page_type):
     return GA_DATA_MAPPING[page_type]
 
 
-def get_paginator_url(filters):
-    url = reverse('opportunities')
+def get_paginator_url(filters, url_name):
+    url = reverse(url_name)
 
     querystring = urlencode({
         key: value

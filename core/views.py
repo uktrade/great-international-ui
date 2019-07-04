@@ -459,7 +459,9 @@ class OpportunitySearchView(
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
             pagination=self.pagination,
-            paginator_url=helpers.get_paginator_url(self.request.GET),
+            paginator_url=helpers.get_paginator_url(
+                self.request.GET, 'opportunities'
+            ),
             results=self.results_for_page,
             filters=self.filters_chosen,
             sorting_chosen=self.sort_filter,
