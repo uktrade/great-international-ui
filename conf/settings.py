@@ -46,6 +46,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.messages',
     'raven.contrib.django.raven_compat',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
@@ -298,6 +299,8 @@ RAVEN_CONFIG = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
+SESSION_COOKIE_NAME = env.str('SESSION_COOKIE_NAME', 'great_int_sessionid')
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 CSRF_COOKIE_SECURE = True
 
