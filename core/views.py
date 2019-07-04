@@ -375,10 +375,11 @@ class OpportunitySearchView(
                             if float(opp['scale_value']) >= 1000 \
                                     and opp not in filtered_opportunities:
                                 filtered_opportunities.append(opp)
-                        if 'Value unknown' in scale:
-                            if float(opp['scale_value']) < 1\
-                                    and opp not in filtered_opportunities:
-                                filtered_opportunities.append(opp)
+                    if 'Value unknown' in scale:
+                        if not opp['scale_value'] \
+                                or float(opp['scale_value']) < 1 \
+                                and opp not in filtered_opportunities:
+                            filtered_opportunities.append(opp)
 
         if self.region:
             for region in self.region:
