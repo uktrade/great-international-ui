@@ -19,8 +19,8 @@
     background-color: $stone-40;
     padding-bottom: 0;
     h2 {
-      margin-top: 60px;
-      margin-bottom: 60px;
+      margin-top: $spacing-1;
+      margin-bottom: $spacing-1;
       display: inline-block;
     }
   }
@@ -32,7 +32,7 @@
     border-width: 20px 20px 0 20px;
     border-color: $stone-40 transparent transparent transparent;
     line-height: 0;
-    margin: auto auto 30px;
+    margin: auto auto $spacing-3;
   }
 
   .sort-by-container{
@@ -118,8 +118,8 @@
       display: inline-block;
       width: 100%;
       cursor: pointer;
-      padding-bottom: 15px;
-      font-size: 15px;
+      padding-bottom: $spacing-4;
+      font-size: $spacing-4;
     }
 
     button.filter-collapse {
@@ -166,7 +166,7 @@
   }
 
   .paginator {
-    margin-top: 60px;
+    margin-top: $spacing-1;
     a {
       height: 50px;
       text-align: center;
@@ -195,7 +195,7 @@
     display: inline-block;
     width: 100%;
     cursor: pointer;
-    padding-bottom: 15px;
+    padding-bottom: $spacing-4;
   }
 
   mark {
