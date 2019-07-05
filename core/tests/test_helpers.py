@@ -3,6 +3,7 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
+from core.helpers import SortFilter, sort_opportunities
 
 
 @pytest.mark.parametrize('path,expect_code', (
@@ -57,3 +58,51 @@ def test_get_paginator_url_with_spaces_filters():
     assert helpers.get_paginator_url(filters, 'opportunities') == (
         reverse('opportunities') + '?sector=A+value+with+spaces+'
     )
+
+
+def test_sort_opportunities_scale():
+
+    opportunities = [
+        {
+            'scale_value': 100
+        },
+        {
+            'scale_value': 3
+        },
+        {
+            'scale_value': 30
+        }
+    ]
+
+    sorting_chosen = SortFilter('Scale: High to Low')
+
+    sorted_opps = sort_opportunities(opportunities, sorting_chosen)
+
+    assert sorted_opps[0]['scale_value'] == 100
+    assert sorted_opps[1]['scale_value'] == 30
+    assert sorted_opps[2]['scale_value'] == 3
+
+
+def test_sort_opportunities_name():
+
+    opportunities = [
+        {
+            'title': 'Ashton Green'
+        },
+        {
+            'title': 'Zoology'
+        },
+        {
+            'title': 'Birmingham Curzon'
+        },
+    ]
+
+    sorting_chosen = SortFilter('Project name: A to Z')
+
+    sorted_opps = sort_opportunities(opportunities, sorting_chosen)
+
+    assert sorted_opps[0]['title'] == 'Ashton Green'
+    assert sorted_opps[1]['title'] == 'Birmingham Curzon'
+    assert sorted_opps[2]['title'] == 'Zoology'
+
+

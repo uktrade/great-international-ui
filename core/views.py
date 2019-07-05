@@ -280,10 +280,12 @@ class OpportunitySearchView(
 
         for opp in self.opportunities:
             for sector in opp['related_sectors']:
-                try:
-                    sectors.add(sector['related_sector']['title'])
-                except TypeError:
-                    continue
+                if sector['related_sector'] \
+                        and sector['related_sector']['title']:
+                    try:
+                        sectors.add(sector['related_sector']['title'])
+                    except TypeError:
+                        continue
 
         return {
             sector: "checked" if sector in self.filters_chosen
@@ -301,10 +303,11 @@ class OpportunitySearchView(
     def all_regions(self):
         regions = set()
         for opp in self.opportunities:
-            try:
-                regions.add(opp['related_region']['title'])
-            except TypeError:
-                continue
+            if opp['related_region'] and opp['related_region']['title']:
+                try:
+                    regions.add(opp['related_region']['title'])
+                except TypeError:
+                    continue
 
         return {
             region: "checked" if region in self.filters_chosen
@@ -380,7 +383,7 @@ class OpportunitySearchView(
 
     @property
     def sorting_chosen(self):
-        return self.sort_filter.sort_by_filter_chosen
+        return self.sort_filter.sort_by_filter_chosen.title
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
@@ -397,6 +400,6 @@ class OpportunitySearchView(
             ),
             results=self.results_for_page,
             filters=self.filters_chosen,
-            sorting_chosen=self.sort_filter,
+            sorting_chosen=self.sorting_chosen,
             *args, **kwargs,
         )

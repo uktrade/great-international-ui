@@ -144,7 +144,9 @@ class ScaleFilter:
     def matches(self, opportunity):
         for scale_chosen in self.selected_scales:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
-                if float(opportunity['scale_value']) == 0:
+                print('\n\n\n\n\n\ the value ', opportunity['scale_value'])
+                if float(opportunity['scale_value']) == 0 \
+                        or not opportunity['scale_value']:
                     return True
             elif scale_chosen.max == 'None':
                 if scale_chosen.min <= float(opportunity['scale_value']):
@@ -175,7 +177,9 @@ class SortFilter:
     sort_by_with_values = [
         Sort_by(title='Project name: A to Z', value='title', reverse=False),
         Sort_by(title='Project name: Z to A', value='title', reverse=True),
-        Sort_by(title='Scale: Low to High', value='scale_value', reverse=False),
+        Sort_by(
+            title='Scale: Low to High', value='scale_value', reverse=False
+        ),
         Sort_by(title='Scale: High to Low', value='scale_value', reverse=True)
     ]
 
