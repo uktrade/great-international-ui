@@ -282,10 +282,7 @@ class OpportunitySearchView(
             for sector in opp['related_sectors']:
                 if sector['related_sector'] \
                         and sector['related_sector']['title']:
-                    try:
-                        sectors.add(sector['related_sector']['title'])
-                    except TypeError:
-                        continue
+                    sectors.add(sector['related_sector']['title'])
 
         return {
             sector: "checked" if sector in self.filters_chosen
@@ -304,10 +301,7 @@ class OpportunitySearchView(
         regions = set()
         for opp in self.opportunities:
             if opp['related_region'] and opp['related_region']['title']:
-                try:
-                    regions.add(opp['related_region']['title'])
-                except TypeError:
-                    continue
+                regions.add(opp['related_region']['title'])
 
         return {
             region: "checked" if region in self.filters_chosen
