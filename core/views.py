@@ -318,7 +318,7 @@ class OpportunitySearchView(
     def all_sort_filters(self):
         sort_filters_with_selected_status = {
             sort_filter.title: "selected"
-            if sort_filter.title in self.sorting_chosen
+            if sort_filter.title == self.sorting_chosen
             else "" for sort_filter in SortFilter.sort_by_with_values
         }
 

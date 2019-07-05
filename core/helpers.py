@@ -144,7 +144,6 @@ class ScaleFilter:
     def matches(self, opportunity):
         for scale_chosen in self.selected_scales:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
-                print('\n\n\n\n\n\ the value ', opportunity['scale_value'])
                 if float(opportunity['scale_value']) == 0 \
                         or not opportunity['scale_value']:
                     return True

@@ -104,5 +104,3 @@ def test_sort_opportunities_name():
     assert sorted_opps[0]['title'] == 'Ashton Green'
     assert sorted_opps[1]['title'] == 'Birmingham Curzon'
     assert sorted_opps[2]['title'] == 'Zoology'
-
-
