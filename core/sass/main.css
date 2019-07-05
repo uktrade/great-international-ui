@@ -673,6 +673,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-listing-page .paginator {
   margin-top: 60px;
 }
+@media (min-width: 641px) {
+  .capital-invest-opportunity-listing-page .paginator {
+    display: flex;
+  }
+}
 .capital-invest-opportunity-listing-page .paginator a {
   height: 50px;
   text-align: center;

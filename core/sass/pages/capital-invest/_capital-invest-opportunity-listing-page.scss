@@ -171,6 +171,9 @@
 
   .paginator {
     margin-top: $spacing-1;
+    @media (min-width: 641px) {
+        display: flex;
+    }
     a {
       height: 50px;
       text-align: center;

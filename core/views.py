@@ -21,7 +21,8 @@ from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.helpers import get_ga_data_for_page
+from core.helpers import get_ga_data_for_page, filter_opportunities, \
+    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 
@@ -245,19 +246,19 @@ class OpportunitySearchView(
 
     @property
     def sector(self):
-        return self.request.GET.getlist('sector', '')
+        return SectorFilter(self.request.GET.getlist('sector', []))
 
     @property
     def scale(self):
-        return self.request.GET.getlist('scale', '')
+        return ScaleFilter(self.request.GET.getlist('scale', []))
 
     @property
     def region(self):
-        return self.request.GET.getlist('region', '')
+        return RegionFilter(self.request.GET.getlist('region', ''))
 
     @property
     def sort_filter(self):
-        return self.request.GET.get('sort-by', '')
+        return SortFilter(self.request.GET.get('sort-by', ''))
 
     @cached_property
     def page(self):
@@ -275,63 +276,47 @@ class OpportunitySearchView(
 
     @property
     def all_sectors(self):
-        sectors = []
+        sectors = set()
+
         for opp in self.opportunities:
             for sector in opp['related_sectors']:
-                if sector['related_sector'] \
-                        and sector['related_sector']['title'] \
-                        and sector['related_sector']['title'] not in sectors:
-                    sectors.append(sector['related_sector']['title'])
+                try:
+                    sectors.add(sector['related_sector']['title'])
+                except TypeError:
+                    continue
 
-        sectors_with_check_status = \
-            {sector: "checked" if sector in self.filters_chosen else ""
-             for sector in sectors}
-
-        return sectors_with_check_status
+        return {
+            sector: "checked" if sector in self.filters_chosen
+            else "" for sector in sectors
+        }
 
     @property
     def all_scales(self):
-        scales = [
-            '< £100m',
-            '£100m - £499m',
-            '£500m - £999m',
-            '> £1bn',
-            'Value unknown'
-        ]
-
-        scales_with_check_status = \
-            {scale: "checked" if scale in self.filters_chosen else ""
-             for scale in scales}
-
-        return scales_with_check_status
+        return {
+            scale.title: "checked" if scale.title in self.filters_chosen
+            else "" for scale in ScaleFilter.scales_with_values
+        }
 
     @property
     def all_regions(self):
-        regions = []
+        regions = set()
         for opp in self.opportunities:
-            if opp['related_region'] and opp['related_region']['title'] and \
-                    opp['related_region']['title'] not in regions:
-                regions.append(opp['related_region']['title'])
+            try:
+                regions.add(opp['related_region']['title'])
+            except TypeError:
+                continue
 
-        regions_with_check_status = \
-            {region: "checked" if region in self.filters_chosen else ""
-             for region in regions}
-
-        return regions_with_check_status
+        return {
+            region: "checked" if region in self.filters_chosen
+            else "" for region in regions
+        }
 
     @property
     def all_sort_filters(self):
-        all_sort_filters = [
-            'Project name: A to Z',
-            'Project name: Z to A',
-            'Scale: Low to High',
-            'Scale: High to Low',
-        ]
-
         sort_filters_with_selected_status = {
-            sort_filter: "selected"
-            if sort_filter in self.sorting_chosen else ""
-            for sort_filter in all_sort_filters
+            sort_filter.title: "selected"
+            if sort_filter.title in self.sorting_chosen
+            else "" for sort_filter in SortFilter.sort_by_with_values
         }
 
         return sort_filters_with_selected_status
@@ -339,81 +324,33 @@ class OpportunitySearchView(
     @property
     def filtered_opportunities(self):
 
-        opportunities = [opp for opp in self.opportunities]
-        filtered_opportunities = []
+        filtered_opportunities = [opp for opp in self.opportunities]
 
-        if self.sector:
-            for sector in self.sector:
-                for opp in opportunities:
-                    if opp['related_sectors']:
-                        for opp_sector in opp['related_sectors']:
-                            if opp_sector['related_sector']['title'] \
-                                    == sector and opp not in \
-                                    filtered_opportunities:
-                                filtered_opportunities.append(opp)
-
-        if self.scale:
-            for scale in self.scale:
-                for opp in opportunities:
-                    if opp['scale_value']:
-                        if '< £100m' in scale:
-                            if 1 <= float(opp['scale_value']) < 100.0 \
-                                    and opp not in filtered_opportunities:
-                                filtered_opportunities.append(opp)
-                        if '£100m - £499m' in scale:
-                            if 100 <= float(opp['scale_value']) <= 499 \
-                                    and opp not in filtered_opportunities:
-                                filtered_opportunities.append(opp)
-                        if '£500m - £999m' in scale:
-                            if 500 <= float(opp['scale_value']) <= 999 \
-                                    and opp not in filtered_opportunities:
-                                filtered_opportunities.append(opp)
-                        if '> £1bn' in scale:
-                            if float(opp['scale_value']) >= 1000 \
-                                    and opp not in filtered_opportunities:
-                                filtered_opportunities.append(opp)
-                    if 'Value unknown' in scale:
-                        if not opp['scale_value'] \
-                                or float(opp['scale_value']) < 1 \
-                                and opp not in filtered_opportunities:
-                            filtered_opportunities.append(opp)
-
-        if self.region:
-            for region in self.region:
-                for opp in opportunities:
-                    if opp['related_region'] \
-                            and opp['related_region']['title'] == region \
-                            and opp not in filtered_opportunities:
-                        filtered_opportunities.append(opp)
-
-        if self.sort_filter and self.sort_filter == 'Project name: A to Z':
-            filtered_opportunities.sort(key=lambda x: x['title'])
-            opportunities.sort(key=lambda x: x['title'])
-
-        if self.sort_filter and self.sort_filter == 'Project name: Z to A':
-            filtered_opportunities.sort(
-                key=lambda x: x['title'], reverse=True
-            )
-            opportunities.sort(
-                key=lambda x: x['title'], reverse=True
+        if self.sector.sectors:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.sector
             )
 
-        if self.sort_filter and self.sort_filter == 'Scale: Low to High':
-            filtered_opportunities.sort(key=lambda x: float(x['scale_value']))
-            opportunities.sort(key=lambda x: float(x['scale_value']))
-
-        if self.sort_filter and self.sort_filter == 'Scale: High to Low':
-            filtered_opportunities.sort(
-                key=lambda x: float(x['scale_value']), reverse=True
-            )
-            opportunities.sort(
-                key=lambda x: float(x['scale_value']), reverse=True
+        if self.region.regions:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.region
             )
 
-        if self.filters_chosen:
-            return filtered_opportunities
-        else:
-            return opportunities
+        if self.scale.selected_scales:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.scale
+            )
+
+        if self.sort_filter.sort_by_filter_chosen:
+            filtered_opportunities = sort_opportunities(
+                filtered_opportunities,
+                self.sort_filter
+            )
+
+        return filtered_opportunities
 
     @property
     def num_of_opportunities(self):
@@ -433,21 +370,20 @@ class OpportunitySearchView(
     @property
     def filters_chosen(self):
         filters = []
-        for sector in self.sector:
+        for sector in self.sector.sectors:
             filters.append(sector)
-        for scale in self.scale:
-            filters.append(scale)
-        for region in self.region:
+        for scale in self.scale.selected_scales:
+            filters.append(scale.title)
+        for region in self.region.regions:
             filters.append(region)
         return filters
 
     @property
     def sorting_chosen(self):
-        return self.sort_filter
+        return self.sort_filter.sort_by_filter_chosen
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
-            show_search_guide='show-guide' in self.request.GET,
             page=self.page,
             invest_url=urls.SERVICES_INVEST,
             num_of_opportunities=self.num_of_opportunities,
