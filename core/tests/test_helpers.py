@@ -176,7 +176,7 @@ def test_filter_opportunities_scale_greater_than_1000():
 def test_filter_opportunities_region():
     opportunities = [
         {'related_region': {'title': 'Midlands'}},
-        {'related_region': {'title': 'South of England'}},
+        {'related_region': ''},
         {'related_region': {'title': 'Midlands'}},
         {'related_region': {'title': ''}},
     ]
@@ -213,7 +213,7 @@ def test_filter_opportunities_multiple_filters():
         {
             'title': 'this one',
             'related_sectors': [
-                {'related_sector': {'title': ''}},
+                {'related_sector': ''},
                 {'related_sector': {'title': 'Birmingham Curzon'}},
             ],
             'scale_value': 0,
