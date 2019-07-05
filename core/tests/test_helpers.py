@@ -175,18 +175,10 @@ def test_filter_opportunities_scale_greater_than_1000():
 
 def test_filter_opportunities_region():
     opportunities = [
-        {
-            'related_region': 'Midlands'
-        },
-        {
-            'related_region': 'South of England'
-        },
-        {
-            'related_region': 'Midlands'
-        },
-        {
-            'related_region': ''
-        },
+        {'related_region': {'title': 'Midlands'}},
+        {'related_region': {'title': 'South of England'}},
+        {'related_region': {'title': 'Midlands'}},
+        {'related_region': {'title': ''}},
     ]
 
     filter_chosen = RegionFilter('Midlands')
