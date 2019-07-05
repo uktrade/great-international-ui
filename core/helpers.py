@@ -156,12 +156,12 @@ class ScaleFilter:
 
 
 class RegionFilter:
-    def __init__(self, regions):
-        self.regions = regions
+    def __init__(self, region):
+        self.region = region
 
     def matches(self, opportunity):
         if opportunity['related_region'] \
-                and opportunity['related_region']['title'] in self.regions:
+                and opportunity['related_region']['title'] == self.region:
             return True
 
 

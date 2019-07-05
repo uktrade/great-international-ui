@@ -206,3 +206,38 @@ def test_filter_opportunities_sector():
 
     filtered_opps = filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 1
+
+
+def test_filter_opportunities_multiple_filters():
+    opportunities = [
+        {
+            'title': 'this one',
+            'related_sectors': [
+                {'related_sector': {'title': ''}},
+                {'related_sector': {'title': 'Birmingham Curzon'}},
+            ],
+            'scale_value': 0,
+            'related_region': {'title': 'Midlands'},
+
+        },
+        {
+            'title': 'not this one',
+            'related_sectors': [
+                {'related_sector': {'title': 'Aston Green'}},
+            ],
+            'scale_value': 3000,
+            'related_region': {'title': ''},
+        },
+    ]
+
+    filtered_opps = filter_opportunities(opportunities, SectorFilter(
+        'Birmingham Curzon'
+    ))
+    filtered_opps = filter_opportunities(filtered_opps, RegionFilter(
+        'Midlands'
+    ))
+    filtered_opps = filter_opportunities(filtered_opps, ScaleFilter(
+        'Value unknown'
+    ))
+    assert len(filtered_opps) == 1
+    assert filtered_opps[0]['title'] == 'this one'

@@ -335,7 +335,7 @@ class OpportunitySearchView(
                 self.sector
             )
 
-        if self.region.regions:
+        if self.region.region:
             filtered_opportunities = filter_opportunities(
                 filtered_opportunities,
                 self.region
@@ -377,7 +377,7 @@ class OpportunitySearchView(
             filters.append(sector)
         for scale in self.scale.selected_scales:
             filters.append(scale.title)
-        for region in self.region.regions:
+        for region in self.region.region:
             filters.append(region)
         return filters
 
