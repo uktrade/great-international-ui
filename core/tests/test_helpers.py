@@ -41,3 +41,19 @@ def test_get_paginator_url():
     assert helpers.get_paginator_url(filters, 'opportunities') == (
         reverse('opportunities') + '?'
     )
+
+
+def test_get_paginator_url_with_filters():
+    filters = {'page': 2, 'sector': ['Energy', 'Aerospace']}
+
+    assert helpers.get_paginator_url(filters, 'opportunities') == (
+        reverse('opportunities') + '?sector=Energy&sector=Aerospace'
+    )
+
+
+def test_get_paginator_url_with_spaces_filters():
+    filters = {'page': 2, 'sector': 'A value with spaces '}
+
+    assert helpers.get_paginator_url(filters, 'opportunities') == (
+        reverse('opportunities') + '?sector=A+value+with+spaces+'
+    )
