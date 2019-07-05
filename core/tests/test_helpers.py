@@ -3,7 +3,8 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
-from core.helpers import SortFilter, sort_opportunities
+from core.helpers import SortFilter, sort_opportunities, ScaleFilter, \
+    filter_opportunities, RegionFilter, SectorFilter
 
 
 @pytest.mark.parametrize('path,expect_code', (
@@ -104,3 +105,112 @@ def test_sort_opportunities_name():
     assert sorted_opps[0]['title'] == 'Ashton Green'
     assert sorted_opps[1]['title'] == 'Birmingham Curzon'
     assert sorted_opps[2]['title'] == 'Zoology'
+
+
+def test_filter_opportunities_scale():
+    opportunities = [
+        {
+            'scale_value': 100
+        },
+        {
+            'scale_value': 3
+        },
+        {
+            'scale_value': 30
+        },
+        {
+            'scale_value': 3000
+        }
+    ]
+
+    filter_chosen = ScaleFilter('< £100m')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 2
+
+
+def test_filter_opportunities_scale_value_unknown():
+    opportunities = [
+        {
+            'scale_value': 100
+        },
+        {
+            'scale_value': 1
+        },
+        {
+            'scale_value': 0
+        },
+        {
+            'scale_value': 3000
+        }
+    ]
+
+    filter_chosen = ScaleFilter('Value unknown')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 1
+
+
+def test_filter_opportunities_scale_greater_than_1000():
+    opportunities = [
+        {
+            'scale_value': 100
+        },
+        {
+            'scale_value': 1
+        },
+        {
+            'scale_value': 0
+        },
+        {
+            'scale_value': 3000
+        }
+    ]
+
+    filter_chosen = ScaleFilter('> £1bn')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 1
+
+
+def test_filter_opportunities_region():
+    opportunities = [
+        {
+            'related_region': 'Midlands'
+        },
+        {
+            'related_region': 'South of England'
+        },
+        {
+            'related_region': 'Midlands'
+        },
+        {
+            'related_region': ''
+        },
+    ]
+
+    filter_chosen = RegionFilter('Midlands')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 2
+
+
+def test_filter_opportunities_sector():
+    opportunities = [
+        {
+            'related_sectors': [
+                {'related_sector': {'title': 'Aston Green'}},
+                {'related_sector': {'title': 'Birmingham Curzon'}},
+            ],
+        },
+        {
+            'related_sectors': [
+                {'related_sector': {'title': 'Aston Green'}},
+            ],
+        },
+    ]
+
+    filter_chosen = SectorFilter('Birmingham Curzon')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 1
