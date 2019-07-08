@@ -3,7 +3,6 @@
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes render_form override_elements_css_class informative_banner from directory_components %}
-{% load ga360_tracker from directory_components %}
 
 {% block css_layout_class %}capital-invest-landing-page{% endblock %}
 
@@ -12,13 +11,9 @@
 
 {% if page.hero_cta_text %}
     {% url 'how-to-do-business-with-the-uk' as doing_business_url %}
-    {% ga360_tracker "hero-cta" %}
         {% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=doing_business_url %}
-    {% endga360_tracker %}
 {% else %}
-    {% ga360_tracker "hero-cta" %}
         {% include 'directory_components/hero_with_cta.html' with heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url %}
-    {% endga360_tracker %}
 {% endif %}
 
 {% if page.reason_to_invest_section_title and page.reason_to_invest_section_content %}
@@ -78,18 +73,14 @@
                         {% if region.related_region.title %}
                             <div class="column-half-m column-third-xl">
                                 {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
-                                {% ga360_tracker "region-card" ga-value=region.related_region.title %}
                                     {% include 'directory_components/card.html' with img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
-                                {% endga360_tracker %}
                             </div>
                         {% endif %}
                     {% endfor %}
                     {% for region_fields in page.added_region_card_fields %}
                         {% if region_fields.region_card_title and region_fields.region_card_summary %}
                             <div class="column-half-m column-third-xl">
-                                {% ga360_tracker "region-card" ga-value=region_fields.region_card_title %}
                                     {% include 'directory_components/card.html' with img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
-                                {% endga360_tracker %}
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -112,11 +103,9 @@
                 <h2 class="heading-large">{{ page.energy_sector_title }}</h2>
                 <p> {{ page.energy_sector_content|add_export_elements_classes|safe}} </p>
                 {% if page.energy_sector_cta_text and page.energy_sector_pdf_document %}
-                    {% ga360_tracker "cta" %}
                         <a class="button button-blue button-ghost-blue energy_pdf_button margin-bottom-45" href="{{page.energy_sector_pdf_document}}" target="_blank">
                             {{ page.energy_sector_cta_text }}
                         </a>
-                    {% endga360_tracker %}
                 {% endif %}
             </div>
             <div class="column-half center-vertical flex-shrink-0 max-width-100">
@@ -160,9 +149,7 @@
                 <p class="font-small padding-bottom-45">{{ page.contact_section_text }} </p>
                 {% if page.contact_section_cta_text %}
                     <div>
-                        {% ga360_tracker "cta" %}
-                            <a href="mailto:capitalinvestment@trade.gov.uk" class="button button-arrow-small">{{ page.contact_section_cta_text }} </a>
-                        {% endga360_tracker %}
+                        <a href="mailto:capitalinvestment@trade.gov.uk" class="button button-arrow-small">{{ page.contact_section_cta_text }} </a>
                     </div>
                 {% endif %}
             </div>

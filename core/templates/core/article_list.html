@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
-{% load add_export_elements_classes ga360_tracker breadcrumbs from directory_components %}
+{% load add_export_elements_classes breadcrumbs from directory_components %}
 {% load filter_by_active_language from cms_tags %}
 {% load parse_date from cms_tags %}
 
@@ -24,11 +24,9 @@
 <section id="{% block page_id %}article-list-page{% endblock %}">
 
   <div class="container">
-    {% ga360_tracker "breadcrumbs" %}
       {% breadcrumbs page.display_title %}
         <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
       {% endbreadcrumbs %}
-    {% endga360_tracker %}
   </div>
 
   <div class="container">
@@ -51,9 +49,7 @@
 
             {% for child_page in localised_children %}
               <li class="article">
-                {% ga360_tracker "cta" %}
                   <a href="{{ child_page.meta.url }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
-                {% endga360_tracker %}
                 <div class="details">
                   <p class="subheading">
                     {% if region == 'eu' %}
@@ -76,9 +72,7 @@
 
             {% for child_page in page.child_pages|filter_by_active_language %}
               <li class="article">
-                {% ga360_tracker "cta" %}
-                  <a href="{{ child_page.meta.url }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
-                {% endga360_tracker %}
+                <a href="{{ child_page.meta.url }}" class="article-heading heading-medium link" id="{{ child_page.meta.slug }}-link">{{ child_page.title }}</a>
                 <p class="subheading">Last updated {{ child_page.last_published_at|parse_date }}</p>
               </li>
             {% endfor %}

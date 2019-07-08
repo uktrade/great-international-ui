@@ -4,9 +4,11 @@
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
+- No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
+- ValueError: Missing staticfiles manifest entry for 'directory_components/js/dit.tagging.internationalHeader.js'
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
