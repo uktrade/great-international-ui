@@ -1,7 +1,7 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load trans from i18n %}
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class ga360_tracker from directory_components %}
+{% load breadcrumbs card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
@@ -18,11 +18,9 @@
 
   <div class="container">
 
-    {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.display_title %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
-    {% endga360_tracker %}
+    {% breadcrumbs page.display_title %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
 
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
@@ -58,9 +56,7 @@
 
           <p class="padding-bottom-30">{{ page.section_two_teaser }}</p>
 
-          {% ga360_tracker "cta" %}
-            <a href="{{ page.section_two_button_url }}" class="button button-blue">{{ page.section_two_button_text }}</a>
-          {% endga360_tracker %}
+          <a href="{{ page.section_two_button_url }}" class="button button-blue">{{ page.section_two_button_text }}</a>
         </div>
       </div>
     </div>
@@ -73,9 +69,7 @@
       <div class="flex-grid">
         {% for guide in page.guides|filter_by_active_language %}
           <div class="column-third">
-            {% ga360_tracker "guide-card" ga-value=guide.title %}
               {% card img_src=guide.thumbnail.url url=guide.meta.url heading=guide.title description=guide.teaser %}
-            {% endga360_tracker %}
           </div>
         {% endfor %}
       </div>
@@ -89,9 +83,7 @@
           <h2 class="heading-large grey-text">{{ page.section_three_title }}</h2>
           <p>{{ page.section_three_text }}</p>
           {% if page.section_three_cta_link and page.section_three_cta_text %}
-            {% ga360_tracker "cta" %}
               <a href="{{ page.section_three_cta_link }}" class="button button-arrow-small">{{ page.section_three_cta_text }}</a>
-            {% endga360_tracker %}
           {% endif %}
         </div>
       </div>

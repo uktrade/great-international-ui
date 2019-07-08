@@ -189,6 +189,12 @@ section {
   padding-bottom: 0;
 }
 
+input.form-control,
+textarea.form-control,
+select.form-control {
+  width: 100%;
+}
+
 .cta-block .cta-block-image {
   width: 100%;
   height: auto;

@@ -1,5 +1,4 @@
 {% load filter_by_active_language from cms_tags %}
-{% load ga360_tracker from directory_components %}
 
 {% with page.related_pages|filter_by_active_language as related_pages %}
 {% if related_pages %}
@@ -9,9 +8,7 @@
     <ul>
       {% for article in related_pages %}
         <li>
-          {% ga360_tracker "related-page-link" %}
             <h3 class="heading-small"><a href="{{ article.meta.url }}" class="link">{{ article.title }}</a></h3>
-          {% endga360_tracker %}
         </li>
       {% endfor %}
     </ul>
