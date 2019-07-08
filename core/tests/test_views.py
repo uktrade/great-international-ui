@@ -732,10 +732,10 @@ def test_region_sector_scale_filter_for_opportunity_search(
         json_payload=page
     )
 
-    request = rf.get('/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')
+    request = rf.get('/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')   # NOQA
     request.LANGUAGE_CODE = 'en-gb'
     response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')
+        request, path='/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')  # NOQA
 
     assert len(response.context_data['results']) == 1
     assert response.context_data['results'][0]['title'] == 'Some Opp 1'
