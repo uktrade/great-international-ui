@@ -6,6 +6,7 @@
 - No ticket - Changed `card-grid` to `flex-grid` on CI landing page, region and opp pages
 - No ticket - Opportunity card changes to reflect new card component changes
 - No ticket - Card with publish date (industry cards) updated to use image same as directory component
+- No ticket - Upgrade vulnerable django version to django 1.11.22
 
 
 ### Implemented enhancements
