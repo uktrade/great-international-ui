@@ -21,17 +21,6 @@
   <script src="{% static 'directory_components/js/dit.components.languageSelectorDropdown.js' %}"></script>
 {% endblock %}
 
-{% block head_js_ga360 %}
-    {{ block.super }}
-    {% if ga360 %}
-        <script src="{% static 'js/dit.tagging.js' %}"></script>
-        <script id="ga360-script">
-            dit.tagging.international.init('{{ ga360.page_id }}');
-            dit.tagging.internationalHeader.init();
-        </script>
-    {% endif %}
-{% endblock %}
-
 {% block head_other %}{% endblock %}
 
 {% block head_sharing_metadata %}
