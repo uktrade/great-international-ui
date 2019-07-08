@@ -72,50 +72,50 @@
 
                             {% if sectors %}
                                 <fieldset>
-                                        <label for="toggle_id_sector" >{% trans 'Sector' %}</label>
-                                        <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                        <div class="form-group">
-                                            <ul class="select-multiple" id="checkbox">
-                                                {% for sector_name, sector_checked_status in sectors.items %}
-                                                    <li class="multiple-choice">
-                                                        <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
-                                                        <label class="form-label" for="checkbox">{{ sector_name }}</label>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                                    <label for="toggle_id_sector" >{% trans 'Sector' %}</label>
+                                    <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                    <div class="form-group">
+                                        <ul class="select-multiple" id="checkbox">
+                                            {% for sector_name, sector_checked_status in sectors.items %}
+                                                <li class="multiple-choice">
+                                                    <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
+                                                    <label class="form-label" for="checkbox">{{ sector_name }}</label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 </fieldset>
                             {% endif %}
                             {% if scales %}
                                 <fieldset>
-                                        <label for="toggle_id_scale">{% trans 'Scale (GDV)' %}</label>
-                                        <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                        <div class="form-group">
-                                            <ul class="select-multiple" id="checkbox">
-                                                {% for scale_name, scale_check_status in scales.items %}
-                                                    <li class="multiple-choice">
-                                                        <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
-                                                        <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                                    <label for="toggle_id_scale">{% trans 'Scale (GDV)' %}</label>
+                                    <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                    <div class="form-group">
+                                        <ul class="select-multiple" id="checkbox">
+                                            {% for scale_name, scale_check_status in scales.items %}
+                                                <li class="multiple-choice">
+                                                    <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
+                                                    <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 </fieldset>
                             {% endif %}
                             {% if regions|length > 1 %}
                                 <fieldset>
-                                        <label for="toggle_id_region">{% trans 'Region' %}</label>
-                                        <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                        <div class="form-group">
-                                            <ul class="select-multiple" id="checkbox">
-                                                {% for region_name, region_check_status in regions.items %}
-                                                    <li class="multiple-choice">
-                                                        <input class="select-multiple" name="region" type="checkbox" value="{{ region_name }}" {{ region_check_status }}>
-                                                        <label class="form-label" for="checkbox">{{ region_name }}</label>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                                    <label for="toggle_id_region">{% trans 'Region' %}</label>
+                                    <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
+                                    <div class="form-group">
+                                        <ul class="select-multiple" id="checkbox">
+                                            {% for region_name, region_check_status in regions.items %}
+                                                <li class="multiple-choice">
+                                                    <input class="select-multiple" name="region" type="checkbox" value="{{ region_name }}" {{ region_check_status }}>
+                                                    <label class="form-label" for="checkbox">{{ region_name }}</label>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
                                 </fieldset>
                             {% endif %}
                             <button class="button" type="submit">{% trans 'Update results' %}</button>
