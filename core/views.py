@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
 
@@ -34,7 +34,6 @@ class CMSPageFromPathView(
     GA360Mixin,
     TemplateView
 ):
-
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
 
@@ -284,17 +283,16 @@ class OpportunitySearchView(
                         and sector['related_sector']['title']:
                     sectors.add(sector['related_sector']['title'])
 
-        return {
-            sector: "checked" if sector in self.filters_chosen
-            else "" for sector in sectors
-        }
+        return [
+            (sector, sector) for sector in sectors
+        ]
 
     @property
     def all_scales(self):
-        return {
-            scale.title: "checked" if scale.title in self.filters_chosen
-            else "" for scale in ScaleFilter.scales_with_values
-        }
+        return [
+            (scale.title, scale.title)
+            for scale in ScaleFilter.scales_with_values
+        ]
 
     @property
     def all_regions(self):
@@ -303,18 +301,16 @@ class OpportunitySearchView(
             if opp['related_region'] and opp['related_region']['title']:
                 regions.add(opp['related_region']['title'])
 
-        return {
-            region: "checked" if region in self.filters_chosen
-            else "" for region in regions
-        }
+        return [
+            (region, region) for region in regions
+        ]
 
     @property
     def all_sort_filters(self):
-        sort_filters_with_selected_status = {
-            sort_filter.title: "selected"
-            if sort_filter.title == self.sorting_chosen
-            else "" for sort_filter in SortFilter.sort_by_with_values
-        }
+        sort_filters_with_selected_status = [
+            (sort_filter.title, sort_filter.title)
+            for sort_filter in SortFilter.sort_by_with_values
+        ]
 
         return sort_filters_with_selected_status
 
@@ -395,5 +391,11 @@ class OpportunitySearchView(
             results=self.results_for_page,
             filters=self.filters_chosen,
             sorting_chosen=self.sorting_chosen,
+            form=forms.OpportunitySearchForm(
+                self.all_sectors,
+                self.all_scales,
+                self.all_regions,
+                self.all_sort_filters
+            ),
             *args, **kwargs,
         )

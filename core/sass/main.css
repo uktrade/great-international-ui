@@ -560,7 +560,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
     float: right;
   }
 }
-.capital-invest-opportunity-listing-page .sort-by-container #sort-by-drop-down {
+.capital-invest-opportunity-listing-page .sort-by-container #sort_by_drop_down {
   border-width: 2px;
   border-color: black;
   padding: 6px;

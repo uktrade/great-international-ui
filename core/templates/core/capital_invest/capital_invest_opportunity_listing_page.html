@@ -41,14 +41,14 @@
                     <span>{% trans 'Sort by' %}:</span>
                     <select onchange="this.form.submit()" name="sort-by" id="sort-by-drop-down" class="font-xsmall">
                         <option name="sort-by" value="" >{% trans 'Sort by' %}</option>
-                        {% for filter_name, filter_select_status in sorting_filters.items %}
-                            <option value="{{ filter_name }}" {{ filter_select_status }}>{{ filter_name }}</option>
-                        {% endfor %}
+                        {{form.sector}}
                     </select>
+                    <div class="sort-by-container font-xsmall">
+                        {{ form.sort_by_drop_down}}
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="container" >
             <div class="flex-grid">
 
@@ -65,56 +65,22 @@
                                 </div>
                             </div>
                         {% endif %}
-
-                            {% if sectors %}
-                                <fieldset>
-                                    <label for="toggle_id_sector" >{% trans 'Sector' %}</label>
-                                    <button type="button" id="toggle_id_sector" aria-controls="id_sector-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for sector_name, sector_checked_status in sectors.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="sector" type="checkbox" value="{{ sector_name }}" {{sector_checked_status}}>
-                                                    <label class="form-label" for="checkbox">{{ sector_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </fieldset>
-                            {% endif %}
-                            {% if scales %}
-                                <fieldset>
-                                    <label for="toggle_id_scale">{% trans 'Scale (GDV)' %}</label>
-                                    <button type="button" id="toggle_id_scale" aria-controls="id_scale-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for scale_name, scale_check_status in scales.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="scale" type="checkbox" value="{{ scale_name }}" {{ scale_check_status }}>
-                                                    <label class="form-label font-xsmall" for="checkbox">{{ scale_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </fieldset>
-                            {% endif %}
-                            {% if regions|length > 1 %}
-                                <fieldset>
-                                    <label for="toggle_id_region">{% trans 'Region' %}</label>
-                                    <button type="button" id="toggle_id_region" aria-controls="id_region-container" class="filter-collapse {{ open|yesno:',checked' }}" alt=""></button>
-                                    <div class="form-group">
-                                        <ul class="select-multiple" id="checkbox">
-                                            {% for region_name, region_check_status in regions.items %}
-                                                <li class="multiple-choice">
-                                                    <input class="select-multiple" name="region" type="checkbox" value="{{ region_name }}" {{ region_check_status }}>
-                                                    <label class="form-label" for="checkbox">{{ region_name }}</label>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </fieldset>
-                            {% endif %}
-                            <button class="button" type="submit">{% trans 'Update results' %}</button>
+                        {% if sectors %}
+                            <fieldset>
+                                {% include 'core/includes/filter.html' with label='Sectors' field=form.sector %}
+                            </fieldset>
+                        {% endif %}
+                        {% if scales %}
+                            <fieldset>
+                                {% include 'core/includes/filter.html' with label='Scale (GDV)' field=form.scale %}
+                            </fieldset>
+                        {% endif %}
+                        {% if regions|length > 1 %}
+                            <fieldset>
+                                {% include 'core/includes/filter.html' with label='Region' field=form.region %}
+                            </fieldset>
+                        {% endif %}
+                        <button class="button" type="submit">{% trans 'Update results' %}</button>
                     </section>
 
                 </div>
