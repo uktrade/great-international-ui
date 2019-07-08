@@ -147,7 +147,6 @@ class ScaleFilter:
         for scale_chosen in self.selected_scales:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
                 if not opportunity['scale_value']:
-                    print('\n\n\n\n\n\n\n the scale ', opportunity['scale_value'])
                     return True
             elif scale_chosen.max == 'None':
                 if scale_chosen.min <= float(opportunity['scale_value']):
