@@ -1,6 +1,7 @@
 [run]
 omit =
     .venv/*
+    conftest.py
     conf/wsgi.py
     conf/settings.py
     manage.py

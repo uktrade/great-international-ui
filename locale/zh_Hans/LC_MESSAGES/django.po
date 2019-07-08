@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 09:38+0000\n"
+"POT-Creation-Date: 2019-06-25 11:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,11 +45,15 @@ msgstr ""
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:68
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
+msgid "Opportunity"
+msgstr ""
+
+#: core/templates/core/how_to_do_business_landing_page.html:70
 msgid "Need help?"
 msgstr "需要帮助？"
 
-#: core/templates/core/how_to_do_business_landing_page.html:70
+#: core/templates/core/how_to_do_business_landing_page.html:72
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
 "have questions, we can help."
@@ -57,19 +61,19 @@ msgstr ""
 "英国政府帮助企业在英国拓展业务并与英国开展贸易。如果您有任何疑问，我们可以帮"
 "助您"
 
-#: core/templates/core/how_to_do_business_landing_page.html:73
+#: core/templates/core/how_to_do_business_landing_page.html:75
 msgid "Contact the EU Exit enquiry service"
 msgstr "联系脱欧咨询服务部门"
 
-#: core/templates/core/sector_page.html:16
+#: core/templates/core/sector_page.html:18
 msgid "Industries"
 msgstr "行业"
 
-#: core/templates/core/sector_page.html:139
+#: core/templates/core/sector_page.html:162
 msgid "Next steps"
 msgstr "下一步"
 
-#: core/templates/core/sector_page.html:140
+#: core/templates/core/sector_page.html:163
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
@@ -78,17 +82,82 @@ msgstr ""
 "作为英国的国际贸易部门，我们可以帮助您从英国找到合适的产品和服务。更重要的"
 "是，我们提供专家建议和有竞争力的财务支持。"
 
-#: core/templates/core/sector_page.html:145
+#: core/templates/core/sector_page.html:168
 msgid "I want to invest in the UK"
 msgstr "我想投资英国"
 
-#: core/templates/core/sector_page.html:151
+#: core/templates/core/sector_page.html:174
 msgid "I want to buy from the UK"
 msgstr "我想从英国购买"
 
-#: core/templates/core/uk_setup_guide/article_detail.html:23
+#: core/templates/core/uk_setup_guide/article_detail.html:26
 msgid "UK setup guide"
 msgstr "英国创业指南"
+
+#: perfect_fit_prospectus/forms.py:12
+msgid "Name"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:16
+msgid "Company"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:21
+msgid "Email"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:26
+msgid "Phone number (optional)"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:32
+msgid "Country"
+msgstr ""
+
+#: perfect_fit_prospectus/forms.py:40
+msgid "I would like to receive further information."
+msgstr ""
+
+#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:5
+#: perfect_fit_prospectus/templates/perfect_fit_prospectus/success.html:5
+msgid "Perfect Fit Prospectus"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:12
+msgid "Perfect fit"
+msgstr ""
+
+#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:23
+msgid ""
+"\n"
+"          <p>If you're thinking about expanding your business "
+"internationally, the UK could be the perfect fit. To explore what the UK has "
+"to offer, download your <span class=\"bold\">Perfect Fit Prospectus</span> "
+"today.</p>\n"
+"          <p>Simply enter your details below to access a wealth of insight "
+"into the UK's business environment tailored to your business together with "
+"help and advice.</p>\n"
+"        "
+msgstr ""
+
+#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:39
+#, python-format
+msgid ""
+"\n"
+"        <p>The Department for International Trade will use the information "
+"provided in this form to send you your report. You can read about how we "
+"protect your data through our <a href="
+"\"%(header_footer_urls.privacy_and_cookies)s\" target=\"_blank\">privacy "
+"policy</a>.</p>\n"
+"        <p>If you would like to receive further information about setting up "
+"your business in the UK, you can subscribe to our mailing list.</p>\n"
+"        "
+msgstr ""
+
+#: perfect_fit_prospectus/views.py:31
+#, python-format
+msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
+msgstr ""
 
 #, fuzzy
 #~| msgid ""

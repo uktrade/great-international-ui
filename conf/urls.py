@@ -2,7 +2,7 @@ import directory_components.views
 from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
 from django.urls import reverse_lazy
@@ -37,8 +37,15 @@ urlpatterns = [
     url(
         r"^international/$",
         core.views.CMSPageFromPathView.as_view(),
-        {'path': 'international/'},
+        {'path': '/'},
         name="index"
+    ),
+    url(
+        r'^international/invest/perfectfit/',
+        include(
+            'perfect_fit_prospectus.urls',
+            namespace='perfect_fit_prospectus'
+        )
     ),
     url(
         r'^international/content/$',
@@ -85,7 +92,12 @@ urlpatterns = [
         {'path': 'opportunities'},
         name="opportunities"
     ),
-    # ----
+    url(
+        r"^international/invest-capital/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': 'capital-invest'},
+        name="invest-capital-home"
+    ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),

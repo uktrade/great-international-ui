@@ -12,15 +12,17 @@
 
 <section>
     <div class="container">
-        {% url 'cms-page-from-path' 'capital-invest' as capital_invest_url %}
-        {% breadcrumbs left_url=site_home_link.url left_label=site_home_link.label middle_url=capital_invest_url middle_label='Capital Invest' right_label=page.breadcrumbs_label %}
+        {% breadcrumbs page.breadcrumbs_label %}
+          <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+        {% endbreadcrumbs %}
     </div>
 </section>
 
 {% if page.region_summary_section_intro %}
 <section class="capital-invest-region-page-section">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             <div class="column-half-l left-half-page-text">
                 <div class="font-medium padding-bottom-60">
                     {{ page.region_summary_section_intro}}
@@ -60,7 +62,7 @@
 <section class="page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.property_and_infrastructure_section_title }}</h1>
-        <div class="card-grid">
+        <div class="flex-grid">
             {% if page.property_and_infrastructure_section_image.url %}
                 <div class="column-half-xl center-vertical mobile-padding-bottom-30">
                     <figure class="landing-page-image flex-shrink-0 max-width-100">

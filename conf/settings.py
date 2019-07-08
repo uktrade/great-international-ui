@@ -46,6 +46,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.messages',
     'raven.contrib.django.raven_compat',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
@@ -56,7 +57,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'health_check.cache',
     'directory_healthcheck',
-    'euexit'
+    'euexit',
+    'perfect_fit_prospectus'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -67,6 +69,7 @@ MIDDLEWARE_CLASSES = [
     'directory_components.middleware.CountryMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
@@ -84,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
+                'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
                 'core.context_processors.site_home_link',
                 'directory_components.context_processors.analytics',
@@ -295,6 +299,8 @@ RAVEN_CONFIG = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
+SESSION_COOKIE_NAME = env.str('SESSION_COOKIE_NAME', 'great_int_sessionid')
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 CSRF_COOKIE_SECURE = True
 
@@ -438,3 +444,16 @@ DIRECTORY_HEALTHCHECK_BACKENDS = [
     # health_check.cache.CacheBackend is also registered in
     # INSTALLED_APPS's health_check.cache
 ]
+
+
+# PFP
+PFP_API_CLIENT_API_KEY = env.str('PFP_API_CLIENT_API_KEY')
+PFP_API_CLIENT_BASE_URL = env.str('PFP_API_CLIENT_BASE_URL')
+PFP_API_CLIENT_SENDER_ID = 'directory'
+PFP_API_CLIENT_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_CMS_API_CLIENT_DEFAULT_TIMEOUT', 2
+)
+PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID = env.str('PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID')  # NOQA
+PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY = env.str('PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY')  # NOQA
+PFP_AWS_S3_PDF_STORE_BUCKET_NAME = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_NAME')
+PFP_AWS_S3_PDF_STORE_BUCKET_REGION = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_REGION', 'eu-west-2')  # NOQA

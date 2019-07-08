@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% load i18n static %}
+{% load hero breadcrumbs render_form from directory_components %}
+
+{% block head_title %}{% trans "Perfect Fit Prospectus" %}{% endblock %}
+
+{% block css_layout_class %}perfect-fit{% endblock %}
+
+{% block content %}
+
+{% static 'header-image.jpg' as header_image %}
+{% trans "Perfect fit" as perfect_fit %}
+{% hero id="heading_hero" background_image_url=header_image hero_text=perfect_fit large_title=True %}
+
+<section>
+  <div class="container">
+    {% breadcrumbs 'Perfect fit' %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
+
+    <div class="width-two-thirds">
+      <div id="form-help">
+        {% blocktrans %}
+          <p>If you're thinking about expanding your business internationally, the UK could be the perfect fit. To explore what the UK has to offer, download your <span class="bold">Perfect Fit Prospectus</span> today.</p>
+          <p>Simply enter your details below to access a wealth of insight into the UK's business environment tailored to your business together with help and advice.</p>
+        {% endblocktrans %}
+      </div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="width-two-thirds">
+          {% include 'core/includes/form_field.html' with field=form.name %}
+          {% include 'core/includes/form_field.html' with field=form.company %}
+          {% include 'core/includes/form_field.html' with field=form.email %}
+          {% include 'core/includes/form_field.html' with field=form.phone_number %}
+          {% include 'core/includes/form_field.html' with field=form.country %}
+          {% include 'core/includes/form_field.html' with field=form.sector %}
+        </div>
+
+        {% blocktrans %}
+        <p>The Department for International Trade will use the information provided in this form to send you your report. You can read about how we protect your data through our <a href="{{ header_footer_urls.privacy_and_cookies }}" target="_blank">privacy policy</a>.</p>
+        <p>If you would like to receive further information about setting up your business in the UK, you can subscribe to our mailing list.</p>
+        {% endblocktrans %}
+
+        {% include 'core/includes/form_field.html' with field=form.gdpr_optin %}
+        {% include 'core/includes/form_field.html' with field=form.captcha %}
+        <input class="button button-blue" type="submit" name="" value="Submit">
+      </form>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
