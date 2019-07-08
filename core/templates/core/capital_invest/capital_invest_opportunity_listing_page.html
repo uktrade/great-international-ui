@@ -41,7 +41,7 @@
                 </div>
                 <div class="sort-by-container margin-bottom-15">
                     <span>{% trans 'Sort by' %}:</span>
-                    <select name="sort-by" id="sort-by-drop-down" class="font-xsmall">
+                    <select onchange="this.form.submit()" name="sort-by" id="sort-by-drop-down" class="font-xsmall">
                         <option name="sort-by" value="" >{% trans 'Sort by' %}</option>
                         {% for filter_name, filter_select_status in sorting_filters.items %}
                             <option value="{{ filter_name }}" {{ filter_select_status }}>{{ filter_name }}</option>
