@@ -661,6 +661,151 @@ def test_get_prioritised_opportunities_for_sector_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_region_sector_scale_filter_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sector': 'real-estate',
+                'scale_value': '0.00',
+                'related_region': {
+                    'title': 'South of Engalnd'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')
+
+    assert len(response.context_data['results']) == 1
+    assert response.context_data['results'][0]['title'] == 'Some Opp 1'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_num_of_opportunities_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': 'energy',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sector': 'real-estate',
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?sector=Aerospace')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities?sector=Aerospace')
+
+    assert response.context_data['num_of_opportunities'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_filters_chosen_for_opportunity_search(
         mock_cms_response, rf):
 

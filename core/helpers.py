@@ -145,8 +145,9 @@ class ScaleFilter:
     def matches(self, opportunity):
         for scale_chosen in self.selected_scales:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
-                if float(opportunity['scale_value']) == 0 \
-                        or not opportunity['scale_value']:
+                if not opportunity['scale_value']:
+                    return True
+                elif float(opportunity['scale_value']) == 0:
                     return True
             elif scale_chosen.max == 'None':
                 if scale_chosen.min <= float(opportunity['scale_value']):
@@ -157,12 +158,12 @@ class ScaleFilter:
 
 
 class RegionFilter:
-    def __init__(self, region):
-        self.region = region
+    def __init__(self, regions):
+        self.regions = regions
 
     def matches(self, opportunity):
         if opportunity['related_region'] \
-                and opportunity['related_region']['title'] == self.region:
+                and opportunity['related_region']['title'] in self.regions:
             return True
 
 
