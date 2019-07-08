@@ -215,6 +215,7 @@ def test_filter_opportunities_multiple_filters():
             'related_sectors': [
                 {'related_sector': ''},
                 {'related_sector': {'title': 'Birmingham Curzon'}},
+                {'related_sector': {'title': ''}},
             ],
             'scale_value': 0,
             'related_region': {'title': 'Midlands'},

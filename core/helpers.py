@@ -120,6 +120,7 @@ class SectorFilter:
         if opportunity['related_sectors']:
             for sector in opportunity['related_sectors']:
                 if sector['related_sector'] \
+                        and sector['related_sector']['title'] \
                         and sector['related_sector']['title'] in self.sectors:
                     return True
 
@@ -163,6 +164,7 @@ class RegionFilter:
 
     def matches(self, opportunity):
         if opportunity['related_region'] \
+                and opportunity['related_region']['title'] \
                 and opportunity['related_region']['title'] in self.regions:
             return True
 
