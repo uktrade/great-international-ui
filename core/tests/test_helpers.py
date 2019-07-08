@@ -141,14 +141,14 @@ def test_filter_opportunities_scale_value_unknown():
             'scale_value': 0
         },
         {
-            'scale_value': 3000
+            'scale_value': ''
         }
     ]
 
     filter_chosen = ScaleFilter('Value unknown')
 
     filtered_opps = filter_opportunities(opportunities, filter_chosen)
-    assert len(filtered_opps) == 1
+    assert len(filtered_opps) == 2
 
 
 def test_filter_opportunities_scale_greater_than_1000():
