@@ -2,19 +2,17 @@
 {% load static from staticfiles %}
 {% load i18n %}
 
-{% load breadcrumbs ga360_tracker from directory_components %}
+{% load breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
 
 {% block content %}
 <section id="breadcrumb-section">
   <div class="container">
-    {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.breadcrumbs_label %}
-          <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
-        {% endbreadcrumbs %}
-    {% endga360_tracker %}
+    {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+    {% endbreadcrumbs %}
   </div>
 </section>
 
@@ -63,9 +61,7 @@
                                     {% for value in filters %}
                                         <mark>{{ value }}</mark>
                                     {% endfor %}
-                                    {% ga360_tracker "clear-filter" %}
                                     <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">{% trans 'Clear all filters' %}</a>
-                                    {% endga360_tracker %}
                                 </div>
                             </div>
                         {% endif %}
@@ -133,9 +129,7 @@
                                         style="background-image: url({{ opportunity.hero_image.url }});">
                                     </div>
                                     <div class="card-inner padding-horizontal-45 column-two-thirds-l margin-bottom-30">
-                                        {% ga360_tracker "opportunities-listed-link" %}
-                                             <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
-                                        {% endga360_tracker %}
+                                        <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
                                         <p class="bold-xsmall margin-top-15">{{ opportunity.scale }}</p>
                                         <p class="font-xsmall margin-bottom-30">{{ opportunity.sector }}</p>
                                     </div>
