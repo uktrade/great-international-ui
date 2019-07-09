@@ -26,10 +26,6 @@ env.read_env()
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -60,6 +56,7 @@ INSTALLED_APPS = [
     'euexit',
     'perfect_fit_prospectus',
     'invest',
+    'investment_support_directory'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,6 +128,7 @@ else:
 CACHES = {
     'default': cache,
     'cms_fallback': cache,
+    'api_fallback': cache
 }
 
 # Internationalization
@@ -166,33 +164,6 @@ LOCALE_PATHS = (
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
-)
-
-# directory forms api client
-DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
-DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
-DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
-DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
-    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
-)
-DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
-    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
-)
-
-# EU exit
-EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
-
-# Contact
-INVEST_CONTACT_URL = env.str(
-    'INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/'
-)
-FIND_A_SUPPLIER_CONTACT_URL = env.str(
-    'FIND_A_SUPPLIER_CONTACT_URL',
-    'https://trade.great.gov.uk/industries/contact/'
-)
-CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
-    'CONTACT_DOMESTIC_ZENDESK_SUBJECT',
-    'great.gov.uk international contact form'
 )
 
 # needed only for dev local storage
@@ -345,6 +316,63 @@ DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = env.int(
     60 * 60 * 24 * 30  # 30 days
 )
 
+# directory API client
+DIRECTORY_API_CLIENT_BASE_URL = env.str('DIRECTORY_API_CLIENT_BASE_URL')
+DIRECTORY_API_CLIENT_API_KEY = env.str('DIRECTORY_API_CLIENT_API_KEY')
+DIRECTORY_API_CLIENT_SENDER_ID = env.str(
+    'DIRECTORY_API_CLIENT_SENDER_ID', 'directory'
+)
+DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT', 15
+)
+
+# directory forms api client
+DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
+DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
+DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
+DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
+)
+DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
+    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
+)
+
+CONTACT_ISD_COMPANY_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_COMPANY_NOTIFY_TEMPLATE_ID',
+    'a0ffc316-09f0-4b28-9af0-86243645efca'
+)
+CONTACT_ISD_SUPPORT_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_SUPPORT_NOTIFY_TEMPLATE_ID',
+    '19fc13d1-fcc1-4e3b-a488-244a520742e2'
+)
+CONTACT_ISD_INVESTOR_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_INVESTOR_NOTIFY_TEMPLATE_ID',
+    '351e32e9-2e66-4a6f-8b20-a9942f045f1b'
+)
+CONTACT_ISD_SUPPORT_EMAIL_ADDRESS = env.str(
+    'CONTACT_ISD_SUPPORT_EMAIL_ADDRESS', ''
+)
+CONTACT_FAS_COMPANY_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_FAS_COMPANY_NOTIFY_TEMPLATE_ID',
+    'bb88aa79-595a-44fc-9ed3-cf8a6cbd6306',
+)
+
+# EU exit
+EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
+
+# Contact
+INVEST_CONTACT_URL = env.str(
+    'INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/'
+)
+FIND_A_SUPPLIER_CONTACT_URL = env.str(
+    'FIND_A_SUPPLIER_CONTACT_URL',
+    'https://trade.great.gov.uk/industries/contact/'
+)
+CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
+    'CONTACT_DOMESTIC_ZENDESK_SUBJECT',
+    'great.gov.uk international contact form'
+)
+
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
@@ -445,6 +473,7 @@ DIRECTORY_HEALTHCHECK_BACKENDS = [
     directory_healthcheck.backends.SentryBackend,
     directory_healthcheck.backends.FormsAPIBackend,
     directory_healthcheck.backends.CMSAPIBackend,
+    directory_healthcheck.backends.APIBackend,
     # health_check.cache.CacheBackend is also registered in
     # INSTALLED_APPS's health_check.cache
 ]

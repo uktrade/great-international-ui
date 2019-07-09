@@ -19,6 +19,13 @@ sitemaps = {
 
 urlpatterns = [
     url(
+        r'^investment-support-directory/',  # not on /international/
+        include(
+            'investment_support_directory.urls',
+            namespace='investment-support-directory',
+        )
+    ),
+    url(
         r'^international/healthcheck/',
         skip_ga360(directory_healthcheck.views.HealthcheckView.as_view()),
         name='healthcheck'

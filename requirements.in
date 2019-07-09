@@ -17,6 +17,7 @@ directory-validators==5.0.0
 directory-components==26.2.1
 directory-constants==18.1.2
 directory-forms-api-client==4.0.0
+directory-api-client==14.0.0
 beautifulsoup4==4.6.0
 waitress==0.8.9
 zenpy==1.1.10

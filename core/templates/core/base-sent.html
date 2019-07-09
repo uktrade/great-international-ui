@@ -1,0 +1,35 @@
+{% extends "core/base.html" %}
+{% load static from staticfiles %}
+{% load breadcrumbs message_box ga360_tracker from directory_components %}
+
+{% block content %}
+    <section>
+      <div class="container">
+        {% ga360_tracker "breadcrumbs" %}
+        {% block breadcrumbs %}{% endblock %}
+        {% endga360_tracker %}
+        <div class="grid-row margin-top-30">
+              <div class="column-two-thirds">
+                  <div id="success-message-container">
+                    {% with description="Your message has been sent to "|add:company.name %}
+                        {% message_box heading="Message sent" description=description heading_level='h1' %}
+                    {% endwith %}
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <section id="next-container" class="background-stone-30">
+      <div class="container">
+        <h2 class="heading-large">Next steps</h2>
+        {% ga360_tracker "next-steps" %}
+        <a class="link" href="{% url request.resolver_match.namespace|add:':search' %}?{{ search_querystring }}">Browse more companies</a>
+        {% endga360_tracker %}
+      </div>
+    </section>
+
+{% endblock %}
+
+
+

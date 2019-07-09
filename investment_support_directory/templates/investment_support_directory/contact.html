@@ -1,0 +1,7 @@
+{% extends 'core/base-contact.html' %}
+{% load breadcrumbs render_form from directory_components %}
+
+{% block breadcrumbs %}
+    {% url 'investment-support-directory:profile' company_number=company.number slug=company.slug as company_url %}
+    {% breadcrumbs left_url=services_urls.great_international left_label='Great.gov.uk international' middle_url=company_url|add:'?'|add:search_querystring middle_label=company.name right_label='Contact company' %}
+{% endblock %}

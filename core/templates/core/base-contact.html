@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load breadcrumbs render_form ga360_tracker from directory_components %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link href="{% static 'core/contact.css' %}" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% ga360_tracker "breadcrumbs" %}
+    {% block breadcrumbs %}{% endblock %}    {% endga360_tracker %}
+    <div class="width-two-thirds">
+        <h1 class="heading-xlarge margin-bottom-0">Send a message to {{ company.name }}</h1>              
+        <p class="hero-subtitle margin-bottom-45 margin-top-15">Enter your details and a brief message about your needs. We’ll send these to the business you’ve selected.</p>
+        {% url request.resolver_match.namespace|add:':company-contact' company_number=company.number as contact_url %}
+
+        {% ga360_tracker "contact-form" target="form" ga-value=contact_url %}
+        <form method="post" action="{{contact_url}}?{{ search_querystring }}">
+            {% render_form form %}
+            <button class="button">Send message</button>
+        </form>
+        {% endga360_tracker %}
+
+    </div>
+</div>
+
+    
+{% endblock content %}

@@ -1,0 +1,217 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+
+{% load card from directory_components %}
+{% load thumbnail %}
+
+{% load breadcrumbs ga360_tracker from directory_components %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link href="{% static 'core/profile.css' %}" media="all" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% ga360_tracker "breadcrumbs" %}
+        {% block breadcrumbs %}{% endblock %}
+        {% endga360_tracker %}
+    </div>
+
+    <div id="cover-image-container" class="hero" style="background-image: url('{% static "core/images/default-profile-cover.png" %}')">
+        &nbsp;
+    </div>
+    <div class="container" id="main-content">
+        <div class="grid-row">   
+            <div class="column-one-third" id="data-column">
+                <section id="logo-container">
+                    {% thumbnail company.logo "x300" as logo %}
+                        <img src="{{ logo.url }}" alt="{{ company.name }}" />
+                    {% empty %}
+                        <img class="placeholder" src="{% static 'images/placeholder.png' %}" alt="" />
+                    {% endthumbnail %}
+                </section>
+                <section id="contact-company-container">
+                    {% block contact %}
+                        {% ga360_tracker "contact-cta" %}
+                        <a href="{% url request.resolver_match.namespace|add:':company-contact' company_number=company.number %}?{{ search_querystring }}" class="button">Contact company</a>
+                        {% endga360_tracker %}
+                    {% endblock %}
+                </section>
+                <section id="about-company-container">
+                    <h3 class="heading-medium">Business details</h3>
+                    <dl>
+                        {% if company.website %}
+                            <dt>Website</dt>
+                            <dd class="ellipsis">
+                                {% ga360_tracker "company-website" %}
+                                <a class="link" href="{{ company.website }}">{{ company.website }}</a>
+                                {% endga360_tracker %}
+                            </dd>
+                        {% endif %}
+                        <dt>Business type</dt>
+                        {% if company.is_in_companies_house %}
+                            <dd>UK business registered in Companies House</dd>
+                        {% else %}
+                            <dd>UK business not registered in Companies House</dd>
+                        {% endif %}
+                        {% if company.employees %}
+                            <dt>Number of employees</dt>
+                            <dd>{{ company.employees }} employees</dd>
+                        {% endif %}
+                        {% if company.sectors %}
+                            <dt>Core industry</dt>
+                            <dd>{{ company.sectors }}</dd>
+                        {% endif %}
+                        {% if not company.is_in_companies_house %}
+                            <dt>Address</dt>
+                            <dd>{{ company.address }}</dd>
+                        {% endif %}
+                    </dl>
+                </section>
+                <section class="underline-flag-red" id="underline"></section>
+                <section id="online-profiles">
+                    <ul>
+                        <li>
+                            
+                            {% if company.facebook_url %}
+                                {% ga360_tracker "social-share-link" ga-value="facebook" %}
+                                <a class="link" href="{{ company.facebook_url }}">
+                                    <img alt="with Facebook" height="36px" src="{% static 'core/images/facebook.png' %}" width="36px" />
+                                    <span>Visit company Facebook</span>
+                                </a>
+                                {% endga360_tracker %}
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if company.twitter_url %}
+                                {% ga360_tracker "social-share-link" ga-value="twitter" %}
+                                <a class="link" href="{{ company.twitter_url }}">
+                                    <img alt="with Twitter" height="36px" src="{% static 'core/images/twitter.png' %}" width="36px" />
+                                    <span>Visit company Twitter</span>
+                                </a>
+                                {% endga360_tracker %}
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if company.linkedin_url %}
+                                {% ga360_tracker "social-share-link" ga-value="linkedin" %}
+                                <a class="link" href="{{ company.linkedin_url }}">
+                                    <img alt="with LinkedIn" height="36px" src="{% static 'core/images/linkedin.png' %}" width="36px" />                            
+                                    <span>Visit company LinkedIn</span>
+                                </a>
+                                {% endga360_tracker %}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </section>
+                {% if company.is_in_companies_house %}
+                    <section id="registered-office-address-container" class="font-xsmall">
+                        <p>{{ company.name }}</p>
+                        <p>UK registered company – number {{ company.number }}</p>
+                        <p>Registered office address:</p>
+                        <p>{{ company.address }}</p>
+                    </section>
+                {% endif %}
+            </div>
+            <div class="column-two-thirds" id="content-column">
+                <h2 class="heading-large" id="company-name">
+                    {{ company.name }}
+                </h2>
+                <hr>
+                <div id="company-description-container">
+                  <div class="grid-row">
+                    <h3 class="box-heading heading-medium black-text column-one-half">Company description</h3>
+                  </div>
+                    {% if request.GET.verbose %}
+                        <p>{{ company.description|linebreaks }}</p>
+                    {% else %}
+                        {% if company.summary %}
+                            {{ company.summary|linebreaks }}
+                        {% elif company.description %}
+                            {{ company.description|truncatechars:200|linebreaks }}
+                        {% endif %}
+                        {% ga360_tracker "full-details" %}
+                        <p><a class="link" href="?verbose=true#company-description-container" title="Read full company profile">Read more</a></p>
+                        {% endga360_tracker %}
+                    {% endif %}
+                </div>
+                <hr>
+                {% if company.expertise_products_services %}
+                    <div id="profile-products-services-container">
+                        <h3 class="box-heading heading-medium black-text">Products and services</h3>
+                        {% if company.expertise_products_services.Other %}
+                            <p class="margin-bottom-15">{{ company.expertise_products_services.Other }}</p>
+                        {% endif %}
+                        <dl>
+                            {% for key, values in company.expertise_products_services.items %}
+                                {% if values and key != 'Other' %}
+                                    <dt>{{ key }}</dt>
+                                    <dd>{{ values }}</dd>
+                                {% endif %}
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <hr>
+                {% endif %}
+
+              {% if company.has_expertise %}
+                <div id="profile-expertise-container">
+                  <div class="grid-row">
+                    <h3 class="box-heading heading-medium black-text column-one-half">
+                        Expertise
+                    </h3>
+                  </div>
+                  <dl>
+                    {% if company.expertise_industries %}
+                        <dt>Industry</dt>
+                        <dd>{{ company.expertise_industries }}</dd>
+                    {% endif %}
+                    {% if company.expertise_regions %}
+                        <dt>Regional</dt>
+                        <dd>{{ company.expertise_regions }}</dd>
+                    {% endif %}
+                    {% if company.expertise_countries %}
+                        <dt>International</dt>
+                        <dd>{{ company.expertise_countries }}</dd>
+                    {% endif %}
+                    {% if company.expertise_languages %}
+                        <dt>Languages</dt>
+                        <dd>{{ company.expertise_languages }}</dd>
+                    {% endif %}
+                  </dl>
+                </div>
+                <hr>
+            {% endif %}
+
+            {% if company.supplier_case_studies %}
+                <div class="underline-flag-red">
+                    <h3 class="box-heading heading-medium black-text">{{ company.name }} case studies</h3>
+                    {% for case_study in company.supplier_case_studies %}
+                        {% cycle 'odd' 'even' as parity silent %}
+                        {% if parity == 'odd' %}<div class="grid-row">{% endif %}
+                            <div class="column-one-half">
+                                {% url 'case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
+                                {% with "case-study-"|add:forloop.counter as card_id %}
+                                    {% ga360_tracker "case-study-card" ga-value=case_study.title %}
+                                        {% if request.resolver_match.namespace == 'investment-support-directory' %}
+                                            {% card card_id=card_id img_src=case_study.image_one url=case_study_url|add:'?isd=true' description=case_study.short_summary heading=case_study.title %}
+                                        {% else %}
+                                            {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
+                                        {% endif %}
+                                    {% endga360_tracker %}
+                                {% endwith %}
+                            </div>
+                        {% if parity == 'even' %}</div>{% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+                <div id="report-profile">
+                    {% ga360_tracker "report-profile" %}
+                    <a href="{{ services_urls.feedback }}">Report profile</a>
+                    {% endga360_tracker %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
