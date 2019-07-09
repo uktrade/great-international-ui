@@ -8,7 +8,6 @@
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
-- ValueError: Missing staticfiles manifest entry for 'directory_components/js/dit.tagging.internationalHeader.js'
 - CI-211 (& CI-252 & CI-268) - Created opportunity listing page filtering by sector, region and scale
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
