@@ -894,10 +894,10 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
         json_payload=page
     )
 
-    request = rf.get('/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&region=Midlands')  # NOQA
+    request = rf.get('/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&region=Midlands')  # NOQA
     request.LANGUAGE_CODE = 'en-gb'
     response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sort-by=Scale%3A+Low+to+High&regionMidlands')  # NOQA
+        request, path='/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&regionMidlands')  # NOQA
 
     assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
 

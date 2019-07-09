@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -22,7 +23,8 @@ from core.context_modifiers import (
     registry as context_modifier_registry
 )
 from core.helpers import get_ga_data_for_page, filter_opportunities, \
-    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities
+    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities, \
+    get_filters_labels
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 
@@ -257,7 +259,7 @@ class OpportunitySearchView(
 
     @property
     def sort_filter(self):
-        return SortFilter(self.request.GET.get('sort-by', ''))
+        return SortFilter(self.request.GET.get('sort_by', ''))
 
     @cached_property
     def page(self):
@@ -375,6 +377,25 @@ class OpportunitySearchView(
     def sorting_chosen(self):
         return self.sort_filter.sort_by_filter_chosen.title
 
+    def form_valid(self):
+        context = self.get_context_data(
+            form=forms.OpportunitySearchForm(
+                self.all_sectors,
+                self.all_scales,
+                self.all_regions,
+                self.all_sort_filters
+            ),
+            filters=get_filters_labels(
+                self.form.cleaned_data,
+                self.all_sectors,
+                self.all_scales,
+                self.all_regions,
+                self.all_sort_filters
+            )
+        )
+        print('\n\n\n\n\n\n\n\n self.request ', self.request)
+        return TemplateResponse(self.request, self.template_name, context)
+
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             page=self.page,
@@ -389,13 +410,13 @@ class OpportunitySearchView(
                 self.request.GET, 'opportunities'
             ),
             results=self.results_for_page,
-            filters=self.filters_chosen,
             sorting_chosen=self.sorting_chosen,
             form=forms.OpportunitySearchForm(
                 self.all_sectors,
                 self.all_scales,
                 self.all_regions,
-                self.all_sort_filters
+                self.all_sort_filters,
+                self.sorting_chosen
             ),
             *args, **kwargs,
         )

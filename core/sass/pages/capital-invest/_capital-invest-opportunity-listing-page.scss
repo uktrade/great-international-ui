@@ -36,15 +36,29 @@
   }
 
   .sort-by-container{
-     @media (min-width: 961px) {
-        float: right;
-      }
+    height: $spacing-2;
+    margin-bottom: 30px;
 
-    #sort_by_drop_down{
+     @media (min-width: 961px) {
+      width: 50%;
+      text-align: right;
+      float: right;
+       margin-bottom: 0;
+     }
+
+    #id_sort_by{
       border-width: 2px;
       border-color: black;
-      padding: 6px;
+      font-size: 16px;
+      width: 80%;
+      @media (min-width: 961px) {
+        width: 50%;
+      }
     }
+  }
+
+  .filter-title{
+    height: $spacing-2;
   }
 
   #filter-column {
@@ -162,11 +176,6 @@
       margin: 5px 0 0 0;
 
     }
-  }
-
-  button[type=submit] {
-    width: 100%;
-    margin-top: 25px;
   }
 
   .paginator {

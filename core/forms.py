@@ -37,42 +37,47 @@ class OpportunitySearchForm(forms.Form):
             scales,
             regions,
             sort_by_options,
+            sorting_chosen,
             *args,
             **kwargs
     ):
         super(OpportunitySearchForm, self).__init__(*args, **kwargs)
 
         self.fields['sector'] = fields.ChoiceField(
-            label=_('Sectors'),
+            label=_('sector'),
             widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-industry-expertise'},
+                attrs={'id': 'checkbox-sector'},
                 use_nice_ids=True,
             ),
             required=False,
             choices=sectors
         )
         self.fields['scale'] = fields.ChoiceField(
-            label=_('Scale (GDV)'),
+            label=_('scale'),
             widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-industry-expertise'},
+                attrs={'id': 'checkbox-scale'},
                 use_nice_ids=True,
             ),
             required=False,
             choices=scales
         )
         self.fields['region'] = fields.ChoiceField(
-            label=_('Region'),
+            label=_('region'),
             widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-industry-expertise'},
+                attrs={'id': 'checkbox-region'},
                 use_nice_ids=True,
             ),
             required=False,
             choices=regions
         )
-        self.fields['sort_by_drop_down'] = fields.ChoiceField(
-            initial='Sort by',
-            label=_('sort-by-options'),
-            widget=Select(),
+        self.fields['sort_by'] = fields.ChoiceField(
+            label=_('sort_by'),
+            initial=sorting_chosen,
+            widget=forms.Select(
+                attrs={
+                    'onchange': 'this.form.submit()'
+                }
+            ),
             choices=sort_by_options,
             required=False,
         )

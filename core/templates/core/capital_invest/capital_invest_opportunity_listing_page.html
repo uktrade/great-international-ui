@@ -33,25 +33,17 @@
         <div class="container">
             <div class="grid-row">
                 <div class="column-quarter-xl">
-                    <section class="margin-bottom-15 font-small">
+                    <section class="filter-title margin-bottom-15 font-small">
                         <span>{% trans 'Filter results' %}</span>
                     </section>
                 </div>
-                <div class="sort-by-container margin-bottom-15">
-                    <span>{% trans 'Sort by' %}:</span>
-                    <select onchange="this.form.submit()" name="sort-by" id="sort-by-drop-down" class="font-xsmall">
-                        <option name="sort-by" value="" >{% trans 'Sort by' %}</option>
-                        {{form.sector}}
-                    </select>
-                    <div class="sort-by-container font-xsmall">
-                        {{ form.sort_by_drop_down}}
-                    </div>
+                <div class="font-xsmall sort-by-container">
+                    <span>{% trans 'Sort by' %}:</span> {{ form.sort_by}}
                 </div>
             </div>
         </div>
         <div class="container" >
             <div class="flex-grid">
-
                 <div class="column-quarter-xl" id="filter-column">
                     <section class="margin-bottom-15">
                         {% if filters %}
@@ -82,7 +74,6 @@
                         {% endif %}
                         <button class="button" type="submit">{% trans 'Update results' %}</button>
                     </section>
-
                 </div>
 
                 <div class="column-three-quarters-xl">

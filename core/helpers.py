@@ -178,6 +178,7 @@ Sort_by = namedtuple("Sort_by", "title value reverse")
 
 class SortFilter:
     sort_by_with_values = [
+        Sort_by(title='Sort by', value='', reverse=''),
         Sort_by(title='Project name: A to Z', value='title', reverse=False),
         Sort_by(title='Project name: Z to A', value='title', reverse=True),
         Sort_by(
@@ -207,3 +208,30 @@ def sort_opportunities(opportunities, sort_by_chosen):
         )
 
     return opportunities
+
+
+def get_filters_labels(filters, sectors, scales, regions, sort_by_options):
+    sectors = dict(sectors)
+    scales = dict(scales)
+    regions = dict(regions)
+    sort_by_options = dict(sort_by_options)
+    labels = []
+    skip_fields = [
+        'page'
+    ]
+    for name, values in filters.items():
+        if name in skip_fields:
+            pass
+        elif name == 'sector':
+            labels += [sectors[item] for item in values if item in sectors]
+        elif name == 'scale':
+            labels += [scales[item] for item in values if item in scales]
+        elif name == 'region':
+            labels += [regions[item] for item in values if item in regions]
+        elif name == 'sort_by':
+            labels += [sort_by_options[item] for item in values
+                       if item in sort_by_options]
+        else:
+            for value in values:
+                labels.append(value.replace('_', ' ').title())
+    return labels
