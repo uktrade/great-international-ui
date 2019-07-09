@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {% load i18n %}
 
-{% load breadcrumbs from directory_components %}
+{% load breadcrumbs search_page_selected_filters from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
 
@@ -46,17 +46,8 @@
             <div class="flex-grid">
                 <div class="column-quarter-xl" id="filter-column">
                     <section class="margin-bottom-15">
-                        {% if filters %}
-                            <div class="selected-filters-container underline-flag-red margin-bottom-30">
-                                <div class="padding-15">
-                                    <label class="selected-filters-label padding-bottom-15">{% trans 'Selected filters' %}</label>
-                                    {% for value in filters %}
-                                        <mark>{{ value }}</mark>
-                                    {% endfor %}
-                                    <a href="{% url 'opportunities' %}" class="link clear-all-link padding-top-15">{% trans 'Clear all filters' %}</a>
-                                </div>
-                            </div>
-                        {% endif %}
+                        {% url 'opportunities' as opportunities_url %}
+                        {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
                         {% if sectors %}
                             <fieldset>
                                 {% include 'core/includes/filter.html' with label='Sectors' field=form.sector %}
