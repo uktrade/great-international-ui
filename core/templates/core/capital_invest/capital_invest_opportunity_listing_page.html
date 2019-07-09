@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {% load i18n %}
 
-{% load breadcrumbs search_page_selected_filters search_page_expandable_options from directory_components %}
+{% load breadcrumbs search_page_selected_filters search_page_expandable_options pagination from directory_components %}
 
 {% block header_js %}
     {{ block.super }}
@@ -93,45 +93,7 @@
                         {% endfor %}
                     </ul>
 
-                     {% if pagination.paginator.num_pages > 1 %}
-                        <div class="paginator">
-                            {% if pagination.has_previous %}
-                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
-                            {% endif %}
-                                <ol>
-                                    {% if pagination.paginator.num_pages <= 5 %}
-                                        {% for number in pagination.paginator.page_range %}
-                                            {% include 'core/paginator-item.html' %}
-                                        {% endfor %}
-                                    {% elif pagination.number < 5 %}
-                                        {% for number in pagination.paginator.page_range|slice:'0:4' %}
-                                            {% include 'core/paginator-item.html' %}
-                                        {% endfor %}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
-                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                    {% elif pages_after_current < 4 %}
-                                        {% include 'core/paginator-item.html' with number='1' %}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
-                                        {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
-                                            {% include 'core/paginator-item.html' %}
-                                        {% endfor %}
-                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                    {% else %}
-                                        {% include 'core/paginator-item.html' with number='1'%}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
-                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
-                                        {% include 'core/paginator-item.html' with number=pagination.number %}
-                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
-                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
-                                    {% endif %}
-                                </ol>
-                            </span>
-                            {% if pagination.has_next %}
-                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">{% trans 'Next' %}</a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
+                    {% pagination objects_count=num_of_opportunities current_page=current_page_num %}
 
                 </div>
 

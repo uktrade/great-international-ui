@@ -218,7 +218,6 @@ class OpportunitySearchView(
     GA360Mixin,
     TemplateView
 ):
-    page_size = 10
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
 
     def __init__(self):
@@ -230,14 +229,6 @@ class OpportunitySearchView(
             site_section='Opportunities',
             site_subsection='Search'
         )
-
-    def get(self, request, *args, **kwargs):
-        try:
-            context = self.get_context_data(**kwargs)
-            return self.render_to_response(context)
-        except (EmptyPage, PageNotAnInteger):
-            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"  # NOQA
-            return redirect(url)
 
     @property
     def page_number(self):
@@ -350,14 +341,9 @@ class OpportunitySearchView(
         return len(self.filtered_opportunities)
 
     @property
-    def pagination(self):
-        paginator = Paginator(range(self.num_of_opportunities), self.page_size)
-        return paginator.page(self.page_number)
-
-    @property
     def results_for_page(self):
-        max_value = self.page_size*int(self.page_number)
-        min_value = max_value - self.page_size
+        max_value = 5*int(self.page_number)
+        min_value = max_value - 5
         return self.filtered_opportunities[min_value:max_value:1]
 
     @property
@@ -384,13 +370,10 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
-            pagination=self.pagination,
-            paginator_url=helpers.get_paginator_url(
-                self.request.GET, 'opportunities'
-            ),
             results=self.results_for_page,
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,
+            current_page_num=self.page_number,
             form=forms.OpportunitySearchForm(
                 self.all_sectors,
                 self.all_scales,

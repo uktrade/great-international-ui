@@ -627,38 +627,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
     min-height: 200px;
   }
 }
-.capital-invest-opportunity-listing-page .paginator {
-  margin-top: 60px;
-}
-@media (min-width: 641px) {
-  .capital-invest-opportunity-listing-page .paginator {
-    display: flex;
-  }
-}
-.capital-invest-opportunity-listing-page .paginator a {
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  padding-top: 0;
-}
-.capital-invest-opportunity-listing-page .paginator ol {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-@media (min-width: 641px) {
-  .capital-invest-opportunity-listing-page .paginator ol {
-    text-align: left;
-  }
-}
-.capital-invest-opportunity-listing-page .paginator ol li {
-  display: inline-block;
-}
-.capital-invest-opportunity-listing-page .paginator ol li a {
-  padding: 0;
-  width: 50px;
-  vertical-align: bottom;
-}
 .capital-invest-opportunity-listing-page fieldset label {
   display: inline-block;
   width: 100%;

@@ -112,35 +112,6 @@
     }
   }
 
-  .paginator {
-    margin-top: $spacing-1;
-    @media (min-width: 641px) {
-        display: flex;
-    }
-    a {
-      height: 50px;
-      text-align: center;
-      line-height: 50px;
-      padding-top: 0;
-    }
-    ol {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      @media (min-width: 641px) {
-        text-align: left;
-      }
-      li {
-        display: inline-block;
-        a {
-          padding: 0;
-          width: 50px;
-          vertical-align: bottom;
-        }
-      }
-    }
-  }
-
   fieldset label {
     display: inline-block;
     width: 100%;
