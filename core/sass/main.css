@@ -581,6 +581,9 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-listing-page .filter-title {
   height: 45px;
 }
+.capital-invest-opportunity-listing-page #filter-column .update-button {
+  width: 100%;
+}
 .capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
   margin: 0;
   min-height: 245px;
@@ -623,51 +626,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
   .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
     min-height: 200px;
   }
-}
-.capital-invest-opportunity-listing-page fieldset {
-  position: relative;
-}
-.capital-invest-opportunity-listing-page fieldset legend {
-  margin-bottom: 20px;
-}
-.capital-invest-opportunity-listing-page fieldset label {
-  display: inline-block;
-  width: 100%;
-  cursor: pointer;
-  padding-bottom: 15px;
-  font-size: 15px;
-}
-.capital-invest-opportunity-listing-page fieldset button.filter-collapse {
-  background: transparent;
-  border: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding-top: 6px;
-  padding-bottom: 4px;
-  cursor: pointer;
-}
-.capital-invest-opportunity-listing-page fieldset button.filter-collapse.checked {
-  padding-bottom: 9px;
-  padding-right: 6px;
-  padding-top: 0;
-}
-.capital-invest-opportunity-listing-page fieldset button.filter-collapse::after {
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  content: "";
-  border-style: solid;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  border-color: #000000;
-  border-width: 2px 0 0 2px;
-  height: 8px;
-  width: 8px;
-}
-.capital-invest-opportunity-listing-page fieldset button.filter-collapse.checked::after {
-  border-width: 0 2px 2px 0;
-  margin: 5px 0 0 0;
 }
 .capital-invest-opportunity-listing-page .paginator {
   margin-top: 60px;
@@ -713,14 +671,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
   background: #dfd5c5;
   padding: 5px;
   border-radius: 4px;
-}
-
-body.js-enabled #filter-column button.filter-collapse.checked + .form-group {
-  display: none;
-}
-
-body:not(.js-enabled) #filter-column button.filter-collapse {
-  display: none;
 }
 
 .article-detail-page article.grid-row {
