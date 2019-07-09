@@ -26,7 +26,9 @@
     <div id="benefits">
         <div class="container">
             {% ga360_tracker "breadcrumbs" %}
-            {% breadcrumbs left_url=services_urls.great_international left_label='Great.gov.uk international' right_label='Find a UK specialist' %}
+                {% breadcrumbs 'find a UK specialist' %}
+                    <a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
+                {% endbreadcrumbs %}
             {% endga360_tracker %}
             <div class="width-half">
                 <h2 class="heading-large">UK Investment Support Directory </h2>

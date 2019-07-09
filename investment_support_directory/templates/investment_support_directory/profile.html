@@ -5,7 +5,10 @@
 
 {% block breadcrumbs %}
     {% url 'investment-support-directory:search' as search_url %}
-    {% breadcrumbs left_url=services_urls.great_international left_label='Great.gov.uk international' middle_url=search_url|add:'?'|add:search_querystring middle_label='Find a UK specialist' right_label=company.name %}
+    {% breadcrumbs '{{ company.name }}' %}
+        <a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
+        <a href="{{ company_url|add:'?'|add:search_querystring}}">Find a UK specialist</a>
+    {% endbreadcrumbs %}
 {% endblock %}
 
 {% block contact %}
@@ -15,3 +18,4 @@
     </span>
 	{{ block.super }}
 {% endblock %}
+
