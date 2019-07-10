@@ -37,8 +37,6 @@ class OpportunitySearchForm(forms.Form):
             scales,
             regions,
             sort_by_options,
-            sorting_chosen,
-            filters_chosen,
             *args,
             **kwargs
     ):
@@ -51,8 +49,7 @@ class OpportunitySearchForm(forms.Form):
                 use_nice_ids=True,
             ),
             required=False,
-            choices=sectors,
-            initial=filters_chosen
+            choices=sectors
         )
         self.fields['scale'] = fields.ChoiceField(
             label=_('scale'),
@@ -61,8 +58,7 @@ class OpportunitySearchForm(forms.Form):
                 use_nice_ids=True,
             ),
             required=False,
-            choices=scales,
-            initial=filters_chosen
+            choices=scales
         )
         self.fields['region'] = fields.ChoiceField(
             label=_('region'),
@@ -71,12 +67,10 @@ class OpportunitySearchForm(forms.Form):
                 use_nice_ids=True,
             ),
             required=False,
-            choices=regions,
-            initial=filters_chosen
+            choices=regions
         )
         self.fields['sort_by'] = fields.ChoiceField(
             label=_('sort_by'),
-            initial=sorting_chosen,
             widget=forms.Select(
                 attrs={
                     'onchange': 'this.form.submit()'

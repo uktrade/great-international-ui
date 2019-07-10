@@ -365,6 +365,21 @@ class OpportunitySearchView(
     def sorting_chosen(self):
         return self.sort_filter.sort_by_filter_chosen.title
 
+    @property
+    def opportunity_search_form(self):
+        return forms.OpportunitySearchForm(
+            self.all_sectors,
+            self.all_scales,
+            self.all_regions,
+            self.all_sort_filters,
+            initial={
+                'sector': self.filters_chosen,
+                'scale': self.filters_chosen,
+                'region': self.filters_chosen,
+                'sort_by': self.sorting_chosen,
+            },
+        )
+
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             page=self.page,
@@ -378,13 +393,6 @@ class OpportunitySearchView(
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,
             current_page_num=self.page_number,
-            form=forms.OpportunitySearchForm(
-                self.all_sectors,
-                self.all_scales,
-                self.all_regions,
-                self.all_sort_filters,
-                self.sorting_chosen,
-                self.filters_chosen
-            ),
+            form=self.opportunity_search_form,
             *args, **kwargs,
         )
