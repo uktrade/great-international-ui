@@ -28,7 +28,7 @@
         <div class="grid-row">
             <p class="font-small column-half-l margin-bottom-45">{{ page.reason_to_invest_section_intro}} </p>
         </div>
-        <div class="card-grid ci-landing-page-benefit-section">
+        <div class="flex-grid ci-landing-page-benefit-section">
             <div class="column-half padding-right-60 center-vertical">
                 {{ page.reason_to_invest_section_content|add_export_elements_classes|safe }}
             </div>
@@ -73,7 +73,7 @@
                 <div class="grid-row">
                     <p class="font-small column-half-l margin-bottom-45">{{ page.region_ops_section_intro }} </p>
                 </div>
-                <div class="card-grid">
+                <div class="flex-grid">
                     {% for region in page.added_regions %}
                         {% if region.related_region.title %}
                             <div class="column-half-m column-third-xl">
@@ -107,7 +107,7 @@
 {% if page.energy_sector_title and page.energy_sector_content %}
 <section class="capital-invest-landing-page-section">
     <div class="container">
-        <div class="card-grid ci-landing-page-energy-section">
+        <div class="flex-grid ci-landing-page-energy-section">
             <div class="column-half padding-right-60">
                 <h2 class="heading-large">{{ page.energy_sector_title }}</h2>
                 <p> {{ page.energy_sector_content|add_export_elements_classes|safe}} </p>
@@ -137,7 +137,7 @@
         <div class="grid-row">
             <h2 class="column-half heading-large">{{ page.homes_in_england_section_title }}</h2>
         </div>
-        <div class="card-grid">
+        <div class="flex-grid">
             {% for card in page.added_homes_in_england_card_fields %}
                 {% if card.homes_in_england_card_title and card.homes_in_england_card_pdf_document %}
                     <div class="column-half-l column-third-xl">
@@ -154,7 +154,7 @@
 {% if page.contact_section_title and page.contact_section_text %}
 <section class="capital-invest-landing-page-section">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             <div class="column-half">
                 <h2 class="heading-large">{{ page.contact_section_title }} </h2>
                 <p class="font-small padding-bottom-45">{{ page.contact_section_text }} </p>

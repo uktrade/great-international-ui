@@ -108,4 +108,8 @@ urlpatterns = [
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path-with-two-slugs"
     ),
+    url(
+        r"^international/ebook/$",
+        core.views.EbookFormView.as_view()
+    ),
 ]
