@@ -106,7 +106,7 @@ def get_paginator_url(filters, url_name):
 
     querystring = urlencode({
         key: value
-        for key, value in filters.items()
+        for key, value in filters.lists()
         if value and key != 'page'
     }, doseq=True)
     return f'{url}?{querystring}'

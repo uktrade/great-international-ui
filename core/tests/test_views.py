@@ -737,8 +737,8 @@ def test_region_sector_scale_filter_for_opportunity_search(
     response = OpportunitySearchView.as_view()(
         request, path='/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')  # NOQA
 
-    assert len(response.context_data['results']) == 1
-    assert response.context_data['results'][0]['title'] == 'Some Opp 1'
+    assert len(response.context_data['pagination'].object_list) == 1
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'  # NOQA
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

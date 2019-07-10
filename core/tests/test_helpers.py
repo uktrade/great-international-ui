@@ -1,4 +1,5 @@
 import pytest
+from django.http import QueryDict
 
 from django.urls import reverse
 
@@ -38,7 +39,7 @@ def test_unslugify(slug, exp):
 
 
 def test_get_paginator_url():
-    filters = {'page': 2}
+    filters = QueryDict('')
 
     assert helpers.get_paginator_url(filters, 'opportunities') == (
         reverse('opportunities') + '?'
@@ -46,15 +47,15 @@ def test_get_paginator_url():
 
 
 def test_get_paginator_url_with_filters():
-    filters = {'page': 2, 'sector': ['Energy', 'Aerospace']}
+    filters = QueryDict('sector=Energy&sector=Aerospace&scale=Value+unknown')
 
     assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?sector=Energy&sector=Aerospace'
+        reverse('opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
     )
 
 
 def test_get_paginator_url_with_spaces_filters():
-    filters = {'page': 2, 'sector': 'A value with spaces '}
+    filters = QueryDict('sector=A+value+with+spaces+')
 
     assert helpers.get_paginator_url(filters, 'opportunities') == (
         reverse('opportunities') + '?sector=A+value+with+spaces+'
