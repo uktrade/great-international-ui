@@ -8,7 +8,7 @@
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
-- ValueError: Missing staticfiles manifest entry for 'directory_components/js/dit.tagging.internationalHeader.js'
+- CI-325 - CI projects shown on sector page are randomised
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
