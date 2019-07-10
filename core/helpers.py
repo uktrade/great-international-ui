@@ -120,6 +120,7 @@ class SectorFilter:
         return any(
             sector['related_sector'].get('title') in self.sectors
             for sector in opportunity.get('related_sectors', [])
+            if sector['related_sector'] and sector['related_sector']['title']
         )
 
 
@@ -146,7 +147,7 @@ class ScaleFilter:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
                 if not opportunity['scale_value']:
                     return True
-                elif opportunity['scale_value'] == '0.00':
+                elif float(opportunity['scale_value']) == 0.00:
                     return True
             elif scale_chosen.max == 'None':
                 if scale_chosen.min <= float(opportunity['scale_value']):
