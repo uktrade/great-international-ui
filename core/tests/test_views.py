@@ -373,7 +373,6 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
                 'hero_image': {'url': 'article_list.png'},
                 'sector': 'some sector',
                 'scale': 'scale',
-                'prioritised_opportunity': False
             },
         ],
         'statistics': [
@@ -605,7 +604,7 @@ def test_international_contact_form(mock_cms_response, client):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_prioritised_opportunities_for_sector_page(
+def test_get_random_three_opportunities_for_sector_page(
         mock_cms_response, rf):
 
     page = {
@@ -613,38 +612,38 @@ def test_get_prioritised_opportunities_for_sector_page(
         'meta': {
             'languages': [
                 ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
             ],
             'slug': 'sector'
         },
         'page_type': 'InternationalSectorPage',
         'related_opportunities': [
             {
-                'title': 'FalseSector',
+                'title': 'Aerospace',
                 'hero_image': {'url': 'article_list.png'},
-                'sector': 'some sector',
+                'sector': 'Sector1',
                 'scale': 'scale',
-                'prioritised_opportunity': False
             },
             {
-                'title': 'TrueSector',
+                'title': 'Aerospace',
                 'hero_image': {'url': 'article_list.png'},
-                'sector': 'some sector',
+                'sector': 'Sector2',
                 'scale': 'scale',
-                'prioritised_opportunity': True
+            },
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector3',
+                'scale': 'scale',
+            },
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector4',
+                'scale': 'scale',
             },
         ],
-        'statistics': [
-            {'number': '1'},
-            {'number': '2', 'heading': 'heading'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-        'section_three_subsections': [
-            {'heading': 'heading'},
-            {'heading': 'heading-with-teaser', 'teaser': 'teaser'},
-            {'heading': None, 'teaser': 'teaser-without-heading'}
-        ]
+        'statistics': [],
+        'section_three_subsections': []
     }
 
     mock_cms_response.return_value = helpers.create_response(
@@ -1005,3 +1004,4 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
     )
 
     assert response.url == '/international/content/opportunities/?&page=1'
+

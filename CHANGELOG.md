@@ -8,7 +8,9 @@
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
+- CI-325 - CI projects shown on sector page are randomised
 - CI-211 (& CI-252 & CI-268) - Created opportunity listing page filtering by sector, region and scale
+
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)

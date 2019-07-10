@@ -1,3 +1,5 @@
+import random
+
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
@@ -145,14 +147,8 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
-    prioritised_opportunities = []
-    if 'related_opportunities' in page:
-        all_opportunities = page['related_opportunities']
-        prioritised_opportunities = [
-            opportunity for opportunity in all_opportunities if opportunity[
-                'prioritised_opportunity'
-            ]
-        ]
+    random.shuffle(page['related_opportunities'])
+    random_opportunities = page['related_opportunities'][0:3]
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
@@ -160,7 +156,7 @@ def sector_page_context_modifier(context, request):
             page['statistics'], 'number'),
         'section_three_num_of_subsections': count_data_with_field(
             page['section_three_subsections'], 'heading'),
-        'prioritised_opportunities': prioritised_opportunities
+        'random_opportunities': random_opportunities
         }
 
 
