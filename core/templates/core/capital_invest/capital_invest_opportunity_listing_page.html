@@ -74,7 +74,7 @@
 
                 <div class="column-three-quarters-xl">
                     <ul>
-                        {% for opportunity in results %}
+                        {% for opportunity in pagination.object_list %}
                             <li class="opportunity-card">
                                 <a class="card-link" href="{{ opportunity.full_path }}">
                                     <div class="card-image-left column-third-l margin-bottom-30"
@@ -92,9 +92,7 @@
                             <h2 class="heading-medium">{% trans 'No results' %}</h2>
                         {% endfor %}
                     </ul>
-
-                    {% pagination objects_count=num_of_opportunities current_page=current_page_num %}
-
+                    {% pagination pagination_page=pagination %}
                 </div>
 
             </div>

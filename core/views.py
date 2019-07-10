@@ -219,6 +219,7 @@ class OpportunitySearchView(
     TemplateView
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
+    page_size = 10
 
     def __init__(self):
         super().__init__()
@@ -229,6 +230,15 @@ class OpportunitySearchView(
             site_section='Opportunities',
             site_subsection='Search'
         )
+
+    def get(self, request, *args, **kwargs):
+        try:
+            context = self.get_context_data(**kwargs)
+            return self.render_to_response(context)
+        except (EmptyPage, PageNotAnInteger):
+            url = helpers.get_paginator_url(self.request.GET,
+                                            'opportunities') + "&page=1"  # NOQA
+            return redirect(url)
 
     @property
     def page_number(self):
@@ -341,10 +351,9 @@ class OpportunitySearchView(
         return len(self.filtered_opportunities)
 
     @property
-    def results_for_page(self):
-        max_value = 5*int(self.page_number)
-        min_value = max_value - 5
-        return self.filtered_opportunities[min_value:max_value:1]
+    def pagination(self):
+        paginator = Paginator(self.filtered_opportunities, self.page_size)
+        return paginator.page(self.page_number or 1)
 
     @property
     def filters_chosen(self):
@@ -370,7 +379,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
-            results=self.results_for_page,
+            pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,
             current_page_num=self.page_number,
