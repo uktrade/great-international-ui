@@ -948,4 +948,3 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
     )
 
     assert response.url == '/international/content/opportunities/?&page=1'
-
