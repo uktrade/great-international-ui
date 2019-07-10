@@ -368,10 +368,10 @@ class OpportunitySearchView(
     @property
     def opportunity_search_form(self):
         return forms.OpportunitySearchForm(
-            self.all_sectors,
-            self.all_scales,
-            self.all_regions,
-            self.all_sort_filters,
+            sectors=self.all_sectors,
+            scales=self.all_scales,
+            regions=self.all_regions,
+            sort_by_options=self.all_sort_filters,
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,

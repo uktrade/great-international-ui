@@ -117,12 +117,10 @@ class SectorFilter:
         self.sectors = sectors
 
     def matches(self, opportunity):
-        if opportunity['related_sectors']:
-            for sector in opportunity['related_sectors']:
-                if sector['related_sector'] \
-                        and sector['related_sector']['title'] \
-                        and sector['related_sector']['title'] in self.sectors:
-                    return True
+        return any(
+            sector['related_sector'].get('title') in self.sectors
+            for sector in opportunity.get('related_sectors', [])
+        )
 
 
 Scale = namedtuple("Scale", "title min max")
@@ -148,7 +146,7 @@ class ScaleFilter:
             if scale_chosen.min == 0 and scale_chosen.max == 0:
                 if not opportunity['scale_value']:
                     return True
-                elif float(opportunity['scale_value']) == 0.0:
+                elif opportunity['scale_value'] == '0.00':
                     return True
             elif scale_chosen.max == 'None':
                 if scale_chosen.min <= float(opportunity['scale_value']):
