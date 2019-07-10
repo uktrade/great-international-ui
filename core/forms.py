@@ -42,7 +42,7 @@ class OpportunitySearchForm(forms.Form):
             *args,
             **kwargs
     ):
-        super(OpportunitySearchForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.fields['sector'] = fields.ChoiceField(
             label=_('sector'),
