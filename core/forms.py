@@ -31,51 +31,47 @@ class TariffsCountryForm(forms.Form):
 
 
 class OpportunitySearchForm(forms.Form):
+
+    sector = fields.ChoiceField(
+        label=_('sector'),
+        widget=widgets.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-sector'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
+    scale = fields.ChoiceField(
+        label=_('scale'),
+        widget=widgets.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-scale'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
+    region = fields.ChoiceField(
+        label=_('region'),
+        widget=widgets.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-region'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
+    sort_by = fields.ChoiceField(
+        label=_('sort_by'),
+        widget=forms.Select(
+            attrs={
+                'onchange': 'this.form.submit()'
+            }
+        ),
+        required=False,
+    )
+
     def __init__(
-            self,
-            sectors,
-            scales,
-            regions,
-            sort_by_options,
-            *args,
-            **kwargs
+            self, sectors, scales, regions,
+            sort_by_options, *args, **kwargs
     ):
         super().__init__(*args, **kwargs)
-
-        self.fields['sector'] = fields.ChoiceField(
-            label=_('sector'),
-            widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-sector'},
-                use_nice_ids=True,
-            ),
-            required=False,
-            choices=sectors
-        )
-        self.fields['scale'] = fields.ChoiceField(
-            label=_('scale'),
-            widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-scale'},
-                use_nice_ids=True,
-            ),
-            required=False,
-            choices=scales
-        )
-        self.fields['region'] = fields.ChoiceField(
-            label=_('region'),
-            widget=widgets.CheckboxSelectInlineLabelMultiple(
-                attrs={'id': 'checkbox-region'},
-                use_nice_ids=True,
-            ),
-            required=False,
-            choices=regions
-        )
-        self.fields['sort_by'] = fields.ChoiceField(
-            label=_('sort_by'),
-            widget=forms.Select(
-                attrs={
-                    'onchange': 'this.form.submit()'
-                }
-            ),
-            choices=sort_by_options,
-            required=False,
-        )
+        self.fields['sector'].choices = sectors
+        self.fields['scale'].choices = scales
+        self.fields['region'].choices = regions
+        self.fields['sort_by'].choices = sort_by_options
