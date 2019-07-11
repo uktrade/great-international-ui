@@ -88,7 +88,7 @@ urlpatterns = [
     ),
     url(
         r"^international/content/opportunities/$",
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.OpportunitySearchView.as_view(),
         {'path': 'opportunities'},
         name="opportunities"
     ),

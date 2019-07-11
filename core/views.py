@@ -1,7 +1,9 @@
 import random
 
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -16,12 +18,13 @@ from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin)
 
-from core import forms
+from core import forms, helpers
 from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.helpers import get_ga_data_for_page
+from core.helpers import get_ga_data_for_page, filter_opportunities, \
+    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 
@@ -33,7 +36,6 @@ class CMSPageFromPathView(
     GA360Mixin,
     TemplateView
 ):
-
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
 
@@ -49,7 +51,6 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
-
         return TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
@@ -206,3 +207,192 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
     }
+
+
+class OpportunitySearchView(
+    CountryDisplayMixin,
+    GA360Mixin,
+    TemplateView
+):
+    template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
+    page_size = 10
+
+    def __init__(self):
+        super().__init__()
+
+        self.set_ga360_payload(
+            page_id='GreatInternationalCapitalInvestmentOpportunitySearch',
+            business_unit='CapitalInvestment',
+            site_section='Opportunities',
+            site_subsection='Search'
+        )
+
+    def get(self, request, *args, **kwargs):
+        try:
+            context = self.get_context_data(**kwargs)
+            return self.render_to_response(context)
+        except (EmptyPage, PageNotAnInteger):
+            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"  # NOQA
+            return redirect(url)
+
+    @property
+    def page_number(self):
+        return self.request.GET.get('page', '1')
+
+    @property
+    def sector(self):
+        return SectorFilter(self.request.GET.getlist('sector', []))
+
+    @property
+    def scale(self):
+        return ScaleFilter(self.request.GET.getlist('scale', []))
+
+    @property
+    def region(self):
+        return RegionFilter(self.request.GET.getlist('region', ''))
+
+    @property
+    def sort_filter(self):
+        return SortFilter(self.request.GET.get('sort_by', ''))
+
+    @cached_property
+    def page(self):
+        response = cms_api_client.lookup_by_path(
+            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            path=self.kwargs['path'],
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
+        return handle_cms_response(response)
+
+    @property
+    def opportunities(self):
+        return self.page['opportunity_list']
+
+    @property
+    def all_sectors(self):
+        sectors = set()
+
+        for opp in self.opportunities:
+            for sector in opp['related_sectors']:
+                if sector['related_sector'] \
+                        and sector['related_sector']['title']:
+                    sectors.add(sector['related_sector']['title'])
+
+        return [
+            (sector, sector) for sector in sectors
+        ]
+
+    @property
+    def all_scales(self):
+        return [
+            (scale.title, scale.title)
+            for scale in ScaleFilter.scales_with_values
+        ]
+
+    @property
+    def all_regions(self):
+        regions = set()
+        for opp in self.opportunities:
+            if opp['related_region'] and opp['related_region']['title']:
+                regions.add(opp['related_region']['title'])
+
+        return [
+            (region, region) for region in regions
+        ]
+
+    @property
+    def all_sort_filters(self):
+        sort_filters_with_selected_status = [
+            (sort_filter.title, sort_filter.title)
+            for sort_filter in SortFilter.sort_by_with_values
+        ]
+
+        return sort_filters_with_selected_status
+
+    @property
+    def filtered_opportunities(self):
+
+        filtered_opportunities = [opp for opp in self.opportunities]
+
+        if self.sector.sectors:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.sector
+            )
+
+        if self.region.regions:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.region
+            )
+
+        if self.scale.selected_scales:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.scale
+            )
+
+        if self.sort_filter.sort_by_filter_chosen:
+            filtered_opportunities = sort_opportunities(
+                filtered_opportunities,
+                self.sort_filter
+            )
+
+        return filtered_opportunities
+
+    @property
+    def num_of_opportunities(self):
+        return len(self.filtered_opportunities)
+
+    @property
+    def pagination(self):
+        paginator = Paginator(self.filtered_opportunities, self.page_size)
+        return paginator.page(self.page_number or 1)
+
+    @property
+    def filters_chosen(self):
+        filters = []
+        for sector in self.sector.sectors:
+            filters.append(sector)
+        for scale in self.scale.selected_scales:
+            filters.append(scale.title)
+        for region in self.region.regions:
+            filters.append(region)
+        return filters
+
+    @property
+    def sorting_chosen(self):
+        return self.sort_filter.sort_by_filter_chosen.title
+
+    @property
+    def opportunity_search_form(self):
+        return forms.OpportunitySearchForm(
+            sectors=self.all_sectors,
+            scales=self.all_scales,
+            regions=self.all_regions,
+            sort_by_options=self.all_sort_filters,
+            initial={
+                'sector': self.filters_chosen,
+                'scale': self.filters_chosen,
+                'region': self.filters_chosen,
+                'sort_by': self.sorting_chosen,
+            },
+        )
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            page=self.page,
+            invest_url=urls.SERVICES_INVEST,
+            num_of_opportunities=self.num_of_opportunities,
+            sectors=self.all_sectors,
+            scales=self.all_scales,
+            regions=self.all_regions,
+            sorting_filters=self.all_sort_filters,
+            pagination=self.pagination,
+            sorting_chosen=self.sorting_chosen,
+            filters=self.filters_chosen,
+            current_page_num=self.page_number,
+            form=self.opportunity_search_form,
+            *args, **kwargs,
+        )

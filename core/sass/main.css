@@ -512,6 +512,135 @@ body.js-enabled .landing-page .country-selector-dialog select {
   }
 }
 
+.capital-invest-opportunity-listing-page .page-section {
+  padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .page-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-listing-page-section {
+  padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-listing-page-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-listing-page-stone-section {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-listing-page-stone-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .page-title {
+  background-color: #f2eee8;
+  padding-bottom: 0;
+}
+.capital-invest-opportunity-listing-page .page-title h2 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+.capital-invest-opportunity-listing-page .down-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 20px 0 20px;
+  border-color: #f2eee8 transparent transparent transparent;
+  line-height: 0;
+  margin: auto auto 30px;
+}
+.capital-invest-opportunity-listing-page .sort-by-container {
+  height: 45px;
+  margin-bottom: 30px;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .sort-by-container {
+    width: 50%;
+    text-align: right;
+    float: right;
+    margin-bottom: 0;
+  }
+}
+.capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
+  border-width: 2px;
+  border-color: black;
+  font-size: 16px;
+  width: 80%;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
+    width: 50%;
+  }
+}
+.capital-invest-opportunity-listing-page .filter-title {
+  height: 45px;
+}
+.capital-invest-opportunity-listing-page #filter-column .update-button {
+  width: 100%;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
+  margin: 0;
+  min-height: 245px;
+  background-size: cover;
+  background-position: 100%;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
+    min-height: 200px;
+  }
+}
+@media (max-width: 961px) {
+  .capital-invest-opportunity-listing-page .opportunity-card {
+    min-width: 280px;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link {
+  text-decoration: none;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+  overflow: hidden;
+  border: 1px solid #d8d8d8;
+  min-height: 245px;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+    padding-top: 20px;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner span {
+  text-decoration: underline;
+  color: #006ccc;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner p {
+  color: black;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+    min-height: 200px;
+  }
+}
+.capital-invest-opportunity-listing-page fieldset label {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding-bottom: 15px;
+}
+.capital-invest-opportunity-listing-page mark {
+  font-weight: bold;
+  line-height: 1.5;
+  background: #dfd5c5;
+  padding: 5px;
+  border-radius: 4px;
+}
+
 .article-detail-page article.grid-row {
   margin-bottom: 100px;
 }
