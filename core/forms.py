@@ -56,6 +56,14 @@ class OpportunitySearchForm(forms.Form):
         ),
         required=False
     )
+    sub_sector = fields.ChoiceField(
+        label=_('sub_sector'),
+        widget=widgets.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-sub_sector'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
     sort_by = fields.ChoiceField(
         label=_('sort_by'),
         widget=forms.Select(
@@ -68,10 +76,11 @@ class OpportunitySearchForm(forms.Form):
 
     def __init__(
             self, sectors, scales, regions,
-            sort_by_options, *args, **kwargs
+            sort_by_options, sub_sectors, *args, **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.fields['sector'].choices = sectors
         self.fields['scale'].choices = scales
         self.fields['region'].choices = regions
         self.fields['sort_by'].choices = sort_by_options
+        self.fields['sub_sector'].choices = sub_sectors

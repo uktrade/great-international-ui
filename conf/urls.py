@@ -99,6 +99,11 @@ urlpatterns = [
         name="invest-capital-home"
     ),
     url(
+        r'^international/content/industries/real-estate/(?P<path>[\w\-/]*)/$',
+        core.views.CMSPageFromPathView.as_view(),
+        name="sub-sectors"
+    ),
+    url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"

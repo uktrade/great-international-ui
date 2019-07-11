@@ -106,7 +106,7 @@
         <div class="flex-grid">
             {% for opportunity in random_opportunities %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sector %}
+                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.related_sub_sectors_formatted %}
                 </div>
             {% endfor %}
         </div>

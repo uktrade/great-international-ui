@@ -81,11 +81,11 @@
         <div class="grid-row">
             <ul>
                 <li class="mobile-margin-bottom-60">
-                    {% if page.sector_heading and page.sector and page.sector_icon.url %}
+                    {% if page.sector_heading and page.related_sub_sectors_formatted and page.sector_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.sector_heading }}</p>
-                            <p>{{ page.sector }}</p>
+                            {{ page.related_sub_sectors_formatted }}
                         </div>
                     {% endif %}
                 </li>
@@ -165,7 +165,7 @@
             </h1>
             {% for related_page in page.related_pages|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sector %}
+                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.related_sub_sectors_formatted %}
                 </div>
             {% endfor %}
         </div>

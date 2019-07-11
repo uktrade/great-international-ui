@@ -168,6 +168,16 @@ class RegionFilter:
             return True
 
 
+class SubSectorFilter:
+    def __init__(self, sub_sectors):
+        self.sub_sectors = sub_sectors
+
+    def matches(self, opportunity):
+        for sub_sector in opportunity['related_sub_sectors_list']:
+            if sub_sector in self.sub_sectors:
+                return True
+
+
 def filter_opportunities(opportunities, filter_chosen):
     return [opp for opp in opportunities if filter_chosen.matches(opp)]
 
@@ -207,3 +217,4 @@ def sort_opportunities(opportunities, sort_by_chosen):
         )
 
     return opportunities
+
