@@ -54,6 +54,11 @@ GA_DATA_MAPPING = {
         'site_section': 'Sector',
         'site_subsection': 'DetailPage'
     },
+    'InternationalSubSectorPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'SubSector',
+        'site_subsection': 'DetailPage'
+    },
     'InternationalCuratedTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'CuratedTopic',
@@ -173,7 +178,8 @@ class SubSectorFilter:
         self.sub_sectors = sub_sectors
 
     def matches(self, opportunity):
-        for sub_sector in opportunity['related_sub_sectors_list']:
+        for sub_sector \
+                in opportunity['sub_sectors_list_with_formatted']['list_all']:
             if sub_sector in self.sub_sectors:
                 return True
 

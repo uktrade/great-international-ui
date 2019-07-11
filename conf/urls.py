@@ -99,18 +99,8 @@ urlpatterns = [
         name="invest-capital-home"
     ),
     url(
-        r'^international/content/industries/real-estate/(?P<path>[\w\-/]*)/$',
-        core.views.CMSPageFromPathView.as_view(),
-        name="sub-sectors"
-    ),
-    url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.CMSPageFromPathView.as_view(),
         name="cms-page-from-path"
-    ),
-    url(
-        r'^international/content/(?P<path>[\w\-/]*)/(?P<list>[\w\-/]*)/$',
-        core.views.CMSPageFromPathView.as_view(),
-        name="cms-page-from-path-with-two-slugs"
     ),
 ]

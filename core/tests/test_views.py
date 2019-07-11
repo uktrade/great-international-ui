@@ -846,6 +846,54 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_sub_sector_filters_chosen_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sector': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/?sub_sector_')  # NOQA
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&regionMidlands')  # NOQA
+
+    assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
         mock_cms_response, rf):
 

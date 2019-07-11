@@ -55,6 +55,7 @@ class CMSPageFromPathView(
 
     @cached_property
     def page(self):
+        print('\n\n\n\n\n\n self ', self.kwargs['path'])
         response = cms_api_client.lookup_by_path(
             site_id=settings.DIRECTORY_CMS_SITE_ID,
             path=self.kwargs['path'],
@@ -341,7 +342,8 @@ class OpportunitySearchView(
     def all_sub_sectors_present_in_results(self):
         all_sub_sectors = []
         for opp in self.filtered_opportunities:
-            for sub_sector in opp['related_sub_sectors_list']:
+            for sub_sector \
+                    in opp['sub_sectors_list_with_formatted']['list_all']:
                 if sub_sector not in all_sub_sectors:
                     all_sub_sectors.append(sub_sector)
         return [
