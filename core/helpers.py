@@ -108,6 +108,7 @@ HEADER_MAPPING = {
     'InternationalArticlePage': 'uk_setup_guide',
     'InternationalCampaignPage': '',
     'InternationalSectorPage': 'industries',
+    'InternationalSubSectorPage': 'industries',
     'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
     'InternationalGuideLandingPage': 'uk_setup_guide',
     'InternationalEUExitFormPage': '',
