@@ -1133,3 +1133,90 @@ def test_sub_sectors_being_shown_for_opportunity_search(
     assert len(
         response_two_with_only_one_in_results.context_data['sub_sectors']
     ) == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_opportunities_for_sector_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'sector'
+        },
+        'page_type': 'InternationalSectorPage',
+        'related_opportunities': [
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector1',
+                'scale': 'scale',
+            },
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector2',
+                'scale': 'scale',
+            },
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector3',
+                'scale': 'scale',
+            },
+            {
+                'title': 'Aerospace',
+                'hero_image': {'url': 'article_list.png'},
+                'sector': 'Sector4',
+                'scale': 'scale',
+            },
+        ],
+        'statistics': [],
+        'section_three_subsections': []
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/industries/sector')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/industries/sector')
+
+    assert len(response.context_data['random_opportunities']) == 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_opportunities_for_sector_page_null_case(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'sector'
+        },
+        'page_type': 'InternationalSectorPage',
+        'related_opportunities': [],
+        'statistics': [],
+        'section_three_subsections': []
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/industries/sector')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/industries/sector')
+
+    assert len(response.context_data['random_opportunities']) == 0
