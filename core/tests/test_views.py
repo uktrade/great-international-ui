@@ -1051,3 +1051,83 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
     )
 
     assert response.url == '/international/content/opportunities/?&page=1'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_sub_sectors_being_shown_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['housing'],
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'South of England'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['energy'],
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'title': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request_two_sub_sectors = rf.get(
+        '/international/content/opportunities/?sub_sector=housing&sub_sector=energy')  # NOQA
+    request_two_sub_sectors.LANGUAGE_CODE = 'en-gb'
+    response_two_sub_sectors = OpportunitySearchView.as_view()(
+        request_two_sub_sectors,
+        path='/international/content/opportunities/?sub_sector=housing&sub_sector=energy')  # NOQA
+
+    assert len(response_two_sub_sectors.context_data['sub_sectors']) == 2
+
+    request_one_sub_sector = rf.get('/international/content/opportunities/?sub_sector=housing')  # NOQA
+    request_one_sub_sector.LANGUAGE_CODE = 'en-gb'
+    response_one_sub_sector = OpportunitySearchView.as_view()(
+        request_one_sub_sector, path='/international/content/opportunities/?sub_sector=housing')  # NOQA
+
+    assert len(response_one_sub_sector.context_data['sub_sectors']) == 1
+
+    request_two_with_only_one_in_results = rf.get('/international/content/opportunities/?sub_sector=housing&sub_sector=energy&sector=Midlands')  # NOQA
+    request_two_with_only_one_in_results.LANGUAGE_CODE = 'en-gb'
+    response_two_with_only_one_in_results = OpportunitySearchView.as_view()(
+        request_two_with_only_one_in_results, path='/international/content/opportunities/?sub_sector=housing&sub_sector=energy&sector=Midlands')  # NOQA
+
+    assert len(response_two_with_only_one_in_results.context_data['sub_sectors']) == 2

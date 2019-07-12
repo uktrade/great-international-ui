@@ -351,15 +351,21 @@ class OpportunitySearchView(
         return sort_filters_with_selected_status
 
     @property
-    def all_sub_sectors_present_in_results(self):
-        all_sub_sectors = []
+    def all_sub_sectors_present_in_results_and_selected(self):
+
+        sub_sectors_present_and_selected = []
         for opp in self.filtered_opportunities:
-            for sub_sector \
-                    in opp['sub_sectors']:
-                if sub_sector not in all_sub_sectors:
-                    all_sub_sectors.append(sub_sector)
+            for sub_sector in opp['sub_sectors']:
+                if sub_sector not in sub_sectors_present_and_selected:
+                    sub_sectors_present_and_selected.append(sub_sector)
+
+        for sub_sector in self.sub_sector.sub_sectors:
+            if sub_sector not in sub_sectors_present_and_selected:
+                sub_sectors_present_and_selected.append(sub_sector)
+
         return [
-            (sub_sector, sub_sector) for sub_sector in all_sub_sectors
+            (sub_sector, sub_sector)
+            for sub_sector in sub_sectors_present_and_selected
         ]
 
     @property
@@ -432,7 +438,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_present_in_results,
+            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,
@@ -451,7 +457,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_present_in_results,
+            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,
