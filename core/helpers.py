@@ -96,6 +96,23 @@ GA_DATA_MAPPING = {
     },
 }
 
+HEADER_MAPPING = {
+    'InternationalHomePage': '',
+    'InternationalTopicLandingPage': 'industries',
+    'InternationalArticleListingPage': 'uk_setup_guide',
+    'InternationalArticlePage': 'uk_setup_guide',
+    'InternationalCampaignPage': '',
+    'InternationalSectorPage': 'industries',
+    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
+    'InternationalGuideLandingPage': 'uk_setup_guide',
+    'InternationalEUExitFormPage': '',
+    'InternationalEUExitFormSuccessPage': '',
+    'InternationalCapitalInvestLandingPage': 'invest',
+    'CapitalInvestRegionPage': 'invest',
+    'CapitalInvestOpportunityPage': 'invest',
+    'CapitalInvestOpportunityListingPage': 'invest'
+}
+
 
 def get_ga_data_for_page(page_type):
     return GA_DATA_MAPPING[page_type]
