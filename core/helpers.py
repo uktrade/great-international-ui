@@ -196,9 +196,10 @@ class SubSectorFilter:
         self.sub_sectors = sub_sectors
 
     def matches(self, opportunity):
-        for sub_sector in opportunity['sub_sectors']:
-            if sub_sector in self.sub_sectors:
-                return True
+        if 'sub_sectors' in opportunity and opportunity['sub_sectors']:
+            for sub_sector in opportunity['sub_sectors']:
+                if sub_sector in self.sub_sectors:
+                    return True
 
 
 def filter_opportunities(opportunities, filter_chosen):
