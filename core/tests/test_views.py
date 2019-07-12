@@ -1220,3 +1220,34 @@ def test_get_random_three_opportunities_for_sector_page_null_case(
         request, path='/international/content/industries/sector')
 
     assert len(response.context_data['random_opportunities']) == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_opportunities_for_sub_sector_page_null_case(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'sector'
+        },
+        'page_type': 'InternationalSubSectorPage',
+        'related_opportunities': [],
+        'statistics': [],
+        'section_three_subsections': []
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/industries/sector/sub_sector')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/industries/sector/sub_sector')
+
+    assert len(response.context_data['random_opportunities']) == 0
