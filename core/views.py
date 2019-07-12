@@ -16,26 +16,30 @@ from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin)
+    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
 
 from core import forms, helpers
 from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.helpers import get_ga_data_for_page, filter_opportunities, \
-    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities, \
+from core.helpers import get_ga_data_for_page, HEADER_MAPPING, \
+    filter_opportunities, SectorFilter, RegionFilter, ScaleFilter, \
+    SortFilter, sort_opportunities, \
     SubSectorFilter
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+
+
+class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
+    pass
 
 
 class CMSPageFromPathView(
     RegionalContentMixin,
     CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
-    GA360Mixin,
-    TemplateView
+    InternationalView
 ):
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
@@ -52,6 +56,10 @@ class CMSPageFromPathView(
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+    @property
+    def header_section(self):
+        return HEADER_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
@@ -190,8 +198,7 @@ def sub_sector_context_modifier(context, request):
 
 
 class InternationalContactPageView(CountryDisplayMixin,
-                                   GA360Mixin,
-                                   TemplateView):
+                                   InternationalView):
     template_name = 'core/contact_page.html'
 
     def __init__(self):
@@ -240,11 +247,11 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 
 class OpportunitySearchView(
     CountryDisplayMixin,
-    GA360Mixin,
-    TemplateView
+    InternationalView
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
+    header_section = 'invest'
 
     def __init__(self):
         super().__init__()
