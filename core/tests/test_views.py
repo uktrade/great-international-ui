@@ -1204,7 +1204,6 @@ def test_get_random_three_opportunities_for_sector_page_null_case(
             'slug': 'sector'
         },
         'page_type': 'InternationalSectorPage',
-        'related_opportunities': [],
         'statistics': [],
         'section_three_subsections': []
     }
@@ -1235,7 +1234,6 @@ def test_get_random_three_opportunities_for_sub_sector_page_null_case(
             'slug': 'sector'
         },
         'page_type': 'InternationalSubSectorPage',
-        'related_opportunities': [],
         'statistics': [],
         'section_three_subsections': []
     }
