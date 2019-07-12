@@ -1,6 +1,7 @@
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
+from directory_cms_client.helpers import handle_cms_response
 from directory_constants import urls
 import pytest
 
@@ -93,6 +94,11 @@ def capital_invest_page():
 @pytest.fixture
 def capital_invest_opportunity_page():
     yield from stub_page({'page_type': 'CapitalInvestOpportunityPage'})
+
+
+@pytest.fixture
+def international_sub_sector_page():
+    yield from stub_page({'page_type': 'InternationalSubSectorPage'})
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -371,7 +377,10 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
             {
                 'title': 'Sector',
                 'hero_image': {'url': 'article_list.png'},
-                'sector': 'some sector',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale': 'scale',
             },
         ],
@@ -590,6 +599,55 @@ def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
+@pytest.mark.usefixtures('international_sub_sector_page')
+def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/content/industries/energy/mixed-use/'
+    )
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = True
+
+    page = {
+        'title': 'Housing',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'housing'
+        },
+        'page_type': 'InternationalSubSectorPage',
+        'statistics': [],
+        'section_three_subsections': [],
+        'related_opportunities': []
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/content/industries/energy/housing'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/industries/energy/housing'
+    )
+
+    assert response.status_code == 200
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_international_contact_form(mock_cms_response, client):
     mock_cms_response.return_value = create_response(
@@ -622,7 +680,10 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '',
                 'related_region': {
                     'title': 'Midlands'
@@ -638,7 +699,10 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 2',
-                'sector': 'real-estate',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'Midlands'
@@ -654,7 +718,10 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 3',
-                'sector': 'real-estate',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '0.00',
                 'related_region': {
                     'title': 'South of Engalnd'
@@ -703,7 +770,10 @@ def test_get_num_of_opportunities_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -719,7 +789,10 @@ def test_get_num_of_opportunities_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 2',
-                'sector': 'real-estate',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'Midlands'
@@ -767,7 +840,10 @@ def test_get_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -816,7 +892,10 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -864,7 +943,10 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': ['energy', 'housing-led'],
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing'],
+                    'formatted_list': 'energy, housing'
+                },
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -885,12 +967,13 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
         json_payload=page
     )
 
-    request = rf.get('/international/content/opportunities/?sub_sector_')  # NOQA
+    request = rf.get('/international/content/opportunities/?sub_sector=housing')  # NOQA
     request.LANGUAGE_CODE = 'en-gb'
     response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&regionMidlands')  # NOQA
+        request, path='/international/content/opportunities/?sub_sector=housing')  # NOQA
 
-    assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'  # NOQA
+    assert len(response.context_data['pagination'].object_list) == 1
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -912,7 +995,10 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '',
                 'related_region': {
                     'title': 'South of England'
@@ -965,7 +1051,10 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sector': 'energy',
+                'sub_sectors_list_with_formatted': {
+                    'list_all': ['energy', 'housing-led'], 
+                    'formatted_list': 'energy, housing-led'
+                },
                 'scale_value': '',
                 'related_region': {
                     'title': 'South of England'

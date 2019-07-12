@@ -55,7 +55,6 @@ class CMSPageFromPathView(
 
     @cached_property
     def page(self):
-        print('\n\n\n\n\n\n self ', self.kwargs['path'])
         response = cms_api_client.lookup_by_path(
             site_id=settings.DIRECTORY_CMS_SITE_ID,
             path=self.kwargs['path'],
@@ -150,8 +149,11 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
-    random.shuffle(page['related_opportunities'])
-    random_opportunities = page['related_opportunities'][0:3]
+    if 'related_opportunities' in page:
+        random.shuffle(page['related_opportunities'])
+        random_opportunities = page['related_opportunities'][0:3]
+    else:
+        random_opportunities = []
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
@@ -171,8 +173,11 @@ def sub_sector_context_modifier(context, request):
 
     page = context['page']
 
-    random.shuffle(page['related_opportunities'])
-    random_opportunities = page['related_opportunities'][0:3]
+    if 'related_opportunities' in page:
+        random.shuffle(page['related_opportunities'])
+        random_opportunities = page['related_opportunities'][0:3]
+    else:
+        random_opportunities = []
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
