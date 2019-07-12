@@ -1,7 +1,6 @@
 from unittest.mock import patch
 
 from bs4 import BeautifulSoup
-from directory_cms_client.helpers import handle_cms_response
 from directory_constants import urls
 import pytest
 
