@@ -223,4 +223,3 @@ def sort_opportunities(opportunities, sort_by_chosen):
         )
 
     return opportunities
-
