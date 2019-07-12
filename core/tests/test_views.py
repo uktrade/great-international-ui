@@ -1130,4 +1130,6 @@ def test_sub_sectors_being_shown_for_opportunity_search(
     response_two_with_only_one_in_results = OpportunitySearchView.as_view()(
         request_two_with_only_one_in_results, path='/international/content/opportunities/?sub_sector=housing&sub_sector=energy&sector=Midlands')  # NOQA
 
-    assert len(response_two_with_only_one_in_results.context_data['sub_sectors']) == 2
+    assert len(
+        response_two_with_only_one_in_results.context_data['sub_sectors']
+    ) == 2
