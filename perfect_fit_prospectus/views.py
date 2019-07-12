@@ -10,13 +10,15 @@ from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from perfect_fit_prospectus.forms import PerfectFitProspectusForm
-from directory_components.mixins import CountryDisplayMixin
+from directory_components.mixins import CountryDisplayMixin,\
+    InternationalHeaderMixin
 
 from pir_client.client import pir_api_client
 
 
 class PerfectFitProspectusMainView(
-    CountryDisplayMixin, SuccessMessageMixin, FormView
+    CountryDisplayMixin, SuccessMessageMixin,
+    InternationalHeaderMixin, FormView
 ):
     form_class = PerfectFitProspectusForm
     template_name = 'perfect_fit_prospectus/index.html'
@@ -52,11 +54,12 @@ class PerfectFitProspectusMainView(
         return kwargs
 
 
-class PerfectFitProspectusSuccessView(TemplateView):
+class PerfectFitProspectusSuccessView(InternationalHeaderMixin, TemplateView):
     template_name = 'perfect_fit_prospectus/success.html'
 
 
-class PerfectFitProspectusReportProxyView(CountryDisplayMixin, View):
+class PerfectFitProspectusReportProxyView(CountryDisplayMixin,
+                                          InternationalHeaderMixin, View):
     def get(self, request, filename):
         client = boto3.client(
             's3',

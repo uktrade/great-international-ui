@@ -1,14 +1,15 @@
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin,\
+    InternationalHeaderMixin
 from directory_constants import slugs
 from directory_forms_api_client.helpers import Sender
 
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.utils import translation
-from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
 from core.mixins import CMSPageMixin
+from core.views import InternationalView
 from euexit import forms
 
 
@@ -19,6 +20,7 @@ class InternationalContactFormView(
     CMSPageMixin,
     CountryDisplayMixin,
     GA360Mixin,
+    InternationalHeaderMixin,
     FormView,
 ):
     slug = slugs.EUEXIT_INTERNATIONAL_FORM
@@ -70,7 +72,7 @@ class InternationalContactFormView(
         return super().form_valid(form)
 
 
-class InternationalContactSuccessView(CMSPageMixin, GA360Mixin, TemplateView):
+class InternationalContactSuccessView(CMSPageMixin, InternationalView):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
 
