@@ -348,7 +348,7 @@ class OpportunitySearchView(
         all_sub_sectors = []
         for opp in self.filtered_opportunities:
             for sub_sector \
-                    in opp['sub_sectors_list_with_formatted']['list_all']:
+                    in opp['sub_sectors']:
                 if sub_sector not in all_sub_sectors:
                     all_sub_sectors.append(sub_sector)
         return [

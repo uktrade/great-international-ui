@@ -377,10 +377,7 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
             {
                 'title': 'Sector',
                 'hero_image': {'url': 'article_list.png'},
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale': 'scale',
             },
         ],
@@ -680,10 +677,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '',
                 'related_region': {
                     'title': 'Midlands'
@@ -699,10 +693,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 2',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'Midlands'
@@ -718,10 +709,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 3',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '0.00',
                 'related_region': {
                     'title': 'South of Engalnd'
@@ -770,10 +758,7 @@ def test_get_num_of_opportunities_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -789,10 +774,7 @@ def test_get_num_of_opportunities_for_opportunity_search(
             {
                 'id': 4,
                 'title': 'Some Opp 2',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'Midlands'
@@ -840,10 +822,7 @@ def test_get_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -892,10 +871,7 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -943,10 +919,7 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing'],
-                    'formatted_list': 'energy, housing'
-                },
+                'sub_sectors': ['energy', 'housing'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -995,10 +968,7 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '',
                 'related_region': {
                     'title': 'South of England'
@@ -1051,10 +1021,7 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors_list_with_formatted': {
-                    'list_all': ['energy', 'housing-led'], 
-                    'formatted_list': 'energy, housing-led'
-                },
+                'sub_sectors': ['energy', 'housing-led'],
                 'scale_value': '',
                 'related_region': {
                     'title': 'South of England'

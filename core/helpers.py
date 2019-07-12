@@ -179,7 +179,7 @@ class SubSectorFilter:
 
     def matches(self, opportunity):
         for sub_sector \
-                in opportunity['sub_sectors_list_with_formatted']['list_all']:
+                in opportunity['sub_sectors']:
             if sub_sector in self.sub_sectors:
                 return True
 

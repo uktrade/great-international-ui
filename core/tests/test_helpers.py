@@ -133,29 +133,17 @@ def test_filter_opportunities_scale():
 def test_filter_opportunities_sub_sector():
     opportunities = [
         {
-            'sub_sectors_list_with_formatted':
-            {
-                'list_all': ['Housing led', 'Mixed-use'],
-                'formatted_list': 'Housing led, Mixed-use'
-            }
+            'sub_sectors': ['Energy', 'Housing'],
         },
         {
-            'sub_sectors_list_with_formatted':
-            {
-                'list_all': ['Mixed-use'],
-                'formatted_list': 'Mixed-use'
-            }
+            'sub_sectors': ['Mixed-use', 'Housing'],
         },
         {
-            'sub_sectors_list_with_formatted':
-            {
-                'list_all': ['Real Estate', 'Housing led'],
-                'formatted_list': 'Real Estate, Housing led'
-            }
+            'sub_sectors': ['Energy', 'Mixed-use'],
         },
     ]
 
-    filter_chosen = SubSectorFilter('Housing led')
+    filter_chosen = SubSectorFilter('Housing')
 
     filtered_opps = filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
