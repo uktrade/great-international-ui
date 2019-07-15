@@ -3,7 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes render_form override_elements_css_class cta_card from directory_components %}
+{% load directory_components %}
 
 {% block css_layout_class %}landing-page{% endblock %}
 
@@ -24,9 +24,9 @@
           <img class="width-full" src="{{ page.invest_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.invest_title }}</h2>
-                <div class="padding-30">
-                  {{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
-                </div>
+            <div class="padding-30">
+              {{ page.invest_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
+            </div>
           </div>
         </div>
       </div>
@@ -35,9 +35,9 @@
           <img class="width-full" src="{{ page.trade_image.url }}" alt="">
           <div class="card-text margin-top-negative-30">
             <h2 class="highlight heading-large background-active-blue white-text">{{ page.trade_title }}</h2>
-                <div class="padding-30">
-                  {{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
-                </div>
+            <div class="padding-30">
+              {{ page.trade_content|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe }}
+            </div>
           </div>
         </div>
       </div>

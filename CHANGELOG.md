@@ -23,6 +23,7 @@
 - No ticket - Card with publish date (industry cards) updated to use image same as directory component
 
 ### Implemented enhancements
+- CMS-1664 - Added invest homepage and upgraded directory-components
 - CMS-1594 - Add perfect fit prospectus views to International UI
 - CI-250 - Added an opportunity listing page template and put it behind a feature flag
 - No ticket - Added 'Opportunity' Subheading for opportunity pages

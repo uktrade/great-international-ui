@@ -40,6 +40,8 @@ class CMSPageFromPathView(
     NotFoundOnDisabledFeature,
     InternationalView
 ):
+    cms_site_id = settings.DIRECTORY_CMS_SITE_ID
+
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
 
@@ -64,7 +66,7 @@ class CMSPageFromPathView(
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
-            site_id=settings.DIRECTORY_CMS_SITE_ID,
+            site_id=self.cms_site_id,
             path=self.kwargs['path'],
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
@@ -168,8 +170,7 @@ def sector_page_context_modifier(context, request):
         }
 
 
-class InternationalContactPageView(CountryDisplayMixin,
-                                   InternationalView):
+class InternationalContactPageView(CountryDisplayMixin, InternationalView):
     template_name = 'core/contact_page.html'
 
     def __init__(self):

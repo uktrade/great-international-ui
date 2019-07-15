@@ -1,8 +1,8 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-
-{% load breadcrumbs search_page_selected_filters search_page_expandable_options pagination from directory_components %}
+{% load filter_by_active_language from cms_tags %}
+{% load directory_components %}
 
 {% block header_js %}
     {{ block.super }}
@@ -101,4 +101,3 @@
 </section>
 
 {% endblock content %}
-

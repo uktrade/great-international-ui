@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study breadcrumbs from directory_components %}
+{% load directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
@@ -153,7 +153,7 @@
 </section>
 
 {% if page.case_study_title and page.case_study_image.url %}
-    {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% case_study background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
 {% if page.similar_projects_title and page.related_pages|filter_by_active_language %}
@@ -170,13 +170,13 @@
             {% endfor %}
         </div>
         {% if page.similar_projects_cta_link and page.similar_projects_cta_text %}
-                <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.similar_projects_cta_link}}">{{ page.similar_projects_cta_text }}</a>
         {% endif %}
     </div>
 </section>
 {% endif %}
 
-{% if  page.contact_title and page.contact_text %}
+{% if page.contact_title and page.contact_text %}
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.contact_title }}</h1>

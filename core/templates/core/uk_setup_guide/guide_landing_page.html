@@ -1,7 +1,7 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load trans from i18n %}
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs card image_with_caption add_export_elements_classes convert_headings_to override_elements_css_class from directory_components %}
+{% load directory_components %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
@@ -18,9 +18,9 @@
 
   <div class="container">
 
-    {% breadcrumbs page.display_title %}
-      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-    {% endbreadcrumbs %}
+      {% breadcrumbs page.display_title %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
 
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
@@ -56,7 +56,7 @@
 
           <p class="padding-bottom-30">{{ page.section_two_teaser }}</p>
 
-          <a href="{{ page.section_two_button_url }}" class="button button-blue">{{ page.section_two_button_text }}</a>
+            <a href="{{ page.section_two_button_url }}" class="button button-blue">{{ page.section_two_button_text }}</a>
         </div>
       </div>
     </div>
