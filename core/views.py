@@ -16,25 +16,29 @@ from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin)
+    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
 
 from core import forms, helpers
 from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.helpers import get_ga_data_for_page, filter_opportunities, \
-    SectorFilter, RegionFilter, ScaleFilter, SortFilter, sort_opportunities
+from core.helpers import get_ga_data_for_page, HEADER_MAPPING, \
+    filter_opportunities, SectorFilter, RegionFilter, ScaleFilter, \
+    SortFilter, sort_opportunities
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+
+
+class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
+    pass
 
 
 class CMSPageFromPathView(
     RegionalContentMixin,
     CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
-    GA360Mixin,
-    TemplateView
+    InternationalView
 ):
     cms_site_id = settings.DIRECTORY_CMS_SITE_ID
 
@@ -54,6 +58,10 @@ class CMSPageFromPathView(
     @property
     def template_name(self):
         return TEMPLATE_MAPPING[self.page['page_type']]
+
+    @property
+    def header_section(self):
+        return HEADER_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
@@ -162,6 +170,26 @@ def sector_page_context_modifier(context, request):
         }
 
 
+class InternationalContactPageView(CountryDisplayMixin, InternationalView):
+    template_name = 'core/contact_page.html'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='InternationalContactPage',
+            business_unit='GreatInternational',
+            site_section='Contact',
+            site_subsection='ContactForm'
+        )
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            hide_language_selector=True,
+            invest_contact_us_url=urls.build_invest_url('contact/'),
+            *args, **kwargs
+        )
+
+
 @register_context_modifier('CapitalInvestRegionPage')
 def capital_invest_region_page_context_modifier(context, request):
 
@@ -191,11 +219,11 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 
 class OpportunitySearchView(
     CountryDisplayMixin,
-    GA360Mixin,
-    TemplateView
+    InternationalView
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
+    header_section = 'invest'
 
     def __init__(self):
         super().__init__()
@@ -375,26 +403,4 @@ class OpportunitySearchView(
             current_page_num=self.page_number,
             form=self.opportunity_search_form,
             *args, **kwargs,
-        )
-
-
-class InternationalContactPageView(
-    CountryDisplayMixin, GA360Mixin, TemplateView
-):
-    template_name = 'core/contact_page.html'
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='InternationalContactPage',
-            business_unit='GreatInternational',
-            site_section='Contact',
-            site_subsection='ContactForm'
-        )
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            hide_language_selector=True,
-            invest_contact_us_url=urls.build_invest_url('contact/'),
-            *args, **kwargs
         )

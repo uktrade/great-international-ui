@@ -5,11 +5,13 @@
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
 - No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
+- CI-313 - Update JS dev dependencies to cover security vulnerabilities
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
 - CI-325 - CI projects shown on sector page are randomised
 - CI-211 (& CI-252 & CI-268) - Created opportunity listing page filtering by sector, region and scale
+- CI-303 - Update international header design.
 
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
