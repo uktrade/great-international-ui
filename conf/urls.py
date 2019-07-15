@@ -46,6 +46,17 @@ urlpatterns = [
         name="content-index-redirect"
     ),
     url(
+        r"^international/invest/$",
+        core.views.CMSPageFromPathView.as_view(),
+        {'path': '/invest/'},
+        name="invest-home"
+    ),
+    url(
+        r'^international/content/invest/$',
+        RedirectView.as_view(url=reverse_lazy('invest-home')),
+        name="content-invest-home-redirect"
+    ),
+    url(
         r"^international/contact/$",
         core.views.InternationalContactPageView.as_view(),
         name='contact-page-international'
@@ -103,16 +114,6 @@ urlpatterns = [
     ),
 ]
 
-invest = [
-    url(
-        r'^international/invest/',
-        include(
-            'invest.urls',
-            namespace='invest'
-        )
-    ),
-]
-
 perfectfit = [
     url(
         r'^international/invest/perfectfit/',
@@ -124,4 +125,3 @@ perfectfit = [
 ]
 
 urlpatterns += perfectfit
-urlpatterns += invest

@@ -29,6 +29,11 @@ GA_DATA_MAPPING = {
         'site_section': 'HomePage',
         'site_subsection': ''
     },
+    'InvestInternationalHomePage': {
+        'business_unit': 'Invest',
+        'site_section': 'HomePage',
+        'site_subsection': ''
+    },
     'InternationalTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Topic',
