@@ -1249,3 +1249,33 @@ def test_get_random_three_opportunities_for_sub_sector_page_null_case(
         request, path='/international/content/industries/sector/sub_sector')
 
     assert len(response.context_data['random_opportunities']) == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_when_no_opportunity_list_in_page_for_opportunity_search(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'CapitalInvestOpportunityListingPage',
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/opportunities/')  # NOQA
+    request.LANGUAGE_CODE = 'en-gb'
+    response = OpportunitySearchView.as_view()(
+        request, path='/international/content/opportunities/')  # NOQA
+
+    assert response.context_data['num_of_opportunities'] == 0
