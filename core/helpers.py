@@ -206,6 +206,7 @@ class SubSectorFilter:
             for sub_sector in opportunity['sub_sectors']:
                 if sub_sector in self.sub_sectors:
                     return True
+        return False
 
 
 def filter_opportunities(opportunities, filter_chosen):
