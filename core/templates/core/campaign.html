@@ -9,9 +9,9 @@
 <section class="hero hero-generic padding-0" id="campaign-hero" {% if page.campaign_hero_image %}style="background-image: url('{{ page.campaign_hero_image.url }}')"{% endif %}>
 
   <div class="container white-text">
-      {% breadcrumbs page.campaign_heading %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
+    {% breadcrumbs page.campaign_heading %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
 
     <div class="hero-title">
       <h1 id="campaign-hero-heading" class="heading-hero-generic">{{ page.campaign_heading }}</h1>
@@ -87,7 +87,7 @@
         <h2 id="section-two-heading" class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
         {{ page.section_two_intro|add_export_elements_classes }}
         {% if page.section_two_contact_button_url and page.section_one_contact_button_text %}
-            <a id="section-two-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_two_contact_button_url }}">{{ page.section_two_contact_button_text }}</a>
+          <a id="section-two-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_two_contact_button_url }}">{{ page.section_two_contact_button_text }}</a>
         {% endif %}
       </div>
 

@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'health_check.cache',
     'directory_healthcheck',
     'euexit',
-    'perfect_fit_prospectus'
+    'perfect_fit_prospectus',
+    'invest',
 ]
 
 MIDDLEWARE_CLASSES = [

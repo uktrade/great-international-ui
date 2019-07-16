@@ -20,8 +20,9 @@
 <section class="breadcrumbs-section">
   <div class="container">
     {% url 'industries' as industries_url %}
+
     {% breadcrumbs page.landing_page_title %}
-    <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
     {% endbreadcrumbs %}
   </div>
 </section>

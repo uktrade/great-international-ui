@@ -8,8 +8,9 @@ from django.urls import reverse_lazy
 from django.utils import translation
 from django.views.generic.edit import FormView
 
-from core.mixins import CMSPageMixin
+from core.mixins import CMSPageFromSlugMixin
 from core.views import InternationalView
+
 from euexit import forms
 
 
@@ -17,7 +18,7 @@ SESSION_KEY_FORM_INGRESS_URL = 'FORM_INGRESS_URL'
 
 
 class InternationalContactFormView(
-    CMSPageMixin,
+    CMSPageFromSlugMixin,
     CountryDisplayMixin,
     GA360Mixin,
     InternationalHeaderMixin,
@@ -72,7 +73,9 @@ class InternationalContactFormView(
         return super().form_valid(form)
 
 
-class InternationalContactSuccessView(CMSPageMixin, InternationalView):
+class InternationalContactSuccessView(
+    CMSPageFromSlugMixin, InternationalView
+):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
 

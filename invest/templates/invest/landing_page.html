@@ -1,0 +1,173 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE %}
+{% load filter_by_active_language from cms_tags %}
+{% load directory_components %}
+
+{% block css_layout_class %}invest-landing-page{% endblock %}
+
+{% block content %}
+
+{% hero_with_cta heading=page.heading subtitle=page.sub_heading img_url=page.hero_image.url cta_text=page.hero_call_to_action_text cta_link=page.hero_call_to_action_url %}
+
+<div class="container">
+  {% breadcrumbs 'Invest' %}
+    <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+  {% endbreadcrumbs %}
+</div>
+
+
+{% if features.EU_EXIT_BANNER_ON and cms_component %}
+    <div class="banner-container margin-vertical-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
+        <div class="container">
+            {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
+        </div>
+    </div>
+{% endif %}
+
+{% if page.benefits_section_title and page.benefits_section_content %}
+<section class="landing-page-section landing-page-benefits" id="benefits">
+    <div class="container">
+        <h2 class="heading-large margin-bottom-30">{{ page.benefits_section_title }}</h2>
+        <div class="grid-row padding-bottom-45 ">
+            <p class="font-small line-height-normal column-half"> {{ page.benefits_section_intro }}  </p>
+        </div>
+        <div class="card-grid reverse-columns-s">
+            <div class="column-half-l left-half-page-text">
+                {{ page.benefits_section_content|add_export_elements_classes|safe }}
+            </div>
+            {% if page.benefits_section_img.url %}
+                <div class="column-half-l center-vertical flex-shrink-0">
+                    <figure class="landing-page-image">
+                        <img class="width-full" src="{{page.benefits_section_img.url}}">
+                    </figure>
+                </div>
+            {%  endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.eu_exit_section_title and page.eu_exit_section_call_to_action_text %}
+<section class="landing-page-section" id="eu-exit">
+    <div class="container">
+        <div class="card-grid">
+            {% if page.eu_exit_section_img.url %}
+                <div class="column-half-l center-vertical">
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.eu_exit_section_img.url}}">
+                    </figure>
+                </div>
+            {% endif %}
+            <div class="column-half-l right-half-page-text">
+                <div>
+                    <h2 class="heading-large">{{ page.eu_exit_section_title }}</h2>
+                    <div class="margin-bottom-45">{{ page.eu_exit_section_content|add_export_elements_classes|safe }}</div>
+                    {% if page.eu_exit_section_call_to_action_url and page.eu_exit_section_call_to_action_text  %}
+                      <a href="{{ page.eu_exit_section_call_to_action_url }}" class="button button-arrow-small eu-exit-button">{{ page.eu_exit_section_call_to_action_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if show_featured_cards %}
+<section class="landing-page-section" id="uk-setup-guides">
+    <div class="container">
+        <div class="card-grid">
+            {% for card in page.featured_cards %}
+                <div class="column-third-xl" id="featured_card_{{ forloop.counter }}">
+                {% if card.cta_link %}
+                  {% card title=card.title description=card.summary|add_export_elements_classes|safe img_src=card.image.url url=card.cta_link %}
+                {% else %}
+                 {% card title=card.title description=card.summary|add_export_elements_classes|safe img_src=card.image.url %}
+                {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.sector_title and page.sectors|filter_by_active_language %}
+<section class="landing-page-section" id="industries">
+    <div class="container">
+        <h2 class="heading-large">{{ page.sector_title }}</h2>
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-half"> {{  page.sector_intro }} </p>
+            </div>
+        <div class="card-grid padding-bottom-45">
+            {% include 'core/includes/card_with_description_grid.html' with ga_tag='industry-link' url_name='industry' cards=page.sectors|filter_by_active_language  %}
+        </div>
+        {% if page.sector_button_url and page.sector_button_text %}
+            <a href="{{ page.sector_button_url }}" class="button button-arrow-small" id="see-more-industries">{{ page.sector_button_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if show_hpo_section %}
+<section class="landing-page-section" id="high-potential-opportunities">
+    <div class="container">
+        <h2 class="heading-large"> {{ page.hpo_title }} </h2>
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-half"> {{ page.hpo_intro }}  </p>
+            </div>
+        <div class="card-grid">
+            {% include 'core/includes/card_with_description_grid.html' with ga_tag='hpo-card' url_name='high-potential-opportunity-details' cards=page.high_potential_opportunities|filter_by_active_language  %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_we_help_title and page.how_we_help_lead_in %}
+<section class="landing-page-how-we-help landing-page-section with-flag" id="how-we-help">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                {% if page.how_we_help_lead_in %}
+                    <p class="margin-bottom-45">{{ page.how_we_help_lead_in }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="grid-row">
+            <ul>
+                {% for section in page.how_we_help %}
+                    {% if section.text and section.icon %}
+                        <li>
+                            <div class="column-third-m">
+                                <img class="icon" src="{{ section.icon.url }}" alt="">
+                                <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.contact_section_title and page.contact_section_content  %}
+<section class="landing-page-section" id="get-in-touch">
+    <div class="container">
+        <div class="card-grid">
+            <div class="column-half">
+                <h2 class="heading-large">{{ page.contact_section_title }}</h2>
+                <p class="font-small margin-bottom-45">{{ page.contact_section_content }}</p>
+                {% if page.contact_section_call_to_action_text and page.contact_section_call_to_action_url %}
+                    <div>
+                      <a href="{{ page.contact_section_call_to_action_url }}" class="button button-arrow-small">{{ page.contact_section_call_to_action_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock content %}
