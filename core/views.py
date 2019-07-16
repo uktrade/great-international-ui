@@ -356,22 +356,21 @@ class OpportunitySearchView(
 
     @property
     def all_sub_sectors_present_in_results_and_selected(self):
-
-        sub_sectors_present_and_selected = []
+        sub_sectors_from_results = set()
 
         for opp in self.filtered_opportunities:
-            if 'sub_sectors' in opp and opp['sub_sectors']:
-                for sub_sector in opp['sub_sectors']:
-                    if sub_sector not in sub_sectors_present_and_selected:
-                        sub_sectors_present_and_selected.append(sub_sector)
+            if 'sub_sectors' in opp:
+                for sub_sector in opp['sub_sectors'] or []:
+                    sub_sectors_from_results.add(sub_sector)
 
-        for sub_sector in self.sub_sector.sub_sectors:
-            if sub_sector not in sub_sectors_present_and_selected:
-                sub_sectors_present_and_selected.append(sub_sector)
+        sub_sectors_from_existing_filters = set(self.sub_sector.sub_sectors)
+
+        all_sub_sectors_filters = list(
+            sub_sectors_from_results.union(sub_sectors_from_existing_filters)
+        )
 
         return [
-            (sub_sector, sub_sector)
-            for sub_sector in sub_sectors_present_and_selected
+            (sub_sector, sub_sector) for sub_sector in all_sub_sectors_filters
         ]
 
     @property
