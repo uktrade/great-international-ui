@@ -1,7 +1,7 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load i18n %}
 {% load static from staticfiles %}
-{% load filter_by_active_language list_to_comma_separated_string from cms_tags %}
+{% load filter_by_active_language from cms_tags %}
 {% load card hero add_export_elements_classes case_study breadcrumbs from directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
@@ -83,7 +83,7 @@
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium">{{ page.sector_heading }}</p>
-                            {{ page.sub_sectors|list_to_comma_separated_string }}
+                            {{ page.sub_sectors|join:", " }}
                         </div>
                     {% endif %}
                 </li>
@@ -163,7 +163,7 @@
             </h1>
             {% for related_page in page.related_pages|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sub_sectors|list_to_comma_separated_string %}
+                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sub_sectors|join:", " %}
                 </div>
             {% endfor %}
         </div>

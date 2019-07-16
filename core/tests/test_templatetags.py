@@ -255,10 +255,3 @@ def test_filter_by_active_language(rf):
 ])
 def test_title_from_heading(value, expected_result):
     assert cms_tags.title_from_heading(value) == expected_result
-
-
-@pytest.mark.parametrize('value, expected_result', [
-    (['Housing', 'Real-Estate'], 'Housing, Real-Estate'),
-])
-def test_list_to_comma_separated_string(value, expected_result):
-    assert cms_tags.list_to_comma_separated_string(value) == expected_result

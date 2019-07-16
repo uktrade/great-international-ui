@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
-{% load filter_by_active_language list_to_comma_separated_string from cms_tags %}
+{% load filter_by_active_language from cms_tags %}
 {% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid from directory_components %}
 
 {% block css_layout_class %}sector-page{% endblock %}
@@ -106,7 +106,7 @@
         <div class="flex-grid">
             {% for opportunity in random_opportunities %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|list_to_comma_separated_string %}
+                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
                 </div>
             {% endfor %}
         </div>
