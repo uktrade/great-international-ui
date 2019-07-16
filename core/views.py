@@ -322,7 +322,8 @@ class OpportunitySearchView(
                 if sector['related_sector'] \
                         and sector['related_sector']['title']:
                     sectors.add(sector['related_sector']['title'])
-
+        sectors = list(sectors)
+        sectors.sort()
         return [
             (sector, sector) for sector in sectors
         ]
@@ -340,7 +341,8 @@ class OpportunitySearchView(
         for opp in self.opportunities:
             if opp['related_region'] and opp['related_region']['title']:
                 regions.add(opp['related_region']['title'])
-
+        regions = list(regions)
+        regions.sort()
         return [
             (region, region) for region in regions
         ]
@@ -368,6 +370,7 @@ class OpportunitySearchView(
         all_sub_sectors_filters = list(
             sub_sectors_from_results.union(sub_sectors_from_existing_filters)
         )
+        all_sub_sectors_filters.sort()
 
         return [
             (sub_sector, sub_sector) for sub_sector in all_sub_sectors_filters
