@@ -308,7 +308,10 @@ class OpportunitySearchView(
 
     @property
     def opportunities(self):
-        return self.page['opportunity_list']
+        if 'opportunity_list' in self.page:
+            return self.page['opportunity_list']
+        else:
+            return []
 
     @property
     def all_sectors(self):
