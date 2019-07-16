@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from core import helpers
 from core.helpers import SortFilter, sort_opportunities, ScaleFilter, \
-    filter_opportunities, RegionFilter, SectorFilter
+    filter_opportunities, RegionFilter, SectorFilter, SubSectorFilter
 
 
 @pytest.mark.parametrize('path,expect_code', (
@@ -125,6 +125,25 @@ def test_filter_opportunities_scale():
     ]
 
     filter_chosen = ScaleFilter('< £100m')
+
+    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 2
+
+
+def test_filter_opportunities_sub_sector():
+    opportunities = [
+        {
+            'sub_sectors': ['Energy', 'Housing'],
+        },
+        {
+            'sub_sectors': ['Mixed-use', 'Housing'],
+        },
+        {
+            'sub_sectors': ['Energy', 'Mixed-use'],
+        },
+    ]
+
+    filter_chosen = SubSectorFilter('Housing')
 
     filtered_opps = filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2

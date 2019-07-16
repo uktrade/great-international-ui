@@ -336,6 +336,90 @@ body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
 }
 
+.invest-landing-page .landing-page-how-we-help ul {
+  width: 100%;
+}
+.invest-landing-page .landing-page-how-we-help .icon, .invest-landing-page .landing-page-how-we-help .contact-button {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e41f13;
+  height: calc(60px + 15px + 2px);
+}
+.invest-landing-page .landing-page-how-we-help .contact-button {
+  border-bottom: 0;
+}
+.invest-landing-page :lang(ar) .banner-container[dir=rtl] .information-banner .banner-content > * {
+  padding-left: 0;
+  padding-right: 15px;
+}
+@media (min-width: 641px) {
+  .invest-landing-page .landing-page-section .container .left-half-page-text {
+    padding-right: 60px;
+  }
+  .invest-landing-page .landing-page-section .container .right-half-page-text {
+    padding-left: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .invest-landing-page .landing-page-setup-guide .card-grid,
+.invest-landing-page .landing-page-benefits .card-grid {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 640px) {
+  .invest-landing-page .landing-page-how-we-help .help-section {
+    min-height: auto;
+    clear: both;
+    padding-bottom: 15px;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child {
+    padding-top: 30px;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child p {
+    margin-left: 0;
+    width: 100%;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child .contact-button {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section p,
+.invest-landing-page .landing-page-how-we-help .help-section .icon,
+.invest-landing-page .landing-page-how-we-help .help-section .contact-button {
+    float: left;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section p {
+    width: calc(100% - 64px - 30px);
+    margin-left: 30px;
+  }
+}
+.invest-landing-page .invest-breadcrumbs {
+  padding-bottom: 0;
+}
+.invest-landing-page .landing-page-section:nth-child(odd) {
+  padding: 60px 0;
+}
+.invest-landing-page .landing-page-section:nth-child(even) {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+.invest-landing-page .center-vertical {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.invest-landing-page .flex-shrink-0 {
+  flex-shrink: 0;
+}
+.invest-landing-page .landing-page-image {
+  position: relative;
+}
+.invest-landing-page .case-study .container .grid-row .button-arrow-small {
+  margin-top: 45px;
+}
+.invest-landing-page .landing-page-section .container .card-grid .column-half-l .eu-exit-button {
+  white-space: normal;
+}
+
 .capital-invest-landing-page .page-section {
   padding: 60px 0;
 }
@@ -488,11 +572,11 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-page ul {
   width: 100%;
 }
-.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
+.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
   height: calc(60px);
 }
 @media (min-width: 641px) {
-  .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
+  .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
     padding-bottom: 15px;
     margin-bottom: 15px;
     height: calc(60px + 15px);

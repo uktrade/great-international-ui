@@ -1,8 +1,8 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load filter_by_active_language from cms_tags %}
-{% load directory_components %}
+
+{% load breadcrumbs search_page_selected_filters search_page_expandable_options pagination from directory_components %}
 
 {% block header_js %}
     {{ block.super }}
@@ -68,6 +68,11 @@
                                 {% search_page_expandable_options label='Region' field=form.region %}
                             </fieldset>
                         {% endif %}
+                        {% if sub_sectors %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Sub-sectors' field=form.sub_sector %}
+                            </fieldset>
+                        {% endif %}
                         <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
                     </section>
                 </div>
@@ -84,7 +89,7 @@
                                     <div class="card-inner padding-horizontal-45 column-two-thirds-l margin-bottom-30">
                                         <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
                                         <p class="bold-xsmall margin-top-15">{{ opportunity.scale }}</p>
-                                        <p class="font-xsmall margin-bottom-30">{{ opportunity.sector }}</p>
+                                        <p class="font-xsmall margin-bottom-30">{{ opportunity.sub_sectors|join:", " }}</p>
                                     </div>
                                 </a>
                             </li>

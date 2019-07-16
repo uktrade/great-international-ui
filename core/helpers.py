@@ -59,6 +59,11 @@ GA_DATA_MAPPING = {
         'site_section': 'Sector',
         'site_subsection': 'DetailPage'
     },
+    'InternationalSubSectorPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'SubSector',
+        'site_subsection': 'DetailPage'
+    },
     'InternationalCuratedTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'CuratedTopic',
@@ -109,6 +114,7 @@ HEADER_MAPPING = {
     'InternationalArticlePage': 'uk_setup_guide',
     'InternationalCampaignPage': '',
     'InternationalSectorPage': 'industries',
+    'InternationalSubSectorPage': 'industries',
     'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
     'InternationalGuideLandingPage': 'uk_setup_guide',
     'InternationalEUExitFormPage': '',
@@ -189,6 +195,18 @@ class RegionFilter:
                 and opportunity['related_region']['title'] \
                 and opportunity['related_region']['title'] in self.regions:
             return True
+
+
+class SubSectorFilter:
+    def __init__(self, sub_sectors):
+        self.sub_sectors = sub_sectors
+
+    def matches(self, opportunity):
+        if 'sub_sectors' in opportunity and opportunity['sub_sectors']:
+            for sub_sector in opportunity['sub_sectors']:
+                if sub_sector in self.sub_sectors:
+                    return True
+        return False
 
 
 def filter_opportunities(opportunities, filter_chosen):

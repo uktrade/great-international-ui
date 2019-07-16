@@ -21,6 +21,7 @@ TEMPLATE_MAPPING = {
     'InternationalArticlePage': 'core/uk_setup_guide/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
+    'InternationalSubSectorPage': 'core/sector_page.html',
     'InternationalCuratedTopicLandingPage': (
         'core/how_to_do_business_landing_page.html'),
     'InternationalGuideLandingPage': (

@@ -25,7 +25,8 @@ from core.context_modifiers import (
 )
 from core.helpers import get_ga_data_for_page, HEADER_MAPPING, \
     filter_opportunities, SectorFilter, RegionFilter, ScaleFilter, \
-    SortFilter, sort_opportunities
+    SortFilter, sort_opportunities, \
+    SubSectorFilter
 from core.mixins import (
     TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
 
@@ -44,7 +45,6 @@ class CMSPageFromPathView(
 
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
-
         page_type = self.page['page_type']
         ga360_data = get_ga_data_for_page(page_type)
         self.set_ga360_payload(
@@ -85,7 +85,9 @@ class CMSPageFromPathView(
             'InternationalCapitalInvestLandingPage':
                 'CAPITAL_INVEST_LANDING_PAGE_ON',
             'CapitalInvestOpportunityListingPage':
-                'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON'
+                'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
+            'InternationalSubSectorPage':
+                'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'
         }
 
         flag_name = flag_map.get(self.page['page_type'])
@@ -157,8 +159,35 @@ def sector_page_context_modifier(context, request):
 
     page = context['page']
 
-    random.shuffle(page['related_opportunities'])
-    random_opportunities = page['related_opportunities'][0:3]
+    if 'related_opportunities' in page:
+        random.shuffle(page['related_opportunities'])
+        random_opportunities = page['related_opportunities'][0:3]
+    else:
+        random_opportunities = []
+
+    return {
+        'invest_contact_us_url': urls.build_invest_url('contact/'),
+        'num_of_statistics': count_data_with_field(
+            page['statistics'], 'number'),
+        'section_three_num_of_subsections': count_data_with_field(
+            page['section_three_subsections'], 'heading'),
+        'random_opportunities': random_opportunities
+        }
+
+
+@register_context_modifier('InternationalSubSectorPage')
+def sub_sector_context_modifier(context, request):
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    page = context['page']
+
+    if 'related_opportunities' in page:
+        random.shuffle(page['related_opportunities'])
+        random_opportunities = page['related_opportunities'][0:3]
+    else:
+        random_opportunities = []
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
@@ -213,7 +242,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 
     return {
         'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
+        'buy_cta_link': urls.SERVICES_FAS
     }
 
 
@@ -263,6 +292,10 @@ class OpportunitySearchView(
     def sort_filter(self):
         return SortFilter(self.request.GET.get('sort_by', ''))
 
+    @property
+    def sub_sector(self):
+        return SubSectorFilter(self.request.GET.getlist('sub_sector', []))
+
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
@@ -275,7 +308,10 @@ class OpportunitySearchView(
 
     @property
     def opportunities(self):
-        return self.page['opportunity_list']
+        if 'opportunity_list' in self.page:
+            return self.page['opportunity_list']
+        else:
+            return []
 
     @property
     def all_sectors(self):
@@ -319,6 +355,25 @@ class OpportunitySearchView(
         return sort_filters_with_selected_status
 
     @property
+    def all_sub_sectors_present_in_results_and_selected(self):
+        sub_sectors_from_results = set()
+
+        for opp in self.filtered_opportunities:
+            if 'sub_sectors' in opp:
+                for sub_sector in opp['sub_sectors'] or []:
+                    sub_sectors_from_results.add(sub_sector)
+
+        sub_sectors_from_existing_filters = set(self.sub_sector.sub_sectors)
+
+        all_sub_sectors_filters = list(
+            sub_sectors_from_results.union(sub_sectors_from_existing_filters)
+        )
+
+        return [
+            (sub_sector, sub_sector) for sub_sector in all_sub_sectors_filters
+        ]
+
+    @property
     def filtered_opportunities(self):
 
         filtered_opportunities = [opp for opp in self.opportunities]
@@ -339,6 +394,12 @@ class OpportunitySearchView(
             filtered_opportunities = filter_opportunities(
                 filtered_opportunities,
                 self.scale
+            )
+
+        if self.sub_sector.sub_sectors:
+            filtered_opportunities = filter_opportunities(
+                filtered_opportunities,
+                self.sub_sector
             )
 
         if self.sort_filter.sort_by_filter_chosen:
@@ -367,6 +428,8 @@ class OpportunitySearchView(
             filters.append(scale.title)
         for region in self.region.regions:
             filters.append(region)
+        for sub_sector in self.sub_sector.sub_sectors:
+            filters.append(sub_sector)
         return filters
 
     @property
@@ -380,11 +443,13 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
+            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,
                 'region': self.filters_chosen,
                 'sort_by': self.sorting_chosen,
+                'sub_sector': self.filters_chosen
             },
         )
 
@@ -397,6 +462,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
+            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,
