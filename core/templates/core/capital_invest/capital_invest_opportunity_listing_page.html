@@ -58,6 +58,11 @@
                                 {% search_page_expandable_options label='Sectors' field=form.sector %}
                             </fieldset>
                         {% endif %}
+                        {% if sub_sectors %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Sub-sectors' field=form.sub_sector %}
+                            </fieldset>
+                        {% endif %}
                         {% if scales %}
                             <fieldset>
                                 {% search_page_expandable_options label='Scale (GDV)' field=form.scale %}
@@ -66,11 +71,6 @@
                         {% if regions|length > 1 %}
                             <fieldset>
                                 {% search_page_expandable_options label='Region' field=form.region %}
-                            </fieldset>
-                        {% endif %}
-                        {% if sub_sectors %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Sub-sectors' field=form.sub_sector %}
                             </fieldset>
                         {% endif %}
                         <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
