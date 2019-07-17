@@ -217,13 +217,13 @@ def test_filter_opportunities_sector():
     opportunities = [
         {
             'related_sectors': [
-                {'related_sector': {'title': 'Aston Green'}},
-                {'related_sector': {'title': 'Birmingham Curzon'}},
+                {'related_sector': {'heading': 'Aston Green'}},
+                {'related_sector': {'heading': 'Birmingham Curzon'}},
             ],
         },
         {
             'related_sectors': [
-                {'related_sector': {'title': 'Aston Green'}},
+                {'related_sector': {'heading': 'Aston Green'}},
             ],
         },
     ]
@@ -240,8 +240,8 @@ def test_filter_opportunities_multiple_filters():
             'title': 'this one',
             'related_sectors': [
                 {'related_sector': ''},
-                {'related_sector': {'title': 'Birmingham Curzon'}},
-                {'related_sector': {'title': ''}},
+                {'related_sector': {'heading': 'Birmingham Curzon'}},
+                {'related_sector': {'heading': ''}},
             ],
             'scale_value': 0,
             'related_region': {'title': 'Midlands'},
@@ -250,7 +250,7 @@ def test_filter_opportunities_multiple_filters():
         {
             'title': 'not this one',
             'related_sectors': [
-                {'related_sector': {'title': 'Aston Green'}},
+                {'related_sector': {'heading': 'Aston Green'}},
             ],
             'scale_value': 3000,
             'related_region': {'title': ''},
