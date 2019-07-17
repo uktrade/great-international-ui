@@ -147,9 +147,9 @@ class SectorFilter:
 
     def matches(self, opportunity):
         return any(
-            sector['related_sector'].get('title') in self.sectors
+            sector['related_sector'].get('heading') in self.sectors
             for sector in opportunity.get('related_sectors', [])
-            if sector['related_sector'] and sector['related_sector']['title']
+            if sector['related_sector'] and sector['related_sector']['heading']
         )
 
 
@@ -218,7 +218,6 @@ Sort_by = namedtuple("Sort_by", "title value reverse")
 
 class SortFilter:
     sort_by_with_values = [
-        Sort_by(title='Sort by', value='', reverse=''),
         Sort_by(title='Project name: A to Z', value='title', reverse=False),
         Sort_by(title='Project name: Z to A', value='title', reverse=True),
         Sort_by(
@@ -229,8 +228,10 @@ class SortFilter:
 
     def __init__(self, sort_by_filter_chosen):
         self.sort_by_filter_chosen = next(
-            (sort_by for sort_by in self.sort_by_with_values
-             if sort_by.title == sort_by_filter_chosen), '')
+            (sort_by for sort_by
+             in self.sort_by_with_values
+             if sort_by.title == sort_by_filter_chosen),
+            self.sort_by_with_values[0])
 
 
 def sort_opportunities(opportunities, sort_by_chosen):

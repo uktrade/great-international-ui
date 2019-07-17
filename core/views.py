@@ -320,9 +320,10 @@ class OpportunitySearchView(
         for opp in self.opportunities:
             for sector in opp['related_sectors']:
                 if sector['related_sector'] \
-                        and sector['related_sector']['title']:
-                    sectors.add(sector['related_sector']['title'])
-
+                        and sector['related_sector']['heading']:
+                    sectors.add(sector['related_sector']['heading'])
+        sectors = list(sectors)
+        sectors.sort()
         return [
             (sector, sector) for sector in sectors
         ]
@@ -340,7 +341,8 @@ class OpportunitySearchView(
         for opp in self.opportunities:
             if opp['related_region'] and opp['related_region']['title']:
                 regions.add(opp['related_region']['title'])
-
+        regions = list(regions)
+        regions.sort()
         return [
             (region, region) for region in regions
         ]
@@ -355,22 +357,26 @@ class OpportunitySearchView(
         return sort_filters_with_selected_status
 
     @property
-    def all_sub_sectors_present_in_results_and_selected(self):
-        sub_sectors_from_results = set()
+    def all_sub_sectors_for_sectors_chosen(self):
 
-        for opp in self.filtered_opportunities:
-            if 'sub_sectors' in opp:
-                for sub_sector in opp['sub_sectors'] or []:
-                    sub_sectors_from_results.add(sub_sector)
+        if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
+            sub_sectors_from_sector_chosen = {
+                sub for sector in self.sector.sectors
+                for sub in self.page['sector_with_sub_sectors'][sector]
+            }
+            sub_sectors_from_selected = set(self.sub_sector.sub_sectors)
 
-        sub_sectors_from_existing_filters = set(self.sub_sector.sub_sectors)
+            all_sub_sectors = sub_sectors_from_sector_chosen.union(
+                sub_sectors_from_selected)
+        else:
+            all_sub_sectors = {sub_sector for opp in self.opportunities
+                               for sub_sector in opp['sub_sectors'] or []}
 
-        all_sub_sectors_filters = list(
-            sub_sectors_from_results.union(sub_sectors_from_existing_filters)
-        )
+        all_sub_sectors = list(all_sub_sectors)
+        all_sub_sectors.sort()
 
         return [
-            (sub_sector, sub_sector) for sub_sector in all_sub_sectors_filters
+            (sub_sector, sub_sector) for sub_sector in all_sub_sectors
         ]
 
     @property
@@ -443,7 +449,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
+            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,
@@ -462,7 +468,7 @@ class OpportunitySearchView(
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_present_in_results_and_selected,
+            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters=self.filters_chosen,

@@ -684,7 +684,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -700,7 +700,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Automotive'
+                            'heading': 'Automotive'
                         }
                     },
                 ],
@@ -716,7 +716,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Automotive'
+                            'heading': 'Automotive'
                         }
                     },
                 ],
@@ -765,7 +765,7 @@ def test_get_num_of_opportunities_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -781,7 +781,7 @@ def test_get_num_of_opportunities_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -829,7 +829,7 @@ def test_get_filters_chosen_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -878,7 +878,7 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -926,7 +926,7 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -975,7 +975,7 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -1028,7 +1028,7 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -1068,11 +1068,16 @@ def test_sub_sectors_being_shown_for_opportunity_search(
             'slug': 'opportunities'
         },
         'page_type': 'CapitalInvestOpportunityListingPage',
+        'sector_with_sub_sectors': {
+            'Aerospace': ['Commercial'],
+            'Automotive': [],
+            'Real Estate': ['Housing', 'Commercial', 'Mixed use']
+        },
         'opportunity_list': [
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors': ['housing'],
+                'sub_sectors': ['Commercial', 'Housing'],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'South of England'
@@ -1080,7 +1085,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -1088,7 +1093,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
             {
                 'id': 6,
                 'title': 'Some Opp 1',
-                'sub_sectors': ['energy'],
+                'sub_sectors': [],
                 'scale_value': '1000.00',
                 'related_region': {
                     'title': 'Midlands'
@@ -1096,7 +1101,23 @@ def test_sub_sectors_being_shown_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'title': 'Aerospace'
+                            'heading': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['Housing', 'Commercial', 'Mixed use'],
+                'scale_value': '1000.00',
+                'related_region': {
+                    'title': 'Midlands'
+                },
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Real Estate'
                         }
                     },
                 ],
@@ -1109,30 +1130,38 @@ def test_sub_sectors_being_shown_for_opportunity_search(
         json_payload=page
     )
 
-    request_two_sub_sectors = rf.get(
-        '/international/content/opportunities/?sub_sector=housing&sub_sector=energy')  # NOQA
-    request_two_sub_sectors.LANGUAGE_CODE = 'en-gb'
-    response_two_sub_sectors = OpportunitySearchView.as_view()(
-        request_two_sub_sectors,
-        path='/international/content/opportunities/?sub_sector=housing&sub_sector=energy')  # NOQA
+    request_no_sector_chosen = rf.get(
+        '/international/content/opportunities/?')  # NOQA
+    request_no_sector_chosen.LANGUAGE_CODE = 'en-gb'
+    response_no_sector_chosen = OpportunitySearchView.as_view()(
+        request_no_sector_chosen,
+        path='/international/content/opportunities/?')  # NOQA
 
-    assert len(response_two_sub_sectors.context_data['sub_sectors']) == 2
+    assert len(response_no_sector_chosen.context_data['sub_sectors']) == 3
 
-    request_one_sub_sector = rf.get('/international/content/opportunities/?sub_sector=housing')  # NOQA
-    request_one_sub_sector.LANGUAGE_CODE = 'en-gb'
-    response_one_sub_sector = OpportunitySearchView.as_view()(
-        request_one_sub_sector, path='/international/content/opportunities/?sub_sector=housing')  # NOQA
+    request_one_sector_chosen = rf.get('/international/content/opportunities/?sector=Aerospace')  # NOQA
+    request_one_sector_chosen.LANGUAGE_CODE = 'en-gb'
+    response_one_sector_chosen = OpportunitySearchView.as_view()(
+        request_one_sector_chosen, path='/international/content/opportunities/?sector=Aerospace')  # NOQA
 
-    assert len(response_one_sub_sector.context_data['sub_sectors']) == 1
+    assert len(response_one_sector_chosen.context_data['sub_sectors']) == 1
+    for sub_sector in response_one_sector_chosen.context_data['sub_sectors']:
+        assert 'Commercial' in sub_sector
 
-    request_two_with_only_one_in_results = rf.get('/international/content/opportunities/?sub_sector=housing&sub_sector=energy&sector=Midlands')  # NOQA
-    request_two_with_only_one_in_results.LANGUAGE_CODE = 'en-gb'
-    response_two_with_only_one_in_results = OpportunitySearchView.as_view()(
-        request_two_with_only_one_in_results, path='/international/content/opportunities/?sub_sector=housing&sub_sector=energy&sector=Midlands')  # NOQA
+    request_two_sectors_chosen = rf.get('/international/content/opportunities/?sector=Real+Estate&sector=Aerospace')  # NOQA
+    request_two_sectors_chosen.LANGUAGE_CODE = 'en-gb'
+    response_two_sectors_chosen = OpportunitySearchView.as_view()(
+        request_two_sectors_chosen, path='/international/content/opportunities/?sector=Real+Estate&sector=Aerospace')  # NOQA
 
-    assert len(
-        response_two_with_only_one_in_results.context_data['sub_sectors']
-    ) == 2
+    assert len(response_two_sectors_chosen.context_data['sub_sectors']) == 3
+
+    request_sectors_and_sub_sectors_chosen = rf.get('/international/content/opportunities/?sector=Aerospace&sub_sector=Housing')  # NOQA
+    request_sectors_and_sub_sectors_chosen.LANGUAGE_CODE = 'en-gb'
+    response_sectors_and_sub_sectors_chosen = OpportunitySearchView.as_view()(
+        request_sectors_and_sub_sectors_chosen, path='/international/content/opportunities/?sector=Aerospace&sub_sector=Housing')  # NOQA
+
+    assert len(response_sectors_and_sub_sectors_chosen
+               .context_data['sub_sectors']) == 2
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
