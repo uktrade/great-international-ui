@@ -39,6 +39,8 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_listing_page.html'),
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
+    'HighPotentialOpportunityDetailPage': (
+        'invest/high_potential_opportunity_detail.html'),
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
