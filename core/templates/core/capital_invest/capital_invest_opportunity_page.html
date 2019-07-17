@@ -20,6 +20,7 @@
       {% endbreadcrumbs %}
     </div>
 </section>
+
 {% if page.opportunity_summary_intro %}
 <section class="page-section">
     <div class="container">
@@ -154,16 +155,16 @@
     {% case_study background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
-{% if page.similar_projects_title and page.related_pages|filter_by_active_language %}
+{% if random_opps_in_random_related_sector|filter_by_active_language %}
 <section class="capital-invest-opportunity-page-section">
     <div class="container">
         <div class="flex-grid">
             <h1 class="heading-large padding-bottom-30">
-            {{ page.similar_projects_title}}
+            {% trans 'Other projects in' %} {{ random_related_sector_title }}
             </h1>
-            {% for related_page in page.related_pages|filter_by_active_language %}
+            {% for opportunity in random_opps_in_random_related_sector|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=related_page.hero_image.url img_alt="" link=related_page.full_url title=related_page.title scale=related_page.scale sector=related_page.sub_sectors|join:", " %}
+                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
                 </div>
             {% endfor %}
         </div>
