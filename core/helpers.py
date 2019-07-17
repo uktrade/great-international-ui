@@ -147,9 +147,9 @@ class SectorFilter:
 
     def matches(self, opportunity):
         return any(
-            sector['related_sector'].get('title') in self.sectors
+            sector['related_sector'].get('heading') in self.sectors
             for sector in opportunity.get('related_sectors', [])
-            if sector['related_sector'] and sector['related_sector']['title']
+            if sector['related_sector'] and sector['related_sector']['heading']
         )
 
 
