@@ -1,0 +1,21 @@
+.about-dit-services-page {
+
+  #services-fields-section {
+    .flex-grid > div {
+      align-items: flex-start;
+    }
+
+    img {
+      height: 60px;
+    }
+  }
+
+  #case-study {
+    margin-top: 60px;
+  }
+
+  #contact-us-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
