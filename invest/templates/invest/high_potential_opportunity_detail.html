@@ -1,12 +1,13 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
-{% load ga360_tracker from directory_components %}
+{% load directory_components %}
 
-{% load add_export_elements_classes from directory_components %}
-{% block head_css %}
+{% block head_js %}
     {{ block.super }}
-    <link href="{% static 'styles/pages/high-potential-opportunity-detail.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'js/dit.components.hideParagraphOnScroll.js' %}"></script>
 {% endblock %}
+
+{% block css_layout_class %}hpo-detail-page{% endblock %}
 
 {% block title %}
     {{ page.seo_title|default:"High Potential Opportunities - great.gov.uk" }}
@@ -19,37 +20,26 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.heading %}
+{% hero background_image_url=page.hero_image.url hero_text=page.heading %}
 
-<section id="contact-section">
+<section id="contact-section" class="contact-section padding-top-30">
     <div class="container">
-        <div class="grid-row">
-            <div class="proposition-container">
-                {{ page.contact_proposition|add_export_elements_classes }}
-            </div>
-            <div class="button-container">
-                {% ga360_tracker "contact-link" %}
-                <a href="{% url 'high-potential-opportunity-request-form' slug=view.kwargs.slug %}" class="button">{{ page.contact_button }}</a>
-                {% endga360_tracker %}
-            </div>
-        </div>
+        {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone-40' box_content=page.contact_proposition|add_export_elements_classes button_text=page.contact_button button_url='#placeholder' %}
     </div>
 </section>
 
-<section id="proposition-one" class="padding-top-30">
+<section id="proposition-one" class="hpo-page-section padding-top-30 padding-bottom-60">
     <div class="container">
         <div class="grid-row">
-            <div class="column-one-half wrap-tight">
+            <div class="column-half wrap-tight margin-bottom-30">
                 {{ page.proposition_one|add_export_elements_classes }}
             </div>
-            <div class="column-one-half">
+            <div class="column-half">
               {% if page.proposition_one_video %}
-                  {% ga360_tracker "hpo-video" target="video" ga_value=page.proposition_one_video.url %}
-                  <video controls data-ga-class="hpo-video">
+                  <video controls data-ga-class="hpo-video" class="width-full">
                     <source src="{{ page.proposition_one_video.url }}" type="video/{{ page.proposition_one_video.file_extension }}">
                     <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.proposition_one_video.url }}">link to the video</a> instead.</p>
                   </video>
-                  {% endga360_tracker %}
                 {% else %}
                     <img src="{{ page.proposition_one_image.url }}" alt="" />
                 {% endif %}
@@ -58,172 +48,191 @@
     </div>
 </section>
 
-<section id="opportunity-list">
-    <div class="container">
+<section id="opportunity-list" class="hpo-page-section padding-vertical-60">
+    <div class="container wrap-tight">
         <h2 class="heading-large">{{ page.opportunity_list_title }}</h2>
         <div class="grid-row">
-            <div class="column-one-third">
-                <ol class="list list-number">
-                    <li>{{ page.opportunity_list_item_one|add_export_elements_classes }}</li>
-                    <li>{{ page.opportunity_list_item_two|add_export_elements_classes }}</li>
+            <div class="column-third">
+                <ol class="list">
+                    <li>
+                      {{ page.opportunity_list_item_one|add_export_elements_classes|convert_headings_to:'h3'|override_elements_css_class:'h3,heading-small'|override_elements_css_class:'p,font-xsmall'|safe }}
+                    </li>
+                    <li>
+                      {{ page.opportunity_list_item_two|add_export_elements_classes|convert_headings_to:'h3'|override_elements_css_class:'h3,heading-small'|override_elements_css_class:'p,font-xsmall'|safe }}
+                    </li>
                     {% if page.opportunity_list_item_three %}
-                        <li>{{ page.opportunity_list_item_three|add_export_elements_classes }}</li>
+                        <li>
+                          {{ page.opportunity_list_item_three|add_export_elements_classes|convert_headings_to:'h3'|override_elements_css_class:'h3,heading-small'|override_elements_css_class:'p,font-xsmall'|safe }}
+                        </li>
                     {% endif %}
                 </ol>
             </div>
             <div class="column-two-thirds">
-                <img src="{{ page.opportunity_list_image.url }}" alt="" />
-
+                <img src="{{ page.opportunity_list_image.url }}" alt="" class="opportunity-list-image"/>
             </div>
         </div>
     </div>
 </section>
 
-<section id="proposition-two">
+<section id="proposition-two" class="proposition-two hpo-page-section padding-vertical-60">
     <div class="container">
-        <div class="grid-row">
-            <div class="column-one-half">
-                <div class="proposition-two-container">
+        <div class="flex-grid">
+            <div class="column-half">
+                <div class="proposition-two-intro-container wrap-tight padding-bottom-30">
                     {{ page.proposition_two|add_export_elements_classes }}
                 </div>
             </div>
-            <div class="column-one-half" id="proposition-one-media-container">
-                {% if page.proposition_two_video %}
-                  <video controls>
-                    <source src="{{ page.proposition_two_video.url }}" type="video/{{ page.proposition_two_video.file_extension }}">
-                    <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.proposition_two_video.url }}">link to the video</a> instead.</p>
-                  </video>
-                {% else %}
-                    <img src="{{ page.proposition_two_image.url }}" alt="" />
-                {% endif %}
-            </div>
-        </div>
-        <div class="grid-row">
-            <div class="column-one-half">
-                <ul class="top-level-list">
-                    <li>{{ page.proposition_two_list_item_one|add_export_elements_classes }}</li>
-                    <li>{{ page.proposition_two_list_item_two|add_export_elements_classes }}</li>
-                    <li>{{ page.proposition_two_list_item_three|add_export_elements_classes }}</li>
-                </ul>
+            <div class="proposition-two-grid">
+              <div class="column-half">
+                  <ul class="proposition-list">
+                      <li class="proposition-list-item">
+                        {{ page.proposition_two_list_item_one|add_export_elements_classes|override_elements_css_class:'li,font-xsmall'|safe }}
+                      </li>
+                      <li class="proposition-list-item">
+                        {{ page.proposition_two_list_item_two|add_export_elements_classes|override_elements_css_class:'li,font-xsmall'|safe }}
+                      </li>
+                      <li class="proposition-list-item">
+                        {{ page.proposition_two_list_item_three|add_export_elements_classes|override_elements_css_class:'li,font-xsmall'|safe }}
+                      </li>
+                  </ul>
+              </div>
+              <div class="column-half padding-bottom-30" id="proposition-one-media-container">
+                  {% if page.proposition_two_video %}
+                    <video controls class="width-full">
+                      <source src="{{ page.proposition_two_video.url }}" type="video/{{ page.proposition_two_video.file_extension }}">
+                      <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.proposition_two_video.url }}">link to the video</a> instead.</p>
+                    </video>
+                  {% else %}
+                      <img src="{{ page.proposition_two_image.url }}" alt="" class="proposition-two-image width-full"/>
+                  {% endif %}
+              </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="competitive-advantages">
-    <div class="container">
-        <h2 class="heading-large">{{ page.competitive_advantages_title }}</h2>
-        <div class="grid-row">
-            <div class="column-one-third">
-                <img src="{{ page.competitive_advantages_list_item_one_icon.url }}" alt="" />
-                <div>
+<section id="competitive-advantages" class="competitive-advantages hpo-page-section padding-vertical-60">
+    <div class="container wrap-tight">
+        <h2 id="advantages-heading" class="heading-large margin-bottom-60">{{ page.competitive_advantages_title }}</h2>
+        <ul class="flex-grid" aria-labelledby="advantages-heading">
+            <li class="advantages-item column-third-xl column-half-m">
+              <div class="icon-container">
+                <img class="icon" src="{{ page.competitive_advantages_list_item_one_icon.url }}" alt="" />
+              </div>
+                <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_one|add_export_elements_classes }}
-                    <div class="clearfix"></div>
                 </div>
-            </div>
-            <div class="column-one-third">
-                <img src="{{ page.competitive_advantages_list_item_two_icon.url }}" alt="" />
-                <div>
+            </li>
+            <li class="advantages-item column-third-xl column-half-m">
+              <div class="icon-container">
+                <img class="icon" src="{{ page.competitive_advantages_list_item_two_icon.url }}" alt="" />
+              </div>
+                <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_two|add_export_elements_classes }}
                 </div>
-            </div>
-            <div class="column-one-third">
-                <img src="{{ page.competitive_advantages_list_item_three_icon.url }}" alt="" />
-                <div>
+            </li>
+            <li class="advantages-item column-third-xl column-half-m">
+              <div class="icon-container">
+                <img class="icon" src="{{ page.competitive_advantages_list_item_three_icon.url }}" alt="" />
+              </div>
+                <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_three|add_export_elements_classes }}
                 </div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </section>
 
 {% if page.testimonial %}
-    <section id="testimonial" style="background-image: url({{ page.testimonial_background.url }})">
-        <div class="container">
-            <div class="grid-row">
-                <blockquote>
-                    {{ page.testimonial|add_export_elements_classes }}
-                </blockquote>
+    <section id="testimonial" class="testimonial-section" style="background-image: url({{ page.testimonial_background.url }})">
+        <div class="container quote-outer-container">
+          <div class="quote-inner-container">
+            <div class="quote-container padding-vertical-30">
+              <div class="width-full border-thin border-flag-red margin-bottom-30"></div>
+              <blockquote class="quote white-text">
+                  {{ page.testimonial|add_export_elements_classes }}
+              </blockquote>
             </div>
+          </div>
         </div>
     </section>
 {% endif %}
 
-<section id="company-list">
+<section id="company-list" class="company-list hpo-page-section padding-vertical-60">
     <div class="container">
-        <div>
+        <div class="wrap-tight margin-bottom-30">
             {{ page.companies_list_text|add_export_elements_classes }}
         </div>
-        <ul>
-            <li>
-                <img src="{{ page.companies_list_item_image_one.url }}" alt="" />
+        <ul class="grid-row company-logo-list">
+            <li class="column-quarter">
+                <img src="{{ page.companies_list_item_image_one.url }}" alt=""/>
             </li>
-            <li>
-                <img src="{{ page.companies_list_item_image_two.url }}" alt="" />
+            <li class="column-quarter">
+                <img src="{{ page.companies_list_item_image_two.url }}" alt=""/>
             </li>
-            <li>
-                <img src="{{ page.companies_list_item_image_three.url }}" alt="" />
+            <li class="column-quarter">
+                <img src="{{ page.companies_list_item_image_three.url }}" alt=""/>
             </li>
-            <li>
-                <img src="{{ page.companies_list_item_image_four.url }}" alt="" />
+            <li class="column-quarter">
+                <img src="{{ page.companies_list_item_image_four.url }}" alt=""/>
             </li>
             {% if page.companies_list_item_image_five %}
-                <li>
-                    <img src="{{ page.companies_list_item_image_five.url }}" alt="" />
+                <li class="column-quarter">
+                    <img src="{{ page.companies_list_item_image_five.url }}" alt=""/>
                 </li>
-                <li>
-                    <img src="{{ page.companies_list_item_image_six.url }}" alt="" />
+                <li class="column-quarter">
+                    <img src="{{ page.companies_list_item_image_six.url }}" alt=""/>
                 </li>
-                <li>
-                    <img src="{{ page.companies_list_item_image_seven.url }}" alt="" />
+                <li class="column-quarter">
+                    <img src="{{ page.companies_list_item_image_seven.url }}" alt=""/>
                 </li>
-                <li>
-                    <img src="{{ page.companies_list_item_image_eight.url }}" alt="" />
+                <li class="column-quarter">
+                    <img src="{{ page.companies_list_item_image_eight.url }}" alt=""/>
                 </li>
             {% endif %}
         </ul>
     </div>
 </section>
 
-<section id="case-studies">
-    <div class="container">
-        <h2 class="heading-large">{{ page.case_study_list_title }}</h2>
+<section id="case-studies" class="hpo-page-section case-studies padding-vertical-60">
+    <div class="container wrap-tight">
+        <h2 class="heading-large margin-bottom-45">{{ page.case_study_list_title }}</h2>
             <ul>
-                <li class="grid-row">
-                    <div class="column-one-third">
+                <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
+                    <div class="column-third wrap-tight">
                         {{ page.case_study_one_text|add_export_elements_classes }}
                     </div>
                     <div class="column-two-thirds">
-                        <img src="{{ page.case_study_one_image.url }}" alt="" />
+                        <img src="{{ page.case_study_one_image.url }}" class="width-full" alt="" />
                     </div>
                 </li>
                 {% if page.case_study_two_text %}
-                    <li class="grid-row">
-                        <div class="column-one-third">
+                    <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
+                        <div class="column-third wrap-tight">
                             {{ page.case_study_two_text|add_export_elements_classes }}
                         </div>
                         <div class="column-two-thirds">
-                            <img src="{{ page.case_study_two_image.url }}" alt="" />
+                            <img src="{{ page.case_study_two_image.url }}" class="width-full" alt="" />
                         </div>
                     </li>
                 {% endif %}
                 {% if page.case_study_three_text %}
-                    <li class="grid-row">
-                        <div class="column-one-third">
+                    <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
+                        <div class="column-third wrap-tight">
                             {{ page.case_study_three_text|add_export_elements_classes }}
                         </div>
                         <div class="column-two-thirds">
-                            <img src="{{ page.case_study_three_image.url }}" alt="" />
+                            <img src="{{ page.case_study_three_image.url }}" class="width-full" alt="" />
                         </div>
                     </li>
                 {% endif %}
                 {% if page.case_study_four_text %}
-                    <li class="grid-row">
-                        <div class="column-one-third">
+                    <li class="grid-row hpo-case-study">
+                        <div class="column-third wrap-tight">
                             {{ page.case_study_four_text|add_export_elements_classes }}
                         </div>
                         <div class="column-two-thirds">
-                            <img src="{{ page.case_study_four_image.url }}" alt="" />
+                            <img src="{{ page.case_study_four_image.url }}" class="width-full" alt="" />
                         </div>
                     </li>
                 {% endif %}
@@ -233,14 +242,13 @@
 </section>
 
 {% if page.other_opportunities %}
-    <section id="other-opportunities">
-        <div class="container">
+    <section id="other-opportunities" class="hpo-page-section padding-vertical-60">
+        <div class="container wrap-tight">
             <h2 class="heading-large">{{ page.other_opportunities_title }}</h2>
-            <div class="grid-row">
+            <div class="flex-grid">
                 {% for opportunity in page.other_opportunities %}
-                     <div class="column-one-half">
-                        {% url 'high-potential-opportunity-details' slug=opportunity.meta.slug  as opportunity_url %}
-                        {% include 'directory_components/card.html' with img_src=opportunity.hero_image.url url=opportunity_url title=opportunity.heading %}
+                     <div class="column-half">
+                        {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.meta.url title=opportunity.heading %}
                      </div>
                 {% endfor %}
             </div>
@@ -248,8 +256,4 @@
     </section>
 {% endif %}
 
-{% endblock %}
-
-{% block body_js %}
-    <script src="{% static 'js/dit.components.hideParagraphOnScroll.js' %}"></script>
 {% endblock %}
