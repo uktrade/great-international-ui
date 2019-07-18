@@ -27,6 +27,23 @@
     width: 100%;
   }
 
+  .capital-invest-region-icons-section{
+
+    .icon{
+      margin-bottom: 0;
+    }
+
+    .icon-heading{
+      margin-bottom: 5px;
+    }
+
+    .icon-text{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+  }
+
   .icon {
     @media (min-width: 641px) {
       padding-bottom: $spacing-4;
