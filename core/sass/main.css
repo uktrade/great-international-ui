@@ -574,6 +574,8 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .capital-invest-opportunity-page .capital-invest-region-icons-section .icon, .capital-invest-opportunity-page .capital-invest-region-icons-section .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .capital-invest-region-icons-section .contact-button, .capital-invest-opportunity-page .capital-invest-region-icons-section .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .capital-invest-region-icons-section .contact-button {
   margin-bottom: 0;
+  padding-bottom: 0;
+  height: 60px;
 }
 .capital-invest-opportunity-page .capital-invest-region-icons-section .icon-heading {
   margin-bottom: 5px;
