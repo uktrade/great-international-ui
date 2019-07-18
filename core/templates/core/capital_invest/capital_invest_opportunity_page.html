@@ -51,8 +51,8 @@
                     {% if page.location_heading and page.location and page.location_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
-                            <p class="bold-medium">{{ page.location_heading }}</p>
-                            <p>{{ page.location }}</p>
+                            <p class="bold-medium icon-heading">{{ page.location_heading }}</p>
+                            <p class="icon-text">{{ page.location }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -60,8 +60,8 @@
                     {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">{{ page.project_promoter_heading }}</p>
-                            <p>{{ page.project_promoter }}</p>
+                            <p class="bold-medium icon-heading">{{ page.project_promoter_heading }}</p>
+                            <p class="icon-text">{{ page.project_promoter }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -69,8 +69,8 @@
                     {% if page.scale_heading and page.scale and page.scale_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">{{ page.scale_heading }}</p>
-                            <p>{{ page.scale }}</p>
+                            <p class="bold-medium icon-heading">{{ page.scale_heading }}</p>
+                            <p class="icon-text">{{ page.scale }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -82,8 +82,8 @@
                     {% if page.sector_heading and page.sub_sectors and page.sector_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">{{ page.sector_heading }}</p>
-                            {{ page.sub_sectors|join:", " }}
+                            <p class="bold-medium icon-heading">{{ page.sector_heading }}</p>
+                            <p class="icon-text">{{ page.sub_sectors|join:", " }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -91,8 +91,8 @@
                     {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">{{ page.investment_type_heading }}</p>
-                            <p>{{ page.investment_type }}</p>
+                            <p class="bold-medium icon-heading">{{ page.investment_type_heading }}</p>
+                            <p class="icon-text">{{ page.investment_type }}</p>
                         </div>
                     {% endif %}
                 </li>
@@ -100,8 +100,8 @@
                     {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
                         <div class="column-third-l column-half-l">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium">{{ page.planning_status_heading }}</p>
-                            <p>{{ page.planning_status }}</p>
+                            <p class="bold-medium icon-heading">{{ page.planning_status_heading }}</p>
+                            <p class="icon-text">{{ page.planning_status }}</p>
                         </div>
                     {% endif %}
                 </li>
