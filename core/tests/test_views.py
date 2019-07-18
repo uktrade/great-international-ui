@@ -1327,7 +1327,7 @@ def test_get_random_three_opportunities_for_opportunity_page(
             {'related_sector': {'id': 8, 'heading': 'Housing'}},
             {'related_sector': {'id': 4, 'heading': 'Energy'}}
         ],
-        'opportunities_in_same_sector': {
+        'related_sector_with_opportunities': {
             'Housing': [
                 {'title': 'Ashton Green'},
                 {'title': 'Ashton Green2'},
