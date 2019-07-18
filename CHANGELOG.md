@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- CMS-1692 - Added HPO detail page from Invest and updated styling
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
