@@ -251,10 +251,10 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         random.shuffle(sectors)
         random_sector = sectors[0]
 
-    if 'opportunities_in_same_sector' in page \
-            and page['opportunities_in_same_sector']:
+    if 'related_sector_with_opportunities' in page \
+            and page['related_sector_with_opportunities']:
         opps_in_random_sector = \
-            page['opportunities_in_same_sector'][random_sector]
+            page['related_sector_with_opportunities'][random_sector]
         random.shuffle(opps_in_random_sector)
 
     return {
