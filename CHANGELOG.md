@@ -7,6 +7,7 @@
 - No ticket - Upgrade vulnerable django version to django 1.11.22
 - No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
 - CI-313 - Update JS dev dependencies to cover security vulnerabilities
+- No ticket - Updated directory components requirements to fix pagination bug
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
