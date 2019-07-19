@@ -1,4 +1,4 @@
-from directory_components import forms, fields, widgets
+from directory_components import forms
 from django.forms import Select
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
@@ -9,7 +9,7 @@ COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 
 
 class TariffsCountryForm(forms.Form):
-    tariffs_country = fields.ChoiceField(
+    tariffs_country = forms.ChoiceField(
         label='Country',
         widget=Select(attrs={'id': 'js-tariffs-country-select'}),
         choices=COUNTRIES
@@ -18,41 +18,41 @@ class TariffsCountryForm(forms.Form):
 
 class OpportunitySearchForm(forms.Form):
 
-    sector = fields.ChoiceField(
+    sector = forms.ChoiceField(
         label=_('sector'),
-        widget=widgets.CheckboxSelectInlineLabelMultiple(
+        widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sector'},
             use_nice_ids=True,
         ),
         required=False
     )
-    scale = fields.ChoiceField(
+    scale = forms.ChoiceField(
         label=_('scale'),
-        widget=widgets.CheckboxSelectInlineLabelMultiple(
+        widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-scale'},
             use_nice_ids=True,
         ),
         required=False
     )
-    region = fields.ChoiceField(
+    region = forms.ChoiceField(
         label=_('region'),
-        widget=widgets.CheckboxSelectInlineLabelMultiple(
+        widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-region'},
             use_nice_ids=True,
         ),
         required=False
     )
-    sub_sector = fields.ChoiceField(
+    sub_sector = forms.ChoiceField(
         label=_('sub_sector'),
-        widget=widgets.CheckboxSelectInlineLabelMultiple(
+        widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sub_sector'},
             use_nice_ids=True,
         ),
         required=False
     )
-    sort_by = fields.ChoiceField(
+    sort_by = forms.ChoiceField(
         label=_('sort_by'),
-        widget=forms.Select(
+        widget=Select(
             attrs={
                 'onchange': 'this.form.submit()'
             }

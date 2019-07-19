@@ -1,5 +1,5 @@
 from captcha.fields import ReCaptchaField
-from directory_components import forms, fields, widgets
+from directory_components import forms
 from directory_constants import choices, urls
 from directory_forms_api_client.forms import ZendeskActionMixin
 from directory_validators.common import not_contains_url_or_email
@@ -58,21 +58,21 @@ class SerializeMixin:
 class InternationalContactForm(
     FieldsMutationMixin, SerializeMixin, ZendeskActionMixin, forms.Form
 ):
-    first_name = fields.CharField()
-    last_name = fields.CharField()
-    email = fields.EmailField()
-    organisation_type = fields.ChoiceField(
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    organisation_type = forms.ChoiceField(
         label_suffix='',
-        widget=widgets.RadioSelect(),
+        widget=forms.RadioSelect(),
         choices=COMPANY_CHOICES,
     )
-    company_name = fields.CharField()
-    country = fields.ChoiceField(
+    company_name = forms.CharField()
+    country = forms.ChoiceField(
         choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
         widget=Select(attrs={'id': 'js-country-select'}),
     )
-    city = fields.CharField()
-    comment = fields.CharField(
+    city = forms.CharField()
+    comment = forms.CharField(
         widget=Textarea,
         validators=[no_html, not_contains_url_or_email]
     )
@@ -80,6 +80,6 @@ class InternationalContactForm(
         label='',
         label_suffix='',
     )
-    terms_agreed = fields.BooleanField(
+    terms_agreed = forms.BooleanField(
         label=TERMS_LABEL
     )

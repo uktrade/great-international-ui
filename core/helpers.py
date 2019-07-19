@@ -34,6 +34,11 @@ GA_DATA_MAPPING = {
         'site_section': 'HomePage',
         'site_subsection': ''
     },
+    'InvestHighPotentialOpportunityDetailPage': {
+        'business_unit': 'Invest',
+        'site_section': 'HighPotentialOpportunities',
+        'site_subsection': 'DetailPage',
+    },
     'InternationalTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Topic',
@@ -109,6 +114,7 @@ GA_DATA_MAPPING = {
 HEADER_MAPPING = {
     'InternationalHomePage': '',
     'InvestInternationalHomePage': 'invest',
+    'InvestHighPotentialOpportunityDetailPage': 'invest',
     'InternationalTopicLandingPage': 'industries',
     'InternationalArticleListingPage': 'uk_setup_guide',
     'InternationalArticlePage': 'uk_setup_guide',
