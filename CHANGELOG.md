@@ -14,6 +14,9 @@
 - CI-303 - Update international header design.
 - CI-324 - Made sub-sector page and opportunity listing page filters by sub sector
 - CI-345 - Sass changes on spacing around details section on CapitalInvestOpportunityPage
+- CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised 
+- CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
+
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
