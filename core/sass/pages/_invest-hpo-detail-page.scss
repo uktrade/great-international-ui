@@ -74,7 +74,7 @@
 
       .quote-outer-container {
         min-height: 400px;
-        padding: 0 30px;
+        padding: 0 $spacing-3;
       }
     }
   }
@@ -82,7 +82,7 @@
   .competitive-advantages {
     .icon-container {
       float: left;
-      margin-right: 30px;
+      margin-right: $spacing-3;
     }
 
     .advantages-container {
@@ -92,7 +92,7 @@
     .advantages-item {
       display: flex;
       flex-direction: row;
-      margin-bottom: 15px;
+      margin-bottom: $spacing-4;
     }
   }
 
