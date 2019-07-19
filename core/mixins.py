@@ -40,6 +40,8 @@ TEMPLATE_MAPPING = {
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
+    'InvestHighPotentialOpportunityDetailPage': (
+        'invest/high_potential_opportunity_detail.html'),
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {

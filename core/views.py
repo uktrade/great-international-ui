@@ -240,9 +240,28 @@ def capital_invest_region_page_context_modifier(context, request):
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
+    page = context['page']
+    random_sector = ''
+    opps_in_random_sector = []
+
+    if 'related_sectors' in page and page['related_sectors']:
+        sectors = [sector['related_sector']['heading']
+                   for sector in page['related_sectors']
+                   if sector['related_sector']]
+        random.shuffle(sectors)
+        random_sector = sectors[0]
+
+    if 'related_sector_with_opportunities' in page \
+            and page['related_sector_with_opportunities']:
+        opps_in_random_sector = \
+            page['related_sector_with_opportunities'][random_sector]
+        random.shuffle(opps_in_random_sector)
+
     return {
         'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS
+        'buy_cta_link': urls.SERVICES_FAS,
+        'random_related_sector_title': random_sector,
+        'random_opps_in_random_related_sector': opps_in_random_sector[0:3]
     }
 
 

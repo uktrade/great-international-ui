@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- CMS-1692 - Added HPO detail page from Invest and updated styling
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
@@ -15,6 +16,9 @@
 - CI-324 - Made sub-sector page and opportunity listing page filters by sub sector
 - CI-345 - Sass changes on spacing around details section on CapitalInvestOpportunityPage
 - CI-322 - Add services page to "About DIT" section
+- CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised
+- CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
+
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
