@@ -15,7 +15,8 @@
 - CI-303 - Update international header design.
 - CI-324 - Made sub-sector page and opportunity listing page filters by sub sector
 - CI-345 - Sass changes on spacing around details section on CapitalInvestOpportunityPage
-- CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised 
+- CI-322 - Add services page to "About DIT" section
+- CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised
 - CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
 - CI-332 - Sass changes for mobile design for `CapitalInvestOpportunityListingPage`
 
