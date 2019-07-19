@@ -1,0 +1,79 @@
+{% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
+{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class case_study from directory_components %}
+
+{% block css_layout_class %}about-dit-services-page{% endblock %}
+
+{% block content %}
+
+  {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+
+  <section id="breadcrumb-section">
+    <div class="container">
+      {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
+    </div>
+  </section>
+
+  {% if page.teaser and page.teaser_image %}
+  <section id="teaser-section" class="padding-top-30 padding-bottom-60">
+    <div class="container">
+      <div class="grid-row">
+        {% if page.teaser %}
+          <div class="column-half-l">
+            {{ page.teaser|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
+          </div>
+        {% endif %}
+        {% if page.teaser_image %}
+          <div class="column-half-l">
+            <img src="{{ page.teaser_image.url }}" />
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.about_dit_services_fields %}
+  <section id="services-fields-section" class="padding-top-15 padding-bottom-15">
+    <div class="container">
+      <div class="flex-grid">
+        {% for service_field in page.about_dit_services_fields %}
+          <div class="column-third-l padding-top-30 padding-bottom-30 padding-top-45-l padding-bottom-45-l">
+            <img src="{{ service_field.icon.url }}" />
+            <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
+            <p class="font-small">{{ service_field.summary }}</p>
+            <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.case_study_image and page.case_study_title %}
+    {% case_study id="case-study" background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+  {% endif %}
+
+  {% if page.contact_us_section_title and page.contact_us_section_summary %}
+    <section id="contact-us-section">
+      <div class="container">
+        <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
+        {% if page.contact_us_section_summary %}
+        <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
+          <div class="column-two-thirds font-small">
+            {{ page.contact_us_section_summary }}
+          </div>
+        </div>
+        {% endif %}
+        {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}
+          <a class="button button-blue button-arrow-small" href="{{ page.contact_us_section_cta_link }}">
+            {{ page.contact_us_section_cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+{% endblock %}
