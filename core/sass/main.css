@@ -185,6 +185,16 @@ a.labelled-image-card .card-header h3 {
     padding-left: 60px;
   }
 }
+@media (max-width: 640px) {
+  .reverse-columns-s {
+    flex-direction: column-reverse;
+  }
+}
+.icon, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .contact-button {
+  height: 60px;
+  width: 60px;
+}
+
 section {
   padding-bottom: 0;
 }
@@ -418,6 +428,91 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 .invest-landing-page .landing-page-section .container .card-grid .column-half-l .eu-exit-button {
   white-space: normal;
+}
+
+.hpo-detail-page .hpo-page-section:nth-child(odd) {
+  background-color: #ffffff;
+}
+.hpo-detail-page .hpo-page-section:nth-child(even) {
+  background: #f5f2ed;
+}
+.hpo-detail-page .contact-section {
+  position: relative;
+  width: 100%;
+  top: 10px;
+  z-index: 1;
+}
+.hpo-detail-page .opportunity-list-image {
+  max-width: 470px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.hpo-detail-page .proposition-two-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.hpo-detail-page .proposition-one-media-container {
+  height: 0;
+}
+.hpo-detail-page .proposition-list-item {
+  border-top: 4px solid #b00d23;
+}
+.hpo-detail-page .proposition-two-grid {
+  flex-direction: row;
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .proposition-two-grid {
+    flex-direction: column-reverse;
+  }
+}
+.hpo-detail-page .testimonial-section .quote-outer-container {
+  min-height: 600px;
+  display: table;
+}
+.hpo-detail-page .testimonial-section .quote-inner-container {
+  display: table-cell;
+  vertical-align: middle;
+}
+@media (min-width: 640px) {
+  .hpo-detail-page .testimonial-section .quote-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .testimonial-section .quote-outer-container {
+    min-height: 400px;
+    padding: 0 30px;
+  }
+}
+.hpo-detail-page .competitive-advantages .icon-container {
+  float: left;
+  margin-right: 30px;
+}
+.hpo-detail-page .competitive-advantages .advantages-container {
+  float: left;
+}
+.hpo-detail-page .competitive-advantages .advantages-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+.hpo-detail-page .company-list .company-logo-list img {
+  width: 150px;
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .company-list .company-logo-list li {
+    width: 50%;
+    float: left;
+  }
+}
+.hpo-detail-page .case-studies .hpo-case-study {
+  border-bottom: 1px solid #d8d8d8;
+}
+.hpo-detail-page .case-studies .hpo-case-study:last-child {
+  border: 0;
 }
 
 .capital-invest-landing-page .page-section {
@@ -657,10 +752,7 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 @media (min-width: 961px) {
   .capital-invest-opportunity-listing-page .sort-by-container {
-    width: 50%;
     text-align: right;
-    float: right;
-    margin-bottom: 0;
   }
 }
 .capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
@@ -671,13 +763,26 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 @media (min-width: 961px) {
   .capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
-    width: 50%;
+    width: 30%;
   }
 }
 .capital-invest-opportunity-listing-page .filter-title {
   height: 45px;
+  margin-top: 30px;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .filter-title {
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+}
+@media (max-width: 961px) {
+  .capital-invest-opportunity-listing-page #filter-column {
+    order: 2;
+  }
 }
 .capital-invest-opportunity-listing-page #filter-column .update-button {
+  margin-top: 30px;
   width: 100%;
 }
 .capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
@@ -808,10 +913,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 
 @media (max-width: 640px) {
-  .reverse-columns-s {
-    flex-direction: column-reverse;
-  }
-
   .section-two-image {
     margin: 0 0 30px 0;
   }

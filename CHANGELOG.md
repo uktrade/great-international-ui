@@ -17,6 +17,7 @@
 - CI-345 - Sass changes on spacing around details section on CapitalInvestOpportunityPage
 - CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised 
 - CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
+- CI-332 - Sass changes for mobile design for `CapitalInvestOpportunityListingPage`
 
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)

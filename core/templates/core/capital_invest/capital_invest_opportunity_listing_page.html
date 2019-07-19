@@ -35,21 +35,12 @@
     <div class="down-arrow"></div>
 
     <form action="{{ paginator_url }}">
-        <div class="container">
-            <div class="grid-row">
-                <div class="column-quarter-xl">
-                    <section class="filter-title margin-bottom-15 font-small">
-                        <span>{% trans 'Filter results' %}</span>
-                    </section>
-                </div>
-                <div class="font-xsmall sort-by-container">
-                    <span>{% trans 'Sort by' %}:</span> {{ form.sort_by}}
-                </div>
-            </div>
-        </div>
         <div class="container" >
             <div class="flex-grid">
-                <div class="column-quarter-xl" id="filter-column">
+                <div class="column-quarter-xl filter-column" id="filter-column">
+                    <section class="filter-title font-small">
+                        <span>{% trans 'Filter results' %}</span>
+                    </section>
                     <section class="margin-bottom-15">
                         {% url 'opportunities' as opportunities_url %}
                         {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
@@ -78,6 +69,9 @@
                 </div>
 
                 <div class="column-three-quarters-xl">
+                    <div class="font-small sort-by-container">
+                        <span>{% trans 'Sort by' %}:</span> {{ form.sort_by}}
+                    </div>
                     <ul>
                         {% for opportunity in pagination.object_list %}
                             <li class="opportunity-card">

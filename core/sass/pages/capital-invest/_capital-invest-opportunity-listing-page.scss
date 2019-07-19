@@ -40,10 +40,7 @@
     margin-bottom: 30px;
 
      @media (min-width: 961px) {
-      width: 50%;
       text-align: right;
-      float: right;
-       margin-bottom: 0;
      }
 
     #id_sort_by{
@@ -52,17 +49,27 @@
       font-size: 16px;
       width: 80%;
       @media (min-width: 961px) {
-        width: 50%;
+        width: 30%;
       }
     }
   }
 
   .filter-title{
     height: $spacing-2;
+    margin-top: 30px;
+    @media (min-width: 961px) {
+      margin-bottom: 30px;
+      margin-top: 0;
+    }
   }
 
   #filter-column{
+    @media (max-width: 961px) {
+      order: 2;
+    }
+
     .update-button{
+      margin-top: 30px;
       width: 100%;
     }
   }
