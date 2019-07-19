@@ -91,8 +91,8 @@ GA_DATA_MAPPING = {
     },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
-        'site_section': '',
-        'site_subsection': ''
+        'site_section': 'AboutDIT',
+        'site_subsection': 'ServicesPage'
     },
     'CapitalInvestRegionPage': {
         'business_unit': 'CapitalInvestment',
