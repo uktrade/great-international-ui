@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 11:13+0000\n"
+"POT-Creation-Date: 2019-07-19 07:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,26 @@ msgstr ""
 
 #: core/context_processors.py:28
 msgid "Great.gov.uk International"
+msgstr ""
+
+#: core/forms.py:22
+msgid "sector"
+msgstr ""
+
+#: core/forms.py:30
+msgid "scale"
+msgstr ""
+
+#: core/forms.py:38
+msgid "region"
+msgstr ""
+
+#: core/forms.py:46
+msgid "sub_sector"
+msgstr ""
+
+#: core/forms.py:54
+msgid "sort_by"
 msgstr ""
 
 #: core/templates/404.html:12
@@ -42,19 +62,39 @@ msgstr ""
 msgid "Go to the homepage"
 msgstr ""
 
-#: core/templates/core/base.html:53
+#: core/templates/core/base.html:41
 msgid "Is there anything wrong on this page?"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
+msgid "Filter results"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:46
+msgid "Sort by"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:76
+msgid "Update results"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:97
+msgid "No results"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
 msgid "Opportunity"
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:70
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:163
+msgid "Other projects in"
+msgstr ""
+
+#: core/templates/core/how_to_do_business_landing_page.html:66
 msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
-#: core/templates/core/how_to_do_business_landing_page.html:72
+#: core/templates/core/how_to_do_business_landing_page.html:68
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
 "have questions, we can help."
@@ -62,19 +102,19 @@ msgstr ""
 "O Governo do Reino Unido ajuda as empresas a expandirem-se e a fazerem "
 "negócios com o Reino Unido. Se tiver dúvidas, podemos apoiá-lo"
 
-#: core/templates/core/how_to_do_business_landing_page.html:75
+#: core/templates/core/how_to_do_business_landing_page.html:70
 msgid "Contact the EU Exit enquiry service"
 msgstr "Contacte o Serviço de informações sobre a saída da UE"
 
-#: core/templates/core/sector_page.html:18
+#: core/templates/core/sector_page.html:16
 msgid "Industries"
 msgstr "Indústrias"
 
-#: core/templates/core/sector_page.html:162
+#: core/templates/core/sector_page.html:163
 msgid "Next steps"
 msgstr "Próximas etapas"
 
-#: core/templates/core/sector_page.html:163
+#: core/templates/core/sector_page.html:164
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
@@ -84,15 +124,15 @@ msgstr ""
 "você a encontrar os produtos e serviços certos do Reino Unido. Mais do que "
 "isso, oferecemos assessoria e suporte financeiro competitivo."
 
-#: core/templates/core/sector_page.html:168
+#: core/templates/core/sector_page.html:169
 msgid "I want to invest in the UK"
 msgstr "Eu quero investir no Reino Unido"
 
-#: core/templates/core/sector_page.html:174
+#: core/templates/core/sector_page.html:173
 msgid "I want to buy from the UK"
 msgstr "Eu quero comprar do Reino Unido"
 
-#: core/templates/core/uk_setup_guide/article_detail.html:26
+#: core/templates/core/uk_setup_guide/article_detail.html:24
 msgid "UK setup guide"
 msgstr "Guia para estabelecer no Reino Unido"
 
@@ -156,7 +196,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: perfect_fit_prospectus/views.py:31
+#: perfect_fit_prospectus/views.py:27
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
