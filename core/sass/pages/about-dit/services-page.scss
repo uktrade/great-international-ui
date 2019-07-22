@@ -1,5 +1,11 @@
 .about-dit-services-page {
 
+  #teaser-section {
+    img {
+      width: 100%;
+    }
+  }
+
   #services-fields-section {
     .flex-grid > div {
       align-items: flex-start;
