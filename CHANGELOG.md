@@ -20,6 +20,7 @@
 - CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised
 - CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
 - CI-332 - Sass changes for mobile design for `CapitalInvestOpportunityListingPage`
+- CI-323 - Add "Why choose the UK" page to "About the UK" section
 
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
