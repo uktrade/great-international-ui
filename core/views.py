@@ -186,6 +186,8 @@ def sub_sector_context_modifier(context, request):
 
     page = context['page']
 
+    trade_contact_form = "https://www.great.gov.uk/trade/industries/contact/"
+
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
         random_opportunities = page['related_opportunities'][0:3]
@@ -198,7 +200,8 @@ def sub_sector_context_modifier(context, request):
             page['statistics'], 'number'),
         'section_three_num_of_subsections': count_data_with_field(
             page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities
+        'random_opportunities': random_opportunities,
+        'trade_contact_form_url': trade_contact_form
         }
 
 
