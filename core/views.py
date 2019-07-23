@@ -203,7 +203,7 @@ def sub_sector_context_modifier(context, request):
 
     page = context['page']
 
-    trade_contact_form = "https://www.great.gov.uk/trade/industries/contact/"
+    trade_contact_form = urls.build_fas_url('industries/contact/')
 
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
