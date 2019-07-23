@@ -8,6 +8,7 @@
 - No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
 - CI-313 - Update JS dev dependencies to cover security vulnerabilities
 - No ticket - Updated directory components requirements to fix pagination bug
+- CI-301 - Opportunity cards and Article Cards now use the base template, making the whole card clickable etc.
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
