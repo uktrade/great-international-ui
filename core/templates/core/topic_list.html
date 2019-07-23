@@ -33,7 +33,7 @@
       <div class="flex-grid">
         {% for listing in page.child_pages|filter_by_active_language %}
           <div class="column-full column-third-l column-half-m">
-              {% include 'core/includes/card_with_publish_date.html' with listing=listing %}
+              {% include 'core/includes/card_with_publish_date.html' with img_src=listing.hero_image_thumbnail.url url=listing.meta.url listing=listing %}
           </div>
         {% endfor %}
       </div>
