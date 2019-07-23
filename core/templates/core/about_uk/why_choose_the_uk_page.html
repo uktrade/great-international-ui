@@ -86,8 +86,8 @@
         <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
         {% if page.contact_us_section_summary %}
         <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
-          <div class="column-two-thirds font-small">
-            {{ page.contact_us_section_summary|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
+          <div class="column-two-thirds">
+            {{ page.contact_us_section_summary|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
           </div>
         </div>
         {% endif %}

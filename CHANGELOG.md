@@ -9,6 +9,7 @@
 - CI-313 - Update JS dev dependencies to cover security vulnerabilities
 - No ticket - Updated directory components requirements to fix pagination bug
 - CI-352 - Fix image being squashed on guide landing page
+- CI-365 - Change "Contact Us" section on services page in "About DIT" to markdown
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
