@@ -103,7 +103,7 @@ msgstr ""
 "negócios com o Reino Unido. Se tiver dúvidas, podemos apoiá-lo"
 
 #: core/templates/core/how_to_do_business_landing_page.html:70
-msgid "Contact the EU Exit enquiry service"
+msgid "Contact the Brexit enquiry service"
 msgstr "Contacte o Serviço de informações sobre a saída da UE"
 
 #: core/templates/core/sector_page.html:16
