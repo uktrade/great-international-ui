@@ -19,7 +19,7 @@ sitemaps = {
 
 urlpatterns = [
     url(
-        r'^investment-support-directory/',  # not on /international/
+        r'^international/investment-support-directory/',
         include(
             'investment_support_directory.urls',
             namespace='investment-support-directory',

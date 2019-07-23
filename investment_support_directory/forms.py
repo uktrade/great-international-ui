@@ -3,7 +3,8 @@ from django.forms.widgets import HiddenInput, TextInput, Textarea
 from django.utils.html import mark_safe
 
 from directory_constants import choices, urls
-from directory_components import forms, fields, widgets
+from directory_components import forms
+from directory_components.forms import fields, widgets
 from directory_forms_api_client.forms import GovNotifyActionMixin
 from directory_validators.common import not_contains_url_or_email
 
