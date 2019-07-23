@@ -407,6 +407,42 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
+    mock_cms_response,
+    rf
+):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'AboutUkWhyChooseTheUkPage',
+        'statistics': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk/why-choose-uk/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/why-choose-uk/')
+
+    assert response.context_data['num_of_statistics'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_industry_page_context_modifier_renames_heading(mock_get_page, client):
     page = {
         'title': 'test',
