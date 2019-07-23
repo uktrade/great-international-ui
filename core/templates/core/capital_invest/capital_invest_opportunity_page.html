@@ -164,7 +164,7 @@
             </h1>
             {% for opportunity in random_opps_in_random_related_sector|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
-                    {% include 'core/includes/opportunity_card.html' with image_url=opportunity.hero_image.url img_alt="" link=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
+                    {% include 'core/includes/opportunity_card.html' with img_src=opportunity.hero_image.url img_alt="" url=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
                 </div>
             {% endfor %}
         </div>
