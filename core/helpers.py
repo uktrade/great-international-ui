@@ -99,6 +99,11 @@ GA_DATA_MAPPING = {
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
     },
+    'AboutUkWhyChooseTheUkPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'WhyChooseTheUkPage'
+    },
     'CapitalInvestRegionPage': {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Region',
@@ -132,6 +137,7 @@ HEADER_MAPPING = {
     'InternationalEUExitFormSuccessPage': '',
     'InternationalCapitalInvestLandingPage': 'invest',
     'AboutDitServicesPage': '',
+    'AboutUkWhyChooseTheUkPage': '',
     'CapitalInvestRegionPage': 'invest',
     'CapitalInvestOpportunityPage': 'invest',
     'CapitalInvestOpportunityListingPage': 'invest'
