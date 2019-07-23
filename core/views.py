@@ -175,6 +175,23 @@ def sector_page_context_modifier(context, request):
         }
 
 
+@register_context_modifier('AboutUkWhyChooseTheUkPage')
+def about_uk_why_choose_the_uk_page_context_modifier(context, request):
+
+    def count_data_with_field(list_of_data, field):
+        filtered_list = [item for item in list_of_data if item[field]]
+        return len(filtered_list)
+
+    page = context['page']
+
+    return {
+        'num_of_statistics': count_data_with_field(
+            page['statistics'],
+            'number'
+        )
+    }
+
+
 @register_context_modifier('InternationalSubSectorPage')
 def sub_sector_context_modifier(context, request):
     def count_data_with_field(list_of_data, field):

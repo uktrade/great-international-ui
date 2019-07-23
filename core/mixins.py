@@ -38,6 +38,7 @@ TEMPLATE_MAPPING = {
     'CapitalInvestOpportunityListingPage': (
         'core/capital_invest/capital_invest_opportunity_listing_page.html'),
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
+    'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
     'InvestHighPotentialOpportunityDetailPage': (
