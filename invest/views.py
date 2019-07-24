@@ -40,7 +40,7 @@ class HighPotentialOpportunityFormView(CMSPageFromPathView, GA360Mixin, FormView
 
 
 class HighPotentialOpportunitySuccessView(CMSPageFromPathView):
-    template_name = 'invest/hpo/high_potential_opportunities_success.html'
+    template_name = 'invest/hpo/high_potential_opportunities_form_success.html'
     slug = slugs.INVEST_HIGH_POTENTIAL_OPPORTUNITY_FORM_SUCCESS
 
     def dispatch(self, *args, **kwargs):
