@@ -2,7 +2,7 @@ from django.urls import reverse
 
 
 def test_google_campaign_middleware(client):
-    url = reverse('contact')
+    url = reverse('index')
     client.get(
         url,
         {
