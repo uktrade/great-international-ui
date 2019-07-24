@@ -1,0 +1,21 @@
+{% load add_export_elements_classes from directory_components %}
+
+{% for accordion in accordions %}
+  {% if accordion.title and accordion.content %}
+    <li>
+        <a href="#" class="accordion-expander heading-medium link">
+            {% if accordion.icon.url %}
+                <img class="icon margin-right-15" src="{{accordion.icon.url}}">
+            {% endif %}
+            {{ accordion.title }}
+        </a>
+      <div class="accordion-content" aria-labelledby="accordion-content">
+        <div class="grid-row">
+            <div class="column-two-thirds">
+              {{ accordion.content|add_export_elements_classes|safe }}
+            </div>
+        </div>
+      </div>
+    </li>
+  {% endif %}
+{% endfor %}
