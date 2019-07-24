@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs card ga360_tracker from directory_components %}
+{% load breadcrumbs card from directory_components %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
 
@@ -19,14 +19,11 @@
 
 <section class="breadcrumbs-section">
   <div class="container">
-
     {% url 'industries' as industries_url %}
 
-    {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.landing_page_title %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
-    {% endga360_tracker %}
+    {% breadcrumbs page.landing_page_title %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
   </div>
 </section>
 
@@ -36,9 +33,7 @@
       <div class="flex-grid">
         {% for listing in page.child_pages|filter_by_active_language %}
           <div class="column-full column-third-l column-half-m">
-            {% ga360_tracker "related_page" ga-value=listing.heading %}
-              {% include 'core/includes/card_with_publish_date.html' with listing=listing %}
-            {% endga360_tracker %}
+              {% include 'core/includes/card_with_publish_date.html' with img_src=listing.hero_image_thumbnail.url url=listing.meta.url listing=listing %}
           </div>
         {% endfor %}
       </div>

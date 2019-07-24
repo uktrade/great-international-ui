@@ -1,0 +1,137 @@
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.capital-invest-opportunity-listing-page {
+
+  .page-section{
+    @include page-section-padding
+  }
+
+  .opportunity-listing-page-section {
+    @include white-section;
+  }
+
+  .opportunity-listing-page-stone-section {
+    @include stone-section;
+  }
+
+  .page-title{
+    background-color: $stone-40;
+    padding-bottom: 0;
+    h2 {
+      margin-top: $spacing-1;
+      margin-bottom: $spacing-1;
+      display: inline-block;
+    }
+  }
+
+  .down-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 0 20px;
+    border-color: $stone-40 transparent transparent transparent;
+    line-height: 0;
+    margin: auto auto $spacing-3;
+  }
+
+  .sort-by-container{
+    height: $spacing-2;
+    margin-bottom: 30px;
+
+     @media (min-width: 961px) {
+      text-align: right;
+     }
+
+    #id_sort_by{
+      border-width: 2px;
+      border-color: black;
+      font-size: 16px;
+      width: 80%;
+      @media (min-width: 961px) {
+        width: 30%;
+      }
+    }
+  }
+
+  .filter-title{
+    height: $spacing-2;
+    margin-top: 30px;
+    @media (min-width: 961px) {
+      margin-bottom: 30px;
+      margin-top: 0;
+    }
+  }
+
+  #filter-column{
+    @media (max-width: 961px) {
+      order: 2;
+    }
+
+    .update-button{
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+
+  .opportunity-card{
+    .card-image-left {
+      margin: 0;
+      min-height: 245px;
+      background-size: cover;
+      background-position: 100%;
+      background-repeat: no-repeat;
+      background-color: $white;
+
+      @media (max-width: 641px) {
+        min-height: 200px;
+      }
+    }
+
+    @media (max-width: 961px) {
+      min-width: 280px;
+    }
+
+    .card-link {
+      text-decoration: none;
+      .card-inner {
+        overflow: hidden;
+        border: 1px solid $light-grey;
+        min-height: 245px;
+
+        @media (max-width: 641px) {
+          padding-top: 20px;
+        }
+
+        span {
+          text-decoration: underline;
+          color: #006ccc;
+        }
+
+        p {
+          color: black;
+        }
+
+        @media (max-width: 641px) {
+          min-height: 200px;
+        }
+      }
+    }
+  }
+
+  fieldset label {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding-bottom: $spacing-4;
+  }
+
+  mark {
+    font-weight: bold;
+    line-height: 1.5;
+    background: $stone;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+}

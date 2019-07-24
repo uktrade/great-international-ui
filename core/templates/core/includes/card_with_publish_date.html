@@ -1,14 +1,7 @@
 {% load parse_date from cms_tags %}
+{% extends 'directory_components/card.html' %}
 
-<div class="card">
-    {% if listing.hero_image_thumbnail %}
-      <img class="card-image" src="{{ listing.hero_image_thumbnail.url }}" alt="{{ img_alt }}" >
-    {% endif %}
-  <a class="card-link" href="{{ listing.meta.url }}">
-    <div class="card-inner">
-      <h3 class="heading-large">{{ listing.heading }}</h3>
-      <p class="description subheading">Updated {{ listing.last_published_at|parse_date }}</p>
-    </div>
-  </a>
-</div>
-
+{% block content %}
+  <h3 class="heading-large">{{ listing.heading }}</h3>
+  <p class="description subheading">Updated {{ listing.last_published_at|parse_date }}</p>
+{% endblock %}

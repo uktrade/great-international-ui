@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'health_check.cache',
     'directory_healthcheck',
     'euexit',
-    'perfect_fit_prospectus'
+    'perfect_fit_prospectus',
+    'invest',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -420,6 +421,9 @@ FEATURE_FLAGS = {
     ),
     'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON': env.bool(
         'FEATURE_CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ENABLED', False
+    ),
+    'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool(
+        'FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False
     ),
 }
 

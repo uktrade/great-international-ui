@@ -1,3 +1,6 @@
+from collections import namedtuple
+from urllib.parse import urlencode
+from django.urls import reverse
 from django.utils import translation
 import requests
 
@@ -26,6 +29,16 @@ GA_DATA_MAPPING = {
         'site_section': 'HomePage',
         'site_subsection': ''
     },
+    'InvestInternationalHomePage': {
+        'business_unit': 'Invest',
+        'site_section': 'HomePage',
+        'site_subsection': ''
+    },
+    'InvestHighPotentialOpportunityDetailPage': {
+        'business_unit': 'Invest',
+        'site_section': 'HighPotentialOpportunities',
+        'site_subsection': 'DetailPage',
+    },
     'InternationalTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Topic',
@@ -49,6 +62,11 @@ GA_DATA_MAPPING = {
     'InternationalSectorPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Sector',
+        'site_subsection': 'DetailPage'
+    },
+    'InternationalSubSectorPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'SubSector',
         'site_subsection': 'DetailPage'
     },
     'InternationalCuratedTopicLandingPage': {
@@ -76,6 +94,16 @@ GA_DATA_MAPPING = {
         'site_section': 'LandingPage',
         'site_subsection': ''
     },
+    'AboutDitServicesPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutDIT',
+        'site_subsection': 'ServicesPage'
+    },
+    'AboutUkWhyChooseTheUkPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'WhyChooseTheUkPage'
+    },
     'CapitalInvestRegionPage': {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Region',
@@ -93,6 +121,149 @@ GA_DATA_MAPPING = {
     },
 }
 
+HEADER_MAPPING = {
+    'InternationalHomePage': '',
+    'InvestInternationalHomePage': 'invest',
+    'InvestHighPotentialOpportunityDetailPage': 'invest',
+    'InternationalTopicLandingPage': 'industries',
+    'InternationalArticleListingPage': 'uk_setup_guide',
+    'InternationalArticlePage': 'uk_setup_guide',
+    'InternationalCampaignPage': '',
+    'InternationalSectorPage': 'industries',
+    'InternationalSubSectorPage': 'industries',
+    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
+    'InternationalGuideLandingPage': 'uk_setup_guide',
+    'InternationalEUExitFormPage': '',
+    'InternationalEUExitFormSuccessPage': '',
+    'InternationalCapitalInvestLandingPage': 'invest',
+    'AboutDitServicesPage': '',
+    'AboutUkWhyChooseTheUkPage': '',
+    'CapitalInvestRegionPage': 'invest',
+    'CapitalInvestOpportunityPage': 'invest',
+    'CapitalInvestOpportunityListingPage': 'invest'
+}
+
 
 def get_ga_data_for_page(page_type):
     return GA_DATA_MAPPING[page_type]
+
+
+def get_paginator_url(filters, url_name):
+    url = reverse(url_name)
+
+    querystring = urlencode({
+        key: value
+        for key, value in filters.lists()
+        if value and key != 'page'
+    }, doseq=True)
+    return f'{url}?{querystring}'
+
+
+class SectorFilter:
+    def __init__(self, sectors):
+        self.sectors = sectors
+
+    def matches(self, opportunity):
+        return any(
+            sector['related_sector'].get('heading') in self.sectors
+            for sector in opportunity.get('related_sectors', [])
+            if sector['related_sector'] and sector['related_sector']['heading']
+        )
+
+
+Scale = namedtuple("Scale", "title min max")
+
+
+class ScaleFilter:
+    scales_with_values = [
+        Scale(title='< £100m', min=1, max=99),
+        Scale(title='£100m - £499m', min=100, max=499),
+        Scale(title='£500m - £999m', min=500, max=999),
+        Scale(title='> £1bn', min=1000, max='None'),
+        Scale(title='Value unknown', min=0, max=0)
+    ]
+
+    def __init__(self, scale_strings):
+        self.selected_scales = [
+            scaleFilter for scaleFilter in self.scales_with_values
+            if scaleFilter.title in scale_strings
+        ]
+
+    def matches(self, opportunity):
+        for scale_chosen in self.selected_scales:
+            if scale_chosen.min == 0 and scale_chosen.max == 0:
+                if not opportunity['scale_value']:
+                    return True
+                elif float(opportunity['scale_value']) == 0.00:
+                    return True
+            elif scale_chosen.max == 'None':
+                if scale_chosen.min <= float(opportunity['scale_value']):
+                    return True
+            elif scale_chosen.max:
+                if scale_chosen.min <= float(opportunity['scale_value']) <= scale_chosen.max:  # NOQA
+                    return True
+
+
+class RegionFilter:
+    def __init__(self, regions):
+        self.regions = regions
+
+    def matches(self, opportunity):
+        if opportunity['related_region'] \
+                and opportunity['related_region']['title'] \
+                and opportunity['related_region']['title'] in self.regions:
+            return True
+
+
+class SubSectorFilter:
+    def __init__(self, sub_sectors):
+        self.sub_sectors = sub_sectors
+
+    def matches(self, opportunity):
+        if 'sub_sectors' in opportunity and opportunity['sub_sectors']:
+            for sub_sector in opportunity['sub_sectors']:
+                if sub_sector in self.sub_sectors:
+                    return True
+        return False
+
+
+def filter_opportunities(opportunities, filter_chosen):
+    return [opp for opp in opportunities if filter_chosen.matches(opp)]
+
+
+Sort_by = namedtuple("Sort_by", "title value reverse")
+
+
+class SortFilter:
+    sort_by_with_values = [
+        Sort_by(title='Project name: A to Z', value='title', reverse=False),
+        Sort_by(title='Project name: Z to A', value='title', reverse=True),
+        Sort_by(
+            title='Scale: Low to High', value='scale_value', reverse=False
+        ),
+        Sort_by(title='Scale: High to Low', value='scale_value', reverse=True)
+    ]
+
+    def __init__(self, sort_by_filter_chosen):
+        self.sort_by_filter_chosen = next(
+            (sort_by for sort_by
+             in self.sort_by_with_values
+             if sort_by.title == sort_by_filter_chosen),
+            self.sort_by_with_values[0])
+
+
+def sort_opportunities(opportunities, sort_by_chosen):
+    sort_filter = sort_by_chosen.sort_by_filter_chosen
+    if sort_filter.value == 'title':
+        opportunities.sort(
+            key=lambda x: x['title'],
+            reverse=sort_filter.reverse
+        )
+
+    if sort_filter.value == 'scale_value':
+        opportunities.sort(
+            key=lambda x: float(x['scale_value']),
+            reverse=sort_filter.reverse
+        )
+
+    return opportunities
