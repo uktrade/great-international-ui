@@ -72,6 +72,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'core.middleware.GoogleCampaignMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]
