@@ -23,7 +23,7 @@ def test_high_potential_opportunity_detail(
 
     assert response.status_code == 200
     assert response.template_name == [
-        'invest/high_potential_opportunity_detail.html'
+        'invest/hpo/high_potential_opportunity_detail.html'
     ]
 
 
