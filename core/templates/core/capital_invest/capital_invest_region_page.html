@@ -6,6 +6,12 @@
 
 {% block css_layout_class %}capital-invest-region-page{% endblock %}
 
+{% block header_js %}
+    {{ block.super }}
+    <script src="{% static 'js/dit.js' %}"></script>
+    <script src="{% static 'js/dit.components.accordion.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 
 {% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
@@ -14,16 +20,22 @@
     <div class="container">
         {% breadcrumbs page.breadcrumbs_label %}
           <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-          <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
         {% endbreadcrumbs %}
     </div>
 </section>
 
 {% if page.region_summary_section_intro %}
-<section class="capital-invest-region-page-section">
+<section class="page-section">
     <div class="container">
         <div class="flex-grid">
-            <div class="column-half-l left-half-page-text">
+            {% if page.region_summary_section_image.url %}
+                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+                    <figure class="landing-page-image flex-shrink-0 margin-bottom-30">
+                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
+                    </figure>
+                </div>
+            {%  endif %}
+            <div class="column-half-l right-half-page-text">
                 <div class="font-medium padding-bottom-60">
                     {{ page.region_summary_section_intro}}
                 </div>
@@ -31,38 +43,34 @@
                     {{ page.region_summary_section_content|add_export_elements_classes|safe }}
                 </div>
             </div>
-            {% if page.region_summary_section_image.url %}
-                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
-                    <figure class="landing-page-image flex-shrink-0">
-                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
-                    </figure>
-                </div>
-            {%  endif %}
         </div>
     </div>
 </section>
 {% endif %}
 
-{% if page.economics_data_title and page.economics_stats and page.location_data_title and page.location_stats %}
-<section class="capital-invest-region-page-section">
+<section class="page-section">
     <div class="container">
+    {% if num_of_economics_statistics >= 4 %}
         <div class="padding-bottom-60">
-            <h1 class="heading-large padding-bottom-45">{{ page.economics_data_title }}</h1>
-            {% statistics_card_grid statistics=page.economics_stats num_of_statistics=num_of_economics_statistics number_first=True %}
+            {% statistics_card_grid statistics=page.economics_stats num_of_statistics=num_of_economics_statistics %}
         </div>
+    {% endif %}
+    {% if num_of_location_statistics >= 4 %}
         <div>
-            <h1 class="heading-large padding-bottom-45">{{ page.location_data_title }}</h1>
-            {% statistics_card_grid statistics=page.location_stats num_of_statistics=num_of_location_statistics number_first=True %}
+            {% statistics_card_grid statistics=page.location_stats num_of_statistics=num_of_location_statistics  %}
         </div>
+    {% endif %}
     </div>
 </section>
-{% endif %}
 
 {% if page.property_and_infrastructure_section_title and page.property_and_infrastructure_section_content %}
-<section class="page-section">
+<section class="region-stone-page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.property_and_infrastructure_section_title }}</h1>
         <div class="flex-grid">
+            <div class="column-half-xl left-half-page-text-xl">
+                {{ page.property_and_infrastructure_section_content|add_export_elements_classes|safe }}
+            </div>
             {% if page.property_and_infrastructure_section_image.url %}
                 <div class="column-half-xl center-vertical mobile-padding-bottom-30">
                     <figure class="landing-page-image flex-shrink-0 max-width-100">
@@ -70,20 +78,32 @@
                     </figure>
                 </div>
             {% endif %}
-            <div class="column-half-xl right-half-page-text-xl">
-                {{ page.property_and_infrastructure_section_content|add_export_elements_classes|safe }}
-            </div>
         </div>
     </div>
 </section>
 {% endif %}
 
+<section class="page-section">
+    <div class="container">
+        <div class="grid-row">
+            <div class="heading-large">More information </div>
+        </div>
+        <div class="padding-top-30">
+            <ul id="industry-accordions">
+                {% include 'core/includes/accordions.html' with accordions=page.subsections %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="page-section">
 {% if page.case_study_title and page.case_study_image.url %}
     {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
+</section>
 
 {% if  page.contact_title and page.contact_text %}
-<section class="capital-invest-region-page-section">
+<section class="page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.contact_title }}</h1>
         <div class="grid-row">
@@ -91,6 +111,9 @@
                 {{ page.contact_text|add_export_elements_classes|safe }}
             </div>
         </div>
+        {% if page.contact_cta_link and page.contact_cta_text %}
+            <a class="button button-arrow-small margin-top-15-l" href="{{ page.contact_cta_link }}">{{ page.contact_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 {%endif %}
