@@ -1,6 +1,5 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
-{% load ga360_tracker from directory_components %}
 
 {% load thumbnail %}
 
@@ -10,15 +9,11 @@
 {% endblock %}
 
 {% block content %}
-    {% ga360_tracker "breadcrumbs" %}
     {% block breadcrumbs %}{% endblock %}
-    {% endga360_tracker %}
-
-    {% ga360_tracker "search-form" target="form" %}
     <form class="grid-row padding-bottom-90">
         <div id="hero-container">
             <div class="container">
-                <div class="grid-row">  
+                <div class="grid-row">
                     <div class="column-two-thirds">
                         {% if pagination.paginator.count %}
                             <h2 class="heading-medium margin-top-45 margin-bottom-15">{{ pagination.paginator.count }} {{pagination.paginator.count|pluralize:'result,results'}} found {% if form.q.value %}for <mark>{{ form.q.value }}</mark>{% endif %}</h2>
@@ -42,7 +37,7 @@
         </div>
 
         <div class="container" id="main-content">
-            <div class="grid-row">   
+            <div class="grid-row">
                 <div class="column-one-third-l" id="filter-column">
                     <section class="margin-bottom-15">
                         <span>Filter results</span>
@@ -52,18 +47,14 @@
                                 {% for value in filters %}
                                     <mark>{{ value }}</mark>
                                 {% endfor %}
-                                {% ga360_tracker "clear-filter" %}
                                 <a href="?q={{ form.q.value|default:'' }}" class="link">Clear all filters</a>
-                                {% endga360_tracker %}
                             </div>
                         {% endif %}
                     </section>
                     {% block filters %}{% endblock %}
                     <button class="button" type="submit">Update results</button>
                     <div class="margin-top-15 margin-bottom-30" id="reset-link-container">
-                        {% ga360_tracker "reset" %}
                         <a href="?show-guide=true" class="link">Reset</a>
-                        {% endga360_tracker %}
                     </div>
                 </div>
                 <div class="column-two-thirds-l" id="companies-column">
@@ -73,7 +64,6 @@
                         {% else %}
                             {% for company in results %}
                                 <li>
-                                    {% ga360_tracker "company-detail-link" ga-value=company.name %}
                                     <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
                                         <div class="logo-container">
                                             {% thumbnail company.logo "x135" as logo %}
@@ -105,7 +95,6 @@
                                             </div>
                                         </div>
                                     </a>
-                                    {% endga360_tracker %}
                                 </li>
                             {% empty %}
                                 <h2 class="heading-medium">No UK businesses match your search</h2>
@@ -114,7 +103,6 @@
                         {% endif %}
                     </ul>
                     {% if pagination.paginator.num_pages > 1 %}
-                        {% ga360_tracker "pagination" %}
                         <div id="paginator">
                             {% if pagination.has_previous %}
                                 <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
@@ -151,7 +139,6 @@
                                 <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
                             {% endif %}
                         </div>
-                        {% endga360_tracker %}
                     {% endif %}
                 </div>
             </div>
@@ -160,7 +147,6 @@
 
     {% block subscription %} {% endblock %}
 
-    {% endga360_tracker %}
 {% endblock content %}
 
 {% block body_js %}
@@ -173,7 +159,7 @@
     formGroup.setAttribute('aria-expanded', !(formGroup.getAttribute('aria-expanded') == 'true'));
   }
   var elements = document.getElementsByClassName('filter-collapse');
-  for (var i = 0; i < elements.length; i++) { 
+  for (var i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', handleTogle);
   }
 </script>

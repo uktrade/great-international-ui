@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load staticfiles %}
-{% load breadcrumbs render_form ga360_tracker from directory_components %}
+{% load directory_components %}
 
 {% block head_css %}
     {{ block.super }}
@@ -11,25 +11,21 @@
     <section id="hero" class="hero background-light-blue" style="background-image: url('{% static 'core/images/investment-support-directory-hero.png' %}')">
         <div class="container">
             <div class="width-two-thirds">
-                <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>              
-                <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>  
+                <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
+                <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
             </div>
-            {% ga360_tracker "isd-search-form" target="form" %}
             <form method="post">
                 {% render_form form %}
                 <button class="button">Find a UK specialist</button>
             </form>
-            {% endga360_tracker %}
         </div>
     </section>
 
     <div id="benefits">
         <div class="container">
-            {% ga360_tracker "breadcrumbs" %}
                 {% breadcrumbs 'find a UK specialist' %}
                     <a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
                 {% endbreadcrumbs %}
-            {% endga360_tracker %}
             <div class="width-half">
                 <h2 class="heading-large">UK Investment Support Directory </h2>
             </div>
@@ -57,7 +53,6 @@
         </div>
     </div>
     <div class="background-stone-30" id="bottom">
-        {% ga360_tracker "search-link" %}
         <div class="container">
             <div class="width-one-half">
                 <h2 class="heading-large">How UK businesses can help</h2>
@@ -104,6 +99,5 @@
                 </ul>
             </div>
         </div>
-        {% endga360_tracker %}
     </div>
 {% endblock content %}
