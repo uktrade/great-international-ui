@@ -36,6 +36,7 @@ TEMPLATE_MAPPING = {
 
     # About DIT
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
+    'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
@@ -174,6 +175,11 @@ GA_DATA_MAPPING = {
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
     },
+    'AboutUkWhyChooseTheUkPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'WhyChooseTheUkPage'
+    },
 }
 
 HEADER_MAPPING = {
@@ -206,4 +212,5 @@ HEADER_MAPPING = {
 
     # About DIT
     'AboutDitServicesPage': '',
+    'AboutUkWhyChooseTheUkPage': '',
 }
