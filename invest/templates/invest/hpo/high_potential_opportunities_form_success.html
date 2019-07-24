@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+
+{% load add_export_elements_classes from directory_components %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link href="{% static 'styles/pages/high-potential-opportunities-success.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block title %}
+    {{ page.seo_title|default:"High Potential Opportunities - great.gov.uk" }}
+{% endblock %}
+
+{% block head_sharing_metadata %}
+    {{ block.super }}
+    <meta name="description" content="{{ page.search_description }}">
+{% endblock %}
+
+{% block content %}
+
+{% include 'invest/includes/invest_cms_breadcrumbs.html' %}
+
+<section id="confirmation-section">
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                <div class="heading-container">
+                    <h2 class="heading-large">{{ page.heading }}</h2>
+                    <span>{{ page.sub_heading }}</span>
+                </div>
+                <h3 class="heading-medium">{{ page.next_steps_title }}</h3>
+                <span>{{ page.next_steps_body }}</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="documents-section" class="padding-bottom-60">
+    <div class="container">
+        <h2 class="heading-large">{{ page.documents_title }}</h2>
+        <span>{{ page.documents_body }}</span>
+
+        <div class="grid-row documents-list-container">
+            {% for opportunity in opportunities %}
+                <div class="column-two-thirds">
+                    <div class="image-container">
+                        <img src="{{ opportunity.summary_image.url }}" alt="" />
+                    </div>
+                    <h3 class="heading-medium">
+                        <a class="link" href="{{ opportunity.pdf_document }}" target="_blank">Download {{ opportunity.heading }} executive summary</a>
+                    </h3>
+                    <span>{{ opportunity.proposition_one|striptags }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
