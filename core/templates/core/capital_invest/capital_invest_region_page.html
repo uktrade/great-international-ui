@@ -48,6 +48,7 @@
 </section>
 {% endif %}
 
+{% if num_of_economics_statistics >= 4 or num_of_location_statistics >= 4 %}
 <section class="page-section">
     <div class="container">
     {% if num_of_economics_statistics >= 4 %}
@@ -62,6 +63,7 @@
     {% endif %}
     </div>
 </section>
+{% endif %}
 
 {% if page.property_and_infrastructure_section_title and page.property_and_infrastructure_section_content %}
 <section class="region-stone-page-section">
