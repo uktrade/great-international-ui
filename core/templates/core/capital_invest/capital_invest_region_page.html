@@ -85,10 +85,11 @@
 </section>
 {% endif %}
 
+{% if page.subsections_title and show_accordions %}
 <section class="page-section">
     <div class="container">
         <div class="grid-row">
-            <div class="heading-large">More information </div>
+            <div class="heading-large">More info for now{{ page.subsections_title }}</div>
         </div>
         <div class="padding-top-30">
             <ul id="industry-accordions">
@@ -97,8 +98,9 @@
         </div>
     </div>
 </section>
+{% endif %}
 
-<section class="page-section">
+<section class="{% if show_accordions %} page-section {% endif %}">
 {% if page.case_study_title and page.case_study_image.url %}
     {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}

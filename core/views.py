@@ -250,6 +250,15 @@ def capital_invest_region_page_context_modifier(context, request):
         return len(filtered_list)
 
     page = context['page']
+
+    show_accordions = False
+
+    if 'subsections' in page:
+        accordions = {accordion['title']: accordion['content'] for accordion
+                      in page['subsections'] if accordion['title'] and accordion['content']}
+        if accordions:
+            show_accordions = True
+
     return {
         'num_of_economics_statistics': count_data_with_field(
             page['economics_stats'], 'number'),
@@ -257,6 +266,7 @@ def capital_invest_region_page_context_modifier(context, request):
             page['location_stats'], 'number'),
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
+        'show_accordions': show_accordions
     }
 
 

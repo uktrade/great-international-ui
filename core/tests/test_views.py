@@ -1390,3 +1390,68 @@ def test_get_random_three_opportunities_for_opportunity_page(
 
     assert len(response
                .context_data['random_opps_in_random_related_sector']) <= 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_showing_accordions_for_region_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionPage',
+        'economics_stats': [],
+        'location_stats': [],
+        'subsections': [
+            {'title': 'section', 'content': 'Some content', 'icon': []},
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_accordions'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_showing_accordions_null_case_for_region_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionPage',
+        'economics_stats': [],
+        'location_stats': [],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = CMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_accordions'] is False
