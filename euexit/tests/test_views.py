@@ -6,7 +6,7 @@ from directory_constants import choices
 from django.urls import reverse
 
 from core.tests.helpers import create_response
-from core.mixins import TEMPLATE_MAPPING
+from core.constants import TEMPLATE_MAPPING
 from euexit import views
 
 
