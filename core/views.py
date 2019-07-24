@@ -254,8 +254,9 @@ def capital_invest_region_page_context_modifier(context, request):
     show_accordions = False
 
     if 'subsections' in page:
-        accordions = {accordion['title']: accordion['content'] for accordion
-                      in page['subsections'] if accordion['title'] and accordion['content']}
+        accordions = {accordion['title']: accordion['content']
+                      for accordion in page['subsections']
+                      if accordion['title'] and accordion['content']}
         if accordions:
             show_accordions = True
 
