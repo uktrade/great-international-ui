@@ -113,7 +113,7 @@ def test_high_potential_opportunity_form_not_found(mock_lookup_by_path, settings
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_high_potential_opportunity_form_cms_retrieval_ok(mock_lookup_by_path, settings, client):
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
