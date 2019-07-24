@@ -12,6 +12,7 @@
 - CI-301 - Opportunity cards and Article Cards now use the base template, making the whole card clickable etc.
 - CI-352 - Fix image being squashed on guide landing page
 - CI-365 - Change "Contact Us" section on services page in "About DIT" to markdown
+- CI-368 - Add ebooks promotional section on "why choose the UK" page
 - No ticket - Fixed Industries landing page extending tag being in the wrong order
 
 ### Implemented enhancements
