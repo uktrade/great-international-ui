@@ -37,7 +37,7 @@ urlpatterns = [
     ),
     url(
         r'^international/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/'},
         name='index'
     ),
@@ -48,7 +48,7 @@ urlpatterns = [
     ),
     url(
         r'^international/invest/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
         name='invest-home'
     ),
@@ -95,19 +95,19 @@ urlpatterns = [
     # these next 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'industries'},
         name='industries'
     ),
     url(
         r'^international/content/how-to-setup-in-the-uk/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'how-to-setup-in-the-uk'},
         name='how-to-setup-in-the-uk'
     ),
     url(
         r'^international/content/how-to-do-business-with-the-uk/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'how-to-do-business-with-the-uk'},
         name='how-to-do-business-with-the-uk'
     ),
@@ -119,13 +119,13 @@ urlpatterns = [
     ),
     url(
         r'^international/invest-capital/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'
     ),
 ]

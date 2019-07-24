@@ -31,9 +31,8 @@ class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
     pass
 
 
-class CMSPageFromPathView(
+class MonolingualCMSPageFromPathView(
     RegionalContentMixin,
-    CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
     InternationalView
 ):
@@ -84,6 +83,12 @@ class CMSPageFromPathView(
             context.update(modifier(context, request=self.request))
 
         return context
+
+
+class MultilingualCMSPageFromPathView(
+    CMSLanguageSwitcherMixin, MonolingualCMSPageFromPathView
+):
+    pass
 
 
 @register_context_modifier('InternationalArticlePage')

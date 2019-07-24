@@ -3,23 +3,18 @@ from directory_constants import slugs
 
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from . import forms
-from core.views import CMSPageFromPathView
+from core.views import MonolingualCMSPageFromPathView
 
 SESSION_KEY_SELECTED_OPPORTUNITIES = 'SELECTED_OPPORTUNITIES'
 
 
-class HighPotentialOpportunityFormView(CMSPageFromPathView, GA360Mixin, FormView):
+class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixin, FormView):
     template_name = 'invest/hpo/high_potential_opportunities_form.html'
     form_class = forms.HighPotentialOpportunityForm
-
-    def get_success_url(self):
-        return reverse(
-            'high-potential-opportunity-request-form-success',
-            kwargs={'slug': self.kwargs['slug']}
-        )
+    success_url = reverse_lazy('high-potential-opportunity-request-form-success')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -39,7 +34,7 @@ class HighPotentialOpportunityFormView(CMSPageFromPathView, GA360Mixin, FormView
         return super().form_valid(form)
 
 
-class HighPotentialOpportunitySuccessView(CMSPageFromPathView):
+class HighPotentialOpportunitySuccessView(MonolingualCMSPageFromPathView):
     template_name = 'invest/hpo/high_potential_opportunities_form_success.html'
     slug = slugs.INVEST_HIGH_POTENTIAL_OPPORTUNITY_FORM_SUCCESS
 
