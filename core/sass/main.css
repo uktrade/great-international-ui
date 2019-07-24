@@ -1007,4 +1007,49 @@ body.js-enabled .landing-page .country-selector-dialog select {
   width: 100%;
 }
 
+.about-dit-services-page #teaser-section img {
+  width: 100%;
+}
+.about-dit-services-page #services-fields-section .flex-grid > div {
+  align-items: flex-start;
+}
+.about-dit-services-page #services-fields-section img {
+  height: 60px;
+}
+.about-dit-services-page #case-study {
+  margin-top: 60px;
+}
+.about-dit-services-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.about-uk-why-choose-the-uk-page #section-one img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #sector-statistics-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page #sector-statistics-section {
+    padding-bottom: 120px;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section:nth-child(even) {
+  background-color: #f5f2ed;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page .article-section:nth-child(odd) .column-half-l {
+    float: right;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
 /*# sourceMappingURL=main.css.map */

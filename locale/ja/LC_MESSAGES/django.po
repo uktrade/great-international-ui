@@ -100,7 +100,7 @@ msgid ""
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:70
-msgid "Contact the EU Exit enquiry service"
+msgid "Contact the Brexit enquiry service"
 msgstr ""
 
 #: core/templates/core/sector_page.html:16

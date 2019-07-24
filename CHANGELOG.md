@@ -2,6 +2,7 @@
 
 ## Pre-release
 - CMS-1692 - Added HPO detail page from Invest and updated styling
+- TT-1678 - Rename EU exit to Brexit
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
@@ -12,6 +13,7 @@
 - CI-352 - Fix image being squashed on guide landing page
 - CI-365 - Change "Contact Us" section on services page in "About DIT" to markdown
 - CI-368 - Add ebooks promotional section on "why choose the UK" page
+- No ticket - Fixed Industries landing page extending tag being in the wrong order
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
@@ -74,7 +76,7 @@
 - CI-146 - Changed English copy that was hard coded text in sector page
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 - CI-145 - Use invest logo in header
-- CMS-1577 - Update content on EU Exit CTA buttons
+- CMS-1577 - Update content on Brexit CTA buttons
 - no-ticket - Make the 'home' breadcrumb label translatable.
 - CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
 - CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
@@ -138,7 +140,7 @@
 - CMS-1400 - Added new url/view to support tree-based routing
 - CMS-775 - Added alternate language url metadata to base template to improve SEO
 - CMS-1386 - Updated homepage design
-- CMS-1247 - Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
+- CMS-1247 - Fix Brexit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
 - CMS-1384 - Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
