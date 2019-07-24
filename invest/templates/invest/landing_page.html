@@ -74,6 +74,7 @@
 </section>
 {% endif %}
 
+{% if show_featured_cards %}
 <section class="landing-page-section" id="uk-setup-guides">
     <div class="container">
         <div class="card-grid">
@@ -89,6 +90,7 @@
         </div>
     </div>
 </section>
+{% endif %}
 
 {% if page.sector_title and page.sectors|filter_by_active_language %}
 <section class="landing-page-section" id="industries">
