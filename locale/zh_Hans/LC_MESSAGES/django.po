@@ -102,7 +102,7 @@ msgstr ""
 "助您"
 
 #: core/templates/core/how_to_do_business_landing_page.html:70
-msgid "Contact the EU Exit enquiry service"
+msgid "Contact the Brexit enquiry service"
 msgstr "联系脱欧咨询服务部门"
 
 #: core/templates/core/sector_page.html:16

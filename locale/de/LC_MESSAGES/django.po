@@ -104,7 +104,7 @@ msgstr ""
 "haben."
 
 #: core/templates/core/how_to_do_business_landing_page.html:70
-msgid "Contact the EU Exit enquiry service"
+msgid "Contact the Brexit enquiry service"
 msgstr "Wenden Sie sich an den Auskunftsdienst zum EU-Austritt."
 
 #: core/templates/core/sector_page.html:16

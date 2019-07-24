@@ -103,7 +103,7 @@ msgstr ""
 "Uni et à s'y développer. Si vous avez des questions, nous pouvons vous aider"
 
 #: core/templates/core/how_to_do_business_landing_page.html:70
-msgid "Contact the EU Exit enquiry service"
+msgid "Contact the Brexit enquiry service"
 msgstr "Contactez un service de renseignements sur la sortie de l'UE"
 
 #: core/templates/core/sector_page.html:16

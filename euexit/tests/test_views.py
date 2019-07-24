@@ -104,7 +104,7 @@ def test_international_form_submit(
     )
     assert mock_save.call_count == 1
     assert mock_save.call_args == mock.call(
-        subject='EU exit international contact form',
+        subject='Brexit international contact form',
         full_name='test example',
         email_address='test@example.com',
         service_name='eu_exit',

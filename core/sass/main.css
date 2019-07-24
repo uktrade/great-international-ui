@@ -610,26 +610,77 @@ body.js-enabled .landing-page .country-selector-dialog select {
     padding: 30px 0;
   }
 }
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
+.capital-invest-region-page .region-white-page-section {
   padding: 60px 0;
 }
 @media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
+  .capital-invest-region-page .region-white-page-section {
     padding: 30px 0;
   }
 }
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
+.capital-invest-region-page .region-stone-page-section {
   padding: 60px 0;
   background: #f2eee8;
 }
 @media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
+  .capital-invest-region-page .region-stone-page-section {
     padding: 30px 0;
   }
 }
 @media (max-width: 641px) {
   .capital-invest-region-page .mobile-padding-bottom-30 {
     padding-bottom: 30px;
+  }
+}
+.capital-invest-region-page .accordion-expander {
+  text-decoration: none;
+  margin: 0;
+  color: #006ccc;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #d8d8d8;
+  padding: 15px;
+  position: relative;
+  width: 100%;
+  min-height: 88px;
+}
+.capital-invest-region-page .accordion-expander:focus {
+  outline: #ffbf47 solid 3px;
+}
+.capital-invest-region-page .accordion-expander:focus:active {
+  color: #00549f;
+}
+.capital-invest-region-page .accordion-expander:after {
+  content: "+";
+  font-weight: 700;
+  font-size: 36px;
+  position: absolute;
+  right: 15px;
+  color: black;
+}
+.capital-invest-region-page .accordion-expander.active:after {
+  content: "–";
+}
+.capital-invest-region-page ul li:last-child .accordion-expander {
+  border-bottom: 1px solid #d8d8d8;
+}
+.capital-invest-region-page ul li:last-child .accordion-expander.active {
+  border-bottom: 0;
+}
+.capital-invest-region-page .accordion-expander.active {
+  background-color: #fcfbf9;
+  border-bottom: 0;
+}
+.capital-invest-region-page .Expander.collapsed {
+  display: none;
+}
+.capital-invest-region-page .accordion-content {
+  padding: 30px;
+}
+@media (max-width: 767px) {
+  .capital-invest-region-page .accordion-expander {
+    width: 100%;
   }
 }
 
@@ -1005,6 +1056,51 @@ body.js-enabled .landing-page .country-selector-dialog select {
 
 .eu-exit-form .form-group > .form-control {
   width: 100%;
+}
+
+.about-dit-services-page #teaser-section img {
+  width: 100%;
+}
+.about-dit-services-page #services-fields-section .flex-grid > div {
+  align-items: flex-start;
+}
+.about-dit-services-page #services-fields-section img {
+  height: 60px;
+}
+.about-dit-services-page #case-study {
+  margin-top: 60px;
+}
+.about-dit-services-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.about-uk-why-choose-the-uk-page #section-one img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #sector-statistics-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page #sector-statistics-section {
+    padding-bottom: 120px;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section:nth-child(even) {
+  background-color: #f5f2ed;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page .article-section:nth-child(odd) .column-half-l {
+    float: right;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 /*# sourceMappingURL=main.css.map */
