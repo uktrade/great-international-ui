@@ -140,7 +140,7 @@
 }
 
 
-@media (max-width: 961px) {
+@media (min-width: 961px) {
   .reverse-columns-xl {
     flex-direction: column-reverse;
   }
