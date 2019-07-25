@@ -1,0 +1,154 @@
+
+.investment-support-directory-profile-page {
+
+  #logo-container {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    background-color: white;
+    border: 1px solid #999;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 1px;
+      flex-shrink: 0;
+    }
+  }
+
+  #company-description-container {
+    a {
+      margin-top: 30px;
+      display: inline-block;
+    }
+  }
+
+  hr {
+    background-color: $stone;
+    height: 2px;
+    margin-top: 45px;
+    margin-bottom: 0;
+  }
+
+  #content-column h3 {
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  #data-column {
+    margin-top: -230px;
+    dt {
+      font-weight: bold;
+    }
+    dd {
+      margin-bottom: 1em;
+    }
+    & > section {
+      width: 80%;
+    }
+    li a {
+      height: 36px;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+  }
+
+  #cover-image-container {
+    height: 300px;
+  }
+
+  #content section#underline {
+    width: 70%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  #content .error-reporting {
+    a {
+      font-size: 20px;
+    }
+  }
+
+  #online-profiles {
+    margin-top: 45px;
+    overflow: hidden;
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        img {
+          margin-right: 16px;
+        }
+        span {
+          vertical-align: middle;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+
+  #company-name {
+    margin-top: 40px;
+    a {
+      font-size: 19px;
+      font-weight: normal;
+      vertical-align: bottom;
+      line-height: 40px;
+    }
+  }
+
+  #about-company-container {
+    margin-top: 45px;
+    background: $stone-light;
+    padding: 30px 15px;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  #contact-company-container {
+    a {
+      width: 100%;
+      text-align: center;
+    }
+    span {
+      margin-top: 45px;
+      margin-bottom: 30px;
+      display: flex;
+    }
+    img {
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+  }
+
+  #profile-expertise-container,
+  #profile-products-services-container {
+    dt {
+      font-weight: bold;
+    }
+    dd {
+      margin-bottom: 30px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  #report-profile {
+    text-align: right;
+    padding-top: 20px;
+  }
+
+  #registered-office-address-container {
+    margin-top: 45px;
+  }
+}

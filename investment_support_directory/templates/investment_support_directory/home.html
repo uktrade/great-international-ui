@@ -2,13 +2,10 @@
 {% load staticfiles %}
 {% load directory_components %}
 
-{% block head_css %}
-    {{ block.super }}
-    <link href="{% static 'core/investment-support-directory-home.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block css_layout_class %}investment-support-directory-home{% endblock %}
 
 {% block content %}
-    <section id="hero" class="hero background-light-blue" style="background-image: url('{% static 'core/images/investment-support-directory-hero.png' %}')">
+    <section id="hero" class="hero background-light-blue" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')">
         <div class="container">
             <div class="width-two-thirds">
                 <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
@@ -48,7 +45,7 @@
                     </ul>
                 </div>
                 <div class="column-one-half">
-                    <img src="{% static 'core/images/investment-support-directory-feature.png' %}" />
+                    <img src="{% static 'core/images/investment_support_directory/feature.png' %}" />
                 </div>
             </section>
         </div>

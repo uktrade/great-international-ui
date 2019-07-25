@@ -1,24 +1,17 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
 
-{% load card from directory_components %}
+{% load breadcrumbs card from directory_components %}
 {% load thumbnail %}
 
-{% load breadcrumbs from directory_components %}
-
-{% block head_css %}
-    {{ block.super }}
-    <link href="{% static 'core/profile.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block css_layout_class %}investment-support-directory-profile-page{% endblock %}
 
 {% block content %}
     <div class="container">
         {% block breadcrumbs %}{% endblock %}
     </div>
 
-    <div id="cover-image-container" class="hero" style="background-image: url('{% static "core/images/default-profile-cover.png" %}')">
-        &nbsp;
-    </div>
+    <div id="cover-image-container" class="hero" style="background-image: url('{% static "core/static/images/investment_support_directory/default-profile-cover.png" %}')">&nbsp;</div>
     <div class="container" id="main-content">
         <div class="grid-row">
             <div class="column-one-third" id="data-column">
@@ -70,7 +63,7 @@
 
                             {% if company.facebook_url %}
                                 <a class="link" href="{{ company.facebook_url }}">
-                                    <img alt="with Facebook" height="36px" src="{% static 'core/images/facebook.png' %}" width="36px" />
+                                    <img alt="with Facebook" height="36px" src="{% static 'core/images/investment_support_directory/facebook.png' %}" width="36px" />
                                     <span>Visit company Facebook</span>
                                 </a>
                             {% endif %}
@@ -78,7 +71,7 @@
                         <li>
                             {% if company.twitter_url %}
                                 <a class="link" href="{{ company.twitter_url }}">
-                                    <img alt="with Twitter" height="36px" src="{% static 'core/images/twitter.png' %}" width="36px" />
+                                    <img alt="with Twitter" height="36px" src="{% static 'core/images/investment_support_directory/twitter.png' %}" width="36px" />
                                     <span>Visit company Twitter</span>
                                 </a>
                             {% endif %}
@@ -86,7 +79,7 @@
                         <li>
                             {% if company.linkedin_url %}
                                 <a class="link" href="{{ company.linkedin_url }}">
-                                    <img alt="with LinkedIn" height="36px" src="{% static 'core/images/linkedin.png' %}" width="36px" />
+                                    <img alt="with LinkedIn" height="36px" src="{% static 'core/images/investment_support_directory/linkedin.png' %}" width="36px" />
                                     <span>Visit company LinkedIn</span>
                                 </a>
                             {% endif %}

@@ -1,12 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
-
 {% load thumbnail %}
 
-{% block head_css %}
-    {{ block.super }}
-    <link href="{% static 'core/search.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block css_layout_class %}investment-support-directory-search-page{% endblock %}
 
 {% block content %}
     {% block breadcrumbs %}{% endblock %}
@@ -69,7 +65,7 @@
                                             {% thumbnail company.logo "x135" as logo %}
                                                 <img src="{{ logo.url }}" alt="{{ company.name }}" />
                                             {% empty %}
-                                                <img class="placeholder" src="{% static 'images/placeholder.png' %}" alt="" />
+                                                <img class="placeholder" src="{% static 'core/images/placeholder.png' %}" alt="" />
                                             {% endthumbnail %}
                                         </div>
                                         <div class="width-full details-container">

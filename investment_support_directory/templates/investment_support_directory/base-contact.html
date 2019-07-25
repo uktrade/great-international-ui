@@ -2,10 +2,7 @@
 {% load staticfiles %}
 {% load breadcrumbs render_form from directory_components %}
 
-{% block head_css %}
-    {{ block.super }}
-    <link href="{% static 'core/contact.css' %}" media="all" rel="stylesheet" />
-{% endblock %}
+{% block css_layout_class %}investment-support-directory-contact-page{% endblock %}
 
 {% block content %}
 <div class="container">
