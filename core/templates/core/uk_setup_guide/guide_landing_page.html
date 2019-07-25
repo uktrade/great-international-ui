@@ -27,14 +27,14 @@
 
   <section class="padding-vertical-60">
     <div class="container">
-      <div class="card-grid reverse-columns-s">
+      <div class="flex-grid reverse-columns-xl">
 
-        <div class="column-half">
+        <div class="column-half-xl padding-right-60-xl center-vertical">
           <div class="wrap-tight">{{ page.section_one_content|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|safe }}</div>
         </div>
 
         {% if page.section_one_image %}
-          <div class="column-half padding-bottom-15">
+          <div class="half-image column-half-xl padding-bottom-30 center-vertical ">
             <div class="grid-row">
               {% image_with_caption image_url=page.section_one_image.url main_caption=page.section_one_image_caption sub_caption="" %}
             </div>
