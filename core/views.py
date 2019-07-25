@@ -23,8 +23,8 @@ from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
+from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
-from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin
 
 
 class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
@@ -53,10 +53,6 @@ class MonolingualCMSPageFromPathView(
     @property
     def template_name(self):
         return constants.TEMPLATE_MAPPING[self.page['page_type']]
-
-    @property
-    def header_section(self):
-        return constants.HEADER_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
@@ -279,7 +275,6 @@ class OpportunitySearchView(
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
-    header_section = 'invest'
 
     def __init__(self):
         super().__init__()
