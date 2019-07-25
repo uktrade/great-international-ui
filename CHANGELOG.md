@@ -30,6 +30,7 @@
 - CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised
 - CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
 - CI-332 - Sass changes for mobile design for `CapitalInvestOpportunityListingPage`
+- CMS-1640 - Move ISD pages to great international
 - CI-323 - Add "Why choose the UK" page to "About the UK" section
 - CI-372 - Updated trade CTA on sector pages to go to trade contact form
 - CI-367 - Updated `CapitalInvestRegionPage` and added accordions js file

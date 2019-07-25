@@ -1,0 +1,32 @@
+{% extends 'investment_support_directory/base-search.html' %}
+
+{% load breadcrumbs from directory_components %}
+
+{% block breadcrumbs %}
+    <div class="container">
+        {% url 'investment-support-directory:search' as search_url %}
+        {% breadcrumbs 'Search results' %}
+          <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+          <a href="{{ search_url }}">Find a UK specialist</a>
+        {% endbreadcrumbs %}
+    </div>
+{% endblock %}
+
+{% block filters %}
+    <fieldset>
+        <legend>Filter by expertise</legend>
+        {% include 'core/filter.html' with label='Regional expertise' alt='Toggle list of regions' field=form.expertise_regions %}
+        {% include 'core/filter.html' with label='Industry expertise' alt='Toggle list of industries' field=form.expertise_industries %}
+        {% include 'core/filter.html' with label='Language expertise' alt='Toggle list of languages' field=form.expertise_languages %}
+        {% include 'core/filter.html' with label='International expertise' alt='Toggle list of countries' field=form.expertise_countries %}
+    </fieldset>
+    <fieldset>
+        <legend>Filter by services</legend>
+        {% include 'core/filter.html' with label='Financial' alt='Toggle list of Financial skills' field=form.expertise_products_services_financial %}
+        {% include 'core/filter.html' with label='Management consulting' alt='Toggle list of Management consulting skills' field=form.expertise_products_services_management %}
+        {% include 'core/filter.html' with label='Human resources and recruitment' alt='Toggle list of Human resources and recruitment skills' field=form.expertise_products_services_human_resources %}
+        {% include 'core/filter.html' with label='Legal' alt='Toggle list of Legal skills' field=form.expertise_products_services_legal %}
+        {% include 'core/filter.html' with label='Publicity and communications' alt='Toggle list of Publicity and communication skills' field=form.expertise_products_services_publicity %}
+        {% include 'core/filter.html' with label='Business support' alt='Toggle list of Business Support skills' field=form.expertise_products_services_business_support %}
+    </fieldset>
+{% endblock %}

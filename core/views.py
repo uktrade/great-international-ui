@@ -4,12 +4,13 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
+import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
@@ -498,6 +499,57 @@ class OpportunitySearchView(
             form=self.opportunity_search_form,
             *args, **kwargs,
         )
+
+
+class SendContactNotifyMessagesMixin:
+
+    def send_company_message(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=None,
+        )
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
+        )
+
+        response = form.save(
+            template_id=self.notify_settings.company_template,
+            email_address=self.company['email_address'],
+            form_url=self.request.path,
+            sender=sender,
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
+
+    def send_support_message(self, form):
+        response = form.save(
+            template_id=self.notify_settings.support_template,
+            email_address=self.notify_settings.support_email_address,
+            form_url=self.request.get_full_path(),
+        )
+        response.raise_for_status()
+
+    def send_investor_message(self, form):
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
+        )
+        response = form.save(
+            template_id=self.notify_settings.investor_template,
+            email_address=form.cleaned_data['email_address'],
+            form_url=self.request.get_full_path(),
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_company_message(form)
+        self.send_support_message(form)
+        self.send_investor_message(form)
+        return super().form_valid(form)
+
+
+class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
+    pass
 
 
 @register_context_modifier('InvestInternationalHomePage')

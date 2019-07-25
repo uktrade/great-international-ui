@@ -1,0 +1,162 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+{% load thumbnail %}
+
+{% block css_layout_class %}investment-support-directory-search-page{% endblock %}
+
+{% block content %}
+    {% block breadcrumbs %}{% endblock %}
+    <form class="grid-row padding-bottom-90">
+        <div id="hero-container">
+            <div class="container">
+                <div class="grid-row">
+                    <div class="column-two-thirds">
+                        {% if pagination.paginator.count %}
+                            <h2 class="heading-medium margin-top-45 margin-bottom-15">{{ pagination.paginator.count }} {{pagination.paginator.count|pluralize:'result,results'}} found {% if form.q.value %}for <mark>{{ form.q.value }}</mark>{% endif %}</h2>
+                            <p class="font-xsmall margin-bottom-30 grey-text">These are sorted by relevance to your search terms</p>
+                        {% else %}
+                            <h2 class="heading-medium margin-top-60 margin-bottom-60">&nbsp;</h2>
+                        {% endif %}
+                    </div>
+                    <div class="column-one-third">
+                        <span class="{{ field.css_classes }}" id="{{ field.id_for_label }}-container">
+                          {% if form.q.errors %}
+                            <div class="error-message">{{ form.q.errors }}</div>
+                          {% else %}
+                          <label for="{{ form.q.id_for_label }}">New search</label>
+                          {% endif %}
+                          {{ form.q }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="main-content">
+            <div class="grid-row">
+                <div class="column-one-third-l" id="filter-column">
+                    <section class="margin-bottom-15">
+                        <span>Filter results</span>
+                        {% if filters %}
+                            <div id="selected-filters-container" class="underline-flag-red">
+                                <label>Selected filters</label>
+                                {% for value in filters %}
+                                    <mark>{{ value }}</mark>
+                                {% endfor %}
+                                <a href="?q={{ form.q.value|default:'' }}" class="link">Clear all filters</a>
+                            </div>
+                        {% endif %}
+                    </section>
+                    {% block filters %}{% endblock %}
+                    <button class="button" type="submit">Update results</button>
+                    <div class="margin-top-15 margin-bottom-30" id="reset-link-container">
+                        <a href="?show-guide=true" class="link">Reset</a>
+                    </div>
+                </div>
+                <div class="column-two-thirds-l" id="companies-column">
+                    <ul>
+                        {% if show_search_guide %}
+                            <h2 class="heading-medium">Enter a search term or use the filters</h2>
+                        {% else %}
+                            {% for company in results %}
+                                <li>
+                                    <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
+                                        <div class="logo-container">
+                                            {% thumbnail company.logo "x135" as logo %}
+                                                <img src="{{ logo.url }}" alt="{{ company.name }}" />
+                                            {% empty %}
+                                                <img class="placeholder" src="{% static 'core/images/placeholder.png' %}" alt="" />
+                                            {% endthumbnail %}
+                                        </div>
+                                        <div class="width-full details-container">
+                                            <div class="result-header">
+                                                <h3 class="heading-medium margin-0 link">{{ company.name }}</h3>
+                                            </div>
+                                            {% if company.description or company.summary %}
+                                                {% if company.highlight %}
+                                                    {{ company.highlight|truncatechars_html:125 }}
+                                                {% else %}
+                                                    {{ company.summary|default:company.description|truncatechars:135 }}
+                                                {% endif %}
+                                            {% endif %}
+                                            <div class="grid-row result-footer width-full">
+                                                {% if company.expertise_regions %}
+                                                    <div class="mid-grey-text font-xsmall column-one-half ellipsis">
+                                                        Regional expertise: <strong class="bold">{{ company.expertise_regions }}</strong>
+                                                    </div>
+                                                {% endif %}
+                                                {% if company.employees %}
+                                                    <div class="employees mid-grey-text font-xsmall column-one-half ellipsis">Number of employees: <strong class="bold">{{ company.employees }} Employees</strong></div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% empty %}
+                                <h2 class="heading-medium">No UK businesses match your search</h2>
+                                <p class="form-hint">Try different filters or a new search term.</p>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    {% if pagination.paginator.num_pages > 1 %}
+                        <div id="paginator">
+                            {% if pagination.has_previous %}
+                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
+                            {% endif %}
+                                <ol>
+                                    {% if pagination.paginator.num_pages <= 5 %}
+                                        {% for number in pagination.paginator.page_range %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                    {% elif pagination.number < 5 %}
+                                        {% for number in pagination.paginator.page_range|slice:'0:4' %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% elif pages_after_current < 4 %}
+                                        {% include 'core/paginator-item.html' with number='1' %}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
+                                            {% include 'core/paginator-item.html' %}
+                                        {% endfor %}
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% else %}
+                                        {% include 'core/paginator-item.html' with number='1'%}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
+                                        {% include 'core/paginator-item.html' with number=pagination.number %}
+                                        {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
+                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
+                                    {% endif %}
+                                </ol>
+                            {% if pagination.has_next %}
+                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% block subscription %} {% endblock %}
+
+{% endblock content %}
+
+{% block body_js %}
+<script type="text/javascript">
+
+  function handleTogle(event) {
+    var element = event.target;
+    element.classList.toggle('checked');
+    var formGroup = document.getElementById(element.getAttribute('aria-controls'));
+    formGroup.setAttribute('aria-expanded', !(formGroup.getAttribute('aria-expanded') == 'true'));
+  }
+  var elements = document.getElementsByClassName('filter-collapse');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', handleTogle);
+  }
+</script>
+{% endblock %}

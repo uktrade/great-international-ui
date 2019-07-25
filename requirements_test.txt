@@ -17,14 +17,14 @@ click==7.0                # via pip-tools
 codecov==2.0.9
 coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
-directory-client-core==5.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
+directory-api-client==14.0.0
+directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
 directory-components==27.0.1
 directory-constants==18.1.2
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
-directory_api_client==14.0.0
 django-countries==5.2
 django-crispy-forms==1.7.1
 django-environ==0.4.5
@@ -67,13 +67,14 @@ pytest==3.8.0
 python-dateutil==2.6.1    # via botocore, dateparser, freezegun, zenpy
 pytz==2017.2              # via dateparser, directory-validators, django, tzlocal
 raven==6.9.0
-redis==2.10.6             # via django-redis
+redis==2.10.5
 regex==2019.2.5           # via dateparser
 requests-mock==1.1.0
 requests==2.21.0
 s3transfer==0.1.13        # via boto3
 sigauth==4.0.1            # via directory-client-core
 six==1.11.0               # via freezegun, jsonschema, mohawk, more-itertools, pip-tools, pyrsistent, pytest, pytest-xdist, python-dateutil, requests-mock, w3lib
+sorl-thumbnail==12.5
 termcolor==1.1.0          # via pytest-sugar
 tzlocal==1.5.1            # via dateparser
 urllib3==1.24.2
