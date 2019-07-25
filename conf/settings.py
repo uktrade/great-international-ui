@@ -490,3 +490,29 @@ PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID = env.str('PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID
 PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY = env.str('PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY')  # NOQA
 PFP_AWS_S3_PDF_STORE_BUCKET_NAME = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_NAME')
 PFP_AWS_S3_PDF_STORE_BUCKET_REGION = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_REGION', 'eu-west-2')  # NOQA
+
+
+# Sorl-thumbnail
+THUMBNAIL_FORMAT = 'PNG'
+THUMBNAIL_STORAGE_CLASS_NAME = env.str('THUMBNAIL_STORAGE_CLASS_NAME', 's3')
+THUMBNAIL_KVSTORE_CLASS_NAME = env.str(
+    'THUMBNAIL_KVSTORE_CLASS_NAME', 'redis'
+)
+THUMBNAIL_STORAGE_CLASSES = {
+    's3': 'storages.backends.s3boto3.S3Boto3Storage',
+    'local-storage': 'django.core.files.storage.FileSystemStorage',
+}
+THUMBNAIL_KVSTORE_CLASSES = {
+    'redis': 'sorl.thumbnail.kvstores.redis_kvstore.KVStore',
+    'dummy': 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore',
+}
+THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_KVSTORE = THUMBNAIL_KVSTORE_CLASSES[THUMBNAIL_KVSTORE_CLASS_NAME]
+THUMBNAIL_STORAGE = THUMBNAIL_STORAGE_CLASSES[THUMBNAIL_STORAGE_CLASS_NAME]
+# Workaround for slow S3
+# https://github.com/jazzband/sorl-thumbnail#is-so-slow-in-amazon-s3-
+THUMBNAIL_FORCE_OVERWRITE = True
+
+# Redis for thumbnails cache
+if REDIS_URL:
+    THUMBNAIL_REDIS_URL = REDIS_URL
