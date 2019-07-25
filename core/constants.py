@@ -169,6 +169,18 @@ GA_DATA_MAPPING = {
         'site_subsection': 'FormSuccessPage',
     },
 
+    # Perfect fit
+    'PerfectFitFormPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormPage',
+    },
+    'PerfectFitFormSuccessPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormSuccessPage',
+    },
+
     # About DIT
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
