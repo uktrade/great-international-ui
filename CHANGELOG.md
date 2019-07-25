@@ -17,6 +17,7 @@
 - CI-368 - Add ebooks promotional section on "why choose the UK" page
 - No ticket - Fixed Industries landing page extending tag being in the wrong order
 - No ticket - Fix hero image on international home page
+- CI-376 - Fixes About DIT How we help section issue on Internet Explorer
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
