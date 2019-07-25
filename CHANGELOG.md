@@ -18,6 +18,7 @@
 - No ticket - Fixed Industries landing page extending tag being in the wrong order
 - No ticket - Fix hero image on international home page
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
+- CI-375 - Fix spacings on Uk Benefits Page
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
