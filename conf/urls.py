@@ -27,6 +27,10 @@ urlpatterns = [
         )
     ),
     url(
+        r'^international/trade/investment-support-directory/search/',
+        RedirectView.as_view(url='/international/investment-support-directory/')
+    ),
+    url(
         r'^international/healthcheck/',
         skip_ga360(directory_healthcheck.views.HealthcheckView.as_view()),
         name='healthcheck'

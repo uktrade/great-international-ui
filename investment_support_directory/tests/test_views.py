@@ -91,13 +91,11 @@ def test_profile_slug_redirect(client, retrieve_profile_data):
 
 def test_trade_redirect(client):
 
-    url = '/trade' + reverse(
-        'investment-support-directory:search',
-    )
+    url = '/international/trade/investment-support-directory/search/'
     response = client.get(url)
 
     assert response.status_code == 302
-    assert response.url == '/investment-support-directory/'
+    assert response.url == '/international/investment-support-directory/'
 
 
 def test_profile_calls_api(
