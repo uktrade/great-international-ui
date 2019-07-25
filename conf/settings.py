@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'core',
     'directory_constants',
     'captcha',
+    'sorl.thumbnail',
     'directory_components',
     'crispy_forms',
     'health_check.cache',
