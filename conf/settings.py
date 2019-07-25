@@ -72,6 +72,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'core.middleware.GoogleCampaignMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]
@@ -177,6 +178,20 @@ DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
 )
 DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
     'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
+)
+
+# Invest High Potential Opportunities
+HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str(
+    'HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',
+)
+HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str(
+    'HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', '064e2801-18f4-4342-a9e3-5eecddfa7d04'
+)
+HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
+    'HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'a9285cb0-6acf-428f-94f7-2da7248d9ef0'
+)
+HPO_GOV_NOTIFY_USER_REPLY_TO_ID = env.str(
+    'HPO_GOV_NOTIFY_USER_REPLY_TO_ID', '3deb5fc2-1032-4352-aa0a-c677548a9f02'
 )
 
 # Brexit
