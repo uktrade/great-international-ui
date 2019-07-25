@@ -5,7 +5,7 @@ clean:
 test_requirements:
 	pip install -r requirements_test.txt
 
-FLAKE8 := flake8 . --exclude=migrations,.venv,node_modules
+FLAKE8 := flake8 . --exclude=migrations,.venv,node_modules --max-line-length=120
 PYTEST := pytest . -v --ignore=node_modules --cov=. --cov-config=.coveragerc --capture=no $(pytest_args)
 COLLECT_STATIC := python manage.py collectstatic --noinput
 COMPILE_TRANSLATIONS := python manage.py compilemessages
