@@ -191,7 +191,7 @@ a.labelled-image-card .card-header h3 {
   }
 }
 .icon, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .contact-button {
-  height: 60px;
+  height: auto;
   width: 60px;
 }
 
@@ -1098,9 +1098,16 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .about-uk-why-choose-the-uk-page .article-section img {
   width: 100%;
 }
-.about-uk-why-choose-the-uk-page #contact-us-section {
-  padding-top: 120px;
-  padding-bottom: 120px;
+.about-uk-why-choose-the-uk-page #ebook-section .container {
+  overflow: visible;
+}
+.about-uk-why-choose-the-uk-page #ebook-section .column-quarter-l {
+  text-align: center;
+}
+.about-uk-why-choose-the-uk-page #ebook-section img {
+  width: 100%;
+  max-width: 299px;
+  box-shadow: 0 0 4px 4px rgba(240, 240, 240, 0.5);
 }
 
 /*# sourceMappingURL=main.css.map */
