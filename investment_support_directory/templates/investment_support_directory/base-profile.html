@@ -19,7 +19,7 @@
                     {% thumbnail company.logo "x300" as logo %}
                         <img src="{{ logo.url }}" alt="{{ company.name }}" />
                     {% empty %}
-                        <img class="placeholder" src="{% static 'images/placeholder.png' %}" alt="" />
+                        <img class="placeholder" src="{% static 'core/images/placeholder.png' %}" alt="" />
                     {% endthumbnail %}
                 </section>
                 <section id="contact-company-container">
