@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.utils import translation
 import requests
 
+from core import constants
+
 
 def create_response(status_code=200, json_payload=None):
     response = requests.Response()
@@ -23,129 +25,8 @@ def get_language_from_querystring(request):
         return language_code
 
 
-GA_DATA_MAPPING = {
-    'InternationalHomePage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'HomePage',
-        'site_subsection': ''
-    },
-    'InvestInternationalHomePage': {
-        'business_unit': 'Invest',
-        'site_section': 'HomePage',
-        'site_subsection': ''
-    },
-    'InvestHighPotentialOpportunityDetailPage': {
-        'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
-        'site_subsection': 'DetailPage',
-    },
-    'InternationalTopicLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Topic',
-        'site_subsection': 'ListingPage'
-    },
-    'InternationalArticleListingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Article',
-        'site_subsection': 'ListingPage'
-    },
-    'InternationalArticlePage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Article',
-        'site_subsection': 'DetailPage'
-    },
-    'InternationalCampaignPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Campaign',
-        'site_subsection': 'LandingPage'
-    },
-    'InternationalSectorPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Sector',
-        'site_subsection': 'DetailPage'
-    },
-    'InternationalSubSectorPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'SubSector',
-        'site_subsection': 'DetailPage'
-    },
-    'InternationalCuratedTopicLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'CuratedTopic',
-        'site_subsection': 'LandingPage'
-    },
-    'InternationalGuideLandingPage': {
-        'business_unit': 'Invest',
-        'site_section': 'Guide',
-        'site_subsection': 'ListingPage'
-    },
-    'InternationalEUExitFormPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'EUExit',
-        'site_subsection': 'FormPage'
-    },
-    'InternationalEUExitFormSuccessPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'EUExit',
-        'site_subsection': 'FormSuccessPage'
-    },
-    'InternationalCapitalInvestLandingPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'LandingPage',
-        'site_subsection': ''
-    },
-    'AboutDitServicesPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutDIT',
-        'site_subsection': 'ServicesPage'
-    },
-    'AboutUkWhyChooseTheUkPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutUK',
-        'site_subsection': 'WhyChooseTheUkPage'
-    },
-    'CapitalInvestRegionPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Region',
-        'site_subsection': 'DetailPage'
-    },
-    'CapitalInvestOpportunityPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Opportunity',
-        'site_subsection': 'DetailPage'
-    },
-    'CapitalInvestOpportunityListingPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Opportunity',
-        'site_subsection': 'ListingPage'
-    },
-}
-
-HEADER_MAPPING = {
-    'InternationalHomePage': '',
-    'InvestInternationalHomePage': 'invest',
-    'InvestHighPotentialOpportunityDetailPage': 'invest',
-    'InternationalTopicLandingPage': 'industries',
-    'InternationalArticleListingPage': 'uk_setup_guide',
-    'InternationalArticlePage': 'uk_setup_guide',
-    'InternationalCampaignPage': '',
-    'InternationalSectorPage': 'industries',
-    'InternationalSubSectorPage': 'industries',
-    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
-    'InternationalGuideLandingPage': 'uk_setup_guide',
-    'InternationalEUExitFormPage': '',
-    'InternationalEUExitFormSuccessPage': '',
-    'InternationalCapitalInvestLandingPage': 'invest',
-    'AboutDitServicesPage': '',
-    'AboutUkWhyChooseTheUkPage': '',
-    'CapitalInvestRegionPage': 'invest',
-    'CapitalInvestOpportunityPage': 'invest',
-    'CapitalInvestOpportunityListingPage': 'invest'
-}
-
-
 def get_ga_data_for_page(page_type):
-    return GA_DATA_MAPPING[page_type]
+    return constants.GA_DATA_MAPPING[page_type]
 
 
 def get_paginator_url(filters, url_name):
@@ -267,3 +148,8 @@ def sort_opportunities(opportunities, sort_by_chosen):
         )
 
     return opportunities
+
+
+def count_data_with_field(list_of_data, field):
+    filtered_list = [item for item in list_of_data if item[field]]
+    return len(filtered_list)

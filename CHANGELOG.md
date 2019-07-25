@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- CMS-1692 - Added HPO form pages from Invest
 - CMS-1692 - Added HPO detail page from Invest and updated styling
 - TT-1678 - Rename EU exit to Brexit
 

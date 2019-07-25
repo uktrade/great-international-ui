@@ -18,26 +18,21 @@ from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
 
-from core import forms, helpers
+from core import forms, helpers, constants
 from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.helpers import get_ga_data_for_page, HEADER_MAPPING, \
-    filter_opportunities, SectorFilter, RegionFilter, ScaleFilter, \
-    SortFilter, sort_opportunities, \
-    SubSectorFilter
-from core.mixins import (
-    TEMPLATE_MAPPING, NotFoundOnDisabledFeature, RegionalContentMixin)
+from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
+from core.templatetags.cms_tags import filter_by_active_language
 
 
 class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
     pass
 
 
-class CMSPageFromPathView(
+class MonolingualCMSPageFromPathView(
     RegionalContentMixin,
-    CMSLanguageSwitcherMixin,
     NotFoundOnDisabledFeature,
     InternationalView
 ):
@@ -46,7 +41,7 @@ class CMSPageFromPathView(
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
         page_type = self.page['page_type']
-        ga360_data = get_ga_data_for_page(page_type)
+        ga360_data = helpers.get_ga_data_for_page(page_type)
         self.set_ga360_payload(
             page_id=page_type,
             business_unit=ga360_data['business_unit'],
@@ -57,11 +52,7 @@ class CMSPageFromPathView(
 
     @property
     def template_name(self):
-        return TEMPLATE_MAPPING[self.page['page_type']]
-
-    @property
-    def header_section(self):
-        return HEADER_MAPPING[self.page['page_type']]
+        return constants.TEMPLATE_MAPPING[self.page['page_type']]
 
     @cached_property
     def page(self):
@@ -77,20 +68,7 @@ class CMSPageFromPathView(
 
         context = super().get_context_data(page=self.page, **kwargs)
 
-        flag_map = {
-            'CapitalInvestRegionPage':
-                'CAPITAL_INVEST_REGION_PAGE_ON',
-            'CapitalInvestOpportunityPage':
-                'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
-            'InternationalCapitalInvestLandingPage':
-                'CAPITAL_INVEST_LANDING_PAGE_ON',
-            'CapitalInvestOpportunityListingPage':
-                'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
-            'InternationalSubSectorPage':
-                'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'
-        }
-
-        flag_name = flag_map.get(self.page['page_type'])
+        flag_name = constants.FEATURE_FLAGGED_PAGE_TYPES_MAPPING.get(self.page['page_type'])
 
         if flag_name and not settings.FEATURE_FLAGS[flag_name]:
             raise Http404
@@ -101,6 +79,12 @@ class CMSPageFromPathView(
             context.update(modifier(context, request=self.request))
 
         return context
+
+
+class MultilingualCMSPageFromPathView(
+    CMSLanguageSwitcherMixin, MonolingualCMSPageFromPathView
+):
+    pass
 
 
 @register_context_modifier('InternationalArticlePage')
@@ -152,11 +136,6 @@ def sector_landing_page_context_modifier(context, request):
 
 @register_context_modifier('InternationalSectorPage')
 def sector_page_context_modifier(context, request):
-
-    def count_data_with_field(list_of_data, field):
-        filtered_list = [item for item in list_of_data if item[field]]
-        return len(filtered_list)
-
     page = context['page']
 
     trade_contact_form = urls.build_fas_url('industries/contact/')
@@ -169,9 +148,9 @@ def sector_page_context_modifier(context, request):
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
-        'num_of_statistics': count_data_with_field(
+        'num_of_statistics': helpers.count_data_with_field(
             page['statistics'], 'number'),
-        'section_three_num_of_subsections': count_data_with_field(
+        'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
         'trade_contact_form_url': trade_contact_form
@@ -197,10 +176,6 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 
 @register_context_modifier('InternationalSubSectorPage')
 def sub_sector_context_modifier(context, request):
-    def count_data_with_field(list_of_data, field):
-        filtered_list = [item for item in list_of_data if item[field]]
-        return len(filtered_list)
-
     page = context['page']
 
     trade_contact_form = urls.build_fas_url('industries/contact/')
@@ -213,9 +188,9 @@ def sub_sector_context_modifier(context, request):
 
     return {
         'invest_contact_us_url': urls.build_invest_url('contact/'),
-        'num_of_statistics': count_data_with_field(
+        'num_of_statistics': helpers.count_data_with_field(
             page['statistics'], 'number'),
-        'section_three_num_of_subsections': count_data_with_field(
+        'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
         'trade_contact_form_url': trade_contact_form
@@ -244,11 +219,6 @@ class InternationalContactPageView(CountryDisplayMixin, InternationalView):
 
 @register_context_modifier('CapitalInvestRegionPage')
 def capital_invest_region_page_context_modifier(context, request):
-
-    def count_data_with_field(list_of_data, field):
-        filtered_list = [item for item in list_of_data if item[field]]
-        return len(filtered_list)
-
     page = context['page']
 
     show_accordions = False
@@ -261,9 +231,9 @@ def capital_invest_region_page_context_modifier(context, request):
             show_accordions = True
 
     return {
-        'num_of_economics_statistics': count_data_with_field(
+        'num_of_economics_statistics': helpers.count_data_with_field(
             page['economics_stats'], 'number'),
-        'num_of_location_statistics': count_data_with_field(
+        'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
         'invest_cta_link': urls.SERVICES_INVEST,
         'buy_cta_link': urls.SERVICES_FAS,
@@ -305,7 +275,6 @@ class OpportunitySearchView(
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
-    header_section = 'invest'
 
     def __init__(self):
         super().__init__()
@@ -331,23 +300,23 @@ class OpportunitySearchView(
 
     @property
     def sector(self):
-        return SectorFilter(self.request.GET.getlist('sector', []))
+        return helpers.SectorFilter(self.request.GET.getlist('sector', []))
 
     @property
     def scale(self):
-        return ScaleFilter(self.request.GET.getlist('scale', []))
+        return helpers.ScaleFilter(self.request.GET.getlist('scale', []))
 
     @property
     def region(self):
-        return RegionFilter(self.request.GET.getlist('region', ''))
+        return helpers.RegionFilter(self.request.GET.getlist('region', ''))
 
     @property
     def sort_filter(self):
-        return SortFilter(self.request.GET.get('sort_by', ''))
+        return helpers.SortFilter(self.request.GET.get('sort_by', ''))
 
     @property
     def sub_sector(self):
-        return SubSectorFilter(self.request.GET.getlist('sub_sector', []))
+        return helpers.SubSectorFilter(self.request.GET.getlist('sub_sector', []))
 
     @cached_property
     def page(self):
@@ -385,7 +354,7 @@ class OpportunitySearchView(
     def all_scales(self):
         return [
             (scale.title, scale.title)
-            for scale in ScaleFilter.scales_with_values
+            for scale in helpers.ScaleFilter.scales_with_values
         ]
 
     @property
@@ -404,7 +373,7 @@ class OpportunitySearchView(
     def all_sort_filters(self):
         sort_filters_with_selected_status = [
             (sort_filter.title, sort_filter.title)
-            for sort_filter in SortFilter.sort_by_with_values
+            for sort_filter in helpers.SortFilter.sort_by_with_values
         ]
 
         return sort_filters_with_selected_status
@@ -438,31 +407,31 @@ class OpportunitySearchView(
         filtered_opportunities = [opp for opp in self.opportunities]
 
         if self.sector.sectors:
-            filtered_opportunities = filter_opportunities(
+            filtered_opportunities = helpers.filter_opportunities(
                 filtered_opportunities,
                 self.sector
             )
 
         if self.region.regions:
-            filtered_opportunities = filter_opportunities(
+            filtered_opportunities = helpers.filter_opportunities(
                 filtered_opportunities,
                 self.region
             )
 
         if self.scale.selected_scales:
-            filtered_opportunities = filter_opportunities(
+            filtered_opportunities = helpers.filter_opportunities(
                 filtered_opportunities,
                 self.scale
             )
 
         if self.sub_sector.sub_sectors:
-            filtered_opportunities = filter_opportunities(
+            filtered_opportunities = helpers.filter_opportunities(
                 filtered_opportunities,
                 self.sub_sector
             )
 
         if self.sort_filter.sort_by_filter_chosen:
-            filtered_opportunities = sort_opportunities(
+            filtered_opportunities = helpers.sort_opportunities(
                 filtered_opportunities,
                 self.sort_filter
             )
@@ -529,3 +498,18 @@ class OpportunitySearchView(
             form=self.opportunity_search_form,
             *args, **kwargs,
         )
+
+
+@register_context_modifier('InvestInternationalHomePage')
+def invest_homepage_context_modifier(context, request):
+    pages = context['page']['high_potential_opportunities'],
+
+    return {
+        'international_home_page_link': urls.GREAT_INTERNATIONAL,
+        'investment_support_directory_link': urls.FAS_INVESTMENT_SUPPORT_DIRECTORY,
+        'how_to_set_up_visas_and_migration_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_VISAS_AND_MIGRATION,
+        'how_to_set_up_tax_and_incentives_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_TAX_AND_INCENTIVES,
+        'show_hpo_section': bool(
+            pages and filter_by_active_language(pages[0])
+        ),
+    }
