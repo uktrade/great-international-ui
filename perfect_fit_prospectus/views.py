@@ -9,23 +9,38 @@ from django.views.generic.base import View
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
-from perfect_fit_prospectus.forms import PerfectFitProspectusForm
-from directory_components.mixins import CountryDisplayMixin,\
-    InternationalHeaderMixin
-
+from directory_components import mixins
 from pir_client.client import pir_api_client
 
+from core import helpers
+from perfect_fit_prospectus.forms import PerfectFitProspectusForm
 
-class PerfectFitProspectusMainView(
-    CountryDisplayMixin, SuccessMessageMixin,
-    InternationalHeaderMixin, FormView
+
+class PerfectFitBaseView(
+    mixins.CountryDisplayMixin,
+    mixins.InternationalHeaderMixin,
+    mixins.GA360Mixin
 ):
+    def dispatch(self, request, *args, **kwargs):
+        dispatch_result = super().dispatch(request, *args, **kwargs)
+        ga360_data = helpers.get_ga_data_for_page(self.page_type)
+        self.set_ga360_payload(
+            page_id=self.page_type,
+            business_unit=ga360_data['business_unit'],
+            site_section=ga360_data['site_section'],
+            site_subsection=ga360_data['site_subsection']
+        )
+        return dispatch_result
+
+
+class PerfectFitProspectusMainView(PerfectFitBaseView, SuccessMessageMixin, FormView):
     form_class = PerfectFitProspectusForm
     template_name = 'perfect_fit_prospectus/index.html'
     success_url = reverse_lazy('perfect_fit_prospectus:success')
     success_message = _(
         'Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s'
     )
+    page_type = 'PerfectFitFormPage'
 
     def form_valid(self, form):
         data = form.cleaned_data
@@ -54,12 +69,12 @@ class PerfectFitProspectusMainView(
         return kwargs
 
 
-class PerfectFitProspectusSuccessView(InternationalHeaderMixin, TemplateView):
+class PerfectFitProspectusSuccessView(PerfectFitBaseView, TemplateView):
     template_name = 'perfect_fit_prospectus/success.html'
+    page_type = 'PerfectFitFormSuccessPage'
 
 
-class PerfectFitProspectusReportProxyView(CountryDisplayMixin,
-                                          InternationalHeaderMixin, View):
+class PerfectFitProspectusReportProxyView(View):
     def get(self, request, filename):
         client = boto3.client(
             's3',

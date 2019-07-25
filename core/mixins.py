@@ -13,7 +13,7 @@ from directory_constants import cms
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import helpers
+from core import constants, helpers
 
 TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
@@ -54,10 +54,10 @@ FEATURE_FLAGGED_URLS_MAPPING = {
 class NotFoundOnDisabledFeature:
     def dispatch(self, *args, **kwargs):
 
-        if self.request.path not in FEATURE_FLAGGED_URLS_MAPPING:
+        if self.request.path not in constants.FEATURE_FLAGGED_URLS_MAPPING:
             return super().dispatch(*args, **kwargs)
 
-        flag = FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, None)
+        flag = constants.FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, None)
         flag_on = settings.FEATURE_FLAGS.get(flag, False)
 
         if not flag_on:
@@ -91,7 +91,7 @@ class CMSPageFromSlugMixin:
 
     @property
     def template_name(self):
-        return TEMPLATE_MAPPING[self.page['page_type']]
+        return constants.TEMPLATE_MAPPING[self.page['page_type']]
 
     def dispatch(self, request, *args, **kwargs):
         """

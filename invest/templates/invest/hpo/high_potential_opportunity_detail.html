@@ -22,9 +22,12 @@
 
 {% hero background_image_url=page.hero_image.url hero_text=page.heading %}
 
+{% include 'invest/includes/invest_cms_breadcrumbs.html' %}
+
 <section id="contact-section" class="contact-section padding-top-30">
     <div class="container">
-        {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone-40' box_content=page.contact_proposition|add_export_elements_classes button_text=page.contact_button button_url='#placeholder' %}
+        {% url 'high-potential-opportunity-request-form' as hpo_contact_url %}
+        {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone-40' box_content=page.contact_proposition|add_export_elements_classes button_text=page.contact_button button_url=hpo_contact_url %}
     </div>
 </section>
 

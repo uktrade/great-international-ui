@@ -11,6 +11,7 @@ import requests
 
 from directory_constants import choices
 from django.utils.html import escape, mark_safe
+from core import constants
 
 
 def create_response(status_code=200, json_payload=None):
@@ -158,7 +159,7 @@ NotifySettings = collections.namedtuple(
 
 
 def get_ga_data_for_page(page_type):
-    return GA_DATA_MAPPING[page_type]
+    return constants.GA_DATA_MAPPING[page_type]
 
 
 def get_paginator_url(filters, url_name):
@@ -362,3 +363,8 @@ def get_company_profile(number):
         raise Http404(f'API returned 404 for company number {number}')
     response.raise_for_status()
     return response.json()
+
+
+def count_data_with_field(list_of_data, field):
+    filtered_list = [item for item in list_of_data if item[field]]
+    return len(filtered_list)

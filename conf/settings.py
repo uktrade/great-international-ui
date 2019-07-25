@@ -70,6 +70,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'core.middleware.GoogleCampaignMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]
@@ -165,6 +166,36 @@ LOCALE_PATHS = (
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
+)
+
+# Invest High Potential Opportunities
+HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str(
+    'HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',
+)
+HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str(
+    'HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', '064e2801-18f4-4342-a9e3-5eecddfa7d04'
+)
+HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
+    'HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'a9285cb0-6acf-428f-94f7-2da7248d9ef0'
+)
+HPO_GOV_NOTIFY_USER_REPLY_TO_ID = env.str(
+    'HPO_GOV_NOTIFY_USER_REPLY_TO_ID', '3deb5fc2-1032-4352-aa0a-c677548a9f02'
+)
+
+# Brexit
+EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
+
+# Contact
+INVEST_CONTACT_URL = env.str(
+    'INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/'
+)
+FIND_A_SUPPLIER_CONTACT_URL = env.str(
+    'FIND_A_SUPPLIER_CONTACT_URL',
+    'https://trade.great.gov.uk/industries/contact/'
+)
+CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
+    'CONTACT_DOMESTIC_ZENDESK_SUBJECT',
+    'great.gov.uk international contact form'
 )
 
 # needed only for dev local storage

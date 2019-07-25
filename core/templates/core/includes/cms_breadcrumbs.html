@@ -1,0 +1,21 @@
+
+<div class="container">
+  <nav class="breadcrumbs" aria-label="breadcrumb" role="navigation">
+    <ol>
+      {% block landing_page_link %}
+      <li>
+          <a href="{% url 'index' %}">great.gov.uk International</a>
+      </li>
+      {% endblock %}
+      {% for crumb in page.tree_based_breadcrumbs %}
+        {% if not forloop.last %}
+          <li>
+            <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+          </li>
+        {% else %}
+          <li aria-current="page">{{ crumb.title }}</li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+</div>

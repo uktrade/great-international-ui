@@ -8,7 +8,7 @@ from django.urls import reverse
 
 from core import helpers
 from core.tests.helpers import create_response
-from core.views import CMSPageFromPathView, cms_api_client, \
+from core.views import MultilingualCMSPageFromPathView, cms_api_client, \
     OpportunitySearchView
 
 test_sectors = [
@@ -121,7 +121,7 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
     request = rf.get('/international/')
     request.LANGUAGE_CODE = 'de'
 
-    response = CMSPageFromPathView.as_view()(request, path='/international/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path='/international/')
 
     assert response.status_code == 200
     assert response.context_data['language_switcher']['show'] is False
@@ -132,7 +132,7 @@ def test_cms_language_switcher_active_language_available(rf):
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'
 
-    response = CMSPageFromPathView.as_view()(request, path='/international/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path='/international/')
 
     assert response.status_code == 200
     context = response.context_data['language_switcher']
@@ -142,7 +142,7 @@ def test_cms_language_switcher_active_language_available(rf):
 def test_get_cms_page(rf, home_page):
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(request, path='/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path='/')
 
     assert response.context_data['page'] == home_page.return_value.json()
 
@@ -399,11 +399,47 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
 
     request = rf.get('/international/content/industries/sector-page/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector-page/')
 
     assert response.context_data['num_of_statistics'] == 2
     assert response.context_data['section_three_num_of_subsections'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
+    mock_cms_response,
+    rf
+):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'AboutUkWhyChooseTheUkPage',
+        'statistics': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk/why-choose-uk/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/why-choose-uk/')
+
+    assert response.context_data['num_of_statistics'] == 2
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -503,7 +539,7 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['num_of_economics_statistics'] == 2
@@ -533,7 +569,7 @@ def test_get_capital_invest_opportunity_page_url_constants(
 
     request = rf.get('/international/content/opportunities/ashton')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/opportunities/ashton')
 
     assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
@@ -636,7 +672,7 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
         '/international/content/industries/energy/housing'
     )
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request,
         path='/international/content/industries/energy/housing'
     )
@@ -1214,7 +1250,7 @@ def test_get_random_three_opportunities_for_sector_page(
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector')
 
     assert len(response.context_data['random_opportunities']) == 3
@@ -1244,7 +1280,7 @@ def test_get_random_three_opportunities_for_sector_page_null_case(
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector')
 
     assert len(response.context_data['random_opportunities']) == 0
@@ -1274,7 +1310,7 @@ def test_get_random_three_opportunities_for_sub_sector_page_null_case(
 
     request = rf.get('/international/content/industries/sector/sub_sector')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector/sub_sector')
 
     assert len(response.context_data['random_opportunities']) == 0
@@ -1349,8 +1385,73 @@ def test_get_random_three_opportunities_for_opportunity_page(
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
-    response = CMSPageFromPathView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/industries/sector')
 
     assert len(response
                .context_data['random_opps_in_random_related_sector']) <= 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_showing_accordions_for_region_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionPage',
+        'economics_stats': [],
+        'location_stats': [],
+        'subsections': [
+            {'title': 'section', 'content': 'Some content', 'icon': []},
+        ]
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_accordions'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_showing_accordions_null_case_for_region_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestRegionPage',
+        'economics_stats': [],
+        'location_stats': [],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_accordions'] is False
