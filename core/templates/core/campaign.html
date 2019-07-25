@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 {% load filter_by_active_language from cms_tags %}
-{% load breadcrumbs cta_box add_export_elements_classes ga360_tracker from directory_components %}
+{% load breadcrumbs cta_box add_export_elements_classes from directory_components %}
 
 {% block css_layout_class %}campaign-page{% endblock css_layout_class %}
 
@@ -9,11 +9,9 @@
 <section class="hero hero-generic padding-0" id="campaign-hero" {% if page.campaign_hero_image %}style="background-image: url('{{ page.campaign_hero_image.url }}')"{% endif %}>
 
   <div class="container white-text">
-    {% ga360_tracker "breadcrumbs" %}
-      {% breadcrumbs page.campaign_heading %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
-    {% endga360_tracker %}
+    {% breadcrumbs page.campaign_heading %}
+      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    {% endbreadcrumbs %}
 
     <div class="hero-title">
       <h1 id="campaign-hero-heading" class="heading-hero-generic">{{ page.campaign_heading }}</h1>
@@ -65,9 +63,7 @@
         </ul>
 
         {% if page.section_one_contact_button_url and page.section_one_contact_button_text %}
-          {% ga360_tracker "cta" %}
             <a id="section-one-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_one_contact_button_url }}">{{ page.section_one_contact_button_text }}</a>
-          {% endga360_tracker %}
         {% endif %}
       </div>
 
@@ -91,9 +87,7 @@
         <h2 id="section-two-heading" class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
         {{ page.section_two_intro|add_export_elements_classes }}
         {% if page.section_two_contact_button_url and page.section_one_contact_button_text %}
-          {% ga360_tracker "cta" %}
-            <a id="section-two-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_two_contact_button_url }}">{{ page.section_two_contact_button_text }}</a>
-          {% endga360_tracker %}
+          <a id="section-two-contact-button" class="button button-large button-blue margin-top-30" href="{{ page.section_two_contact_button_url }}">{{ page.section_two_contact_button_text }}</a>
         {% endif %}
       </div>
 
@@ -127,9 +121,7 @@
           {% if article.article_image_thumbnail %}
             <img id="related-article-{{ article.meta.slug }}-image" src="{{ article.article_image_thumbnail.url }}" alt="">
           {% endif %}
-          {% ga360_tracker "related-page-link" %}
-            <a id="related-page-{{ article.meta.slug }}-heading" href="{{ article.meta.url }}" class="heading-medium grey-text margin-top-30">{{ article.title }}</a>
-          {% endga360_tracker %}
+          <a id="related-page-{{ article.meta.slug }}-heading" href="{{ article.meta.url }}" class="heading-medium grey-text margin-top-30">{{ article.title }}</a>
           <p id="related-page-{{ article.meta.slug }}-description">{{ article.subheading }}</p>
         </li>
       {% endfor %}
@@ -140,9 +132,7 @@
 
 <section id="campaign-contact-section" class="padding-bottom-60">
   <div class="container">
-    {% ga360_tracker "cta" %}
     {% cta_box box_id="campaign-contact-box" heading=page.cta_box_message button_text=page.cta_box_button_text button_class='button-large' button_url=page.cta_box_button_url box_class="background-stone-50" %}
-    {% endga360_tracker %}
   </div>
 </section>
 

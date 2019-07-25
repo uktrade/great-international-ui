@@ -1,4 +1,4 @@
-{% load card ga360_tracker from directory_components %}
+{% load card from directory_components %}
 {% load filter_by_active_language from cms_tags %}
 
 {% with page.related_pages|filter_by_active_language as related_pages %}
@@ -10,9 +10,7 @@
         {% for article in related_pages %}
           <li class="column-third-l column-half-m column-full">
             {% with 'related-article-'|add:article.meta.slug as card_id %}
-              {% ga360_tracker "related-page-card" ga-value=article.title %}
-                {% card card_id=card_id title=article.title description=article.teaser url=article.meta.url img_src=article.thumbnail.url %}
-              {% endga360_tracker %}
+              {% card card_id=card_id title=article.title description=article.teaser url=article.meta.url img_src=article.thumbnail.url %}
             {% endwith %}
           </li>
         {% endfor %}

@@ -1,0 +1,12 @@
+{% load title_from_heading from cms_tags %}
+{% load card from directory_components %}
+
+{% if cards %}
+  {% for card in cards %}
+    <div class="column-full column-half-m column-third-l">
+      {% block card_content %}
+        {% card url=card.meta.url title=card.heading|title_from_heading description=card.description card_id=card.meta.slug %}
+      {% endblock %}
+    </div>
+  {% endfor %}
+{% endif %}

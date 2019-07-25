@@ -5,7 +5,7 @@ clean:
 test_requirements:
 	pip install -r requirements_test.txt
 
-FLAKE8 := flake8 . --exclude=migrations,.venv,node_modules
+FLAKE8 := flake8 . --exclude=migrations,.venv,node_modules --max-line-length=120
 PYTEST := pytest . -v --ignore=node_modules --cov=. --cov-config=.coveragerc --capture=no $(pytest_args)
 COLLECT_STATIC := python manage.py collectstatic --noinput
 COMPILE_TRANSLATIONS := python manage.py compilemessages
@@ -68,8 +68,9 @@ DEBUG_SET_ENV_VARS := \
 	export FEATURE_CAPITAL_INVEST_LANDING_PAGE_ENABLED=true; \
 	export FEATURE_CAPITAL_INVEST_REGION_PAGE_ENABLED=true; \
 	export FEATURE_CAPITAL_INVEST_OPPORTUNITY_PAGE_ENABLED=true; \
-	export FEATURE_CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ENABLED=false; \
+	export FEATURE_CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ENABLED=true; \
 	export FEATURE_CAPITAL_INVEST_REGION_SECTOR_OPP_PAGE_ENABLED=true; \
+	export FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED=true; \
 	export PFP_API_CLIENT_API_KEY=debug; \
 	export PFP_API_CLIENT_BASE_URL=http://pfp.trade.great:8014; \
 	export PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID=debug; \

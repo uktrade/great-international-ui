@@ -1,0 +1,126 @@
+{% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
+{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid from directory_components %}
+
+{% block css_layout_class %}about-uk-why-choose-the-uk-page{% endblock %}
+
+{% block content %}
+
+  {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+
+  <section id="breadcrumb-section">
+    <div class="container">
+      {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      {% endbreadcrumbs %}
+    </div>
+  </section>
+
+  {% if page.teaser %}
+    <section id="teaser-section" class="padding-top-30 padding-bottom-60">
+      <div class="container">
+        <div class="grid-row">
+            <div class="column-three-quarters-l">
+              {{ page.teaser|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
+            </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.section_one_body and page.section_one_image %}
+    <section id="section-one" class="padding-vertical-45 padding-vertical-60-l">
+      <div class="container">
+        <div class="grid-row">
+          {% if page.section_one_body %}
+            <div class="column-half-l">
+              {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
+            </div>
+          {% endif %}
+          {% if page.section_one_image %}
+            <div class="column-half-l">
+              <img src="{{ page.section_one_image.url }}" />
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if num_of_statistics != 0 %}
+    <section id="sector-statistics-section" class="statistics">
+      <div class="container">
+        {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.about_uk_articles_fields %}
+    {% for article in page.about_uk_articles_fields %}
+        <section id="{{ article.title|slugify }}-article-section" class="article-section padding-vertical-60 padding-vertical-90-l">
+          <div class="container">
+            <div class="grid-row">
+              <div class="column-half-l">
+                {% if article.image %}
+                  <img src="{{ article.image.url }}" />
+                {% endif %}
+              </div>
+              <div class="column-half-l {% if forloop.counter|divisibleby:2 %}padding-right-60-l{% else %}padding-left-60-l{% endif %}">
+                <h2 class="heading-large margin-top-0-l">{{ article.title }}</h2>
+                <p class="margin-bottom-60-l">{{ article.summary }}</p>
+                {% if article.link_text and article.link_url %}
+                  <a class="button button-ghost-blue button-arrow-small margin-bottom-0" href="{{ article.link_url }}">
+                    {{ article.link_text }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </section>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.ebook_section_title and page.ebook_section_body %}
+    <section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
+      <div class="container">
+        <div class="grid-row">
+          {% if page.ebook_section_image %}
+            <div class="column-quarter-l">
+              <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
+            </div>
+          {% endif %}
+          <div class="column-three-quarters-l padding-left-60-l">
+            <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
+            {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+            {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+              <a class="button button-blue button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
+                {{ page.ebook_section_cta_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.contact_us_section_title and page.contact_us_section_summary %}
+    <section id="contact-us-section">
+      <div class="container">
+        <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
+        {% if page.contact_us_section_summary %}
+        <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
+          <div class="column-two-thirds">
+            {{ page.contact_us_section_summary|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+          </div>
+        </div>
+        {% endif %}
+        {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}
+          <a class="button button-blue button-arrow-small" href="{{ page.contact_us_section_cta_link }}">
+            {{ page.contact_us_section_cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+{% endblock %}

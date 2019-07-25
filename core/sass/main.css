@@ -185,8 +185,24 @@ a.labelled-image-card .card-header h3 {
     padding-left: 60px;
   }
 }
+@media (max-width: 640px) {
+  .reverse-columns-s {
+    flex-direction: column-reverse;
+  }
+}
+.icon, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .contact-button {
+  height: 60px;
+  width: 60px;
+}
+
 section {
   padding-bottom: 0;
+}
+
+input.form-control,
+textarea.form-control,
+select.form-control {
+  width: 100%;
 }
 
 .cta-block .cta-block-image {
@@ -330,6 +346,175 @@ body.js-enabled .landing-page .country-selector-dialog select {
   padding-left: 60px;
 }
 
+.invest-landing-page .landing-page-how-we-help ul {
+  width: 100%;
+}
+.invest-landing-page .landing-page-how-we-help .icon, .invest-landing-page .landing-page-how-we-help .contact-button {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e41f13;
+  height: calc(60px + 15px + 2px);
+}
+.invest-landing-page .landing-page-how-we-help .contact-button {
+  border-bottom: 0;
+}
+.invest-landing-page :lang(ar) .banner-container[dir=rtl] .information-banner .banner-content > * {
+  padding-left: 0;
+  padding-right: 15px;
+}
+@media (min-width: 641px) {
+  .invest-landing-page .landing-page-section .container .left-half-page-text {
+    padding-right: 60px;
+  }
+  .invest-landing-page .landing-page-section .container .right-half-page-text {
+    padding-left: 60px;
+  }
+}
+@media (max-width: 768px) {
+  .invest-landing-page .landing-page-setup-guide .card-grid,
+.invest-landing-page .landing-page-benefits .card-grid {
+    flex-direction: column-reverse;
+  }
+}
+@media (max-width: 640px) {
+  .invest-landing-page .landing-page-how-we-help .help-section {
+    min-height: auto;
+    clear: both;
+    padding-bottom: 15px;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child {
+    padding-top: 30px;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child p {
+    margin-left: 0;
+    width: 100%;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section:last-child .contact-button {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section p,
+.invest-landing-page .landing-page-how-we-help .help-section .icon,
+.invest-landing-page .landing-page-how-we-help .help-section .contact-button {
+    float: left;
+  }
+  .invest-landing-page .landing-page-how-we-help .help-section p {
+    width: calc(100% - 64px - 30px);
+    margin-left: 30px;
+  }
+}
+.invest-landing-page .invest-breadcrumbs {
+  padding-bottom: 0;
+}
+.invest-landing-page .landing-page-section:nth-child(odd) {
+  padding: 60px 0;
+}
+.invest-landing-page .landing-page-section:nth-child(even) {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+.invest-landing-page .center-vertical {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.invest-landing-page .flex-shrink-0 {
+  flex-shrink: 0;
+}
+.invest-landing-page .landing-page-image {
+  position: relative;
+}
+.invest-landing-page .case-study .container .grid-row .button-arrow-small {
+  margin-top: 45px;
+}
+.invest-landing-page .landing-page-section .container .card-grid .column-half-l .eu-exit-button {
+  white-space: normal;
+}
+
+.hpo-detail-page .hpo-page-section:nth-child(odd) {
+  background-color: #ffffff;
+}
+.hpo-detail-page .hpo-page-section:nth-child(even) {
+  background: #f5f2ed;
+}
+.hpo-detail-page .contact-section {
+  position: relative;
+  width: 100%;
+  top: 10px;
+  z-index: 1;
+}
+.hpo-detail-page .opportunity-list-image {
+  max-width: 470px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.hpo-detail-page .proposition-two-image {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.hpo-detail-page .proposition-one-media-container {
+  height: 0;
+}
+.hpo-detail-page .proposition-list-item {
+  border-top: 4px solid #b00d23;
+}
+.hpo-detail-page .proposition-two-grid {
+  flex-direction: row;
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .proposition-two-grid {
+    flex-direction: column-reverse;
+  }
+}
+.hpo-detail-page .testimonial-section .quote-outer-container {
+  min-height: 600px;
+  display: table;
+}
+.hpo-detail-page .testimonial-section .quote-inner-container {
+  display: table-cell;
+  vertical-align: middle;
+}
+@media (min-width: 640px) {
+  .hpo-detail-page .testimonial-section .quote-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .testimonial-section .quote-outer-container {
+    min-height: 400px;
+    padding: 0 30px;
+  }
+}
+.hpo-detail-page .competitive-advantages .icon-container {
+  float: left;
+  margin-right: 30px;
+}
+.hpo-detail-page .competitive-advantages .advantages-container {
+  float: left;
+}
+.hpo-detail-page .competitive-advantages .advantages-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+.hpo-detail-page .company-list .company-logo-list img {
+  width: 150px;
+}
+@media (max-width: 640px) {
+  .hpo-detail-page .company-list .company-logo-list li {
+    width: 50%;
+    float: left;
+  }
+}
+.hpo-detail-page .case-studies .hpo-case-study {
+  border-bottom: 1px solid #d8d8d8;
+}
+.hpo-detail-page .case-studies .hpo-case-study:last-child {
+  border: 0;
+}
+
 .capital-invest-landing-page .page-section {
   padding: 60px 0;
 }
@@ -425,26 +610,77 @@ body.js-enabled .landing-page .country-selector-dialog select {
     padding: 30px 0;
   }
 }
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
+.capital-invest-region-page .region-white-page-section {
   padding: 60px 0;
 }
 @media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(odd) {
+  .capital-invest-region-page .region-white-page-section {
     padding: 30px 0;
   }
 }
-.capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
+.capital-invest-region-page .region-stone-page-section {
   padding: 60px 0;
   background: #f2eee8;
 }
 @media (max-width: 641px) {
-  .capital-invest-region-page .capital-invest-region-page-section:nth-of-type(even) {
+  .capital-invest-region-page .region-stone-page-section {
     padding: 30px 0;
   }
 }
 @media (max-width: 641px) {
   .capital-invest-region-page .mobile-padding-bottom-30 {
     padding-bottom: 30px;
+  }
+}
+.capital-invest-region-page .accordion-expander {
+  text-decoration: none;
+  margin: 0;
+  color: #006ccc;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #d8d8d8;
+  padding: 15px;
+  position: relative;
+  width: 100%;
+  min-height: 88px;
+}
+.capital-invest-region-page .accordion-expander:focus {
+  outline: #ffbf47 solid 3px;
+}
+.capital-invest-region-page .accordion-expander:focus:active {
+  color: #00549f;
+}
+.capital-invest-region-page .accordion-expander:after {
+  content: "+";
+  font-weight: 700;
+  font-size: 36px;
+  position: absolute;
+  right: 15px;
+  color: black;
+}
+.capital-invest-region-page .accordion-expander.active:after {
+  content: "–";
+}
+.capital-invest-region-page ul li:last-child .accordion-expander {
+  border-bottom: 1px solid #d8d8d8;
+}
+.capital-invest-region-page ul li:last-child .accordion-expander.active {
+  border-bottom: 0;
+}
+.capital-invest-region-page .accordion-expander.active {
+  background-color: #fcfbf9;
+  border-bottom: 0;
+}
+.capital-invest-region-page .Expander.collapsed {
+  display: none;
+}
+.capital-invest-region-page .accordion-content {
+  padding: 30px;
+}
+@media (max-width: 767px) {
+  .capital-invest-region-page .accordion-expander {
+    width: 100%;
   }
 }
 
@@ -482,11 +718,23 @@ body.js-enabled .landing-page .country-selector-dialog select {
 .capital-invest-opportunity-page ul {
   width: 100%;
 }
-.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
+.capital-invest-opportunity-page .capital-invest-region-icons-section .icon, .capital-invest-opportunity-page .capital-invest-region-icons-section .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .capital-invest-region-icons-section .contact-button, .capital-invest-opportunity-page .capital-invest-region-icons-section .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .capital-invest-region-icons-section .contact-button {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  height: 60px;
+}
+.capital-invest-opportunity-page .capital-invest-region-icons-section .icon-heading {
+  margin-bottom: 5px;
+}
+.capital-invest-opportunity-page .capital-invest-region-icons-section .icon-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
   height: calc(60px);
 }
 @media (min-width: 641px) {
-  .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
+  .capital-invest-opportunity-page .icon, .capital-invest-opportunity-page .invest-landing-page .landing-page-how-we-help .contact-button, .invest-landing-page .landing-page-how-we-help .capital-invest-opportunity-page .contact-button, .capital-invest-opportunity-page .capital-invest-landing-page .capital-invest-landing-page-how-we-help .contact-button, .capital-invest-landing-page .capital-invest-landing-page-how-we-help .capital-invest-opportunity-page .contact-button {
     padding-bottom: 15px;
     margin-bottom: 15px;
     height: calc(60px + 15px);
@@ -504,6 +752,145 @@ body.js-enabled .landing-page .country-selector-dialog select {
   .capital-invest-opportunity-page li p {
     margin-bottom: 0;
   }
+}
+
+.capital-invest-opportunity-listing-page .page-section {
+  padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .page-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-listing-page-section {
+  padding: 60px 0;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-listing-page-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-listing-page-stone-section {
+  padding: 60px 0;
+  background: #f2eee8;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-listing-page-stone-section {
+    padding: 30px 0;
+  }
+}
+.capital-invest-opportunity-listing-page .page-title {
+  background-color: #f2eee8;
+  padding-bottom: 0;
+}
+.capital-invest-opportunity-listing-page .page-title h2 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+.capital-invest-opportunity-listing-page .down-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 20px 0 20px;
+  border-color: #f2eee8 transparent transparent transparent;
+  line-height: 0;
+  margin: auto auto 30px;
+}
+.capital-invest-opportunity-listing-page .sort-by-container {
+  height: 45px;
+  margin-bottom: 30px;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .sort-by-container {
+    text-align: right;
+  }
+}
+.capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
+  border-width: 2px;
+  border-color: black;
+  font-size: 16px;
+  width: 80%;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .sort-by-container #id_sort_by {
+    width: 30%;
+  }
+}
+.capital-invest-opportunity-listing-page .filter-title {
+  height: 45px;
+  margin-top: 30px;
+}
+@media (min-width: 961px) {
+  .capital-invest-opportunity-listing-page .filter-title {
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+}
+@media (max-width: 961px) {
+  .capital-invest-opportunity-listing-page #filter-column {
+    order: 2;
+  }
+}
+.capital-invest-opportunity-listing-page #filter-column .update-button {
+  margin-top: 30px;
+  width: 100%;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
+  margin: 0;
+  min-height: 245px;
+  background-size: cover;
+  background-position: 100%;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-image-left {
+    min-height: 200px;
+  }
+}
+@media (max-width: 961px) {
+  .capital-invest-opportunity-listing-page .opportunity-card {
+    min-width: 280px;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link {
+  text-decoration: none;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+  overflow: hidden;
+  border: 1px solid #d8d8d8;
+  min-height: 245px;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+    padding-top: 20px;
+  }
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner span {
+  text-decoration: underline;
+  color: #006ccc;
+}
+.capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner p {
+  color: black;
+}
+@media (max-width: 641px) {
+  .capital-invest-opportunity-listing-page .opportunity-card .card-link .card-inner {
+    min-height: 200px;
+  }
+}
+.capital-invest-opportunity-listing-page fieldset label {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding-bottom: 15px;
+}
+.capital-invest-opportunity-listing-page mark {
+  font-weight: bold;
+  line-height: 1.5;
+  background: #dfd5c5;
+  padding: 5px;
+  border-radius: 4px;
 }
 
 .article-detail-page article.grid-row {
@@ -577,10 +964,6 @@ body.js-enabled .landing-page .country-selector-dialog select {
 }
 
 @media (max-width: 640px) {
-  .reverse-columns-s {
-    flex-direction: column-reverse;
-  }
-
   .section-two-image {
     margin: 0 0 30px 0;
   }
@@ -673,6 +1056,51 @@ body.js-enabled .landing-page .country-selector-dialog select {
 
 .eu-exit-form .form-group > .form-control {
   width: 100%;
+}
+
+.about-dit-services-page #teaser-section img {
+  width: 100%;
+}
+.about-dit-services-page #services-fields-section .flex-grid > div {
+  align-items: flex-start;
+}
+.about-dit-services-page #services-fields-section img {
+  height: 60px;
+}
+.about-dit-services-page #case-study {
+  margin-top: 60px;
+}
+.about-dit-services-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.about-uk-why-choose-the-uk-page #section-one img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #sector-statistics-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page #sector-statistics-section {
+    padding-bottom: 120px;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section:nth-child(even) {
+  background-color: #f5f2ed;
+}
+@media (min-width: 641px) {
+  .about-uk-why-choose-the-uk-page .article-section:nth-child(odd) .column-half-l {
+    float: right;
+  }
+}
+.about-uk-why-choose-the-uk-page .article-section img {
+  width: 100%;
+}
+.about-uk-why-choose-the-uk-page #contact-us-section {
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 /*# sourceMappingURL=main.css.map */

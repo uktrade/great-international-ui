@@ -1,13 +1,102 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
-{% load i18n %}
 {% load static from staticfiles %}
-{% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes case_study ga360_tracker breadcrumbs from directory_components %}
+{% load i18n %}
 
-{% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
+{% load breadcrumbs search_page_selected_filters search_page_expandable_options pagination from directory_components %}
+
+{% block header_js %}
+    {{ block.super }}
+    <script src="{% static 'directory_components/js/dit.components.searchPageExpandableOptions.js' %}"></script>
+{% endblock %}
+
+{% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
 
 {% block content %}
+<section id="breadcrumb-section">
+  <div class="container">
+    {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+    {% endbreadcrumbs %}
+  </div>
+</section>
 
-{% include 'directory_components/hero.html' with hero_text=page.title  %}
+<section>
+    <div class="page-title">
+        <div class="container">
+            <div class="grid-row">
+                <div class="column-two-thirds">
+                    <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% endblock %}
+    <div class="down-arrow"></div>
+
+    <form action="{{ paginator_url }}">
+        <div class="container" >
+            <div class="flex-grid">
+                <div class="column-quarter-xl filter-column" id="filter-column">
+                    <section class="filter-title font-small">
+                        <span>{% trans 'Filter results' %}</span>
+                    </section>
+                    <section class="margin-bottom-15">
+                        {% url 'opportunities' as opportunities_url %}
+                        {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
+                        {% if sectors %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Sectors' field=form.sector %}
+                            </fieldset>
+                        {% endif %}
+                        {% if sub_sectors %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Sub-sectors' field=form.sub_sector %}
+                            </fieldset>
+                        {% endif %}
+                        {% if scales %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Scale (GDV)' field=form.scale %}
+                            </fieldset>
+                        {% endif %}
+                        {% if regions|length > 1 %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Region' field=form.region %}
+                            </fieldset>
+                        {% endif %}
+                        <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
+                    </section>
+                </div>
+
+                <div class="column-three-quarters-xl">
+                    <div class="font-small sort-by-container">
+                        <span>{% trans 'Sort by' %}:</span> {{ form.sort_by}}
+                    </div>
+                    <ul>
+                        {% for opportunity in pagination.object_list %}
+                            <li class="opportunity-card">
+                                <a class="card-link" href="{{ opportunity.full_path }}">
+                                    <div class="card-image-left column-third-l margin-bottom-30"
+                                        role="img"
+                                        style="background-image: url({{ opportunity.hero_image.url }});">
+                                    </div>
+                                    <div class="card-inner padding-horizontal-45 column-two-thirds-l margin-bottom-30">
+                                        <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
+                                        <p class="bold-xsmall margin-top-15">{{ opportunity.scale }}</p>
+                                        <p class="font-xsmall margin-bottom-30">{{ opportunity.sub_sectors|join:", " }}</p>
+                                    </div>
+                                </a>
+                            </li>
+                        {% empty %}
+                            <h2 class="heading-medium">{% trans 'No results' %}</h2>
+                        {% endfor %}
+                    </ul>
+                    {% pagination pagination_page=pagination %}
+                </div>
+
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock content %}

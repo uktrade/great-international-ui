@@ -10,6 +10,7 @@ from django.urls import reverse_lazy
 import core.views
 import conf.sitemaps
 import euexit.views
+import invest.views
 
 
 sitemaps = {
@@ -24,36 +25,60 @@ urlpatterns = [
         name='healthcheck'
     ),
     url(
-        r"^international/sitemap\.xml$",
+        r'^international/sitemap\.xml$',
         skip_ga360(sitemap),
         {'sitemaps': sitemaps},
         name='sitemap'
     ),
     url(
-        r"^international/robots\.txt$",
+        r'^international/robots\.txt$',
         skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
     url(
-        r"^international/$",
-        core.views.CMSPageFromPathView.as_view(),
+        r'^international/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/'},
-        name="index"
-    ),
-    url(
-        r'^international/invest/perfectfit/',
-        include(
-            'perfect_fit_prospectus.urls',
-            namespace='perfect_fit_prospectus'
-        )
+        name='index'
     ),
     url(
         r'^international/content/$',
         RedirectView.as_view(url=reverse_lazy('index')),
-        name="content-index-redirect"
+        name='content-index-redirect'
     ),
     url(
-        r"^international/contact/$",
+        r'^international/invest/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': '/invest/'},
+        name='invest-home'
+    ),
+    url(
+        r'^international/content/invest/$',
+        RedirectView.as_view(url=reverse_lazy('invest-home')),
+        name='content-invest-home-redirect'
+    ),
+    # Since we don't have a frontend page for the HPO landing page in the CMS
+    # redirect to the HPO section on the homepage instead
+    url(
+        r'^international/content/invest/high-potential-opportunities/$',
+        RedirectView.as_view(
+            url=('/international/content/invest/#high-potential-opportunities')),
+        name='hpo-landing-page-redirect'
+    ),
+    url(
+        r'^international/content/invest/high-potential-opportunities/contact/$',
+        invest.views.HighPotentialOpportunityFormView.as_view(),
+        {'path': '/invest/high-potential-opportunities/contact/'},
+        name='high-potential-opportunity-request-form'
+    ),
+    url(
+        r'^international/content/invest/high-potential-opportunities/contact/success/$',
+        invest.views.HighPotentialOpportunitySuccessView.as_view(),
+        {'path': '/invest/high-potential-opportunities/contact/success/'},
+        name='high-potential-opportunity-request-form-success'
+    ),
+    url(
+        r'^international/contact/$',
         core.views.InternationalContactPageView.as_view(),
         name='contact-page-international'
     ),
@@ -67,45 +92,52 @@ urlpatterns = [
         euexit.views.InternationalContactSuccessView.as_view(),
         name='eu-exit-international-contact-form-success'
     ),
-    # these 3 named urls are required for breadcrumbs in templates
+    # these next 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',
-        core.views.CMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'industries'},
-        name="industries"
+        name='industries'
     ),
     url(
-        r"^international/content/how-to-setup-in-the-uk/$",
-        core.views.CMSPageFromPathView.as_view(),
+        r'^international/content/how-to-setup-in-the-uk/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'how-to-setup-in-the-uk'},
-        name="how-to-setup-in-the-uk"
+        name='how-to-setup-in-the-uk'
     ),
     url(
-        r"^international/content/how-to-do-business-with-the-uk/$",
-        core.views.CMSPageFromPathView.as_view(),
+        r'^international/content/how-to-do-business-with-the-uk/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'how-to-do-business-with-the-uk'},
-        name="how-to-do-business-with-the-uk"
+        name='how-to-do-business-with-the-uk'
     ),
     url(
-        r"^international/content/opportunities/$",
-        core.views.CMSPageFromPathView.as_view(),
+        r'^international/content/opportunities/$',
+        core.views.OpportunitySearchView.as_view(),
         {'path': 'opportunities'},
-        name="opportunities"
+        name='opportunities'
     ),
     url(
-        r"^international/invest-capital/$",
-        core.views.CMSPageFromPathView.as_view(),
+        r'^international/invest-capital/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'capital-invest'},
-        name="invest-capital-home"
+        name='invest-capital-home'
     ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
-        core.views.CMSPageFromPathView.as_view(),
-        name="cms-page-from-path"
-    ),
-    url(
-        r'^international/content/(?P<path>[\w\-/]*)/(?P<list>[\w\-/]*)/$',
-        core.views.CMSPageFromPathView.as_view(),
-        name="cms-page-from-path-with-two-slugs"
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        name='cms-page-from-path'
     ),
 ]
+
+perfectfit = [
+    url(
+        r'^international/invest/perfectfit/',
+        include(
+            'perfect_fit_prospectus.urls',
+            namespace='perfect_fit_prospectus'
+        )
+    ),
+]
+
+urlpatterns += perfectfit

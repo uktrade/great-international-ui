@@ -1,20 +1,57 @@
 # Changelog
 
 ## Pre-release
+- CMS-1692 - Added HPO form pages from Invest
+- CMS-1692 - Added HPO detail page from Invest and updated styling
+- TT-1678 - Rename EU exit to Brexit
+
+### Fixed bugs:
+- No ticket - Upgrade vulnerable django version to django 1.11.22
+- No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
+- CI-313 - Update JS dev dependencies to cover security vulnerabilities
+- No ticket - Updated directory components requirements to fix pagination bug
+- CI-301 - Opportunity cards and Article Cards now use the base template, making the whole card clickable etc.
+- CI-352 - Fix image being squashed on guide landing page
+- CI-365 - Change "Contact Us" section on services page in "About DIT" to markdown
+- CI-368 - Add ebooks promotional section on "why choose the UK" page
+- No ticket - Fixed Industries landing page extending tag being in the wrong order
+- No ticket - Fix hero image on international home page
+- No ticket - Fix hero images on topic and guide landing pages.
+
+### Implemented enhancements
+- CI-267 - Added cta text and link for sector page for related opportunities section
+- CI-325 - CI projects shown on sector page are randomised
+- CI-211 (& CI-252 & CI-268) - Created opportunity listing page filtering by sector, region and scale
+- CI-303 - Update international header design.
+- CI-324 - Made sub-sector page and opportunity listing page filters by sub sector
+- CI-345 - Sass changes on spacing around details section on CapitalInvestOpportunityPage
+- CI-322 - Add services page to "About DIT" section
+- CI-342 - Promoted similar projects on `CapitalInvestOpportunityPage` are now randomised
+- CI-344 - `Similar projects` title in `CapitalInvestOpportunityPage` is now hard coded
+- CI-332 - Sass changes for mobile design for `CapitalInvestOpportunityListingPage`
+- CI-323 - Add "Why choose the UK" page to "About the UK" section
+- CI-372 - Updated trade CTA on sector pages to go to trade contact form
+- CI-367 - Updated `CapitalInvestRegionPage` and added accordions js file
+
+
+## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
 
 ### Fixed bugs:
 - No ticket - Changed `card-grid` to `flex-grid` on CI landing page, region and opp pages
 - No ticket - Opportunity card changes to reflect new card component changes
 - No ticket - Card with publish date (industry cards) updated to use image same as directory component
 
-
 ### Implemented enhancements
+- CMS-1664 - Added invest homepage and upgraded directory-components
 - CMS-1594 - Add perfect fit prospectus views to International UI
 - CI-250 - Added an opportunity listing page template and put it behind a feature flag
 - No ticket - Added 'Opportunity' Subheading for opportunity pages
 - No ticket - Update breadcrumbs on opportunity pages.
 - CI-271 - Add new URL for 'Invest Capital Homepage'
 - CMS-1677 - Perfect fit prospectus cosmetic changes
+
+
 
 
 ## [2019.06.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.06.13)
@@ -43,7 +80,7 @@
 - CI-146 - Changed English copy that was hard coded text in sector page
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
 - CI-145 - Use invest logo in header
-- CMS-1577 - Update content on EU Exit CTA buttons
+- CMS-1577 - Update content on Brexit CTA buttons
 - no-ticket - Make the 'home' breadcrumb label translatable.
 - CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
 - CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
@@ -107,7 +144,7 @@
 - CMS-1400 - Added new url/view to support tree-based routing
 - CMS-775 - Added alternate language url metadata to base template to improve SEO
 - CMS-1386 - Updated homepage design
-- CMS-1247 - Fix EU exit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
+- CMS-1247 - Fix Brexit contact form URLs in CTAs on "How to do business in the UK" and "How to set up in the UK" pages
 - CMS-1384 - Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)

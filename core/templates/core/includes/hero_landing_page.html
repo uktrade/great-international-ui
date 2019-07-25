@@ -1,17 +1,16 @@
 {% load static %}
-{% load ga360_tracker from directory_components %}
 
-<section class="hero background-stone-40 with-flag" style="background-image: url('{{ img_url }}')">
+<section class="hero with-flag" data-ga-section="hero">
+  <div class="hero-background-container" aria-hidden="true">
+    <div class="hero-background-image" style="background-image: url('{{ img_url }}')"></div>
+  </div>
   <div class="container">
     <div class="hero-text">
       <h1 class="heading-xlarge margin-bottom-15">{{ heading }} <br> {{ subtitle }}</h1>
 
       {% if cta_text and features.HOW_TO_DO_BUSINESS_ON %}
-        {% ga360_tracker "hero-cta" %}
           <a href="{{ cta_link }}" class="button button-arrow-small button-blue margin-top-30">{{ cta_text }}</a>
-        {% endga360_tracker %}
       {% endif %}
-
     </div>
   </div>
 </section>
