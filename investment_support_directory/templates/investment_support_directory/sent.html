@@ -4,5 +4,9 @@
 
 {% block breadcrumbs %}
   {% url 'investment-support-directory:company-contact' company_number=company.number as contact_url %}
-  {% breadcrumbs left_url=services_urls.great_international left_label='Great.gov.uk international' middle_url=contact_url|add:'?'|add:search_querystring middle_label='Contact company' right_label='Message sent' %}
+  {% breadcrumbs 'Message sent' %}
+    <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    <a href="{{ contact_url}}?{{ search_querystring }}">Contact company</a>
+  {% endbreadcrumbs %}
+
 {% endblock %}

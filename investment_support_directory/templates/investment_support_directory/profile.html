@@ -5,7 +5,7 @@
 
 {% block breadcrumbs %}
     {% url 'investment-support-directory:search' as search_url %}
-    {% breadcrumbs '{{ company.name }}' %}
+    {% breadcrumbs company.name %}
         <a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
         <a href="{{ company_url|add:'?'|add:search_querystring}}">Find a UK specialist</a>
     {% endbreadcrumbs %}
@@ -18,4 +18,3 @@
     </span>
 	{{ block.super }}
 {% endblock %}
-
