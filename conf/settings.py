@@ -485,6 +485,9 @@ FEATURE_FLAGS = {
     'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool(
         'FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False
     ),
+    'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool(
+        'FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False
+    )
 }
 
 # Invest High Potential Opportunities

@@ -2,6 +2,7 @@ import directory_components.views
 from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
 
+from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import RedirectView
@@ -18,18 +19,26 @@ sitemaps = {
 }
 
 
-urlpatterns = [
-    url(
-        r'^international/investment-support-directory/',
-        include(
-            'investment_support_directory.urls',
-            namespace='investment-support-directory',
-        )
-    ),
-    url(
-        r'^international/trade/investment-support-directory/search/',
-        RedirectView.as_view(url='/international/investment-support-directory/')
-    ),
+urlpatterns = []
+
+
+if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
+    urlpatterns += [
+        url(
+            r'^international/investment-support-directory/',
+            include(
+                'investment_support_directory.urls',
+                namespace='investment-support-directory',
+            )
+        ),
+        url(
+            r'^international/trade/investment-support-directory/search/',
+            RedirectView.as_view(url='/international/investment-support-directory/')
+        ),
+    ]
+
+
+urlpatterns += [
     url(
         r'^international/healthcheck/',
         skip_ga360(directory_healthcheck.views.HealthcheckView.as_view()),
