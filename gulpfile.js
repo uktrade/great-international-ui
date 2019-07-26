@@ -7,9 +7,9 @@ const del = require('del');
 
 const PROJECT_DIR = path.resolve(__dirname);
 const SASS_FILES = `${PROJECT_DIR}/core/sass/**/*.scss`;
-const CSS_DIR = `${PROJECT_DIR}/core/static/styles`;
-const CSS_FILES = `${PROJECT_DIR}/core/static/styles/**/*.css`;
-const CSS_MAPS = `${PROJECT_DIR}/core/static/styles/**/*.css.map`;
+const CSS_DIR = `${PROJECT_DIR}/core/static/core/styles`;
+const CSS_FILES = `${PROJECT_DIR}/core/static/core/styles/**/*.css`;
+const CSS_MAPS = `${PROJECT_DIR}/core/static/core/styles/**/*.css.map`;
 
 gulp.task('clean', function() {
   return del([CSS_FILES, CSS_MAPS])
