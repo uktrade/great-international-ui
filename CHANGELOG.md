@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- No ticket - Namespace ISD contact page styling to fix pollution on other pages
 - CMS-1734 - Added GA360 data to Perfect Fit views
 - CMS-1692 - Added HPO form pages from Invest
 - CMS-1692 - Added HPO detail page from Invest and updated styling
