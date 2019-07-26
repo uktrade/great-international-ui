@@ -139,6 +139,14 @@
   }
 }
 
+
+@media (max-width: 960px) {
+  .reverse-columns-l {
+    flex-direction: column-reverse;
+  }
+}
+
+
 .icon {
   height: auto;
   width: 60px;
