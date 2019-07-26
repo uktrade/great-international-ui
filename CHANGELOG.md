@@ -22,6 +22,7 @@
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
 - CI-378 - Fixed guide landing page spacings
 - CI-375 - Fix spacings on Why choose UK Page
+- No ticket - Update styling on ebooks promotional section
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section
