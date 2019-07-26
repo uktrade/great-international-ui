@@ -1,0 +1,16 @@
+
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.about-dit-landing-page {
+
+  .page-section{
+    @include page-section-padding;
+
+  }
+
+  .stone-page-section {
+    @include stone-section;
+  }
+
+}

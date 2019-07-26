@@ -35,6 +35,7 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
 
     # About DIT
+    'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
@@ -44,7 +45,7 @@ TEMPLATE_MAPPING = {
         'invest/hpo/high_potential_opportunity_detail.html',
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage':
-        'invest/hpo/high_potential_opportunities_form_success.html'
+        'invest/hpo/high_potential_opportunities_form_success.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -182,6 +183,11 @@ GA_DATA_MAPPING = {
     },
 
     # About DIT
+    'AboutDitLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutDIT',
+        'site_subsection': 'LandingPage'
+    },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
