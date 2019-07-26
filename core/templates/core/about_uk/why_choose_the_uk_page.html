@@ -31,14 +31,14 @@
   {% if page.section_one_body and page.section_one_image %}
     <section id="section-one" class="padding-bottom-60">
       <div class="container">
-        <div class="flex-grid">
+        <div class="flex-grid reverse-columns-l">
           {% if page.section_one_body %}
-            <div class="column-half-l center-vertical">
+            <div class="column-half-xl padding-right-60-xl center-vertical">
               {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
             </div>
           {% endif %}
           {% if page.section_one_image %}
-            <div class="column-half-l center-vertical">
+            <div class="column-half-xl center-vertical">
               <img src="{{ page.section_one_image.url }}" />
             </div>
           {% endif %}
