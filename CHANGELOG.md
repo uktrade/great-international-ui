@@ -6,6 +6,7 @@
 - CMS-1692 - Added HPO form pages from Invest
 - CMS-1692 - Added HPO detail page from Invest and updated styling
 - TT-1678 - Rename EU exit to Brexit
+- CI-363 - Add anchor tags to all headings in setup guide articles
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
