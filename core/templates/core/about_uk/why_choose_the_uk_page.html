@@ -93,7 +93,7 @@
             <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
             {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
             {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
-              <a class="button button-blue button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
+              <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
                 {{ page.ebook_section_cta_text }}
               </a>
             {% endif %}
