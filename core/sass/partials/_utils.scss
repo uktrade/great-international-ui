@@ -140,12 +140,11 @@
 }
 
 
-@media (min-width: 961px) {
+@media (max-width: 960px) {
   .reverse-columns-xl {
     flex-direction: column-reverse;
   }
 }
-
 
 
 .icon {
