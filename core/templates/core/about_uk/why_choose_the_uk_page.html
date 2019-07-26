@@ -17,7 +17,7 @@
   </section>
 
   {% if page.teaser %}
-    <section id="teaser-section" class="padding-top-30 padding-bottom-60">
+    <section id="teaser-section" class="padding-top-30 ">
       <div class="container">
         <div class="grid-row">
             <div class="column-three-quarters-l">
@@ -29,16 +29,16 @@
   {% endif %}
 
   {% if page.section_one_body and page.section_one_image %}
-    <section id="section-one" class="padding-vertical-45 padding-vertical-60-l">
+    <section id="section-one" class="padding-bottom-60">
       <div class="container">
-        <div class="grid-row">
+        <div class="flex-grid reverse-columns-l">
           {% if page.section_one_body %}
-            <div class="column-half-l">
+            <div class="column-half-xl padding-right-60-xl center-vertical">
               {{ page.section_one_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
             </div>
           {% endif %}
           {% if page.section_one_image %}
-            <div class="column-half-l">
+            <div class="column-half-xl center-vertical">
               <img src="{{ page.section_one_image.url }}" />
             </div>
           {% endif %}
@@ -104,7 +104,7 @@
   {% endif %}
 
   {% if page.contact_us_section_title and page.contact_us_section_summary %}
-    <section id="contact-us-section">
+    <section class="padding-vertical-60">
       <div class="container">
         <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
         {% if page.contact_us_section_summary %}
