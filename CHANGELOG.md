@@ -40,6 +40,7 @@
 - CI-323 - Add "Why choose the UK" page to "About the UK" section
 - CI-372 - Updated trade CTA on sector pages to go to trade contact form
 - CI-367 - Updated `CapitalInvestRegionPage` and added accordions js file
+- CI-383 - Create About DIT landing page
 
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
