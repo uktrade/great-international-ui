@@ -45,7 +45,7 @@ TEMPLATE_MAPPING = {
         'invest/hpo/high_potential_opportunity_detail.html',
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage':
-        'invest/hpo/high_potential_opportunities_form_success.html',
+        'invest/hpo/high_potential_opportunities_form_success.html'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
