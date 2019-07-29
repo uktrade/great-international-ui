@@ -23,6 +23,7 @@
 - CI-378 - Fixed guide landing page spacings
 - CI-375 - Fix spacings on Why choose UK Page
 - No ticket - Update styling on ebooks promotional section
+- CI-396 - Fix case study section on sector page bug
 
 ### Implemented enhancements
 - CI-267 - Added cta text and link for sector page for related opportunities section

@@ -78,24 +78,10 @@
   </div>
 </section>
 
-{% if page.case_study_title and page.case_study_image %}
-<section
-  id="sector-case-study-section"
-  class="case-study"
-  style="background-image: url({{ page.case_study_image.url }})">
-  <div class="container">
-    <div class="grid-row">
-      <div class="column-full column-two-thirds-m column-half-l column-third-xl">
-        <div class="decorative-line border-thin border-flag-red"></div>
-        <h2 class="heading-large">{{ page.case_study_title }}</h2>
-        <p>{{ page.case_study_description }}</p>
-        {% if page.case_study_cta_page and page.case_study_cta_text %}
-            <a class="button" href="{{ page.case_study_cta_page.full_path }}">{{ page.case_study_cta_text }}</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
+{% if page.case_study_title and page.case_study_image.url %}
+    <section>
+        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_description|add_export_elements_classes|safe  cta_link=page.case_study_cta_page.full_path cta_text=page.case_study_cta_text %}
+    </section>
 {% endif %}
 
 {% if page.project_opportunities_title and random_opportunities %}
