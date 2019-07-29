@@ -1,0 +1,60 @@
+{% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
+{% load breadcrumbs card add_export_elements_classes case_study from directory_components %}
+
+{% block css_layout_class %}about-dit-landing-page{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+
+<div class="container">
+  {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
+
+{% if page.section_one_content %}
+<section class="padding-top-30 padding-bottom-60">
+     <div class="container">
+        <div class="grid-row">
+            <p class="font-medium column-three-quarters-l margin-bottom-45">{{ page.intro}} </p>
+        </div>
+        <div class="flex-grid reverse-columns-l">
+            <div class="column-half-xl padding-right-60 center-vertical">
+                {{ page.section_one_content|add_export_elements_classes|safe }}
+            </div>
+            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
+                {% if page.section_one_image.url %}
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.section_one_image.url}}" alt="">
+                    </figure>
+                {%  endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_dit_help_title and page.related_pages %}
+<section class="stone-page-section">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_dit_help_title }} </h2>
+        <div class="flex-grid padding-top-30">
+            {% for card in page.related_pages %}
+                {% if card.hero_title and card.hero_image.url and card.teaser %}
+                    <div class="column-half-m column-third-xl">
+                        {% card img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.teaser|add_export_elements_classes|safe %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.case_study_title and page.case_study_image.url %}
+    <section>
+        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    </section>
+{% endif %}
+
+{% endblock %}
