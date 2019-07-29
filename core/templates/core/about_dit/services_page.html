@@ -12,6 +12,7 @@
     <div class="container">
       {% breadcrumbs page.breadcrumbs_label %}
         <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+        <a href="{{ page.parent_page.full_url }}">{{ page.parent_page.breadcrumbs_label }}</a>
       {% endbreadcrumbs %}
     </div>
   </section>
