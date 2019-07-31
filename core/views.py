@@ -556,8 +556,10 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
 def invest_homepage_context_modifier(context, request):
     hpo_pages = context['page']['high_potential_opportunities'],
 
-    featured_cards = [card for card in context['page']['featured_cards']
-                      if card['title'] and card['summary'] and card['image']]
+    featured_cards = []
+    if 'featured_cards' in context['page']:
+        featured_cards = [card for card in context['page']['featured_cards']
+                          if card['title'] and card['summary'] and card['image']]
     number_of_featured_cards = len(featured_cards)
 
     return {
