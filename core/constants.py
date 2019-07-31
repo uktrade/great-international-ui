@@ -1,9 +1,3 @@
-import invest.forms
-
-
-CMS_FORM_MAPPING = {
-    'InvestHighPotentialOpportunityFormPage': invest.forms.HighPotentialOpportunityForm
-}
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -229,6 +223,7 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
 
     # About DIT
+    'AboutDitLandingPage': '',
     'AboutDitServicesPage': '',
     'AboutUkWhyChooseTheUkPage': '',
 }
