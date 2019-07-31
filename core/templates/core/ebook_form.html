@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% load breadcrumbs from directory_components %}
+
+{% block content %}
+  {% block form_content %}
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-two-thirds-m column-half-xl">
+                <h1 class="heading-xlarge">{{ page.heading }}</h1>
+                <div class="margin-bottom-45">
+                  <p>If you are thinking about setting up your business internationally and would like to explore what the UK has to offer, download our Guide to the UK business environment today.</p>
+                  <p>Simply enter your details below to access a wealth of insights into the UK's business environment together with help and advice.</p>
+                </div>
+                <form method="post">
+                    {% include 'core/ebook_form_contents.html'%}
+                    <button class="button">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  {% endblock %}
+{% endblock %}

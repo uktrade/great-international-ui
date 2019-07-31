@@ -148,6 +148,10 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'
     ),
+    url(
+        r"^international/ebook/$",
+        core.views.EbookFormView.as_view()
+    ),
 ]
 
 perfectfit = [

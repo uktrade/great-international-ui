@@ -565,3 +565,48 @@ def invest_homepage_context_modifier(context, request):
             pages and filter_by_active_language(pages[0])
         ),
     }
+
+
+class EbookFormView(
+    GA360Mixin,
+    FormView
+):
+    template_name = "core/ebook_form.html"
+    form_class = forms.EbookDetailsForm
+    subject = "Ebook contact form"
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='EbookForm',
+            business_unit='GreatInternational',
+            site_section='Contact',
+            site_subsection='ContactForm'
+        )
+
+    def get_form_kwargs(self, *args, **kwargs):
+        industry_choices = [
+            ('energy', 'Energy'),
+            ('education', 'Education')
+        ]
+        return {
+            **super().get_form_kwargs(*args, **kwargs),
+            'industry_choices': industry_choices,
+        }
+
+    def form_valid(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data.get('country'),
+        )
+        response = form.save(
+            subject=self.subject,
+            full_name=form.full_name,
+            email_address=form.cleaned_data['email_address'],
+            service_name='ebook',
+            subdomain=settings.EU_EXIT_ZENDESK_SUBDOMAIN,
+            form_url=self.request.path,
+            sender=sender,
+        )
+        response.raise_for_status()
+        return super().form_valid(form)
