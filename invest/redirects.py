@@ -6,7 +6,7 @@ REDIRECTS = {
     'high-potential-opportunities/food-production/contact': '/international/content/invest/high-potential-opportunities/food-production/contact/',  # NOQA
     'high-potential-opportunities/lightweight-structures/contact': '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/',  # NOQA
     # translated urls
-    'contact': '/international/invest/contact',
+    'contact': '/international/invest/contact/',
     'uk-regions/midlands': '/international/content/invest/uk-regions/midlands/',
     'uk-regions/northern-ireland': '/international/content/invest/uk-regions/northern-ireland/',
     'uk-regions/south-england': '/international/content/invest/uk-regions/south-england/',
@@ -14,7 +14,7 @@ REDIRECTS = {
     'uk-regions/london': '/international/content/invest/uk-regions/london/',
     'uk-regions/wales': '/international/content/invest/uk-regions/wales',
     'uk-regions/scotland': '/international/content/invest/uk-regions/scotland/',
-    'industries': '/international/international/content/industries',
+    'industries': '/international/content/industries/',
     'industries/health-and-life-sciences': '/international/content/industries/health-and-life-sciences/',
     'industries/pharmaceutical-manufacturing': '/international/content/industries/health-and-life-sciences/',
     'industries/medical-technology': '/international/content/industries/health-and-life-sciences/',
