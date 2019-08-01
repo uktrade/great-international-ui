@@ -47,6 +47,14 @@ def get_ga_data_for_page(page_type):
     return constants.GA_DATA_MAPPING[page_type]
 
 
+def get_header_section(page_type):
+    return constants.HEADER_MAPPING[page_type][0]
+
+
+def get_header_subsection(page_type):
+    return constants.HEADER_MAPPING[page_type][1]
+
+
 def get_paginator_url(filters, url_name):
     url = reverse(url_name)
 

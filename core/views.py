@@ -52,6 +52,14 @@ class MonolingualCMSPageFromPathView(
         return dispatch_result
 
     @property
+    def header_section(self):
+        return helpers.get_header_section(self.page['page_type'])
+
+    @property
+    def header_subsection(self):
+        return helpers.get_header_subsection(self.page['page_type'])
+
+    @property
     def template_name(self):
         return constants.TEMPLATE_MAPPING[self.page['page_type']]
 

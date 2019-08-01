@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements.in
 #
+-e git+https://github.com/uktrade/directory-components@CI-405-candidate-ia#egg=directory-components
 attrs==19.1.0             # via jsonschema
 beautifulsoup4==4.6.0
 boto3==1.7.55
@@ -14,8 +15,7 @@ chardet==3.0.4            # via requests
 dateparser==0.7.0
 directory-client-core==5.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==27.1.0
-directory-constants==18.1.2
+directory-constants==18.4.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0

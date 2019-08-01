@@ -196,34 +196,36 @@ GA_DATA_MAPPING = {
 
 HEADER_MAPPING = {
     # Great international core
-    'InternationalHomePage': '',
-    'InternationalTopicLandingPage': 'industries',
-    'InternationalArticleListingPage': 'uk_setup_guide',
-    'InternationalArticlePage': 'uk_setup_guide',
-    'InternationalCampaignPage': '',
-    'InternationalSectorPage': 'industries',
-    'InternationalSubSectorPage': 'industries',
-    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
-    'InternationalGuideLandingPage': 'uk_setup_guide',
+    'InternationalHomePage': ('', ''),
+    'InternationalTopicLandingPage': ('industries', ''),
+    'InternationalArticleListingPage': ('set_up', 'guides'),
+    'InternationalArticlePage': ('set_up', 'guides'),
+    'InternationalCampaignPage': ('', ''),
+    'InternationalSectorPage': ('industries', ''),
+    'InternationalSubSectorPage': ('industries', ''),
+    'InternationalCuratedTopicLandingPage': ('set_up', 'guides'),
+    'InternationalGuideLandingPage': ('set_up', 'guides'),
 
     # Brexit
-    'InternationalEUExitFormPage': '',
-    'InternationalEUExitFormSuccessPage': '',
+    'InternationalEUExitFormPage': ('', ''),
+    'InternationalEUExitFormSuccessPage': ('', ''),
 
     # Capital investment
-    'InternationalCapitalInvestLandingPage': 'invest',
-    'CapitalInvestRegionPage': 'invest',
-    'CapitalInvestOpportunityPage': 'invest',
-    'CapitalInvestOpportunityListingPage': 'invest',
+    'InternationalCapitalInvestLandingPage': ('invest_capital', ''),
+    'CapitalInvestRegionPage': ('invest_capital', ''),
+    'CapitalInvestOpportunityPage': ('invest_capital', ''),
+    'CapitalInvestOpportunityListingPage': ('invest_capital', ''),
 
     # Invest
-    'InvestInternationalHomePage': 'invest',
-    'InvestHighPotentialOpportunityDetailPage': 'invest',
-    'InvestHighPotentialOpportunityFormPage': 'invest',
-    'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
+    'InvestInternationalHomePage': ('set_up', ''),
+    'InvestHighPotentialOpportunityDetailPage': ('set_up', ''),
+    'InvestHighPotentialOpportunityFormPage': ('set_up', ''),
+    'InvestHighPotentialOpportunityFormSuccessPage': ('set_up', ''),
 
     # About DIT
-    'AboutDitLandingPage': '',
-    'AboutDitServicesPage': '',
-    'AboutUkWhyChooseTheUkPage': '',
+    'AboutDitLandingPage': ('about_dit', 'what_we_do'),
+    'AboutDitServicesPage': ('about_dit', ''),
+
+    # About the UK
+    'AboutUkWhyChooseTheUkPage': ('', ''),
 }

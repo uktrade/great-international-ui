@@ -15,6 +15,8 @@ class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixi
     template_name = 'invest/hpo/high_potential_opportunities_form.html'
     form_class = forms.HighPotentialOpportunityForm
     success_url = reverse_lazy('high-potential-opportunity-request-form-success')
+    header_section = 'set_up'
+    header_subsection = ''
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -37,6 +39,8 @@ class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixi
 class HighPotentialOpportunitySuccessView(MonolingualCMSPageFromPathView):
     template_name = 'invest/hpo/high_potential_opportunities_form_success.html'
     slug = slugs.INVEST_HIGH_POTENTIAL_OPPORTUNITY_FORM_SUCCESS
+    header_section = 'set_up'
+    header_subsection = ''
 
     def dispatch(self, *args, **kwargs):
         if SESSION_KEY_SELECTED_OPPORTUNITIES not in self.request.session:

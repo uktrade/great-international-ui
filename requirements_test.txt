@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements_test.in
 #
+-e git+https://github.com/uktrade/directory-components@CI-405-candidate-ia#egg=directory-components
 apipkg==1.5               # via execnet
 atomicwrites==1.2.1       # via pytest
 attrs==18.2.0             # via jsonschema, pytest
@@ -21,7 +22,7 @@ directory-api-client==14.0.0
 directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
 directory-components==27.1.0
-directory-constants==18.1.2
+directory-constants==18.4.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
