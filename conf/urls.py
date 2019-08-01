@@ -139,7 +139,7 @@ urlpatterns += [
     ),
     url(
         r'^international/invest-capital/$',
-        RedirectView.as_view(url='/international/content/capital-invest'),
+        RedirectView.as_view(url='/international/content/capital-invest/'),
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
