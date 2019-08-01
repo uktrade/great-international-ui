@@ -139,7 +139,7 @@ urlpatterns += [
     ),
     url(
         r'^international/invest-capital/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
+        RedirectView.as_view(url='/international/content/capital-invest'),
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
