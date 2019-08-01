@@ -67,7 +67,7 @@
     <div class="grid-row">
       {% for subsection in page.section_two_subsections %}
         {% if subsection.icon.url and subsection.heading %}
-            <div class="column-third-xl column-half-l">
+            <div class="column-third-xl column-half-m">
               <img class="section-two-icon" src="{{ subsection.icon.url }}" alt="">
               <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
               <p class="font-xsmall">{{ subsection.body }}</p>
@@ -90,7 +90,7 @@
         <h2 class="heading-large margin-bottom-45">{{ page.project_opportunities_title }}</h2>
         <div class="flex-grid">
             {% for opportunity in random_opportunities %}
-                <div class="column-third-xl column-half-l">
+                <div class="column-third-xl column-half-m">
                     {% include 'core/includes/opportunity_card.html' with img_src=opportunity.hero_image.url img_alt="" url=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
                 </div>
             {% endfor %}
@@ -169,7 +169,7 @@
     <h2 class="heading-large margin-top-0 margin-bottom-45">News and events</h2>
     <div class="flex-grid">
       {% for related_page in related_pages %}
-        <div class="column-third-xl column-half-l">
+        <div class="column-third-xl column-half-m">
           {% if related_page.page_type == 'InternationalArticlePage' %}
             {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
           {% else %}

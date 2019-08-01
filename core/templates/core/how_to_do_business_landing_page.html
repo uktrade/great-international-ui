@@ -55,7 +55,7 @@
   <div class="container">
     <div class="flex-grid">
       {% for feature in page.features_small %}
-        <div class="column-third-xl column-half-l" data-ga-class="small-feature">
+        <div class="column-third-xl column-half-m" data-ga-class="small-feature">
             {% cta_card with_arrow=True image_url=feature.image.url text=feature.heading url=feature.url %}
         </div>
       {% endfor %}
