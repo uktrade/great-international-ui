@@ -68,7 +68,7 @@ urlpatterns += [
     ),
     url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
-        invest.views.OldInvestRedirectView.as_view(),
+        invest.views.LegacyInvestURLRedirectView.as_view(),
         name='invest-incoming'
     ),
     url(

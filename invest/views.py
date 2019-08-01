@@ -62,7 +62,7 @@ class HighPotentialOpportunitySuccessView(MonolingualCMSPageFromPathView):
         )
 
 
-class OldInvestRedirectView(View):
+class LegacyInvestURLRedirectView(View):
     http_method_names = ['get']
 
     def get(self, request, path, *args, **kwargs):
