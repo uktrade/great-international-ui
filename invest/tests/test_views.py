@@ -295,3 +295,36 @@ def test_get_success_page_with_session(
             'meta': {'slug': 'rail'}
         }
     ]
+
+
+@pytest.mark.parametrize('source,destination', [
+    (
+            'high-potential-opportunities/rail-infrastructure',
+            '/international/content/invest/high-potential-opportunities/rail-infrastructure/'
+    ),
+    (
+            'high-potential-opportunities/food-production',
+            '/international/content/invest/high-potential-opportunities/food-production/'
+    ),
+    (
+            'high-potential-opportunities/lightweight-structures',
+            '/international/content/invest/high-potential-opportunities/lightweight-structures/'
+    ),
+    (
+            'high-potential-opportunities/rail-infrastructure/contact',
+            '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/'
+    ),
+    (
+            'high-potential-opportunities/food-production/contact',
+            '/international/content/invest/high-potential-opportunities/food-production/contact/'
+    ),
+    (
+        'high-potential-opportunities/lightweight-structures/contact',
+        '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/'
+    ),
+])
+def test_invest_redirects(source, destination, client):
+    url = reverse('invest-incoming', kwargs={'path': source})
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination

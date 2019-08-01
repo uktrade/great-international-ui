@@ -67,6 +67,11 @@ urlpatterns += [
         name='content-index-redirect'
     ),
     url(
+        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
+        invest.views.OldInvestRedirectView.as_view(),
+        name='invest-incoming'
+    ),
+    url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
