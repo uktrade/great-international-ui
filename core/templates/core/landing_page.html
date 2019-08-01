@@ -53,10 +53,10 @@
         <p>{{ page.section_two_teaser }}</p>
       </div>
     </div>
-    <div class="grid-row">
+    <div class="flex-grid">
       {% for subsection in page.section_two_subsections %}
         <div class="column-third-xl column-half-m">
-          <img class="features-highlight-icon" src="{{ subsection.icon.url }}"/>
+          <img class="icon" src="{{ subsection.icon.url }}"/>
           <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
           <p class="font-xsmall">{{ subsection.body }}</p>
         </div>
