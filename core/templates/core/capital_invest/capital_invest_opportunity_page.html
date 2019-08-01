@@ -50,7 +50,7 @@
             <ul>
                 <li class="mobile-margin-bottom-60">
                     {% if page.location_heading and page.location and page.location_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img class="icon" src="{{page.location_icon.url}}" alt="">
                             <p class="bold-medium icon-heading">{{ page.location_heading }}</p>
                             <p class="icon-text">{{ page.location }}</p>
@@ -59,7 +59,7 @@
                 </li>
                 <li class="mobile-margin-bottom-60">
                     {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
                             <p class="bold-medium icon-heading">{{ page.project_promoter_heading }}</p>
                             <p class="icon-text">{{ page.project_promoter }}</p>
@@ -68,7 +68,7 @@
                 </li>
                 <li class="mobile-margin-bottom-60">
                     {% if page.scale_heading and page.scale and page.scale_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.scale_icon.url}}" class="icon" alt="">
                             <p class="bold-medium icon-heading">{{ page.scale_heading }}</p>
                             <p class="icon-text">{{ page.scale }}</p>
@@ -81,7 +81,7 @@
             <ul>
                 <li class="mobile-margin-bottom-60">
                     {% if page.sector_heading and page.sub_sectors and page.sector_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.sector_icon.url}}" class="icon" alt="">
                             <p class="bold-medium icon-heading">{{ page.sector_heading }}</p>
                             <p class="icon-text">{{ page.sub_sectors|join:", " }}</p>
@@ -90,7 +90,7 @@
                 </li>
                 <li class="mobile-margin-bottom-60">
                     {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
                             <p class="bold-medium icon-heading">{{ page.investment_type_heading }}</p>
                             <p class="icon-text">{{ page.investment_type }}</p>
@@ -99,7 +99,7 @@
                 </li>
                 <li>
                     {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third-l column-half-l">
+                        <div class="column-third-l column-half-m">
                             <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
                             <p class="bold-medium icon-heading">{{ page.planning_status_heading }}</p>
                             <p class="icon-text">{{ page.planning_status }}</p>
@@ -163,7 +163,7 @@
             {% trans 'Other projects in' %} {{ random_related_sector_title }}
             </h1>
             {% for opportunity in random_opps_in_random_related_sector|filter_by_active_language %}
-                <div class="column-third-xl column-half-m">
+                <div class="column-third-l column-half-m">
                     {% include 'core/includes/opportunity_card.html' with img_src=opportunity.hero_image.url img_alt="" url=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
                 </div>
             {% endfor %}

@@ -40,14 +40,14 @@
   <section class="background-great-blue">
     <div class="container">
       <div class="cta-block flex-grid padding-vertical-90">
-        <div class="column-two-thirds center-vertical flex-shrink-0 max-width-100">
+        <div class="column-two-thirds-l center-vertical flex-shrink-0 max-width-100">
             {% if page.section_two_image.url %}
                 <figure class="landing-page-image flex-shrink-0">
                     <img class="width-full" src="{{page.section_two_image.url}}" alt="">
                 </figure>
             {% endif %}
         </div>
-        <div class="column-third white-text cta-block-content padding-left-60-xl">
+        <div class="column-third-l white-text cta-block-content padding-left-60-xl">
             <h3 class="heading-large">{{ page.section_two_heading }}</h3>
             <p class="padding-bottom-30">{{ page.section_two_teaser }}</p>
             <a href="{{ page.section_two_button_url }}" class="button button-blue margin-bottom-45">{{ page.section_two_button_text }}</a>
@@ -62,7 +62,7 @@
 
       <div class="flex-grid">
         {% for guide in page.guides|filter_by_active_language %}
-          <div class="column-third">
+          <div class="column-third-l column-half-m">
               {% card img_src=guide.thumbnail.url url=guide.meta.url heading=guide.title description=guide.teaser %}
           </div>
         {% endfor %}

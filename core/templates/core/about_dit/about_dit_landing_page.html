@@ -41,7 +41,7 @@
         <div class="flex-grid padding-top-30">
             {% for card in page.related_pages %}
                 {% if card.hero_title and card.hero_image.url and card.teaser %}
-                    <div class="column-half-m column-third-xl">
+                    <div class="column-third-l column-half-m">
                         {% card img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.teaser|add_export_elements_classes|safe %}
                     </div>
                 {% endif %}
