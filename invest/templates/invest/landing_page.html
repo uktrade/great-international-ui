@@ -79,7 +79,7 @@
     <div class="container">
         <div class="flex-grid">
             {% for card in page.featured_cards %}
-                <div class="column-third-l column-half-m" id="featured_card_{{ forloop.counter }}">
+                <div class="column-third-xl column-half-l" id="featured_card_{{ forloop.counter }}">
                 {% if card.cta_link %}
                   {% card title=card.title description=card.summary|add_export_elements_classes|safe img_src=card.image.url url=card.cta_link %}
                 {% else %}
@@ -101,7 +101,7 @@
             </div>
         <div class="flex-grid padding-bottom-45">
             {% for sector in page.sectors|filter_by_active_language %}
-                <div class="column-third-l column-half-m">
+                <div class="column-third-xl column-half-l">
                     {% card ga_tag='industry-link' title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
                 </div>
             {% endfor %}
@@ -122,7 +122,7 @@
             </div>
         <div class="flex-grid">
         {% for hpo in page.high_potential_opportunities|filter_by_active_language %}
-            <div class="column-third-l column-half-m">
+            <div class="column-third-xl column-half-l">
                 {% card ga_tag='hpo-card' title=hpo.heading description=hpo.description|add_export_elements_classes|safe img_src=hpo.hero_image_thumbnail.url url=hpo.full_url %}
             </div>
         {% endfor %}
@@ -147,7 +147,7 @@
                 {% for section in page.how_we_help %}
                     {% if section.text and section.icon %}
                         <li>
-                            <div class="column-third-l column-half-m">
+                            <div class="column-third-xl column-half-l">
                                 <img class="icon" src="{{ section.icon.url }}" alt="">
                                 <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
                             </div>
