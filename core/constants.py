@@ -1,9 +1,3 @@
-import invest.forms
-
-
-CMS_FORM_MAPPING = {
-    'InvestHighPotentialOpportunityFormPage': invest.forms.HighPotentialOpportunityForm
-}
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -35,6 +29,7 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
 
     # About DIT
+    'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
@@ -169,7 +164,24 @@ GA_DATA_MAPPING = {
         'site_subsection': 'FormSuccessPage',
     },
 
+    # Perfect fit
+    'PerfectFitFormPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormPage',
+    },
+    'PerfectFitFormSuccessPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormSuccessPage',
+    },
+
     # About DIT
+    'AboutDitLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutDIT',
+        'site_subsection': 'LandingPage'
+    },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
@@ -211,6 +223,7 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
 
     # About DIT
+    'AboutDitLandingPage': '',
     'AboutDitServicesPage': '',
     'AboutUkWhyChooseTheUkPage': '',
 }

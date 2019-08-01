@@ -28,6 +28,10 @@
 @import 'pages/capital-invest/capital_invest_region_page';
 @import 'pages/capital-invest/capital-invest-opportunity-page';
 @import 'pages/capital-invest/capital-invest-opportunity-listing-page';
+@import 'pages/investment-support-directory/home';
+@import 'pages/investment-support-directory/profile';
+@import 'pages/investment-support-directory/search';
+@import 'pages/investment-support-directory/contact';
 @import 'pages/article-detail';
 @import 'pages/article-list';
 @import 'pages/campaign-page';
@@ -36,5 +40,6 @@
 @import 'pages/eu-exit-form';
 @import 'pages/about-dit/services-page';
 @import 'pages/about-uk/why-choose-the-uk-page';
+@import 'pages/about-dit/about-dit-landing-page';
 
 // !!! imports only. do not write styling in this file !!!

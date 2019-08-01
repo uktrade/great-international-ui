@@ -1,0 +1,39 @@
+
+.investment-support-directory-contact-page {
+
+  @media (min-width: 641px) {
+    main {
+      background: linear-gradient(to right, $white 70%, $stone-30 70%);
+    }
+
+    #content {
+      form {
+        input,
+        textarea,
+        select,
+        input[type="checkbox"] + label {
+          width: 80%;
+        }
+      }
+    }
+  }
+
+  #content {
+    form {
+      button {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+    }
+  }
+
+
+  #id_terms-container {
+    .form-label {
+      p {
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,303 @@
+@import 'components/articles-section/base';
+
+.investment-support-directory-search-page {
+
+  .breadcrumbs {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  mark {
+    font-weight: bold;
+    line-height: 1.5;
+    background: $stone;
+    padding: 5px;
+    border-radius: 4px;
+  }
+
+  #main-content > div {
+    display: flex;
+    flex-flow: column;
+  }
+
+  #hero-container {
+    background-color: $stone-light;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    h2 {
+      display: inline-block;
+    }
+    span {
+      display: inline-block;
+    }
+    input {
+      width: 100%;
+      padding: 15px;
+    }
+    label {
+      color: $grey;
+    }
+  }
+
+  #filter-column {
+    order: 2;
+    .multiple-choice {
+      input,
+      input[type=checkbox]+label:before {
+        width: 30px;
+        height: 30px;
+      }
+      input[type=checkbox]+label:after {
+        top: 9px;
+        left: 6px;
+      }
+    }
+
+    #selected-filters-container {
+      background-color: $stone-30;
+      padding: 20px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      font-size: 16px;
+      a {
+        display: block;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      mark {
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+    }
+    fieldset {
+      margin-bottom: 20px;
+      & > div {
+        position: relative;
+        margin-bottom: 15px;
+        & > .form-group {
+          > .form-group {
+            margin-bottom: 0;
+          }
+          border-bottom: 1px solid $stone-60;
+          max-height: 400px;
+          overflow-y: auto;
+          padding-left: 5px;
+          padding-top: 5px;
+          ul {
+            margin-top: 0;
+            li {
+              width: 100%;
+              margin-bottom: 0;
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+
+      legend {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        padding-bottom: 15px;
+        font-size: 15px;
+      }
+
+      button.filter-collapse {
+        background: transparent;
+        border: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-top: 6px;
+        padding-bottom: 4px;
+        cursor: pointer;
+      }
+
+      button.filter-collapse.checked {
+        padding-bottom: 9px;
+        padding-right: 6px;
+        padding-top: 0;
+      }
+
+      button.filter-collapse::after {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        content: "";
+        border-style: solid;
+        display: inline-block;
+        height: 5px;
+        position: relative;
+        vertical-align: middle;
+        border-color: #000000;
+        border-width: 2px 0 0 2px;
+        height: 8px;
+        width: 8px;
+      }
+
+      button.filter-collapse.checked::after {
+        border-width: 0 2px 2px 0;
+        margin: 5px 0 0 0;
+
+      }
+
+    }
+    button[type=submit] {
+      width: 100%;
+      margin-top: 25px;
+    }
+  }
+
+
+  body.js-enabled {
+    #filter-column {
+      button.filter-collapse.checked + .form-group {
+        display: none;
+      }
+    }
+  }
+  body:not(.js-enabled) {
+    #filter-column {
+      button.filter-collapse {
+        display: none;
+      }
+    }
+  }
+
+  #companies-column {
+    order: 1;
+    ul {
+      li {
+        margin-bottom: 30px;
+        .result-header {
+          margin-top: 30px;
+          margin-bottom: 5px;
+
+        }
+        a {
+          text-decoration: none;
+          min-height: 205px;
+          height: 205px; /*IE 11 flexbox min-height fix*/
+          color: $grey;
+          .logo-container {
+            text-align: center;
+            img {
+              max-width: 180px;
+              max-height: 180px;
+              vertical-align: middle;
+            }
+          }
+          .details-container {
+            position: relative;
+            em {
+              font-weight: bold;
+              font-style: normal;
+            }
+            .result-footer {
+              padding-top: 15px;
+              padding-bottom: 15px;
+            }
+          }
+          span {
+            padding-top: 30px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  #paginator {
+    margin-top: 60px;
+    display: flex;
+    a {
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      padding-top: 0;
+    }
+    ol {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      li {
+        display: inline-block;
+        a {
+          padding: 0;
+          width: 50px;
+          vertical-align: bottom;
+        }
+      }
+    }
+  }
+
+  #reset-link-container {
+    text-align: center;
+  }
+
+  @media (min-width: 641px) {
+    #main-content > div {
+      flex-flow: row;
+    }
+    #hero-container {
+      padding-bottom: 0;
+      h2 {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+      span {
+        margin-top: 36px;
+      }
+      mark {
+        font-size: 24px;
+      }
+    }
+    #companies-column {
+      flex-grow: 1;
+      order: 2;
+      margin-left: 30px;
+      ul {
+        li {
+          a {
+            border: 2px solid $stone-60;
+            display: flex;
+            .logo-container {
+              width: 240px;
+              display: flex;
+              flex-flow: row nowrap;
+              align-items: center;
+              border-right: 2px solid $stone-60;
+              img {
+                margin-left: auto;
+                margin-right: auto;
+              }
+            }
+            .details-container {
+              padding-left: 30px;
+              .result-footer {
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+                border-top: 2px solid $stone-60;
+                .employees {
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    #filter-column {
+      order: 1;
+      width: 300px;
+      padding: 0;
+    }
+  }
+}

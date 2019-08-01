@@ -26,10 +26,6 @@ env.read_env()
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_ROOT)
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -53,6 +49,7 @@ INSTALLED_APPS = [
     'core',
     'directory_constants',
     'captcha',
+    'sorl.thumbnail',
     'directory_components',
     'crispy_forms',
     'health_check.cache',
@@ -60,6 +57,7 @@ INSTALLED_APPS = [
     'euexit',
     'perfect_fit_prospectus',
     'invest',
+    'investment_support_directory'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,6 +130,7 @@ else:
 CACHES = {
     'default': cache,
     'cms_fallback': cache,
+    'api_fallback': cache
 }
 
 # Internationalization
@@ -167,17 +166,6 @@ LOCALE_PATHS = (
 
 FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
     'FEATURE_MAINTENANCE_MODE_ENABLED', False
-)
-
-# directory forms api client
-DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
-DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
-DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
-DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
-    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
-)
-DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
-    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
 )
 
 # Invest High Potential Opportunities
@@ -360,6 +348,63 @@ DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS = env.int(
     60 * 60 * 24 * 30  # 30 days
 )
 
+# directory API client
+DIRECTORY_API_CLIENT_BASE_URL = env.str('DIRECTORY_API_CLIENT_BASE_URL')
+DIRECTORY_API_CLIENT_API_KEY = env.str('DIRECTORY_API_CLIENT_API_KEY')
+DIRECTORY_API_CLIENT_SENDER_ID = env.str(
+    'DIRECTORY_API_CLIENT_SENDER_ID', 'directory'
+)
+DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_CLIENT_DEFAULT_TIMEOUT', 15
+)
+
+# directory forms api client
+DIRECTORY_FORMS_API_BASE_URL = env.str('DIRECTORY_FORMS_API_BASE_URL')
+DIRECTORY_FORMS_API_API_KEY = env.str('DIRECTORY_FORMS_API_API_KEY')
+DIRECTORY_FORMS_API_SENDER_ID = env.str('DIRECTORY_FORMS_API_SENDER_ID')
+DIRECTORY_FORMS_API_DEFAULT_TIMEOUT = env.int(
+    'DIRECTORY_API_FORMS_DEFAULT_TIMEOUT', 5
+)
+DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME = env.str(
+    'DIRECTORY_FORMS_API_ZENDESK_SEVICE_NAME', 'directory'
+)
+
+CONTACT_ISD_COMPANY_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_COMPANY_NOTIFY_TEMPLATE_ID',
+    'a0ffc316-09f0-4b28-9af0-86243645efca'
+)
+CONTACT_ISD_SUPPORT_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_SUPPORT_NOTIFY_TEMPLATE_ID',
+    '19fc13d1-fcc1-4e3b-a488-244a520742e2'
+)
+CONTACT_ISD_INVESTOR_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_ISD_INVESTOR_NOTIFY_TEMPLATE_ID',
+    '351e32e9-2e66-4a6f-8b20-a9942f045f1b'
+)
+CONTACT_ISD_SUPPORT_EMAIL_ADDRESS = env.str(
+    'CONTACT_ISD_SUPPORT_EMAIL_ADDRESS', ''
+)
+CONTACT_FAS_COMPANY_NOTIFY_TEMPLATE_ID = env.str(
+    'CONTACT_FAS_COMPANY_NOTIFY_TEMPLATE_ID',
+    'bb88aa79-595a-44fc-9ed3-cf8a6cbd6306',
+)
+
+# EU exit
+EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
+
+# Contact
+INVEST_CONTACT_URL = env.str(
+    'INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/'
+)
+FIND_A_SUPPLIER_CONTACT_URL = env.str(
+    'FIND_A_SUPPLIER_CONTACT_URL',
+    'https://trade.great.gov.uk/industries/contact/'
+)
+CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
+    'CONTACT_DOMESTIC_ZENDESK_SUBJECT',
+    'great.gov.uk international contact form'
+)
+
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
@@ -440,6 +485,9 @@ FEATURE_FLAGS = {
     'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool(
         'FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False
     ),
+    'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool(
+        'FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False
+    )
 }
 
 # Invest High Potential Opportunities
@@ -460,6 +508,7 @@ DIRECTORY_HEALTHCHECK_BACKENDS = [
     directory_healthcheck.backends.SentryBackend,
     directory_healthcheck.backends.FormsAPIBackend,
     directory_healthcheck.backends.CMSAPIBackend,
+    directory_healthcheck.backends.APIBackend,
     # health_check.cache.CacheBackend is also registered in
     # INSTALLED_APPS's health_check.cache
 ]
@@ -476,3 +525,29 @@ PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID = env.str('PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID
 PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY = env.str('PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY')  # NOQA
 PFP_AWS_S3_PDF_STORE_BUCKET_NAME = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_NAME')
 PFP_AWS_S3_PDF_STORE_BUCKET_REGION = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_REGION', 'eu-west-2')  # NOQA
+
+
+# Sorl-thumbnail
+THUMBNAIL_FORMAT = 'PNG'
+THUMBNAIL_STORAGE_CLASS_NAME = env.str('THUMBNAIL_STORAGE_CLASS_NAME', 's3')
+THUMBNAIL_KVSTORE_CLASS_NAME = env.str(
+    'THUMBNAIL_KVSTORE_CLASS_NAME', 'redis'
+)
+THUMBNAIL_STORAGE_CLASSES = {
+    's3': 'storages.backends.s3boto3.S3Boto3Storage',
+    'local-storage': 'django.core.files.storage.FileSystemStorage',
+}
+THUMBNAIL_KVSTORE_CLASSES = {
+    'redis': 'sorl.thumbnail.kvstores.redis_kvstore.KVStore',
+    'dummy': 'sorl.thumbnail.kvstores.dbm_kvstore.KVStore',
+}
+THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_KVSTORE = THUMBNAIL_KVSTORE_CLASSES[THUMBNAIL_KVSTORE_CLASS_NAME]
+THUMBNAIL_STORAGE = THUMBNAIL_STORAGE_CLASSES[THUMBNAIL_STORAGE_CLASS_NAME]
+# Workaround for slow S3
+# https://github.com/jazzband/sorl-thumbnail#is-so-slow-in-amazon-s3-
+THUMBNAIL_FORCE_OVERWRITE = True
+
+# Redis for thumbnails cache
+if REDIS_URL:
+    THUMBNAIL_REDIS_URL = REDIS_URL

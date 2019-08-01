@@ -13,7 +13,7 @@ from directory_constants import cms
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import constants
+from core import constants, helpers
 
 
 class NotFoundOnDisabledFeature:
@@ -93,3 +93,42 @@ class SetEtagMixin:
         if request.method == 'GET':
             response.add_post_render_callback(set_response_etag)
         return response
+
+
+class SubmitFormOnGetMixin:
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        data = self.request.GET or {}
+        if data:
+            kwargs['data'] = data
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+
+class CompanyProfileMixin:
+    @cached_property
+    def company(self):
+        return helpers.get_company_profile(self.kwargs['company_number'])
+
+    def get_context_data(self, **kwargs):
+        company = helpers.CompanyParser(self.company)
+        return super().get_context_data(
+            company=company.serialize_for_template(),
+            **kwargs
+        )
+
+
+class PersistSearchQuerystringMixin:
+
+    @property
+    def search_querystring(self):
+        return self.request.GET.urlencode()
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            search_querystring=self.search_querystring,
+            **kwargs,
+        )

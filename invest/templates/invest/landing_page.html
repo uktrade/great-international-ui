@@ -33,7 +33,7 @@
         <div class="grid-row padding-bottom-45 ">
             <p class="font-small line-height-normal column-half"> {{ page.benefits_section_intro }}  </p>
         </div>
-        <div class="card-grid reverse-columns-s">
+        <div class="flex-grid reverse-columns-s">
             <div class="column-half-l left-half-page-text">
                 {{ page.benefits_section_content|add_export_elements_classes|safe }}
             </div>
@@ -52,7 +52,7 @@
 {% if page.eu_exit_section_title and page.eu_exit_section_call_to_action_text %}
 <section class="landing-page-section" id="eu-exit">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             {% if page.eu_exit_section_img.url %}
                 <div class="column-half-l center-vertical">
                     <figure class="landing-page-image flex-shrink-0">
@@ -77,9 +77,9 @@
 {% if show_featured_cards %}
 <section class="landing-page-section" id="uk-setup-guides">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             {% for card in page.featured_cards %}
-                <div class="column-third-xl" id="featured_card_{{ forloop.counter }}">
+                <div class="column-third-xl column-half-m" id="featured_card_{{ forloop.counter }}">
                 {% if card.cta_link %}
                   {% card title=card.title description=card.summary|add_export_elements_classes|safe img_src=card.image.url url=card.cta_link %}
                 {% else %}
@@ -99,8 +99,12 @@
             <div class="grid-row padding-bottom-45">
                 <p class="font-small column-half"> {{  page.sector_intro }} </p>
             </div>
-        <div class="card-grid padding-bottom-45">
-            {% include 'invest/includes/card_with_description_grid.html' with ga_tag='industry-link' url_name='industry' cards=page.sectors|filter_by_active_language  %}
+        <div class="flex-grid padding-bottom-45">
+            {% for sector in page.sectors|filter_by_active_language %}
+                <div class="column-third-xl column-half-m">
+                    {% card ga_tag='industry-link' title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+                </div>
+            {% endfor %}
         </div>
         {% if page.sector_button_url and page.sector_button_text %}
             <a href="{{ page.sector_button_url }}" class="button button-arrow-small" id="see-more-industries">{{ page.sector_button_text }}</a>
@@ -116,8 +120,12 @@
             <div class="grid-row padding-bottom-45">
                 <p class="font-small column-half"> {{ page.hpo_intro }}  </p>
             </div>
-        <div class="card-grid">
-            {% include 'invest/includes/card_with_description_grid.html' with ga_tag='hpo-card' url_name='high-potential-opportunity-details' cards=page.high_potential_opportunities|filter_by_active_language  %}
+        <div class="flex-grid">
+        {% for hpo in page.high_potential_opportunities|filter_by_active_language %}
+            <div class="column-third-xl column-half-m">
+                {% card ga_tag='hpo-card' title=hpo.heading description=hpo.description|add_export_elements_classes|safe img_src=hpo.hero_image_thumbnail.url url=hpo.full_url %}
+            </div>
+        {% endfor %}
         </div>
     </div>
 </section>
@@ -155,7 +163,7 @@
 {% if page.contact_section_title and page.contact_section_content  %}
 <section class="landing-page-section" id="get-in-touch">
     <div class="container">
-        <div class="card-grid">
+        <div class="flex-grid">
             <div class="column-half">
                 <h2 class="heading-large">{{ page.contact_section_title }}</h2>
                 <p class="font-small margin-bottom-45">{{ page.contact_section_content }}</p>

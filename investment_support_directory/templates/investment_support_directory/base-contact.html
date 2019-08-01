@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% load breadcrumbs render_form from directory_components %}
+
+{% block css_layout_class %}investment-support-directory-contact-page{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block breadcrumbs %}{% endblock %}
+    <div class="width-two-thirds">
+        <h1 class="heading-xlarge margin-bottom-0">Send a message to {{ company.name }}</h1>
+        <p class="hero-subtitle margin-bottom-45 margin-top-15">Enter your details and a brief message about your needs. We’ll send these to the business you’ve selected.</p>
+        {% url request.resolver_match.namespace|add:':company-contact' company_number=company.number as contact_url %}
+
+        <form method="post" action="{{contact_url}}?{{ search_querystring }}">
+            {% render_form form %}
+            <button class="button">Send message</button>
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock content %}
