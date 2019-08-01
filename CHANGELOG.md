@@ -9,7 +9,7 @@
 - CI-375 - Fix spacings on Why choose UK Page
 - No ticket - Update styling on ebooks promotional section
 - CI-396 - Fix case study section on sector page bug
-    - CI-419 - Commonised responsive behaviour for column-third
+- CI-419 - Commonised responsive behaviour for column-third
 
 ### Implemented enhancements
 - No ticket - Namespace ISD contact page styling to fix pollution on other pages
