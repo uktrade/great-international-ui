@@ -46,67 +46,49 @@
 {% endif %}
 <section class="page-section capital-invest-region-icons-section">
     <div class="container">
-        <div class="grid-row margin-bottom-60">
-            <ul>
-                <li class="mobile-margin-bottom-60">
-                    {% if page.location_heading and page.location and page.location_icon.url %}
-                        <div class="column-third-l">
-                            <img class="icon" src="{{page.location_icon.url}}" alt="">
-                            <p class="bold-medium icon-heading">{{ page.location_heading }}</p>
-                            <p class="icon-text">{{ page.location }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-                <li class="mobile-margin-bottom-60">
-                    {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
-                        <div class="column-third-l">
-                            <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium icon-heading">{{ page.project_promoter_heading }}</p>
-                            <p class="icon-text">{{ page.project_promoter }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-                <li class="mobile-margin-bottom-60">
-                    {% if page.scale_heading and page.scale and page.scale_icon.url %}
-                        <div class="column-third-l">
-                            <img src="{{page.scale_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium icon-heading">{{ page.scale_heading }}</p>
-                            <p class="icon-text">{{ page.scale }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
-        <div class="grid-row">
-            <ul>
-                <li class="mobile-margin-bottom-60">
-                    {% if page.sector_heading and page.sub_sectors and page.sector_icon.url %}
-                        <div class="column-third-l">
-                            <img src="{{page.sector_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium icon-heading">{{ page.sector_heading }}</p>
-                            <p class="icon-text">{{ page.sub_sectors|join:", " }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-                <li class="mobile-margin-bottom-60">
-                    {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
-                        <div class="column-third-l">
-                            <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium icon-heading">{{ page.investment_type_heading }}</p>
-                            <p class="icon-text">{{ page.investment_type }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-                <li>
-                    {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
-                        <div class="column-third-l">
-                            <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
-                            <p class="bold-medium icon-heading">{{ page.planning_status_heading }}</p>
-                            <p class="icon-text">{{ page.planning_status }}</p>
-                        </div>
-                    {% endif %}
-                </li>
-            </ul>
+        <div class="flex-grid margin-bottom-60">
+            <div class="column-third-xl column-half-m">
+                {% if page.location_heading and page.location and page.location_icon.url %}
+                    <img class="icon" src="{{page.location_icon.url}}" alt="">
+                    <p class="bold-medium icon-heading">{{ page.location_heading }}</p>
+                    <p class="icon-text">{{ page.location }}</p>
+                {% endif %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
+                    <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
+                    <p class="bold-medium icon-heading">{{ page.project_promoter_heading }}</p>
+                    <p class="icon-text">{{ page.project_promoter }}</p>
+                {% endif %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% if page.scale_heading and page.scale and page.scale_icon.url %}
+                    <img src="{{page.scale_icon.url}}" class="icon" alt="">
+                    <p class="bold-medium icon-heading">{{ page.scale_heading }}</p>
+                    <p class="icon-text">{{ page.scale }}</p>
+                {% endif %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% if page.sector_heading and page.sub_sectors and page.sector_icon.url %}
+                    <img src="{{page.sector_icon.url}}" class="icon" alt="">
+                    <p class="bold-medium icon-heading">{{ page.sector_heading }}</p>
+                    <p class="icon-text">{{ page.sub_sectors|join:", " }}</p>
+                {% endif %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
+                    <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
+                    <p class="bold-medium icon-heading">{{ page.investment_type_heading }}</p>
+                    <p class="icon-text">{{ page.investment_type }}</p>
+                {% endif %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
+                    <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
+                    <p class="bold-medium icon-heading">{{ page.planning_status_heading }}</p>
+                    <p class="icon-text">{{ page.planning_status }}</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </section>
