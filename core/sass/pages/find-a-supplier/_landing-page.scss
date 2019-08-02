@@ -1,0 +1,404 @@
+
+$grey: #333333;
+$grey-light: #767676;
+$off-white: rgba(250, 250, 250, 0.8);
+
+.find-a-supplier-landing-page {
+
+  #search-area,
+  #industries-section,
+  #services-section {
+    .button {
+      background-color: $active-blue;
+      line-height: 30px;
+      color: white;
+      font-weight: bold;
+      font-size: 19px;
+      height: 60px;
+    }
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 1.11;
+    margin-bottom: 15px;
+  }
+
+  section {
+    border: none;
+  }
+
+  #hero {
+    min-height: 450px;
+    padding-top: 100px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $white;
+    margin-bottom: 30px;
+
+    #hero-content {
+      width: 100%;
+      bottom: 50px;
+    }
+
+    .container {
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .image-caption {
+      position: absolute;
+      right: 0;
+      bottom: 15px;
+      font-size: 15px;
+      line-height: 1.53;
+      color: $white;
+    }
+
+    .hero-teaser {
+      margin-bottom: 30px;
+
+      p {
+        max-width: 470px;
+      }
+    }
+
+    h2 {
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 1.15;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 1.63;
+    }
+
+    #search-area {
+      background-color: $off-white;
+      padding: 30px;
+
+      div {
+        margin: 0;
+        padding: 0;
+      }
+
+      .button-container {
+        padding-left: 15px;
+
+        .button {
+          width: 100%;
+        }
+      }
+
+      input, select {
+        width: 100%;
+        background-color: white;
+        height: 60px;
+      }
+
+      input, select, button {
+        line-height: 30px;
+        padding: 0 19px;
+      }
+
+      input[type=text] {
+        border-right-width: 0;
+      }
+    }
+
+    input, select {
+      color: $grey;
+    }
+  }
+
+  #introduction-section {
+    padding-top: 30px;
+
+    .grid-row {
+      margin: 0;
+      display: flex;
+    }
+
+    .proposition-container {
+      width: 52%;
+    }
+
+    .button-container {
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-left: 100px;
+    }
+
+    .column-one-half {
+      padding: 0;
+    }
+
+    h2 {
+      color: $grey;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 1.58;
+      color: $grey-light;
+    }
+
+    a {
+      text-align: center;
+      width: 350px;
+      height: 60px;
+      padding: 0;
+      line-height: 60px;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+  }
+
+
+  #industries-section {
+    background-color: $stone-light;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-top: 60px;
+
+    & > div {
+      padding: 3px;
+    }
+
+    h2 {
+      color: $grey;
+      margin-bottom: 60px;
+    }
+
+    span {
+      background-color: $active-blue;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.39;
+      color: white;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .grid-row {
+        margin-left: -20px;
+    }
+
+    .industry-card {
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: $grey;
+
+      p {
+        margin-top: -8px;
+        background: white;
+        padding: 30px 20px;
+        font-size: 19px;
+        line-height: 1.53;
+        border: solid 1px #d8d8d8;
+      }
+    }
+
+    .button {
+      margin-top: 30px;
+      line-height: 60px;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 0;
+    }
+  }
+
+
+  #services-section {
+    padding-top: 60px;
+
+    h2 {
+      color: $grey;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.5;
+      color: $grey;
+    }
+
+    p {
+      font-size: 19px;
+      line-height: 1.58;
+      color: $grey-light;
+      margin-bottom: 60px;
+    }
+
+    img {
+      max-width: 100%;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .image-container {
+      min-height: 100px;
+    }
+  }
+
+  #articles-section {
+    margin: 0;
+    background-color: $stone-light;
+
+    .container {
+      padding-top: 60px;
+      padding-left: 40px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    #articles-section {
+      .article-text-container {
+        padding-right: 130px;
+      }
+    }
+  }
+
+  @media (max-width: 769px) {
+    h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    #hero {
+      padding: 35px 0;
+      margin-bottom: 30px;
+
+      .container {
+        padding: 0 60px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      .image-caption {
+        display: none;
+      }
+
+      .hero-teaser {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 30px;
+      }
+
+      #search-area {
+        padding: 20px;
+        margin-bottom: 20px;
+
+        select {
+          display: none;
+        }
+
+        .button-container {
+          width: 100%;
+        }
+
+        input[type=text] {
+          border-right-width: 2px;
+        }
+      }
+    }
+    #introduction-section {
+      .button {
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .proposition-container {
+        width: 100%;
+      }
+
+      .button-container {
+        margin-left: 0;
+      }
+
+      .grid-row {
+        display: inline-block;
+      }
+    }
+    #industries-section {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      margin-top: 30px;
+
+      h2 {
+        margin-bottom: 30px;
+      }
+
+      .grid-row {
+        margin: 0;
+
+        a {
+          display: block;
+          padding-left: 0;
+          padding-right: 0;
+
+          p {
+            padding: 20px;
+          }
+        }
+      }
+    }
+    #services-section {
+      padding: 30px 30px 0;
+
+      p {
+        font-size: 19px;
+      }
+
+      .service-card {
+        display: flex;
+      }
+
+      .image-container {
+        margin-right: 15px;
+      }
+
+      img {
+        margin-bottom: 0;
+        max-width: 119px;
+      }
+    }
+
+    #articles-section {
+      .container {
+        padding: 30px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    #hero {
+      .container {
+        padding: 0 30px;
+      }
+
+      #search-area {
+        .button-container {
+          padding-left: 0;
+        }
+
+        input[type=text] {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+
+}
