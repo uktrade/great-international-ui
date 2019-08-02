@@ -31,6 +31,7 @@ TEMPLATE_MAPPING = {
     # About DIT
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
+    'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
@@ -186,6 +187,11 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
+    },
+    'AboutUkLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'LandingPage'
     },
     'AboutUkWhyChooseTheUkPage': {
         'business_unit': 'GreatInternational',
