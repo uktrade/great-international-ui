@@ -28,6 +28,8 @@ from core.context_modifiers import (
 from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
 
+import find_a_supplier.forms
+
 
 class QuerystringRedirectView(RedirectView):
     query_string = True
@@ -576,4 +578,12 @@ def invest_homepage_context_modifier(context, request):
             hpo_pages and filter_by_active_language(hpo_pages[0])
         ),
         'show_featured_cards': (number_of_featured_cards == 3),
+    }
+
+
+@register_context_modifier('InternationalTradeHomePage')
+def international_trade_homepage_context_modifier(context, request):
+
+    return {
+        'search_form': find_a_supplier.forms.SearchForm,
     }
