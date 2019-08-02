@@ -18,6 +18,7 @@
 - CMS-1640 - Move ISD pages to great international
 - CI-383 - Create About DIT landing page
 - CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
+- CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
 
 
 ## [2019.07.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.25)
