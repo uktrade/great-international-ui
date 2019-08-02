@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
+from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -26,6 +27,10 @@ from core.context_modifiers import (
 )
 from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
+
+
+class QuerystringRedirectView(RedirectView):
+    query_string = True
 
 
 class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
