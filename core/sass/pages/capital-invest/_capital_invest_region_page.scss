@@ -3,19 +3,6 @@
 
 .capital-invest-region-page {
 
-  .page-section{
-    @include page-section-padding;
-
-  }
-
-  .region-white-page-section {
-    @include white-section;
-  }
-
-  .region-stone-page-section {
-    @include stone-section;
-  }
-
   .mobile-padding-bottom-30 {
    @media (max-width: 641px) {
       padding-bottom: $spacing-3;
