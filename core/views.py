@@ -575,7 +575,7 @@ def invest_homepage_context_modifier(context, request):
 
 
 @register_context_modifier('AboutUkLandingPage')
-def invest_homepage_context_modifier(context, request):
+def about_uk_landing_page_context_modifier(context, request):
 
     random_sectors = []
     if 'all_sectors' in context['page']:
