@@ -129,7 +129,9 @@
                 <p class="font-small">{{ subsection.teaser }}</p>
                 <hr>
                 {% endif %}
+                {% if subsection.body %}
                 {{ subsection.body|convert_headings_to:'h4'|add_export_elements_classes|override_elements_css_class:'h4,heading-small'|safe }}
+                {% endif %}
               </div>
             </div>
           </div>
