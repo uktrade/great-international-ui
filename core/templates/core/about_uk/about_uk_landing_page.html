@@ -8,13 +8,9 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
 
-<section id="breadcrumb-section">
-    <div class="container">
-      {% breadcrumbs page.breadcrumbs_label %}
-        <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-      {% endbreadcrumbs %}
-    </div>
-</section>
+<div class="container">
+    {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
 
 {% if page.intro %}
 <section class="padding-top-30 padding-bottom-60">
