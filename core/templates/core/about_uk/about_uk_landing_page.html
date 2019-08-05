@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
-{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid from directory_components %}
+{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid card from directory_components %}
 
 {% block css_layout_class %}about-uk-landing-page{% endblock %}
 
@@ -59,6 +59,13 @@
         <div class="grid-row">
             <p class="heading-large">{{ page.industries_section_title}} </p>
             <div class="column-two-thirds-l">{{ page.industries_section_intro|add_export_elements_classes|safe }}</div>
+        </div>
+        <div class="flex-grid">
+            {% for sector in random_sectors %}
+            <div class="column-third-xl column-half-m">
+                {% card title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+            </div>
+            {% endfor %}
         </div>
         {% if page.industries_section_cta_link and page.industries_section_cta_text %}
             <a class="button button-blue button-arrow-small margin-top-45" href="{{page.industries_section_cta_link}}">{{ page.industries_section_cta_text }}</a>

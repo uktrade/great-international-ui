@@ -11,4 +11,20 @@
     @include stone-section;
   }
 
+  #ebook-section {
+    .container {
+      overflow: visible;
+    }
+
+    .column-quarter-l {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      max-width: 299px;
+      box-shadow: 0 0 4px 4px rgba(240,240,240,0.5);
+    }
+  }
+
 }

@@ -572,3 +572,17 @@ def invest_homepage_context_modifier(context, request):
         ),
         'show_featured_cards': (number_of_featured_cards == 3),
     }
+
+
+@register_context_modifier('AboutUkLandingPage')
+def invest_homepage_context_modifier(context, request):
+
+    random_sectors = []
+    if 'all_sectors' in context['page']:
+        all_sectors = context['page']['all_sectors']
+        random.shuffle(all_sectors)
+        random_sectors = all_sectors[0:3]
+
+    return {
+        'random_sectors': random_sectors
+    }
