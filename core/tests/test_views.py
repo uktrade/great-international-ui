@@ -1599,3 +1599,64 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_sectors_for_about_uk_landing_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'about-uk'
+        },
+        'page_type': 'AboutUkLandingPage',
+        'all_sectors': [
+            {'heading': 'automotive'},
+            {'heading': 'aerospace'},
+            {'heading': 'energy'},
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk')
+
+    assert len(response.context_data['random_sectors']) <= 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'about-uk'
+        },
+        'page_type': 'AboutUkLandingPage',
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk')
+
+    assert response.context_data['random_sectors'] == []
