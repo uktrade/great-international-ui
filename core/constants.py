@@ -205,8 +205,8 @@ GA_DATA_MAPPING = {
     # Find a supplier
     'InternationalTradeHomePage': {
         'business_unit': 'FindASupplier',
-        'site_section': 'LandingPage',
-        'site_subsection': ''
+        'site_section': 'HomePage',
+        'site_subsection': '',
     },
 }
 
