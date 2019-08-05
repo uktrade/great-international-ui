@@ -70,7 +70,12 @@
 {% if page.regions_section_title and page.regions_section_content %}
 <section class="stone-page-section">
     <div class="container">
-        <div class="flex-grid reverse-columns-l">
+        <div class="grid-row">
+            <div class="column-half-xl float-right-xl {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %}">
+                <p class="heading-large">{{ page.regions_section_title}} </p>
+            </div>
+        </div>
+        <div class="cta-block flex-grid">
             {% if page.regions_section_image.url %}
                 <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
                     <figure class="landing-page-image flex-shrink-0">
@@ -78,8 +83,7 @@
                     </figure>
                 </div>
             {%  endif %}
-            <div class="column-half-xl {% if page.regions_section_image.url %} right-half-page-text {% endif %} center-vertical">
-                <p class="heading-large">{{ page.regions_section_title}} </p>
+            <div class="column-half-xl cta-block-content {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %} center-vertical">
                 <div>{{ page.regions_section_content|add_export_elements_classes|safe }}</div>
                 {% if page.regions_section_cta_link and page.regions_section_cta_text %}
                     <a class="button button-blue button-arrow-small margin-top-45 width-half" href="{{page.regions_section_cta_link}}">{{ page.regions_section_cta_text }}</a>
