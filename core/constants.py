@@ -40,7 +40,8 @@ TEMPLATE_MAPPING = {
         'invest/hpo/high_potential_opportunity_detail.html',
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage':
-        'invest/hpo/high_potential_opportunities_form_success.html'
+        'invest/hpo/high_potential_opportunities_form_success.html',
+    'InvestRegionPage': 'invest/regions/region_detail.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -163,6 +164,11 @@ GA_DATA_MAPPING = {
         'business_unit': 'Invest',
         'site_section': 'HighPotentialOpportunities',
         'site_subsection': 'FormSuccessPage',
+    },
+    'InvestRegionPage': {
+        'business_unit': 'Invest',
+        'site_section': 'Regions',
+        'site_subsection': 'DetailPage',
     },
 
     # Perfect fit

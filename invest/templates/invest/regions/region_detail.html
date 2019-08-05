@@ -1,0 +1,50 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% load filter_by_active_language from cms_tags %}
+{% load add_export_elements_classes hero from directory_components %}
+
+{% block head_js %}
+  {{ block.super }}
+  <script src="{% static 'core/js/dit.js' %}"></script>
+  <script src="{% static 'core/js/dit.components.accordion.js' %}"></script>
+{% endblock %}
+
+{% block css_layout_class %}invest-region-page{% endblock %}
+
+{% block content %}
+
+{% hero hero_text=page.heading background_image_url=page.hero_image.url %}
+
+{% if page.pullout.text %}
+<section class="pullout">
+  <div class="container">
+    <div class="grid-row">
+
+      <div class="column-two-thirds font-medium">
+          {{ page.pullout.text|add_export_elements_classes|safe }}
+      </div>
+
+      <div class="column-third" id="pullout">
+        <div class="data">
+          {% if page.pullout.stat and page.pullout.stat_text %}
+          <span class="data-item{% if page.pullout.stat_text|length > 10 %} font-xlarge{% else %} font-xxlarge{% endif %}">{{ page.pullout.stat }}</span>
+          <span>{{ page.pullout.stat_text }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="region-page-accordions padding-vertical-60">
+  <div class="container">
+    <ul id="region-accordions">
+      {% include 'invest/includes/accordions.html' with accordions=page.subsections %}
+    </ul>
+  </div>
+</section>
+
+{% endblock %}
