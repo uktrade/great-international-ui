@@ -5,6 +5,11 @@
 
 {% block title %}Invest In Great Britain - {% trans "Contact us" %}{% endblock %}
 
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'core/js/vendor/accessible-autocomplete.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block content %}
 
 {% trans "Contact the investment team" as page_title %}
