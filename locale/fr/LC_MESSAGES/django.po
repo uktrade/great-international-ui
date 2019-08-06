@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-19 07:28+0000\n"
+"POT-Creation-Date: 2019-08-06 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,144 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: contact/forms.py:19
+msgid "Less than 10"
+msgstr "Moins de 10"
+
+#: contact/forms.py:23
+msgid "10 to 50"
+msgstr "10 à 50"
+
+#: contact/forms.py:27
+msgid "51 to 250"
+msgstr "51 à 250"
+
+#: contact/forms.py:31
+msgid "More than 250"
+msgstr "Plus de 250"
+
+#: contact/forms.py:39 contact/forms.py:87 perfect_fit_prospectus/forms.py:12
+msgid "Name"
+msgstr "Nom complet"
+
+#: contact/forms.py:40 contact/forms.py:89
+msgid "Job title"
+msgstr "Poste"
+
+#: contact/forms.py:41 contact/forms.py:88
+msgid "Email address"
+msgstr "E-mail de travail"
+
+#: contact/forms.py:43 contact/forms.py:90
+msgid "Phone number"
+msgstr "Téléphone de travail"
+
+#: contact/forms.py:46 contact/forms.py:91
+msgid "Company name"
+msgstr "Nom de l'entreprise"
+
+#: contact/forms.py:48 contact/forms.py:92
+msgid "Company website"
+msgstr "Site Web de l'entreprise"
+
+#: contact/forms.py:52
+msgid "Which country are you based in?"
+msgstr "Dans quel pays êtes-vous basé?"
+
+#: contact/forms.py:54
+msgid ""
+"We will use this information to put you in touch with your closest British "
+"embassy or high commission."
+msgstr ""
+"Nous utiliserons cette information pour vous mettre en contact avec votre "
+"ambassade britannique la plus proche ou votre haute commission Commencez la "
+"saisie pour sélectionner un pays."
+
+#: contact/forms.py:60 contact/forms.py:94
+msgid "Current number of staff"
+msgstr "Nombre total actuel d'employés"
+
+#: contact/forms.py:64
+msgid "Tell us about your investment"
+msgstr "Parlez-nous de votre investissement"
+
+#: contact/forms.py:66
+msgid ""
+"Tell us about your company and your plans for the UK in terms of size of "
+"investment, operational and recruitment plans. Please also tell us what help "
+"you would like from the UK government."
+msgstr "Fournissez des détails sur vos projets d'investissement au Royaume-Uni"
+
+#: contact/forms.py:93 perfect_fit_prospectus/forms.py:32
+msgid "Country"
+msgstr "Pays"
+
+#: contact/forms.py:95
+msgid "Your investment"
+msgstr "Votre investissement"
+
+#: contact/forms.py:127
+msgid "Contact form user email subject"
+msgstr ""
+
+#: contact/templates/contact/contact.html:6
+#: contact/templates/contact/contact_form_success_page.html:6
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: contact/templates/contact/contact.html:15
+msgid "Contact the investment team"
+msgstr "Contactez l’équipe investissement"
+
+#: contact/templates/contact/contact.html:24
+msgid "Contact Information"
+msgstr "Informations de contact"
+
+#: contact/templates/contact/contact.html:30
+msgid "Company information"
+msgstr "Votre entreprise"
+
+#: contact/templates/contact/contact.html:36
+msgid "Your plans"
+msgstr "Votre investissement"
+
+#: contact/templates/contact/contact.html:41
+msgid ""
+"By sending us your details you can confirm that the information you've "
+"shared with us is true and you accept our terms and conditions."
+msgstr ""
+"En nous envoyant ces données, vous confirmez que les informations que vous "
+"avez partagées avec nous sont authentiques et que vous acceptez nos "
+"conditions générales."
+
+#: contact/templates/contact/contact.html:44
+msgid "Submit"
+msgstr "Contactez nous"
+
+#: contact/templates/contact/contact.html:61
+msgid "Type here"
+msgstr ""
+
+#: contact/templates/contact/contact_form_success_page.html:13
+msgid "Your form has been submitted."
+msgstr ""
+"Nous vous remercions d'avoir manifesté votre intérêt à investir au Royaume-"
+"Uni."
+
+#: contact/templates/contact/contact_form_success_page.html:14
+msgid "Thank you, your form has been submitted."
+msgstr ""
+"Les informations que vous nous avez fournies nous indiquent où se trouvent "
+"vos plans d'investissement afin que nous puissions vous mettre en contact "
+"avec la bonne personne pour vous aider. Vous recevrez un email sous peu qui "
+"indiquera que nous avons reçu vos informations. Nous enverrons un e-mail de "
+"suivi dans les sept jours."
+
+#: contact/templates/email/email_agent.html:166
+#: contact/templates/email/email_agent.txt:12
+msgid "Submission url"
+msgstr ""
 
 #: core/context_processors.py:28
 msgid "Great.gov.uk International"
@@ -70,15 +208,15 @@ msgstr ""
 msgid "Filter results"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:46
-msgid "Sort by"
-msgstr ""
-
-#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:76
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:67
 msgid "Update results"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:97
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:73
+msgid "Sort by"
+msgstr ""
+
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:91
 msgid "No results"
 msgstr ""
 
@@ -86,7 +224,7 @@ msgstr ""
 msgid "Opportunity"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:163
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
 msgstr ""
 
@@ -110,11 +248,11 @@ msgstr "Contactez un service de renseignements sur la sortie de l'UE"
 msgid "Industries"
 msgstr "Industries"
 
-#: core/templates/core/sector_page.html:163
+#: core/templates/core/sector_page.html:150
 msgid "Next steps"
 msgstr "Les étapes suivantes"
 
-#: core/templates/core/sector_page.html:164
+#: core/templates/core/sector_page.html:151
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
@@ -125,11 +263,11 @@ msgstr ""
 "produits et services au Royaume-Uni. Plus que cela, nous offrons des "
 "conseils spécialisés et un soutien financier compétitif."
 
-#: core/templates/core/sector_page.html:169
+#: core/templates/core/sector_page.html:156
 msgid "I want to invest in the UK"
 msgstr "Je veux investir au Royaume-Uni"
 
-#: core/templates/core/sector_page.html:173
+#: core/templates/core/sector_page.html:160
 msgid "I want to buy from the UK"
 msgstr "Je veux acheter du Royaume-Uni"
 
@@ -137,9 +275,11 @@ msgstr "Je veux acheter du Royaume-Uni"
 msgid "UK setup guide"
 msgstr "Guide d'installation au Royaume-Uni"
 
-#: perfect_fit_prospectus/forms.py:12
-msgid "Name"
-msgstr ""
+#: find_a_supplier/forms.py:17
+#, fuzzy
+#| msgid "Industries"
+msgid "All industries"
+msgstr "Industries"
 
 #: perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -151,10 +291,6 @@ msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:32
-msgid "Country"
 msgstr ""
 
 #: perfect_fit_prospectus/forms.py:40
@@ -197,7 +333,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: perfect_fit_prospectus/views.py:27
+#: perfect_fit_prospectus/views.py:41
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
