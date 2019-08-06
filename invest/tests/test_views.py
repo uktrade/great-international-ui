@@ -374,6 +374,20 @@ def test_invest_redirects_persist_querystrings(client):
     assert response.url == '/international/content/industries/?foo=bar&lang=es'
 
 
+def test_invest_redirect_homepage(client):
+    url = reverse('invest-incoming', kwargs={'path': '/es/'})
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/invest/?foo=bar&lang=es'
+
+
+def test_invest_redirect_homepage_english(client):
+    url = reverse('invest-incoming-homepage')
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/invest/?foo=bar'
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_uk_region_page_cms_view(mock_get_page, client):
     mock_get_page.return_value = create_response(

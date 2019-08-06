@@ -63,8 +63,13 @@ urlpatterns += [
     ),
     url(
         r'^international/content/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('index')),
+        QuerystringRedirectView.as_view(pattern_name='index'),
         name='content-index-redirect'
+    ),
+    url(
+        r'^international/invest/incoming/$',  # English homepage
+        QuerystringRedirectView.as_view(pattern_name='invest-home'),
+        name='invest-incoming-homepage'
     ),
     url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
@@ -79,7 +84,7 @@ urlpatterns += [
     ),
     url(
         r'^international/content/invest/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('invest-home')),
+        QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
     ),
     url(
