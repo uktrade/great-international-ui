@@ -1,6 +1,9 @@
 import pytest
-from django.urls import reverse
 from unittest.mock import patch
+from bs4 import BeautifulSoup
+
+from django.urls import reverse
+from django.conf import settings
 
 from contact import forms, views
 
@@ -55,3 +58,35 @@ def test_contact_invalid(mock_save, rf):
 
     assert mock_save.call_count == 0
     assert response.context_data['form'].utm_data == utm_data
+
+
+@pytest.mark.parametrize('url', (
+    'invest-contact',
+    'invest-contact-success'
+))
+def test_contact_pages_localised_urls(url, client):
+    url = reverse(url) + '?lang=de'
+    response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    other_languages = [code for code, _ in settings.LANGUAGES if code != 'de']
+
+    for code in other_languages:
+        link_tag = soup.select(f'link[hreflang="{code}"]')[0]
+        assert link_tag
+        assert 'http://testserver' in link_tag.attrs['href']
+
+
+@pytest.mark.parametrize(
+    'language_code',
+    [code for code, _ in settings.LANGUAGES],
+)
+def test_contact_pages_localised_urls_all_languages(language_code, client):
+    url = reverse('invest-contact') + f'?lang={language_code}'
+    response = client.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    other_languages = [code for code, _ in settings.LANGUAGES if code != language_code]
+
+    for code in other_languages:
+        link_tag = soup.select(f'link[hreflang="{code}"]')[0]
+        assert link_tag
+        assert 'http://testserver' in link_tag.attrs['href']

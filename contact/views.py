@@ -5,11 +5,13 @@ from django.urls import reverse_lazy
 from django.conf import settings
 
 from contact import forms
+from contact.mixins import LocalisedURLsMixin
 
 from directory_components.mixins import EnableTranslationsMixin, InternationalHeaderMixin
 
 
 class ContactFormView(
+    LocalisedURLsMixin,
     InternationalHeaderMixin,
     EnableTranslationsMixin,
     CountryDisplayMixin,
@@ -41,6 +43,7 @@ class ContactFormView(
 
 
 class ContactFormSuccessView(
+    LocalisedURLsMixin,
     InternationalHeaderMixin,
     EnableTranslationsMixin,
     CountryDisplayMixin,

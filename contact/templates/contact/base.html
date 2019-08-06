@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+
+{% block head_other %}
+  {% for url, language_code in localised_urls %}
+    <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+  {% endfor %}
+{% endblock %}
+
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'core/js/vendor/accessible-autocomplete.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block css_layout_class %}invest-contact-page{% endblock %}
