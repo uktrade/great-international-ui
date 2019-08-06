@@ -30,7 +30,7 @@ def test_contact_form_success(mock_save, contact_form_data, rf):
     response = views.ContactFormView.as_view()(request)
 
     assert response.status_code == 302
-    assert response.url == reverse('contact-success')
+    assert response.url == reverse('invest-contact-success')
 
     assert mock_save.call_count == 1
 
