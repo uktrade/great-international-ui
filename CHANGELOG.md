@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Fixed bugs:
+- CMS-1772 - Add invest contact form pages
 - No ticket - Fix duplication of constants in code
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
 - CI-378 - Fixed guide landing page spacings
@@ -23,6 +24,7 @@
 - CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
 - CMS-1745 - Implement invest redirects
 - CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
+- CI-321 - About UK landing page
 
 
 ## [2019.07.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.25)
