@@ -5,7 +5,6 @@ import directory_healthcheck.views
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
-from django.urls import reverse_lazy
 
 import core.views
 from core.views import QuerystringRedirectView
@@ -63,8 +62,13 @@ urlpatterns += [
     ),
     url(
         r'^international/content/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('index')),
+        QuerystringRedirectView.as_view(pattern_name='index'),
         name='content-index-redirect'
+    ),
+    url(
+        r'^international/invest/incoming/$',  # English homepage
+        QuerystringRedirectView.as_view(pattern_name='invest-home'),
+        name='invest-incoming-homepage'
     ),
     url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
@@ -79,7 +83,7 @@ urlpatterns += [
     ),
     url(
         r'^international/content/invest/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('invest-home')),
+        QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
     ),
     url(
@@ -90,7 +94,7 @@ urlpatterns += [
     ),
     url(
         r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('trade-home')),
+        QuerystringRedirectView.as_view(pattern_name='trade-home'),
         name='content-trade-home-redirect'
     ),
     # Since we don't have a frontend page for the HPO landing page in the CMS

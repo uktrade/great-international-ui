@@ -6,6 +6,7 @@ REDIRECTS = {
     'high-potential-opportunities/food-production/contact': '/international/content/invest/high-potential-opportunities/food-production/contact/',  # NOQA
     'high-potential-opportunities/lightweight-structures/contact': '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/',  # NOQA
     # translated urls
+    '': '/international/invest/',
     'contact': '/international/invest/contact/',
     'uk-regions/midlands': '/international/content/invest/uk-regions/midlands/',
     'uk-regions/northern-ireland': '/international/content/invest/uk-regions/northern-ireland/',
