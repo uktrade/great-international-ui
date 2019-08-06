@@ -75,7 +75,8 @@ class LegacyInvestURLRedirectView(View):
             if lang not in ('ar', 'ja'):  # these go to English
                 params['lang'] = lang
 
-        destination = redirects.REDIRECTS[path]
+        destination = redirects.REDIRECTS.get(path) or '/international/invest/'
+
         if params:
             destination = f'{destination}?{params.urlencode()}'
         return redirect(destination)
