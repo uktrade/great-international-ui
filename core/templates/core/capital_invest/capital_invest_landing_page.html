@@ -71,7 +71,7 @@
                 <div class="flex-grid">
                     {% for region in page.added_regions %}
                         {% if region.related_region.title %}
-                            <div class="column-half-m column-third-xl">
+                            <div class="column-third-xl column-half-m">
                                 {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
                                     {% card img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
                             </div>
@@ -79,7 +79,7 @@
                     {% endfor %}
                     {% for region_fields in page.added_region_card_fields %}
                         {% if region_fields.region_card_title and region_fields.region_card_summary %}
-                            <div class="column-half-m column-third-xl">
+                            <div class="column-third-xl column-half-m">
                                 {% card img_src=region_fields.region_card_image.url title=region_fields.region_card_title description=region_fields.region_card_summary|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
                             </div>
                         {% endif %}
@@ -129,7 +129,7 @@
         <div class="flex-grid">
             {% for card in page.added_homes_in_england_card_fields %}
                 {% if card.homes_in_england_card_title and card.homes_in_england_card_pdf_document %}
-                    <div class="column-half-l column-third-xl">
+                    <div class="column-third-xl column-half-m">
                         {% include 'directory_components/card.html' with img_src=card.homes_in_england_card_image.url title=card.homes_in_england_card_title url=card.homes_in_england_card_pdf_document %}
                     </div>
                 {% endif %}

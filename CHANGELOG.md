@@ -9,8 +9,11 @@
 - CI-375 - Fix spacings on Why choose UK Page
 - No ticket - Update styling on ebooks promotional section
 - CI-396 - Fix case study section on sector page bug
+- CI-419 - Commonised responsive behaviour for column-third
+- CI-422 - Update Django to 1.2.23
 
 ### Implemented enhancements
+- CMS-1774 - Add Invest region page, organise sass files
 - No ticket - Namespace ISD contact page styling to fix pollution on other pages
 - CMS-1734 - Added GA360 data to Perfect Fit views
 - CI-363 - Add anchor tags to all headings in setup guide articles
@@ -18,6 +21,7 @@
 - CI-383 - Create About DIT landing page
 - CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
 - CMS-1745 - Implement invest redirects
+- CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
 
 
 ## [2019.07.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.25)

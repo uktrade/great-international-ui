@@ -372,3 +372,23 @@ def test_invest_redirects_persist_querystrings(client):
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302
     assert response.url == '/international/content/industries/?foo=bar&lang=es'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_uk_region_page_cms_view(mock_get_page, client):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'meta': {
+                'languages': [['en-gb', 'English']],
+                'slug': 'region-slug',
+            },
+            'page_type': 'InvestRegionPage',
+        }
+    )
+
+    url = reverse('cms-page-from-path', kwargs={'path': '/invest/uk-regions/region-slug'})
+    response = client.get(url)
+
+    assert response.status_code == 200
+    
