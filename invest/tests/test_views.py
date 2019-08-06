@@ -297,6 +297,83 @@ def test_get_success_page_with_session(
     ]
 
 
+@pytest.mark.parametrize('source,destination', [
+    (
+        'high-potential-opportunities/rail-infrastructure',
+        '/international/content/invest/high-potential-opportunities/rail-infrastructure/'
+    ),
+    (
+        'high-potential-opportunities/food-production',
+        '/international/content/invest/high-potential-opportunities/food-production/'
+    ),
+    (
+        'high-potential-opportunities/lightweight-structures',
+        '/international/content/invest/high-potential-opportunities/lightweight-structures/'
+    ),
+    (
+        'high-potential-opportunities/rail-infrastructure/contact',
+        '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/'
+    ),
+    (
+        'high-potential-opportunities/food-production/contact',
+        '/international/content/invest/high-potential-opportunities/food-production/contact/'
+    ),
+    (
+        'high-potential-opportunities/lightweight-structures/contact',
+        '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/'
+    ),
+])
+def test_invest_redirects(source, destination, client):
+    url = reverse('invest-incoming', kwargs={'path': source})
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination
+
+
+@pytest.mark.parametrize('source,destination', [
+    (
+        '/es/industries/',
+        '/international/content/industries/?lang=es'
+    ),
+    (
+        '/de/industries/',
+        '/international/content/industries/?lang=de'
+    ),
+    (
+        '/fr/industries/',
+        '/international/content/industries/?lang=fr'
+    ),
+    (
+        '/pt/industries/',
+        '/international/content/industries/?lang=pt'
+    ),
+    (
+        '/zh-hans/industries/',
+        '/international/content/industries/?lang=zh-hans'
+    ),
+    (
+        '/ar/industries/',
+        '/international/content/industries/'
+    ),
+    (
+        '/ja/industries/',
+        '/international/content/industries/'
+    ),
+])
+def test_invest_redirects_language_urls(source, destination, client):
+    url = reverse('invest-incoming', kwargs={'path': source})
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination
+
+
+def test_invest_redirects_persist_querystrings(client):
+    url = reverse('invest-incoming', kwargs={'path': '/es/industries/'})
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/content/industries/?foo=bar&lang=es'
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_uk_region_page_cms_view(mock_get_page, client):
     mock_get_page.return_value = create_response(
