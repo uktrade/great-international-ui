@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 13:57+0000\n"
+"POT-Creation-Date: 2019-08-06 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,23 +103,23 @@ msgstr ""
 msgid "Contact us"
 msgstr "Contactez-nous"
 
-#: contact/templates/contact/contact.html:10
+#: contact/templates/contact/contact.html:15
 msgid "Contact the investment team"
 msgstr "Contactez l’équipe investissement"
 
-#: contact/templates/contact/contact.html:19
+#: contact/templates/contact/contact.html:24
 msgid "Contact Information"
 msgstr "Informations de contact"
 
-#: contact/templates/contact/contact.html:25
+#: contact/templates/contact/contact.html:30
 msgid "Company information"
 msgstr "Votre entreprise"
 
-#: contact/templates/contact/contact.html:31
+#: contact/templates/contact/contact.html:36
 msgid "Your plans"
 msgstr "Votre investissement"
 
-#: contact/templates/contact/contact.html:36
+#: contact/templates/contact/contact.html:41
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
@@ -128,9 +128,13 @@ msgstr ""
 "avez partagées avec nous sont authentiques et que vous acceptez nos "
 "conditions générales."
 
-#: contact/templates/contact/contact.html:39
+#: contact/templates/contact/contact.html:44
 msgid "Submit"
 msgstr "Contactez nous"
+
+#: contact/templates/contact/contact.html:61
+msgid "Type here"
+msgstr ""
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."

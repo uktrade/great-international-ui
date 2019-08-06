@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 13:57+0000\n"
+"POT-Creation-Date: 2019-08-06 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,23 +103,23 @@ msgstr ""
 msgid "Contact us"
 msgstr "联系我们"
 
-#: contact/templates/contact/contact.html:10
+#: contact/templates/contact/contact.html:15
 msgid "Contact the investment team"
 msgstr "请联系投资组"
 
-#: contact/templates/contact/contact.html:19
+#: contact/templates/contact/contact.html:24
 msgid "Contact Information"
 msgstr "联系信息"
 
-#: contact/templates/contact/contact.html:25
+#: contact/templates/contact/contact.html:30
 msgid "Company information"
 msgstr "您的公司"
 
-#: contact/templates/contact/contact.html:31
+#: contact/templates/contact/contact.html:36
 msgid "Your plans"
 msgstr "您的投资"
 
-#: contact/templates/contact/contact.html:36
+#: contact/templates/contact/contact.html:41
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
@@ -127,9 +127,13 @@ msgstr ""
 "向我们发送您的详细信息，即表明您确认您与我们分享的信息真实有效，且您接受我们"
 "的条款和条件。"
 
-#: contact/templates/contact/contact.html:39
+#: contact/templates/contact/contact.html:44
 msgid "Submit"
 msgstr "保持联系"
+
+#: contact/templates/contact/contact.html:61
+msgid "Type here"
+msgstr ""
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."
