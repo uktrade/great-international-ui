@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Fixed bugs:
+- CMS-1772 - Add invest contact form pages
 - No ticket - Fix duplication of constants in code
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
 - CI-378 - Fixed guide landing page spacings
