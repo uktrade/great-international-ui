@@ -121,41 +121,51 @@ msgstr ""
 #: contact/templates/contact/contact.html:11
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
-msgstr ""
+msgstr "Contactez-nous"
 
 #: contact/templates/contact/contact.html:17
 msgid "Contact the investment team"
-msgstr ""
+msgstr "Contactez l’équipe investissement"
 
 #: contact/templates/contact/contact.html:26
 msgid "Contact Information"
-msgstr ""
+msgstr "Informations de contact"
 
 #: contact/templates/contact/contact.html:32
 msgid "Company information"
-msgstr ""
+msgstr "Votre entreprise"
 
 #: contact/templates/contact/contact.html:38
 msgid "Your plans"
-msgstr ""
+msgstr "Votre investissement"
 
 #: contact/templates/contact/contact.html:43
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
 msgstr ""
+"En nous envoyant ces données, vous confirmez que les informations que vous "
+"avez partagées avec nous sont authentiques et que vous acceptez nos "
+"conditions générales."
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr ""
+msgstr "Contactez nous"
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."
 msgstr ""
+"Nous vous remercions d'avoir manifesté votre intérêt à investir au Royaume-"
+"Uni."
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Thank you, your form has been submitted."
 msgstr ""
+"Les informations que vous nous avez fournies nous indiquent où se trouvent "
+"vos plans d'investissement afin que nous puissions vous mettre en contact "
+"avec la bonne personne pour vous aider. Vous recevrez un email sous peu qui "
+"indiquera que nous avons reçu vos informations. Nous enverrons un e-mail de "
+"suivi dans les sept jours."
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
