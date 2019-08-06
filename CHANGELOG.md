@@ -10,8 +10,10 @@
 - No ticket - Update styling on ebooks promotional section
 - CI-396 - Fix case study section on sector page bug
 - CI-419 - Commonised responsive behaviour for column-third
+- CI-422 - Update Django to 1.2.23
 
 ### Implemented enhancements
+- CMS-1596 - Add FAS homepage
 - CMS-1774 - Add Invest region page, organise sass files
 - No ticket - Namespace ISD contact page styling to fix pollution on other pages
 - CMS-1734 - Added GA360 data to Perfect Fit views
@@ -19,6 +21,7 @@
 - CMS-1640 - Move ISD pages to great international
 - CI-383 - Create About DIT landing page
 - CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
+- CMS-1745 - Implement invest redirects
 - CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
 - CI-321 - About UK landing page
 
