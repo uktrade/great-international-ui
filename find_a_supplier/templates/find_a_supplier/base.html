@@ -1,0 +1,34 @@
+{% extends 'core/base_cms.html' %}
+
+{% block head_css %}
+    {{ block.super }}
+    <style type="text/css">
+        #hero {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @media (max-width: 769px) {
+            #hero {
+                background-size: 600px 350px;
+            }
+        }
+        {% if not page.hero_image and not page.mobile_hero_image %}
+            #hero {
+                background-image: url({{ page.hero_image.url }});
+            }
+        {% else  %}
+            @media (min-width: 770px) {
+                #hero {
+                    background-image: url({{ page.hero_image.url }});
+                }
+            }
+            @media (max-width: 769px) {
+                #hero {
+                    background-image: url({{ page.mobile_hero_image.url }});
+                    background-size: 100%;
+                }
+            }
+        {% endif %}
+    </style>
+{% endblock %}

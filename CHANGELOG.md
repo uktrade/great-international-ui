@@ -13,6 +13,7 @@
 - CI-422 - Update Django to 1.2.23
 
 ### Implemented enhancements
+- CMS-1596 - Add FAS homepage
 - CMS-1774 - Add Invest region page, organise sass files
 - No ticket - Namespace ISD contact page styling to fix pollution on other pages
 - CMS-1734 - Added GA360 data to Perfect Fit views

@@ -7,9 +7,8 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
-from core.tests.helpers import create_response
-from core.views import MultilingualCMSPageFromPathView, cms_api_client, \
-    OpportunitySearchView
+from core.tests.helpers import create_response, stub_page, dummy_page
+from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView
 
 test_sectors = [
     {
@@ -37,27 +36,6 @@ test_sectors = [
         },
     },
 ]
-
-dummy_page = {
-    'title': 'test',
-    'display_title': 'Title',
-    'breadcrumbs_label': 'Title',
-    'meta': {
-        'languages': [
-            ['en-gb', 'English'],
-            ['fr', 'Français'],
-            ['de', 'Deutsch'],
-        ]
-    },
-    'page_type': 'InternationalHomePage',
-}
-
-
-def stub_page(page):
-    value = create_response(json_payload={**dummy_page, **page})
-    stub = patch.object(cms_api_client, 'lookup_by_path', return_value=value)
-    yield stub.start()
-    stub.stop()
 
 
 @pytest.fixture

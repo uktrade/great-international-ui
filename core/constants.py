@@ -41,6 +41,9 @@ TEMPLATE_MAPPING = {
     'InvestHighPotentialOpportunityFormSuccessPage':
         'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
+
+    # Find a supplier
+    'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -197,6 +200,13 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
         'site_subsection': 'WhyChooseTheUkPage'
+    },
+
+    # Find a supplier
+    'InternationalTradeHomePage': {
+        'business_unit': 'FindASupplier',
+        'site_section': 'HomePage',
+        'site_subsection': '',
     },
 }
 
