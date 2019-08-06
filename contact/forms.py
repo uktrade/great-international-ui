@@ -13,29 +13,6 @@ from django.utils.translation import ugettext_lazy as _
 COUNTRIES = [(label, label) for _, label in choices.COUNTRY_CHOICES]
 
 
-FEEDBACK_SERVICE = (
-    (
-        'Very satisfied',
-        _('Very satisfied')
-    ),
-    (
-        'Satisfied',
-        _('Satisfied')
-    ),
-    (
-        'Neither satisfied or dissatisfied',
-        _('Neither satisfied or dissatisfied', )
-    ),
-    (
-        'Dissatisfied',
-        _('Dissatisfied')
-    ),
-    (
-        'Very dissatisfied',
-        _('Very dissatisfied')
-    )
-)
-
 STAFF_CHOICES = (
     (
         'Less than 10',

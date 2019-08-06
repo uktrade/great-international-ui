@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 10:20+0000\n"
+"POT-Creation-Date: 2019-08-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,70 +18,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: contact/forms.py:19
-msgid "Very satisfied"
-msgstr ""
-
-#: contact/forms.py:23
-msgid "Satisfied"
-msgstr ""
-
-#: contact/forms.py:27
-msgid "Neither satisfied or dissatisfied"
-msgstr ""
-
-#: contact/forms.py:31
-msgid "Dissatisfied"
-msgstr ""
-
-#: contact/forms.py:35
-msgid "Very dissatisfied"
-msgstr ""
-
-#: contact/forms.py:42
 msgid "Less than 10"
 msgstr "10人未満"
 
-#: contact/forms.py:46
+#: contact/forms.py:23
 msgid "10 to 50"
 msgstr "10～50人"
 
-#: contact/forms.py:50
+#: contact/forms.py:27
 msgid "51 to 250"
 msgstr "51～250人"
 
-#: contact/forms.py:54
+#: contact/forms.py:31
 msgid "More than 250"
 msgstr "250人を超える"
 
-#: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
+#: contact/forms.py:39 contact/forms.py:87 perfect_fit_prospectus/forms.py:12
 msgid "Name"
 msgstr "氏名"
 
-#: contact/forms.py:63 contact/forms.py:112
+#: contact/forms.py:40 contact/forms.py:89
 msgid "Job title"
 msgstr "役職"
 
-#: contact/forms.py:64 contact/forms.py:111
+#: contact/forms.py:41 contact/forms.py:88
 msgid "Email address"
 msgstr "勤務先の電子メール"
 
-#: contact/forms.py:66 contact/forms.py:113
+#: contact/forms.py:43 contact/forms.py:90
 msgid "Phone number"
 msgstr "勤務先の電話番号"
 
-#: contact/forms.py:69 contact/forms.py:114
+#: contact/forms.py:46 contact/forms.py:91
 msgid "Company name"
 msgstr "企業名"
 
-#: contact/forms.py:71 contact/forms.py:115
+#: contact/forms.py:48 contact/forms.py:92
 msgid "Company website"
 msgstr "企業ウェブサイト"
 
-#: contact/forms.py:75
+#: contact/forms.py:52
 msgid "Which country are you based in?"
 msgstr "国名"
 
-#: contact/forms.py:77
+#: contact/forms.py:54
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
@@ -89,15 +69,15 @@ msgstr ""
 "この情報をもとに、最も近い場所にある英国大使館または高等弁務官事務所からご連"
 "絡を差し上げます。 入力を開始すると、オプションを選択できます"
 
-#: contact/forms.py:83 contact/forms.py:117
+#: contact/forms.py:60 contact/forms.py:94
 msgid "Current number of staff"
 msgstr "現在の従業員数 (推定でも構いません)"
 
-#: contact/forms.py:87
+#: contact/forms.py:64
 msgid "Tell us about your investment"
 msgstr "貴社の投資についてお聞かせください。"
 
-#: contact/forms.py:89
+#: contact/forms.py:66
 msgid ""
 "Tell us about your company and your plans for the UK in terms of size of "
 "investment, operational and recruitment plans. Please also tell us what help "
@@ -106,40 +86,40 @@ msgstr ""
 "貴社の事業概要、及び対英投資の計画（規模・運営・採用）についてご説明くださ"
 "い。また、英国政府からどのようなサポートをご希望か、併せてお聞かせください。"
 
-#: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:93 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国"
 
-#: contact/forms.py:118
+#: contact/forms.py:95
 msgid "Your investment"
 msgstr "貴社の投資について"
 
-#: contact/forms.py:150
+#: contact/forms.py:127
 msgid "Contact form user email subject"
 msgstr ""
 
-#: contact/templates/contact/contact.html:11
+#: contact/templates/contact/contact.html:6
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
 msgstr "連絡する"
 
-#: contact/templates/contact/contact.html:17
+#: contact/templates/contact/contact.html:10
 msgid "Contact the investment team"
 msgstr "対英投資チームに連絡する"
 
-#: contact/templates/contact/contact.html:26
+#: contact/templates/contact/contact.html:19
 msgid "Contact Information"
 msgstr "ご連絡先情報"
 
-#: contact/templates/contact/contact.html:32
+#: contact/templates/contact/contact.html:25
 msgid "Company information"
 msgstr "貴社について"
 
-#: contact/templates/contact/contact.html:38
+#: contact/templates/contact/contact.html:31
 msgid "Your plans"
 msgstr "貴社の投資について"
 
-#: contact/templates/contact/contact.html:43
+#: contact/templates/contact/contact.html:36
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
@@ -148,7 +128,7 @@ msgstr ""
 "ととみなします 当省の利用規約に同意していただいたことをご確認いただくことにな"
 "りますのでご了解ください。"
 
-#: contact/templates/contact/contact.html:46
+#: contact/templates/contact/contact.html:39
 msgid "Submit"
 msgstr "連絡する"
 
@@ -281,6 +261,10 @@ msgstr ""
 
 #: core/templates/core/uk_setup_guide/article_detail.html:24
 msgid "UK setup guide"
+msgstr ""
+
+#: find_a_supplier/forms.py:17
+msgid "All industries"
 msgstr ""
 
 #: perfect_fit_prospectus/forms.py:16

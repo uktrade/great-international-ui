@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 10:20+0000\n"
+"POT-Creation-Date: 2019-08-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,70 +19,50 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: contact/forms.py:19
-msgid "Very satisfied"
-msgstr ""
-
-#: contact/forms.py:23
-msgid "Satisfied"
-msgstr ""
-
-#: contact/forms.py:27
-msgid "Neither satisfied or dissatisfied"
-msgstr ""
-
-#: contact/forms.py:31
-msgid "Dissatisfied"
-msgstr ""
-
-#: contact/forms.py:35
-msgid "Very dissatisfied"
-msgstr ""
-
-#: contact/forms.py:42
 msgid "Less than 10"
 msgstr "Weniger als 10"
 
-#: contact/forms.py:46
+#: contact/forms.py:23
 msgid "10 to 50"
 msgstr "Zwischen 10 und 50"
 
-#: contact/forms.py:50
+#: contact/forms.py:27
 msgid "51 to 250"
 msgstr "Zwischen 51 und 250"
 
-#: contact/forms.py:54
+#: contact/forms.py:31
 msgid "More than 250"
 msgstr "Mehr als 250"
 
-#: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
+#: contact/forms.py:39 contact/forms.py:87 perfect_fit_prospectus/forms.py:12
 msgid "Name"
 msgstr "Vollständiger Name"
 
-#: contact/forms.py:63 contact/forms.py:112
+#: contact/forms.py:40 contact/forms.py:89
 msgid "Job title"
 msgstr "Position"
 
-#: contact/forms.py:64 contact/forms.py:111
+#: contact/forms.py:41 contact/forms.py:88
 msgid "Email address"
 msgstr "Arbeits-E-Mail"
 
-#: contact/forms.py:66 contact/forms.py:113
+#: contact/forms.py:43 contact/forms.py:90
 msgid "Phone number"
 msgstr "Arbeits-Telefon"
 
-#: contact/forms.py:69 contact/forms.py:114
+#: contact/forms.py:46 contact/forms.py:91
 msgid "Company name"
 msgstr "Eingetragener Firmenname"
 
-#: contact/forms.py:71 contact/forms.py:115
+#: contact/forms.py:48 contact/forms.py:92
 msgid "Company website"
 msgstr "Unternehmenswebseite"
 
-#: contact/forms.py:75
+#: contact/forms.py:52
 msgid "Which country are you based in?"
 msgstr "Hauptsitz ihres Unternehmens"
 
-#: contact/forms.py:77
+#: contact/forms.py:54
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
@@ -91,15 +71,15 @@ msgstr ""
 "oder Ihrem nächsten britischen Hochkommissariat in Verbindung zu setzen. "
 "Bitte geben Sie hier Text ein damit Sie eine Auswahl machen können."
 
-#: contact/forms.py:83 contact/forms.py:117
+#: contact/forms.py:60 contact/forms.py:94
 msgid "Current number of staff"
 msgstr "Geschätzte derzeitige Mitarbeiteranzahl"
 
-#: contact/forms.py:87
+#: contact/forms.py:64
 msgid "Tell us about your investment"
 msgstr "Angaben zu Ihrer Investition"
 
-#: contact/forms.py:89
+#: contact/forms.py:66
 msgid ""
 "Tell us about your company and your plans for the UK in terms of size of "
 "investment, operational and recruitment plans. Please also tell us what help "
@@ -110,40 +90,40 @@ msgstr ""
 "der Einstellung von Mitarbeitern in Großbritannien. Bitte teilen Sie uns "
 "auch mit, welche Hilfe Sie von den britischen Behörden erhalten möchten."
 
-#: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:93 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "Land"
 
-#: contact/forms.py:118
+#: contact/forms.py:95
 msgid "Your investment"
 msgstr "Ihre Investition"
 
-#: contact/forms.py:150
+#: contact/forms.py:127
 msgid "Contact form user email subject"
 msgstr ""
 
-#: contact/templates/contact/contact.html:11
+#: contact/templates/contact/contact.html:6
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
 msgstr "Kontakt"
 
-#: contact/templates/contact/contact.html:17
+#: contact/templates/contact/contact.html:10
 msgid "Contact the investment team"
 msgstr "Kontaktieren Sie das Investment Team"
 
-#: contact/templates/contact/contact.html:26
+#: contact/templates/contact/contact.html:19
 msgid "Contact Information"
 msgstr "Kontaktangaben"
 
-#: contact/templates/contact/contact.html:32
+#: contact/templates/contact/contact.html:25
 msgid "Company information"
 msgstr "Ihr Unternehmen"
 
-#: contact/templates/contact/contact.html:38
+#: contact/templates/contact/contact.html:31
 msgid "Your plans"
 msgstr "Ihre Investition"
 
-#: contact/templates/contact/contact.html:43
+#: contact/templates/contact/contact.html:36
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
@@ -151,7 +131,7 @@ msgstr ""
 "Mit Absenden Ihrer Daten bestätigen Sie, dass die von Ihnen eingegebenen "
 "Daten korrekt sind und stimmen unseren Nutzungsbedingungen zu."
 
-#: contact/templates/contact/contact.html:46
+#: contact/templates/contact/contact.html:39
 msgid "Submit"
 msgstr "Kontakt"
 
@@ -295,6 +275,12 @@ msgstr "Ich möchte aus Großbritannien einkaufen"
 #: core/templates/core/uk_setup_guide/article_detail.html:24
 msgid "UK setup guide"
 msgstr "Leitfaden Unternehmensgründung"
+
+#: find_a_supplier/forms.py:17
+#, fuzzy
+#| msgid "Industries"
+msgid "All industries"
+msgstr "Branchen"
 
 #: perfect_fit_prospectus/forms.py:16
 msgid "Company"
