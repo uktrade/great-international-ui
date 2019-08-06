@@ -391,4 +391,3 @@ def test_uk_region_page_cms_view(mock_get_page, client):
     response = client.get(url)
 
     assert response.status_code == 200
-    
