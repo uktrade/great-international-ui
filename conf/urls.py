@@ -95,7 +95,7 @@ urlpatterns += [
     ),
     url(
         r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(url=reverse_lazy('trade-home')),
+        QuerystringRedirectView.as_view(pattern_name='trade-home'),
         name='content-trade-home-redirect'
     ),
     # Since we don't have a frontend page for the HPO landing page in the CMS
