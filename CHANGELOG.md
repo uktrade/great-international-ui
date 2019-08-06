@@ -10,6 +10,7 @@
 - No ticket - Update styling on ebooks promotional section
 - CI-396 - Fix case study section on sector page bug
 - CI-419 - Commonised responsive behaviour for column-third
+- CI-422 - Update Django to 1.2.23
 
 ### Implemented enhancements
 - CMS-1774 - Add Invest region page, organise sass files
