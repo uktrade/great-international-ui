@@ -1,5 +1,5 @@
 from captcha.fields import ReCaptchaField
-from directory_constants import choices
+from directory_constants import choices, urls
 from directory_components import forms
 from directory_forms_api_client.actions import EmailAction
 from directory_forms_api_client.helpers import Sender
@@ -8,6 +8,9 @@ from django.conf import settings
 from django.forms import Textarea, Select
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.utils.html import mark_safe
+from directory_validators.common import not_contains_url_or_email
+from directory_validators.company import no_html
 
 
 COUNTRIES = [(label, label) for _, label in choices.COUNTRY_CHOICES]
@@ -107,6 +110,107 @@ class ContactForm(forms.Form):
             email_address=self.cleaned_data['email'],
             country_code=self.cleaned_data['country']
         )
+        action = self.action_class(
+            recipients=[settings.IIGB_AGENT_EMAIL],
+            subject='Contact form agent email subject',
+            reply_to=[settings.DEFAULT_FROM_EMAIL],
+            form_url=self.submission_url,
+            sender=sender,
+        )
+        response = action.save({
+            'text_body': self.render_email('email/email_agent.txt'),
+            'html_body': self.render_email('email/email_agent.html'),
+        })
+        response.raise_for_status()
+
+    def send_user_email(self):
+        # no need to set `sender` as this is just a confirmation email.
+        action = self.action_class(
+            recipients=[self.cleaned_data['email']],
+            subject=str(_('Contact form user email subject')),
+            reply_to=[settings.DEFAULT_FROM_EMAIL],
+            form_url=self.submission_url,
+        )
+        response = action.save({
+            'text_body': self.render_email('email/email_user.txt'),
+            'html_body': self.render_email('email/email_user.html'),
+        })
+        response.raise_for_status()
+
+    def save(self):
+        self.send_agent_email()
+        self.send_user_email()
+
+
+TERMS_LABEL = mark_safe(
+    'Tick this box to accept the '
+    f'<a class="link" href="{urls.TERMS_AND_CONDITIONS}" target="_blank">'
+    'terms and conditions</a> of the great.gov.uk service.'
+)
+
+
+class CapitalInvestContactForm(forms.Form):
+    action_class = EmailAction
+
+    name = forms.CharField(label=_('Name'))
+    email = forms.EmailField(label=_('Email address'))
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        required=True
+    )
+    country = forms.ChoiceField(
+        label=_('Which country are you based in?'),
+        help_text=_(
+            'We will use this information to put you in touch with '
+            'your closest British embassy or high commission.'),
+        choices=[('', '')] + COUNTRIES,
+        widget=Select(attrs={'id': 'js-country-select'})
+    )
+    subject = forms.CharField(label=_('Subject'))
+    message = forms.CharField(
+        label=_('Message'),
+        widget=Textarea,
+        validators=[no_html, not_contains_url_or_email]
+    )
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+    )
+    terms_agreed = forms.BooleanField(
+        label=TERMS_LABEL
+    )
+
+    def __init__(self, utm_data, submission_url, *args, **kwargs):
+        self.utm_data = utm_data
+        self.submission_url = submission_url
+        super().__init__(*args, **kwargs)
+
+    def get_context_data(self):
+        data = self.cleaned_data.copy()
+        return {
+            'form_data': (
+                (_('Name'), data['name']),
+                (_('Email address'), data['email']),
+                (_('Phone number'), data['phone_number']),
+                (_('Country'), data['country']),
+                (_('Subject'), data['subject']),
+                (_('Message'), data['message']),
+            ),
+            'utm': self.utm_data,
+            'submission_url': self.submission_url,
+        }
+
+    def render_email(self, template_name):
+        context = self.get_context_data()
+        print('\n\n\n\n\n render email returns ', render_to_string(template_name, context))
+        return render_to_string(template_name, context)
+
+    def send_agent_email(self):
+        sender = Sender(
+            email_address=self.cleaned_data['email'],
+            country_code=self.cleaned_data['country']
+        )
+        print('\n\n\n\n\n the sender ', sender)
         action = self.action_class(
             recipients=[settings.IIGB_AGENT_EMAIL],
             subject='Contact form agent email subject',

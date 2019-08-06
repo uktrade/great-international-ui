@@ -1,0 +1,52 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% load ga360_data add_export_elements_classes from directory_components %}
+{% load breadcrumbs from directory_components %}
+
+{% block head_title %}{{ site_home_link.label }} - Capital Invest - Contact{% endblock %}
+
+{% block css_layout_class %}capital-invest-contact-form{% endblock %}
+{% block head_css %}
+  {{ block.super }}
+  <link href="{% static 'core/js/vendor/accessible-autocomplete.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with hero_text=page.heading %}
+
+{% block breadcrumbs %}
+    <div class="container">
+        {% breadcrumbs page.breadcrumbs_label %}
+            <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+            <a href="international/content/capital-invest">Capital Invest</a>
+        {% endbreadcrumbs %}
+    </div>
+{% endblock %}
+
+<div class="container">
+    {% ga360_data "contact-form" target="form" %}
+        <div class="grid-row">
+            <div>{{ page.intro|add_export_elements_classes|safe }}</div>
+            <form class="column-two-thirds-l column-half-xl" action="{% url 'capital-invest-contact' %}" method="post">
+                {% csrf_token %}
+
+                <h2 class="heading-medium">{% trans "Contact Information" %}</h2>
+                {% include 'includes/form_field.html' with field=form.name %}
+                {% include 'includes/form_field.html' with field=form.email %}
+                {% include 'includes/form_field.html' with field=form.phone_number %}
+
+                {% include 'includes/form_field.html' with field=form.subject %}
+                {% include 'includes/form_field.html' with field=form.message %}
+
+                {% include 'includes/form_field.html' with field=form.captcha %}
+                {% include 'includes/form_field.html' with field=form.terms_agreed %}
+
+                <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>
+            </form>
+        </div>
+    {% end_ga360_data %}
+</div>
+
+{% endblock %}

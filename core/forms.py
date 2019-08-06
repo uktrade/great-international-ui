@@ -1,9 +1,10 @@
 from directory_components import forms
-from django.forms import Select
+from django.forms import Select, Textarea
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
 
 from directory_constants.choices import COUNTRY_CHOICES
+
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 

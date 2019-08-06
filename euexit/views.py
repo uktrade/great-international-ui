@@ -77,7 +77,6 @@ class InternationalContactSuccessView(
     CMSPageFromSlugMixin, InternationalView
 ):
     slug = slugs.EUEXIT_FORM_SUCCESS
-    page_type = 'InternationalEUExitFormSuccessPage'
 
     def __init__(self):
         super().__init__()

@@ -27,6 +27,8 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_page.html',
     'CapitalInvestOpportunityListingPage':
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
+    'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
+    'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
     # About DIT
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
