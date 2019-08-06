@@ -35,7 +35,7 @@ REDIRECTS = {
     'industries/chemicals': '/international/content/invest/industries/chemicals',
     'industries/technology': '/international/content/industries/technology/',
     'industries/data-analytics': '/international/content/industries/technology/',
-    'industries/capital-investment': '/international/content/invest/capital-invest',
+    'industries/capital-investment': '/international/content/capital-invest',
     'industries/automotive': '/international/content/industries/automotive/',
     'industries/motorsport': '/international/content/industries/automotive/',
     'industries/automotive-research-and-development': '/international/content/industries/automotive/',
