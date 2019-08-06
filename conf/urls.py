@@ -11,6 +11,7 @@ from core.views import QuerystringRedirectView
 import conf.sitemaps
 import euexit.views
 import invest.views
+import contact.views
 
 
 sitemaps = {
@@ -80,6 +81,16 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
         name='invest-home'
+    ),
+    url(
+        r"^international/invest/contact/$",
+        contact.views.ContactFormView.as_view(),
+        name="invest-contact"
+    ),
+    url(
+        r"^international/invest/contact/success/$",
+        contact.views.ContactFormSuccessView.as_view(),
+        name="invest-contact-success"
     ),
     url(
         r'^international/content/invest/$',

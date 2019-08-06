@@ -1,6 +1,6 @@
 from captcha.fields import ReCaptchaField
 from directory_constants import choices
-from directory_components import forms, fields
+from directory_components import forms
 from directory_forms_api_client.actions import EmailAction
 from directory_forms_api_client.helpers import Sender
 
@@ -59,19 +59,19 @@ STAFF_CHOICES = (
 class ContactForm(forms.Form):
     action_class = EmailAction
 
-    name = fields.CharField(label=_('Name'))
-    job_title = fields.CharField(label=_('Job title'))
-    email = fields.EmailField(label=_('Email address'))
-    phone_number = fields.CharField(
+    name = forms.CharField(label=_('Name'))
+    job_title = forms.CharField(label=_('Job title'))
+    email = forms.EmailField(label=_('Email address'))
+    phone_number = forms.CharField(
         label=_('Phone number'),
         required=True
     )
-    company_name = fields.CharField(label=_('Company name'))
-    company_website = fields.CharField(
+    company_name = forms.CharField(label=_('Company name'))
+    company_website = forms.CharField(
         label=_('Company website'),
         required=False
     )
-    country = fields.ChoiceField(
+    country = forms.ChoiceField(
         label=_('Which country are you based in?'),
         help_text=_(
             'We will use this information to put you in touch with '
@@ -79,11 +79,11 @@ class ContactForm(forms.Form):
         choices=[('', '')] + COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'})
     )
-    staff_number = fields.ChoiceField(
+    staff_number = forms.ChoiceField(
         label=_('Current number of staff'),
         choices=STAFF_CHOICES
     )
-    description = fields.CharField(
+    description = forms.CharField(
         label=_('Tell us about your investment'),
         help_text=_(
             'Tell us about your company and your plans for the UK in '

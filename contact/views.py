@@ -6,30 +6,19 @@ from django.conf import settings
 
 from contact import forms
 
-from core.mixins import LocalisedURLsMixin, InvestEnableTranslationsMixin
-
-
-class ActiveViewNameMixin:
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            active_view_name=self.active_view_name,
-            *args,
-            **kwargs
-        )
+from directory_components.mixins import EnableTranslationsMixin, InternationalHeaderMixin
 
 
 class ContactFormView(
-    ActiveViewNameMixin,
-    InvestEnableTranslationsMixin,
-    LocalisedURLsMixin,
+    InternationalHeaderMixin,
+    EnableTranslationsMixin,
     CountryDisplayMixin,
     GA360Mixin,
     FormView,
 ):
-    success_url = reverse_lazy('contact-success')
+    success_url = reverse_lazy('invest-contact-success')
     template_name = 'contact/contact.html'
     form_class = forms.ContactForm
-    active_view_name = 'contact'
     available_languages = settings.LANGUAGES
 
     def __init__(self):
@@ -52,15 +41,13 @@ class ContactFormView(
 
 
 class ContactFormSuccessView(
-    ActiveViewNameMixin,
-    LocalisedURLsMixin,
-    InvestEnableTranslationsMixin,
+    InternationalHeaderMixin,
+    EnableTranslationsMixin,
     CountryDisplayMixin,
     GA360Mixin,
     TemplateView,
 ):
     template_name = 'contact/contact_form_success_page.html'
-    active_view_name = 'contact'
     available_languages = settings.LANGUAGES
 
     def __init__(self):

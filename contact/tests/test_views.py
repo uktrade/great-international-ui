@@ -22,7 +22,7 @@ def contact_form_data(captcha_stub):
 
 @patch.object(views.ContactFormView.form_class, 'save')
 def test_contact_form_success(mock_save, contact_form_data, rf):
-    url = reverse('contact')
+    url = reverse('invest-contact')
 
     request = rf.post(url, data=contact_form_data)
     request.LANGUAGE_CODE = 'en-gb'
@@ -37,7 +37,7 @@ def test_contact_form_success(mock_save, contact_form_data, rf):
 
 @patch.object(views.ContactFormView.form_class, 'save')
 def test_contact_invalid(mock_save, rf):
-    url = reverse('contact')
+    url = reverse('invest-contact')
     utm_data = {
         'utm_source': 'test_source',
         'utm_medium': 'test_medium',
