@@ -587,3 +587,17 @@ def international_trade_homepage_context_modifier(context, request):
     return {
         'search_form': find_a_supplier.forms.SearchForm,
     }
+
+
+@register_context_modifier('AboutUkLandingPage')
+def about_uk_landing_page_context_modifier(context, request):
+
+    random_sectors = []
+    if 'all_sectors' in context['page']:
+        all_sectors = context['page']['all_sectors']
+        random.shuffle(all_sectors)
+        random_sectors = all_sectors[0:3]
+
+    return {
+        'random_sectors': random_sectors
+    }
