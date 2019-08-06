@@ -1,11 +1,14 @@
+import copy
+
 from directory_components.mixins import GA360Mixin
 from directory_constants import slugs
 
 from django.shortcuts import redirect
+from django.views import View
 from django.views.generic.edit import FormView
 from django.urls import reverse, reverse_lazy
 
-from . import forms
+from . import helpers, forms, redirects
 from core.views import MonolingualCMSPageFromPathView
 
 SESSION_KEY_SELECTED_OPPORTUNITIES = 'SELECTED_OPPORTUNITIES'
@@ -57,3 +60,34 @@ class HighPotentialOpportunitySuccessView(MonolingualCMSPageFromPathView):
             opportunities=opportunities,
             **kwargs
         )
+
+
+class LegacyInvestURLRedirectView(View):
+    http_method_names = ['get']
+
+    def get(self, request, path, *args, **kwargs):
+        path = self._normalise_path(path)
+        params = copy.deepcopy(request.GET)
+
+        if path.startswith(helpers.LANGUAGE_CODES):
+            lang = helpers.get_language_from_prefix(path)
+            path = path[len(lang)+1:]  # +1 is for the /
+            if lang not in ('ar', 'ja'):  # these go to English
+                params['lang'] = lang
+
+        destination = redirects.REDIRECTS[path]
+        if params:
+            destination = f'{destination}?{params.urlencode()}'
+        return redirect(destination)
+
+    @staticmethod
+    def _normalise_path(path):
+        """
+        Make sure path is lowercase without the / at the ends
+        """
+        path = path.lower()
+        if path.startswith('/'):
+            path = path[1:]
+        if path.endswith('/'):
+            path = path[:-1]
+        return path
