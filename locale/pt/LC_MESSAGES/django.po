@@ -40,61 +40,64 @@ msgstr ""
 
 #: contact/forms.py:42
 msgid "Less than 10"
-msgstr ""
+msgstr "Menos de 10"
 
 #: contact/forms.py:46
 msgid "10 to 50"
-msgstr ""
+msgstr "Entre 10 e 50"
 
 #: contact/forms.py:50
 msgid "51 to 250"
-msgstr ""
+msgstr "Entre 51 e 250"
 
 #: contact/forms.py:54
 msgid "More than 250"
-msgstr ""
+msgstr "Mais de 250"
 
 #: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
 msgid "Name"
-msgstr ""
+msgstr "Nome completo"
 
 #: contact/forms.py:63 contact/forms.py:112
 msgid "Job title"
-msgstr ""
+msgstr "Cargo"
 
 #: contact/forms.py:64 contact/forms.py:111
 msgid "Email address"
-msgstr ""
+msgstr "E-mail de trabalho"
 
 #: contact/forms.py:66 contact/forms.py:113
 msgid "Phone number"
-msgstr ""
+msgstr "Telefone comercial"
 
 #: contact/forms.py:69 contact/forms.py:114
 msgid "Company name"
-msgstr ""
+msgstr "Nome da empresa registado"
 
 #: contact/forms.py:71 contact/forms.py:115
 msgid "Company website"
-msgstr ""
+msgstr "Site da empresa"
 
 #: contact/forms.py:75
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "País"
 
 #: contact/forms.py:77
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
 msgstr ""
+"Usaremos essas informações para colocar você em contato com sua embaixada "
+"britânica ou representante mais próximo. Comece a digitar para selecionar "
+"uum país."
 
 #: contact/forms.py:83 contact/forms.py:117
 msgid "Current number of staff"
-msgstr ""
+msgstr "Número total de funcionários atual"
 
 #: contact/forms.py:87
 msgid "Tell us about your investment"
-msgstr ""
+msgstr "Conte-nos sobre o seu investimento"
 
 #: contact/forms.py:89
 msgid ""
@@ -102,14 +105,18 @@ msgid ""
 "investment, operational and recruitment plans. Please also tell us what help "
 "you would like from the UK government."
 msgstr ""
+"Conte-nos sobre sua empresa e seus planos para o Reino Unido em termos de "
+"tamanho do investimento, planos operacionais e planos de recrutamento. "
+"Explique-nos que tipo de ajuda você gostaria de receber do governo do Reino "
+"Unido."
 
 #: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: contact/forms.py:118
 msgid "Your investment"
-msgstr ""
+msgstr "Seu investimento"
 
 #: contact/forms.py:150
 msgid "Contact form user email subject"
@@ -118,41 +125,48 @@ msgstr ""
 #: contact/templates/contact/contact.html:11
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
-msgstr ""
+msgstr "Entrar em contacto"
 
 #: contact/templates/contact/contact.html:17
 msgid "Contact the investment team"
-msgstr ""
+msgstr "Contacte a nossa equipa de investimento"
 
 #: contact/templates/contact/contact.html:26
 msgid "Contact Information"
-msgstr ""
+msgstr "Informações de contato"
 
 #: contact/templates/contact/contact.html:32
 msgid "Company information"
-msgstr ""
+msgstr "Sua empresa"
 
 #: contact/templates/contact/contact.html:38
 msgid "Your plans"
-msgstr ""
+msgstr "Seu investimento"
 
 #: contact/templates/contact/contact.html:43
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
 msgstr ""
+"Ao enviar seus dados, você confirma que as informações que compartilhou "
+"conosco são verdadeiras e aceita nossos termos e condições."
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr ""
+msgstr "Entrar em contacto"
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."
-msgstr ""
+msgstr "Obrigado por registar o seu interesse em investir no Reino Unido"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Thank you, your form has been submitted."
 msgstr ""
+"As informações que forneceu indicam-nos o ponto em que se encontram os seus "
+"planos de investimento para podermos contactar a pessoa certa para lhe "
+"prestar um auxílio adicional. Em breve irá receber um e-mail a confirmar que "
+"recebemos as suas informações. Pretendemos enviar-lhe um e-mail de "
+"seguimento dentro de 7 dias. Estamos ansiosos por trabalhar consigo."
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12

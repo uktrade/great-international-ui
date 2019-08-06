@@ -40,61 +40,64 @@ msgstr ""
 
 #: contact/forms.py:42
 msgid "Less than 10"
-msgstr ""
+msgstr "Weniger als 10"
 
 #: contact/forms.py:46
 msgid "10 to 50"
-msgstr ""
+msgstr "Zwischen 10 und 50"
 
 #: contact/forms.py:50
 msgid "51 to 250"
-msgstr ""
+msgstr "Zwischen 51 und 250"
 
 #: contact/forms.py:54
 msgid "More than 250"
-msgstr ""
+msgstr "Mehr als 250"
 
 #: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
 msgid "Name"
-msgstr ""
+msgstr "Vollständiger Name"
 
 #: contact/forms.py:63 contact/forms.py:112
 msgid "Job title"
-msgstr ""
+msgstr "Position"
 
 #: contact/forms.py:64 contact/forms.py:111
 msgid "Email address"
-msgstr ""
+msgstr "Arbeits-E-Mail"
 
 #: contact/forms.py:66 contact/forms.py:113
 msgid "Phone number"
-msgstr ""
+msgstr "Arbeits-Telefon"
 
 #: contact/forms.py:69 contact/forms.py:114
 msgid "Company name"
-msgstr ""
+msgstr "Eingetragener Firmenname"
 
 #: contact/forms.py:71 contact/forms.py:115
 msgid "Company website"
-msgstr ""
+msgstr "Unternehmenswebseite"
 
 #: contact/forms.py:75
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "Hauptsitz ihres Unternehmens"
 
 #: contact/forms.py:77
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
 msgstr ""
+"Wir verwenden diese Angaben, um Sie mit Ihrer nächsten britischen Botschaft "
+"oder Ihrem nächsten britischen Hochkommissariat in Verbindung zu setzen. "
+"Bitte geben Sie hier Text ein damit Sie eine Auswahl machen können."
 
 #: contact/forms.py:83 contact/forms.py:117
 msgid "Current number of staff"
-msgstr ""
+msgstr "Geschätzte derzeitige Mitarbeiteranzahl"
 
 #: contact/forms.py:87
 msgid "Tell us about your investment"
-msgstr ""
+msgstr "Angaben zu Ihrer Investition"
 
 #: contact/forms.py:89
 msgid ""
@@ -102,14 +105,18 @@ msgid ""
 "investment, operational and recruitment plans. Please also tell us what help "
 "you would like from the UK government."
 msgstr ""
+"Bitte machen Sie Angaben zu Ihrem Unternehmen und zu Ihren Plänen in Bezug "
+"auf die Höhe der Investition sowie auf operative Pläne und Pläne bezüglich "
+"der Einstellung von Mitarbeitern in Großbritannien. Bitte teilen Sie uns "
+"auch mit, welche Hilfe Sie von den britischen Behörden erhalten möchten."
 
 #: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: contact/forms.py:118
 msgid "Your investment"
-msgstr ""
+msgstr "Ihre Investition"
 
 #: contact/forms.py:150
 msgid "Contact form user email subject"
@@ -118,41 +125,51 @@ msgstr ""
 #: contact/templates/contact/contact.html:11
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakt"
 
 #: contact/templates/contact/contact.html:17
 msgid "Contact the investment team"
-msgstr ""
+msgstr "Kontaktieren Sie das Investment Team"
 
 #: contact/templates/contact/contact.html:26
 msgid "Contact Information"
-msgstr ""
+msgstr "Kontaktangaben"
 
 #: contact/templates/contact/contact.html:32
 msgid "Company information"
-msgstr ""
+msgstr "Ihr Unternehmen"
 
 #: contact/templates/contact/contact.html:38
 msgid "Your plans"
-msgstr ""
+msgstr "Ihre Investition"
 
 #: contact/templates/contact/contact.html:43
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
 msgstr ""
+"Mit Absenden Ihrer Daten bestätigen Sie, dass die von Ihnen eingegebenen "
+"Daten korrekt sind und stimmen unseren Nutzungsbedingungen zu."
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr ""
+msgstr "Kontakt"
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."
 msgstr ""
+"Vielen Dank für die Registrierung Ihrer Interesse in Großbritannien "
+"investieren."
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Thank you, your form has been submitted."
 msgstr ""
+"Die von Ihnen bereitgestellten Informationen zeigen uns, wo Sie mit Ihrem "
+"Investitionspläne sind, so dass wir die richtige Person bekommen können Sie "
+"weiter zu helfen. Sie werden in Kürze eine E-Mail erhalten zu sagen, dass "
+"wir Ihre Daten erhalten haben. Wir wollen Ihnen eine Follow-up-E-Mail "
+"innerhalb von 7 Tagen zu senden. Wir freuen uns auf unsere zukünftige "
+"Zusammenarbeit."
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12

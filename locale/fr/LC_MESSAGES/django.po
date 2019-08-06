@@ -40,76 +40,79 @@ msgstr ""
 
 #: contact/forms.py:42
 msgid "Less than 10"
-msgstr ""
+msgstr "Moins de 10"
 
 #: contact/forms.py:46
 msgid "10 to 50"
-msgstr ""
+msgstr "10 à 50"
 
 #: contact/forms.py:50
 msgid "51 to 250"
-msgstr ""
+msgstr "51 à 250"
 
 #: contact/forms.py:54
 msgid "More than 250"
-msgstr ""
+msgstr "Plus de 250"
 
 #: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
 msgid "Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: contact/forms.py:63 contact/forms.py:112
 msgid "Job title"
-msgstr ""
+msgstr "Poste"
 
 #: contact/forms.py:64 contact/forms.py:111
 msgid "Email address"
-msgstr ""
+msgstr "E-mail de travail"
 
 #: contact/forms.py:66 contact/forms.py:113
 msgid "Phone number"
-msgstr ""
+msgstr "Téléphone de travail"
 
 #: contact/forms.py:69 contact/forms.py:114
 msgid "Company name"
-msgstr ""
+msgstr "Nom de l'entreprise"
 
 #: contact/forms.py:71 contact/forms.py:115
 msgid "Company website"
-msgstr ""
+msgstr "Site Web de l'entreprise"
 
 #: contact/forms.py:75
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "Dans quel pays êtes-vous basé?"
 
 #: contact/forms.py:77
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
 msgstr ""
+"Nous utiliserons cette information pour vous mettre en contact avec votre "
+"ambassade britannique la plus proche ou votre haute commission Commencez la "
+"saisie pour sélectionner un pays."
 
 #: contact/forms.py:83 contact/forms.py:117
 msgid "Current number of staff"
-msgstr ""
+msgstr "Nombre total actuel d'employés"
 
 #: contact/forms.py:87
 msgid "Tell us about your investment"
-msgstr ""
+msgstr "Parlez-nous de votre investissement"
 
 #: contact/forms.py:89
 msgid ""
 "Tell us about your company and your plans for the UK in terms of size of "
 "investment, operational and recruitment plans. Please also tell us what help "
 "you would like from the UK government."
-msgstr ""
+msgstr "Fournissez des détails sur vos projets d'investissement au Royaume-Uni"
 
 #: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
 msgid "Country"
-msgstr ""
+msgstr "Pays"
 
 #: contact/forms.py:118
 msgid "Your investment"
-msgstr ""
+msgstr "Votre investissement"
 
 #: contact/forms.py:150
 msgid "Contact form user email subject"

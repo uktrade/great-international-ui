@@ -39,61 +39,63 @@ msgstr ""
 
 #: contact/forms.py:42
 msgid "Less than 10"
-msgstr ""
+msgstr "少于 10"
 
 #: contact/forms.py:46
 msgid "10 to 50"
-msgstr ""
+msgstr "11到50"
 
 #: contact/forms.py:50
 msgid "51 to 250"
-msgstr ""
+msgstr "51到250"
 
 #: contact/forms.py:54
 msgid "More than 250"
-msgstr ""
+msgstr "多于 250"
 
 #: contact/forms.py:62 contact/forms.py:110 perfect_fit_prospectus/forms.py:12
 msgid "Name"
-msgstr ""
+msgstr "全名"
 
 #: contact/forms.py:63 contact/forms.py:112
 msgid "Job title"
-msgstr ""
+msgstr "职务"
 
 #: contact/forms.py:64 contact/forms.py:111
 msgid "Email address"
-msgstr ""
+msgstr "工作电子邮件"
 
 #: contact/forms.py:66 contact/forms.py:113
 msgid "Phone number"
-msgstr ""
+msgstr "工作电话"
 
 #: contact/forms.py:69 contact/forms.py:114
 msgid "Company name"
-msgstr ""
+msgstr "公司名称"
 
 #: contact/forms.py:71 contact/forms.py:115
 msgid "Company website"
-msgstr ""
+msgstr "公司网站"
 
 #: contact/forms.py:75
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "您位于哪个国家/地区？"
 
 #: contact/forms.py:77
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
 msgstr ""
+"我们将使用此信息来安排您联系最靠近您的英国大使馆或特派使节团。开始输入并选择"
+"一个选项"
 
 #: contact/forms.py:83 contact/forms.py:117
 msgid "Current number of staff"
-msgstr ""
+msgstr "当前员工总数"
 
 #: contact/forms.py:87
 msgid "Tell us about your investment"
-msgstr ""
+msgstr "告知我们您的投资相关信息"
 
 #: contact/forms.py:89
 msgid ""
@@ -101,14 +103,16 @@ msgid ""
 "investment, operational and recruitment plans. Please also tell us what help "
 "you would like from the UK government."
 msgstr ""
+"向我们告知您的公司和您的英国投资计划的相关信息 - 投资规模以及运营和招聘计划。"
+"也请向我们告知您希望英国政府为您提供什么帮助。"
 
 #: contact/forms.py:116 perfect_fit_prospectus/forms.py:32
 msgid "Country"
-msgstr ""
+msgstr "国家"
 
 #: contact/forms.py:118
 msgid "Your investment"
-msgstr ""
+msgstr "您的投资"
 
 #: contact/forms.py:150
 msgid "Contact form user email subject"
@@ -117,41 +121,46 @@ msgstr ""
 #: contact/templates/contact/contact.html:11
 #: contact/templates/contact/contact_form_success_page.html:6
 msgid "Contact us"
-msgstr ""
+msgstr "联系我们"
 
 #: contact/templates/contact/contact.html:17
 msgid "Contact the investment team"
-msgstr ""
+msgstr "请联系投资组"
 
 #: contact/templates/contact/contact.html:26
 msgid "Contact Information"
-msgstr ""
+msgstr "联系信息"
 
 #: contact/templates/contact/contact.html:32
 msgid "Company information"
-msgstr ""
+msgstr "您的公司"
 
 #: contact/templates/contact/contact.html:38
 msgid "Your plans"
-msgstr ""
+msgstr "您的投资"
 
 #: contact/templates/contact/contact.html:43
 msgid ""
 "By sending us your details you can confirm that the information you've "
 "shared with us is true and you accept our terms and conditions."
 msgstr ""
+"向我们发送您的详细信息，即表明您确认您与我们分享的信息真实有效，且您接受我们"
+"的条款和条件。"
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr ""
+msgstr "保持联系"
 
 #: contact/templates/contact/contact_form_success_page.html:13
 msgid "Your form has been submitted."
-msgstr ""
+msgstr "感谢您在我们的网站注册, 并对投资英国的兴趣。"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Thank you, your form has been submitted."
 msgstr ""
+"您提供的资料列出你的投资计划，我们会找合适的职员为您进一步服务。您很快就会收"
+"到一封电子邮件，说我们已经收到您的信息。我们的目标是在7天内用电子邮件与您联"
+"络。我们期待与您合作。"
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
