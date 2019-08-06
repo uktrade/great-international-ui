@@ -4,6 +4,18 @@
 
 @import 'mixins';
 
+.page-section{
+  @include page-section-padding;
+}
+
+.white-page-section {
+  @include white-section;
+}
+
+.stone-page-section {
+  @include stone-section;
+}
+
 .background-stone-gradient-bottom {
   background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
 }
@@ -150,4 +162,10 @@
 .icon {
   height: auto;
   width: 60px;
+}
+
+@media (min-width: 961px) {
+  .float-right-xl {
+    float: right;
+  }
 }

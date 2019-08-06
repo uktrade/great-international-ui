@@ -1,0 +1,171 @@
+{% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
+{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid card from directory_components %}
+
+{% block css_layout_class %}about-uk-landing-page{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+
+<div class="container">
+    {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
+
+{% if page.intro %}
+<section class="padding-top-30 padding-bottom-60">
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-two-thirds-l">
+                {{ page.intro|add_export_elements_classes|safe }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.why_choose_uk_title and page.why_choose_uk_content %}
+<section class="stone-page-section">
+     <div class="container">
+        <h2 class="heading-large">{{ page.why_choose_uk_title}} </h2>
+        <div class="flex-grid reverse-columns-l">
+            <div class="column-half-xl left-half-page-text center-vertical">
+                {{ page.why_choose_uk_content|add_export_elements_classes|safe }}
+            </div>
+            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
+                {% if page.why_choose_uk_image.url %}
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.why_choose_uk_image.url}}" alt="">
+                    </figure>
+                {%  endif %}
+            </div>
+        </div>
+        {% if page.why_choose_uk_cta_link and page.why_choose_uk_cta_text %}
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.why_choose_uk_cta_link}}">{{ page.why_choose_uk_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if page.industries_section_title %}
+<section class="white-page-section">
+     <div class="container">
+        <div class="grid-row">
+            <h2 class="heading-large">{{ page.industries_section_title}} </h2>
+            <div class="column-two-thirds-l">{{ page.industries_section_intro|add_export_elements_classes|safe }}</div>
+        </div>
+        <ul class="flex-grid">
+            {% for sector in random_sectors %}
+                <li class="column-third-xl column-half-m">
+                    {% card title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if page.industries_section_cta_link and page.industries_section_cta_text %}
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{page.industries_section_cta_link}}">{{ page.industries_section_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if page.regions_section_title and page.regions_section_content %}
+<section class="stone-page-section">
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-half-xl float-right-xl {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %}">
+                <h2 class="heading-large">{{ page.regions_section_title}} </h2>
+            </div>
+        </div>
+        <div class="cta-block flex-grid">
+            {% if page.regions_section_image.url %}
+                <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
+                    <figure class="landing-page-image flex-shrink-0">
+                        <img class="width-full" src="{{page.regions_section_image.url}}" alt="">
+                    </figure>
+                </div>
+            {%  endif %}
+            <div class="column-half-xl cta-block-content {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %} center-vertical">
+                <div>{{ page.regions_section_content|add_export_elements_classes|safe }}</div>
+                {% if page.regions_section_cta_link and page.regions_section_cta_text %}
+                    <a class="button button-blue button-arrow-small margin-top-45 width-half" href="{{page.regions_section_cta_link}}">{{ page.regions_section_cta_text }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_we_help_title and page.how_we_help_intro %}
+<section class="white-page-section">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                {% if page.how_we_help_intro %}
+                    {{ page.how_we_help_intro|add_export_elements_classes|safe }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="flex-grid">
+            {% for section in page.how_we_help %}
+                {% if section.title and section.text and section.icon %}
+                    <div class="column-third-xl column-half-m">
+                        <img class="icon" src="{{ section.icon.url }}" alt="">
+                        <p class="bold-small margin-bottom-30">{{ section.title }}</p>
+                        <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% if page.how_we_help_cta_link and page.how_we_help_cta_text %}
+            <a class="button button-blue button-arrow-small margin-top-45 width-half" href="{{page.how_we_help_cta_link}}">{{ page.how_we_help_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if page.ebook_section_title and page.ebook_section_body %}
+<section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
+    <div class="container">
+        <div class="grid-row">
+            {% if page.ebook_section_image %}
+                <div class="column-quarter-l">
+                    <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
+                </div>
+            {% endif %}
+            <div class="column-three-quarters-l {% if page.ebook_section_image %} padding-left-60-l {% endif %}">
+                <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
+                {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+                {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+                    <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" target="_blank" href="{{ page.ebook_section_cta_link }}">
+                        {{ page.ebook_section_cta_text }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.contact_title and page.contact_text %}
+<section class="padding-vertical-60">
+    <div class="container">
+        <h2 class="heading-large margin-top-0">{{ page.contact_title }}</h2>
+        {% if page.contact_text %}
+            <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
+                <div class="column-two-thirds">
+                    {{ page.contact_text|add_export_elements_classes|safe }}
+                </div>
+            </div>
+        {% endif %}
+        {% if page.contact_cta_text and page.contact_cta_link %}
+            <a class="button button-blue button-arrow-small margin-top-45" href="{{ page.contact_cta_link }}">
+                {{ page.contact_cta_text }}
+            </a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
