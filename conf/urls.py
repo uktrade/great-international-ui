@@ -5,7 +5,6 @@ import directory_healthcheck.views
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib.sitemaps.views import sitemap
-from django.urls import reverse_lazy
 
 import core.views
 from core.views import QuerystringRedirectView
