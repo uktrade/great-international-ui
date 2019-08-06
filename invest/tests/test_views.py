@@ -322,6 +322,10 @@ def test_get_success_page_with_session(
         'high-potential-opportunities/lightweight-structures/contact',
         '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/'
     ),
+    (
+        'foo/bar',
+        '/international/invest/'
+    )
 ])
 def test_invest_redirects(source, destination, client):
     url = reverse('invest-incoming', kwargs={'path': source})
