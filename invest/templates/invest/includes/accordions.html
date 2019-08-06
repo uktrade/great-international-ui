@@ -1,0 +1,27 @@
+{% load ga360_data add_export_elements_classes from directory_components %}
+
+{% for accordion in accordions %}
+  {% if accordion.title and accordion.content %}
+    <li>
+      {% ga360_data 'a' type='accordion' %}
+        <a href="#" class="accordion-expander heading-medium link">{{ accordion.title }}</a>
+      {% end_ga360_data %}
+      <div class="accordion-content" aria-labelledby="accordion-content">
+        <div class="grid-row">
+          {% if accordion.map %}
+            <div class="column-half">
+              {{ accordion.content|add_export_elements_classes|safe }}
+            </div>
+            <div class="map">
+              <img src="{{ accordion.map.url }}" alt="" width="100%">
+            </div>
+          {% else %}
+            <div class="column-two-thirds">
+              {{ accordion.content|add_export_elements_classes|safe }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </li>
+  {% endif %}
+{% endfor %}

@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'euexit',
     'perfect_fit_prospectus',
     'invest',
-    'investment_support_directory'
+    'investment_support_directory',
+    'find_a_supplier',
 ]
 
 MIDDLEWARE_CLASSES = [

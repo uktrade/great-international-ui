@@ -8,7 +8,7 @@
       <h2 class="heading-large">Related content</h2>
       <ul class="flex-grid" aria-labelledby="related-content-heading" id="related-pages-list">
         {% for article in related_pages %}
-          <li class="column-third-l column-half-m column-full">
+          <li class="column-third-xl column-half-m">
             {% with 'related-article-'|add:article.meta.slug as card_id %}
               {% card card_id=card_id title=article.title description=article.teaser url=article.meta.url img_src=article.thumbnail.url %}
             {% endwith %}
