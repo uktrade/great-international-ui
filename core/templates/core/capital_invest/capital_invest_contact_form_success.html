@@ -1,6 +1,18 @@
-{% extends "euexit/international-contact-form.html" %}
-{% load static from staticfiles %}
+{% extends 'contact/base.html' %}
+{% load breadcrumbs from directory_components %}
+{% load i18n %}
 
-{% block form_content %}
-    {% include 'euexit/form-success-contents.html' %}
+{% block content %}
+
+<section class="contact-success">
+<div class="container">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-large">{% trans "Your form has been submitted." %}</h2>
+      <p>{% trans "Thank you, your form has been submitted." %}</p>
+    </div>
+  </div>
+</div>
+</section>
+
 {% endblock %}

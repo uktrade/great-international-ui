@@ -28,7 +28,9 @@
 <div class="container">
     {% ga360_data "contact-form" target="form" %}
         <div class="grid-row">
-            <div>{{ page.intro|add_export_elements_classes|safe }}</div>
+            {% if page.intro %}
+                <div>{{ page.intro|add_export_elements_classes|safe }}</div>
+            {% endif %}
             <form class="column-two-thirds-l column-half-xl" action="{% url 'capital-invest-contact' %}" method="post">
                 {% csrf_token %}
 
@@ -36,6 +38,7 @@
                 {% include 'includes/form_field.html' with field=form.name %}
                 {% include 'includes/form_field.html' with field=form.email %}
                 {% include 'includes/form_field.html' with field=form.phone_number %}
+                {% include 'includes/form_field.html' with field=form.country %}
 
                 {% include 'includes/form_field.html' with field=form.subject %}
                 {% include 'includes/form_field.html' with field=form.message %}

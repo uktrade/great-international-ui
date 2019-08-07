@@ -85,6 +85,7 @@ class ContactForm(forms.Form):
 
     def get_context_data(self):
         data = self.cleaned_data.copy()
+
         return {
             'form_data': (
                 (_('Name'), data['name']),
@@ -202,7 +203,6 @@ class CapitalInvestContactForm(forms.Form):
 
     def render_email(self, template_name):
         context = self.get_context_data()
-        print('\n\n\n\n\n render email returns ', render_to_string(template_name, context))
         return render_to_string(template_name, context)
 
     def send_agent_email(self):
@@ -210,7 +210,6 @@ class CapitalInvestContactForm(forms.Form):
             email_address=self.cleaned_data['email'],
             country_code=self.cleaned_data['country']
         )
-        print('\n\n\n\n\n the sender ', sender)
         action = self.action_class(
             recipients=[settings.IIGB_AGENT_EMAIL],
             subject='Contact form agent email subject',

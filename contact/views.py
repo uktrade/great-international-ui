@@ -95,7 +95,6 @@ class CapitalInvestContactFormView(
         return kwargs
 
     def form_valid(self, form):
-        print('\n\n\n\n\n in form valid ', form)
         form.save()
         return super().form_valid(form)
 
