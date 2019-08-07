@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils import translation
+from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 from directory_constants import urls
 
@@ -21,10 +22,18 @@ def directory_components_html_lang_attribute(request):
     }
 
 
-def site_home_link(request):
+def services_home_links(request):
     return {
-        'site_home_link': {
+        'international_home_link': {
             'url': reverse_lazy('index'),
-            'label': translation.gettext('Great.gov.uk International')
-        }
+            'label': _('great.gov.uk international')
+        },
+        'trade_home_link': {
+            'url': reverse_lazy('trade-home'),
+            'label': _('Find a supplier')
+        },
+        'invest_home_link': {
+            'url': reverse_lazy('invest-home'),
+            'label': _('Invest')
+        },
     }

@@ -92,7 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
-                'core.context_processors.site_home_link',
+                'core.context_processors.services_home_links',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
