@@ -1,9 +1,34 @@
 # Changelog
 
 ## Pre-release
-- CMS-1692 - Added HPO form pages from Invest
-- CMS-1692 - Added HPO detail page from Invest and updated styling
-- TT-1678 - Rename EU exit to Brexit
+
+### Fixed bugs:
+- CMS-1772 - Add invest contact form pages
+- No ticket - Fix duplication of constants in code
+- CI-376 - Fixes About DIT How we help section issue on Internet Explorer
+- CI-378 - Fixed guide landing page spacings
+- CI-375 - Fix spacings on Why choose UK Page
+- No ticket - Update styling on ebooks promotional section
+- CI-396 - Fix case study section on sector page bug
+- CI-419 - Commonised responsive behaviour for column-third
+- CI-422 - Update Django to 1.2.23
+
+### Implemented enhancements
+- CMS-1596 - Add FAS homepage
+- CMS-1774 - Add Invest region page, organise sass files
+- No ticket - Namespace ISD contact page styling to fix pollution on other pages
+- CMS-1734 - Added GA360 data to Perfect Fit views
+- CI-363 - Add anchor tags to all headings in setup guide articles
+- CMS-1640 - Move ISD pages to great international
+- CI-383 - Create About DIT landing page
+- CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
+- CMS-1745 - Implement invest redirects
+- CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
+- CI-321 - About UK landing page
+
+
+## [2019.07.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.25)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.08...2019.07.25)
 
 ### Fixed bugs:
 - No ticket - Upgrade vulnerable django version to django 1.11.22
@@ -19,6 +44,9 @@
 - No ticket - Fix hero images on topic and guide landing pages.
 
 ### Implemented enhancements
+- CMS-1692 - Added HPO form pages from Invest
+- CMS-1692 - Added HPO detail page from Invest and updated styling
+- TT-1678 - Rename EU exit to Brexit
 - CI-267 - Added cta text and link for sector page for related opportunities section
 - CI-325 - CI projects shown on sector page are randomised
 - CI-211 (& CI-252 & CI-268) - Created opportunity listing page filtering by sector, region and scale
@@ -32,6 +60,7 @@
 - CI-323 - Add "Why choose the UK" page to "About the UK" section
 - CI-372 - Updated trade CTA on sector pages to go to trade contact form
 - CI-367 - Updated `CapitalInvestRegionPage` and added accordions js file
+
 
 
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)

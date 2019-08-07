@@ -8,8 +8,8 @@
 
 {% block header_js %}
     {{ block.super }}
-    <script src="{% static 'js/dit.js' %}"></script>
-    <script src="{% static 'js/dit.components.accordion.js' %}"></script>
+    <script src="{% static 'core/js/dit.js' %}"></script>
+    <script src="{% static 'core/js/dit.components.accordion.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -66,7 +66,7 @@
 {% endif %}
 
 {% if page.property_and_infrastructure_section_title and page.property_and_infrastructure_section_content %}
-<section class="region-stone-page-section">
+<section class="stone-page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.property_and_infrastructure_section_title }}</h1>
         <div class="flex-grid">

@@ -1,0 +1,20 @@
+{% extends 'contact/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+  {% trans "Contact us" as page_title %}
+  {% include 'directory_components/hero.html' with hero_text=page_title %}
+
+  <section class="contact-success">
+    <div class="container">
+      <div class="grid-row">
+        <div class="column-two-thirds">
+          <h2 class="heading-large">{% trans "Your form has been submitted." %}</h2>
+          <p>{% trans "Thank you, your form has been submitted." %}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

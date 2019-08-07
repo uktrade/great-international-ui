@@ -1,5 +1,5 @@
 dateparser==0.7.0
-Django==1.11.22
+Django==1.11.23
 django-formtools==2.0
 django-crispy-forms==1.7.1
 django-environ==0.4.5
@@ -12,11 +12,14 @@ raven==6.9.0
 requests==2.21.0
 whitenoise==3.3.1
 django-recaptcha==1.2.0
+redis==2.10.5
+sorl-thumbnail==12.5
 directory-cms-client==10.1.0
 directory-validators==5.0.0
-directory-components==27.0.1
+directory-components==27.1.0
 directory-constants==18.1.2
 directory-forms-api-client==4.0.0
+directory-api-client==14.0.0
 beautifulsoup4==4.6.0
 waitress==0.8.9
 zenpy==1.1.10

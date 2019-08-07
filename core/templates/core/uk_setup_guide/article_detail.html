@@ -3,7 +3,7 @@
 {% load static %}
 {% load trans from i18n %}
 {% load parse_date from cms_tags %}
-{% load breadcrumbs add_export_elements_classes from directory_components %}
+{% load breadcrumbs add_export_elements_classes add_anchors_to_all_headings from directory_components %}
 
 {% block head_title %}{{ page.article_title }} - {{ site_home_link.label }}{% endblock %}
 
@@ -69,7 +69,7 @@
           {% endif %}
           <section class="grid-row">
                 <div class="column-seven-ninths article-content" data-ga-class="article-content">
-                  {{ page.article_body_text|add_export_elements_classes }}
+                  {{ page.article_body_text|add_export_elements_classes|add_anchors_to_all_headings:'-section' }}
                 </div>
           </section>
         </div>

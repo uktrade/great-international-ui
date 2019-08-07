@@ -1,9 +1,3 @@
-import invest.forms
-
-
-CMS_FORM_MAPPING = {
-    'InvestHighPotentialOpportunityFormPage': invest.forms.HighPotentialOpportunityForm
-}
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -35,7 +29,9 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
 
     # About DIT
+    'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
+    'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
@@ -44,7 +40,11 @@ TEMPLATE_MAPPING = {
         'invest/hpo/high_potential_opportunity_detail.html',
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage':
-        'invest/hpo/high_potential_opportunities_form_success.html'
+        'invest/hpo/high_potential_opportunities_form_success.html',
+    'InvestRegionPage': 'invest/regions/region_detail.html',
+
+    # Find a supplier
+    'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -168,17 +168,51 @@ GA_DATA_MAPPING = {
         'site_section': 'HighPotentialOpportunities',
         'site_subsection': 'FormSuccessPage',
     },
+    'InvestRegionPage': {
+        'business_unit': 'Invest',
+        'site_section': 'Regions',
+        'site_subsection': 'DetailPage',
+    },
+
+    # Perfect fit
+    'PerfectFitFormPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormPage',
+    },
+    'PerfectFitFormSuccessPage': {
+        'business_unit': 'Invest',
+        'site_section': 'PerfectFit',
+        'site_subsection': 'FormSuccessPage',
+    },
 
     # About DIT
+    'AboutDitLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutDIT',
+        'site_subsection': 'LandingPage'
+    },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
     },
+    'AboutUkLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'LandingPage'
+    },
     'AboutUkWhyChooseTheUkPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
         'site_subsection': 'WhyChooseTheUkPage'
+    },
+
+    # Find a supplier
+    'InternationalTradeHomePage': {
+        'business_unit': 'FindASupplier',
+        'site_section': 'HomePage',
+        'site_subsection': '',
     },
 }
 
@@ -211,6 +245,7 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
 
     # About DIT
+    'AboutDitLandingPage': '',
     'AboutDitServicesPage': '',
     'AboutUkWhyChooseTheUkPage': '',
 }

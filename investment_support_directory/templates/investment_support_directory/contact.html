@@ -1,0 +1,9 @@
+{% extends 'investment_support_directory/base-contact.html' %}
+{% load breadcrumbs render_form from directory_components %}
+
+{% block breadcrumbs %}
+    {% breadcrumbs 'Contact company' %}
+        <a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
+        <a href="{{ company_url|add:'?'|add:search_querystring}}">{{ company.name right_label }}</a>
+    {% endbreadcrumbs %}
+{% endblock %}

@@ -8,6 +8,7 @@ from directory_constants import choices
 
 from core.tests.helpers import create_response
 from invest import views
+from . import helpers
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -295,3 +296,88 @@ def test_get_success_page_with_session(
             'meta': {'slug': 'rail'}
         }
     ]
+
+
+@pytest.mark.parametrize('source,destination', [
+    (
+        'high-potential-opportunities/rail-infrastructure',
+        '/international/content/invest/high-potential-opportunities/rail-infrastructure/'
+    ),
+    (
+        'high-potential-opportunities/food-production',
+        '/international/content/invest/high-potential-opportunities/food-production/'
+    ),
+    (
+        'high-potential-opportunities/lightweight-structures',
+        '/international/content/invest/high-potential-opportunities/lightweight-structures/'
+    ),
+    (
+        'high-potential-opportunities/rail-infrastructure/contact',
+        '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/'
+    ),
+    (
+        'high-potential-opportunities/food-production/contact',
+        '/international/content/invest/high-potential-opportunities/food-production/contact/'
+    ),
+    (
+        'high-potential-opportunities/lightweight-structures/contact',
+        '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/'
+    ),
+    (
+        'foo/bar',
+        '/international/invest/'
+    )
+])
+def test_invest_english_only_redirects(source, destination, client):
+    url = reverse('invest-incoming', kwargs={'path': source})
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination
+
+
+@pytest.mark.parametrize('source,destination', helpers.generate_translated_redirects_tests_params())
+def test_invest_translated_redirects(source, destination, client):
+    url = reverse('invest-incoming', kwargs={'path': source})
+    response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination
+
+
+def test_invest_redirects_persist_querystrings(client):
+    url = reverse('invest-incoming', kwargs={'path': '/es/industries/'})
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/content/industries/?foo=bar&lang=es'
+
+
+def test_invest_redirect_homepage(client):
+    url = reverse('invest-incoming', kwargs={'path': '/es/'})
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/invest/?foo=bar&lang=es'
+
+
+def test_invest_redirect_homepage_english(client):
+    url = reverse('invest-incoming-homepage')
+    response = client.get(url, {'foo': 'bar'})
+    assert response.status_code == 302
+    assert response.url == '/international/invest/?foo=bar'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_uk_region_page_cms_view(mock_get_page, client):
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'meta': {
+                'languages': [['en-gb', 'English']],
+                'slug': 'region-slug',
+            },
+            'page_type': 'InvestRegionPage',
+        }
+    )
+
+    url = reverse('cms-page-from-path', kwargs={'path': '/invest/uk-regions/region-slug'})
+    response = client.get(url)
+
+    assert response.status_code == 200

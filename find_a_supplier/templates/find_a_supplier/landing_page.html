@@ -1,0 +1,127 @@
+{% extends 'find_a_supplier/base.html' %}
+
+{% load static from staticfiles %}
+{% load first_paragraph grouper from cms_tags %}
+{% load directory_components %}
+
+{% block css_layout_class %}find-a-supplier-landing-page{% endblock %}
+
+{% block content %}
+<section id="hero" class="padding-top-90-m padding-bottom-60-m padding-top-45 padding-bottom-30">
+    <div class="container">
+        <div id="hero-content">
+            <div class="hero-teaser">
+                {{ page.hero_text|convert_headings_to:'h1'|add_export_elements_classes }}
+            </div>
+            <div id="search-area">
+                <form action="#fassearchplaceholder" method="get">
+                    <div class="column-half">
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="{{ search_form.term.name }}"
+                            id="{{ search_form.term.id_for_label }}"
+                            data-ga-id="search-input"
+                            placeholder="{{ page.search_field_placeholder }}"
+                        />
+                    </div>
+                    <div class="column-half">
+                        <div class="column-half" data-ga-id="select-input-container">
+                            {# translations provided by the app #}
+                            {{ search_form.industries }}
+                        </div>
+                        <div class="column-half button-container">
+                          <button class="button">{{ page.search_button_text }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="image-caption">{{ page.hero_image_caption }}</div>
+    </div>
+</section>
+
+{% if features.EU_EXIT_BANNER_ON and cms_component %}
+  <div class="banner-container margin-bottom-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
+    <div class="container">
+      {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
+    </div>
+  </div>
+{% endif %}
+
+<section id="introduction-section" class="padding-vertical-60-m padding-vertical-30">
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-half">
+                {{ page.proposition_text|add_export_elements_classes }}
+            </div>
+            <div class="column-half">
+                <a href="#fasindustrycontactplaceholder" class="button float-right">{{ page.call_to_action_text }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="industries-section" class="padding-bottom-60-m padding-bottom-30 background-stone-30">
+    <div class="container">
+        <div class="heading-large">
+          {{ page.industries_list_text|safe }}
+        </div>
+        {% for row in page.industries|grouper:3 %}
+            <div class="grid-row">
+                {% for industry in row %}
+                <div class="column-third-xl column-half-m">
+                  {% labelled_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <a class="button" href="{% url 'industries' %}">{{ page.industries_list_call_to_action_text }}</a>
+    </div>
+</section>
+
+<section id="services-section" class="padding-bottom-60-m padding-bottom-30">
+    <div class="container">
+      <div class="grid-row">
+        <div class="column-two-thirds-m column-half-xl padding-bottom-30-m">
+            {{ page.services_list_text|add_export_elements_classes }}
+        </div>
+      </div>
+        <div class="flex-grid">
+            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
+                <div class="image-container">
+                    <img src="{{ page.services_column_two_icon.url}}" />
+                </div>
+                <div class="wrap-tight">
+                  {{ page.services_column_one|add_export_elements_classes }}
+                </div>
+            </div>
+            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
+                <div class="image-container">
+                    <img src="{{ page.services_column_one_icon.url }}" />
+                </div>
+                <div class="wrap-tight">
+                  {{ page.services_column_two|add_export_elements_classes }}
+                </div>
+            </div>
+            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
+                <div class="image-container">
+                    <img src="{{ page.services_column_three_icon.url }}" />
+                </div>
+                <div class="wrap-tight">
+                  {{ page.services_column_three|add_export_elements_classes }}
+                </div>
+            </div>
+            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
+                <div class="image-container">
+                    <img src="{{ page.services_column_four_icon.url }}" />
+                </div>
+                <div class="wrap-tight">
+                  {{ page.services_column_four|add_export_elements_classes }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

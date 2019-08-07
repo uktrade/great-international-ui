@@ -4,12 +4,14 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
+import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
@@ -25,6 +27,12 @@ from core.context_modifiers import (
 )
 from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
+
+import find_a_supplier.forms
+
+
+class QuerystringRedirectView(RedirectView):
+    query_string = True
 
 
 class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
@@ -500,9 +508,66 @@ class OpportunitySearchView(
         )
 
 
+class SendContactNotifyMessagesMixin:
+
+    def send_company_message(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=None,
+        )
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
+        )
+
+        response = form.save(
+            template_id=self.notify_settings.company_template,
+            email_address=self.company['email_address'],
+            form_url=self.request.path,
+            sender=sender,
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
+
+    def send_support_message(self, form):
+        response = form.save(
+            template_id=self.notify_settings.support_template,
+            email_address=self.notify_settings.support_email_address,
+            form_url=self.request.get_full_path(),
+        )
+        response.raise_for_status()
+
+    def send_investor_message(self, form):
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
+        )
+        response = form.save(
+            template_id=self.notify_settings.investor_template,
+            email_address=form.cleaned_data['email_address'],
+            form_url=self.request.get_full_path(),
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_company_message(form)
+        self.send_support_message(form)
+        self.send_investor_message(form)
+        return super().form_valid(form)
+
+
+class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
+    pass
+
+
 @register_context_modifier('InvestInternationalHomePage')
 def invest_homepage_context_modifier(context, request):
-    pages = context['page']['high_potential_opportunities'],
+    hpo_pages = context['page']['high_potential_opportunities'],
+
+    featured_cards = []
+    if 'featured_cards' in context['page']:
+        featured_cards = [card for card in context['page']['featured_cards']
+                          if card['title'] and card['summary'] and card['image']]
+    number_of_featured_cards = len(featured_cards)
 
     return {
         'international_home_page_link': urls.GREAT_INTERNATIONAL,
@@ -510,6 +575,29 @@ def invest_homepage_context_modifier(context, request):
         'how_to_set_up_visas_and_migration_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_VISAS_AND_MIGRATION,
         'how_to_set_up_tax_and_incentives_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_TAX_AND_INCENTIVES,
         'show_hpo_section': bool(
-            pages and filter_by_active_language(pages[0])
+            hpo_pages and filter_by_active_language(hpo_pages[0])
         ),
+        'show_featured_cards': (number_of_featured_cards == 3),
+    }
+
+
+@register_context_modifier('InternationalTradeHomePage')
+def international_trade_homepage_context_modifier(context, request):
+
+    return {
+        'search_form': find_a_supplier.forms.SearchForm,
+    }
+
+
+@register_context_modifier('AboutUkLandingPage')
+def about_uk_landing_page_context_modifier(context, request):
+
+    random_sectors = []
+    if 'all_sectors' in context['page']:
+        all_sectors = context['page']['all_sectors']
+        random.shuffle(all_sectors)
+        random_sectors = all_sectors[0:3]
+
+    return {
+        'random_sectors': random_sectors
     }

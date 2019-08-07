@@ -1,0 +1,12 @@
+{% extends "investment_support_directory/base-sent.html" %}
+
+{% load breadcrumbs message_box from directory_components %}
+
+{% block breadcrumbs %}
+  {% url 'investment-support-directory:company-contact' company_number=company.number as contact_url %}
+  {% breadcrumbs 'Message sent' %}
+    <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+    <a href="{{ contact_url}}?{{ search_querystring }}">Contact company</a>
+  {% endbreadcrumbs %}
+
+{% endblock %}

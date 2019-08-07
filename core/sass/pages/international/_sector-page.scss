@@ -1,0 +1,58 @@
+
+// Sector page
+// ============
+
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.sector-page {
+
+    @media (min-width: 769px) {
+      .section-one-body {
+        padding-right: calc(100% / 12);
+      }
+    }
+
+  .section-one-body {
+    h2:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .section-two {
+    .section-two-icon {
+      height: 60px;
+    }
+  }
+
+  .next-steps .container {
+    @media (min-width: 961px) {
+      .cta-link {
+        font-size: 36px;
+      }
+    }
+
+    .with-arrow {
+      margin: 0;
+
+      &:before {
+        display: none;
+      }
+      &:after {
+        content: '➔';
+        margin-left: 0;
+      }
+    }
+  }
+
+  .news-events {
+    .card {
+      height: 100%;
+    }
+  }
+
+  .related-opportunity-section {
+    @include stone-section;
+  }
+
+}

@@ -7,9 +7,8 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
-from core.tests.helpers import create_response
-from core.views import MultilingualCMSPageFromPathView, cms_api_client, \
-    OpportunitySearchView
+from core.tests.helpers import create_response, stub_page, dummy_page
+from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView
 
 test_sectors = [
     {
@@ -37,27 +36,6 @@ test_sectors = [
         },
     },
 ]
-
-dummy_page = {
-    'title': 'test',
-    'display_title': 'Title',
-    'breadcrumbs_label': 'Title',
-    'meta': {
-        'languages': [
-            ['en-gb', 'English'],
-            ['fr', 'Français'],
-            ['de', 'Deutsch'],
-        ]
-    },
-    'page_type': 'InternationalHomePage',
-}
-
-
-def stub_page(page):
-    value = create_response(json_payload={**dummy_page, **page})
-    stub = patch.object(cms_api_client, 'lookup_by_path', return_value=value)
-    yield stub.start()
-    stub.stop()
 
 
 @pytest.fixture
@@ -1455,3 +1433,208 @@ def test_showing_accordions_null_case_for_region_page(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_accordions'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_featured_cards_section_on_invest_home_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InvestInternationalHomePage',
+        'high_potential_opportunities': [],
+        'featured_cards': [
+            {
+                'title': 'Get started in the UK',
+                'image': {
+                    'url': 'https://directory-cms-public.s3.amazonaws.com'
+                           '/images/Get_started_in_the_UK.2e16d0ba.'
+                           'fill-640x360_i3FI8OQ.jpg',
+                    'width': 640,
+                    'height': 360
+                },
+                'summary': 'A summary',
+            },
+            {
+                'title': 'Get started in the UK',
+                'image': {
+                    'url': 'https://directory-cms-public.s3.amazonaws.com'
+                           '/images/Get_started_in_the_UK.2e16d0ba.'
+                           'fill-640x360_i3FI8OQ.jpg',
+                    'width': 640,
+                    'height': 360
+                },
+                'summary': 'A summary',
+                'cta_link': 'www.google.com'
+            },
+            {
+                'title': 'Get started in the UK',
+                'image': {
+                    'url': 'https://directory-cms-public.s3.amazonaws.com'
+                           '/images/Get_started_in_the_UK.2e16d0ba.'
+                           'fill-640x360_i3FI8OQ.jpg',
+                    'width': 640,
+                    'height': 360
+                },
+                'summary': 'A summary',
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_featured_cards'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_featured_cards_section_doesnt_show_when_missing_some_on_invest_home_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InvestInternationalHomePage',
+        'high_potential_opportunities': [],
+        'featured_cards': [
+            {
+                'title': '',
+                'image': {},
+                'summary': 'A summary',
+            },
+            {
+                'title': 'Get started in the UK',
+                'image': {},
+                'summary': 'A summary',
+                'cta_link': 'www.google.com'
+            },
+            {
+                'title': 'Get started in the UK',
+                'image': {},
+                'summary': '',
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_featured_cards'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InvestInternationalHomePage',
+        'high_potential_opportunities': [],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/midlands/')
+
+    assert response.context_data['show_featured_cards'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_sectors_for_about_uk_landing_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'about-uk'
+        },
+        'page_type': 'AboutUkLandingPage',
+        'all_sectors': [
+            {'heading': 'automotive'},
+            {'heading': 'aerospace'},
+            {'heading': 'energy'},
+        ],
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk')
+
+    assert len(response.context_data['random_sectors']) <= 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'about-uk'
+        },
+        'page_type': 'AboutUkLandingPage',
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get('/international/content/about-uk')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk')
+
+    assert response.context_data['random_sectors'] == []

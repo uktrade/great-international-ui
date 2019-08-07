@@ -1,0 +1,32 @@
+
+// Article list page
+// ==================
+
+.article-list-page {
+  .regional-content {
+    .subheading {
+      display: inline-block;
+    }
+
+    .non-eu {
+      background-color: $active-blue;
+      color: $white;
+      font-weight: 700;
+      padding: 2px 10px;
+    }
+  }
+
+  .article-heading {
+    margin: 0;
+    display: inline-block;
+  }
+
+  .article {
+    padding: 1em 0;
+    border-bottom: 1px solid $light-grey;
+  }
+
+  .content-list .article:last-child {
+    border-bottom: 0;
+  }
+}
