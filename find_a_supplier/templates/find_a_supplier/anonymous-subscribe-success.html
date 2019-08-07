@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load breadcrumbs from directory_components %}
+
+{% block content %}
+
+<div class="container">
+  {% breadcrumbs 'Success' %}
+      <a href="{{ trade_home_link.url }}">{{ trade_home_link.label }}</a>
+      <a href="{% url 'trade-subscribe' %}">Subscribe</a>
+  {% endbreadcrumbs %}
+</div>
+
+<section class="padding-bottom-30">
+  <div class="container">
+    <div class="width-two-thirds">
+      <h1 class="heading-large">Thank you for registering</h1>
+      <p class="ed-international-success-synopsis">
+        We will email you as soon as we publish details of UK companies on the Find a Supplier service.
+      </p>
+    </div>
+  </div>
+</section>
+
+{%endblock content %}
