@@ -8,6 +8,7 @@ from directory_constants import choices
 
 from core.tests.helpers import create_response
 from invest import views
+from . import helpers
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -327,44 +328,15 @@ def test_get_success_page_with_session(
         '/international/invest/'
     )
 ])
-def test_invest_redirects(source, destination, client):
+def test_invest_english_only_redirects(source, destination, client):
     url = reverse('invest-incoming', kwargs={'path': source})
     response = client.get(url)
     assert response.status_code == 302
     assert response.url == destination
 
 
-@pytest.mark.parametrize('source,destination', [
-    (
-        '/es/industries/',
-        '/international/content/industries/?lang=es'
-    ),
-    (
-        '/de/industries/',
-        '/international/content/industries/?lang=de'
-    ),
-    (
-        '/fr/industries/',
-        '/international/content/industries/?lang=fr'
-    ),
-    (
-        '/pt/industries/',
-        '/international/content/industries/?lang=pt'
-    ),
-    (
-        '/zh-hans/industries/',
-        '/international/content/industries/?lang=zh-hans'
-    ),
-    (
-        '/ar/industries/',
-        '/international/content/industries/'
-    ),
-    (
-        '/ja/industries/',
-        '/international/content/industries/'
-    ),
-])
-def test_invest_redirects_language_urls(source, destination, client):
+@pytest.mark.parametrize('source,destination', helpers.generate_translated_redirects_tests_params())
+def test_invest_translated_redirects(source, destination, client):
     url = reverse('invest-incoming', kwargs={'path': source})
     response = client.get(url)
     assert response.status_code == 302

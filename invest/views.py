@@ -2,6 +2,7 @@ import copy
 
 from directory_components.mixins import GA360Mixin
 from directory_constants import slugs
+from django.conf import settings
 
 from django.shortcuts import redirect
 from django.views import View
@@ -72,7 +73,7 @@ class LegacyInvestURLRedirectView(View):
         if path.startswith(helpers.LANGUAGE_CODES):
             lang = helpers.get_language_from_prefix(path)
             path = path[len(lang)+1:]  # +1 is for the /
-            if lang not in ('ar', 'ja'):  # these go to English
+            if lang not in settings.INVEST_REDIRECTS_UNUSED_LANGUAGES:  # these go to English
                 params['lang'] = lang
 
         destination = redirects.REDIRECTS.get(path) or '/international/invest/'
