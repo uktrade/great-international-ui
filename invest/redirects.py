@@ -1,11 +1,13 @@
-REDIRECTS = {
+ENGLISH_ONLY_REDIRECTS = {
     'high-potential-opportunities/rail-infrastructure': '/international/content/invest/high-potential-opportunities/rail-infrastructure/',  # NOQA
     'high-potential-opportunities/food-production': '/international/content/invest/high-potential-opportunities/food-production/',  # NOQA
     'high-potential-opportunities/lightweight-structures': '/international/content/invest/high-potential-opportunities/lightweight-structures/',  # NOQA
     'high-potential-opportunities/rail-infrastructure/contact': '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/',  # NOQA
     'high-potential-opportunities/food-production/contact': '/international/content/invest/high-potential-opportunities/food-production/contact/',  # NOQA
     'high-potential-opportunities/lightweight-structures/contact': '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/',  # NOQA
-    # translated urls
+}
+
+TRANSLATED_REDIRECTS = {
     '': '/international/invest/',
     'contact': '/international/invest/contact/',
     'uk-regions/midlands': '/international/content/invest/uk-regions/midlands/',
@@ -48,3 +50,5 @@ REDIRECTS = {
     'industries/energy-from-waste-market': '/international/content/industries/renewable-energy/',
     'industries/advanced-manufacturing': '/international/content/industries/advanced-manufacturing/'
 }
+
+REDIRECTS = {**ENGLISH_ONLY_REDIRECTS, **TRANSLATED_REDIRECTS}
