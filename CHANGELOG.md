@@ -5,6 +5,7 @@
 ### Implemented enhancements
 
 ### Fixed bugs
+- CI-426 - Uses pdf document link for why choose uk page in ebook section
 
 
 ## [2019.08.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.08)
@@ -12,7 +13,6 @@
 
 ### Fixed bugs
 - No ticket - Update HPO contact form invest redirect
-- CI-426 - Uses pdf document link for why choose uk page in ebook section
 
 ## [2019.08.07](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.07)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.25...2019.08.07)
