@@ -2,9 +2,9 @@ ENGLISH_ONLY_REDIRECTS = {
     'high-potential-opportunities/rail-infrastructure': '/international/content/invest/high-potential-opportunities/rail-infrastructure/',  # NOQA
     'high-potential-opportunities/food-production': '/international/content/invest/high-potential-opportunities/food-production/',  # NOQA
     'high-potential-opportunities/lightweight-structures': '/international/content/invest/high-potential-opportunities/lightweight-structures/',  # NOQA
-    'high-potential-opportunities/rail-infrastructure/contact': '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/',  # NOQA
-    'high-potential-opportunities/food-production/contact': '/international/content/invest/high-potential-opportunities/food-production/contact/',  # NOQA
-    'high-potential-opportunities/lightweight-structures/contact': '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/',  # NOQA
+    'high-potential-opportunities/rail-infrastructure/contact': '/international/content/invest/high-potential-opportunities/contact/',  # NOQA
+    'high-potential-opportunities/food-production/contact': '/international/content/invest/high-potential-opportunities/contact/',  # NOQA
+    'high-potential-opportunities/lightweight-structures/contact': '/international/content/invest/high-potential-opportunities/contact/',  # NOQA
 }
 
 TRANSLATED_REDIRECTS = {

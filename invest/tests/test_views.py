@@ -313,15 +313,15 @@ def test_get_success_page_with_session(
     ),
     (
         'high-potential-opportunities/rail-infrastructure/contact',
-        '/international/content/invest/high-potential-opportunities/rail-infrastructure/contact/'
+        '/international/content/invest/high-potential-opportunities/contact/'
     ),
     (
         'high-potential-opportunities/food-production/contact',
-        '/international/content/invest/high-potential-opportunities/food-production/contact/'
+        '/international/content/invest/high-potential-opportunities/contact/'
     ),
     (
         'high-potential-opportunities/lightweight-structures/contact',
-        '/international/content/invest/high-potential-opportunities/lightweight-structures/contact/'
+        '/international/content/invest/high-potential-opportunities/contact/'
     ),
     (
         'foo/bar',

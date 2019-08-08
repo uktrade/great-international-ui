@@ -3,6 +3,13 @@
 ## Pre-release
 
 ### Fixed bugs:
+- No ticket - Update HPO contact form invest redirect
+
+## [2019.08.07](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.07)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.25...2019.08.07)
+
+
+### Fixed bugs:
 - CMS-1772 - Add invest contact form pages
 - No ticket - Fix duplication of constants in code
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
