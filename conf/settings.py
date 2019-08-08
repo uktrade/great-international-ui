@@ -411,6 +411,7 @@ CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
+CIGB_AGENT_EMAIL = env.str('CIGB_AGENT_EMAIL')
 EMAIL_BACKED_CLASSES = {
     'default': 'django.core.mail.backends.smtp.EmailBackend',
     'console': 'django.core.mail.backends.console.EmailBackend'

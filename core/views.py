@@ -21,7 +21,9 @@ from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
-from directory_forms_api_client.helpers import Sender
+from contact.mixins import LocalisedURLsMixin
+
+from directory_components.mixins import EnableTranslationsMixin, InternationalHeaderMixin
 
 from core import forms, helpers, constants
 from core.context_modifiers import (
@@ -604,3 +606,62 @@ def about_uk_landing_page_context_modifier(context, request):
     return {
         'random_sectors': random_sectors
     }
+
+
+class CapitalInvestContactFormView(
+    CMSLanguageSwitcherMixin,
+    CMSPageFromSlugMixin,
+    LocalisedURLsMixin,
+    InternationalHeaderMixin,
+    CountryDisplayMixin,
+    GA360Mixin,
+    FormView,
+):
+    success_url = reverse_lazy('capital-invest-contact-success')
+    slug = 'contact'
+    page_type = 'CapitalInvestContactFormPage'
+    template_name = 'core/capital_invest/capital_invest_contact_form.html'
+    form_class = forms.CapitalInvestContactForm
+    available_languages = settings.LANGUAGES
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='CapitalInvestContactForm',
+            business_unit='CapitalInvest',
+            site_section='Contact'
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['utm_data'] = self.request.utm
+        kwargs['submission_url'] = self.request.path
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class CapitalInvestContactFormSuccessView(
+    CMSPageFromSlugMixin,
+    LocalisedURLsMixin,
+    InternationalHeaderMixin,
+    EnableTranslationsMixin,
+    CountryDisplayMixin,
+    GA360Mixin,
+    TemplateView,
+):
+    slug = 'success'
+    page_type = 'CapitalInvestContactFormSuccessPage'
+    template_name = 'core/capital_invest/capital_invest_contact_form_success.html'
+    available_languages = settings.LANGUAGES
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='CapitalInvestContactFormSuccess',
+            business_unit='CapitalInvest',
+            site_section='Contact',
+            site_subsection='ContactSuccess'
+        )

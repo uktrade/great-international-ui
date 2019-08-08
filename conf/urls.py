@@ -145,12 +145,12 @@ urlpatterns += [
     ),
     url(
         r'^international/content/capital-invest/contact/$',
-        contact.views.CapitalInvestContactFormView.as_view(),
+        core.views.CapitalInvestContactFormView.as_view(),
         name='capital-invest-contact'
     ),
     url(
         r'^international/content/capital-invest/contact/success/$',
-        contact.views.CapitalInvestContactFormSuccessView.as_view(),
+        core.views.CapitalInvestContactFormSuccessView.as_view(),
         name='capital-invest-contact-success'
     ),
     # these next 3 named urls are required for breadcrumbs in templates

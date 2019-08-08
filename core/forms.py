@@ -2,6 +2,17 @@ from directory_components import forms
 from django.forms import Select, Textarea
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
+from directory_forms_api_client.actions import EmailAction
+from directory_forms_api_client.helpers import Sender
+from directory_constants import choices, urls
+
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import mark_safe
+from directory_validators.common import not_contains_url_or_email
+from directory_validators.company import no_html
+from captcha.fields import ReCaptchaField
+
 
 from directory_constants.choices import COUNTRY_CHOICES
 
@@ -71,3 +82,102 @@ class OpportunitySearchForm(forms.Form):
         self.fields['region'].choices = regions
         self.fields['sort_by'].choices = sort_by_options
         self.fields['sub_sector'].choices = sub_sectors
+
+
+TERMS_LABEL = mark_safe(
+    'Tick this box to accept the '
+    f'<a class="link" href="{urls.TERMS_AND_CONDITIONS}" target="_blank">'
+    'terms and conditions</a> of the great.gov.uk service.'
+)
+
+
+class CapitalInvestContactForm(forms.Form):
+    action_class = EmailAction
+
+    given_name = forms.CharField(label=_('Given name'), required=True)
+    family_name = forms.CharField(label=_('Family name'), required=True)
+    email = forms.EmailField(label=_('Email address'), required=True)
+    country = forms.ChoiceField(
+        label=_('Which country are you based in?'),
+        help_text=_(
+            'We will use this information to put you in touch with '
+            'your closest British embassy or high commission.'),
+        choices=[('', '')] + COUNTRIES,
+        widget=Select(attrs={'id': 'js-country-select'})
+    )
+    city = forms.CharField(label=_('City'))
+    message = forms.CharField(
+        label=_('Message'),
+        widget=Textarea,
+        validators=[no_html, not_contains_url_or_email],
+        required=True
+    )
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        required=True
+    )
+    terms_agreed = forms.BooleanField(
+        label=TERMS_LABEL,
+        required=True
+    )
+
+    def __init__(self, utm_data, submission_url, *args, **kwargs):
+        self.utm_data = utm_data
+        self.submission_url = submission_url
+        super().__init__(*args, **kwargs)
+
+    def get_context_data(self):
+        data = self.cleaned_data.copy()
+        return {
+            'form_data': (
+                (_('Given Name'), data['given_name']),
+                (_('Family Name'), data['family_name']),
+                (_('Email address'), data['email']),
+                (_('Country'), data['country']),
+                (_('City'), data['city']),
+                (_('Message'), data['message']),
+            ),
+            'utm': self.utm_data,
+            'submission_url': self.submission_url,
+        }
+
+    def render_email(self, template_name):
+        context = self.get_context_data()
+        return render_to_string(template_name, context)
+
+    def send_agent_email(self):
+        sender = Sender(
+            email_address=self.cleaned_data['email'],
+            country_code=self.cleaned_data['country']
+        )
+        action = self.action_class(
+            recipients=[settings.CIGB_AGENT_EMAIL],
+            subject='Contact form agent email subject',
+            reply_to=[settings.DEFAULT_FROM_EMAIL],
+            form_url=self.submission_url,
+            sender=sender,
+        )
+        response = action.save({
+            'text_body': self.render_email('email/capital_invest_email_agent.txt'),
+            'html_body': self.render_email('email/capital_invest_email_agent.html'),
+        })
+        response.raise_for_status()
+
+    def send_user_email(self):
+        # no need to set `sender` as this is just a confirmation email.
+        action = self.action_class(
+            recipients=[self.cleaned_data['email']],
+            subject=str(_('Contact form user email subject')),
+            reply_to=[settings.DEFAULT_FROM_EMAIL],
+            form_url=self.submission_url,
+        )
+        response = action.save({
+            'text_body': self.render_email('email/capital_invest_email_user.txt'),
+            'html_body': self.render_email('email/capital_invest_email_user.html'),
+        })
+        response.raise_for_status()
+
+    def save(self):
+        self.send_agent_email()
+        self.send_user_email()

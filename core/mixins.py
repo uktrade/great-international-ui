@@ -79,7 +79,6 @@ class CMSPageFromSlugMixin:
             region=self.region,
             draft_token=self.request.GET.get('draft_token'),
         )
-        print('\n\n\n\n\n am i getting here ?? cms response ', handle_cms_response(response))
         return handle_cms_response(response)
 
     def get_context_data(self, *args, **kwargs):
