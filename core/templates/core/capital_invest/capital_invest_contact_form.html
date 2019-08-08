@@ -13,9 +13,6 @@
 {% endblock %}
 
 {% block content %}
-
-{% include 'directory_components/hero.html' with hero_text=page.heading %}
-
 {% block breadcrumbs %}
     <div class="container">
         {% breadcrumbs page.breadcrumbs_label %}
@@ -28,6 +25,7 @@
 <div class="container">
     {% ga360_data "contact-form" target="form" %}
         <div class="grid-row">
+            <h2 class="heading-xlarge">{{ page.heading }}</h2>
             {% if page.intro %}
                 <div>{{ page.intro|add_export_elements_classes|safe }}</div>
             {% endif %}
@@ -35,12 +33,12 @@
                 {% csrf_token %}
 
                 <h2 class="heading-medium">{% trans "Contact Information" %}</h2>
-                {% include 'includes/form_field.html' with field=form.name %}
+                {% include 'includes/form_field.html' with field=form.given_name %}
+                {% include 'includes/form_field.html' with field=form.family_name %}
                 {% include 'includes/form_field.html' with field=form.email %}
-                {% include 'includes/form_field.html' with field=form.phone_number %}
                 {% include 'includes/form_field.html' with field=form.country %}
+                {% include 'includes/form_field.html' with field=form.city %}
 
-                {% include 'includes/form_field.html' with field=form.subject %}
                 {% include 'includes/form_field.html' with field=form.message %}
 
                 {% include 'includes/form_field.html' with field=form.captcha %}

@@ -153,12 +153,9 @@ TERMS_LABEL = mark_safe(
 class CapitalInvestContactForm(forms.Form):
     action_class = EmailAction
 
-    name = forms.CharField(label=_('Name'))
-    email = forms.EmailField(label=_('Email address'))
-    phone_number = forms.CharField(
-        label=_('Phone number'),
-        required=True
-    )
+    given_name = forms.CharField(label=_('Given name'), required=True)
+    family_name = forms.CharField(label=_('Family name'), required=True)
+    email = forms.EmailField(label=_('Email address'), required=True)
     country = forms.ChoiceField(
         label=_('Which country are you based in?'),
         help_text=_(
@@ -167,18 +164,21 @@ class CapitalInvestContactForm(forms.Form):
         choices=[('', '')] + COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'})
     )
-    subject = forms.CharField(label=_('Subject'))
+    city = forms.CharField(label=_('City'))
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,
-        validators=[no_html, not_contains_url_or_email]
+        validators=[no_html, not_contains_url_or_email],
+        required=True
     )
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
+        required=True
     )
     terms_agreed = forms.BooleanField(
-        label=TERMS_LABEL
+        label=TERMS_LABEL,
+        required=True
     )
 
     def __init__(self, utm_data, submission_url, *args, **kwargs):
@@ -190,11 +190,11 @@ class CapitalInvestContactForm(forms.Form):
         data = self.cleaned_data.copy()
         return {
             'form_data': (
-                (_('Name'), data['name']),
+                (_('Given Name'), data['given_name']),
+                (_('Family Name'), data['family_name']),
                 (_('Email address'), data['email']),
-                (_('Phone number'), data['phone_number']),
                 (_('Country'), data['country']),
-                (_('Subject'), data['subject']),
+                (_('City'), data['city']),
                 (_('Message'), data['message']),
             ),
             'utm': self.utm_data,
