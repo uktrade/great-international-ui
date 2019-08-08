@@ -4,6 +4,7 @@
 
 ### Fixed bugs:
 - No ticket - Update HPO contact form invest redirect
+- CI-426 - Uses pdf document link for why choose uk page in ebook section
 
 ## [2019.08.07](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.07)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.25...2019.08.07)
@@ -19,7 +20,6 @@
 - CI-396 - Fix case study section on sector page bug
 - CI-419 - Commonised responsive behaviour for column-third
 - CI-422 - Update Django to 1.2.23
-- CI-426 - Uses pdf document link for why choose uk page in ebook section
 
 
 ### Implemented enhancements
