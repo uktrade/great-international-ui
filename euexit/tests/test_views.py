@@ -117,7 +117,6 @@ def test_international_form_submit(
 @mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_form_success_page(mock_lookup_by_slug, client):
     mock_lookup_by_slug.return_value = create_response(
-        status_code=200,
         json_payload={
             'body_text': 'what next',
             'disclaimer': 'disclaim',
@@ -162,7 +161,6 @@ def test_form_urls(mock_lookup_by_slug, client):
 def test_form_urls_no_referer(mock_lookup_by_slug, client):
     url = reverse('eu-exit-international-contact-form')
     mock_lookup_by_slug.return_value = create_response(
-        status_code=200,
         json_payload={
             'disclaimer': 'disclaim',
             'page_type': 'InternationalEUExitFormPage',
@@ -203,7 +201,6 @@ def test_page_url_mismatch_404_template_mapping(
     mock_get_page, url, page_type, status_code, client
 ):
     mock_get_page.return_value = create_response(
-        status_code=200,
         json_payload={
             'page_type': page_type,
             'disclaimer': 'disclaim',
