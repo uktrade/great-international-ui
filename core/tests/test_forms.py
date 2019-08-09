@@ -107,9 +107,9 @@ def test_send_agent_email(
     )
 
     assert mock_render_email.call_count == 2
-    assert mock_render_email.call_args_list[0] == call('email/capital_invest_email_agent.txt')
+    assert mock_render_email.call_args_list[0] == call('core/capital_invest/email/capital_invest_email_agent.txt')
     assert mock_render_email.call_args_list[1] == call(
-        'email/capital_invest_email_agent.html'
+        'core/capital_invest/email/capital_invest_email_agent.html'
     )
 
     assert mock_email_action().save.call_count == 1
@@ -127,7 +127,7 @@ def test_render_agent_email_context(capital_invest_contact_form_data):
 
     assert form.is_valid()
 
-    html = form.render_email('email/capital_invest_email_agent.html')
+    html = form.render_email('core/capital_invest/email/capital_invest_email_agent.html')
 
     assert 'field_one: value_one' in html
     assert 'http://www.google.com/submission_url' in html
@@ -156,8 +156,8 @@ def test_send_user_email(
     )
 
     assert mock_render_email.call_count == 2
-    assert mock_render_email.call_args_list[0] == call('email/capital_invest_email_user.txt')
-    assert mock_render_email.call_args_list[1] == call('email/capital_invest_email_user.html')
+    assert mock_render_email.call_args_list[0] == call('core/capital_invest/email/capital_invest_email_user.txt')
+    assert mock_render_email.call_args_list[1] == call('core/capital_invest/email/capital_invest_email_user.html')
 
     assert mock_email_action().save.call_count == 1
     assert mock_email_action().save.call_args == call(

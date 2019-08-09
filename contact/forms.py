@@ -9,6 +9,7 @@ from django.forms import Textarea, Select
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+
 COUNTRIES = [(label, label) for _, label in choices.COUNTRY_CHOICES]
 
 
@@ -81,7 +82,6 @@ class ContactForm(forms.Form):
 
     def get_context_data(self):
         data = self.cleaned_data.copy()
-
         return {
             'form_data': (
                 (_('Name'), data['name']),

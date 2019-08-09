@@ -159,8 +159,8 @@ class CapitalInvestContactForm(forms.Form):
             sender=sender,
         )
         response = action.save({
-            'text_body': self.render_email('email/capital_invest_email_agent.txt'),
-            'html_body': self.render_email('email/capital_invest_email_agent.html'),
+            'text_body': self.render_email('core/capital_invest/email/capital_invest_email_agent.txt'),
+            'html_body': self.render_email('core/capital_invest/email/capital_invest_email_agent.html'),
         })
         response.raise_for_status()
 
@@ -173,8 +173,8 @@ class CapitalInvestContactForm(forms.Form):
             form_url=self.submission_url,
         )
         response = action.save({
-            'text_body': self.render_email('email/capital_invest_email_user.txt'),
-            'html_body': self.render_email('email/capital_invest_email_user.html'),
+            'text_body': self.render_email('core/capital_invest/email/capital_invest_email_user.txt'),
+            'html_body': self.render_email('core/capital_invest/email/capital_invest_email_user.html'),
         })
         response.raise_for_status()
 
