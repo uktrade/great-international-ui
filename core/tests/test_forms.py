@@ -83,7 +83,7 @@ def test_save_calls_send_email(
 @patch.object(CapitalInvestContactForm, 'action_class')
 @patch.object(CapitalInvestContactForm, 'render_email', return_value='something')
 def test_send_agent_email(
-    mock_render_email, mock_email_action, settings, contact_form_data
+    mock_render_email, mock_email_action, settings, capital_invest_contact_form_data
 ):
     form = CapitalInvestContactForm(
         data=capital_invest_contact_form_data,
@@ -101,8 +101,8 @@ def test_send_agent_email(
         reply_to=[settings.DEFAULT_FROM_EMAIL],
         form_url='http://www.google.com/submission_url',
         sender={
-            'email_address': 'sm@example.com',
-            'country_code': 'United States'
+            'email_address': 'most_powerful_avenger@avengers.com',
+            'country_code': 'FR'
         }
     )
 
