@@ -64,7 +64,11 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestOpportunityListingPage':
         'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
     'InternationalSubSectorPage':
-        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'
+        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
+    'CapitalInvestContactFormPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'CapitalInvestContactFormSuccessPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'
 }
 
 GA_DATA_MAPPING = {
@@ -147,6 +151,16 @@ GA_DATA_MAPPING = {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Opportunity',
         'site_subsection': 'ListingPage'
+    },
+    'CapitalInvestContactFormPage': {
+        'business_unit': 'CapitalInvestContactForm',
+        'site_section': 'CapitalInvest',
+        'site_subsection': 'CapitalInvest',
+    },
+    'CapitalInvestContactFormSuccessPage': {
+        'business_unit': 'CapitalInvestContactFormSuccess',
+        'site_section': 'Contact',
+        'site_subsection': 'ContactSuccess'
     },
 
     # Invest

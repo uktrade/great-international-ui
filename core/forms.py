@@ -4,7 +4,7 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
 from directory_forms_api_client.actions import EmailAction
 from directory_forms_api_client.helpers import Sender
-from directory_constants import choices, urls
+from directory_constants import urls
 
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -131,8 +131,8 @@ class CapitalInvestContactForm(forms.Form):
         data = self.cleaned_data.copy()
         return {
             'form_data': (
-                (_('Given Name'), data['given_name']),
-                (_('Family Name'), data['family_name']),
+                (_('Given name'), data['given_name']),
+                (_('Family name'), data['family_name']),
                 (_('Email address'), data['email']),
                 (_('Country'), data['country']),
                 (_('City'), data['city']),

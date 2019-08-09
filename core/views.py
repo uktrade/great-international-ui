@@ -16,14 +16,12 @@ import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
-from directory_constants import slugs
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
+    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin, EnableTranslationsMixin)
 from contact.mixins import LocalisedURLsMixin
 
-from directory_components.mixins import EnableTranslationsMixin, InternationalHeaderMixin
 
 from core import forms, helpers, constants
 from core.context_modifiers import (
@@ -629,8 +627,20 @@ class CapitalInvestContactFormView(
         self.set_ga360_payload(
             page_id='CapitalInvestContactForm',
             business_unit='CapitalInvest',
-            site_section='Contact'
+            site_section='Contact',
+            site_subsection='Contact'
         )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        if 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON' and not settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON']:
+            raise Http404
+
+        for modifier in context_modifier_registry.get_for_page_type(self.page['page_type']):
+            context.update(modifier(context, request=self.request))
+
+        return context
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -661,7 +671,18 @@ class CapitalInvestContactFormSuccessView(
         super().__init__()
         self.set_ga360_payload(
             page_id='CapitalInvestContactFormSuccess',
-            business_unit='CapitalInvest',
+            business_unit='CapitalInvestContactFormSuccess',
             site_section='Contact',
             site_subsection='ContactSuccess'
         )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        if 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON' and not settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON']:
+            raise Http404
+
+        for modifier in context_modifier_registry.get_for_page_type(self.page['page_type']):
+            context.update(modifier(context, request=self.request))
+
+        return context

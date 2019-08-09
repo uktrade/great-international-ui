@@ -1,5 +1,5 @@
 from captcha.fields import ReCaptchaField
-from directory_constants import choices, urls
+from directory_constants import choices
 from directory_components import forms
 from directory_forms_api_client.actions import EmailAction
 from directory_forms_api_client.helpers import Sender

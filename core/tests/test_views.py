@@ -6,9 +6,10 @@ import pytest
 
 from django.urls import reverse
 
+from conf import settings
 from core import helpers
 from core.tests.helpers import create_response, stub_page, dummy_page
-from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView
+from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
 
 test_sectors = [
     {
@@ -76,6 +77,16 @@ def capital_invest_opportunity_page():
 @pytest.fixture
 def international_sub_sector_page():
     yield from stub_page({'page_type': 'InternationalSubSectorPage'})
+
+
+@pytest.fixture
+def capital_invest_contact_form_page():
+    yield from stub_page({'page_type': 'CapitalInvestContactFormPage'})
+
+
+@pytest.fixture
+def capital_invest_contact_form_success_page():
+    yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -656,6 +667,98 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
     )
 
     assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
+
+    page = {
+        'title': 'Contact',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'contact'
+        },
+        'page_type': 'CapitalInvestContactFormPage',
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/content/capital-invest/contact/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/capital-invest/contact/'
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.usefixtures('capital_invest_contact_form_page')
+def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/content/capital-invest/contact/'
+    )
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
+
+    page = {
+        'title': 'Success',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'success'
+        },
+        'page_type': 'CapitalInvestContactFormSuccessPage',
+    }
+
+    mock_cms_response.return_value = helpers.create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/content/capital-invest/contact/success/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/capital-invest/contact/success/'
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.usefixtures('capital_invest_contact_form_success_page')
+def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/content/capital-invest/contact/success/'
+    )
+    assert response.status_code == 404
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -1638,3 +1741,58 @@ def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
         request, path='/international/content/about-uk')
 
     assert response.context_data['random_sectors'] == []
+
+
+@pytest.fixture
+def capital_invest_contact_form_data(captcha_stub):
+    return {
+        'given_name': 'Steve',
+        'family_name': 'Rogers',
+        'email': 'captain_america@avengers.com',
+        'country': 'United States',
+        'city': 'Kentucky',
+        'message': 'foobar',
+        'g-recaptcha-response': captcha_stub,
+        'terms_agreed': True
+    }
+
+
+# @patch.object(CapitalInvestContactFormView.form_class, 'save')
+# def test_this_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
+#     url = reverse('capital-invest-contact')
+#     print('\n\n\n\n url ', url)
+#
+#     request = rf.post(url, data=capital_invest_contact_form_data)
+#     print('\n\n\n\n request ', request)
+#     request.LANGUAGE_CODE = 'en-gb'
+#     request.utm = {}
+#     response = CapitalInvestContactFormView.as_view()(request)
+#     print('\n\n\n response ', response)
+#
+#     assert response.status_code == 200
+#     print('\n\n\n\n\n response ', response.context_data['page'])
+#     assert response.context_data['page']['full_path'] == reverse('capital-invest-contact-success')
+#
+#     assert mock_save.call_count == 1
+
+
+@patch.object(CapitalInvestContactFormView.form_class, 'save')
+def test_capital_invest_contact_invalid(mock_save, rf):
+    url = reverse('capital-invest-contact')
+    utm_data = {
+        'utm_source': 'test_source',
+        'utm_medium': 'test_medium',
+        'utm_campaign': 'test_campaign',
+        'utm_term': 'test_term',
+        'utm_content': 'test_content'
+    }
+
+    request = rf.post(url, data={})
+    request.LANGUAGE_CODE = 'en-gb'
+    request.utm = utm_data
+    response = CapitalInvestContactFormView.as_view()(request)
+
+    assert response.status_code == 200
+
+    assert mock_save.call_count == 0
+    assert response.context_data['form'].utm_data == utm_data
