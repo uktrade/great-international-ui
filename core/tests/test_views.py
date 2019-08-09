@@ -85,7 +85,7 @@ def capital_invest_contact_form_page():
 
 @pytest.fixture
 def capital_invest_contact_form_success_page():
-    yield from stub_page_by_slug({'page_type': 'CapitalInvestContactFormSuccessPage'})
+    yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

@@ -19,7 +19,7 @@ from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin, EnableTranslationsMixin)
+    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
 from contact.mixins import LocalisedURLsMixin
 
 
