@@ -148,11 +148,6 @@ urlpatterns += [
         core.views.CapitalInvestContactFormView.as_view(),
         name='capital-invest-contact'
     ),
-    url(
-        r'^international/content/capital-invest/contact/success/$',
-        core.views.CapitalInvestContactFormSuccessView.as_view(),
-        name='capital-invest-contact-success'
-    ),
     # these next 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',

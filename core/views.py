@@ -651,38 +651,3 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
-
-
-class CapitalInvestContactFormSuccessView(
-    CMSPageFromSlugMixin,
-    LocalisedURLsMixin,
-    InternationalHeaderMixin,
-    EnableTranslationsMixin,
-    CountryDisplayMixin,
-    GA360Mixin,
-    TemplateView,
-):
-    slug = 'success'
-    page_type = 'CapitalInvestContactFormSuccessPage'
-    template_name = 'core/capital_invest/capital_invest_contact_form_success.html'
-    available_languages = settings.LANGUAGES
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='CapitalInvestContactFormSuccess',
-            business_unit='CapitalInvestContactFormSuccess',
-            site_section='Contact',
-            site_subsection='ContactSuccess'
-        )
-
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        if 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON' and not settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON']:
-            raise Http404
-
-        for modifier in context_modifier_registry.get_for_page_type(self.page['page_type']):
-            context.update(modifier(context, request=self.request))
-
-        return context
