@@ -2,7 +2,6 @@ from unittest.mock import call, patch
 
 import pytest
 
-from contact import forms
 from core.forms import CapitalInvestContactForm
 
 
@@ -33,7 +32,7 @@ def test_capital_invest_contact_form_required():
     assert form.fields['country'].required is False
     assert form.fields['city'].required is False
     assert form.fields['message'].required is True
-    assert form.fields['g-recaptcha-response'].required is True
+    assert form.fields['captcha'].required is True
     assert form.fields['terms_agreed'].required is True
 
 
