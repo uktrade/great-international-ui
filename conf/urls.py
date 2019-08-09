@@ -144,7 +144,7 @@ urlpatterns += [
         name='eu-exit-international-contact-form-success'
     ),
     url(
-        r'^international/content/capital-invest/contact/$',
+        r'^international/content/capital-invest/capital-invest-contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         name='capital-invest-contact'
     ),

@@ -615,8 +615,8 @@ class CapitalInvestContactFormView(
     GA360Mixin,
     FormView,
 ):
-    success_url = reverse_lazy('capital-invest-contact-success')
-    slug = 'contact'
+    success_url = '/international/content/capital-invest/capital-invest-contact/success'
+    slug = 'capital-invest-contact'
     page_type = 'CapitalInvestContactFormPage'
     template_name = 'core/capital_invest/capital_invest_contact_form.html'
     form_class = forms.CapitalInvestContactForm

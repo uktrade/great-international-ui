@@ -1768,7 +1768,7 @@ def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_f
     response = CapitalInvestContactFormView.as_view()(request)
 
     assert response.status_code == 302
-    assert response.url == reverse('capital-invest-contact-success')
+    assert response.url == '/international/content/capital-invest/capital-invest-contact/success'
 
     assert mock_save.call_count == 1
 
