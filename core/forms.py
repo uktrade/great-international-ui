@@ -152,7 +152,7 @@ class CapitalInvestContactForm(forms.Form):
             country_code=self.cleaned_data['country']
         )
         action = self.action_class(
-            recipients=[settings.CIGB_AGENT_EMAIL],
+            recipients=[settings.CAPITAL_INVEST_CONTACT_EMAIL],
             subject='Contact form agent email subject',
             reply_to=[settings.DEFAULT_FROM_EMAIL],
             form_url=self.submission_url,
