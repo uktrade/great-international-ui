@@ -33,3 +33,10 @@ def stub_page(page):
     stub = patch.object(cms_api_client, 'lookup_by_path', return_value=value)
     yield stub.start()
     stub.stop()
+
+
+def stub_page(page):
+    value = create_response(json_payload={**dummy_page, **page})
+    stub = patch.object(cms_api_client, 'lookup_by_slug', return_value=value)
+    yield stub.start()
+    stub.stop()

@@ -1756,8 +1756,10 @@ def capital_invest_contact_form_data(captcha_stub):
     }
 
 
+@pytest.mark.usefixtures('capital_invest_contact_form_page')
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
+
     url = reverse('capital-invest-contact')
 
     request = rf.post(url, data=capital_invest_contact_form_data)
@@ -1771,8 +1773,10 @@ def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_f
     assert mock_save.call_count == 1
 
 
+@pytest.mark.usefixtures('capital_invest_contact_form_page')
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 def test_capital_invest_contact_invalid(mock_save, rf):
+
     url = reverse('capital-invest-contact')
     utm_data = {
         'utm_source': 'test_source',
