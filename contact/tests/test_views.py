@@ -24,15 +24,12 @@ def contact_form_data(captcha_stub):
 
 
 @patch.object(views.ContactFormView.form_class, 'save')
-def test_this_contact_form_success(mock_save, contact_form_data, rf):
+def test_contact_form_success(mock_save, contact_form_data, rf):
     url = reverse('invest-contact')
-    print('\n\n\n\n url ', url)
     request = rf.post(url, data=contact_form_data)
-    print('\n\n\n\n request ', request)
     request.LANGUAGE_CODE = 'en-gb'
     request.utm = {}
     response = views.ContactFormView.as_view()(request)
-    print('\n\n\n response ', response)
 
     assert response.status_code == 302
     assert response.url == reverse('invest-contact-success')

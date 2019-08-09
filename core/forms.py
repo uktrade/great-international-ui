@@ -103,9 +103,9 @@ class CapitalInvestContactForm(forms.Form):
             'We will use this information to put you in touch with '
             'your closest British embassy or high commission.'),
         choices=[('', '')] + COUNTRIES,
-        widget=Select(attrs={'id': 'js-country-select'})
+        widget=Select(attrs={'id': 'js-country-select'}), required=False
     )
-    city = forms.CharField(label=_('City'))
+    city = forms.CharField(label=_('City'), required=False)
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,

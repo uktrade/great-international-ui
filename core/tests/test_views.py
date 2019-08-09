@@ -1752,13 +1752,13 @@ def capital_invest_contact_form_data(captcha_stub):
         'country': 'United States',
         'city': 'Kentucky',
         'message': 'foobar',
-        'g-recaptcha-response': captcha_stub,
+        'captcha': captcha_stub,
         'terms_agreed': True
     }
 
-
+#
 # @patch.object(CapitalInvestContactFormView.form_class, 'save')
-# def test_this_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
+# def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
 #     url = reverse('capital-invest-contact')
 #     print('\n\n\n\n url ', url)
 #
