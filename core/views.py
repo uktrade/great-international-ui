@@ -8,7 +8,6 @@ from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
-from django.urls import reverse_lazy
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
