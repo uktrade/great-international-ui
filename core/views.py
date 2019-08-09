@@ -635,10 +635,7 @@ class CapitalInvestContactFormView(
         context = super().get_context_data(**kwargs)
         if 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON' and not settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON']:
             raise Http404
-
-        for modifier in context_modifier_registry.get_for_page_type(self.page['page_type']):
-            context.update(modifier(context, request=self.request))
-
+        
         return context
 
     def get_form_kwargs(self):
