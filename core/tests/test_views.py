@@ -6,7 +6,6 @@ import pytest
 
 from django.urls import reverse
 
-from conf import settings
 from core import helpers
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
@@ -1749,31 +1748,27 @@ def capital_invest_contact_form_data(captcha_stub):
         'given_name': 'Steve',
         'family_name': 'Rogers',
         'email': 'captain_america@avengers.com',
-        'country': 'United States',
+        'country': 'FR',
         'city': 'Kentucky',
         'message': 'foobar',
-        'captcha': captcha_stub,
+        'g-recaptcha-response': captcha_stub,
         'terms_agreed': True
     }
 
-#
-# @patch.object(CapitalInvestContactFormView.form_class, 'save')
-# def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
-#     url = reverse('capital-invest-contact')
-#     print('\n\n\n\n url ', url)
-#
-#     request = rf.post(url, data=capital_invest_contact_form_data)
-#     print('\n\n\n\n request ', request)
-#     request.LANGUAGE_CODE = 'en-gb'
-#     request.utm = {}
-#     response = CapitalInvestContactFormView.as_view()(request)
-#     print('\n\n\n response ', response)
-#
-#     assert response.status_code == 200
-#     print('\n\n\n\n\n response ', response.context_data['page'])
-#     assert response.context_data['page']['full_path'] == reverse('capital-invest-contact-success')
-#
-#     assert mock_save.call_count == 1
+
+@patch.object(CapitalInvestContactFormView.form_class, 'save')
+def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
+    url = reverse('capital-invest-contact')
+
+    request = rf.post(url, data=capital_invest_contact_form_data)
+    request.LANGUAGE_CODE = 'en-gb'
+    request.utm = {}
+    response = CapitalInvestContactFormView.as_view()(request)
+
+    assert response.status_code == 302
+    assert response.url == reverse('capital-invest-contact-success')
+
+    assert mock_save.call_count == 1
 
 
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
