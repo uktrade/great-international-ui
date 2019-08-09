@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+
+{% load static from staticfiles %}
+{% load thumbnail %}
+
+{% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1 class="heading-xlarge">{{ case_study.company.name }}</h1>
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<div>
+				{% if case_study.image_one %}
+					<div class="showcase-image">
+						{% thumbnail case_study.image_one "750" as logo %}
+							<img src="{{ logo.url }}" aria-labelledby="case-study-image-one-caption" />
+						{% endthumbnail %}
+						{% if case_study.image_one_caption %}
+							<p class="caption padding-15" id="case-study-image-one-caption">{{case_study.image_one_caption}}</p>
+						{% endif %}
+					</div>
+				{% endif %}
+
+				<h2 class="heading-large">{{ case_study.title }}</h2>
+				<div>{{ case_study.description|linebreaks }}</div>
+				{% if case_study.website %}
+				    <a href="{{ case_study.website }}" class="link" target="_blank">{{ case_study.website }}</a>
+				{% endif %}
+				<div id="extra-case-study-images">
+					{% if case_study.image_two %}
+						<div class="showcase-image">
+							{% thumbnail case_study.image_two "750" as logo %}
+								<img src="{{ logo.url }}" aria-labelledby="case-study-image-two-caption"  />
+							{% endthumbnail %}
+							{% if case_study.image_two_caption %}
+								<p id="case-study-image-two-caption" class="caption padding-15">{{ case_study.image_two_caption }}</p>
+							{% endif %}
+						</div>
+					{% endif %}
+
+					{% if case_study.image_three %}
+						<div class="showcase-image">
+							{% thumbnail case_study.image_three "750" as logo %}
+								<img src="{{ logo.url }}" aria-labelledby="case-study-image-three-caption"  />
+							{% endthumbnail %}
+							{% if case_study.image_three_caption %}
+								<p id="case-study-image-three-caption" class="caption padding-15">{{case_study.image_three_caption}}</p>
+							{% endif %}
+						</div>
+					{% endif %}
+				</div>
+
+				<p class="margin-top-45">
+					{% url request.resolver_match.namespace|add:':profile' company_number=case_study.company.number slug=case_study.company.slug as company_url %}
+					<a href="{{ company_url }}" class="button">View company profile</a>
+				</p>
+			</div>
+
+		</div>
+		<div class="column-one-third">
+
+			<div>
+				<h2 class="heading-large">Contact</h2>
+				<p>
+					<a class="link" href="{% url 'find-a-supplier:company-contact' company_number=case_study.company.number %}">Email company</a>
+				</p>
+				<p>
+					<a href="{{ case_study.company.website }}" class="link" target="_blank">{{ case_study.company.website }}</a>
+				</p>
+			</div>
+
+			<div>
+				<h2 class="heading-large">Company details</h2>
+				<dl>
+					{% if case_study.company.date_of_creation %}
+						<dt>Incorporated: </dt>
+						<dd>{{ case_study.company.date_of_creation }}</dd>
+					{% endif %}
+					<dt>Industry: </dt>
+					<dd>{{ case_study.sector.label }}</dd>
+				</dl>
+			</div>
+
+			{% if case_study.testimonial %}
+				<div class="testomonial margin-top-45">
+					<blockquote class="padding-15 background-light-grey">
+						<div class="text margin-bottom-15">{{ case_study.testimonial }}</div>
+						<cite>
+							<span class="person-name">{{ case_study.testimonial_name }}</span>
+							<span class="person-title">{{ case_study.testimonial_job_title }}</span>
+							<span class="company-name">{{ case_study.testimonial_company }}</span>
+						</cite>
+					</blockquote>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+</div>
+{% endblock %}

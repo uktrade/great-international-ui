@@ -1,0 +1,11 @@
+{% extends 'core/companies/base-profile.html' %}
+
+{% load breadcrumbs from directory_components %}
+{% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
+{% block breadcrumbs %}
+	{% url 'find-a-supplier:search' as search_url %}
+	{% breadcrumbs company.name %}
+		<a href="{{ services_urls.great_international }}">great.gov.uk international</a>
+		<a href="{{ search_url|add:'?'|add:search_querystring }}">Find a Supplier</a>
+	{% endbreadcrumbs %}
+{% endblock %}

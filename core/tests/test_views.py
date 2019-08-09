@@ -6,7 +6,6 @@ import pytest
 
 from django.urls import reverse
 
-from core import helpers
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView
 
@@ -91,10 +90,7 @@ def test_cms_language_switcher_one_language(mock_cms_response, rf):
         'page_type': 'InternationalHomePage'
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/')
     request.LANGUAGE_CODE = 'de'
@@ -149,10 +145,7 @@ def test_article_detail_page_social_share_links(
 
     url = '/international/content/topic/bar/foo/'
 
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=test_article_page
-    )
+    mock_get_page.return_value = create_response(test_article_page)
 
     response = client.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -209,10 +202,7 @@ def test_article_detail_page_social_share_links_no_title(
 
     url = '/international/content/topic/bar/foo/'
 
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=test_article_page
-    )
+    mock_get_page.return_value = create_response(test_article_page)
 
     response = client.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -370,10 +360,7 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/industries/sector-page/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -407,10 +394,7 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/about-uk/why-choose-uk/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -441,10 +425,7 @@ def test_industry_page_context_modifier_renames_heading(mock_get_page, client):
             'languages': [('en-gb', 'English')],
         },
     }
-    mock_get_page.return_value = create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_get_page.return_value = create_response(page)
 
     url = reverse('industries')
     response = client.get(url)
@@ -510,10 +491,7 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
         ],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -540,10 +518,7 @@ def test_get_capital_invest_opportunity_page_url_constants(
         'page_type': 'CapitalInvestOpportunityPage'
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/ashton')
     request.LANGUAGE_CODE = 'en-gb'
@@ -641,10 +616,7 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
         'related_opportunities': []
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get(
         '/international/content/industries/energy/housing'
@@ -660,10 +632,7 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_international_contact_form(mock_cms_response, client):
-    mock_cms_response.return_value = create_response(
-        status_code=200,
-        json_payload=dummy_page
-    )
+    mock_cms_response.return_value = create_response(dummy_page)
 
     url = reverse('contact-page-international')
     response = client.get(url)
@@ -738,10 +707,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')   # NOQA
     request.LANGUAGE_CODE = 'en-gb'
@@ -803,10 +769,7 @@ def test_get_num_of_opportunities_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/?sector=Aerospace')
     request.LANGUAGE_CODE = 'en-gb'
@@ -851,10 +814,7 @@ def test_get_filters_chosen_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/?scale=<+£100m')
     request.LANGUAGE_CODE = 'en-gb'
@@ -900,10 +860,7 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&region=Midlands')  # NOQA
     request.LANGUAGE_CODE = 'en-gb'
@@ -948,10 +905,7 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/?sub_sector=housing')  # NOQA
     request.LANGUAGE_CODE = 'en-gb'
@@ -997,10 +951,7 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get(
         '/international/content/opportunities/?page=10'
@@ -1050,10 +1001,7 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get(
         '/international/content/opportunities/?page=qq'
@@ -1139,10 +1087,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request_no_sector_chosen = rf.get(
         '/international/content/opportunities/?')  # NOQA
@@ -1221,10 +1166,7 @@ def test_get_random_three_opportunities_for_sector_page(
         'section_three_subsections': []
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1251,10 +1193,7 @@ def test_get_random_three_opportunities_for_sector_page_null_case(
         'section_three_subsections': []
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1281,10 +1220,7 @@ def test_get_random_three_opportunities_for_sub_sector_page_null_case(
         'section_three_subsections': []
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/industries/sector/sub_sector')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1311,10 +1247,7 @@ def test_when_no_opportunity_list_in_page_for_opportunity_search(
         'page_type': 'CapitalInvestOpportunityListingPage',
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/opportunities/')  # NOQA
     request.LANGUAGE_CODE = 'en-gb'
@@ -1356,10 +1289,7 @@ def test_get_random_three_opportunities_for_opportunity_page(
         }
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/industries/sector')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1391,10 +1321,7 @@ def test_showing_accordions_for_region_page(
         ]
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1422,10 +1349,7 @@ def test_showing_accordions_null_case_for_region_page(
         'location_stats': [],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1488,10 +1412,7 @@ def test_show_featured_cards_section_on_invest_home_page(
         ],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1536,10 +1457,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_some_on_invest_hom
         ],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1566,10 +1484,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
         'high_potential_opportunities': [],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1599,10 +1514,7 @@ def test_get_random_three_sectors_for_about_uk_landing_page(
         ],
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/about-uk')
     request.LANGUAGE_CODE = 'en-gb'
@@ -1627,10 +1539,7 @@ def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
         'page_type': 'AboutUkLandingPage',
     }
 
-    mock_cms_response.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_cms_response.return_value = create_response(page)
 
     request = rf.get('/international/content/about-uk')
     request.LANGUAGE_CODE = 'en-gb'

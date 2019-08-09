@@ -7,7 +7,7 @@ import requests
 
 from django.urls import reverse
 
-from core.helpers import CompanyParser
+from core.helpers import CompanyParser, get_case_study_details_from_response
 from core.tests.helpers import create_response
 from investment_support_directory import forms, views
 
@@ -16,7 +16,7 @@ from investment_support_directory import forms, views
 def mock_retrieve_company(retrieve_profile_data):
     patch = mock.patch.object(
         api_client.company, 'retrieve_public_profile',
-        return_value=create_response(200, retrieve_profile_data)
+        return_value=create_response(retrieve_profile_data)
     )
     yield patch.start()
     patch.stop()
@@ -27,7 +27,7 @@ def mock_retrieve_company_non_isd(retrieve_profile_data):
     retrieve_profile_data['is_published_investment_support_directory'] = False
     patch = mock.patch.object(
         api_client.company, 'retrieve_public_profile',
-        return_value=create_response(200, retrieve_profile_data)
+        return_value=create_response(retrieve_profile_data)
     )
     yield patch.start()
     patch.stop()
@@ -185,9 +185,7 @@ def test_home_page_hide_guide(mock_get_results_and_count, client):
 
 
 @mock.patch.object(views.CompanySearchView, 'get_results_and_count')
-def test_search_submit_form_on_get(
-    mock_get_results_and_count, client, search_results
-):
+def test_search_submit_form_on_get(mock_get_results_and_count, client, search_results):
     results = [{'number': '1234567', 'slug': 'thing'}]
     mock_get_results_and_count.return_value = (results, 20)
 
@@ -200,9 +198,7 @@ def test_search_submit_form_on_get(
 
 
 @mock.patch.object(views.CompanySearchView, 'get_results_and_count')
-def test_company_search_pagination_count(
-    mock_get_results_and_count, client, search_results
-):
+def test_company_search_pagination_count(mock_get_results_and_count, client, search_results):
     results = [{'number': '1234567', 'slug': 'thing'}]
     mock_get_results_and_count.return_value = (results, 20)
 
@@ -215,10 +211,8 @@ def test_company_search_pagination_count(
 
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
-def test_company_search_pagination_param(
-    mock_search, client, search_results, api_response_search_200
-):
-    mock_search.return_value = api_response_search_200
+def test_company_search_pagination_param(mock_search, client, search_results):
+    mock_search.return_value = create_response(search_results)
 
     url = reverse('investment-support-directory:search')
     response = client.get(
@@ -241,10 +235,8 @@ def test_company_search_pagination_param(
 
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
-def test_company_search_pagination_empty_page(
-    mock_search, client, search_results, api_response_search_200
-):
-    mock_search.return_value = api_response_search_200
+def test_company_search_pagination_empty_page(mock_search, client, search_results):
+    mock_search.return_value = create_response(search_results)
 
     url = reverse('investment-support-directory:search')
     response = client.get(url, {'q': '123', 'page': 100})
@@ -258,10 +250,9 @@ def test_company_search_pagination_empty_page(
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
 @mock.patch.object(views, 'get_results_from_search_response')
 def test_company_search_not_submit_without_params(
-    mock_get_results_from_search_response, mock_search,
-    api_response_search_200, client
+    mock_get_results_from_search_response, mock_search, client, search_results
 ):
-    mock_search.return_value = api_response_search_200
+    mock_search.return_value = api_response = create_response(search_results)
     mock_get_results_from_search_response.return_value = {
         'results': [],
         'hits': {'total': 2}
@@ -270,14 +261,12 @@ def test_company_search_not_submit_without_params(
 
     assert response.status_code == 200
     assert mock_get_results_from_search_response.call_count == 1
-    assert mock_get_results_from_search_response.call_args == mock.call(
-        api_response_search_200
-    )
+    assert mock_get_results_from_search_response.call_args == mock.call(api_response)
 
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
-def test_company_search_api_call_error(mock_search, api_response_400, client):
-    mock_search.return_value = api_response_400
+def test_company_search_api_call_error(mock_search, client):
+    mock_search.return_value = create_response(status_code=400)
 
     with pytest.raises(requests.exceptions.HTTPError):
         client.get(
@@ -288,10 +277,9 @@ def test_company_search_api_call_error(mock_search, api_response_400, client):
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
 @mock.patch.object(views, 'get_results_from_search_response')
 def test_company_search_api_success(
-    mock_get_results_from_search_response, mock_search,
-    api_response_search_200, client
+    mock_get_results_from_search_response, mock_search, client, search_results
 ):
-    mock_search.return_value = api_response_search_200
+    mock_search.return_value = api_response = create_response(search_results)
     mock_get_results_from_search_response.return_value = {
         'results': [],
         'hits': {'total': 2}
@@ -302,18 +290,15 @@ def test_company_search_api_success(
 
     assert response.status_code == 200
     assert mock_get_results_from_search_response.call_count == 1
-    assert mock_get_results_from_search_response.call_args == mock.call(
-        api_response_search_200
-    )
+    assert mock_get_results_from_search_response.call_args == mock.call(api_response)
 
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
 @mock.patch('core.helpers.get_results_from_search_response')
 def test_company_search_querystring(
-    mock_get_results_from_search_response, mock_search,
-    api_response_search_200, client
+    mock_get_results_from_search_response, mock_search, client, search_results
 ):
-    mock_search.return_value = api_response_search_200
+    mock_search.return_value = create_response(search_results)
     mock_get_results_from_search_response.return_value = {
         'results': [],
         'hits': {'total': 2}
@@ -327,10 +312,8 @@ def test_company_search_querystring(
 
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
-def test_company_search_response_no_highlight(
-    mock_search, api_response_search_200, client
-):
-    mock_search.return_value = api_response_search_200
+def test_company_search_response_no_highlight(mock_search, client, search_results):
+    mock_search.return_value = create_response(search_results)
 
     response = client.get(
         reverse('investment-support-directory:search'), {'q': 'wolf'}
@@ -341,9 +324,9 @@ def test_company_search_response_no_highlight(
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
 def test_company_highlight_description(
-    mock_search, api_response_search_description_highlight_200, client,
+    mock_search, search_results_description_highlight, client,
 ):
-    mock_search.return_value = api_response_search_description_highlight_200
+    mock_search.return_value = create_response(search_results_description_highlight)
 
     response = client.get(
         reverse('investment-support-directory:search'), {'q': 'wolf'}
@@ -358,9 +341,9 @@ def test_company_highlight_description(
 
 @mock.patch.object(api_client.company, 'search_investment_search_directory')
 def test_company_search_highlight_summary(
-    mock_search, api_response_search_summary_highlight_200, client
+    mock_search, search_results_summary_highlight, client
 ):
-    mock_search.return_value = api_response_search_summary_highlight_200
+    mock_search.return_value = create_response(search_results_summary_highlight)
 
     response = client.get(
         reverse('investment-support-directory:search'), {'q': 'wolf'}
@@ -433,3 +416,140 @@ def test_contact_company_success(client):
 
     assert response.status_code == 200
     assert response.template_name == [views.ContactSuccessView.template_name]
+
+
+@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+def test_case_study_exposes_context(
+    mock_retrieve_public_case_study, client, supplier_case_study_data,
+):
+    mock_retrieve_public_case_study.return_value = create_response(json_payload=supplier_case_study_data)
+    expected_case_study = get_case_study_details_from_response(
+        create_response(json_payload=supplier_case_study_data)
+    )
+
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.template_name == [views.CaseStudyView.template_name]
+    assert response.context_data['case_study'] == expected_case_study
+    assert response.context_data['social'] == {
+        'description': expected_case_study['description'],
+        'image': expected_case_study['image_one'],
+        'title': 'Project: {}'.format(expected_case_study['title']),
+    }
+
+
+@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+def test_case_study_calls_api(
+    mock_retrieve_public_case_study, client, supplier_case_study_data,
+):
+    mock_retrieve_public_case_study.return_value = create_response(json_payload=supplier_case_study_data)
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+
+    client.get(url)
+
+    assert mock_retrieve_public_case_study.call_count == 1
+    assert mock_retrieve_public_case_study.call_args == mock.call('2')
+
+
+def test_case_study_different_slug_redirected(
+    supplier_case_study_data, client
+):
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'] + 'thing',
+        }
+    )
+    expected_redirect_url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+
+    response = client.get(url)
+
+    assert response.status_code == 302
+    assert response.get('Location') == expected_redirect_url
+
+
+def test_case_study_missing_slug_redirected(supplier_case_study_data, client):
+    url = reverse(
+        'investment-support-directory:case-study-details-slugless',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+        }
+    )
+    expected_redirect_url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+
+    response = client.get(url)
+
+    assert response.status_code == 302
+    assert response.get('Location') == expected_redirect_url
+
+
+def test_case_study_same_slug_not_redirected(supplier_case_study_data, client):
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+
+    response = client.get(url)
+    assert response.status_code == 200
+
+
+@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+def test_case_study_handles_bad_status(
+    mock_retrieve_public_case_study, client, supplier_case_study_data
+):
+    mock_retrieve_public_case_study.return_value = create_response(status_code=400)
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+
+    with pytest.raises(requests.exceptions.HTTPError):
+        client.get(url)
+
+
+@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+def test_case_study_handles_404(mock_retrieve_public_case_study, client, supplier_case_study_data):
+    mock_retrieve_public_case_study.return_value = create_response(status_code=404)
+    url = reverse(
+        'investment-support-directory:case-study-details',
+        kwargs={
+            'id': supplier_case_study_data['pk'],
+            'slug': supplier_case_study_data['slug'],
+        }
+    )
+    response = client.get(url)
+
+    assert response.status_code == 404

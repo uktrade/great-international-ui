@@ -7,7 +7,8 @@ from unittest.mock import patch, MagicMock
 from django.urls import reverse
 from requests import HTTPError
 
-from core import helpers
+from core.tests.helpers import create_response
+
 
 OPTIONS_DATA = {
     'actions': {
@@ -51,10 +52,7 @@ OPTIONS_DATA = {
 
 @patch('pir_client.client.pir_api_client.get_options')
 def test_perfect_fit_main_view_get(mock_get_options, client):
-    mock_get_options.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=OPTIONS_DATA
-    )
+    mock_get_options.return_value = create_response(OPTIONS_DATA)
     url = reverse('perfect_fit_prospectus:main')
     response = client.get(url)
     assert response.status_code == 200
@@ -75,10 +73,7 @@ def test_perfect_fit_main_view_get_error(mock_get_options, client):
 def test_perfect_fit_main_view_post_client_error(
     mock_get_options, mock_create_report, client, captcha_stub
 ):
-    mock_get_options.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=OPTIONS_DATA
-    )
+    mock_get_options.return_value = create_response(OPTIONS_DATA)
 
     mock_create_report.side_effect = HTTPError
 
@@ -101,10 +96,7 @@ def test_perfect_fit_main_view_post_client_error(
 def test_perfect_fit_main_view_post_valid_data(
     mock_get_options, mock_create_report, captcha_stub, client
 ):
-    mock_get_options.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=OPTIONS_DATA
-    )
+    mock_get_options.return_value = create_response(OPTIONS_DATA)
 
     valid_data = {
         'name': 'Ted',
