@@ -1,5 +1,5 @@
 import pytest
-
+import http
 from unittest.mock import patch
 
 from django.core.urlresolvers import reverse
@@ -28,3 +28,9 @@ def test_fas_homepage_search_form(mock_cms_response, fas_home_page, client):
 
     assert response.status_code == 200
     assert response.context_data['search_form'] == SearchForm
+
+
+def test_anonymous_subscribe(client):
+    response = client.get(reverse('trade-subscribe'))
+
+    assert response.status_code == http.client.OK

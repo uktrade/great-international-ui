@@ -20,7 +20,7 @@ def captcha_stub():
 
 @pytest.fixture
 def default_context():
-    return context_processors.international_home_link(None)
+    return context_processors.services_home_links(None)
 
 
 @pytest.fixture
