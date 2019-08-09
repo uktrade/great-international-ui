@@ -19,7 +19,7 @@
         <div class="container">
             {% breadcrumbs page.breadcrumbs_label %}
                 <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-                <a href="international/content/capital-invest">Capital Invest</a>
+                <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital Invest</a>
             {% endbreadcrumbs %}
         </div>
     {% endblock %}
