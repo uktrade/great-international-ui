@@ -7,7 +7,7 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
-from core.tests.helpers import create_response, stub_page, dummy_page, stub_page_by_slug
+from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
 
 test_sectors = [
