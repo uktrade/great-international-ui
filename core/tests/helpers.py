@@ -35,7 +35,7 @@ def stub_page(page):
     stub.stop()
 
 
-def stub_page(page):
+def stub_page_by_slug(page):
     value = create_response(json_payload={**dummy_page, **page})
     stub = patch.object(cms_api_client, 'lookup_by_slug', return_value=value)
     yield stub.start()

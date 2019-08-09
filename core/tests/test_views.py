@@ -7,7 +7,7 @@ import pytest
 from django.urls import reverse
 
 from core import helpers
-from core.tests.helpers import create_response, stub_page, dummy_page
+from core.tests.helpers import create_response, stub_page, dummy_page, stub_page_by_slug
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
 
 test_sectors = [
@@ -80,12 +80,12 @@ def international_sub_sector_page():
 
 @pytest.fixture
 def capital_invest_contact_form_page():
-    yield from stub_page({'page_type': 'CapitalInvestContactFormPage'})
+    yield from stub_page_by_slug({'page_type': 'CapitalInvestContactFormPage'})
 
 
 @pytest.fixture
 def capital_invest_contact_form_success_page():
-    yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
+    yield from stub_page_by_slug({'page_type': 'CapitalInvestContactFormSuccessPage'})
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
