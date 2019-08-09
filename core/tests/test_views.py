@@ -691,12 +691,12 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
     )
 
     request = rf.get(
-        '/international/content/capital-invest/capital-invest-contact/'
+        '/international/content/capital-invest/contact/'
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
         request,
-        path='/international/content/capital-invest/capital-invest-contact/'
+        path='/international/content/capital-invest/contact/'
     )
 
     assert response.status_code == 200
@@ -709,7 +709,7 @@ def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
     response = client.get(
-        '/international/content/capital-invest/capital-invest-contact/'
+        '/international/content/capital-invest/contact/'
     )
     assert response.status_code == 404
 
@@ -1768,7 +1768,7 @@ def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_f
     response = CapitalInvestContactFormView.as_view()(request)
 
     assert response.status_code == 302
-    assert response.url == '/international/content/capital-invest/capital-invest-contact/success'
+    assert response.url == '/international/content/capital-invest/contact/success'
 
     assert mock_save.call_count == 1
 

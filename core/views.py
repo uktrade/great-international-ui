@@ -19,7 +19,6 @@ from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
-from contact.mixins import LocalisedURLsMixin
 
 
 from core import forms, helpers, constants
@@ -27,7 +26,7 @@ from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
-from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin, CMSPageFromSlugMixin)
+from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
 
 import find_a_supplier.forms
@@ -606,18 +605,13 @@ def about_uk_landing_page_context_modifier(context, request):
 
 
 class CapitalInvestContactFormView(
-    CMSLanguageSwitcherMixin,
-    CMSPageFromSlugMixin,
-    LocalisedURLsMixin,
+    MultilingualCMSPageFromPathView,
     InternationalHeaderMixin,
-    CountryDisplayMixin,
     GA360Mixin,
     FormView,
 ):
-    success_url = '/international/content/capital-invest/capital-invest-contact/success'
-    slug = 'capital-invest-contact'
-    page_type = 'CapitalInvestContactFormPage'
     template_name = 'core/capital_invest/capital_invest_contact_form.html'
+    success_url = '/international/content/capital-invest/contact/success'
     form_class = forms.CapitalInvestContactForm
     available_languages = settings.LANGUAGES
 
