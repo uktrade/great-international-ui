@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 
 ### Fixed bugs
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
