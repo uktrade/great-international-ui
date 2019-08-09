@@ -691,12 +691,12 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
     )
 
     request = rf.get(
-        '/international/content/capital-invest/contact/'
+        '/international/content/capital-invest/contact'
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
         request,
-        path='/international/content/capital-invest/contact/'
+        path='/international/content/capital-invest/contact'
     )
 
     assert response.status_code == 200
