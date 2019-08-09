@@ -80,7 +80,7 @@ def international_sub_sector_page():
 
 @pytest.fixture
 def capital_invest_contact_form_page():
-    yield from stub_page_by_slug({'page_type': 'CapitalInvestContactFormPage'})
+    yield from stub_page({'page_type': 'CapitalInvestContactFormPage'})
 
 
 @pytest.fixture
