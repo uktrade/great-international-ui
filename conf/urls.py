@@ -38,6 +38,23 @@ if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
     ]
 
 
+if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
+    urlpatterns += [
+        url(
+            r'^international/trade/',
+            include(
+                'find_a_supplier.urls',
+                namespace='find-a-supplier',
+            )
+        ),
+        url(
+            r'^international/content/trade/$',
+            QuerystringRedirectView.as_view(pattern_name='trade-home'),
+            name='content-trade-home-redirect'
+        ),
+    ]
+
+
 urlpatterns += [
     url(
         r'^international/healthcheck/',
@@ -96,17 +113,6 @@ urlpatterns += [
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
-    ),
-    url(
-        r'^international/trade/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/trade/'},
-        name='trade-home'
-    ),
-    url(
-        r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
-        name='content-trade-home-redirect'
     ),
     # Since we don't have a frontend page for the HPO landing page in the CMS
     # redirect to the HPO section on the homepage instead

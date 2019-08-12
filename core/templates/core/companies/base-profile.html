@@ -15,7 +15,7 @@
     <div class="container" id="main-content">
         <div class="grid-row">
             <div class="column-one-third" id="data-column">
-                <section id="logo-container">
+                <section id="logo-container" class="margin-bottom-45">
                     {% thumbnail company.logo "x300" as logo %}
                         <img src="{{ logo.url }}" alt="{{ company.name }}" />
                     {% empty %}
@@ -170,13 +170,9 @@
                         {% cycle 'odd' 'even' as parity silent %}
                         {% if parity == 'odd' %}<div class="grid-row">{% endif %}
                             <div class="column-one-half">
-                                {% url 'case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
                                 {% with "case-study-"|add:forloop.counter as card_id %}
-                                        {% if request.resolver_match.namespace == 'investment-support-directory' %}
-                                            {% card card_id=card_id img_src=case_study.image_one url=case_study_url|add:'?isd=true' description=case_study.short_summary heading=case_study.title %}
-                                        {% else %}
-                                            {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
-                                        {% endif %}
+                                    {% url request.resolver_match.namespace|add:':case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
+                                    {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
                                 {% endwith %}
                             </div>
                         {% if parity == 'even' %}</div>{% endif %}
