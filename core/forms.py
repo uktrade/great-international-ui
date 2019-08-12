@@ -1,5 +1,5 @@
 from directory_components import forms
-from django.forms import Select, Textarea
+from django.forms import Select, Textarea, TextInput
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
 from directory_forms_api_client.actions import EmailAction
@@ -97,15 +97,19 @@ class CapitalInvestContactForm(forms.Form):
     given_name = forms.CharField(label=_('Given name'), required=True)
     family_name = forms.CharField(label=_('Family name'), required=True)
     email = forms.EmailField(label=_('Email address'), required=True)
+    phone_number = forms.CharField(
+        label=_('Phone number (Optional)'),
+        required=False,
+        widget=TextInput(attrs={'type': 'tel'}))
     country = forms.ChoiceField(
         label=_('Which country are you based in?'),
         help_text=_(
             'We will use this information to put you in touch with '
             'your closest British embassy or high commission.'),
         choices=[('', '')] + COUNTRIES,
-        widget=Select(attrs={'id': 'js-country-select'}), required=False
+        widget=Select(attrs={'id': 'js-country-select'}), required=True
     )
-    city = forms.CharField(label=_('City'), required=False)
+    city = forms.CharField(label=_('City (Optional)'), required=False)
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,
@@ -134,6 +138,7 @@ class CapitalInvestContactForm(forms.Form):
                 (_('Given name'), data['given_name']),
                 (_('Family name'), data['family_name']),
                 (_('Email address'), data['email']),
+                (_('Phone number'), data['phone_number']),
                 (_('Country'), data['country']),
                 (_('City'), data['city']),
                 (_('Message'), data['message']),
@@ -152,7 +157,7 @@ class CapitalInvestContactForm(forms.Form):
             country_code=self.cleaned_data['country']
         )
         action = self.action_class(
-            recipients=[settings.CAPITAL_INVEST_CONTACT_EMAIL],
+            recipients=[settings.IIGB_AGENT_EMAIL, settings.CAPITAL_INVEST_CONTACT_EMAIL],
             subject='Capital Invest contact form lead',
             reply_to=[settings.DEFAULT_FROM_EMAIL],
             form_url=self.submission_url,

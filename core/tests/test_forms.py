@@ -29,7 +29,7 @@ def test_capital_invest_contact_form_required():
     assert form.fields['given_name'].required is True
     assert form.fields['family_name'].required is True
     assert form.fields['email'].required is True
-    assert form.fields['country'].required is False
+    assert form.fields['country'].required is True
     assert form.fields['city'].required is False
     assert form.fields['message'].required is True
     assert form.fields['captcha'].required is True
