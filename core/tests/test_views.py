@@ -657,7 +657,7 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
         'page_type': 'CapitalInvestContactFormPage',
     }
 
-    mock_cms_response.return_value = helpers.create_response(
+    mock_cms_response.return_value = create_response(
         status_code=200,
         json_payload=page
     )
@@ -703,7 +703,7 @@ def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_
         'page_type': 'CapitalInvestContactFormSuccessPage',
     }
 
-    mock_cms_response.return_value = helpers.create_response(
+    mock_cms_response.return_value = create_response(
         status_code=200,
         json_payload=page
     )
