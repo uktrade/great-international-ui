@@ -606,14 +606,12 @@ def about_uk_landing_page_context_modifier(context, request):
 
 class CapitalInvestContactFormView(
     MultilingualCMSPageFromPathView,
-    InternationalHeaderMixin,
     GA360Mixin,
     FormView,
 ):
     template_name = 'core/capital_invest/capital_invest_contact_form.html'
     success_url = '/international/content/capital-invest/contact/success'
     form_class = forms.CapitalInvestContactForm
-    available_languages = settings.LANGUAGES
 
     def __init__(self):
         super().__init__()

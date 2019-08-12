@@ -19,7 +19,7 @@
         <div class="grid-row">
             <h2 class="heading-xlarge">{{ page.heading }}</h2>
             {% if page.intro %}
-                <div>{{ page.intro|add_export_elements_classes|safe }}</div>
+                <div class="column-two-thirds-l">{{ page.intro|add_export_elements_classes|safe }}</div>
             {% endif %}
             <form class="column-two-thirds-l column-half-xl" action="{% url 'capital-invest-contact' %}" method="post">
                 {% csrf_token %}

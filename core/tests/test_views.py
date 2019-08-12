@@ -1756,28 +1756,73 @@ def capital_invest_contact_form_data(captcha_stub):
     }
 
 
+@patch('core.forms.CapitalInvestContactForm.action_class.save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-@patch.object(CapitalInvestContactFormView.form_class, 'save')
-def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
+def test_this_capital_invest_contact_form_success(
+        mock_lookup_by_path, mock_save, capital_invest_contact_form_data, rf
+):
+
+    mock_lookup_by_path.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'title': 'Contact Form',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English']
+                ],
+                'slug': 'contact',
+            },
+            'page_type': 'CapitalInvestContactFormPage'
+        }
+    )
+    mock_save.return_value = create_response(status_code=200)
 
     url = reverse('capital-invest-contact')
 
     request = rf.post(url, data=capital_invest_contact_form_data)
     request.LANGUAGE_CODE = 'en-gb'
-    request.utm = {}
-    response = CapitalInvestContactFormView.as_view()(request, path='/international/content/capital-invest/contact')
+    request.utm = {
+        'utm_source': 'test_source',
+        'utm_medium': 'test_medium',
+        'utm_campaign': 'test_campaign',
+        'utm_term': 'test_term',
+        'utm_content': 'test_content'
+    }
+    request.session = {}
+    response = CapitalInvestContactFormView.as_view()(
+        request,
+        path='/international/content/capital-invest/contact/success/'
+    )
 
     assert response.status_code == 302
     assert response.url == '/international/content/capital-invest/contact/success'
 
-    assert mock_save.call_count == 1
 
-
+@patch('core.forms.CapitalInvestContactForm.action_class.save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-@patch.object(CapitalInvestContactFormView.form_class, 'save')
-def test_capital_invest_contact_invalid(mock_save, rf):
+def test_this_capital_invest_contact_invalid(
+    mock_lookup_by_path, mock_save, rf
+):
+
+    mock_lookup_by_path.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'title': 'Contact Form',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English']
+                ],
+                'slug': 'contact',
+            },
+            'page_type': 'CapitalInvestContactFormPage'
+        }
+    )
+    mock_save.return_value = create_response(status_code=200)
 
     url = reverse('capital-invest-contact')
+
+    request = rf.post(url, data={})
+    request.LANGUAGE_CODE = 'en-gb'
     utm_data = {
         'utm_source': 'test_source',
         'utm_medium': 'test_medium',
@@ -1785,12 +1830,12 @@ def test_capital_invest_contact_invalid(mock_save, rf):
         'utm_term': 'test_term',
         'utm_content': 'test_content'
     }
-
-    request = rf.post(url, data={})
-    request.LANGUAGE_CODE = 'en-gb'
     request.utm = utm_data
-    response = CapitalInvestContactFormView.as_view()(request, path='/international/content/capital-invest/contact')
-
+    request.session = {}
+    response = CapitalInvestContactFormView.as_view()(
+        request,
+        path='/international/content/capital-invest/contact/success/'
+    )
     assert response.status_code == 200
 
     assert mock_save.call_count == 0
