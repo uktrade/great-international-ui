@@ -15,7 +15,6 @@ class AnonymousSubscribeFormView(CountryDisplayMixin, GA360Mixin, FormView):
 
     def __init__(self):
         super().__init__()
-
         self.set_ga360_payload(
             page_id='FindASupplierAnonymousSubscribeForm',
             business_unit='FindASupplier',
@@ -35,7 +34,6 @@ class AnonymousSubscribeSuccessView(InternationalView):
 
     def __init__(self):
         super().__init__()
-
         self.set_ga360_payload(
             page_id='FindASupplierAnonymousSubscribeForm',
             business_unit='FindASupplier',

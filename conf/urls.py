@@ -12,7 +12,6 @@ import conf.sitemaps
 import euexit.views
 import invest.views
 import contact.views
-import find_a_supplier.views
 
 
 sitemaps = {
@@ -97,27 +96,6 @@ urlpatterns += [
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
-    ),
-    url(
-        r'^international/trade/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/trade/'},
-        name='trade-home'
-    ),
-    url(
-        r'^international/trade/subscribe/$',
-        find_a_supplier.views.AnonymousSubscribeFormView.as_view(),
-        name='trade-subscribe'
-    ),
-    url(
-        r'^international/trade/subscribe/success/$',
-        find_a_supplier.views.AnonymousSubscribeSuccessView.as_view(),
-        name='trade-subscribe-success'
-    ),
-    url(
-        r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
-        name='content-trade-home-redirect'
     ),
     # Since we don't have a frontend page for the HPO landing page in the CMS
     # redirect to the HPO section on the homepage instead
