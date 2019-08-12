@@ -1,24 +1,19 @@
-from collections import namedtuple
 from urllib.parse import urlencode
-from django.urls import reverse
 import collections
 
-import directory_components.helpers
 from directory_api_client.client import api_client
+from directory_constants import choices
+import directory_components.helpers
+
 from django.http import Http404
 from django.utils import translation
-import requests
-
-from directory_constants import choices
+from django.urls import reverse
 from django.utils.html import escape, mark_safe
+
 from core import constants
 
 
-def create_response(status_code=200, json_payload=None):
-    response = requests.Response()
-    response.status_code = status_code
-    response.json = lambda: json_payload or {}
-    return response
+INDUSTRY_CHOICES = dict(choices.INDUSTRIES)
 
 
 def unslugify(slug):
@@ -70,7 +65,7 @@ class SectorFilter:
         )
 
 
-Scale = namedtuple("Scale", "title min max")
+Scale = collections.namedtuple("Scale", "title min max")
 
 
 class ScaleFilter:
@@ -130,7 +125,7 @@ def filter_opportunities(opportunities, filter_chosen):
     return [opp for opp in opportunities if filter_chosen.matches(opp)]
 
 
-Sort_by = namedtuple("Sort_by", "title value reverse")
+Sort_by = collections.namedtuple("Sort_by", "title value reverse")
 
 
 class SortFilter:
@@ -253,3 +248,55 @@ def get_company_profile(number):
 def count_data_with_field(list_of_data, field):
     filtered_list = [item for item in list_of_data if item[field]]
     return len(filtered_list)
+
+
+def pair_sector_values_with_label(sectors_values):
+    if not sectors_values:
+        return []
+    return [
+        pair_sector_value_with_label(value) for value in sectors_values
+        if value in INDUSTRY_CHOICES
+    ]
+
+
+def pair_sector_value_with_label(sectors_value):
+    return {'value': sectors_value, 'label': get_sectors_label(sectors_value)}
+
+
+def get_sectors_label(sectors_value):
+    if not sectors_value:
+        return sectors_value
+    return INDUSTRY_CHOICES.get(sectors_value)
+
+
+def get_case_study_details_from_response(response):
+    parsed = response.json()
+    # `format_company_details` expects `supplier_case_studies` key.
+    parsed['company']['supplier_case_studies'] = []
+    parsed['sector'] = pair_sector_value_with_label(parsed['sector'])
+    parsed['company'] = CompanyParser(
+        parsed['company']
+    ).serialize_for_template()
+    return parsed
+
+
+def format_case_study(case_study):
+    case_study_url = reverse(
+        'find-a-supplier:case-study-details',
+        kwargs={'id': case_study['pk'], 'slug': case_study['slug']},
+    )
+    return {
+        **case_study,
+        'sector': pair_sector_value_with_label(case_study['sector']),
+        'case_study_url': case_study_url,
+    }
+
+
+def get_case_study(case_study_id):
+    response = api_client.company.retrieve_public_case_study(case_study_id)
+    if response.status_code == 404:
+        raise Http404(
+            "API returned 404 for case study with id %s", case_study_id,
+        )
+    response.raise_for_status()
+    return get_case_study_details_from_response(response)

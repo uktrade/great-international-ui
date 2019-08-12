@@ -1,7 +1,7 @@
 from django.urls import reverse
 from unittest.mock import patch
 
-from core import helpers
+from core.tests.helpers import create_response
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -17,10 +17,7 @@ def test_google_campaign_middleware(mock_lookup_by_path, client):
         'page_type': 'InternationalHomePage'
     }
 
-    mock_lookup_by_path.return_value = helpers.create_response(
-        status_code=200,
-        json_payload=page
-    )
+    mock_lookup_by_path.return_value = create_response(page)
     url = reverse('index')
     client.get(
         url,
