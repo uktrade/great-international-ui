@@ -38,6 +38,23 @@ if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
     ]
 
 
+if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
+    urlpatterns += [
+        url(
+            r'^international/trade/',
+            include(
+                'find_a_supplier.urls',
+                namespace='find-a-supplier',
+            )
+        ),
+        url(
+            r'^international/content/trade/$',
+            QuerystringRedirectView.as_view(pattern_name='trade-home'),
+            name='content-trade-home-redirect'
+        ),
+    ]
+
+
 urlpatterns += [
     url(
         r'^international/healthcheck/',

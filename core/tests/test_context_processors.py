@@ -54,7 +54,7 @@ def test_services_home_links():
             'url': reverse_lazy('index')
         },
         'trade_home_link': {
-            'url': reverse_lazy('trade-home'),
+            'url': reverse_lazy('find-a-supplier:trade-home'),
             'label': 'Find a supplier',
         },
         'invest_home_link': {

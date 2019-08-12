@@ -1,13 +1,14 @@
 import os
-from copy import deepcopy
-import http
+from unittest import mock
 
-import requests
+from directory_api_client.client import api_client
 import pytest
+
 from django.conf import settings
 from django.utils import translation
 
 from core import context_processors
+from core.tests.helpers import create_response
 
 
 @pytest.fixture()
@@ -21,27 +22,6 @@ def captcha_stub():
 @pytest.fixture
 def default_context():
     return context_processors.services_home_links(None)
-
-
-@pytest.fixture
-def api_response_200():
-    response = requests.Response()
-    response.status_code = http.client.OK
-    response.json = lambda: deepcopy({})
-    return response
-
-
-@pytest.fixture
-def api_response_search_200(api_response_200, search_results):
-    api_response_200.json = lambda: search_results
-    return api_response_200
-
-
-@pytest.fixture
-def api_response_400():
-    response = requests.Response()
-    response.status_code = 400
-    return response
 
 
 @pytest.fixture
@@ -108,6 +88,37 @@ def retrieve_profile_data():
 
 
 @pytest.fixture
+def supplier_case_study_data(retrieve_profile_data):
+    return {
+        'description': 'Damn great',
+        'sector': 'SOFTWARE_AND_COMPUTER_SERVICES',
+        'image_three': 'https://image_three.jpg',
+        'website': 'http://www.google.com',
+        'video_one': 'https://video_one.wav',
+        'title': 'Two',
+        'slug': 'two',
+        'company': retrieve_profile_data,
+        'image_one': 'https://image_one.jpg',
+        'testimonial': 'I found it most pleasing.',
+        'keywords': 'great',
+        'pk': 2,
+        'year': '2000',
+        'image_two': 'https://image_two.jpg'
+    }
+
+
+@pytest.fixture(autouse=True)
+def retrieve_supplier_case_study(supplier_case_study_data):
+    stub = mock.patch.object(
+        api_client.company, 'retrieve_public_case_study',
+        return_value=create_response(supplier_case_study_data),
+    )
+    stub.start()
+    yield
+    stub.stop()
+
+
+@pytest.fixture
 def search_results(retrieve_profile_data):
     return {
         'hits': {
@@ -123,25 +134,19 @@ def search_results(retrieve_profile_data):
 
 
 @pytest.fixture
-def api_response_search_description_highlight_200(
-    api_response_200, search_results
-):
+def search_results_description_highlight(search_results):
     search_results['hits']['hits'][0]['highlight'] = {
         'description': [
             '<em>wolf</em> in sheep clothing description',
             'to the max <em>wolf</em>.'
         ]
     }
-    api_response_200.json = lambda: search_results
-    return api_response_200
+    return search_results
 
 
 @pytest.fixture
-def api_response_search_summary_highlight_200(
-    api_response_200, search_results
-):
+def search_results_summary_highlight(search_results):
     search_results['hits']['hits'][0]['highlight'] = {
         'summary': ['<em>wolf</em> in sheep clothing summary.']
     }
-    api_response_200.json = lambda: search_results
-    return api_response_200
+    return search_results

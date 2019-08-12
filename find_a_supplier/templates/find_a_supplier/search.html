@@ -1,0 +1,22 @@
+{% extends 'core/companies/base-search.html' %}
+
+{% load breadcrumbs from directory_components %}
+
+{% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="container">
+        {% breadcrumbs 'Search results' %}
+	        <a href="{{ services_urls.great_international }}">great.gov.uk international</a>
+	        <a href="{% url 'find-a-supplier:search' %}">Find a Supplier</a>
+	    {% endbreadcrumbs %}
+    </div>
+{% endblock %}
+
+{% block filters %}
+    <fieldset>
+        <legend>Filter by industry</legend>
+        {% include 'core/includes/filter.html' with label='Industry' alt='Toggle list of industries' field=form.industries %}
+    </fieldset>
+    <fieldset>
+{% endblock %}

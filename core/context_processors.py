@@ -29,7 +29,7 @@ def services_home_links(request):
             'label': _('great.gov.uk international')
         },
         'trade_home_link': {
-            'url': reverse_lazy('trade-home'),
+            'url': reverse_lazy('find-a-supplier:trade-home'),
             'label': _('Find a supplier')
         },
         'invest_home_link': {
