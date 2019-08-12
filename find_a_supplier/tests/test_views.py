@@ -680,6 +680,6 @@ def test_home_page_hide_guide(mock_get_results_and_count, client, params):
 
 
 def test_anonymous_subscribe(client):
-    response = client.get(reverse('trade-subscribe'))
+    response = client.get(reverse('find-a-supplier:trade-subscribe'))
 
     assert response.status_code == http.client.OK
