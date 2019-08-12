@@ -683,3 +683,9 @@ def test_anonymous_subscribe(client):
     response = client.get(reverse('find-a-supplier:trade-subscribe'))
 
     assert response.status_code == http.client.OK
+
+
+def test_anonymous_subscribe_success(client):
+    response = client.get(reverse('find-a-supplier:trade-subscribe-success'))
+
+    assert response.status_code == http.client.OK
