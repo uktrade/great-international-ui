@@ -153,13 +153,13 @@ GA_DATA_MAPPING = {
         'site_subsection': 'ListingPage'
     },
     'CapitalInvestContactFormPage': {
-        'business_unit': 'CapitalInvestContactForm',
+        'business_unit': 'GreatInternational',
         'site_section': 'CapitalInvest',
-        'site_subsection': 'CapitalInvest',
+        'site_subsection': 'Contact',
     },
     'CapitalInvestContactFormSuccessPage': {
-        'business_unit': 'CapitalInvestContactFormSuccess',
-        'site_section': 'Contact',
+        'business_unit': 'GreatInternational',
+        'site_section': 'CapitalInvest',
         'site_subsection': 'ContactSuccess'
     },
 
