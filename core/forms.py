@@ -153,7 +153,7 @@ class CapitalInvestContactForm(forms.Form):
         )
         action = self.action_class(
             recipients=[settings.CAPITAL_INVEST_CONTACT_EMAIL],
-            subject='Contact form agent email subject',
+            subject='Capital Invest contact form lead',
             reply_to=[settings.DEFAULT_FROM_EMAIL],
             form_url=self.submission_url,
             sender=sender,
@@ -168,7 +168,7 @@ class CapitalInvestContactForm(forms.Form):
         # no need to set `sender` as this is just a confirmation email.
         action = self.action_class(
             recipients=[self.cleaned_data['email']],
-            subject=str(_('Contact form user email subject')),
+            subject=str(_('Thank you for contacting us')),
             reply_to=[settings.DEFAULT_FROM_EMAIL],
             form_url=self.submission_url,
         )

@@ -1756,7 +1756,7 @@ def capital_invest_contact_form_data(captcha_stub):
     }
 
 
-@pytest.mark.usefixtures('capital_invest_contact_form_page')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_form_data, rf):
 
@@ -1765,7 +1765,7 @@ def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_f
     request = rf.post(url, data=capital_invest_contact_form_data)
     request.LANGUAGE_CODE = 'en-gb'
     request.utm = {}
-    response = CapitalInvestContactFormView.as_view()(request)
+    response = CapitalInvestContactFormView.as_view()(request, path='/international/content/capital-invest/contact')
 
     assert response.status_code == 302
     assert response.url == '/international/content/capital-invest/contact/success'
@@ -1773,7 +1773,7 @@ def test_capital_invest_contact_form_success(mock_save, capital_invest_contact_f
     assert mock_save.call_count == 1
 
 
-@pytest.mark.usefixtures('capital_invest_contact_form_page')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 def test_capital_invest_contact_invalid(mock_save, rf):
 
@@ -1789,7 +1789,7 @@ def test_capital_invest_contact_invalid(mock_save, rf):
     request = rf.post(url, data={})
     request.LANGUAGE_CODE = 'en-gb'
     request.utm = utm_data
-    response = CapitalInvestContactFormView.as_view()(request)
+    response = CapitalInvestContactFormView.as_view()(request, path='/international/content/capital-invest/contact')
 
     assert response.status_code == 200
 
