@@ -11,6 +11,7 @@ def capital_invest_contact_form_data(captcha_stub):
         'given_name': 'Thor',
         'family_name': 'Odinson',
         'email': 'most_powerful_avenger@avengers.com',
+        'phone_number': '01234 567891',
         'country': 'FR',
         'city': 'Asgard',
         'message': 'foobar',
@@ -96,7 +97,7 @@ def test_send_agent_email(
 
     assert mock_email_action.call_count == 1
     assert mock_email_action.call_args == call(
-        recipients=[settings.IIGB_AGENT_EMAIL],
+        recipients=[settings.CAPITAL_INVEST_CONTACT_EMAIL, settings.IIGB_AGENT_EMAIL],
         subject='Capital Invest contact form lead',
         reply_to=[settings.DEFAULT_FROM_EMAIL],
         form_url='http://www.google.com/submission_url',
@@ -185,6 +186,7 @@ def test_send_email_render_email(mock_render_to_string, capital_invest_contact_f
                 ('Given name', data['given_name']),
                 ('Family name', data['family_name']),
                 ('Email address', data['email']),
+                ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', data['country']),
                 ('City', data['city']),
                 ('Message', data['message'])
@@ -216,6 +218,7 @@ def test_send_email_render_email_optional_fields(
                 ('Given name', capital_invest_contact_form_data['given_name']),
                 ('Family name', capital_invest_contact_form_data['family_name']),
                 ('Email address', capital_invest_contact_form_data['email']),
+                ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', capital_invest_contact_form_data['country']),
                 ('City', capital_invest_contact_form_data['city']),
                 ('Message', capital_invest_contact_form_data['message'])
