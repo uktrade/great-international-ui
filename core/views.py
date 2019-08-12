@@ -622,14 +622,6 @@ class CapitalInvestContactFormView(
             site_subsection='Contact'
         )
 
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        if 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON' and not settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON']:
-            raise Http404
-
-        return context
-
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['utm_data'] = self.request.utm
