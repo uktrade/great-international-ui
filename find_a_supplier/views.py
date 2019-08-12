@@ -1,6 +1,4 @@
-from directory_api_client.client import api_client
-import directory_forms_api_client.helpers
-
+from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
 from django.core.urlresolvers import reverse
@@ -9,11 +7,17 @@ from django.template.response import TemplateResponse
 from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
+
+from directory_api_client.client import api_client
+import directory_forms_api_client.helpers
+
 from directory_components.mixins import CountryDisplayMixin, GA360Mixin
 
-from core.helpers import get_case_study, get_filters_labels, get_results_from_search_response
-from find_a_supplier import forms, helpers
+from core.views import InternationalView
 import core.mixins
+from core.helpers import get_case_study, get_filters_labels, get_results_from_search_response
+
+from find_a_supplier import forms, helpers
 
 
 class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
@@ -287,4 +291,38 @@ class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
             case_study=self.case_study,
             social=social,
             **kwargs
+        )
+
+
+class AnonymousSubscribeFormView(CountryDisplayMixin, GA360Mixin, FormView):
+    success_url = reverse_lazy('find-a-supplier:trade-subscribe-success')
+    template_name = 'find_a_supplier/anonymous-subscribe.html'
+    form_class = forms.AnonymousSubscribeForm
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='FindASupplierAnonymousSubscribeForm',
+            business_unit='FindASupplier',
+            site_section='AnonymousSubscribe',
+            site_subsection='Form',
+        )
+
+    def form_valid(self, form):
+        data = forms.serialize_anonymous_subscriber_forms(form.cleaned_data)
+        response = api_client.buyer.send_form(data)
+        response.raise_for_status()
+        return super().form_valid(form)
+
+
+class AnonymousSubscribeSuccessView(InternationalView):
+    template_name = 'find_a_supplier/anonymous-subscribe-success.html'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='FindASupplierAnonymousSubscribeForm',
+            business_unit='FindASupplier',
+            site_section='AnonymousSubscribe',
+            site_subsection='Success',
         )
