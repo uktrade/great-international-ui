@@ -5,7 +5,8 @@ from unittest import mock
 
 from directory_validators.common import not_contains_url_or_email
 
-from find_a_supplier import forms
+from find_a_supplier import forms, views
+from core.tests.helpers import create_response
 
 
 REQUIRED_MESSAGE = Field.default_error_messages['required']
@@ -56,6 +57,24 @@ def test_subscribe_form_accepts_valid_data(captcha_stub):
     })
 
     assert form.is_valid()
+
+
+@mock.patch('directory_api_client.client.api_client.buyer.send_form')
+def test_subscribe_form_view_valid_data(mock_send_form, captcha_stub):
+    form = forms.AnonymousSubscribeForm(data={
+        'full_name': 'Jim Example',
+        'email_address': 'jim@example.com',
+        'sector': 'AEROSPACE',
+        'company_name': 'Deutsche Bank',
+        'country': 'DE',
+        'terms': True,
+        'g-recaptcha-response': captcha_stub
+    })
+    mock_send_form.return_value = create_response()
+
+    assert form.is_valid()
+
+    assert views.AnonymousSubscribeFormView().form_valid(form)
 
 
 def test_contact_company_form_required_fields():

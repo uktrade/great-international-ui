@@ -295,7 +295,7 @@ class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
 
 
 class AnonymousSubscribeFormView(CountryDisplayMixin, GA360Mixin, FormView):
-    success_url = reverse_lazy('trade-subscribe-success')
+    success_url = reverse_lazy('find-a-supplier:trade-subscribe-success')
     template_name = 'find_a_supplier/anonymous-subscribe.html'
     form_class = forms.AnonymousSubscribeForm
 
