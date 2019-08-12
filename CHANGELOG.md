@@ -5,10 +5,12 @@
 ### Implemented enhancements
 - CMS-1639 - Added FAS subscribe form
 - CMS-1641 - Added FAS search pages
+- CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 
 ### Fixed bugs
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
 - CMS-1799 - ISD search form missing filters
+
 
 ## [2019.08.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.08)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.07...2019.08.08)

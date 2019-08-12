@@ -20,6 +20,7 @@ from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
 
+
 from core import forms, helpers, constants
 from core.context_modifiers import (
     register_context_modifier,
@@ -601,3 +602,32 @@ def about_uk_landing_page_context_modifier(context, request):
     return {
         'random_sectors': random_sectors
     }
+
+
+class CapitalInvestContactFormView(
+    MultilingualCMSPageFromPathView,
+    GA360Mixin,
+    FormView,
+):
+    template_name = 'core/capital_invest/capital_invest_contact_form.html'
+    success_url = '/international/content/capital-invest/contact/success'
+    form_class = forms.CapitalInvestContactForm
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='CapitalInvestContactForm',
+            business_unit='CapitalInvest',
+            site_section='Contact',
+            site_subsection='Contact'
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['utm_data'] = self.request.utm
+        kwargs['submission_url'] = self.request.path
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
