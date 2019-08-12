@@ -46,11 +46,19 @@ def test_directory_components_html_lang_attribute(settings):
         ] == translation.get_language()
 
 
-def test_site_home_link():
-    actual = context_processors.site_home_link(None)
+def test_services_home_links():
+    actual = context_processors.services_home_links(None)
     assert actual == {
-        'site_home_link': {
-            'label': 'Great.gov.uk International',
+        'international_home_link': {
+            'label': 'great.gov.uk international',
             'url': reverse_lazy('index')
-        }
+        },
+        'trade_home_link': {
+            'url': reverse_lazy('find-a-supplier:trade-home'),
+            'label': 'Find a supplier',
+        },
+        'invest_home_link': {
+            'url': reverse_lazy('invest-home'),
+            'label': 'Invest',
+        },
     }

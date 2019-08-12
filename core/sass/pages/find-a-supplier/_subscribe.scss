@@ -1,0 +1,11 @@
+
+// Find a supplier subscribe form
+// ===============================
+
+.find-a-supplier-subscribe-page {
+
+  // fixes the terms and conditions link within the label not being clickable
+  input[type=checkbox] {
+    width: auto;
+  }
+}
