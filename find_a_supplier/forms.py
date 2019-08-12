@@ -1,17 +1,10 @@
-from django.forms import Select, Textarea
+from django.forms import Select
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
-
-from captcha.fields import ReCaptchaField
 
 from directory_constants import choices, urls
 
 from directory_components import forms
-
-from directory_forms_api_client.forms import ZendeskActionMixin
-
-from directory_validators.common import not_contains_url_or_email
-from directory_validators.company import no_html
 
 
 class SearchForm(forms.Form):
@@ -57,42 +50,6 @@ class AnonymousSubscribeForm(forms.Form):
         label=TERMS_CONDITIONS_LABEL,
         error_messages={'required': TERMS_CONDITIONS_MESSAGE}
     )
-
-
-class LeadGenerationForm(ZendeskActionMixin, forms.Form):
-    PLEASE_SELECT_LABEL = _('Please select an industry')
-    TERMS_CONDITIONS_MESSAGE = _(
-        'Tick the box to confirm you agree to the terms and conditions.'
-    )
-
-    full_name = forms.CharField(label=_('Your name'))
-    email_address = forms.EmailField(label=_('Email address'))
-    company_name = forms.CharField(label=_('Organisation name'))
-    country = forms.CharField(label=_('Country'))
-    comment = forms.CharField(
-        label=_('Describe what you need'),
-        help_text=_('Maximum 1000 characters.'),
-        max_length=1000,
-        widget=Textarea,
-        validators=[no_html, not_contains_url_or_email]
-    )
-    terms = forms.BooleanField(
-        error_messages={'required': TERMS_CONDITIONS_MESSAGE}
-    )
-    captcha = ReCaptchaField(
-        label='',
-        label_suffix='',
-    )
-
-    @property
-    def serialized_data(self):
-        # this data will be sent to zendesk. `captcha` and `terms_agreed` are
-        # not useful to the zendesk user as those fields have to be present
-        # for the form to be submitted.
-        data = self.cleaned_data.copy()
-        del data['captcha']
-        del data['terms']
-        return data
 
 
 def serialize_anonymous_subscriber_forms(cleaned_data):
