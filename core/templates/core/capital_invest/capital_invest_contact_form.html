@@ -10,9 +10,16 @@
 
 {% block content %}
 
-<div class="container">
-  {% include 'core/includes/cms_breadcrumbs.html' %}
-</div>
+{% if page.breadcrumbs_label %}
+    {% block breadcrumbs %}
+        <div class="container">
+            {% breadcrumbs page.breadcrumbs_label %}
+                <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+                <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital Invest</a>
+            {% endbreadcrumbs %}
+        </div>
+    {% endblock %}
+{% endif %}
 
 <div class="container">
     {% ga360_data "contact-form" target="form" %}
