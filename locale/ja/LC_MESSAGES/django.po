@@ -186,10 +186,8 @@ msgid "Given name"
 msgstr ""
 
 #: core/forms.py:98 core/forms.py:135
-#, fuzzy
-#| msgid "Company name"
 msgid "Family name"
-msgstr "企業名"
+msgstr ""
 
 #: core/forms.py:108 core/forms.py:138
 msgid "City"
