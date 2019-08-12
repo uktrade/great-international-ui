@@ -122,7 +122,7 @@ class CapitalInvestContactForm(forms.Form):
         required=True
     )
     terms_agreed = forms.BooleanField(
-        label=TERMS_LABEL,
+        label=_(TERMS_LABEL),
         required=True
     )
 
