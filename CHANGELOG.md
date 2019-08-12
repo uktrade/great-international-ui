@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1639 - Added FAS subscribe form
 - CMS-1641 - Added FAS search pages
 
 ### Fixed bugs
