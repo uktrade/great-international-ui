@@ -97,7 +97,7 @@ def test_send_agent_email(
     assert mock_email_action.call_count == 1
     assert mock_email_action.call_args == call(
         recipients=[settings.IIGB_AGENT_EMAIL],
-        subject='Contact form agent email subject',
+        subject='Capital Invest contact form lead',
         reply_to=[settings.DEFAULT_FROM_EMAIL],
         form_url='http://www.google.com/submission_url',
         sender={
@@ -150,7 +150,7 @@ def test_send_user_email(
     assert mock_email_action.call_count == 1
     assert mock_email_action.call_args == call(
         recipients=[capital_invest_contact_form_data['email']],
-        subject='Contact form user email subject',
+        subject='Thank you for contacting us',
         reply_to=[settings.DEFAULT_FROM_EMAIL],
         form_url='http://www.google.com/submission_url',
     )
