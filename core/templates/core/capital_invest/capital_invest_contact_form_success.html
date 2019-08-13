@@ -4,15 +4,9 @@
 
 {% block content %}
 
-{% block breadcrumbs %}
-    <div class="container">
-        {% breadcrumbs page.title %}
-            <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
-            <a href="{% url 'cms-page-from-path' 'capital-invest' %}">{% trans 'Capital Invest' %}</a>
-            <a href="{% url 'capital-invest-contact' %}">{% trans 'Contact' %}</a>
-        {% endbreadcrumbs %}
-    </div>
-{% endblock %}
+<div class="container">
+  {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
 
 <section class="contact-success">
 <div class="container">
