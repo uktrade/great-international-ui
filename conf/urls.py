@@ -150,6 +150,12 @@ urlpatterns += [
         euexit.views.InternationalContactSuccessView.as_view(),
         name='eu-exit-international-contact-form-success'
     ),
+    url(
+        r'^international/content/capital-invest/contact/$',
+        core.views.CapitalInvestContactFormView.as_view(),
+        {'path': '/capital-invest/contact/'},
+        name='capital-invest-contact'
+    ),
     # these next 3 named urls are required for breadcrumbs in templates
     url(
         r'^international/content/industries/$',

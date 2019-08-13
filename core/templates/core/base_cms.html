@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} - {{ site_home_link.label }}{% endblock %}
+{% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} - {{ international_home_link.label }}{% endblock %}
 
 {% block head_other %}
   {% for language_code, url in page.meta.localised_urls %}

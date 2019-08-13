@@ -1,7 +1,7 @@
-from unittest import mock
-
 import requests
 import pytest
+import http
+from unittest import mock
 
 from django.core.urlresolvers import reverse, NoReverseMatch
 
@@ -677,3 +677,15 @@ def test_home_page_hide_guide(mock_get_results_and_count, client, params):
 
     assert response.status_code == 200
     assert response.context_data['show_search_guide'] is False
+
+
+def test_anonymous_subscribe(client):
+    response = client.get(reverse('find-a-supplier:trade-subscribe'))
+
+    assert response.status_code == http.client.OK
+
+
+def test_anonymous_subscribe_success(client):
+    response = client.get(reverse('find-a-supplier:trade-subscribe-success'))
+
+    assert response.status_code == http.client.OK

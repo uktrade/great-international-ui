@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 14:02+0000\n"
+"POT-Creation-Date: 2019-08-08 14:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,51 +17,51 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: contact/forms.py:19
+#: contact/forms.py:18
 msgid "Less than 10"
 msgstr "少于 10"
 
-#: contact/forms.py:23
+#: contact/forms.py:22
 msgid "10 to 50"
 msgstr "11到50"
 
-#: contact/forms.py:27
+#: contact/forms.py:26
 msgid "51 to 250"
 msgstr "51到250"
 
-#: contact/forms.py:31
+#: contact/forms.py:30
 msgid "More than 250"
 msgstr "多于 250"
 
-#: contact/forms.py:39 contact/forms.py:87 perfect_fit_prospectus/forms.py:12
+#: contact/forms.py:38 contact/forms.py:87 perfect_fit_prospectus/forms.py:12
 msgid "Name"
 msgstr "全名"
 
-#: contact/forms.py:40 contact/forms.py:89
+#: contact/forms.py:39 contact/forms.py:89
 msgid "Job title"
 msgstr "职务"
 
-#: contact/forms.py:41 contact/forms.py:88
+#: contact/forms.py:40 contact/forms.py:88 core/forms.py:99 core/forms.py:136
 msgid "Email address"
 msgstr "工作电子邮件"
 
-#: contact/forms.py:43 contact/forms.py:90
+#: contact/forms.py:42 contact/forms.py:90
 msgid "Phone number"
 msgstr "工作电话"
 
-#: contact/forms.py:46 contact/forms.py:91
+#: contact/forms.py:45 contact/forms.py:91
 msgid "Company name"
 msgstr "公司名称"
 
-#: contact/forms.py:48 contact/forms.py:92
+#: contact/forms.py:47 contact/forms.py:92
 msgid "Company website"
 msgstr "公司网站"
 
-#: contact/forms.py:52
+#: contact/forms.py:51 core/forms.py:101
 msgid "Which country are you based in?"
 msgstr "您位于哪个国家/地区？"
 
-#: contact/forms.py:54
+#: contact/forms.py:53 core/forms.py:103
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
@@ -69,15 +69,15 @@ msgstr ""
 "我们将使用此信息来安排您联系最靠近您的英国大使馆或特派使节团。开始输入并选择"
 "一个选项"
 
-#: contact/forms.py:60 contact/forms.py:94
+#: contact/forms.py:59 contact/forms.py:94
 msgid "Current number of staff"
 msgstr "当前员工总数"
 
-#: contact/forms.py:64
+#: contact/forms.py:63
 msgid "Tell us about your investment"
 msgstr "告知我们您的投资相关信息"
 
-#: contact/forms.py:66
+#: contact/forms.py:65
 msgid ""
 "Tell us about your company and your plans for the UK in terms of size of "
 "investment, operational and recruitment plans. Please also tell us what help "
@@ -86,7 +86,7 @@ msgstr ""
 "向我们告知您的公司和您的英国投资计划的相关信息 - 投资规模以及运营和招聘计划。"
 "也请向我们告知您希望英国政府为您提供什么帮助。"
 
-#: contact/forms.py:93 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:93 core/forms.py:137 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国家"
 
@@ -94,7 +94,7 @@ msgstr "国家"
 msgid "Your investment"
 msgstr "您的投资"
 
-#: contact/forms.py:127
+#: contact/forms.py:127 core/forms.py:171
 msgid "Contact form user email subject"
 msgstr ""
 
@@ -108,6 +108,7 @@ msgid "Contact the investment team"
 msgstr "请联系投资组"
 
 #: contact/templates/contact/contact.html:24
+#: core/templates/core/capital_invest/capital_invest_contact_form.html:38
 msgid "Contact Information"
 msgstr "联系信息"
 
@@ -146,6 +147,8 @@ msgstr ""
 "到一封电子邮件，说我们已经收到您的信息。我们的目标是在7天内用电子邮件与您联"
 "络。我们期待与您合作。"
 
+#: contact/templates/email/capital_invest_email_agent.html:166
+#: contact/templates/email/capital_invest_email_agent.txt:12
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
@@ -155,24 +158,40 @@ msgstr ""
 msgid "Great.gov.uk International"
 msgstr ""
 
-#: core/forms.py:22
+#: core/forms.py:34
 msgid "sector"
 msgstr ""
 
-#: core/forms.py:30
+#: core/forms.py:42
 msgid "scale"
 msgstr ""
 
-#: core/forms.py:38
+#: core/forms.py:50
 msgid "region"
 msgstr ""
 
-#: core/forms.py:46
+#: core/forms.py:58
 msgid "sub_sector"
 msgstr ""
 
-#: core/forms.py:54
+#: core/forms.py:66
 msgid "sort_by"
+msgstr ""
+
+#: core/forms.py:97 core/forms.py:134
+msgid "Given name"
+msgstr ""
+
+#: core/forms.py:98 core/forms.py:135
+msgid "Family name"
+msgstr ""
+
+#: core/forms.py:108 core/forms.py:138
+msgid "City"
+msgstr ""
+
+#: core/forms.py:110 core/forms.py:139
+msgid "Message"
 msgstr ""
 
 #: core/templates/404.html:12

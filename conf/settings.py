@@ -92,7 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
-                'core.context_processors.site_home_link',
+                'core.context_processors.services_home_links',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
@@ -418,6 +418,7 @@ CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
+CAPITAL_INVEST_CONTACT_EMAIL = env.str('CAPITAL_INVEST_CONTACT_EMAIL')
 EMAIL_BACKED_CLASSES = {
     'default': 'django.core.mail.backends.smtp.EmailBackend',
     'console': 'django.core.mail.backends.console.EmailBackend'
@@ -475,7 +476,8 @@ FEATURE_FLAGS = {
     ),
     'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False),
     'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool('FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False),
-    'FIND_A_SUPPLIER_ON': env.bool('FEATURE_FIND_A_SUPPLIER_ENABLED', False,)
+    'FIND_A_SUPPLIER_ON': env.bool('FEATURE_FIND_A_SUPPLIER_ENABLED', False,),
+    'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED', False)
 }
 
 # Invest High Potential Opportunities
