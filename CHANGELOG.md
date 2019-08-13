@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1794 - Add child article cards to industry pages
 - CMS-1639 - Added FAS subscribe form
 - CMS-1641 - Added FAS search pages
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
