@@ -142,6 +142,22 @@
 </section>
 {% endif %}
 
+{% if page.child_articles %}
+<section class="related-content-cards underline-active-blue background-white padding-vertical-30">
+    <div class="container">
+      <h2 class="heading-large">{% trans 'Related content' %}</h2>
+      <ul class="flex-grid" aria-labelledby="related-content-heading" id="related-pages-list">
+        {% for article in page.child_articles %}
+          <li class="column-third-xl column-half-m">
+            {% with 'industry-article-'|add:article.meta.slug as card_id %}
+              {% card card_id=card_id title=article.title description=article.teaser url=article.meta.url img_src=article.thumbnail.url %}
+            {% endwith %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+</section>
+{% endif %}
 
 <section id="sector-next-steps-section" class="next-steps padding-vertical-60">
   <div class="container">

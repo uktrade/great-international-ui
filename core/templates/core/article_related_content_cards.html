@@ -5,7 +5,7 @@
 {% if related_pages %}
 <section class="related-content-cards background-stone">
     <div class="container">
-      <h2 class="heading-large">Related content</h2>
+      <h2 class="heading-large">{% trans 'Related content' %}</h2>
       <ul class="flex-grid" aria-labelledby="related-content-heading" id="related-pages-list">
         {% for article in related_pages %}
           <li class="column-third-xl column-half-m">
