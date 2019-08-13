@@ -162,7 +162,7 @@ def test_article_detail_page_social_share_links(
 
     assert response.status_code == 200
     assert response.template_name == [
-        'core/uk_setup_guide/article_detail.html'
+        'core/article_detail.html'
     ]
 
     twitter_link = (
@@ -219,7 +219,7 @@ def test_article_detail_page_social_share_links_no_title(
 
     assert response.status_code == 200
     assert response.template_name == [
-        'core/uk_setup_guide/article_detail.html'
+        'core/article_detail.html'
     ]
 
     twitter_link = (
