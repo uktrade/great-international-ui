@@ -11,7 +11,7 @@ from django.views.generic.edit import FormView
 
 from directory_api_client.client import api_client
 from directory_constants import expertise
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
 
 from core.views import BaseNotifyFormView
 from core.helpers import (
@@ -30,7 +30,7 @@ class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
         return company
 
 
-class HomeView(CountryDisplayMixin, GA360Mixin, FormView):
+class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'investment_support_directory/home.html'
     form_class = forms.CompanyHomeSearchForm
 
