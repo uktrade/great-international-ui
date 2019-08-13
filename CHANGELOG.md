@@ -6,6 +6,7 @@
 - CMS-1641 - Added FAS search pages
 
 ### Fixed bugs
+- CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
 - CMS-1799 - ISD search form missing filters
 
