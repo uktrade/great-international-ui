@@ -253,7 +253,7 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityDetailPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
     'InvestHighPotentialOpportunityFormPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),
     'InvestHighPotentialOpportunityFormSuccessPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
-    'InternationalGuideLandingPage': HeaderConfig(section=EXPAND, sub_section='how-to-invest-capital'),
+    'InternationalGuideLandingPage': HeaderConfig(section=EXPAND, sub_section='how-to-expand'),
 
 
     # Invest Capital

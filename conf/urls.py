@@ -120,6 +120,78 @@ urlpatterns += [
         name='fas'
     ),
     url(
+        r'^international/content/about-uk/regions/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Regions of the UK',
+            'section': 'expand',
+            'sub-section': 'regions',
+        },
+    ),
+    url(
+        r'^international/content/about-uk/contact/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Contact Us',
+            'section': 'expand',
+            'sub-section': 'contact',
+        },
+    ),
+    url(
+        r'^international/content/investment-types/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Types of Investments',
+            'section': 'invest',
+            'sub-section': 'investment-types',
+        },
+    ),
+    url(
+        r'^international/content/how-to-invest-capital/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'How to Invest your Capital',
+            'section': 'invest',
+            'sub-section': 'how-to-invest-capital',
+        },
+    ),
+    url(
+        r'^international/content/capital-invest/contact/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Contact Us',
+            'section': 'invest',
+            'sub-section': 'contact',
+        },
+    ),
+    url(
+        r'^international/content/how-to-buy/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'How to Buy from the UK',
+            'section': 'trade',
+            'sub-section': 'how-to-buy',
+        },
+    ),
+    url(
+        r'^international/content/how-we-help-trade/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'How we help you trade with the UK',
+            'section': 'trade',
+            'sub-section': 'how-we-help',
+        },
+    ),
+    url(
+        r'^international/content/trade/contact/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Contact Us',
+            'section': 'trade',
+            'sub-section': 'contact',
+        },
+    ),
+    url(
         r'^international/content/$',
         QuerystringRedirectView.as_view(pattern_name='index'),
         name='content-index-redirect'
