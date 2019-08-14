@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements_test.in
 #
+-e git+https://github.com/uktrade/directory-components@405#egg=directory-components
 apipkg==1.5               # via execnet
 atomicwrites==1.2.1       # via pytest
 attrs==18.2.0             # via jsonschema, pytest
@@ -19,8 +20,7 @@ coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
 directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==27.1.0
-directory-constants==18.1.2
+directory-constants==18.7.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
@@ -42,7 +42,7 @@ freezegun==0.3.8
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore
-jsonschema==3.0.1         # via directory-components
+jsonschema==3.0.1
 mccabe==0.5.3             # via flake8
 mohawk==0.3.4             # via sigauth
 monotonic==1.4            # via directory-client-core
@@ -84,4 +84,4 @@ whitenoise==3.3.1
 zenpy==1.1.10
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.0.1        # via jsonschema, pytest, waitress
+# setuptools==41.1.0        # via jsonschema, pytest, waitress

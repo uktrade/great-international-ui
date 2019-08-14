@@ -75,7 +75,8 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'core.middleware.GoogleCampaignMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
-    'directory_components.middleware.CheckGATags'
+    'directory_components.middleware.CheckGATags',
+    'directory_components.middleware.TestVariantMiddleware',
 ]
 
 ROOT_URLCONF = 'conf.urls'

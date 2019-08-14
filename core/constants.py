@@ -1,3 +1,4 @@
+from collections import namedtuple
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -232,36 +233,46 @@ GA_DATA_MAPPING = {
     },
 }
 
+ABOUT_UK = 'about-the-uk'
+EXPAND = 'expand'
+INVEST_CAPITAL = 'invest-capital'
+TRADE = 'trade'
+
+HeaderConfig = namedtuple('HeaderConfig', 'section sub_section')
+
 HEADER_MAPPING = {
-    # Great international core
-    'InternationalHomePage': '',
-    'InternationalTopicLandingPage': 'industries',
-    'InternationalArticleListingPage': 'uk_setup_guide',
-    'InternationalArticlePage': 'uk_setup_guide',
-    'InternationalCampaignPage': '',
-    'InternationalSectorPage': 'industries',
-    'InternationalSubSectorPage': 'industries',
-    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
-    'InternationalGuideLandingPage': 'uk_setup_guide',
+    # About UK
+    'AboutDitLandingPage': HeaderConfig(section=ABOUT_UK, sub_section='overview'),
+    'InternationalTopicLandingPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
+    'InternationalSectorPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
+    'InternationalSubSectorPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
+    'AboutUkWhyChooseTheUkPage': HeaderConfig(section=ABOUT_UK, sub_section='why-the-uk'),
 
-    # Brexit
-    'InternationalEUExitFormPage': '',
-    'InternationalEUExitFormSuccessPage': '',
+    # Expand
+    'InvestInternationalHomePage': HeaderConfig(section=EXPAND, sub_section='overview'),
+    'InvestHighPotentialOpportunityDetailPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
+    'InvestHighPotentialOpportunityFormPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),
+    'InvestHighPotentialOpportunityFormSuccessPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
 
-    # Capital investment
-    'InternationalCapitalInvestLandingPage': 'invest',
-    'CapitalInvestRegionPage': 'invest',
-    'CapitalInvestOpportunityPage': 'invest',
-    'CapitalInvestOpportunityListingPage': 'invest',
 
-    # Invest
-    'InvestInternationalHomePage': 'invest',
-    'InvestHighPotentialOpportunityDetailPage': 'invest',
-    'InvestHighPotentialOpportunityFormPage': 'invest',
-    'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
+    # Invest Capital
+    'InternationalCapitalInvestLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='overview'),
+    'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
+    'InternationalArticleListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
+    'InternationalArticlePage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
+    'InternationalCuratedTopicLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),  # noqa
+    'InternationalGuideLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
+    'CapitalInvestRegionPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='regions'),
+    'CapitalInvestOpportunityPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),
+    'CapitalInvestOpportunityListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),
 
-    # About DIT
-    'AboutDitLandingPage': '',
-    'AboutDitServicesPage': '',
-    'AboutUkWhyChooseTheUkPage': '',
+    # Trade
+    'InternationalTradeHomePage': HeaderConfig(section=TRADE, sub_section='overview'),
+
+
+    # Other
+    'InternationalHomePage': HeaderConfig(section='', sub_section=''),
+    'InternationalCampaignPage': HeaderConfig(section='', sub_section=''),
+    'InternationalEUExitFormPage': HeaderConfig(section='', sub_section=''),
+    'InternationalEUExitFormSuccessPage': HeaderConfig(section='', sub_section=''),
 }

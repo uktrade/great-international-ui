@@ -19,6 +19,7 @@ from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
+from directory_components import constants
 
 
 from core import forms, helpers, constants
@@ -47,12 +48,15 @@ class MonolingualCMSPageFromPathView(
 ):
     cms_site_id = settings.DIRECTORY_CMS_SITE_ID
 
+    @property
+    def page_type(self):
+        return self.page['page_type']
+
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
-        page_type = self.page['page_type']
-        ga360_data = helpers.get_ga_data_for_page(page_type)
+        ga360_data = helpers.get_ga_data_for_page(self.page_type)
         self.set_ga360_payload(
-            page_id=page_type,
+            page_id=self.page_type,
             business_unit=ga360_data['business_unit'],
             site_section=ga360_data['site_section'],
             site_subsection=ga360_data['site_subsection']
@@ -61,7 +65,7 @@ class MonolingualCMSPageFromPathView(
 
     @property
     def template_name(self):
-        return constants.TEMPLATE_MAPPING[self.page['page_type']]
+        return constants.TEMPLATE_MAPPING[self.page_type]
 
     @cached_property
     def page(self):
@@ -72,6 +76,14 @@ class MonolingualCMSPageFromPathView(
             draft_token=self.request.GET.get('draft_token'),
         )
         return handle_cms_response(response)
+
+    @property
+    def header_section(self):
+        return constants.HEADER_MAPPING[self.page_type].section
+
+    @property
+    def header_subsection(self):
+        return constants.HEADER_MAPPING[self.page_type].sub_section
 
     def get_context_data(self, **kwargs):
 
@@ -284,6 +296,8 @@ class OpportunitySearchView(
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
+    header_section = 'invest-capital'
+    header_subsection = 'opportunities'
 
     def __init__(self):
         super().__init__()
@@ -612,6 +626,8 @@ class CapitalInvestContactFormView(
     template_name = 'core/capital_invest/capital_invest_contact_form.html'
     success_url = '/international/content/capital-invest/contact/success'
     form_class = forms.CapitalInvestContactForm
+    header_section = 'invest-capital'
+    header_subsection = 'contact'
 
     def __init__(self):
         super().__init__()

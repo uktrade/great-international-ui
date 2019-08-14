@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements.in
 #
+-e git+https://github.com/uktrade/directory-components@405#egg=directory-components
 attrs==19.1.0             # via jsonschema
 beautifulsoup4==4.6.0
 boto3==1.7.55
@@ -12,14 +13,13 @@ cachetools==2.1.0         # via zenpy
 certifi==2018.1.18        # via requests
 chardet==3.0.4            # via requests
 dateparser==0.7.0
-directory-api-client==14.0.0
 directory-client-core==5.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==27.1.0
-directory-constants==18.1.2
+directory-constants==18.7.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
+directory_api_client==14.0.0
 django-countries==5.2
 django-crispy-forms==1.7.1
 django-environ==0.4.5
@@ -34,7 +34,7 @@ docutils==0.14            # via botocore
 gunicorn==19.5.0
 idna==2.6                 # via requests
 jmespath==0.9.3           # via boto3, botocore
-jsonschema==3.0.1         # via directory-components
+jsonschema==3.0.1
 mohawk==0.3.4             # via sigauth
 monotonic==1.4            # via directory-client-core
 olefile==0.44             # via directory-validators, pillow
@@ -60,4 +60,4 @@ whitenoise==3.3.1
 zenpy==1.1.10
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.0.1        # via jsonschema, waitress
+# setuptools==41.1.0        # via jsonschema, waitress
