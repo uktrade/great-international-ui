@@ -604,6 +604,7 @@ def about_uk_landing_page_context_modifier(context, request):
         'random_sectors': random_sectors
     }
 
+
 class LegacyRedirectCoreView(View):
     http_method_names = ['get']
     redirects_mapping = {}
