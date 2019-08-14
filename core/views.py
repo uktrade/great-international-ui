@@ -250,6 +250,30 @@ def capital_invest_region_page_context_modifier(context, request):
     }
 
 
+@register_context_modifier('AboutUkRegionPage')
+def capital_invest_region_page_context_modifier(context, request):
+    page = context['page']
+
+    show_accordions = False
+
+    if 'subsections' in page:
+        accordions = {accordion['title']: accordion['content']
+                      for accordion in page['subsections']
+                      if accordion['title'] and accordion['content']}
+        if accordions:
+            show_accordions = True
+
+    return {
+        'num_of_economics_statistics': helpers.count_data_with_field(
+            page['economics_stats'], 'number'),
+        'num_of_location_statistics': helpers.count_data_with_field(
+            page['location_stats'], 'number'),
+        'invest_cta_link': urls.SERVICES_INVEST,
+        'buy_cta_link': urls.SERVICES_FAS,
+        'show_accordions': show_accordions
+    }
+
+
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
@@ -257,7 +281,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     random_sector = ''
     opps_in_random_sector = []
 
-    if 'related_sectors' in page and any(page['related_sectors']):
+    if 'related_sectors' in page and page['related_sectors'] and any(page['related_sectors']):
         sectors = [sector['related_sector']['heading']
                    for sector in page['related_sectors']
                    if sector['related_sector']]
@@ -401,7 +425,7 @@ class OpportunitySearchView(
                 sub_sectors_from_selected)
         else:
             all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] or [] if not opp['sub_sectors']}
+                               for sub_sector in opp['sub_sectors'] or []}
 
         all_sub_sectors = list(all_sub_sectors)
         all_sub_sectors.sort()

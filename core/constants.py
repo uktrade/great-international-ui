@@ -59,6 +59,10 @@ FEATURE_FLAGGED_URLS_MAPPING = {
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestRegionPage':
         'CAPITAL_INVEST_REGION_PAGE_ON',
+    'AboutUkRegionPage':
+        'ABOUT_UK_REGION_PAGE_ON',
+    'AboutUkRegionListingPage':
+        'ABOUT_UK_REGION_LISTING_PAGE_ON',
     'CapitalInvestOpportunityPage':
         'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
     'InternationalCapitalInvestLandingPage':
