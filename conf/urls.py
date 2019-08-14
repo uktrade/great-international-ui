@@ -192,6 +192,15 @@ urlpatterns += [
         },
     ),
     url(
+        r'^international/content/about-dit/contact/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Contact Us',
+            'section': 'about-dit',
+            'sub-section': 'contact',
+        },
+    ),
+    url(
         r'^international/content/$',
         QuerystringRedirectView.as_view(pattern_name='index'),
         name='content-index-redirect'

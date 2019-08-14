@@ -255,7 +255,6 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityFormSuccessPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
     'InternationalGuideLandingPage': HeaderConfig(section=EXPAND, sub_section='how-to-expand'),
 
-
     # Invest Capital
     'InternationalCapitalInvestLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='overview'),
     'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='what-we-do'),
@@ -269,11 +268,12 @@ HEADER_MAPPING = {
     # Trade
     'InternationalTradeHomePage': HeaderConfig(section=TRADE, sub_section='overview'),
 
+    # About DIT
+    'AboutDitLandingPage': HeaderConfig(section='about-dit', sub_section='what-we-do'),
 
     # Other
     'InternationalHomePage': HeaderConfig(section='', sub_section=''),
     'InternationalCampaignPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormSuccessPage': HeaderConfig(section='', sub_section=''),
-    'AboutDitLandingPage': HeaderConfig(section='about-dit', sub_section='what-we-do'),
 }
