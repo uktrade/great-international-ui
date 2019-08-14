@@ -275,5 +275,5 @@ HEADER_MAPPING = {
     'InternationalCampaignPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormSuccessPage': HeaderConfig(section='', sub_section=''),
-    'InternationalAboutDitLandingPage': HeaderConfig(section='about-dit', sub_section='what-we-do'),
+    'AboutDitLandingPage': HeaderConfig(section='about-dit', sub_section='what-we-do'),
 }
