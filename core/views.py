@@ -1,10 +1,11 @@
+import copy
 import random
 
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -601,3 +602,34 @@ def about_uk_landing_page_context_modifier(context, request):
     return {
         'random_sectors': random_sectors
     }
+
+
+class LegacyRedirectCoreView(View):
+    http_method_names = ['get']
+    redirects_mapping = {}
+    fallback_url = None
+
+    @staticmethod
+    def translate_language_from_path_to_querystring(path, params):
+        return path, params
+
+    def get(self, request, path, *args, **kwargs):
+        path = self._normalise_path(path)
+        params = copy.deepcopy(request.GET)
+        path, params = self.translate_language_from_path_to_querystring(path, params)
+        destination = self.redirects_mapping.get(path) or self.fallback_url
+        if params:
+            destination = f'{destination}?{params.urlencode()}'
+        return redirect(destination)
+
+    @staticmethod
+    def _normalise_path(path):
+        """
+        Make sure path is lowercase without the / at the ends
+        """
+        path = path.lower()
+        if path.startswith('/'):
+            path = path[1:]
+        if path.endswith('/'):
+            path = path[:-1]
+        return path

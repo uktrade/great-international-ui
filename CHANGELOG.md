@@ -4,6 +4,7 @@
 
 ### Fixed bugs:
 - No ticket - Update HPO contact form invest redirect
+- CMS-1746 - Trade redirects
 
 ## [2019.08.07](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.07)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.25...2019.08.07)
