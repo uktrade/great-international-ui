@@ -1,3 +1,5 @@
+from core.views import LegacyRedirectCoreView
+from . import redirects
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
@@ -326,3 +328,8 @@ class AnonymousSubscribeSuccessView(InternationalView):
             site_section='AnonymousSubscribe',
             site_subsection='Success',
         )
+
+
+class LegacySupplierURLRedirectView(LegacyRedirectCoreView):
+    redirects_mapping = redirects.REDIRECTS
+    fallback_url = '/international/trade/'
