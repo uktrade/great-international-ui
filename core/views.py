@@ -257,7 +257,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     random_sector = ''
     opps_in_random_sector = []
 
-    if 'related_sectors' in page and page['related_sectors']:
+    if 'related_sectors' in page and any(page['related_sectors']):
         sectors = [sector['related_sector']['heading']
                    for sector in page['related_sectors']
                    if sector['related_sector']]
@@ -401,7 +401,7 @@ class OpportunitySearchView(
                 sub_sectors_from_selected)
         else:
             all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] or []}
+                               for sub_sector in opp['sub_sectors'] or [] if not opp['sub_sectors']}
 
         all_sub_sectors = list(all_sub_sectors)
         all_sub_sectors.sort()
