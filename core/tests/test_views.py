@@ -544,10 +544,10 @@ def test_get_about_uk_region_page_attaches_array_lengths_to_view(
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/midlands/')
+    request = rf.get('/international/content/about-uk/regions/midlands')
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
+        request, path='/international/content/about-uk/regions/midlands/')
 
     assert response.context_data['num_of_economics_statistics'] == 2
     assert response.context_data['num_of_location_statistics'] == 1
@@ -1547,10 +1547,10 @@ def test_showing_accordions_for_about_uk_region_page(
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/midlands/')
+    request = rf.get('/international/content/about-uk/regions/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
+        request, path='/international/content/about-uk/regions/midlands/')
 
     assert response.context_data['show_accordions'] is True
 
@@ -1575,10 +1575,10 @@ def test_showing_accordions_null_case_for_about_uk_region_page(
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/midlands/')
+    request = rf.get('/international/content/about-uk/regions/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
+        request, path='/international/content/about-uk/regions/midlands/')
 
     assert response.context_data['show_accordions'] is False
 
