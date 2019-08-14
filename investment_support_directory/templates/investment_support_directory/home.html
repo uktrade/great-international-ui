@@ -1,11 +1,14 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_with_invest_header.html' %}
 {% load staticfiles %}
 {% load directory_components %}
 
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
 {% block content %}
-    <section id="hero" class="hero background-light-blue" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')">
+    <section id="hero" class="hero hero-generic ackground-light-blue padding-bottom-30">
+      <div class="hero-background-container ls-noscript lazyloaded">
+        <div class="hero-background-image" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')"></div>
+      </div>
         <div class="container">
             <div class="width-two-thirds">
                 <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
@@ -16,12 +19,13 @@
                 <button class="button">Find a UK specialist</button>
             </form>
         </div>
+
     </section>
 
     <div id="benefits">
         <div class="container">
                 {% breadcrumbs 'Find a UK specialist' %}
-                    <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+                    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
                 {% endbreadcrumbs %}
 
             <div class="width-half">

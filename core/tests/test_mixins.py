@@ -72,7 +72,6 @@ def test_country_region(mock_cms_response, mock_country, country_code, rf):
         template_name = 'core/base.html'
 
     mock_cms_response.return_value = create_response(
-        status_code=200,
         json_payload={
             'title': 'test',
             'meta': {

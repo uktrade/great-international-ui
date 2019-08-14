@@ -1,0 +1,11 @@
+{% extends "core/companies/base-sent.html" %}
+
+{% load breadcrumbs message_box from directory_components %}
+{% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
+{% block breadcrumbs %}
+  {% url 'find-a-supplier:company-contact' company_number=company.number as contact_url %}
+  {% breadcrumbs 'Message sent' %}
+  	<a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
+  	<a href="{{ contact_url|add:'?'|add:search_querystring }}">Contact company</a>
+  {% endbreadcrumbs %}
+{% endblock %}

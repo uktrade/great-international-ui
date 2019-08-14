@@ -3,7 +3,7 @@
 {% load static from staticfiles %}
 {% load breadcrumbs from directory_components %}
 
-{% block head_title %}{{ site_home_link.label }} - {{ page.breadcrumbs_label }}{% endblock %}
+{% block head_title %}{{ international_home_link.label }} - {{ page.breadcrumbs_label }}{% endblock %}
 
 {% block css_layout_class %}eu-exit-form{% endblock %}
 
@@ -11,7 +11,7 @@
   {% block breadcrumbs %}
   <div class="container">
     {% breadcrumbs page.breadcrumbs_label %}
-      <a href="{{ site_home_link.url }}">{{ site_home_link.label }}</a>
+      <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
     {% endbreadcrumbs %}
   </div>
   {% endblock %}

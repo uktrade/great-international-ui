@@ -11,11 +11,11 @@ from django.views.generic.edit import FormView
 
 from directory_api_client.client import api_client
 from directory_constants import expertise
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
 
 from core.views import BaseNotifyFormView
 from core.helpers import (
-    NotifySettings, get_filters_labels, get_results_from_search_response
+    NotifySettings, get_case_study, get_filters_labels, get_results_from_search_response
 )
 import core.mixins
 from investment_support_directory import forms, helpers
@@ -30,7 +30,7 @@ class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
         return company
 
 
-class HomeView(CountryDisplayMixin, GA360Mixin, FormView):
+class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'investment_support_directory/home.html'
     form_class = forms.CompanyHomeSearchForm
 
@@ -218,4 +218,43 @@ class ContactSuccessView(
             business_unit='FindASupplier',
             site_section='InvestmentSupportDirectory',
             site_subsection='ContactSuccess'
+        )
+
+
+class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
+    template_name = 'investment_support_directory/case-study.html'
+
+    def __init__(self):
+        super().__init__()
+
+        self.set_ga360_payload(
+            page_id='FindASupplierCaseStudyDetail',
+            business_unit='FindASupplier',
+            site_section='Companies',
+            site_subsection='CaseStudy',
+        )
+
+    @cached_property
+    def case_study(self):
+        return get_case_study(self.kwargs['id'])
+
+    def get_canonical_url(self):
+        kwargs = {'id': self.case_study['pk'], 'slug': self.case_study['slug']}
+        return reverse('investment-support-directory:case-study-details', kwargs=kwargs)
+
+    def get(self, *args, **kwargs):
+        if self.kwargs.get('slug') != self.case_study['slug']:
+            return redirect(to=self.get_canonical_url())
+        return super().get(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        social = {
+            'title': 'Project: {title}'.format(title=self.case_study['title']),
+            'description': self.case_study['description'],
+            'image': self.case_study['image_one'],
+        }
+        return super().get_context_data(
+            case_study=self.case_study,
+            social=social,
+            **kwargs
         )

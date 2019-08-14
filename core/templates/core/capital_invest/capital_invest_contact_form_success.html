@@ -1,0 +1,22 @@
+{% extends 'contact/base.html' %}
+{% load breadcrumbs add_export_elements_classes from directory_components %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+  {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
+
+<section class="contact-success">
+<div class="container">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h2 class="heading-large">{{ page.large_text }}</h2>
+      <p>{{ page.small_text|add_export_elements_classes|safe }}</p>
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}
