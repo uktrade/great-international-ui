@@ -258,10 +258,10 @@ HEADER_MAPPING = {
 
     # Invest Capital
     'InternationalCapitalInvestLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='overview'),
-    'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
-    'InternationalArticleListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
-    'InternationalArticlePage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
-    'InternationalCuratedTopicLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),  # noqa
+    'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
+    'InternationalArticleListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
+    'InternationalArticlePage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
+    'InternationalCuratedTopicLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),  # noqa
     'CapitalInvestRegionPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='regions'),
     'CapitalInvestOpportunityPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),
     'CapitalInvestOpportunityListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),

@@ -296,7 +296,7 @@ class OpportunitySearchView(
 ):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
     page_size = 10
-    header_section = 'invest-capital'
+    header_section = 'invest'
     header_subsection = 'opportunities'
 
     def __init__(self):
@@ -626,7 +626,7 @@ class CapitalInvestContactFormView(
     template_name = 'core/capital_invest/capital_invest_contact_form.html'
     success_url = '/international/content/capital-invest/contact/success'
     form_class = forms.CapitalInvestContactForm
-    header_section = 'invest-capital'
+    header_section = 'invest'
     header_subsection = 'contact'
 
     def __init__(self):

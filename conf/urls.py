@@ -124,7 +124,7 @@ urlpatterns += [
         DummyPage.as_view(),
         {
             'page-title': 'Regions of the UK',
-            'section': 'expand',
+            'section': 'about-the-uk',
             'sub-section': 'regions',
         },
     ),
@@ -133,7 +133,7 @@ urlpatterns += [
         DummyPage.as_view(),
         {
             'page-title': 'Contact Us',
-            'section': 'expand',
+            'section': 'about-the-uk',
             'sub-section': 'contact',
         },
     ),
