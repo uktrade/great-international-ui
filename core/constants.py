@@ -4,7 +4,7 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/uk_setup_guide/article_detail.html',
+    'InternationalArticlePage': 'core/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalSubSectorPage': 'core/sector_page.html',
@@ -27,6 +27,8 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_page.html',
     'CapitalInvestOpportunityListingPage':
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
+    'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
+    'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
     # About DIT
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
@@ -62,7 +64,11 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestOpportunityListingPage':
         'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
     'InternationalSubSectorPage':
-        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'
+        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
+    'CapitalInvestContactFormPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'CapitalInvestContactFormSuccessPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'
 }
 
 GA_DATA_MAPPING = {
@@ -145,6 +151,16 @@ GA_DATA_MAPPING = {
         'business_unit': 'CapitalInvestment',
         'site_section': 'Opportunity',
         'site_subsection': 'ListingPage'
+    },
+    'CapitalInvestContactFormPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'CapitalInvest',
+        'site_subsection': 'Contact',
+    },
+    'CapitalInvestContactFormSuccessPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'CapitalInvest',
+        'site_subsection': 'ContactSuccess'
     },
 
     # Invest

@@ -331,7 +331,14 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_ENCRYPTION = False
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN', '')
+AWS_S3_REGION_NAME = env.str('AWS_S3_REGION_NAME', 'eu-west-1')
 AWS_S3_URL_PROTOCOL = env.str('AWS_S3_URL_PROTOCOL', 'https:')
+# Needed for new AWS regions
+# https://github.com/jschneier/django-storages/issues/203
+AWS_S3_SIGNATURE_VERSION = env.str('AWS_S3_SIGNATURE_VERSION', 's3v4')
+AWS_QUERYSTRING_AUTH = env.bool('AWS_QUERYSTRING_AUTH', False)
+S3_USE_SIGV4 = env.bool('S3_USE_SIGV4', True)
+AWS_S3_HOST = env.str('AWS_S3_HOST', 's3.eu-west-1.amazonaws.com')
 
 PREFIX_DEFAULT_LANGUAGE = False
 
@@ -411,6 +418,7 @@ CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
+CAPITAL_INVEST_CONTACT_EMAIL = env.str('CAPITAL_INVEST_CONTACT_EMAIL')
 EMAIL_BACKED_CLASSES = {
     'default': 'django.core.mail.backends.smtp.EmailBackend',
     'console': 'django.core.mail.backends.console.EmailBackend'
@@ -468,7 +476,8 @@ FEATURE_FLAGS = {
     ),
     'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False),
     'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool('FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False),
-    'FIND_A_SUPPLIER_ON': env.bool('FEATURE_FIND_A_SUPPLIER_ENABLED', False)
+    'FIND_A_SUPPLIER_ON': env.bool('FEATURE_FIND_A_SUPPLIER_ENABLED', False,),
+    'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED', False)
 }
 
 # Invest High Potential Opportunities
