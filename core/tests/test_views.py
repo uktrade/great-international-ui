@@ -614,7 +614,7 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
 
 
 @pytest.mark.usefixtures('about_uk_page')
-def test_capital_invest_region_page_returns_404_when_feature_flag_off(
+def test_about_uk_region_page_returns_404_when_feature_flag_off(
     client, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = False

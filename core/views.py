@@ -251,7 +251,7 @@ def capital_invest_region_page_context_modifier(context, request):
 
 
 @register_context_modifier('AboutUkRegionPage')
-def capital_invest_region_page_context_modifier(context, request):
+def about_uk_region_page_context_modifier(context, request):
     page = context['page']
 
     show_accordions = False
