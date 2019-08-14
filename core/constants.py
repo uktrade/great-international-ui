@@ -258,7 +258,7 @@ HEADER_MAPPING = {
 
     # Invest Capital
     'InternationalCapitalInvestLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='overview'),
-    'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
+    'AboutDitServicesPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='what-we-do'),
     'InternationalArticleListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
     'InternationalArticlePage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),
     'InternationalCuratedTopicLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-to-invest-capital'),  # noqa
@@ -275,4 +275,5 @@ HEADER_MAPPING = {
     'InternationalCampaignPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormPage': HeaderConfig(section='', sub_section=''),
     'InternationalEUExitFormSuccessPage': HeaderConfig(section='', sub_section=''),
+    'InternationalAboutDitLandingPage': HeaderConfig(section='about-dit', sub_section='what-we-do'),
 }

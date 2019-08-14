@@ -22,7 +22,7 @@ class ContactFormView(
     template_name = 'contact/contact.html'
     form_class = forms.ContactForm
     available_languages = settings.LANGUAGES
-    header_section = 'invest'
+    header_section = 'expand'
     header_subsection = 'contact'
 
     def __init__(self):
