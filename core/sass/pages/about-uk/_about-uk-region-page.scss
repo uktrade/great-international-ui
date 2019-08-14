@@ -1,0 +1,74 @@
+
+// Capital invest region page
+// ===========================
+
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.about-uk-region-page {
+
+  .mobile-padding-bottom-30 {
+   @media (max-width: 641px) {
+      padding-bottom: $spacing-3;
+    }
+  }
+
+  .accordion-expander {
+    text-decoration: none;
+    margin: 0;
+    color: $active-blue;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid $light-grey;
+    padding: $spacing-4;
+    position: relative;
+    width: 100%;
+    min-height: 88px;
+
+    &:focus {
+      @include link-focus;
+    }
+
+    &:after {
+      content: '+';
+      font-weight: 700;
+      font-size: 36px;
+      position: absolute;
+      right: 15px;
+      color: black;
+    }
+
+    &.active:after {
+      content: '–';
+    }
+  }
+
+  ul li:last-child .accordion-expander {
+    border-bottom: 1px solid $light-grey;
+
+    &.active {
+      border-bottom: 0;
+    }
+  }
+
+  .accordion-expander.active {
+    background-color: $stone-20;
+    border-bottom: 0;
+  }
+
+  .Expander.collapsed {
+    display: none;
+  }
+
+  .accordion-content {
+    padding: $spacing-3;
+  }
+
+  @media (max-width: 767px) {
+    .accordion-expander {
+      width: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,45 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load filter_by_active_language from cms_tags %}
+{% load card hero add_export_elements_classes statistics_card_grid case_study breadcrumbs from directory_components %}
+
+{% block css_layout_class %}about-uk-region-listing-page{% endblock %}
+
+{% block header_js %}
+    {{ block.super }}
+    <script src="{% static 'core/js/dit.js' %}"></script>
+    <script src="{% static 'core/js/dit.components.accordion.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+
+<section id="breadcrumb-section">
+  <div class="container">
+      {% breadcrumbs page.breadcrumbs_label %}
+        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+        <a href="{% url 'cms-page-from-path' 'about-uk' %}">{% trans 'About the UK' %}</a>
+      {% endbreadcrumbs %}
+  </div>
+</section>
+
+
+{% if page.region_summary_section_content %}
+<section class="page-section">
+    <div class="container">
+        <div class="flex-grid">
+            {% if page.region_summary_section_image.url %}
+                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+                    <figure class="landing-page-image flex-shrink-0 margin-bottom-30">
+                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
+                    </figure>
+                </div>
+            {%  endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

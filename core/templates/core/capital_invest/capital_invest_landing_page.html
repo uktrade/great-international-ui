@@ -72,8 +72,7 @@
                     {% for region in page.added_regions %}
                         {% if region.related_region.title %}
                             <div class="column-third-xl column-half-m">
-                                {% url 'cms-page-from-path' region.related_region.meta.slug as region_url %}
-                                    {% card img_src=region.related_region.image.url img_alt='' url=region_url title=region.related_region.title description=region.related_region.featured_description %}
+                                {% card img_src=region.related_region.image.url img_alt='' url=region.related_region.full_path title=region.related_region.title description=region.related_region.featured_description %}
                             </div>
                         {% endif %}
                     {% endfor %}
