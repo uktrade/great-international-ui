@@ -647,3 +647,30 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class DummyPage(InternationalView):
+    template_name = 'core/dummy_page.html'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='CapitalInvestContactForm',
+            business_unit='CapitalInvest',
+            site_section='Contact',
+            site_subsection='Contact'
+        )
+
+    @property
+    def header_section(self):
+        return self.kwargs['section']
+
+    @property
+    def header_subsection(self):
+        return self.kwargs['sub-section']
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            page_title=self.kwargs['page-title'],
+            *args, **kwargs
+        )

@@ -235,14 +235,14 @@ GA_DATA_MAPPING = {
 
 ABOUT_UK = 'about-the-uk'
 EXPAND = 'expand'
-INVEST_CAPITAL = 'invest-capital'
+INVEST_CAPITAL = 'invest'
 TRADE = 'trade'
 
 HeaderConfig = namedtuple('HeaderConfig', 'section sub_section')
 
 HEADER_MAPPING = {
     # About UK
-    'AboutDitLandingPage': HeaderConfig(section=ABOUT_UK, sub_section='overview'),
+    'AboutUkLandingPage': HeaderConfig(section=ABOUT_UK, sub_section='overview'),
     'InternationalTopicLandingPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
     'InternationalSectorPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
     'InternationalSubSectorPage': HeaderConfig(section=ABOUT_UK, sub_section='industries'),
@@ -253,6 +253,7 @@ HEADER_MAPPING = {
     'InvestHighPotentialOpportunityDetailPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
     'InvestHighPotentialOpportunityFormPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),
     'InvestHighPotentialOpportunityFormSuccessPage': HeaderConfig(section=EXPAND, sub_section='high-potential-opportunities'),  # noqa
+    'InternationalGuideLandingPage': HeaderConfig(section=EXPAND, sub_section='how-to-invest-capital'),
 
 
     # Invest Capital
@@ -261,7 +262,6 @@ HEADER_MAPPING = {
     'InternationalArticleListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
     'InternationalArticlePage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
     'InternationalCuratedTopicLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),  # noqa
-    'InternationalGuideLandingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='how-we-help-invest-capital'),
     'CapitalInvestRegionPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='regions'),
     'CapitalInvestOpportunityPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),
     'CapitalInvestOpportunityListingPage': HeaderConfig(section=INVEST_CAPITAL, sub_section='opportunities'),

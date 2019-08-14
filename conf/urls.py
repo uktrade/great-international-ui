@@ -8,7 +8,7 @@ from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
 import core.views
-from core.views import QuerystringRedirectView
+from core.views import QuerystringRedirectView, DummyPage
 import conf.sitemaps
 import euexit.views
 import invest.views
@@ -78,6 +78,46 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/'},
         name='index'
+    ),
+    url(
+        r'^international/content/investment-support-directory/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Investment Support Directory',
+            'section': 'expand',
+            'sub-section': 'investment-support-directory',
+        },
+        name='isd'
+    ),
+    url(
+        r'^international/content/find-a-supplier/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'Find a UK Supplier',
+            'section': 'trade',
+            'sub-section': 'trade',
+        },
+        name='fas'
+    ),
+    url(
+        r'^international/content/how-we-help-expand/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'How we help you to expand your business to the UK.',
+            'section': 'expand',
+            'sub-section': 'what-we-do',
+        },
+        name='fas'
+    ),
+    url(
+        r'^international/content/how-we-help-trade/',
+        DummyPage.as_view(),
+        {
+            'page-title': 'How we help you to trade with the UK.',
+            'section': 'trade',
+            'sub-section': 'what-we-do',
+        },
+        name='fas'
     ),
     url(
         r'^international/content/$',
