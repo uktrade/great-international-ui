@@ -4,6 +4,7 @@ import directory_healthcheck.views
 
 from django.conf import settings
 from django.conf.urls import url, include
+from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
 import core.views
@@ -202,5 +203,14 @@ perfectfit = [
         )
     ),
 ]
+
+if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
+    urlpatterns += [
+        url(
+            r'^media/(?P<path>.*)$',
+            skip_ga360(serve),
+            {'document_root': settings.MEDIA_ROOT}
+        ),
+    ]
 
 urlpatterns += perfectfit
