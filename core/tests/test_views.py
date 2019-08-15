@@ -613,7 +613,7 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
-@pytest.mark.usefixtures('about_uk_page')
+@pytest.mark.usefixtures('about_uk_region_page')
 def test_about_uk_region_page_returns_404_when_feature_flag_off(
     client, settings
 ):
@@ -624,7 +624,7 @@ def test_about_uk_region_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
-@pytest.mark.usefixtures('about_uk_page')
+@pytest.mark.usefixtures('about_uk_region_page')
 def test_about_uk_region_page_returns_200_when_feature_flag_on(
     client, settings
 ):

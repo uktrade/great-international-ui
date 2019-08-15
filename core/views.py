@@ -413,7 +413,6 @@ class OpportunitySearchView(
 
     @property
     def all_sub_sectors_for_sectors_chosen(self):
-
         if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
             sub_sectors_from_sector_chosen = {
                 sub for sector in self.sector.sectors
@@ -425,7 +424,7 @@ class OpportunitySearchView(
                 sub_sectors_from_selected)
         else:
             all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] or []}
+                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
 
         all_sub_sectors = list(all_sub_sectors)
         all_sub_sectors.sort()
