@@ -113,9 +113,10 @@ class CapitalInvestContactForm(forms.Form):
     company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
     message = forms.CharField(
         label=_('Message'),
-        widget=Textarea(attrs={'placeholder': 'How can we help?'}),
+        widget=Textarea,
         validators=[no_html, not_contains_url_or_email],
-        required=True
+        required=True,
+        help_text=_('How can we help?')
     )
     captcha = ReCaptchaField(
         label='',
