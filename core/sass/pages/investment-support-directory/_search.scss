@@ -26,11 +26,6 @@ body:not(.js-enabled) {
 
 .investment-support-directory-search-page {
 
-  .breadcrumbs {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-
   mark {
     font-weight: bold;
     line-height: 1.5;
@@ -80,7 +75,6 @@ body:not(.js-enabled) {
     #selected-filters-container {
       background-color: $stone-30;
       padding: 20px;
-      margin-bottom: 20px;
       margin-top: 10px;
       font-size: 16px;
       a {
@@ -118,10 +112,6 @@ body:not(.js-enabled) {
             }
           }
         }
-      }
-
-      legend {
-        margin-bottom: 20px;
       }
 
       label {
@@ -301,7 +291,6 @@ body:not(.js-enabled) {
       flex-flow: row;
     }
     #hero-container {
-      padding-bottom: 0;
       span {
         margin-top: 36px;
       }
@@ -325,8 +314,7 @@ body:not(.js-enabled) {
               align-items: center;
               border-right: 2px solid $stone-60;
               img {
-                margin-left: auto;
-                margin-right: auto;
+                width: 100%;
               }
             }
             .details-container {

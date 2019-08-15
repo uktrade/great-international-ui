@@ -43,13 +43,13 @@
                     <section class="margin-bottom-15">
                         <span>Filter results</span>
                         {% if filters %}
-                            <div id="selected-filters-container" class="underline-flag-red">
+                            <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
                                 <label>Selected filters</label>
                                 {% for value in filters %}
                                     <mark>{{ value }}</mark>
                                 {% endfor %}
                                 {% ga360_data "clear-filter" %}
-                                <a href="?q={{ form.q.value|default:'' }}" class="link">Clear all filters</a>
+                                <a href="?q={{ form.q.value|default:'' }}" class="link margin-vertical-15">Clear all filters</a>
                                 {% end_ga360_data %}
                             </div>
                         {% endif %}
@@ -71,7 +71,7 @@
                                 <li>
                                     {% ga360_data "company-detail-link" ga-value=company.name %}
                                     <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
-                                        <div class="logo-container">
+                                        <div class="logo-container padding-15 padding-30-m">
                                             {% thumbnail company.logo "x135" as logo %}
                                                 <img src="{{ logo.url }}" alt="{{ company.name }}" />
                                             {% empty %}
