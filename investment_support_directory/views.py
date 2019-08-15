@@ -15,7 +15,7 @@ from directory_components.mixins import CountryDisplayMixin, GA360Mixin, Interna
 
 from core.views import BaseNotifyFormView
 from core.helpers import (
-    NotifySettings, get_case_study, get_filters_labels, get_results_from_search_response
+    NotifySettings, get_filters_labels, get_results_from_search_response, get_case_study
 )
 import core.mixins
 from investment_support_directory import forms, helpers
@@ -221,8 +221,8 @@ class ContactSuccessView(
         )
 
 
-class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
-    template_name = 'investment_support_directory/case-study.html'
+class CaseStudyDetailView(CountryDisplayMixin, GA360Mixin, TemplateView):
+    template_name = 'find_a_supplier/case-study.html'
 
     def __init__(self):
         super().__init__()

@@ -258,7 +258,7 @@ def test_supplier_case_study_exposes_context(
     response = client.get(url)
 
     assert response.status_code == 200
-    assert response.template_name == [views.CaseStudyView.template_name]
+    assert response.template_name == [views.CaseStudyDetailView.template_name]
     assert response.context_data['case_study'] == expected_case_study
     assert response.context_data['social'] == {
         'description': expected_case_study['description'],
@@ -680,12 +680,12 @@ def test_home_page_hide_guide(mock_get_results_and_count, client, params):
 
 
 def test_anonymous_subscribe(client):
-    response = client.get(reverse('find-a-supplier:trade-subscribe'))
+    response = client.get(reverse('find-a-supplier:subscribe'))
 
     assert response.status_code == http.client.OK
 
 
 def test_anonymous_subscribe_success(client):
-    response = client.get(reverse('find-a-supplier:trade-subscribe-success'))
+    response = client.get(reverse('find-a-supplier:subscribe-success'))
 
     assert response.status_code == http.client.OK

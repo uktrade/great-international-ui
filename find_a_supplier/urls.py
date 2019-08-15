@@ -14,13 +14,13 @@ urlpatterns = [
     ),
     url(
         r'^subscribe/$',
-        views.AnonymousSubscribeFormView.as_view(),
-        name='trade-subscribe'
+        views.SubscribeFormView.as_view(),
+        name='subscribe'
     ),
     url(
         r'^subscribe/success/$',
         views.AnonymousSubscribeSuccessView.as_view(),
-        name='trade-subscribe-success'
+        name='subscribe-success'
     ),
     url(
         r'^international/content/trade/$',
@@ -59,12 +59,12 @@ urlpatterns = [
     ),
     url(
         r'^case-study/(?P<id>.+)/(?P<slug>.+)/$',
-        views.CaseStudyView.as_view(),
+        views.CaseStudyDetailView.as_view(),
         name='case-study-details'
     ),
     url(
         r'^case-study/(?P<id>.+)/$',
-        views.CaseStudyView.as_view(),
+        views.CaseStudyDetailView.as_view(),
         name='case-study-details-slugless'
     ),
 ]

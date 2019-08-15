@@ -1,16 +1,16 @@
 .find-a-supplier-case-study {
 
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
   .showcase-image {
     position: relative;
-    
+
     .caption {
-      background-color: $grey;
-      bottom: 0;
-      color: $white;
-      left: 0;
-      margin: 0;
-      position: absolute;
-      width: 100%;
+      margin-left: 1px;
+      font-size: 14px;
     }
   }
 
@@ -20,8 +20,8 @@
     hyphens: auto;
   }
 
-  #company-details {  
-    
+  #company-details {
+
     dd, dt {
       display: inline;
       font-weight: inherit;
@@ -32,7 +32,7 @@
       content: "";
       display: block;
     }
-    
+
     dl {
       margin: 0;
     }

@@ -1,11 +1,11 @@
-{% extends 'core/base_with_invest_header.html' %}
-{% load staticfiles %}
-{% load directory_components %}
+{% extends 'investment_support_directory/base.html' %}
+{% load static from staticfiles %}
+{% load breadcrumbs render_form ga360_data from directory_components %}
 
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
 {% block content %}
-    <section id="hero" class="hero hero-generic ackground-light-blue padding-bottom-30">
+    <section id="hero" class="hero hero-generic background-light-blue padding-bottom-30">
       <div class="hero-background-container ls-noscript lazyloaded">
         <div class="hero-background-image" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')"></div>
       </div>
@@ -14,20 +14,22 @@
                 <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
                 <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
             </div>
+            {% ga360_data "isd-search-form" target="form" %}
             <form method="post">
                 {% render_form form %}
                 <button class="button">Find a UK specialist</button>
             </form>
+            {% end_ga360_data %}
         </div>
-
     </section>
 
     <div id="benefits">
         <div class="container">
+            {% ga360_data "breadcrumbs" %}
                 {% breadcrumbs 'Find a UK specialist' %}
                     <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
                 {% endbreadcrumbs %}
-
+            {% end_ga360_data %}
             <div class="width-half">
                 <h2 class="heading-large">UK Investment Support Directory </h2>
             </div>
@@ -55,6 +57,7 @@
         </div>
     </div>
     <div class="background-stone-30" id="bottom">
+        {% ga360_data "search-link" %}
         <div class="container">
             <div class="width-one-half">
                 <h2 class="heading-large">How UK businesses can help</h2>
@@ -101,5 +104,6 @@
                 </ul>
             </div>
         </div>
+        {% end_ga360_data %}
     </div>
 {% endblock content %}
