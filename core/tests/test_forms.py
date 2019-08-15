@@ -14,6 +14,7 @@ def capital_invest_contact_form_data(captcha_stub):
         'phone_number': '01234 567891',
         'country': 'FR',
         'city': 'Asgard',
+        'company_name': 'Guardian of the Galaxy',
         'message': 'foobar',
         'g-recaptcha-response': captcha_stub,
         'terms_agreed': True,
@@ -189,6 +190,7 @@ def test_send_email_render_email(mock_render_to_string, capital_invest_contact_f
                 ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', data['country']),
                 ('City', data['city']),
+                ('Company name', data['company_name']),
                 ('Message', data['message'])
             ),
             'utm': {'field_one': 'value_one'},
@@ -221,6 +223,7 @@ def test_send_email_render_email_optional_fields(
                 ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', capital_invest_contact_form_data['country']),
                 ('City', capital_invest_contact_form_data['city']),
+                ('Company name', capital_invest_contact_form_data['company_name']),
                 ('Message', capital_invest_contact_form_data['message'])
             ),
             'utm': {'field_one': 'value_one'},
