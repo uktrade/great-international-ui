@@ -7,7 +7,9 @@
 - CMS-1639 - Added FAS subscribe form
 - CMS-1641 - Added FAS search pages
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
-- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
+- CMS-1746 - Trade redirects- CI-431 
+- Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
+
 
 ### Fixed bugs
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
