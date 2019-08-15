@@ -190,6 +190,7 @@ def test_send_email_render_email(mock_render_to_string, capital_invest_contact_f
                 ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', data['country']),
                 ('City', data['city']),
+                ('Country name', data['country_name']),
                 ('Message', data['message'])
             ),
             'utm': {'field_one': 'value_one'},
@@ -222,6 +223,7 @@ def test_send_email_render_email_optional_fields(
                 ('Phone number', capital_invest_contact_form_data['phone_number']),
                 ('Country', capital_invest_contact_form_data['country']),
                 ('City', capital_invest_contact_form_data['city']),
+                ('Country name', capital_invest_contact_form_data['country_name']),
                 ('Message', capital_invest_contact_form_data['message'])
             ),
             'utm': {'field_one': 'value_one'},
