@@ -9,7 +9,7 @@ from django.template.response import TemplateResponse
 from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
 
 from core.views import InternationalView
 from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
@@ -29,6 +29,7 @@ class CompanyProfileMixin(CompanyProfileMixin):
 class CompanySearchView(
     SubmitFormOnGetMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     PersistSearchQuerystringMixin,
     GA360Mixin,
     FormView
@@ -119,7 +120,7 @@ class CompanySearchView(
         )
 
 
-class PublishedProfileListView(CountryDisplayMixin, GA360Mixin, RedirectView):
+class PublishedProfileListView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, RedirectView):
 
     def __init__(self):
         super().__init__()
@@ -142,6 +143,7 @@ class PublishedProfileListView(CountryDisplayMixin, GA360Mixin, RedirectView):
 class ProfileView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
     PersistSearchQuerystringMixin,
     TemplateView,
@@ -188,6 +190,7 @@ class ProfileView(
 class ContactCompanyView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
     PersistSearchQuerystringMixin,
     FormView,
@@ -235,6 +238,7 @@ class ContactCompanyView(
 
 class ContactCompanySentView(
     CompanyProfileMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
     PersistSearchQuerystringMixin,
     TemplateView
@@ -253,7 +257,7 @@ class ContactCompanySentView(
         )
 
 
-class CaseStudyDetailView(CountryDisplayMixin, GA360Mixin, TemplateView):
+class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'find_a_supplier/case-study.html'
 
     def __init__(self):
@@ -293,7 +297,7 @@ class CaseStudyDetailView(CountryDisplayMixin, GA360Mixin, TemplateView):
 
 
 class SubscribeFormView(
-    CountryDisplayMixin, GA360Mixin,
+    CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin,
     PersistSearchQuerystringMixin, FormView
 ):
     success_url = reverse_lazy('find-a-supplier:subscribe-success')

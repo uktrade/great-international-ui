@@ -61,6 +61,7 @@ class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormVi
 
 class CompanySearchView(
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.SubmitFormOnGetMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
@@ -140,6 +141,7 @@ class CompanySearchView(
 class ProfileView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
@@ -171,6 +173,7 @@ class ProfileView(
 class ContactView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     BaseNotifyFormView,
@@ -205,6 +208,7 @@ class ContactView(
 class ContactSuccessView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
@@ -221,7 +225,7 @@ class ContactSuccessView(
         )
 
 
-class CaseStudyDetailView(CountryDisplayMixin, GA360Mixin, TemplateView):
+class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'find_a_supplier/case-study.html'
 
     def __init__(self):
