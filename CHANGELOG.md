@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GTRANSFORM-349 - add external link attributes to FAS suppliers website
 - CMS-1794 - Add child article cards to industry pages
 - CMS-1639 - Added FAS subscribe form
 - CMS-1641 - Added FAS search pages
