@@ -624,13 +624,35 @@ def test_about_uk_region_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
-@pytest.mark.usefixtures('about_uk_region_page')
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_about_uk_region_page_returns_200_when_feature_flag_on(
-    client, settings
+    mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = True
 
-    response = client.get('/international/content/about-uk/regions/region/')
+    page = {
+        'title': 'Housing',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'housing'
+        },
+        'page_type': 'AboutUkRegionPage',
+        'economics_stats': [],
+        'location_stats': [],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/content/about-uk/regions/region/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/about-uk/regions/region/'
+    )
 
     assert response.status_code == 200
 

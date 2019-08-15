@@ -286,7 +286,8 @@ def capital_invest_opportunity_page_context_modifier(context, request):
                    for sector in page['related_sectors']
                    if sector['related_sector']]
         random.shuffle(sectors)
-        random_sector = sectors[0]
+        if sectors:
+            random_sector = sectors[0]
 
     if 'related_sector_with_opportunities' in page \
             and page['related_sector_with_opportunities']:
