@@ -110,11 +110,13 @@ class CapitalInvestContactForm(forms.Form):
         widget=Select(attrs={'id': 'js-country-select'}), required=True
     )
     city = forms.CharField(label=_('City (Optional)'), required=False)
+    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,
         validators=[no_html, not_contains_url_or_email],
-        required=True
+        required=True,
+        help_text=_('How can we help?')
     )
     captcha = ReCaptchaField(
         label='',
@@ -141,6 +143,7 @@ class CapitalInvestContactForm(forms.Form):
                 (_('Phone number'), data['phone_number']),
                 (_('Country'), data['country']),
                 (_('City'), data['city']),
+                (_('Company name'), data['company_name']),
                 (_('Message'), data['message']),
             ),
             'utm': self.utm_data,

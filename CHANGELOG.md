@@ -8,6 +8,7 @@
 - CMS-1641 - Added FAS search pages
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 - CMS-1746 - Trade redirects
+- CI-434 - Capital invest contact form edits
 
 ### Fixed bugs
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
