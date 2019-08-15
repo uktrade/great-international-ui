@@ -1,6 +1,4 @@
-from directory_api_client.client import api_client
-import directory_forms_api_client.helpers
-
+from django.urls import reverse_lazy
 from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
 from django.core.urlresolvers import reverse, reverse_lazy
@@ -9,12 +7,18 @@ from django.template.response import TemplateResponse
 from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
+
+import directory_forms_api_client.helpers
+from directory_api_client.client import api_client
 from directory_components.mixins import CountryDisplayMixin, GA360Mixin
 
-from core.views import InternationalView
+from core.views import InternationalView, LegacyRedirectCoreView
 from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
-from find_a_supplier import forms, helpers
 from core.mixins import PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin
+
+from find_a_supplier import forms, helpers
+
+from . import redirects
 
 
 class CompanyProfileMixin(CompanyProfileMixin):
@@ -327,3 +331,8 @@ class AnonymousSubscribeSuccessView(InternationalView):
             site_section='AnonymousSubscribe',
             site_subsection='Success',
         )
+
+
+class LegacySupplierURLRedirectView(LegacyRedirectCoreView):
+    redirects_mapping = redirects.REDIRECTS
+    fallback_url = '/international/trade/'
