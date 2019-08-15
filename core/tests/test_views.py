@@ -619,7 +619,7 @@ def test_about_uk_region_page_returns_404_when_feature_flag_off(
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = False
 
-    response = client.get('/international/content/about-uk/regions/region')
+    response = client.get('/international/content/about-uk/regions/region/')
 
     assert response.status_code == 404
 
@@ -630,7 +630,7 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = True
 
-    response = client.get('/international/content/about-uk/regions/region')
+    response = client.get('/international/content/about-uk/regions/region/')
 
     assert response.status_code == 200
 
