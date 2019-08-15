@@ -4,15 +4,11 @@
 {% load ga360_data add_export_elements_classes from directory_components %}
 {% load breadcrumbs from directory_components %}
 
-{% block head_title %}{{ site_home_link.label }} - Capital Invest - Contact{% endblock %}
-
 {% block css_layout_class %}capital-invest-contact-form{% endblock %}
 
 {% block content %}
 
-<div class="container">
-  {% include 'core/includes/cms_breadcrumbs.html' %}
-</div>
+{% include 'core/includes/cms_breadcrumbs.html' %}
 
 <div class="container">
     {% ga360_data "contact-form" target="form" %}
