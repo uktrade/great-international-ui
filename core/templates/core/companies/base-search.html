@@ -11,9 +11,10 @@
     {% end_ga360_data %}
 
     {% ga360_data "search-form" target="form" %}
-    <form class="grid-row padding-bottom-90">
-        <div id="hero-container">
-            <div class="container">
+    <form class="padding-bottom-90">
+        <section id="hero-container" class="background-stone-30">
+          <div class="container">
+            <div class="grid-row">
                 <div class="grid-row">
                     <div class="column-two-thirds">
                         {% if pagination.paginator.count %}
@@ -35,7 +36,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
+        </section>
 
         <div class="container" id="main-content">
             <div class="grid-row">
