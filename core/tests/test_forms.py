@@ -14,6 +14,7 @@ def capital_invest_contact_form_data(captcha_stub):
         'phone_number': '01234 567891',
         'country': 'FR',
         'city': 'Asgard',
+        'company_name': 'Guardian of the Galaxy',
         'message': 'foobar',
         'g-recaptcha-response': captcha_stub,
         'terms_agreed': True,
