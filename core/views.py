@@ -245,8 +245,6 @@ def capital_invest_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
         'show_accordions': show_accordions
     }
 
@@ -269,8 +267,6 @@ def about_uk_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
         'show_accordions': show_accordions
     }
 
