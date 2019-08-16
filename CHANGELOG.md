@@ -10,6 +10,7 @@
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 - CMS-1746 - Trade redirects
 - CI-434 - Capital invest contact form edits
+- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 
 ### Fixed bugs
 - CMS-1803, CMS-1804, CMS-1805, CMS-1806, CMS-1807, CMS-1808 - Various ISD and FAS bug fixes

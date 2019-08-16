@@ -245,8 +245,28 @@ def capital_invest_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
+        'show_accordions': show_accordions
+    }
+
+
+@register_context_modifier('AboutUkRegionPage')
+def about_uk_region_page_context_modifier(context, request):
+    page = context['page']
+
+    show_accordions = False
+
+    if 'subsections' in page:
+        accordions = {accordion['title']: accordion['content']
+                      for accordion in page['subsections']
+                      if accordion['title'] and accordion['content']}
+        if accordions:
+            show_accordions = True
+
+    return {
+        'num_of_economics_statistics': helpers.count_data_with_field(
+            page['economics_stats'], 'number'),
+        'num_of_location_statistics': helpers.count_data_with_field(
+            page['location_stats'], 'number'),
         'show_accordions': show_accordions
     }
 
@@ -258,12 +278,13 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     random_sector = ''
     opps_in_random_sector = []
 
-    if 'related_sectors' in page and page['related_sectors']:
+    if 'related_sectors' in page and page['related_sectors'] and any(page['related_sectors']):
         sectors = [sector['related_sector']['heading']
                    for sector in page['related_sectors']
                    if sector['related_sector']]
         random.shuffle(sectors)
-        random_sector = sectors[0]
+        if sectors:
+            random_sector = sectors[0]
 
     if 'related_sector_with_opportunities' in page \
             and page['related_sector_with_opportunities']:
@@ -390,7 +411,6 @@ class OpportunitySearchView(
 
     @property
     def all_sub_sectors_for_sectors_chosen(self):
-
         if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
             sub_sectors_from_sector_chosen = {
                 sub for sector in self.sector.sectors
@@ -402,7 +422,7 @@ class OpportunitySearchView(
                 sub_sectors_from_selected)
         else:
             all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] or []}
+                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
 
         all_sub_sectors = list(all_sub_sectors)
         all_sub_sectors.sort()
