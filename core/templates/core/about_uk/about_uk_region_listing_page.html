@@ -25,21 +25,4 @@
   </div>
 </section>
 
-
-{% if page.region_summary_section_content %}
-<section class="page-section">
-    <div class="container">
-        <div class="flex-grid">
-            {% if page.region_summary_section_image.url %}
-                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
-                    <figure class="landing-page-image flex-shrink-0 margin-bottom-30">
-                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
-                    </figure>
-                </div>
-            {%  endif %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
 {% endblock %}
