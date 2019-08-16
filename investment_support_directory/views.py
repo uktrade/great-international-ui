@@ -226,7 +226,7 @@ class ContactSuccessView(
 
 
 class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
-    template_name = 'find_a_supplier/case-study.html'
+    template_name = 'core/companies/case-study.html'
 
     def __init__(self):
         super().__init__()
