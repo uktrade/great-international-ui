@@ -25,4 +25,32 @@
   </div>
 </section>
 
+{% if page.intro %}
+<section class="padding-top-30 padding-bottom-60">
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-two-thirds-l">
+                {{ page.intro|add_export_elements_classes|safe }}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if  page.contact_title and page.contact_text %}
+<section class="page-section">
+    <div class="container">
+        <h1 class="heading-large">{{ page.contact_title }}</h1>
+        <div class="grid-row">
+            <div class="column-half-l">
+                {{ page.contact_text|add_export_elements_classes|safe }}
+            </div>
+        </div>
+        {% if page.contact_cta_link and page.contact_cta_text %}
+            <a class="button button-arrow-small margin-top-15-l" href="{{ page.contact_cta_link }}">{{ page.contact_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
 {% endblock %}
