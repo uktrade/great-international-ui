@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1812 - Fix lazyload missing images, FAS cards, header lang select
 - GTRANSFORM-349 - add external link attributes to FAS suppliers website
 - CMS-1794 - Add child article cards to industry pages
 - CMS-1639 - Added FAS subscribe form
@@ -10,8 +11,10 @@
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 - CMS-1746 - Trade redirects
 - CI-434 - Capital invest contact form edits
+- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 
 ### Fixed bugs
+- CMS-1803, CMS-1804, CMS-1805, CMS-1806, CMS-1807, CMS-1808 - Various ISD and FAS bug fixes
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
 - CMS-1799 - ISD search form missing filters

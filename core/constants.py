@@ -34,6 +34,8 @@ TEMPLATE_MAPPING = {
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
+    'AboutUkRegionListingPage': 'core/about_uk/about_uk_region_listing_page.html',
+    'AboutUkRegionPage': 'core/about_uk/about_uk_region_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
@@ -57,6 +59,10 @@ FEATURE_FLAGGED_URLS_MAPPING = {
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestRegionPage':
         'CAPITAL_INVEST_REGION_PAGE_ON',
+    'AboutUkRegionPage':
+        'ABOUT_UK_REGION_PAGE_ON',
+    'AboutUkRegionListingPage':
+        'ABOUT_UK_REGION_LISTING_PAGE_ON',
     'CapitalInvestOpportunityPage':
         'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
     'InternationalCapitalInvestLandingPage':
@@ -217,6 +223,16 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
         'site_subsection': 'LandingPage'
+    },
+    'AboutUkRegionListingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'RegionListingPage'
+    },
+    'AboutUkRegionPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'RegionPage'
     },
     'AboutUkWhyChooseTheUkPage': {
         'business_unit': 'GreatInternational',

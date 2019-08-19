@@ -1,22 +1,98 @@
 {% extends 'core/companies/base-search.html' %}
 
-{% load breadcrumbs from directory_components %}
+{% load ga360_data breadcrumbs from directory_components %}
 
 {% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
 
 {% block breadcrumbs %}
     <div class="container">
         {% breadcrumbs 'Search results' %}
-	        <a href="{{ services_urls.great_international }}">great.gov.uk international</a>
-	        <a href="{% url 'find-a-supplier:search' %}">Find a Supplier</a>
-	    {% endbreadcrumbs %}
+            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+            <a href="{{ trade_home_link.url }}">{{ trade_home_link.label }}</a>
+        {% endbreadcrumbs %}
     </div>
 {% endblock %}
 
 {% block filters %}
     <fieldset>
-        <legend>Filter by industry</legend>
-        {% include 'core/includes/filter.html' with label='Industry' alt='Toggle list of industries' field=form.industries %}
+        <legend class="margin-bottom-15">Filter by industry</legend>
+        {% include 'core/includes/filter.html' with label='Industry' alt='Toggle list of industries' field=form.industries open=True %}
     </fieldset>
     <fieldset>
+{% endblock %}
+
+{% block subscription %}
+{% if results %}
+
+<section class="subscription background-stone-30 padding-top-90 padding-bottom-60">
+  <div class="container">
+    <div class="grid-row">
+        <div class="subscription-form-container">
+            <div class="subscription-form-inner">
+                <div class="grid-row">
+                    <h2 class="heading-medium margin-bottom-30 margin-top-0">
+                        Receive email updates of the latest UK companies in your industry
+                    </h2>
+                </div>
+                <div class="grid-row">
+                    {% ga360_data "subscribe-form" target="form" %}
+                    <form action="{% url 'find-a-supplier:subscribe' %}{% if search_querystring %}?{{ search_querystring }}{% endif %}" method="post">
+                        <div class="grid-row">
+                            <div class="column-full column-third-xl">
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.full_name %}
+                            </div>
+                            <div class="column-full column-third-xl">
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.email_address %}
+                            </div>
+                            <div class="column-full column-third-xl">
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.sector %}
+                            </div>
+                        </div>
+
+                        <div class="grid-row">
+                            <div class="column-full column-third-xl">
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.company_name %}
+                            </div>
+                            <div class="column-full column-third-xl">
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.country %}
+                            </div>
+                        </div>
+
+                        <div class="grid-row">
+                            <div class="column-full" >
+                                {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.captcha %}
+                            </div>
+                        </div>
+
+                        <div class="grid-row">
+                            <div clss="column-full">
+                                {% ga360_data "terms-and-conditions" target="a" %}
+                                    {% include "directory_components/form_widgets/form_field.html" with field=subscribe_form.terms %}
+                                {% end_ga360_data %}
+                                <button class="button button-primary">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% end_ga360_data %}
+            </div>
+        </div>
+    {% else %}
+        {% if not form.is_bound %}
+        <div class="subscription background-stone-30 grid-row padding-top-90 padding-bottom-60">
+            <div class="container">
+                <div id="fassearch-initial-content">
+                    <p class="message">Our UK trade profiles will help you contact the right people in the right company.</p>
+                    <p class="list-header">Trade profiles give you:</p>
+                    <ul>
+                        <li>a company summary</li>
+                        <li>examples of outstanding projects, goods and services</li>
+                        <li>direct contact with a member of a sales or business development team</li>
+                    </ul>
+                </div>
+                {% endif %}
+    {% endif %}
+    </div>
+  </div>
+</section>
 {% endblock %}

@@ -1,14 +1,20 @@
-{% extends 'core/base.html' %}
+{% extends 'core/companies/base.html' %}
 {% load static from staticfiles %}
 {% load thumbnail %}
+{% load ga360_data from directory_components %}
 
 {% block css_layout_class %}investment-support-directory-search-page{% endblock %}
 
 {% block content %}
+    {% ga360_data "breadcrumbs" %}
     {% block breadcrumbs %}{% endblock %}
-    <form class="grid-row padding-bottom-90">
-        <div id="hero-container">
-            <div class="container">
+    {% end_ga360_data %}
+
+    {% ga360_data "search-form" target="form" %}
+    <form class="padding-bottom-90">
+        <section id="hero-container" class="background-stone-30">
+          <div class="container">
+            <div class="grid-row">
                 <div class="grid-row">
                     <div class="column-two-thirds">
                         {% if pagination.paginator.count %}
@@ -30,7 +36,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
+        </section>
 
         <div class="container" id="main-content">
             <div class="grid-row">
@@ -38,19 +45,23 @@
                     <section class="margin-bottom-15">
                         <span>Filter results</span>
                         {% if filters %}
-                            <div id="selected-filters-container" class="underline-flag-red">
+                            <div id="selected-filters-container" class="underline-flag-red margin-bottom-30">
                                 <label>Selected filters</label>
                                 {% for value in filters %}
                                     <mark>{{ value }}</mark>
                                 {% endfor %}
-                                <a href="?q={{ form.q.value|default:'' }}" class="link">Clear all filters</a>
+                                {% ga360_data "clear-filter" %}
+                                <a href="?q={{ form.q.value|default:'' }}" class="link margin-vertical-15">Clear all filters</a>
+                                {% end_ga360_data %}
                             </div>
                         {% endif %}
                     </section>
                     {% block filters %}{% endblock %}
                     <button class="button" type="submit">Update results</button>
                     <div class="margin-top-15 margin-bottom-30" id="reset-link-container">
+                        {% ga360_data "reset" %}
                         <a href="?show-guide=true" class="link">Reset</a>
+                        {% end_ga360_data %}
                     </div>
                 </div>
                 <div class="column-two-thirds-l" id="companies-column">
@@ -60,8 +71,9 @@
                         {% else %}
                             {% for company in results %}
                                 <li>
+                                    {% ga360_data "company-detail-link" ga-value=company.name %}
                                     <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
-                                        <div class="logo-container">
+                                        <div class="logo-container padding-15 padding-30-m">
                                             {% thumbnail company.logo "x135" as logo %}
                                                 <img src="{{ logo.url }}" alt="{{ company.name }}" />
                                             {% empty %}
@@ -91,6 +103,7 @@
                                             </div>
                                         </div>
                                     </a>
+                                    {% end_ga360_data %}
                                 </li>
                             {% empty %}
                                 <h2 class="heading-medium">No UK businesses match your search</h2>
@@ -99,9 +112,10 @@
                         {% endif %}
                     </ul>
                     {% if pagination.paginator.num_pages > 1 %}
-                        <div id="paginator">
+                        {% ga360_data "pagination" %}
+                        <div id="paginator" class="{{ pagination.has_previous|yesno:',one-paginator-button' }} {{ pagination.has_next|yesno:',one-paginator-button' }}">
                             {% if pagination.has_previous %}
-                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
+                                <a class="button-ghost-blue" id="paginator-previous" href="{{ paginator_url }}&page={{ pagination.previous_page_number}}">Previous</a>
                             {% endif %}
                                 <ol>
                                     {% if pagination.paginator.num_pages <= 5 %}
@@ -109,32 +123,46 @@
                                             {% include 'core/paginator-item.html' %}
                                         {% endfor %}
                                     {% elif pagination.number < 5 %}
-                                        {% for number in pagination.paginator.page_range|slice:'0:4' %}
-                                            {% include 'core/paginator-item.html' %}
-                                        {% endfor %}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        {% if pagination.has_previous %}
+                                            {% for number in pagination.paginator.page_range|slice:'0:4' %}
+                                                {% include 'core/paginator-item.html' %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for number in pagination.paginator.page_range|slice:'0:3' %}
+                                                {% include 'core/paginator-item.html' %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        <li class="active-blue-text margin-right-0 margin-top-15 margin-15-m"><span>...</span></li>
                                         {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
                                     {% elif pages_after_current < 4 %}
                                         {% include 'core/paginator-item.html' with number='1' %}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
-                                        {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
-                                            {% include 'core/paginator-item.html' %}
-                                        {% endfor %}
+                                        <li class="active-blue-text margin-right-0 margin-top-15 margin-15-m"><span>...</span></li>
+
+                                        {% if pagination.has_next %}
+                                            {% for number in pagination.paginator.page_range|slice:'-4:-1' %}
+                                                {% include 'core/paginator-item.html' %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for number in pagination.paginator.page_range|slice:'-2:-1' %}
+                                                {% include 'core/paginator-item.html' %}
+                                            {% endfor %}
+                                        {% endif %}
                                         {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
                                     {% else %}
                                         {% include 'core/paginator-item.html' with number='1'%}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        <li class="active-blue-text margin-right-0 margin-top-15 margin-15-m"><span>...</span></li>
                                         {% include 'core/paginator-item.html' with number=pagination.number|add:'-1'%}
                                         {% include 'core/paginator-item.html' with number=pagination.number %}
                                         {% include 'core/paginator-item.html' with number=pagination.number|add:'1'%}
-                                        <li class="active-blue-text margin-15"><span>...</span></li>
+                                        <li class="active-blue-text margin-right-0 margin-top-15 margin-15-m"><span>...</span></li>
                                         {% include 'core/paginator-item.html' with number=pagination.paginator.num_pages %}
                                     {% endif %}
                                 </ol>
                             {% if pagination.has_next %}
-                                <a class="button-ghost-blue" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
+                                <a class="button-ghost-blue" id="paginator-next" href="{{ paginator_url }}&page={{ pagination.next_page_number }}">Next</a>
                             {% endif %}
                         </div>
+                        {% end_ga360_data %}
                     {% endif %}
                 </div>
             </div>
@@ -143,6 +171,7 @@
 
     {% block subscription %} {% endblock %}
 
+    {% end_ga360_data %}
 {% endblock content %}
 
 {% block body_js %}

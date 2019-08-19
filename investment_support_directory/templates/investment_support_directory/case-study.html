@@ -1,13 +1,9 @@
-{% extends 'core/companies/base-case-study.html' %}
+{% extends 'core/companies/case-study.html' %}
 
-{% load breadcrumbs render_form from directory_components %}
-{% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
-{% block css_layout_class %}find-a-supplier-case-study{% endblock %}
 {% block breadcrumbs %}
-    {% url 'find-a-supplier:profile' company_number=company.number slug=company.slug as company_url %}
+    {% url 'investment-support-directory:profile' company_number=company.number slug=company.slug as company_url %}
     {% breadcrumbs 'Contact company' %}
-    	<a href="{{ services_urls.great_international }}">great.gov.uk international</a>
-    	<a href="{{ company_url|add:'?'|add:search_querystring }}">{{ company.name }}</a>
+      <a href="{{ services_urls.great_international }}">great.gov.uk international</a>
+      <a href="{{ company_url|add:'?'|add:search_querystring }}">{{ company.name }}</a>
     {% endbreadcrumbs %}
 {% endblock %}
-
