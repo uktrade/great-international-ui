@@ -1741,6 +1741,79 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_hpo_on_expand_landing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+        'high_potential_opportunities': [
+            {
+                'id': 8,
+                'meta': {
+                    'languages': [
+                        ['en-gb', 'English'],
+                    ],
+                    'slug': 'rail-infrastructure',
+                },
+                'title': 'Rail HPO'
+            },
+            {
+                'id': 8,
+                'meta': {
+                    'languages': [
+                        ['en-gb', 'English'],
+                    ],
+                    'slug': 'food-production',
+                },
+                'title': 'Food HPO'
+            }
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/expand/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/expand/')
+
+    assert response.context_data['show_hpo_section'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_hpo_when_empty_on_expand_landing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English']
+            ]
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+        'high_potential_opportunities': [],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/expand/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/expand/')
+
+    assert response.context_data['show_hpo_section'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_for_about_uk_landing_page(
         mock_cms_response, rf):
 
