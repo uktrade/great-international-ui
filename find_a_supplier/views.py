@@ -1,28 +1,26 @@
-from core.views import LegacyRedirectCoreView
-from . import redirects
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
-from django.core.urlresolvers import reverse
 from django.shortcuts import Http404, redirect
 from django.template.response import TemplateResponse
 from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
-from directory_api_client.client import api_client
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
 import directory_forms_api_client.helpers
+from directory_api_client.client import api_client
 
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
-
-from core.views import InternationalView
-import core.mixins
-from core.helpers import get_case_study, get_filters_labels, get_results_from_search_response
+from core.views import InternationalView, LegacyRedirectCoreView
+from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
+from core.mixins import PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin
 
 from find_a_supplier import forms, helpers
 
+from . import redirects
 
-class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
+
+class CompanyProfileMixin(CompanyProfileMixin):
     @cached_property
     def company(self):
         company = super().company
@@ -32,9 +30,10 @@ class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
 
 
 class CompanySearchView(
-    core.mixins.SubmitFormOnGetMixin,
+    SubmitFormOnGetMixin,
     CountryDisplayMixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    InternationalHeaderMixin,
+    PersistSearchQuerystringMixin,
     GA360Mixin,
     FormView
 ):
@@ -73,7 +72,7 @@ class CompanySearchView(
                 form=form,
                 filters=get_filters_labels(form.cleaned_data),
                 pages_after_current=paginator.num_pages - pagination.number,
-                paginator_url=helpers.get_paginator_url(form.cleaned_data),
+                paginator_url=helpers.get_paginator_url(form.cleaned_data)
             )
             return TemplateResponse(self.request, self.template_name, context)
 
@@ -119,11 +118,12 @@ class CompanySearchView(
     def get_context_data(self, **kwargs):
         return super().get_context_data(
             show_search_guide=self.should_show_search_guide,
+            subscribe_form=forms.SubscribeForm(),
             **kwargs,
         )
 
 
-class PublishedProfileListView(CountryDisplayMixin, GA360Mixin, RedirectView):
+class PublishedProfileListView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, RedirectView):
 
     def __init__(self):
         super().__init__()
@@ -146,8 +146,9 @@ class PublishedProfileListView(CountryDisplayMixin, GA360Mixin, RedirectView):
 class ProfileView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     TemplateView,
 ):
     template_name = 'find_a_supplier/profile.html'
@@ -192,8 +193,9 @@ class ProfileView(
 class ContactCompanyView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     FormView,
 ):
     template_name = 'find_a_supplier/contact.html'
@@ -239,8 +241,9 @@ class ContactCompanyView(
 
 class ContactCompanySentView(
     CompanyProfileMixin,
+    InternationalHeaderMixin,
     GA360Mixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     TemplateView
 ):
 
@@ -257,8 +260,8 @@ class ContactCompanySentView(
         )
 
 
-class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
-    template_name = 'find_a_supplier/case-study.html'
+class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
+    template_name = 'core/companies/case-study.html'
 
     def __init__(self):
         super().__init__()
@@ -296,15 +299,18 @@ class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
         )
 
 
-class AnonymousSubscribeFormView(CountryDisplayMixin, GA360Mixin, FormView):
-    success_url = reverse_lazy('find-a-supplier:trade-subscribe-success')
-    template_name = 'find_a_supplier/anonymous-subscribe.html'
-    form_class = forms.AnonymousSubscribeForm
+class SubscribeFormView(
+    CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin,
+    PersistSearchQuerystringMixin, FormView
+):
+    success_url = reverse_lazy('find-a-supplier:subscribe-success')
+    template_name = 'find_a_supplier/subscribe.html'
+    form_class = forms.SubscribeForm
 
     def __init__(self):
         super().__init__()
         self.set_ga360_payload(
-            page_id='FindASupplierAnonymousSubscribeForm',
+            page_id='FindASupplierSubscribeForm',
             business_unit='FindASupplier',
             site_section='AnonymousSubscribe',
             site_subsection='Form',
@@ -318,12 +324,12 @@ class AnonymousSubscribeFormView(CountryDisplayMixin, GA360Mixin, FormView):
 
 
 class AnonymousSubscribeSuccessView(InternationalView):
-    template_name = 'find_a_supplier/anonymous-subscribe-success.html'
+    template_name = 'find_a_supplier/subscribe-success.html'
 
     def __init__(self):
         super().__init__()
         self.set_ga360_payload(
-            page_id='FindASupplierAnonymousSubscribeForm',
+            page_id='FindASupplierSubscribeForm',
             business_unit='FindASupplier',
             site_section='AnonymousSubscribe',
             site_subsection='Success',

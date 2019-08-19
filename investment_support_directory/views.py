@@ -15,7 +15,7 @@ from directory_components.mixins import CountryDisplayMixin, GA360Mixin, Interna
 
 from core.views import BaseNotifyFormView
 from core.helpers import (
-    NotifySettings, get_case_study, get_filters_labels, get_results_from_search_response
+    NotifySettings, get_filters_labels, get_results_from_search_response, get_case_study
 )
 import core.mixins
 from investment_support_directory import forms, helpers
@@ -61,6 +61,7 @@ class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormVi
 
 class CompanySearchView(
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.SubmitFormOnGetMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
@@ -140,6 +141,7 @@ class CompanySearchView(
 class ProfileView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
@@ -171,6 +173,7 @@ class ProfileView(
 class ContactView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     BaseNotifyFormView,
@@ -205,6 +208,7 @@ class ContactView(
 class ContactSuccessView(
     CompanyProfileMixin,
     CountryDisplayMixin,
+    InternationalHeaderMixin,
     core.mixins.PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
@@ -221,8 +225,8 @@ class ContactSuccessView(
         )
 
 
-class CaseStudyView(CountryDisplayMixin, GA360Mixin, TemplateView):
-    template_name = 'investment_support_directory/case-study.html'
+class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
+    template_name = 'core/companies/case-study.html'
 
     def __init__(self):
         super().__init__()

@@ -6,7 +6,6 @@
 
   #logo-container {
     height: 300px;
-    width: 300px;
     display: flex;
     background-color: white;
     border: 1px solid #999;
@@ -14,6 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     img {
       max-height: 100%;
       max-width: 100%;
@@ -24,6 +24,7 @@
   }
 
   #company-description-container {
+
     a {
       margin-top: 30px;
       display: inline-block;
@@ -44,16 +45,16 @@
 
   #data-column {
     margin-top: -230px;
+
     dt {
       font-weight: bold;
     }
+
     dd {
       margin-bottom: 1em;
     }
-    & > section {
-      width: 80%;
-    }
-    li a {
+
+    ul li a {
       height: 36px;
       display: inline-block;
       vertical-align: bottom;
@@ -61,6 +62,8 @@
   }
 
   #cover-image-container {
+    background-size: cover;
+    background-position: center center;
     height: 300px;
   }
 
@@ -77,28 +80,29 @@
   }
 
   #online-profiles {
-    margin-top: 45px;
     overflow: hidden;
-    li {
-      a {
-        display: flex;
-        align-items: center;
-        margin-bottom: 16px;
-        img {
-          margin-right: 16px;
-        }
-        span {
-          vertical-align: middle;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+
+    ul li a {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+
+      img {
+        margin-right: 16px;
+      }
+
+      span {
+        vertical-align: middle;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
 
   #company-name {
     margin-top: 40px;
+
     a {
       font-size: 19px;
       font-weight: normal;
@@ -108,9 +112,9 @@
   }
 
   #about-company-container {
-    margin-top: 45px;
     background: $stone-light;
     padding: 30px 15px;
+
     h3 {
       margin-top: 0;
       margin-bottom: 20px;
@@ -121,12 +125,15 @@
     a {
       width: 100%;
       text-align: center;
+      margin-top: 30px;
+      padding: 10px;
     }
+
     span {
       margin-top: 45px;
-      margin-bottom: 30px;
       display: flex;
     }
+
     img {
       margin-right: 5px;
       flex-shrink: 0;
@@ -138,8 +145,10 @@
     dt {
       font-weight: bold;
     }
+
     dd {
       margin-bottom: 30px;
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -151,7 +160,16 @@
     padding-top: 20px;
   }
 
-  #registered-office-address-container {
-    margin-top: 45px;
+
+  @media (min-width: 769px) {
+    #data-column & > section {
+      width: 80%;
+    }
+
+    #logo-container {
+      width: 300px;
+    }
+
   }
+
 }

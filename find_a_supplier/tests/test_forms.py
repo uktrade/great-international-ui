@@ -33,7 +33,7 @@ def test_serialize_anonymous_subscriber_forms():
 
 
 def test_subscribe_form_required():
-    form = forms.AnonymousSubscribeForm()
+    form = forms.SubscribeForm()
 
     assert form.is_valid() is False
     assert form.fields['full_name'].required is True
@@ -46,7 +46,7 @@ def test_subscribe_form_required():
 
 @pytest.fixture
 def test_subscribe_form_accepts_valid_data(captcha_stub):
-    form = forms.AnonymousSubscribeForm(data={
+    form = forms.SubscribeForm(data={
         'full_name': 'Jim Example',
         'email_address': 'jim@example.com',
         'sector': 'AEROSPACE',
@@ -61,7 +61,7 @@ def test_subscribe_form_accepts_valid_data(captcha_stub):
 
 @mock.patch('directory_api_client.client.api_client.buyer.send_form')
 def test_subscribe_form_view_valid_data(mock_send_form, captcha_stub):
-    form = forms.AnonymousSubscribeForm(data={
+    form = forms.SubscribeForm(data={
         'full_name': 'Jim Example',
         'email_address': 'jim@example.com',
         'sector': 'AEROSPACE',
@@ -74,7 +74,7 @@ def test_subscribe_form_view_valid_data(mock_send_form, captcha_stub):
 
     assert form.is_valid()
 
-    assert views.AnonymousSubscribeFormView().form_valid(form)
+    assert views.SubscribeFormView().form_valid(form)
 
 
 def test_contact_company_form_required_fields():

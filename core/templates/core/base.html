@@ -5,6 +5,8 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% get_current_language as LANGUAGE %}
 
+{% block head_title %}{{ international_home_link.label }}{% endblock %}
+
 {% load static_absolute from directory_components %}
 
 {% block head_css %}

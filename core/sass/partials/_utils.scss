@@ -4,6 +4,12 @@
 
 @import 'mixins';
 
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .page-section{
   @include page-section-padding;
 }
