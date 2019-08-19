@@ -610,7 +610,16 @@ def expand_landing_page_context_modifier(context, request):
     if 'high_potential_opportunities' in context['page']:
         hpo_pages = context['page']['high_potential_opportunities'],
 
+    how_to_expand_items = []
+    if 'how_to_expand' in context['page']:
+        how_to_expand_items = [
+            {'title': how_to['title'], 'text': how_to['text']}
+            for how_to in context['page']['how_to_expand'] if how_to['title'] and how_to['text']
+        ]
+
     return {
+        'how_to_expand_items': how_to_expand_items,
+        'how_to_expand_items_length': len(how_to_expand_items),
         'show_hpo_section': bool(
             hpo_pages and filter_by_active_language(hpo_pages[0])
         ),

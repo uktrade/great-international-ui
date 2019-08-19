@@ -1789,6 +1789,120 @@ def test_show_hpo_on_expand_landing_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_expand_on_expand_landing_page_all(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+        'how_to_expand': [
+            {
+                'title': 'Some title',
+                'text': 'text'
+            },
+            {
+                'title': 'Some title',
+                'text': 'text'
+            },
+            {
+                'title': 'Some title',
+                'text': ''
+            },
+            {
+                'title': 'Some title',
+                'text': 'text'
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/expand/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/expand/')
+
+    assert response.context_data['how_to_expand_items_length'] == 3
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_expand_on_expand_landing_page_null(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/expand/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/expand/')
+
+    assert response.context_data['how_to_expand_items_length'] == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_expand_on_expand_landing_page_none(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+        'how_to_expand': [
+            {
+                'title': 'Some title',
+                'text': ''
+            },
+            {
+                'title': '',
+                'text': ''
+            },
+            {
+                'title': '',
+                'text': 'Some text here'
+            },
+            {
+                'title': '',
+                'text': ''
+            },
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/expand/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/expand/')
+
+    assert response.context_data['how_to_expand_items_length'] == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_show_hpo_when_empty_on_expand_landing_page(
         mock_cms_response, rf
 ):
