@@ -16,7 +16,7 @@ redis==2.10.5
 sorl-thumbnail==12.5
 directory-cms-client==10.1.0
 directory-validators==5.0.0
-directory-components==27.7.0
+directory-components==27.9.3
 directory-constants==18.1.2
 directory-forms-api-client==4.0.0
 directory-api-client==14.0.0

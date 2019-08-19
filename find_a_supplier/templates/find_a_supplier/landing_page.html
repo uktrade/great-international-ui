@@ -71,7 +71,7 @@
             <div class="grid-row">
                 {% for industry in row %}
                 <div class="column-third-xl column-half-m">
-                  {% labelled_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
+                  {% labelled_image_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
                 </div>
                 {% endfor %}
             </div>
