@@ -96,6 +96,12 @@ urlpatterns += [
         name='invest-incoming'
     ),
     url(
+        r'^international/expand/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': '/expand/'},
+        name='expand-home'
+    ),
+    url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
@@ -115,6 +121,11 @@ urlpatterns += [
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
+    ),
+    url(
+        r'^international/content/expand/$',
+        QuerystringRedirectView.as_view(pattern_name='expand-home'),
+        name='content-expand-home-redirect'
     ),
     url(
         r'^international/trade/incoming/$',  # Homepage

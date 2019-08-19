@@ -126,6 +126,15 @@
     }
 }
 
+@mixin top-page-section-padding {
+    padding-top: $spacing-3;
+    padding-bottom: $spacing-1;
+
+    @media (max-width: 641px) {
+      padding: $spacing-3 0;
+    }
+}
+
 @mixin white-section {
   @include page-section-padding;
 

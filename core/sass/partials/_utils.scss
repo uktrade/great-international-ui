@@ -8,6 +8,10 @@
   @include page-section-padding;
 }
 
+.top-page-section{
+  @include top-page-section-padding;
+}
+
 .white-page-section {
   @include white-section;
 }
@@ -147,6 +151,12 @@
 
 @media (max-width: 640px) {
   .reverse-columns-s {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 768px) {
+  .reverse-columns-m {
     flex-direction: column-reverse;
   }
 }

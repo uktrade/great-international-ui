@@ -17,14 +17,14 @@ click==7.0                # via pip-tools
 codecov==2.0.9
 coverage==4.5.1           # via codecov, pytest-cov
 dateparser==0.7.0
-directory-api-client==14.0.0
 directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==27.7.0
+directory-components==27.9.2
 directory-constants==18.1.2
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
+directory_api_client==14.0.0
 django-countries==5.2
 django-crispy-forms==1.7.1
 django-environ==0.4.5

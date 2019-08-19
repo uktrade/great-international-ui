@@ -38,6 +38,9 @@ TEMPLATE_MAPPING = {
     'AboutUkRegionPage': 'core/about_uk/about_uk_region_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
+    # Expand
+    'ExpandInternationalLandingPage': 'core/expand/landing_page.html',
+
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
     'InvestHighPotentialOpportunityDetailPage':
@@ -74,7 +77,9 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestContactFormPage':
         'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'CapitalInvestContactFormSuccessPage':
-        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'ExpandInternationalLandingPage':
+        'EXPAND_LANDING_PAGE_ON'
 }
 
 GA_DATA_MAPPING = {
@@ -167,6 +172,12 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'CapitalInvest',
         'site_subsection': 'ContactSuccess'
+    },
+    # Expand
+    'ExpandInternationalLandingPage': {
+        'business_unit': 'Expand',
+        'site_section': 'HomePage',
+        'site_subsection': ''
     },
 
     # Invest
@@ -269,6 +280,9 @@ HEADER_MAPPING = {
     'CapitalInvestRegionPage': 'invest',
     'CapitalInvestOpportunityPage': 'invest',
     'CapitalInvestOpportunityListingPage': 'invest',
+
+    # Expand
+    'ExpandInternationalLandingPage': 'invest',
 
     # Invest
     'InvestInternationalHomePage': 'invest',

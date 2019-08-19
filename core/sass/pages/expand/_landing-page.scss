@@ -1,0 +1,41 @@
+
+// Expand landing page
+// ====================
+
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.expand-landing-page {
+
+  .how-we-help {
+    ul {
+      width: 100%;
+    }
+
+    .icon {
+      padding-bottom: $spacing-4;
+      margin-bottom: $spacing-4;
+      @include red-underline;
+      height: calc(60px + #{$spacing-4} + 3px); // 60px x 60px icons, need to account for red underline and padding
+    }
+
+  }
+
+  .how-to-expand{
+    width: 100%;
+    min-height: 500px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    a {
+      color: white;
+    }
+
+    .how_to_expand_item{
+      border-top: 3px solid $great-red;
+    }
+
+  }
+
+}

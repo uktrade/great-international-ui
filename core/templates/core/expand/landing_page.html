@@ -1,0 +1,167 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE %}
+{% load filter_by_active_language from cms_tags %}
+{% load card hero_with_cta add_export_elements_classes breadcrumbs lazyload from directory_components %}
+
+{% block css_layout_class %}expand-landing-page{% endblock %}
+
+{% block content %}
+
+{% hero_with_cta heading=page.hero_title subtitle=page.sub_heading img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+
+<div class="container">
+  {% breadcrumbs page.breadcrumbs_label %}
+    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+  {% endbreadcrumbs %}
+</div>
+
+{% if page.benefits_section_title and page.benefits_section_text %}
+<section class="top-page-section" id="benefits">
+    <div class="container">
+        <h2 class="heading-large margin-bottom-30">{{ page.benefits_section_title }}</h2>
+        <div class="grid-row padding-bottom-45-l">
+            <p class="font-small line-height-normal column-half"> {{ page.benefits_section_intro }}  </p>
+        </div>
+        <div class="flex-grid reverse-columns-m">
+            <div class="column-half-l left-half-page-text">
+                {{ page.benefits_section_text|add_export_elements_classes|safe }}
+            </div>
+            {% if page.benefits_section_img.url %}
+                <div class="column-half-l center-vertical flex-shrink-0">
+                    <figure class="landing-page-image">
+                        <img class="width-full" alt="{{ page.benefits_section_img_alt_text }}" src="{{page.benefits_section_img.url}}">
+                    </figure>
+                </div>
+            {%  endif %}
+        </div>
+        {% if page.benefits_section_cta_text and page.benefits_section_cta_link %}
+            <a href="{{ page.benefits_section_cta_link }}" class="button button-ghost-blue button-arrow-small margin-top-30">{{ page.benefits_section_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<section>
+    <div class="how-to-expand" style="background-image: url('{{ page.how_to_expand_image.url }}')">
+        <div class="container padding-top-30 padding-bottom-30">
+            <h1 class="heading-large">{{ page.how_to_expand_title }}</h1>
+            <div class="grid-row">
+                <div class="grid-row column-two-thirds padding-bottom-15">
+                    {{ page.how_to_expand_intro|add_export_elements_classes|safe }}
+                </div>
+                <div class="column-half">
+                    <div class="flex-grid">
+                        {% for how_to in page.how_to_expand %}
+                        <div class="column-half">
+                            <h2 class="bold-medium how_to_expand_item padding-top-15">{{ how_to.title }}</h2>
+                            <span class="font-xsmall">{{ how_to.text|add_export_elements_classes|safe }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if page.how_we_help_title and page.how_we_help_intro %}
+<section class="how-we-help page-section" id="how-we-help">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                {{ page.how_we_help_intro|add_export_elements_classes|safe }}
+            </div>
+        </div>
+        <ul class="flex-grid margin-top-45">
+            {% for section in page.how_we_help %}
+                {% if section.text and section.icon %}
+                    <li class="column-third-xl column-half-m">
+                            <img class="icon" src="{{ section.icon.url }}" alt="">
+                            <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+
+{% if page.contact_section_title and page.contact_section_content  %}
+<section class="stone-page-section" id="get-in-touch">
+    <div class="container">
+        <div class="flex-grid">
+            <div class="column-two-thirds-l">
+                <h2 class="heading-large">{{ page.contact_section_title }}</h2>
+                <p class="font-small margin-bottom-45">{{ page.contact_section_content }}</p>
+                {% if page.contact_section_cta_link and page.contact_section_cta_text %}
+                    <div>
+                      <a href="{{ page.contact_section_cta_link }}" class="button button-arrow-small">{{ page.contact_section_cta_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.isd_section_title and page.isd_section_text  %}
+<section class="page-section" id="get-in-touch">
+    <div class="container">
+        <div class="flex-grid">
+            <div class="column-two-thirds-l">
+                <h2 class="heading-large">{{ page.isd_section_title }}</h2>
+                <p class="font-small">{{ page.isd_section_text|add_export_elements_classes|safe }}</p>
+                {% if page.isd_section_cta_link and page.isd_section_cta_text %}
+                    <div>
+                        <a href="{{ page.isd_section_cta_link }}" class="button button-ghost-blue button-arrow-small">{{ page.isd_section_cta_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if show_hpo_section %}
+<section class="stone-page-section" id="high-potential-opportunities">
+    <div class="container">
+        <h2 class="heading-large"> {{ page.hpo_title }} </h2>
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-two-thirds-xl column-two-thirds-m"> {{ page.hpo_intro }}  </p>
+            </div>
+        <div class="flex-grid">
+        {% for hpo in page.high_potential_opportunities|filter_by_active_language %}
+            <div class="column-third-xl column-half-m">
+                {% card ga_tag='hpo-card' title=hpo.heading description=hpo.description|add_export_elements_classes|safe img_src=hpo.hero_image_thumbnail.url url=hpo.full_url %}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.industries_title and page.sectors|filter_by_active_language %}
+<section class="page-section" id="industries">
+    <div class="container">
+        <h2 class="heading-large">{{ page.industries_title }}</h2>
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-two-thirds"> {{  page.industries_intro }} </p>
+            </div>
+        <div class="flex-grid padding-bottom-45">
+            {% for sector in page.sectors|filter_by_active_language %}
+                <div class="column-third-xl column-half-m">
+                    {% card ga_tag='industry-link' title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if page.industries_cta_link and page.industries_cta_text %}
+            <a href="{{ page.industries_cta_link }}" class="button button-ghost-blue button-arrow-small" id="see-more-industries">{{ page.industries_cta_text }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock content %}

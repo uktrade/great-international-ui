@@ -603,6 +603,20 @@ def invest_homepage_context_modifier(context, request):
     }
 
 
+@register_context_modifier('ExpandInternationalLandingPage')
+def expand_landing_page_context_modifier(context, request):
+
+    hpo_pages = []
+    if 'high_potential_opportunities' in context['page']:
+        hpo_pages = context['page']['high_potential_opportunities'],
+
+    return {
+        'show_hpo_section': bool(
+            hpo_pages and filter_by_active_language(hpo_pages[0])
+        ),
+    }
+
+
 @register_context_modifier('InternationalTradeHomePage')
 def international_trade_homepage_context_modifier(context, request):
 
