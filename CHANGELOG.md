@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1812 (Follow-up) - Fix homepage hero missing image
 - CMS-1812 - Fix lazyload missing images, FAS cards, header lang select
 - GTRANSFORM-349 - add external link attributes to FAS suppliers website
 - CMS-1794 - Add child article cards to industry pages
