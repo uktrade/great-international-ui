@@ -92,6 +92,11 @@ def capital_invest_contact_form_success_page():
     yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
 
 
+@pytest.fixture
+def expand_landing_page():
+    yield from stub_page({'page_type': 'ExpandInternationalLandingPage'})
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
 
@@ -800,6 +805,52 @@ def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_
     response = MultilingualCMSPageFromPathView.as_view()(
         request,
         path='/international/content/capital-invest/contact/success/'
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.usefixtures('expand_landing_page')
+def test_expand_landing_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['EXPAND_LANDING_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/expand/'
+    )
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_landing_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['EXPAND_LANDING_PAGE_ON'] = True
+
+    page = {
+        'title': 'Expand',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'expand'
+        },
+        'page_type': 'ExpandInternationalLandingPage',
+    }
+
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/expand/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/expand/'
     )
 
     assert response.status_code == 200
