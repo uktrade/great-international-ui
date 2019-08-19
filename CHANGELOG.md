@@ -13,6 +13,7 @@
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 
 ### Fixed bugs
+- CMS-1803, CMS-1804, CMS-1805, CMS-1806, CMS-1807, CMS-1808 - Various ISD and FAS bug fixes
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
 - CMS-1799 - ISD search form missing filters

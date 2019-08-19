@@ -9,6 +9,7 @@ from directory_forms_api_client.forms import GovNotifyActionMixin
 from directory_validators.common import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
+from core.fields import DirectoryComponentsRecaptchaField
 
 SELECT_LABEL = 'Please select your industry'
 
@@ -84,7 +85,7 @@ class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
     )
     TERMS_CONDITIONS_LABEL = (
         f'<p>I agree to the <a href="{urls.TERMS_AND_CONDITIONS}" '
-        'target="_blank"> great.gov.uk terms and conditions </a> and I '
+        'class="link" target="_blank"> great.gov.uk terms and conditions </a> and I '
         'understand that:</p>'
         '<ul class="list list-bullet">'
         '<li>the Department for International Trade (DIT) is not endorsing'
@@ -155,7 +156,7 @@ class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
         return data
 
 
-class AnonymousSubscribeForm(forms.Form):
+class SubscribeForm(forms.Form):
     PLEASE_SELECT_LABEL = _('Please select an industry')
     TERMS_CONDITIONS_MESSAGE = _(
         'Tick the box to confirm you agree to the terms and conditions.'
@@ -175,7 +176,11 @@ class AnonymousSubscribeForm(forms.Form):
         widget=Select(attrs={'data-ga-id': 'sector-input'})
     )
     company_name = forms.CharField(label=_('Company name'))
-    country = forms.CharField(label=_('Country'))
+    country = forms.ChoiceField(
+        choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
+        widget=Select(attrs={'data-ga-id': 'country-input'})
+    )
+    captcha = DirectoryComponentsRecaptchaField(label=_(''))
     terms = forms.BooleanField(
         widget=forms.CheckboxWithInlineLabel(
             attrs={'class': 'visually-hidden-label'}
@@ -190,7 +195,7 @@ def serialize_anonymous_subscriber_forms(cleaned_data):
     Return the shape directory-api-client expects for saving international
     buyers.
 
-    @param {dict} cleaned_data - All the fields in `AnonymousSubscribeForm`
+    @param {dict} cleaned_data - All the fields in `SubscribeForm`
     @returns dict
 
     """

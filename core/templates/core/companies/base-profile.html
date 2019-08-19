@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/companies/base.html' %}
 {% load static from staticfiles %}
 
 {% load breadcrumbs card from directory_components %}
@@ -11,11 +11,11 @@
         {% block breadcrumbs %}{% endblock %}
     </div>
 
-    <div id="cover-image-container" class="hero" style="background-image: url('{% static "core/images/investment_support_directory/default-profile-cover.png" %}')">&nbsp;</div>
+    <div id="cover-image-container" style="background-image: url('{% static "core/images/investment_support_directory/default-profile-cover.png" %}')">&nbsp;</div>
     <div class="container" id="main-content">
         <div class="grid-row">
             <div class="column-one-third" id="data-column">
-                <section id="logo-container" class="margin-bottom-45">
+                <section id="logo-container" class="margin-bottom-45 padding-15 padding-30-m">
                     {% thumbnail company.logo "x300" as logo %}
                         <img src="{{ logo.url }}" alt="{{ company.name }}" />
                     {% empty %}
@@ -27,7 +27,7 @@
                         <a href="{% url request.resolver_match.namespace|add:':company-contact' company_number=company.number %}?{{ search_querystring }}" class="button">Contact company</a>
                     {% endblock %}
                 </section>
-                <section id="about-company-container">
+                <section id="about-company-container" class="margin-top-15 margin-top-45-m">
                     <h3 class="heading-medium">Business details</h3>
                     <dl>
                         {% if company.website %}
@@ -57,7 +57,7 @@
                     </dl>
                 </section>
                 <section class="underline-flag-red" id="underline"></section>
-                <section id="online-profiles">
+                <section id="online-profiles" class="margin-top-30 margin-top-30-m">
                     <ul>
                         <li>
 
@@ -87,7 +87,7 @@
                     </ul>
                 </section>
                 {% if company.is_in_companies_house %}
-                    <section id="registered-office-address-container" class="font-xsmall">
+                    <section id="registered-office-address-container" class="font-xsmall margin-top-15">
                         <p>{{ company.name }}</p>
                         <p>UK registered company – number {{ company.number }}</p>
                         <p>Registered office address:</p>
@@ -179,7 +179,7 @@
                     {% endfor %}
                 </div>
             {% endif %}
-                <div id="report-profile">
+                <div id="report-profile" class="margin-bottom-30">
                     <a href="{{ services_urls.feedback }}">Report profile</a>
                 </div>
             </div>
