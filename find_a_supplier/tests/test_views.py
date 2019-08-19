@@ -7,6 +7,7 @@ from unittest.mock import call, patch
 from django.core.urlresolvers import reverse, NoReverseMatch
 
 from directory_api_client.client import api_client
+from directory_constants import sectors
 
 from core.helpers import CompanyParser, get_case_study_details_from_response
 from core.tests.helpers import create_response, stub_page
@@ -773,11 +774,9 @@ def test_supplier_redirects(source, destination, client):
     assert response.url == destination
 
 
-@patch.object(
-    views.IndustryLandingPageContactCMSView.form_class.action_class, 'save'
-)
-def test_contact_form_submit_with_comment_forms_api(
-    mock_save, client, captcha_stub
+@patch.object(views.IndustryLandingPageContactCMSView.form_class, 'save')
+def test_sector_list_submit_with_comment_forms_api(
+    mock_save, client, captcha_stub, settings
 ):
     mock_save.return_value = create_response(status_code=200)
 
@@ -785,8 +784,8 @@ def test_contact_form_submit_with_comment_forms_api(
     data = {
         'full_name': 'Jeff',
         'email_address': 'jeff@example.com',
-        'phone_number': '1231312',
-        'sector': 'AEROSPACE',
+        'phone_number': '3223232',
+        'sector': sectors.AEROSPACE,
         'organisation_name': 'My name is Jeff',
         'organisation_size': '1-10',
         'country': 'United Kingdom',
@@ -802,15 +801,20 @@ def test_contact_form_submit_with_comment_forms_api(
         reverse('find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'})
     )
     assert mock_save.call_count == 2
-    assert mock_save.call_args_list[0] == mock_save.call_args_list[1] == call({
-        'sector': 'AEROSPACE',
-        'organisation_name': 'My name is Jeff',
-        'source_other': '',
-        'organisation_size': '1-10',
-        'email_address': 'jeff@example.com',
-        'phone_number': '1231312',
-        'country': 'United Kingdom',
-        'full_name': 'Jeff',
-        'body': 'hello',
-        'source': constants.MARKETING_SOURCES[1][0],
-    })
+    assert mock_save.call_args_list[0] == call(
+        email_address='buying@example.com',
+        form_url='/international/trade/contact/',
+        sender={
+            'email_address': 'jeff@example.com',
+            'country_code': 'United Kingdom'
+        },
+        spam_control={
+            'contents': ['hello']},
+        template_id=settings.CONTACT_INDUSTRY_AGENT_TEMPLATE_ID,
+    )
+    assert mock_save.call_args_list[1] == call(
+        email_address='jeff@example.com',
+        form_url='/international/trade/contact/',
+        template_id=settings.CONTACT_INDUSTRY_USER_TEMPLATE_ID,
+        email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID,
+    )
