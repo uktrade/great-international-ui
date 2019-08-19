@@ -11,6 +11,7 @@
 - CMS-1746 - Trade redirects
 - CI-434 - Capital invest contact form edits
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
+- CI-439 - Created `ExpandInternationalLanidngPage` new FDI landing page
 
 ### Fixed bugs
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
