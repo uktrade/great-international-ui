@@ -781,12 +781,12 @@ def test_contact_form_submit_with_comment_forms_api(
 ):
     mock_save.return_value = create_response(status_code=200)
 
-    url = reverse('sector-detail-cms-contact', kwargs={'slug': 'industry'})
+    url = reverse('find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'})
     data = {
         'full_name': 'Jeff',
         'email_address': 'jeff@example.com',
         'phone_number': '1231312',
-        'sector': 'industry',
+        'sector': 'AEROSPACE',
         'organisation_name': 'My name is Jeff',
         'organisation_size': '1-10',
         'country': 'United Kingdom',
@@ -799,11 +799,11 @@ def test_contact_form_submit_with_comment_forms_api(
 
     assert response.status_code == 302
     assert response.url == (
-        reverse('sector-detail-cms-contact-sent', kwargs={'slug': 'industry'})
+        reverse('find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'})
     )
     assert mock_save.call_count == 2
     assert mock_save.call_args_list[0] == mock_save.call_args_list[1] == call({
-        'sector': 'industry',
+        'sector': 'AEROSPACE',
         'organisation_name': 'My name is Jeff',
         'source_other': '',
         'organisation_size': '1-10',

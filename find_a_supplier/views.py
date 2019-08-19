@@ -355,6 +355,7 @@ class BaseIndustryContactView(
 
 class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
     form_class = forms.ContactForm
+    success_url = reverse_lazy('find-a-supplier:industry-contact-success')
 
     def get_form_kwargs(self, *args, **kwargs):
         return {
@@ -396,7 +397,6 @@ class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
 
 class IndustryLandingPageContactCMSView(BaseIndustryContactFormView):
     slug = slugs.FIND_A_SUPPLIER_INDUSTRY_CONTACT
-    success_url = reverse_lazy('industry-contact-success')
 
 
 class SpecificRefererRequiredMixin:
@@ -425,4 +425,4 @@ class IndustryLandingPageContactCMSSuccessView(BaseIndustryContactView):
 
     @property
     def expected_referer_url(self):
-        return reverse('trade-industry-contact')
+        return reverse('find-a-supplier:industry-contact')
