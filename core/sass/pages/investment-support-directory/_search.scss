@@ -34,6 +34,17 @@ body:not(.js-enabled) {
     border-radius: 4px;
   }
 
+  .subscription {
+    .form-control {
+      width: 100%;
+      height: 50px;
+    }
+
+    select.form-control {
+      background-color: $white;
+    }
+  }
+
   #main-content > div {
     display: flex;
     flex-flow: column;
