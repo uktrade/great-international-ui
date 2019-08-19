@@ -11,6 +11,9 @@ from django.core.validators import EMPTY_VALUES
 
 from core.fields import DirectoryComponentsRecaptchaField
 
+from . import constants
+
+
 SELECT_LABEL = 'Please select your industry'
 
 
@@ -207,3 +210,104 @@ def serialize_anonymous_subscriber_forms(cleaned_data):
         'company_name': cleaned_data['company_name'],
         'country': cleaned_data['country'],
     }
+
+
+class ContactForm(GovNotifyActionMixin, forms.Form):
+
+    def __init__(self, industry_choices, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['terms_agreed'].widget.label = mark_safe(
+            _(
+                'I agree to the <a href="{url}" target="_blank">'
+                'great.gov.uk terms and conditions</a>'
+            ).format(url=urls.TERMS_AND_CONDITIONS)
+        )
+        self.fields['sector'].choices = industry_choices
+
+    full_name = forms.CharField(
+        label=_('Full name'),
+        max_length=255,
+        validators=[not_contains_url_or_email],
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    email_address = forms.EmailField(
+        label=_('Email address'),
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    sector = forms.ChoiceField(
+        label=_('Your industry'),
+        choices=[],  # set in __init__
+    )
+    organisation_name = forms.CharField(
+        label=_('Your organisation name'),
+        max_length=255,
+        validators=[not_contains_url_or_email],
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    organisation_size = forms.ChoiceField(
+        label=_('Size of your organisation'),
+        choices=choices.EMPLOYEES,
+        required=False,
+    )
+    country = forms.CharField(
+        label=_('Your country'),
+        max_length=255,
+        validators=[not_contains_url_or_email],
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    body = forms.CharField(
+        label=_('Describe what products or services you need'),
+        help_text=_('Maximum 1000 characters.'),
+        max_length=1000,
+        widget=Textarea(
+            attrs={'dir': 'auto'}
+        ),
+        validators=[not_contains_url_or_email],
+    )
+    source = forms.ChoiceField(
+        label=_('Where did you hear about great.gov.uk?'),
+        choices=(('', ''),) + constants.MARKETING_SOURCES,
+        required=False,
+        initial=' ',  # prevent "other" being selected by default
+        widget=Select(
+            attrs={'class': 'js-field-other-selector'}
+        )
+    )
+    source_other = forms.CharField(
+        label=_("Other source (optional)"),
+        required=False,
+        widget=TextInput(
+            attrs={
+                'class': 'js-field-other',
+                'dir': 'auto',
+            }
+        ),
+        validators=[not_contains_url_or_email],
+    )
+    terms_agreed = forms.BooleanField()
+    captcha = ReCaptchaField()
+
+    @property
+    def serialized_data(self):
+        # this data will be sent to zendesk. `captcha` and `terms_agreed` are
+        # not useful to the zendesk user as those fields have to be present
+        # for the form to be submitted.
+        data = self.cleaned_data.copy()
+        del data['captcha']
+        del data['terms_agreed']
+        return data

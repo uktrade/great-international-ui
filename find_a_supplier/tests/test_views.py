@@ -2,13 +2,15 @@ import requests
 import pytest
 import http
 from unittest import mock
+from unittest.mock import call, patch
 
 from django.core.urlresolvers import reverse, NoReverseMatch
 
+from directory_api_client.client import api_client
+
 from core.helpers import CompanyParser, get_case_study_details_from_response
 from core.tests.helpers import create_response, stub_page
-from directory_api_client.client import api_client
-from find_a_supplier import forms, views
+from find_a_supplier import forms, views, constants
 
 
 @pytest.fixture
@@ -769,3 +771,46 @@ def test_supplier_redirects(source, destination, client):
     response = client.get(url)
     assert response.status_code == 302
     assert response.url == destination
+
+
+@patch.object(
+    views.IndustryLandingPageContactCMSView.form_class.action_class, 'save'
+)
+def test_contact_form_submit_with_comment_forms_api(
+    mock_save, client, captcha_stub
+):
+    mock_save.return_value = create_response(status_code=200)
+
+    url = reverse('sector-detail-cms-contact', kwargs={'slug': 'industry'})
+    data = {
+        'full_name': 'Jeff',
+        'email_address': 'jeff@example.com',
+        'phone_number': '1231312',
+        'sector': 'industry',
+        'organisation_name': 'My name is Jeff',
+        'organisation_size': '1-10',
+        'country': 'United Kingdom',
+        'body': 'hello',
+        'source': constants.MARKETING_SOURCES[1][0],
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+    response = client.post(url, data)
+
+    assert response.status_code == 302
+    assert response.url == (
+        reverse('sector-detail-cms-contact-sent', kwargs={'slug': 'industry'})
+    )
+    assert mock_save.call_count == 2
+    assert mock_save.call_args_list[0] == mock_save.call_args_list[1] == call({
+        'sector': 'industry',
+        'organisation_name': 'My name is Jeff',
+        'source_other': '',
+        'organisation_size': '1-10',
+        'email_address': 'jeff@example.com',
+        'phone_number': '1231312',
+        'country': 'United Kingdom',
+        'full_name': 'Jeff',
+        'body': 'hello',
+        'source': constants.MARKETING_SOURCES[1][0],
+    })
