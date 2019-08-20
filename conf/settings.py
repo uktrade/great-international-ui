@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'directory_components.middleware.LocaleQuerystringMiddleware',
     'directory_components.middleware.ForceDefaultLocale',
@@ -294,6 +295,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', 16070400)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Sentry
 RAVEN_CONFIG = {
