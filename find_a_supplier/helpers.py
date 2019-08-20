@@ -1,6 +1,6 @@
 from urllib.parse import urlencode
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def get_paginator_url(filters):
