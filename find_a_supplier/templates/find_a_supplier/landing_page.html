@@ -56,7 +56,7 @@
                 {{ page.proposition_text|add_export_elements_classes }}
             </div>
             <div class="column-half">
-                <a href="#fasindustrycontactplaceholder" class="button float-right">{{ page.call_to_action_text }}</a>
+                <a href="{% url 'find-a-supplier:industry-contact' %}" class="button float-right">{{ page.call_to_action_text }}</a>
             </div>
         </div>
     </div>
