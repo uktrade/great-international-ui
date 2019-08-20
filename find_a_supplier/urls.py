@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 import core.views
-from core.views import QuerystringRedirectView
+
 from . import views
 
 
@@ -18,14 +18,21 @@ urlpatterns = [
         name='subscribe'
     ),
     url(
+        r'^contact/$',
+        views.IndustryLandingPageContactCMSView.as_view(),
+        {'path': '/trade/contact/'},
+        name='industry-contact'
+    ),
+    url(
+        r'^contact/success/$',
+        views.IndustryLandingPageContactCMSSuccessView.as_view(),
+        {'path': '/trade/contact/'},
+        name='industry-contact-success'
+    ),
+    url(
         r'^subscribe/success/$',
         views.AnonymousSubscribeSuccessView.as_view(),
         name='subscribe-success'
-    ),
-    url(
-        r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
-        name='content-trade-home-redirect'
     ),
     url(
         r'^search/$',
