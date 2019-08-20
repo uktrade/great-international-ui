@@ -7,7 +7,7 @@ from unittest.mock import call, patch
 from django.urls import reverse, NoReverseMatch
 
 from directory_api_client.client import api_client
-from directory_constants import sectors
+from directory_constants import sectors, choices
 
 from core.helpers import CompanyParser, get_case_study_details_from_response
 from core.tests.helpers import create_response, stub_page
@@ -928,3 +928,42 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
     assert response.template_name == [
         views.IndustryLandingPageContactCMSSuccessView.template_name
     ]
+
+
+@mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
+def test_industry_contact_serialized_data(mock_submit_generic, captcha_stub):
+    data = {
+        'full_name': 'Jeff',
+        'email_address': 'jeff@example.com',
+        'phone_number': '3223232',
+        'sector': sectors.AEROSPACE,
+        'organisation_name': 'My name is Jeff',
+        'organisation_size': '1-10',
+        'country': 'United Kingdom',
+        'body': 'hello',
+        'source': constants.MARKETING_SOURCES[1][0],
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+    form = forms.ContactForm(data=data, industry_choices=choices.INDUSTRIES)
+
+    assert form.is_valid()
+
+    form.save(
+        template_id='foo',
+        email_address='reply_to@example.com',
+        form_url='/trade/some/path/',
+    )
+
+    assert form.serialized_data == {
+        'full_name': data['full_name'],
+        'email_address': data['email_address'],
+        'phone_number': data['phone_number'],
+        'sector': data['sector'],
+        'organisation_name': data['organisation_name'],
+        'organisation_size': data['organisation_size'],
+        'country': data['country'],
+        'body': data['body'],
+        'source': data['source'],
+        'source_other': '',
+    }
