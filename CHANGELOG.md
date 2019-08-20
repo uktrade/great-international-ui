@@ -3,6 +3,14 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1827 - Fix FAS search term
+
+### Fixed bugs
+
+## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
+
+### Implemented enhancements
 - CMS-1815 - Update FAS contact redirect
 - CMS-1816 - Add FAS industry contact pages
 - CMS-1812 (Follow-up) - Fix homepage hero missing image
