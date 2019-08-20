@@ -710,7 +710,7 @@ def test_anonymous_subscribe_success(client):
 
 @pytest.mark.parametrize('source,destination', [
     ('', '/international/trade/'),
-    ('industries/contact', '/international/trade/industries/contact/'),
+    ('industries/contact', '/international/trade/contact/'),
     ('search', '/international/trade/search/'),
     ('industries', '/international/content/industries'),
     ('industries/creative-services', '/international/content/industries/creative-industries'),
