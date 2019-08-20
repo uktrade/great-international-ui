@@ -16,3 +16,7 @@ textarea.form-control,
 select.form-control {
   width: 100%;
 }
+
+input[type=checkbox].form-control {
+  width: auto;
+}

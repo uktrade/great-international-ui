@@ -1,0 +1,26 @@
+{% extends 'core/base_cms.html' %}
+{% load static from staticfiles %}
+{% load trans from i18n %}
+{% load search_url from industry_tags %}
+{% load add_export_elements_classes ga360_data from directory_components %}
+
+{% block css_layout_class %}find-a-supplier-industry-contact-success{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% ga360_data "breadcrumbs" %}
+  {% include 'core/includes/cms_breadcrumbs.html' %}
+  {% end_ga360_data %}
+</div>
+
+{% ga360_data "cta" %}
+<section id="lede" class="padding-bottom-90">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-one-half">
+          {{ page.success_message_text|add_export_elements_classes|safe }}
+      </div>
+    </div>
+</section>
+{% end_ga360_data %}
+{% endblock content %}

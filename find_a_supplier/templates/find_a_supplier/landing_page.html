@@ -14,7 +14,7 @@
                 {{ page.hero_text|convert_headings_to:'h1'|add_export_elements_classes }}
             </div>
             <div id="search-area">
-                <form action="#fassearchplaceholder" method="get">
+                <form action="{% url 'find-a-supplier:search' %}" method="get">
                     <div class="column-half">
                         <input
                             class="form-control"
@@ -56,7 +56,7 @@
                 {{ page.proposition_text|add_export_elements_classes }}
             </div>
             <div class="column-half">
-                <a href="#fasindustrycontactplaceholder" class="button float-right">{{ page.call_to_action_text }}</a>
+                <a href="{% url 'find-a-supplier:industry-contact' %}" class="button float-right">{{ page.call_to_action_text }}</a>
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
             <div class="grid-row">
                 {% for industry in row %}
                 <div class="column-third-xl column-half-m">
-                  {% labelled_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
+                  {% labelled_image_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
                 </div>
                 {% endfor %}
             </div>

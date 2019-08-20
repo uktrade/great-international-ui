@@ -4,6 +4,7 @@ import directory_healthcheck.views
 
 from django.conf import settings
 from django.conf.urls import url, include
+from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
 import core.views
@@ -12,6 +13,7 @@ import conf.sitemaps
 import euexit.views
 import invest.views
 import contact.views
+import find_a_supplier.views
 
 
 sitemaps = {
@@ -34,6 +36,23 @@ if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
         url(
             r'^international/trade/investment-support-directory/search/',
             QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
+        ),
+    ]
+
+
+if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
+    urlpatterns += [
+        url(
+            r'^international/trade/',
+            include(
+                'find_a_supplier.urls',
+                namespace='find-a-supplier',
+            )
+        ),
+        url(
+            r'^international/content/trade/$',
+            QuerystringRedirectView.as_view(pattern_name='trade-home'),
+            name='content-trade-home-redirect'
         ),
     ]
 
@@ -72,6 +91,11 @@ urlpatterns += [
         name='invest-incoming-homepage'
     ),
     url(
+        r'^international/content/trade/contact/$',
+        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
+        name='content-trade-contact-redirect'
+    ),
+    url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
         invest.views.LegacyInvestURLRedirectView.as_view(),
         name='invest-incoming'
@@ -96,6 +120,16 @@ urlpatterns += [
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
+    ),
+    url(
+        r'^international/trade/incoming/$',  # Homepage
+        QuerystringRedirectView.as_view(pattern_name='trade-home'),
+        name='trade-incoming-homepage'
+    ),
+    url(
+        r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
+        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
+        name='trade-incoming'
     ),
     url(
         r'^international/trade/$',
@@ -142,6 +176,12 @@ urlpatterns += [
         r'^international/eu-exit-news/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
         name='eu-exit-international-contact-form-success'
+    ),
+    url(
+        r'^international/content/capital-invest/contact/$',
+        core.views.CapitalInvestContactFormView.as_view(),
+        {'path': '/capital-invest/contact/'},
+        name='capital-invest-contact'
     ),
     # these next 3 named urls are required for breadcrumbs in templates
     url(
@@ -190,5 +230,14 @@ perfectfit = [
         )
     ),
 ]
+
+if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
+    urlpatterns += [
+        url(
+            r'^media/(?P<path>.*)$',
+            skip_ga360(serve),
+            {'document_root': settings.MEDIA_ROOT}
+        ),
+    ]
 
 urlpatterns += perfectfit

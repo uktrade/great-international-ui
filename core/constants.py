@@ -4,7 +4,7 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/uk_setup_guide/article_detail.html',
+    'InternationalArticlePage': 'core/article_detail.html',
     'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalSubSectorPage': 'core/sector_page.html',
@@ -27,11 +27,15 @@ TEMPLATE_MAPPING = {
         'core/capital_invest/capital_invest_opportunity_page.html',
     'CapitalInvestOpportunityListingPage':
         'core/capital_invest/capital_invest_opportunity_listing_page.html',
+    'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
+    'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
     # About DIT
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
+    'AboutUkRegionListingPage': 'core/about_uk/about_uk_region_listing_page.html',
+    'AboutUkRegionPage': 'core/about_uk/about_uk_region_page.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
@@ -45,6 +49,7 @@ TEMPLATE_MAPPING = {
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
+    'InternationalTradeIndustryContactPage': 'find_a_supplier/industry-contact.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -55,6 +60,10 @@ FEATURE_FLAGGED_URLS_MAPPING = {
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestRegionPage':
         'CAPITAL_INVEST_REGION_PAGE_ON',
+    'AboutUkRegionPage':
+        'ABOUT_UK_REGION_PAGE_ON',
+    'AboutUkRegionListingPage':
+        'ABOUT_UK_REGION_LISTING_PAGE_ON',
     'CapitalInvestOpportunityPage':
         'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
     'InternationalCapitalInvestLandingPage':
@@ -62,7 +71,13 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestOpportunityListingPage':
         'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
     'InternationalSubSectorPage':
-        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'
+        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
+    'CapitalInvestContactFormPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'CapitalInvestContactFormSuccessPage':
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'InternationalTradeIndustryContactPage':
+        'FIND_A_SUPPLIER_ON',
 }
 
 GA_DATA_MAPPING = {
@@ -146,6 +161,16 @@ GA_DATA_MAPPING = {
         'site_section': 'Opportunity',
         'site_subsection': 'ListingPage'
     },
+    'CapitalInvestContactFormPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'CapitalInvest',
+        'site_subsection': 'Contact',
+    },
+    'CapitalInvestContactFormSuccessPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'CapitalInvest',
+        'site_subsection': 'ContactSuccess'
+    },
 
     # Invest
     'InvestInternationalHomePage': {
@@ -202,6 +227,16 @@ GA_DATA_MAPPING = {
         'site_section': 'AboutUK',
         'site_subsection': 'LandingPage'
     },
+    'AboutUkRegionListingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'RegionListingPage'
+    },
+    'AboutUkRegionPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'AboutUK',
+        'site_subsection': 'RegionPage'
+    },
     'AboutUkWhyChooseTheUkPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
@@ -213,6 +248,11 @@ GA_DATA_MAPPING = {
         'business_unit': 'FindASupplier',
         'site_section': 'HomePage',
         'site_subsection': '',
+    },
+    'InternationalTradeIndustryContactPage': {
+        'business_unit': 'FindASupplier',
+        'site_section': 'Industries',
+        'site_subsection': 'LandingPageContact'
     },
 }
 

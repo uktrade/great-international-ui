@@ -83,7 +83,6 @@ def test_high_potential_opportunity_detail_cms_retrieval_not_ok(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_high_potential_opportunity_form(mock_lookup_by_path, settings, client):
     mock_lookup_by_path.return_value = create_response(
-        status_code=200,
         json_payload={
             'opportunity_list': [],
             'meta': {
@@ -168,7 +167,6 @@ def test_high_potential_opportunity_form_submmit_cms_retrieval_ok(
     captcha_stub
 ):
     mock_lookup_by_path.return_value = create_response(
-        status_code=200,
         json_payload={
             'opportunity_list': [
                 {
@@ -261,7 +259,6 @@ def test_get_success_page_with_session(
     session.save()
 
     mock_lookup_by_path.return_value = create_response(
-        status_code=200,
         json_payload={
             'opportunity_list': [
                 {
@@ -367,7 +364,6 @@ def test_invest_redirect_homepage_english(client):
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_uk_region_page_cms_view(mock_get_page, client):
     mock_get_page.return_value = create_response(
-        status_code=200,
         json_payload={
             'meta': {
                 'languages': [['en-gb', 'English']],

@@ -1,0 +1,43 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% load ga360_data add_export_elements_classes from directory_components %}
+{% load breadcrumbs from directory_components %}
+
+{% block css_layout_class %}capital-invest-contact-form{% endblock %}
+
+{% block content %}
+
+{% include 'core/includes/cms_breadcrumbs.html' %}
+
+<div class="container">
+    {% ga360_data "contact-form" target="form" %}
+        <div class="grid-row">
+            <h2 class="heading-xlarge">{{ page.heading }}</h2>
+            {% if page.intro %}
+                <div class="column-two-thirds-l">{{ page.intro|add_export_elements_classes|safe }}</div>
+            {% endif %}
+            <form class="column-two-thirds-l column-half-xl" action="{% url 'capital-invest-contact' %}" method="post">
+                {% csrf_token %}
+
+                <h2 class="heading-medium">{% trans "Contact Information" %}</h2>
+                {% include 'includes/form_field.html' with field=form.given_name %}
+                {% include 'includes/form_field.html' with field=form.family_name %}
+                {% include 'includes/form_field.html' with field=form.email %}
+                {% include 'includes/form_field.html' with field=form.phone_number %}
+                {% include 'includes/form_field.html' with field=form.country %}
+                {% include 'includes/form_field.html' with field=form.city %}
+                {% include 'includes/form_field.html' with field=form.company_name %}
+
+                {% include 'includes/form_field.html' with field=form.message %}
+
+                {% include 'includes/form_field.html' with field=form.captcha %}
+                {% include 'includes/form_field.html' with field=form.terms_agreed %}
+
+                <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>
+            </form>
+        </div>
+    {% end_ga360_data %}
+</div>
+
+{% endblock %}

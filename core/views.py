@@ -1,10 +1,11 @@
+import copy
 import random
 
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
-from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
@@ -19,6 +20,7 @@ from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
     GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
+
 
 from core import forms, helpers, constants
 from core.context_modifiers import (
@@ -243,8 +245,28 @@ def capital_invest_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
+        'show_accordions': show_accordions
+    }
+
+
+@register_context_modifier('AboutUkRegionPage')
+def about_uk_region_page_context_modifier(context, request):
+    page = context['page']
+
+    show_accordions = False
+
+    if 'subsections' in page:
+        accordions = {accordion['title']: accordion['content']
+                      for accordion in page['subsections']
+                      if accordion['title'] and accordion['content']}
+        if accordions:
+            show_accordions = True
+
+    return {
+        'num_of_economics_statistics': helpers.count_data_with_field(
+            page['economics_stats'], 'number'),
+        'num_of_location_statistics': helpers.count_data_with_field(
+            page['location_stats'], 'number'),
         'show_accordions': show_accordions
     }
 
@@ -256,12 +278,13 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     random_sector = ''
     opps_in_random_sector = []
 
-    if 'related_sectors' in page and page['related_sectors']:
+    if 'related_sectors' in page and page['related_sectors'] and any(page['related_sectors']):
         sectors = [sector['related_sector']['heading']
                    for sector in page['related_sectors']
                    if sector['related_sector']]
         random.shuffle(sectors)
-        random_sector = sectors[0]
+        if sectors:
+            random_sector = sectors[0]
 
     if 'related_sector_with_opportunities' in page \
             and page['related_sector_with_opportunities']:
@@ -388,7 +411,6 @@ class OpportunitySearchView(
 
     @property
     def all_sub_sectors_for_sectors_chosen(self):
-
         if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
             sub_sectors_from_sector_chosen = {
                 sub for sector in self.sector.sectors
@@ -400,7 +422,7 @@ class OpportunitySearchView(
                 sub_sectors_from_selected)
         else:
             all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] or []}
+                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
 
         all_sub_sectors = list(all_sub_sectors)
         all_sub_sectors.sort()
@@ -601,3 +623,63 @@ def about_uk_landing_page_context_modifier(context, request):
     return {
         'random_sectors': random_sectors
     }
+
+
+class LegacyRedirectCoreView(View):
+    http_method_names = ['get']
+    redirects_mapping = {}
+    fallback_url = None
+
+    @staticmethod
+    def translate_language_from_path_to_querystring(path, params):
+        return path, params
+
+    def get(self, request, path, *args, **kwargs):
+        path = self._normalise_path(path)
+        params = copy.deepcopy(request.GET)
+        path, params = self.translate_language_from_path_to_querystring(path, params)
+        destination = self.redirects_mapping.get(path) or self.fallback_url
+        if params:
+            destination = f'{destination}?{params.urlencode()}'
+        return redirect(destination)
+
+    @staticmethod
+    def _normalise_path(path):
+        """
+        Make sure path is lowercase without the / at the ends
+        """
+        path = path.lower()
+        if path.startswith('/'):
+            path = path[1:]
+        if path.endswith('/'):
+            path = path[:-1]
+        return path
+
+
+class CapitalInvestContactFormView(
+    MultilingualCMSPageFromPathView,
+    GA360Mixin,
+    FormView,
+):
+    template_name = 'core/capital_invest/capital_invest_contact_form.html'
+    success_url = '/international/content/capital-invest/contact/success'
+    form_class = forms.CapitalInvestContactForm
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='CapitalInvestContactForm',
+            business_unit='CapitalInvest',
+            site_section='Contact',
+            site_subsection='Contact'
+        )
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['utm_data'] = self.request.utm
+        kwargs['submission_url'] = self.request.path
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

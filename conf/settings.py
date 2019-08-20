@@ -92,7 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
-                'core.context_processors.site_home_link',
+                'core.context_processors.services_home_links',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
@@ -331,7 +331,14 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_ENCRYPTION = False
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN', '')
+AWS_S3_REGION_NAME = env.str('AWS_S3_REGION_NAME', 'eu-west-1')
 AWS_S3_URL_PROTOCOL = env.str('AWS_S3_URL_PROTOCOL', 'https:')
+# Needed for new AWS regions
+# https://github.com/jschneier/django-storages/issues/203
+AWS_S3_SIGNATURE_VERSION = env.str('AWS_S3_SIGNATURE_VERSION', 's3v4')
+AWS_QUERYSTRING_AUTH = env.bool('AWS_QUERYSTRING_AUTH', False)
+S3_USE_SIGV4 = env.bool('S3_USE_SIGV4', True)
+AWS_S3_HOST = env.str('AWS_S3_HOST', 's3.eu-west-1.amazonaws.com')
 
 PREFIX_DEFAULT_LANGUAGE = False
 
@@ -411,6 +418,7 @@ CONTACT_INTERNATIONAL_ZENDESK_SUBJECT = env.str(
 # Contact email
 DEFAULT_FROM_EMAIL = env.str('DEFAULT_FROM_EMAIL')
 IIGB_AGENT_EMAIL = env.str('IIGB_AGENT_EMAIL')
+CAPITAL_INVEST_CONTACT_EMAIL = env.str('CAPITAL_INVEST_CONTACT_EMAIL')
 EMAIL_BACKED_CLASSES = {
     'default': 'django.core.mail.backends.smtp.EmailBackend',
     'console': 'django.core.mail.backends.console.EmailBackend'
@@ -452,45 +460,26 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 
 # feature flags
 FEATURE_FLAGS = {
-    'HOW_TO_DO_BUSINESS_ON': env.bool(
-        'FEATURE_HOW_TO_DO_BUSINESS_ENABLED', False),
-    'NEWS_SECTION_ON': env.bool(
-        'FEATURE_NEWS_SECTION_ENABLED', False),
-    'INTERNATIONAL_CONTACT_LINK_ON': env.bool(
-        'FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON': env.bool(
-        'FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_ON': env.bool(
-        'FEATURE_INTERNATIONAL_TARIFFS_ENABLED', False),
-
-    # used by directory-components
-    'SEARCH_ENGINE_INDEXING_OFF': env.bool(
-        'FEATURE_SEARCH_ENGINE_INDEXING_DISABLED', False
-    ),
-    # directory-components currently complains if this doens't exist
-    'EXPORT_JOURNEY_ON': False,
+    'HOW_TO_DO_BUSINESS_ON': env.bool('FEATURE_HOW_TO_DO_BUSINESS_ENABLED', False),
+    'NEWS_SECTION_ON': env.bool('FEATURE_NEWS_SECTION_ENABLED', False),
+    'INTERNATIONAL_CONTACT_LINK_ON': env.bool('FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON': env.bool('FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
+    'INTERNATIONAL_TARIFFS_ON': env.bool('FEATURE_INTERNATIONAL_TARIFFS_ENABLED', False),
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
-    'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON':
-        env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
+    'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON': env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
     'COUNTRY_SELECTOR_ON': env.bool('FEATURE_COUNTRY_SELECTOR_ENABLED', False),
-    'CAPITAL_INVEST_REGION_PAGE_ON': env.bool(
-        'FEATURE_CAPITAL_INVEST_REGION_PAGE_ENABLED', False
-    ),
-    'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON': env.bool(
-        'FEATURE_CAPITAL_INVEST_OPPORTUNITY_PAGE_ENABLED', False
-    ),
-    'CAPITAL_INVEST_LANDING_PAGE_ON': env.bool(
-        'FEATURE_CAPITAL_INVEST_LANDING_PAGE_ENABLED', False
-    ),
+    'CAPITAL_INVEST_REGION_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_REGION_PAGE_ENABLED', False),
+    'ABOUT_UK_REGION_PAGE_ON': env.bool('FEATURE_ABOUT_UK_REGION_PAGE_ENABLED', False),
+    'ABOUT_UK_REGION_LISTING_PAGE_ON': env.bool('FEATURE_ABOUT_UK_REGION_LISTING_PAGE_ENABLED', False),
+    'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_OPPORTUNITY_PAGE_ENABLED', False),
+    'CAPITAL_INVEST_LANDING_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_LANDING_PAGE_ENABLED', False),
     'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON': env.bool(
         'FEATURE_CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ENABLED', False
     ),
-    'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool(
-        'FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False
-    ),
-    'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool(
-        'FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False
-    )
+    'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False),
+    'INVESTMENT_SUPPORT_DIRECTORY_ON': env.bool('FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED', False),
+    'FIND_A_SUPPLIER_ON': env.bool('FEATURE_FIND_A_SUPPLIER_ENABLED', False,),
+    'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED', False)
 }
 
 # Invest High Potential Opportunities
@@ -557,3 +546,24 @@ if REDIS_URL:
 
 
 INVEST_REDIRECTS_UNUSED_LANGUAGES = env.tuple('INVEST_REDIRECTS_UNUSED_LANGUAGES', default=('ar', 'ja'))
+
+# Settings for email to supplier
+CONTACT_SUPPLIER_SUBJECT = env.str(
+    'CONTACT_SUPPLIER_SUBJECT',
+    'Someone is interested in your Find a Buyer profile'
+)
+CONTACT_INDUSTRY_AGENT_EMAIL_ADDRESS = env.str(
+    'CONTACT_INDUSTRY_AGENT_EMAIL_ADDRESS'
+)
+CONTACT_INDUSTRY_AGENT_TEMPLATE_ID = env.str(
+    'CONTACT_INDUSTRY_AGENT_TEMPLATE_ID',
+    'a9318bce-7d65-41b2-8d4c-b4a76ba285a2'
+)
+CONTACT_INDUSTRY_USER_TEMPLATE_ID = env.str(
+    'CONTACT_INDUSTRY_USER_TEMPLATE_ID',
+    '6a97f783-d246-42ca-be53-26faf3b08e32'
+)
+CONTACT_INDUSTRY_USER_REPLY_TO_ID = env.str(
+    'CONTACT_INDUSTRY_USER_REPLY_TO_ID',
+    None
+)

@@ -1,0 +1,26 @@
+{% extends "core/companies/base.html" %}
+{% load static from staticfiles %}
+{% load breadcrumbs success_box from directory_components %}
+
+{% block css_layout_class %}investment-support-directory-success-page{% endblock %}
+
+{% block content %}
+    <section>
+      <div class="container">
+        {% block breadcrumbs %}{% endblock %}
+        <div class="margin-top-30 margin-bottom-30">
+          {% with description="Your message has been sent to "|add:company.name %}
+              {% success_box heading="Message sent" description=description %}
+          {% endwith %}
+          </div>
+      </div>
+    </section>
+
+    <section id="next-container" class="background-stone-30 padding-bottom-30">
+      <div class="container">
+        <h2 class="heading-large">Next steps</h2>
+        <a class="link" href="{% url request.resolver_match.namespace|add:':search' %}?{{ search_querystring }}">Browse more companies</a>
+      </div>
+    </section>
+
+{% endblock %}

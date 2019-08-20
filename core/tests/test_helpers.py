@@ -1,12 +1,11 @@
 import pytest
-from django.http import QueryDict
 
-from django.urls import reverse
 from directory_constants import expertise, sectors
 
+from django.http import QueryDict
+from django.urls import reverse
+
 from core import helpers
-from core.helpers import SortFilter, sort_opportunities, ScaleFilter, filter_opportunities, RegionFilter, \
-    SectorFilter, SubSectorFilter
 from core.tests.helpers import create_response
 
 
@@ -78,9 +77,9 @@ def test_sort_opportunities_scale():
         }
     ]
 
-    sorting_chosen = SortFilter('Scale: High to Low')
+    sorting_chosen = helpers.SortFilter('Scale: High to Low')
 
-    sorted_opps = sort_opportunities(opportunities, sorting_chosen)
+    sorted_opps = helpers.sort_opportunities(opportunities, sorting_chosen)
 
     assert sorted_opps[0]['scale_value'] == 100
     assert sorted_opps[1]['scale_value'] == 30
@@ -101,9 +100,9 @@ def test_sort_opportunities_name():
         },
     ]
 
-    sorting_chosen = SortFilter('Project name: A to Z')
+    sorting_chosen = helpers.SortFilter('Project name: A to Z')
 
-    sorted_opps = sort_opportunities(opportunities, sorting_chosen)
+    sorted_opps = helpers.sort_opportunities(opportunities, sorting_chosen)
 
     assert sorted_opps[0]['title'] == 'Ashton Green'
     assert sorted_opps[1]['title'] == 'Birmingham Curzon'
@@ -126,9 +125,9 @@ def test_filter_opportunities_scale():
         }
     ]
 
-    filter_chosen = ScaleFilter('< £100m')
+    filter_chosen = helpers.ScaleFilter('< £100m')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
 
 
@@ -145,9 +144,9 @@ def test_filter_opportunities_sub_sector():
         },
     ]
 
-    filter_chosen = SubSectorFilter('Housing')
+    filter_chosen = helpers.SubSectorFilter('Housing')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
 
 
@@ -173,9 +172,9 @@ def test_filter_opportunities_scale_value_unknown():
         }
     ]
 
-    filter_chosen = ScaleFilter('Value unknown')
+    filter_chosen = helpers.ScaleFilter('Value unknown')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 4
 
 
@@ -195,9 +194,9 @@ def test_filter_opportunities_scale_greater_than_1000():
         }
     ]
 
-    filter_chosen = ScaleFilter('> £1bn')
+    filter_chosen = helpers.ScaleFilter('> £1bn')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 1
 
 
@@ -209,9 +208,9 @@ def test_filter_opportunities_region():
         {'related_region': {'title': ''}},
     ]
 
-    filter_chosen = RegionFilter('Midlands')
+    filter_chosen = helpers.RegionFilter('Midlands')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
 
 
@@ -230,9 +229,9 @@ def test_filter_opportunities_sector():
         },
     ]
 
-    filter_chosen = SectorFilter('Birmingham Curzon')
+    filter_chosen = helpers.SectorFilter('Birmingham Curzon')
 
-    filtered_opps = filter_opportunities(opportunities, filter_chosen)
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 1
 
 
@@ -259,13 +258,13 @@ def test_filter_opportunities_multiple_filters():
         },
     ]
 
-    filtered_opps = filter_opportunities(opportunities, SectorFilter(
+    filtered_opps = helpers.filter_opportunities(opportunities, helpers.SectorFilter(
         'Birmingham Curzon'
     ))
-    filtered_opps = filter_opportunities(filtered_opps, RegionFilter(
+    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.RegionFilter(
         'Midlands'
     ))
-    filtered_opps = filter_opportunities(filtered_opps, ScaleFilter(
+    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.ScaleFilter(
         'Value unknown'
     ))
     assert len(filtered_opps) == 1
@@ -324,7 +323,7 @@ def test_company_parser_serialize_for_template_empty():
 
 
 def test_get_results_from_search_response_xss(retrieve_profile_data):
-    response = create_response(json_payload={
+    response = create_response({
         'hits': {
             'total': 1,
             'hits': [
@@ -369,3 +368,99 @@ def test_get_filters_labels():
     ]
 
     assert helpers.get_filters_labels(filters) == expected
+
+
+@pytest.fixture
+def public_companies(retrieve_profile_data):
+    return {
+        'count': 100,
+        'results': [retrieve_profile_data]
+    }
+
+
+@pytest.fixture
+def public_companies_empty():
+    return {
+        'count': 0,
+        'results': []
+    }
+
+
+def test_pair_sector_values_with_label():
+    values = ['AGRICULTURE_HORTICULTURE_AND_FISHERIES', 'AEROSPACE']
+    expected = [
+        {
+            'label': 'Agriculture, horticulture and fisheries',
+            'value': 'AGRICULTURE_HORTICULTURE_AND_FISHERIES',
+        },
+        {
+            'label': 'Aerospace',
+            'value': 'AEROSPACE',
+        }
+    ]
+    assert helpers.pair_sector_values_with_label(values) == expected
+
+
+def test_pair_sector_values_with_label_contains_invalid():
+    values = ['AGRICULTURE_HORTICULTURE_AND_FISHERIES', 'AEROSPACE', 'DEFENCE']
+    expected = [
+        {
+            'label': 'Agriculture, horticulture and fisheries',
+            'value': 'AGRICULTURE_HORTICULTURE_AND_FISHERIES',
+        },
+        {
+            'label': 'Aerospace',
+            'value': 'AEROSPACE',
+        },
+    ]
+
+    assert helpers.pair_sector_values_with_label(values) == expected
+
+
+def test_pair_sector_values_with_label_empty():
+    for value in [None, []]:
+        assert helpers.pair_sector_values_with_label(value) == []
+
+
+def test_format_case_study():
+    case_study = {
+        'sector': 'AEROSPACE',
+        'pk': '1',
+        'slug': 'good-stuff',
+    }
+    expected = {
+        'sector': {
+            'label': 'Aerospace',
+            'value': 'AEROSPACE',
+        },
+        'pk': '1',
+        'slug': 'good-stuff',
+        'case_study_url': '/international/trade/case-study/1/good-stuff/'
+    }
+    actual = helpers.format_case_study(case_study)
+    assert actual == expected
+
+
+def test_get_case_study_details_from_response(supplier_case_study_data):
+    response = create_response(supplier_case_study_data)
+    company = helpers.CompanyParser(supplier_case_study_data['company'])
+    expected = {
+        'description': 'Damn great',
+        'year': '2000',
+        'title': 'Two',
+        'sector': {
+            'value': 'SOFTWARE_AND_COMPUTER_SERVICES',
+            'label': 'Software and computer services',
+        },
+        'testimonial': 'I found it most pleasing.',
+        'keywords': 'great',
+        'image_three': 'https://image_three.jpg',
+        'pk': 2,
+        'website': 'http://www.google.com',
+        'image_two': 'https://image_two.jpg',
+        'company': company.serialize_for_template(),
+        'slug': 'two',
+        'image_one': 'https://image_one.jpg',
+        'video_one': 'https://video_one.wav',
+    }
+    assert helpers.get_case_study_details_from_response(response) == expected

@@ -33,4 +33,14 @@ urlpatterns = [
         views.ProfileView.as_view(),
         name='profile-slugless'
     ),
+    url(
+        r'^case-study/(?P<id>.+)/(?P<slug>.+)/$',
+        views.CaseStudyDetailView.as_view(),
+        name='case-study-details'
+    ),
+    url(
+        r'^case-study/(?P<id>.+)/$',
+        views.CaseStudyDetailView.as_view(),
+        name='case-study-details-slugless'
+    ),
 ]

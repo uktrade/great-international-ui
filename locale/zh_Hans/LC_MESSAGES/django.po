@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: find_a_supplier/forms.py:186
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 14:02+0000\n"
+"POT-Creation-Date: 2019-08-19 17:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,15 +42,18 @@ msgstr "全名"
 msgid "Job title"
 msgstr "职务"
 
-#: contact/forms.py:41 contact/forms.py:88
+#: contact/forms.py:41 contact/forms.py:88 core/forms.py:99 core/forms.py:142
+#: find_a_supplier/forms.py:173 find_a_supplier/forms.py:237
 msgid "Email address"
 msgstr "工作电子邮件"
 
-#: contact/forms.py:43 contact/forms.py:90
+#: contact/forms.py:43 contact/forms.py:90 core/forms.py:143
+#: find_a_supplier/forms.py:243
 msgid "Phone number"
 msgstr "工作电话"
 
-#: contact/forms.py:46 contact/forms.py:91
+#: contact/forms.py:46 contact/forms.py:91 core/forms.py:146
+#: find_a_supplier/forms.py:181
 msgid "Company name"
 msgstr "公司名称"
 
@@ -57,11 +61,11 @@ msgstr "公司名称"
 msgid "Company website"
 msgstr "公司网站"
 
-#: contact/forms.py:52
+#: contact/forms.py:52 core/forms.py:105
 msgid "Which country are you based in?"
 msgstr "您位于哪个国家/地区？"
 
-#: contact/forms.py:54
+#: contact/forms.py:54 core/forms.py:107
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
@@ -86,7 +90,7 @@ msgstr ""
 "向我们告知您的公司和您的英国投资计划的相关信息 - 投资规模以及运营和招聘计划。"
 "也请向我们告知您希望英国政府为您提供什么帮助。"
 
-#: contact/forms.py:93 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:93 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国家"
 
@@ -108,6 +112,7 @@ msgid "Contact the investment team"
 msgstr "请联系投资组"
 
 #: contact/templates/contact/contact.html:24
+#: core/templates/core/capital_invest/capital_invest_contact_form.html:23
 msgid "Contact Information"
 msgstr "联系信息"
 
@@ -148,31 +153,77 @@ msgstr ""
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
+#: core/templates/core/capital_invest/email/capital_invest_email_agent.html:166
+#: core/templates/core/capital_invest/email/capital_invest_email_agent.txt:12
 msgid "Submission url"
 msgstr ""
 
-#: core/context_processors.py:28
-msgid "Great.gov.uk International"
+#: core/context_processors.py:29
+msgid "great.gov.uk international"
 msgstr ""
 
-#: core/forms.py:22
+#: core/context_processors.py:33
+msgid "Find a supplier"
+msgstr ""
+
+#: core/context_processors.py:37
+msgid "Invest"
+msgstr ""
+
+#: core/forms.py:34
 msgid "sector"
 msgstr ""
 
-#: core/forms.py:30
+#: core/forms.py:42
 msgid "scale"
 msgstr ""
 
-#: core/forms.py:38
+#: core/forms.py:50
 msgid "region"
 msgstr ""
 
-#: core/forms.py:46
+#: core/forms.py:58
 msgid "sub_sector"
 msgstr ""
 
-#: core/forms.py:54
+#: core/forms.py:66
 msgid "sort_by"
+msgstr ""
+
+#: core/forms.py:97 core/forms.py:140
+msgid "Given name"
+msgstr ""
+
+#: core/forms.py:98 core/forms.py:141
+msgid "Family name"
+msgstr ""
+
+#: core/forms.py:101
+msgid "Phone number (Optional)"
+msgstr "工作电话"
+
+#: core/forms.py:112
+msgid "City (Optional)"
+msgstr ""
+
+#: core/forms.py:113
+msgid "Company name (Optional)"
+msgstr ""
+
+#: core/forms.py:115 core/forms.py:147
+msgid "Message"
+msgstr ""
+
+#: core/forms.py:119
+msgid "How can we help?"
+msgstr ""
+
+#: core/forms.py:145
+msgid "City"
+msgstr ""
+
+#: core/forms.py:179
+msgid "Thank you for contacting us"
 msgstr ""
 
 #: core/templates/404.html:12
@@ -195,7 +246,22 @@ msgstr ""
 msgid "Go to the homepage"
 msgstr ""
 
-#: core/templates/core/base.html:41
+#: core/templates/core/about_uk/about_uk_region_listing_page.html:23
+#: core/templates/core/about_uk/about_uk_region_page.html:23
+msgid "About the UK"
+msgstr ""
+
+#: core/templates/core/about_uk/about_uk_region_page.html:24
+msgid "Regions"
+msgstr ""
+
+#: core/templates/core/article_related_content_cards.html:9
+#: core/templates/core/article_related_content_list.html:7
+#: core/templates/core/sector_page.html:148
+msgid "Related content"
+msgstr ""
+
+#: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
@@ -243,11 +309,11 @@ msgstr "联系脱欧咨询服务部门"
 msgid "Industries"
 msgstr "行业"
 
-#: core/templates/core/sector_page.html:150
+#: core/templates/core/sector_page.html:166
 msgid "Next steps"
 msgstr "下一步"
 
-#: core/templates/core/sector_page.html:151
+#: core/templates/core/sector_page.html:167
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
@@ -256,23 +322,108 @@ msgstr ""
 "作为英国的国际贸易部门，我们可以帮助您从英国找到合适的产品和服务。更重要的"
 "是，我们提供专家建议和有竞争力的财务支持。"
 
-#: core/templates/core/sector_page.html:156
+#: core/templates/core/sector_page.html:172
 msgid "I want to invest in the UK"
 msgstr "我想投资英国"
 
-#: core/templates/core/sector_page.html:160
+#: core/templates/core/sector_page.html:176
 msgid "I want to buy from the UK"
 msgstr "我想从英国购买"
 
-#: core/templates/core/uk_setup_guide/article_detail.html:24
-msgid "UK setup guide"
-msgstr "英国创业指南"
+#: find_a_supplier/constants.py:7
+msgid "Magazines, newspaper or trade press"
+msgstr ""
 
-#: find_a_supplier/forms.py:17
-#, fuzzy
-#| msgid "Industries"
+#: find_a_supplier/constants.py:11
+msgid "Posters or billboard"
+msgstr ""
+
+#: find_a_supplier/constants.py:15
+msgid "Outdoor advertising digital screen"
+msgstr ""
+
+#: find_a_supplier/constants.py:19
+msgid "Website advertisement"
+msgstr ""
+
+#: find_a_supplier/constants.py:23
+msgid "Website article"
+msgstr ""
+
+#: find_a_supplier/constants.py:30
+msgid "Social media website"
+msgstr ""
+
+#: find_a_supplier/constants.py:34
+msgid "At an event"
+msgstr ""
+
+#: find_a_supplier/constants.py:38
+msgid "Other"
+msgstr ""
+
+#: find_a_supplier/forms.py:29
 msgid "All industries"
 msgstr "行业"
+
+#: find_a_supplier/forms.py:163
+msgid "Please select an industry"
+msgstr ""
+
+#: find_a_supplier/forms.py:165
+msgid "Tick the box to confirm you agree to the terms and conditions."
+msgstr ""
+
+#: find_a_supplier/forms.py:172
+msgid "Your name"
+msgstr ""
+
+#: find_a_supplier/forms.py:175
+msgid "Industry"
+msgstr "行业"
+
+#: find_a_supplier/forms.py:222
+#, python-brace-format
+msgid ""
+"I agree to the <a href=\"{url}\" target=\"_blank\">great.gov.uk terms and "
+"conditions</a>"
+msgstr ""
+
+#: find_a_supplier/forms.py:229
+msgid "Full name"
+msgstr ""
+
+#: find_a_supplier/forms.py:249
+msgid "Your industry"
+msgstr "行业"
+
+#: find_a_supplier/forms.py:253
+msgid "Your organisation name"
+msgstr ""
+
+#: find_a_supplier/forms.py:261
+msgid "Size of your organisation"
+msgstr ""
+
+#: find_a_supplier/forms.py:266
+msgid "Your country"
+msgstr "国家"
+
+#: find_a_supplier/forms.py:274
+msgid "Describe what products or services you need"
+msgstr ""
+
+#: find_a_supplier/forms.py:275
+msgid "Maximum 1000 characters."
+msgstr ""
+
+#: find_a_supplier/forms.py:283
+msgid "Where did you hear about great.gov.uk?"
+msgstr ""
+
+#: find_a_supplier/forms.py:292
+msgid "Other source (optional)"
+msgstr ""
 
 #: perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -330,16 +481,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#, fuzzy
-#~| msgid ""
-#~| "The UK Government’s Department for International Trade helps connect "
-#~| "international buyers with UK companies. Tell us what products or "
-#~| "services you’re looking for an we’ll find your ideal business partner."
-#~ msgid ""
-#~ "The UK Government’s Department for International Trade helps connect "
-#~ "international buyers with UK companies. Tell us what products or services "
-#~ "you’re looking for and we’ll find your ideal business partner."
-#~ msgstr ""
-#~ "作为英国的国际贸易部门，我们可以帮助您从英国找到合适的产品和服务。更重要的"
-#~ "是，我们提供专家建议和有竞争力的财务支持。"
