@@ -410,7 +410,7 @@ class SpecificRefererRequiredMixin:
         return super().dispatch(*args, **kwargs)
 
 
-class IndustryLandingPageContactCMSSuccessView(BaseIndustryContactView):
+class IndustryLandingPageContactCMSSuccessView(SpecificRefererRequiredMixin, BaseIndustryContactView):
     template_name = 'find_a_supplier/industry-contact-success.html'
 
     def __init__(self):
@@ -425,4 +425,4 @@ class IndustryLandingPageContactCMSSuccessView(BaseIndustryContactView):
 
     @property
     def expected_referer_url(self):
-        return reverse('find-a-supplier:industry-contact')
+        return reverse('find-a-supplier:industry-contact', kwargs=self.kwargs)

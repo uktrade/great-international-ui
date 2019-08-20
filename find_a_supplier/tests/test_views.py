@@ -776,7 +776,7 @@ def test_supplier_redirects(source, destination, client):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 @patch.object(views.IndustryLandingPageContactCMSView.form_class, 'save')
-def test_sector_list_submit_with_comment_forms_api(
+def test_industry_contact_submit_with_comment_forms_api(
     mock_save, mock_cms_page, client, captcha_stub, settings
 ):
 
@@ -835,3 +835,96 @@ def test_sector_list_submit_with_comment_forms_api(
         template_id=settings.CONTACT_INDUSTRY_USER_TEMPLATE_ID,
         email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID,
     )
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_no_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    expected_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    response = client.get(url, {})
+
+    assert response.status_code == 302
+    assert response.url == expected_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_incorrect_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    expected_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    referer_url = 'http://www.googe.com'
+    response = client.get(url, {}, HTTP_REFERER=referer_url)
+
+    assert response.status_code == 302
+    assert response.url == expected_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_correct_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    referer_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    response = client.get(url, {}, HTTP_REFERER=referer_url)
+
+    assert response.status_code == 200
+    assert response.template_name == [
+        views.IndustryLandingPageContactCMSSuccessView.template_name
+    ]
