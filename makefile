@@ -92,6 +92,7 @@ TEST_SET_ENV_VARS := \
 	export DIRECTORY_FORMS_API_BASE_URL=http://forms.trade.great:8011; \
 	export DIRECTORY_FORMS_API_API_KEY=debug; \
 	export DIRECTORY_FORMS_API_SENDER_ID=debug; \
+	export REDIS_URL=; \
 	export DIRECTORY_API_CLIENT_API_KEY=debug; \
 	export DIRECTORY_API_CLIENT_BASE_URL=http://debug.com; \
 	export EU_EXIT_ZENDESK_SUBDOMAIN=debug; \

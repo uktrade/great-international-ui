@@ -774,10 +774,27 @@ def test_supplier_redirects(source, destination, client):
     assert response.url == destination
 
 
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 @patch.object(views.IndustryLandingPageContactCMSView.form_class, 'save')
 def test_sector_list_submit_with_comment_forms_api(
-    mock_save, client, captcha_stub, settings
+    mock_save, mock_cms_page, client, captcha_stub, settings
 ):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
     mock_save.return_value = create_response(status_code=200)
 
     url = reverse('find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'})
