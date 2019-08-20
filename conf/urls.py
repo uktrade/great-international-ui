@@ -91,6 +91,11 @@ urlpatterns += [
         name='invest-incoming-homepage'
     ),
     url(
+        r'^international/content/trade/contact/$',
+        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
+        name='content-trade-contact-redirect'
+    ),
+    url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
         invest.views.LegacyInvestURLRedirectView.as_view(),
         name='invest-incoming'

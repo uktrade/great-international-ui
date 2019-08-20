@@ -2,13 +2,16 @@ import requests
 import pytest
 import http
 from unittest import mock
+from unittest.mock import call, patch
 
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.urls import reverse, NoReverseMatch
+
+from directory_api_client.client import api_client
+from directory_constants import sectors, choices
 
 from core.helpers import CompanyParser, get_case_study_details_from_response
 from core.tests.helpers import create_response, stub_page
-from directory_api_client.client import api_client
-from find_a_supplier import forms, views
+from find_a_supplier import forms, views, constants
 
 
 @pytest.fixture
@@ -769,3 +772,198 @@ def test_supplier_redirects(source, destination, client):
     response = client.get(url)
     assert response.status_code == 302
     assert response.url == destination
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@patch.object(views.IndustryLandingPageContactCMSView.form_class, 'save')
+def test_industry_contact_submit_with_comment_forms_api(
+    mock_save, mock_cms_page, client, captcha_stub, settings
+):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    mock_save.return_value = create_response(status_code=200)
+
+    url = reverse('find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'})
+    data = {
+        'full_name': 'Jeff',
+        'email_address': 'jeff@example.com',
+        'phone_number': '3223232',
+        'sector': sectors.AEROSPACE,
+        'organisation_name': 'My name is Jeff',
+        'organisation_size': '1-10',
+        'country': 'United Kingdom',
+        'body': 'hello',
+        'source': constants.MARKETING_SOURCES[1][0],
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+    response = client.post(url, data)
+
+    assert response.status_code == 302
+    assert response.url == (
+        reverse('find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'})
+    )
+    assert mock_save.call_count == 2
+    assert mock_save.call_args_list[0] == call(
+        email_address='buying@example.com',
+        form_url='/international/trade/contact/',
+        sender={
+            'email_address': 'jeff@example.com',
+            'country_code': 'United Kingdom'
+        },
+        spam_control={
+            'contents': ['hello']},
+        template_id=settings.CONTACT_INDUSTRY_AGENT_TEMPLATE_ID,
+    )
+    assert mock_save.call_args_list[1] == call(
+        email_address='jeff@example.com',
+        form_url='/international/trade/contact/',
+        template_id=settings.CONTACT_INDUSTRY_USER_TEMPLATE_ID,
+        email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID,
+    )
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_no_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    expected_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    response = client.get(url, {})
+
+    assert response.status_code == 302
+    assert response.url == expected_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_incorrect_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    expected_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    referer_url = 'http://www.googe.com'
+    response = client.get(url, {}, HTTP_REFERER=referer_url)
+
+    assert response.status_code == 302
+    assert response.url == expected_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_sent_correct_referer(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+    )
+    referer_url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+    )
+    response = client.get(url, {}, HTTP_REFERER=referer_url)
+
+    assert response.status_code == 200
+    assert response.template_name == [
+        views.IndustryLandingPageContactCMSSuccessView.template_name
+    ]
+
+
+@mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
+def test_industry_contact_serialized_data(mock_submit_generic, captcha_stub):
+    data = {
+        'full_name': 'Jeff',
+        'email_address': 'jeff@example.com',
+        'phone_number': '3223232',
+        'sector': sectors.AEROSPACE,
+        'organisation_name': 'My name is Jeff',
+        'organisation_size': '1-10',
+        'country': 'United Kingdom',
+        'body': 'hello',
+        'source': constants.MARKETING_SOURCES[1][0],
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+    form = forms.ContactForm(data=data, industry_choices=choices.INDUSTRIES)
+
+    assert form.is_valid()
+
+    form.save(
+        template_id='foo',
+        email_address='reply_to@example.com',
+        form_url='/trade/some/path/',
+    )
+
+    assert form.serialized_data == {
+        'full_name': data['full_name'],
+        'email_address': data['email_address'],
+        'phone_number': data['phone_number'],
+        'sector': data['sector'],
+        'organisation_name': data['organisation_name'],
+        'organisation_size': data['organisation_size'],
+        'country': data['country'],
+        'body': data['body'],
+        'source': data['source'],
+        'source_other': '',
+    }

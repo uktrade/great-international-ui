@@ -7,13 +7,19 @@ from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
+from directory_components.mixins import (
+    CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, CMSLanguageSwitcherMixin
+)
+from directory_constants import slugs, choices
+
 import directory_forms_api_client.helpers
 from directory_api_client.client import api_client
 
-from core.views import InternationalView, LegacyRedirectCoreView
+from core.views import InternationalView, LegacyRedirectCoreView, MultilingualCMSPageFromPathView
 from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
-from core.mixins import PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin
+from core.mixins import (
+    PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin
+)
 
 from find_a_supplier import forms, helpers
 
@@ -339,3 +345,84 @@ class AnonymousSubscribeSuccessView(InternationalView):
 class LegacySupplierURLRedirectView(LegacyRedirectCoreView):
     redirects_mapping = redirects.REDIRECTS
     fallback_url = '/international/trade/'
+
+
+class BaseIndustryContactView(
+    MultilingualCMSPageFromPathView, CMSLanguageSwitcherMixin, CountryDisplayMixin, InternationalHeaderMixin
+):
+    pass
+
+
+class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
+    form_class = forms.ContactForm
+    success_url = reverse_lazy('find-a-supplier:industry-contact-success')
+
+    def get_form_kwargs(self, *args, **kwargs):
+        return {
+            **super().get_form_kwargs(*args, **kwargs),
+            'industry_choices': choices.INDUSTRIES,
+        }
+
+    def send_agent_email(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data['country'],
+        )
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['body']]
+        )
+        response = form.save(
+            form_url=self.request.path,
+            email_address=settings.CONTACT_INDUSTRY_AGENT_EMAIL_ADDRESS,
+            template_id=settings.CONTACT_INDUSTRY_AGENT_TEMPLATE_ID,
+            sender=sender,
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
+
+    def send_user_email(self, form):
+        response = form.save(
+            form_url=self.request.path,
+            email_address=form.cleaned_data['email_address'],
+            template_id=settings.CONTACT_INDUSTRY_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID,
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_agent_email(form)
+        self.send_user_email(form)
+        return super().form_valid(form)
+
+
+class IndustryLandingPageContactCMSView(BaseIndustryContactFormView):
+    slug = slugs.FIND_A_SUPPLIER_INDUSTRY_CONTACT
+
+
+class SpecificRefererRequiredMixin:
+
+    expected_referer_url = None
+
+    def dispatch(self, *args, **kwargs):
+        referer = self.request.META.get('HTTP_REFERER', '')
+        if self.expected_referer_url not in referer:
+            return redirect(self.expected_referer_url)
+        return super().dispatch(*args, **kwargs)
+
+
+class IndustryLandingPageContactCMSSuccessView(SpecificRefererRequiredMixin, BaseIndustryContactView):
+    template_name = 'find_a_supplier/industry-contact-success.html'
+
+    def __init__(self):
+        super().__init__()
+
+        self.set_ga360_payload(
+            page_id='FindASupplierIndustryLandingContactSent',
+            business_unit='FindASupplier',
+            site_section='Industries',
+            site_subsection='LandingContactSent'
+        )
+
+    @property
+    def expected_referer_url(self):
+        return reverse('find-a-supplier:industry-contact', kwargs=self.kwargs)

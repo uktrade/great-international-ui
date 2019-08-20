@@ -1,9 +1,24 @@
 import pytest
 from django.template import Context, Template
+from django.urls import reverse
 from django.utils import translation
 from bs4 import BeautifulSoup
 
 from core.templatetags import cms_tags
+
+from find_a_supplier.templatetags import industry_tags
+
+
+def test_search_url():
+    search_url = industry_tags.search_url(
+        sector_value='AEROSPACE',
+        term='test',
+    )
+
+    assert search_url == (
+        reverse('find-a-supplier:search') +
+        '?industries=AEROSPACE&term=test'
+    )
 
 
 def test_convert_links_to_with_arrow():
