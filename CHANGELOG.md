@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
 
 ### Fixed bugs
