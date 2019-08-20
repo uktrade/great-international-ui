@@ -1,0 +1,45 @@
+{% extends 'core/base_cms.html' %}
+{% load static from staticfiles %}
+{% load add_href_target from cms_tags %}
+{% load add_export_elements_classes render_form ga360_data from directory_components %}
+
+{% block css_layout_class %}find-a-supplier-industry-contact{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  {% ga360_data "breadcrumbs" %}
+  {% include 'core/includes/cms_breadcrumbs.html' %}
+  {% end_ga360_data %}
+</div>
+
+<section id="lede" class="padding-bottom-90">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-two-thirds-m column-half-xl">
+        {{ page.introduction_text|add_export_elements_classes|add_href_target:request|safe }}
+
+        {% ga360_data "contact-industry-form" target="form" ga-value=industry_page.breadcrumbs_label %}
+        <form action="" method="post">
+            {% render_form form %}
+            <input class="button button-blue" type="submit" value="{{ page.submit_button_text }}">
+        </form>
+        {% end_ga360_data %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block body_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'core/js/lead-generation.js' %}"></script>
+    <script type="text/javascript">
+      var others = document.getElementsByClassName('js-field-other');
+      var selectors = document.getElementsByClassName('js-field-other-selector');
+      for(var i=0; i<others.length; i++) {
+          GOVUK.utils.toggleOtherOnSelect(others[i], selectors[i]);
+      }
+    </script>
+{% endblock body_js %}

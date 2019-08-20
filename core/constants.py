@@ -49,6 +49,7 @@ TEMPLATE_MAPPING = {
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
+    'InternationalTradeIndustryContactPage': 'find_a_supplier/industry-contact.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -74,7 +75,9 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestContactFormPage':
         'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'CapitalInvestContactFormSuccessPage':
-        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'
+        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'InternationalTradeIndustryContactPage':
+        'FIND_A_SUPPLIER_ON',
 }
 
 GA_DATA_MAPPING = {
@@ -245,6 +248,11 @@ GA_DATA_MAPPING = {
         'business_unit': 'FindASupplier',
         'site_section': 'HomePage',
         'site_subsection': '',
+    },
+    'InternationalTradeIndustryContactPage': {
+        'business_unit': 'FindASupplier',
+        'site_section': 'Industries',
+        'site_subsection': 'LandingPageContact'
     },
 }
 
