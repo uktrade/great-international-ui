@@ -4,7 +4,7 @@ import http
 from unittest import mock
 from unittest.mock import call, patch
 
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.urls import reverse, NoReverseMatch
 
 from directory_api_client.client import api_client
 from directory_constants import sectors

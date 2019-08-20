@@ -5,7 +5,7 @@ import urllib.parse
 from directory_constants.sectors import CONFLATED
 
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 register = template.Library()
