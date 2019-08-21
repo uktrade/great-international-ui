@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1826 - Fix healthcare and life-sciences redirects.
 
 ### Fixed bugs
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
