@@ -18,7 +18,7 @@ REDIRECTS = {
     'industries/consumer-retail': '/international/content/industries/retail/',
     'industries/cyber-security': '/international/content/industries/cyber-security/',
     'industries/education-industry': '/international/content/industries/education/',
-    'industries/engineering-industry': '/international/content/industries/advanced-manufacturing/',
+    'industries/engineering-industry': '/international/content/industries/engineering-industry/',
     'industries/food-and-drink': '/international/content/industries/food-and-drink/',
     'industries/legal-services': '/international/content/industries/legal-services/',
     'industries/marine': '/international/content/industries/maritime/',

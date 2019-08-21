@@ -774,12 +774,16 @@ def test_supplier_redirects(source, destination, client):
     assert response.url == destination
 
 
-@pytest.mark.parametrize('url', ('/trade/industries/healthcare/', '/trade/industries/life-sciences/'))
-def test_industries_incoming(url, client):
+@pytest.mark.parametrize('url,destination', (
+    ('/trade/industries/healthcare/', '/international/content/industries/health-and-life-sciences/'),
+    ('/trade/industries/life-sciences/', '/international/content/industries/health-and-life-sciences/'),
+    ('/trade/industries/engineering-industry/', '/international/content/industries/engineering-industry/'),
+))
+def test_industries_incoming(url, destination, client):
     response = client.get(url)
 
     assert response.status_code == 302
-    assert response.url == '/international/content/industries/health-and-life-sciences/'
+    assert response.url == destination
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

@@ -122,16 +122,8 @@ urlpatterns += [
         name='content-invest-home-redirect'
     ),
     url(
-        r'^trade/industries/healthcare/$',
+        r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
-        {'path': 'industries/healthcare'},
-        name='trade-incoming-healthcare'
-    ),
-    url(
-        r'^trade/industries/life-sciences/$',
-        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
-        {'path': 'industries/life-sciences'},
-        name='trade-incoming-life-sciences'
     ),
     url(
         r'^international/trade/incoming/$',  # Homepage
