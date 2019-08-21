@@ -765,13 +765,21 @@ def test_anonymous_subscribe_success(client):
      '/international/content/industries/financial-services/building-fintech-bridges/'),
     ('industry-articles/a-focus-on-regulatory-technology-solutions-article/',
      '/international/content/industries/financial-services/a-focus-on-regulatory-technology-solutions/'),
-    ('industries/infrastructure/', '/international/content/industries/infrastructure')
+    ('industries/infrastructure/', '/international/content/industries/infrastructure'),
 ])
 def test_supplier_redirects(source, destination, client):
     url = reverse('trade-incoming', kwargs={'path': source})
     response = client.get(url)
     assert response.status_code == 302
     assert response.url == destination
+
+
+@pytest.mark.parametrize('url', ('/trade/industries/healthcare/', '/trade/industries/life-sciences/'))
+def test_industries_incoming(url, client):
+    response = client.get(url)
+
+    assert response.status_code == 302
+    assert response.url == '/international/content/industries/health-and-life-sciences/'
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
