@@ -176,7 +176,7 @@ class CapitalInvestContactForm(forms.Form):
         # no need to set `sender` as this is just a confirmation email.
         action = self.action_class(
             recipients=[self.cleaned_data['email']],
-            subject=str(_('Thank you for contacting us')),
+            subject=str(_('A copy of your message and what happens next')),
             reply_to=[settings.DEFAULT_FROM_EMAIL],
             form_url=self.submission_url,
         )
