@@ -8,6 +8,8 @@
 - CI-437 - Ensure that all cookies are secure and httponly.
 
 ### Fixed bugs
+- CMS-1825 - Fix breadcrumbs on ISD company contact page
+- CMS-1827 - Fix FAS search term
 
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
