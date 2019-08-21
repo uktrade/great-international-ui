@@ -31,6 +31,7 @@ DEBUG_SET_ENV_VARS := \
 	export GOOGLE_TAG_MANAGER_ENV=&gtm_auth=Ok4kd4Wf_NKgs4c5Z5lUFQ&gtm_preview=env-6&gtm_cookies_win=x; \
 	export UTM_COOKIE_DOMAIN=.great; \
 	export NOCAPTCHA=True; \
+	export CSRF_COOKIE_SECURE=False; \
 	export SESSION_COOKIE_SECURE=false; \
 	export SECURE_HSTS_SECONDS=0 ;\
 	export SECURE_SSL_REDIRECT=false; \
