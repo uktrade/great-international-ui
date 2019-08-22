@@ -3,12 +3,13 @@
 ## Pre-release
 
 ### Implemented enhancements
-- CMS-1827 - Fix FAS search term
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
-- CMS-1826 - Fix healthcare and life-sciences redirects.
 
 ### Fixed bugs
+- CMS-1826 - Fix engineering industry redirect
+- CMS-1826 - Fix healthcare and life-sciences redirects.
+- No ticket - Fix unloaded tag in template
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
 
