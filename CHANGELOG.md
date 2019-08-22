@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
 - CMS-1827 - Fix FAS search term
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
