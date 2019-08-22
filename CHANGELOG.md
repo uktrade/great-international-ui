@@ -6,6 +6,7 @@
 - CMS-1827 - Fix FAS search term
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
+- CMS-1826 - Fix healthcare and life-sciences redirects.
 
 ### Fixed bugs
 - CMS-1825 - Fix breadcrumbs on ISD company contact page

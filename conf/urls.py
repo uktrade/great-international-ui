@@ -122,6 +122,10 @@ urlpatterns += [
         name='content-invest-home-redirect'
     ),
     url(
+        r'^trade/(?P<path>industries\/.*)/$',
+        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
+    ),
+    url(
         r'^international/trade/incoming/$',  # Homepage
         QuerystringRedirectView.as_view(pattern_name='trade-home'),
         name='trade-incoming-homepage'

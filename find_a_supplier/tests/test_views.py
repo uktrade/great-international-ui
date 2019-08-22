@@ -715,9 +715,9 @@ def test_anonymous_subscribe_success(client):
     ('industries', '/international/content/industries'),
     ('industries/creative-services', '/international/content/industries/creative-industries'),
     ('industries/energy', '/international/content/industries/nuclear-energy/'),
-    ('industries/healthcare', '/international/content/industries/healthcare-and-life-sciences/'),
+    ('industries/healthcare', '/international/content/industries/health-and-life-sciences/'),
     ('industries/innovation-industry', '/international/content/industries/technology/'),
-    ('industries/life-sciences', '/international/content/industries/healthcare-and-life-sciences/'),
+    ('industries/life-sciences', '/international/content/industries/health-and-life-sciences/'),
     ('industries/professional-and-financial-services', '/international/content/industries/financial-services'),
     ('industries/sports-economy', '/international/content/industries/sports-economy/'),
     ('industries/technology', '/international/content/industries/technology'),
@@ -728,7 +728,7 @@ def test_anonymous_subscribe_success(client):
     ('industries/consumer-retail', '/international/content/industries/retail/'),
     ('industries/cyber-security', '/international/content/industries/cyber-security/'),
     ('industries/education-industry', '/international/content/industries/education/'),
-    ('industries/engineering-industry', '/international/content/industries/advanced-manufacturing/'),
+    ('industries/engineering-industry', '/international/content/industries/engineering-industry/'),
     ('industries/food-and-drink', '/international/content/industries/food-and-drink/'),
     ('industries/legal-services', '/international/content/industries/legal-services/'),
     ('industries/marine', '/international/content/industries/maritime/'),
@@ -765,11 +765,23 @@ def test_anonymous_subscribe_success(client):
      '/international/content/industries/financial-services/building-fintech-bridges/'),
     ('industry-articles/a-focus-on-regulatory-technology-solutions-article/',
      '/international/content/industries/financial-services/a-focus-on-regulatory-technology-solutions/'),
-    ('industries/infrastructure/', '/international/content/industries/infrastructure')
+    ('industries/infrastructure/', '/international/content/industries/infrastructure'),
 ])
 def test_supplier_redirects(source, destination, client):
     url = reverse('trade-incoming', kwargs={'path': source})
     response = client.get(url)
+    assert response.status_code == 302
+    assert response.url == destination
+
+
+@pytest.mark.parametrize('url,destination', (
+    ('/trade/industries/healthcare/', '/international/content/industries/health-and-life-sciences/'),
+    ('/trade/industries/life-sciences/', '/international/content/industries/health-and-life-sciences/'),
+    ('/trade/industries/engineering-industry/', '/international/content/industries/engineering-industry/'),
+))
+def test_industries_incoming(url, destination, client):
+    response = client.get(url)
+
     assert response.status_code == 302
     assert response.url == destination
 
