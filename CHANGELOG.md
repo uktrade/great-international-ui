@@ -7,6 +7,7 @@
 - GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
+- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 
 ### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
@@ -30,7 +31,6 @@
 - CI-276 - Added `CapitalInvestContactFormPage` and `CapitalInvestContactFormSuccessPage`
 - CMS-1746 - Trade redirects
 - CI-434 - Capital invest contact form edits
-- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 - CI-428 - Updated content for confirmation email from Capital Invest Contact form
 
 ### Fixed bugs
