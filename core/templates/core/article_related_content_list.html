@@ -1,4 +1,5 @@
 {% load filter_by_active_language from cms_tags %}
+{% load trans from i18n %}
 
 {% with page.related_pages|filter_by_active_language as related_pages %}
 {% if related_pages %}
