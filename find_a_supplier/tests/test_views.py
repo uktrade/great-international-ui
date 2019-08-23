@@ -728,7 +728,7 @@ def test_anonymous_subscribe_success(client):
     ('industries/consumer-retail', '/international/content/industries/retail/'),
     ('industries/cyber-security', '/international/content/industries/cyber-security/'),
     ('industries/education-industry', '/international/content/industries/education/'),
-    ('industries/engineering-industry', '/international/content/industries/engineering-industry/'),
+    ('industries/engineering-industry', '/international/content/industries/engineering-and-manufacturing/'),
     ('industries/food-and-drink', '/international/content/industries/food-and-drink/'),
     ('industries/legal-services', '/international/content/industries/legal-services/'),
     ('industries/marine', '/international/content/industries/maritime/'),
@@ -777,7 +777,7 @@ def test_supplier_redirects(source, destination, client):
 @pytest.mark.parametrize('url,destination', (
     ('/trade/industries/healthcare/', '/international/content/industries/health-and-life-sciences/'),
     ('/trade/industries/life-sciences/', '/international/content/industries/health-and-life-sciences/'),
-    ('/trade/industries/engineering-industry/', '/international/content/industries/engineering-industry/'),
+    ('/trade/industries/engineering-industry/', '/international/content/industries/engineering-and-manufacturing/'),
 ))
 def test_industries_incoming(url, destination, client):
     response = client.get(url)
