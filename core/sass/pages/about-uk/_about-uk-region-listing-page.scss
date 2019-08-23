@@ -1,0 +1,18 @@
+
+.about-uk-region-listing-page {
+
+ .numbered-uk-map {
+   @media (max-width: 960px) {
+     display: none;
+   }
+ }
+
+ .map-labels {
+   @media (max-width: 960px) {
+     .circle-wrapper {
+       display: none;
+     }
+   }
+ }
+
+}

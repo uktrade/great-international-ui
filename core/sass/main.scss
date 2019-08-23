@@ -15,6 +15,9 @@
 @import 'components/cta-block/cta-block';
 @import 'components/help-block/help-block';
 @import 'components/accordion/base';
+@import 'components/numbered-uk-map/numbered-uk-map.scss';
+@import 'components/labelled-uk-map/labelled-uk-map';
+@import 'components/clear-uk-map/clear-uk-map.scss';
 
 // PAGES
 // ======
@@ -59,6 +62,7 @@
 @import 'pages/about-uk/about-uk-landing-page';
 @import 'pages/about-uk/why-choose-the-uk-page';
 @import 'pages/about-uk/about-uk-region-page';
+@import 'pages/about-uk/_about-uk-region-listing-page';
 
 // Find a supplier
 @import 'pages/find-a-supplier/landing-page';

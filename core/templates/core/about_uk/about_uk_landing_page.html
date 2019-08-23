@@ -68,27 +68,36 @@
 </section>
 {% endif %}
 
-{% if page.regions_section_title and page.regions_section_content %}
+{% if page.regions_section_title %}
 <section class="stone-page-section">
     <div class="container">
         <div class="grid-row">
-            <div class="column-half-xl float-right-xl {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %}">
-                <h2 class="heading-large">{{ page.regions_section_title}} </h2>
-            </div>
+            <h2 class="heading-large">{{ page.regions_section_title}} </h2>
+            <div class="column-two-thirds">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
         </div>
-        <div class="cta-block flex-grid">
-            {% if page.regions_section_image.url %}
-                <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
-                    <figure class="landing-page-image flex-shrink-0">
-                        <img class="width-full" src="{{page.regions_section_image.url}}" alt="">
-                    </figure>
-                </div>
-            {%  endif %}
-            <div class="column-half-xl cta-block-content {% if page.regions_section_image.url %} right-half-page-text-xl {% endif %} center-vertical">
-                <div>{{ page.regions_section_content|add_export_elements_classes|safe }}</div>
-                {% if page.regions_section_cta_link and page.regions_section_cta_text %}
-                    <a class="button button-blue button-arrow-small margin-top-45 width-half" href="{{page.regions_section_cta_link}}">{{ page.regions_section_cta_text }}</a>
-                {% endif %}
+        <div class="cta-block flex-grid margin-top-30">
+            <div class="column-half-xl cta-block-content center-vertical map-labels">
+                {% for field in page.regions %}
+                    {% if field.region %}
+                        <div class="region-label">
+                            <div class="circle-wrapper">
+                                <div class="circle-outline">
+                                    <span class="bold-small">{{ forloop.counter }}</span>
+                                </div>
+                            </div>
+                            <a class="region-link" href="{{ field.region.full_path }}">
+                                <h2 class="region-title bold-small">{{ field.region.title }}</h2>
+                            </a>
+                        </div>
+                        <span class="margin-bottom-30 font-xsmall">{{ field.text }}</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100 numbered-map">
+                {% include 'core/includes/numbered_uk_map.html' %}
+            </div>
+            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100 labelled-map">
+                {% include 'core/includes/labelled_uk_map.html' %}
             </div>
         </div>
     </div>
