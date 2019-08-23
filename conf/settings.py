@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE_CLASSES = [
     'directory_components.middleware.MaintenanceModeMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'directory_components.middleware.LocaleQuerystringMiddleware',
     'directory_components.middleware.ForceDefaultLocale',
@@ -294,6 +295,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 SECURE_HSTS_SECONDS = env.int('SECURE_HSTS_SECONDS', 16070400)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # Sentry
 RAVEN_CONFIG = {
@@ -306,10 +310,12 @@ RAVEN_CONFIG = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
+SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_NAME = env.str('SESSION_COOKIE_NAME', 'great_int_sessionid')
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', True)
+CSRF_COOKIE_HTTPONLY = True
 
 # Google Recaptcha
 RECAPTCHA_PUBLIC_KEY = env.str('RECAPTCHA_PUBLIC_KEY')
