@@ -100,6 +100,9 @@
                 {% include 'core/includes/labelled_uk_map.html' %}
             </div>
         </div>
+        {% if page.regions_section_cta_link and page.regions_section_cta_text %}
+            <a href="{{ page.regions_section_cta_link }}" class="button button-ghost-blue button-arrow-small button-blue margin-bottom-30">{{ page.regions_section_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 {% endif %}
