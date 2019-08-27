@@ -10,12 +10,7 @@
     stroke-width: 0.4;
     text-decoration: underline $active-blue;
     fill: $active-blue;
-  }
-
-  @media (min-width: 1024px) {
-    text {
-      font-size: 19px;
-    }
+    font-size: 19px;
   }
 
   @media (max-width: 1023px) and (min-width: 768px) {
@@ -24,9 +19,4 @@
     }
   }
 
-  @media (max-width: 767px) and (min-width: 375px) {
-    text {
-      font-size: 19px;
-    }
-  }
 }

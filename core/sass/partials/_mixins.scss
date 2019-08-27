@@ -136,15 +136,15 @@
 }
 
 @mixin uk-map{
-  stroke: black;
+  stroke: $black;
 
   .greyed-out-region{
-    fill: #F5F2ED;
+    fill: $stone-light;
   }
 
   path{
     stroke-width: 2;
-    fill: white;
+    fill: $white;
   }
 
   circle {
