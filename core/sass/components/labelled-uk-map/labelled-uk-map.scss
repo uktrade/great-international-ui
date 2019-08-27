@@ -2,12 +2,13 @@
 @import '../../partials/mixins';
 
 .labelled-uk-map{
+
   @include uk-map();
 
-  a:visited {
-    text{
-      stroke: $active-blue;
-    }
+  text {
+    font-family: Roboto, serif;
+    stroke-width: 0.4;
+    text-decoration: underline $active-blue;
   }
 
   @media (min-width: 1024px) {
@@ -27,13 +28,4 @@
       font-size: 19px;
     }
   }
-
-  text {
-    font-family: Roboto, serif;
-    stroke-width: 0.4;
-    text-decoration: underline $active-blue;
-  }
-
-
-
 }
