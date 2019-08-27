@@ -8,7 +8,7 @@
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
-- CI-400 - Added region maps for ABout UK pages
+- CI-400 - Added clickable maps to About Uk landing pages
 
 ### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
