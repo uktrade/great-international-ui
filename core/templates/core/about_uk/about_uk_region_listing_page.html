@@ -44,11 +44,6 @@
             <div class="column-half-xl cta-block-content center-vertical map-labels">
                 {% for field in page.mapped_regions %}
                     <div class="region-label">
-                        <div class="circle-wrapper">
-                            <div class="circle-outline">
-                                <span class="bold-small">{{ forloop.counter }}</span>
-                            </div>
-                        </div>
                         <a class="region-link" href="{{ field.region.full_path }}">
                             <h2 class="region-title bold-small">{{ field.region.title }}</h2>
                         </a>
@@ -56,8 +51,8 @@
                     <span class="margin-bottom-30 font-xsmall">{{ field.text }}</span>
                 {% endfor %}
             </div>
-            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
-                {% include 'core/includes/numbered_uk_map.html' %}
+            <div class="column-half-xl center-vertical flex-shrink-0 max-width-100 labelled-map">
+                {% include 'core/includes/labelled_uk_map.html' %}
             </div>
         </div>
     </div>

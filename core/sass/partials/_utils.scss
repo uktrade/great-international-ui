@@ -187,21 +187,4 @@
     text-decoration-color: $active-blue;
   }
 
-  .circle-wrapper {
-    display: inline-block;
-    padding-right: 15px;
-  }
-
-  .circle-outline {
-    border: 1.5px solid $active-blue;
-    color: $active-blue;
-    border-radius: 50%;
-    height: 35px;
-    width: 35px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-
 }

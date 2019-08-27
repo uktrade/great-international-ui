@@ -4,9 +4,36 @@
 .labelled-uk-map{
   @include uk-map();
 
+  a:visited {
+    text{
+      stroke: $active-blue;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    text {
+      font-size: 19px;
+    }
+  }
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    text {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 767px) and (min-width: 375px) {
+    text {
+      font-size: 19px;
+    }
+  }
+
   text {
-    font-size: 20px;
+    font-family: Roboto, serif;
+    stroke-width: 0.4;
     text-decoration: underline $active-blue;
   }
+
+
 
 }

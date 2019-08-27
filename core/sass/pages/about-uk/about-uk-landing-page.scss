@@ -19,27 +19,7 @@
     }
   }
 
-  .region-label{
-    display: inline-flex;
-    color: $active-blue;
-    a {
-      color: $active-blue;
-    }
-  }
-
-  .labelled-map{
-    display: none;
-  }
-
   @media (max-width: 960px) {
-    .numbered-map{
-      display: none;
-    }
-
-    .labelled-map{
-      display: unset;
-    }
-
     .map-labels {
       display: none;
     }
