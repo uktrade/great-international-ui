@@ -9,6 +9,7 @@
     font-family: Roboto, serif;
     stroke-width: 0.4;
     text-decoration: underline $active-blue;
+    fill: $active-blue;
   }
 
   @media (min-width: 1024px) {
