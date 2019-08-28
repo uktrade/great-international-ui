@@ -73,7 +73,7 @@
     <div class="container">
         <div class="grid-row">
             <h2 class="heading-large">{{ page.regions_section_title}} </h2>
-            <div class="column-two-thirds">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+            <div class="column-two-thirds">{{ page.regions_section_intro|add_export_elements_classes|safe }}</div>
         </div>
         <div class="cta-block flex-grid margin-top-30">
             <div class="column-half-xl cta-block-content center-vertical map-labels">
@@ -81,7 +81,7 @@
                     {% if field.region %}
                         <div class="region-label">
                             <a class="region-link" href="{{ field.region.full_path }}">
-                                <h2 class="region-title bold-small">{{ field.region.title }}</h2>
+                                <h3 class="region-title bold-small">{{ field.region.title }}</h3>
                             </a>
                         </div>
                         <span class="margin-bottom-30 font-xsmall">{{ field.text }}</span>
