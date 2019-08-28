@@ -5,7 +5,7 @@
   @include uk-map();
 
   text {
-    font-family: Roboto, serif;
+    font-family: "Roboto", arial, helvetica, verdana;
     stroke-width: 0.4;
     text-decoration: underline $active-blue;
     fill: $active-blue;
