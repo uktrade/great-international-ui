@@ -620,8 +620,31 @@ def about_uk_landing_page_context_modifier(context, request):
         random.shuffle(all_sectors)
         random_sectors = all_sectors[0:3]
 
+    show_regions = False
+    if 'regions' in context['page']:
+        regions = [field for field in context['page']['regions']
+                   if field['region'] and field['text']]
+        if len(regions) == 6:
+            show_regions = True
+
     return {
-        'random_sectors': random_sectors
+        'random_sectors': random_sectors,
+        'show_regions': show_regions
+    }
+
+
+@register_context_modifier('AboutUkRegionListingPage')
+def about_uk_region_listing_page_context_modifier(context, request):
+
+    show_mapped_regions = False
+    if 'mapped_regions' in context['page']:
+        regions = [field for field in context['page']['mapped_regions']
+                   if field['region'] and field['text']]
+        if len(regions) == 6:
+            show_mapped_regions = True
+
+    return {
+        'show_mapped_regions': show_mapped_regions
     }
 
 

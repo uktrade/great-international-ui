@@ -37,10 +37,10 @@
 </section>
 {% endif %}
 
-{% if page.mapped_regions %}
+{% if show_mapped_regions %}
 <section class="page-section">
     <div class="container">
-        <div class="cta-block flex-grid margin-top-30">
+        <div class="flex-grid margin-top-30">
             <div class="column-half-xl cta-block-content center-vertical map-labels">
                 {% for field in page.mapped_regions %}
                     <div class="region-label">

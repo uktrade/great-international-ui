@@ -1893,3 +1893,155 @@ def test_this_capital_invest_contact_invalid(
 
     assert mock_save.call_count == 0
     assert response.context_data['form'].utm_data == utm_data
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_regions_section_true_on_about_uk_landing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'About UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkLandingPage',
+        'regions': [
+            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'North England'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Midlands'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'South England'}, 'text': 'Lorem ipsum'},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/')
+
+    assert response.context_data['show_regions'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_regions_section_false_on_about_uk_landing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'About UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkLandingPage',
+        'regions': [
+            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': [], 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Northern Ireland'}, 'text': ''},
+            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': [], 'text': 'Lorem ipsum'},
+            {'region': {'title': 'South England'}, 'text': ''},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/')
+
+    assert response.context_data['show_regions'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_regions_section_true_on_region_listing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Regions',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionListingPage',
+        'mapped_regions': [
+            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'North England'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Midlands'}, 'text': 'Lorem ipsum'},
+            {'region': {'title': 'South England'}, 'text': 'Lorem ipsum'},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/regions/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/')
+
+    assert response.context_data['show_mapped_regions'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_regions_section_false_on_region_listing_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Regions',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionListingPage',
+        'mapped_regions': [
+            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': [], 'text': 'Lorem ipsum'},
+            {'region': {'title': 'Northern Ireland'}, 'text': ''},
+            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': [], 'text': 'Lorem ipsum'},
+            {'region': {'title': 'South England'}, 'text': ''},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/regions/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/')
+
+    assert response.context_data['show_mapped_regions'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_show_regions_section_false_on_region_listing_page_if_not_there(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Regions',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionListingPage',
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/regions/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/')
+
+    assert response.context_data['show_mapped_regions'] is False

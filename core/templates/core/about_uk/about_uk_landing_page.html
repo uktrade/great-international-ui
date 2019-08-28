@@ -68,14 +68,14 @@
 </section>
 {% endif %}
 
-{% if page.regions_section_title %}
+{% if page.regions_section_title and show_regions %}
 <section class="stone-page-section">
     <div class="container">
         <div class="grid-row">
             <h2 class="heading-large">{{ page.regions_section_title}} </h2>
             <div class="column-two-thirds">{{ page.regions_section_intro|add_export_elements_classes|safe }}</div>
         </div>
-        <div class="cta-block flex-grid margin-top-30">
+        <div class="flex-grid margin-top-30">
             <div class="column-half-xl cta-block-content center-vertical map-labels">
                 {% for field in page.regions %}
                     {% if field.region %}
