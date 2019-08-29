@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import call, patch, Mock, PropertyMock
+from unittest.mock import call, patch
 from importlib import import_module
 from requests.exceptions import HTTPError
 from django.urls import reverse
@@ -7,7 +7,6 @@ from django.urls import reverse
 from directory_constants import choices
 
 from core.tests.helpers import create_response
-from core.views import InvestToExpandView
 from invest import views
 from . import helpers
 
