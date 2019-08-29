@@ -102,7 +102,7 @@ urlpatterns += [
     ),
     url(
         r'^international/invest/$',
-        core.views.InvestToExpandView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
         name='invest-home'
     ),
@@ -119,6 +119,16 @@ urlpatterns += [
     ),
     url(
         r"^international/invest/contact/success/$",
+        contact.views.ContactFormSuccessView.as_view(),
+        name="invest-contact-success"
+    ),
+    url(
+        r"^international/expand/contact/$",
+        contact.views.ContactFormView.as_view(),
+        name="invest-contact"
+    ),
+    url(
+        r"^international/expand/contact/success/$",
         contact.views.ContactFormSuccessView.as_view(),
         name="invest-contact-success"
     ),
@@ -175,6 +185,24 @@ urlpatterns += [
         r'^international/content/invest/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': '/invest/high-potential-opportunities/contact/success/'},
+        name='high-potential-opportunity-request-form-success'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/$',
+        QuerystringRedirectView.as_view(
+            url=('/international/content/expand/#high-potential-opportunities')),
+        name='hpo-landing-page-redirect'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/$',
+        invest.views.HighPotentialOpportunityFormView.as_view(),
+        {'path': '/expand/high-potential-opportunities/contact/'},
+        name='high-potential-opportunity-request-form'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/success/$',
+        invest.views.HighPotentialOpportunitySuccessView.as_view(),
+        {'path': '/expand/high-potential-opportunities/contact/success/'},
         name='high-potential-opportunity-request-form-success'
     ),
     url(

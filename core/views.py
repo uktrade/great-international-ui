@@ -73,6 +73,16 @@ class MonolingualCMSPageFromPathView(
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
+
+        if response.status_code == 404 and 'invest/' in self.kwargs['path']:
+            new_path = self.kwargs['path'].replace('invest/', 'expand/')
+            response = cms_api_client.lookup_by_path(
+                site_id=self.cms_site_id,
+                path=new_path,
+                language_code=translation.get_language(),
+                draft_token=self.request.GET.get('draft_token'),
+            )
+
         return handle_cms_response(response)
 
     def get_context_data(self, **kwargs):
@@ -769,33 +779,3 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
-
-
-class InvestToExpandView(MultilingualCMSPageFromPathView):
-
-    @cached_property
-    def expand_page_exists(self):
-        response = cms_api_client.lookup_by_slug(
-            slug='expand',
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-            service_name=cms.GREAT_INTERNATIONAL
-        )
-        if response.status_code == 200:
-            return response.json()
-        return None
-
-    @cached_property
-    def expand_slug_page(self):
-        response = cms_api_client.lookup_by_path(
-            site_id=self.cms_site_id,
-            path=self.kwargs['path'].replace("invest", "expand"),
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-        )
-        return handle_cms_response(response)
-
-    def dispatch(self, request, *args, **kwargs):
-        if self.expand_page_exists:
-            return redirect(self.expand_slug_page['full_path'])
-        return super().dispatch(request, *args, **kwargs)
