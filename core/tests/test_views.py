@@ -1908,12 +1908,12 @@ def test_show_regions_section_true_on_about_uk_landing_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'South England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'south-england'}, 'title': 'South England'}, 'text': 'Lorem ipsum'},
         ],
     }
 
@@ -1972,12 +1972,12 @@ def test_show_regions_section_true_on_region_listing_page(
         },
         'page_type': 'AboutUkRegionListingPage',
         'mapped_regions': [
-            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'title': 'South England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'south-england'}, 'title': 'South England'}, 'text': 'Lorem ipsum'},
         ],
     }
 
