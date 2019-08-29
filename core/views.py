@@ -784,7 +784,7 @@ class InvestToExpandView(MultilingualCMSPageFromPathView):
         return None
 
     @cached_property
-    def page(self):
+    def expand_slug_page(self):
         response = cms_api_client.lookup_by_path(
             site_id=self.cms_site_id,
             path=self.kwargs['path'].replace("invest", "expand"),
@@ -795,5 +795,5 @@ class InvestToExpandView(MultilingualCMSPageFromPathView):
 
     def dispatch(self, request, *args, **kwargs):
         if self.expand_page_exists:
-            return redirect(self.page['full_path'])
+            return redirect(self.expand_slug_page['full_path'])
         return super().dispatch(request, *args, **kwargs)
