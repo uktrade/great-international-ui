@@ -1908,12 +1908,12 @@ def test_show_regions_section_true_on_about_uk_landing_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'south-england'}, 'title': 'South England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -1972,12 +1972,12 @@ def test_show_regions_section_true_on_region_listing_page(
         },
         'page_type': 'AboutUkRegionListingPage',
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'south-england'}, 'title': 'South England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -2060,12 +2060,12 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'south-england'}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -2138,12 +2138,12 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page(
         },
         'page_type': 'AboutUkRegionListingPage',
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
-            {'region': {'meta': {'slug': 'south-england'}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
