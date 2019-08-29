@@ -9,6 +9,7 @@
 - CI-437 - Ensure that all cookies are secure and httponly.
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 - CI-400 - Added clickable maps to About Uk landing pages
+- CI-366 - Added cta to invest home page
 
 ### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
