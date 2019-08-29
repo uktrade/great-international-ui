@@ -15,7 +15,7 @@ from directory_cms_client.helpers import handle_cms_response
 import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
-from directory_constants import urls
+from directory_constants import urls, cms
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin,
@@ -767,3 +767,33 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class InvestToExpandView(MultilingualCMSPageFromPathView):
+
+    @cached_property
+    def expand_page_exists(self):
+        response = cms_api_client.lookup_by_slug(
+            slug='expand',
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+            service_name=cms.GREAT_INTERNATIONAL
+        )
+        if response.status_code == 200:
+            return response.json()
+        return None
+
+    @cached_property
+    def page(self):
+        response = cms_api_client.lookup_by_path(
+            site_id=self.cms_site_id,
+            path=self.kwargs['path'].replace("invest", "expand"),
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
+        return handle_cms_response(response)
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.expand_page_exists:
+            return redirect(self.page['full_path'])
+        return super().dispatch(request, *args, **kwargs)
