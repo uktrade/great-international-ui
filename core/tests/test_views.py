@@ -2045,3 +2045,57 @@ def test_show_regions_section_false_on_region_listing_page_if_not_there(
         request, path='/international/content/about-uk/regions/')
 
     assert response.context_data['show_mapped_regions'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_getting_region_labels_with_coordinates_on_about_uk_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'About UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkLandingPage',
+        'regions': [
+            {'region': {'meta': {'slug': 'scotland'}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'northern-ireland'}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'north-england'}, 'title': 'North England'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'wales'}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'midlands'}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},
+            {'region': {'meta': {'slug': 'south-england'}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/')
+
+    assert response.context_data['scotland'][0]['x'] == '164'
+    assert response.context_data['scotland'][0]['y'] == '206.0'
+
+    assert response.context_data['north_england'][0]['x'] == '440'
+    assert response.context_data['north_england'][0]['y'] == '415.0'
+    assert response.context_data['north_england'][1]['x'] == '440'
+    assert response.context_data['north_england'][1]['y'] == '440.0'
+
+    assert response.context_data['northern_ireland'][0]['x'] == '195'
+    assert response.context_data['northern_ireland'][0]['y'] == '347.5'
+    assert response.context_data['northern_ireland'][1]['x'] == '195'
+    assert response.context_data['northern_ireland'][1]['y'] == '372.5'
+    assert response.context_data['northern_ireland'][2]['x'] == '195'
+    assert response.context_data['northern_ireland'][2]['y'] == '397.5'
+
+    assert response.context_data['south_england'][0]['x'] == '485'
+    assert response.context_data['south_england'][0]['y'] == '651.0'
+    assert response.context_data['south_england'][1]['x'] == '485'
+    assert response.context_data['south_england'][1]['y'] == '676.0'
+    assert response.context_data['south_england'][2]['x'] == '485'
+    assert response.context_data['south_england'][2]['y'] == '701.0'
+    assert response.context_data['south_england'][3]['x'] == '485'
+    assert response.context_data['south_england'][3]['y'] == '726.0'

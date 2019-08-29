@@ -25,21 +25,14 @@
   </div>
 </section>
 
-{% if page.intro %}
-<section class="padding-top-30 padding-bottom-60">
+{% if show_mapped_regions %}
+<section class="page-section">
     <div class="container">
         <div class="grid-row">
             <div class="column-two-thirds-l">
                 {{ page.intro|add_export_elements_classes|safe }}
             </div>
         </div>
-    </div>
-</section>
-{% endif %}
-
-{% if show_mapped_regions %}
-<section class="page-section">
-    <div class="container">
         <div class="flex-grid margin-top-30">
             <div class="column-half-xl cta-block-content center-vertical map-labels">
                 {% for field in page.mapped_regions %}
@@ -52,7 +45,7 @@
                 {% endfor %}
             </div>
             <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
-                {% include 'core/includes/uk_map.html' %}
+                {% include 'core/includes/uk_map.html' with scotland=scotland northern_ireland=northern_ireland north_england=north_england south_england=south_england wales=wales midlands=midlands %}
             </div>
         </div>
     </div>
@@ -60,7 +53,7 @@
 {% endif %}
 
 {% if  page.contact_title and page.contact_text %}
-<section class="page-section">
+<section class="stone-page-section">
     <div class="container">
         <h1 class="heading-large">{{ page.contact_title }}</h1>
         <div class="grid-row">

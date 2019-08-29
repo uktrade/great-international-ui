@@ -300,3 +300,15 @@ def get_case_study(case_study_id):
         )
     response.raise_for_status()
     return get_case_study_details_from_response(response)
+
+
+def get_map_labels_with_vertical_positions(list_of_title_words, middle_x, middle_y):
+
+    lowest_y = middle_y - ((len(list_of_title_words) - 1) / 2) * 25
+
+    labels_with_coordinates = [
+        {'title': list_of_title_words[i], 'x': str(middle_x), 'y': str((lowest_y + (i*25)))}
+        for i in range(len(list_of_title_words))
+    ]
+
+    return labels_with_coordinates

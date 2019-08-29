@@ -6,6 +6,7 @@ from django.http import QueryDict
 from django.urls import reverse
 
 from core import helpers
+from core.helpers import get_map_labels_with_vertical_positions
 from core.tests.helpers import create_response
 
 
@@ -464,3 +465,66 @@ def test_get_case_study_details_from_response(supplier_case_study_data):
         'video_one': 'https://video_one.wav',
     }
     assert helpers.get_case_study_details_from_response(response) == expected
+
+
+def test_get_map_labels_with_vertical_positions_one_word():
+
+    words_with_coordinates = get_map_labels_with_vertical_positions(['midlands'], 100, 100)
+
+    assert len(words_with_coordinates) == 1
+    assert words_with_coordinates[0]['x'] == '100'
+    assert words_with_coordinates[0]['y'] == '100.0'
+
+
+def test_get_map_labels_with_vertical_positions_two_words():
+
+    words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'england'], 100, 100)
+
+    assert len(words_with_coordinates) == 2
+    assert words_with_coordinates[0]['title'] == 'south'
+    assert words_with_coordinates[0]['x'] == '100'
+    assert words_with_coordinates[0]['y'] == '87.5'
+
+    assert words_with_coordinates[1]['title'] == 'england'
+    assert words_with_coordinates[1]['x'] == '100'
+    assert words_with_coordinates[1]['y'] == '112.5'
+
+
+def test_get_map_labels_with_vertical_positions_three_words():
+
+    words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'of', 'england'], 100, 100)
+
+    assert len(words_with_coordinates) == 3
+    assert words_with_coordinates[0]['title'] == 'south'
+    assert words_with_coordinates[0]['x'] == '100'
+    assert words_with_coordinates[0]['y'] == '75.0'
+
+    assert words_with_coordinates[1]['title'] == 'of'
+    assert words_with_coordinates[1]['x'] == '100'
+    assert words_with_coordinates[1]['y'] == '100.0'
+
+    assert words_with_coordinates[2]['title'] == 'england'
+    assert words_with_coordinates[2]['x'] == '100'
+    assert words_with_coordinates[2]['y'] == '125.0'
+
+
+def test_get_map_labels_with_vertical_positions_four_words():
+
+    words_with_coordinates = get_map_labels_with_vertical_positions(['the', 'south', 'of', 'england'], 100, 100)
+
+    assert len(words_with_coordinates) == 4
+    assert words_with_coordinates[0]['title'] == 'the'
+    assert words_with_coordinates[0]['x'] == '100'
+    assert words_with_coordinates[0]['y'] == '62.5'
+
+    assert words_with_coordinates[1]['title'] == 'south'
+    assert words_with_coordinates[1]['x'] == '100'
+    assert words_with_coordinates[1]['y'] == '87.5'
+
+    assert words_with_coordinates[2]['title'] == 'of'
+    assert words_with_coordinates[2]['x'] == '100'
+    assert words_with_coordinates[2]['y'] == '112.5'
+
+    assert words_with_coordinates[3]['title'] == 'england'
+    assert words_with_coordinates[3]['x'] == '100'
+    assert words_with_coordinates[3]['y'] == '137.5'
