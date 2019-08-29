@@ -45,6 +45,9 @@
                 </div>
             {%  endif %}
         </div>
+        {% if page.benefits_section_cta_text and page.benefits_section_cta_url %}
+              <a href="{{ page.benefits_section_cta_url }}" class="button button-arrow-small margin-top-30">{{ page.benefits_section_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 {% endif %}
