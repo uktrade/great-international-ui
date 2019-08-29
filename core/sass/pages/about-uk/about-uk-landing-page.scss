@@ -19,4 +19,10 @@
     }
   }
 
+  @media (max-width: 960px) {
+    .map-labels {
+      display: none;
+    }
+  }
+
 }

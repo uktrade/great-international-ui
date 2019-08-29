@@ -175,3 +175,16 @@
     float: right;
   }
 }
+
+.map-labels {
+
+  .region-title {
+    display: inline-flex;
+    color: $active-blue;
+  }
+
+  .region-link{
+    text-decoration-color: $active-blue;
+  }
+
+}

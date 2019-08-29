@@ -27,6 +27,7 @@ from core.context_modifiers import (
     register_context_modifier,
     registry as context_modifier_registry
 )
+from core.helpers import get_map_labels_with_vertical_positions
 from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
 from core.templatetags.cms_tags import filter_by_active_language
 
@@ -611,6 +612,30 @@ def international_trade_homepage_context_modifier(context, request):
     }
 
 
+REGION_MIDDLE_POINTS = {
+    'scotland': {'x': 164, 'y': 206},
+    'northern-ireland': {'x': 195, 'y': 372.5},
+    'north-england': {'x': 440, 'y': 427.5},
+    'wales': {'x': 333, 'y': 643},
+    'midlands': {'x': 445, 'y': 582.5},
+    'south-england': {'x': 485, 'y': 688.5},
+}
+
+
+def get_regions_with_coordinates(regions):
+    regions_with_coordinates = {}
+
+    for field in regions:
+        title = field['region']['title']
+        slug = field['region']['meta']['slug']
+
+        regions_with_coordinates[slug] = get_map_labels_with_vertical_positions(
+            title.split(), REGION_MIDDLE_POINTS[slug]['x'], REGION_MIDDLE_POINTS[slug]['y']
+        )
+
+    return regions_with_coordinates
+
+
 @register_context_modifier('AboutUkLandingPage')
 def about_uk_landing_page_context_modifier(context, request):
 
@@ -620,8 +645,67 @@ def about_uk_landing_page_context_modifier(context, request):
         random.shuffle(all_sectors)
         random_sectors = all_sectors[0:3]
 
+    regions_with_coordinates = {
+        'scotland': [],
+        'northern-ireland': [],
+        'north-england': [],
+        'wales': [],
+        'midlands': [],
+        'south-england': []
+    }
+
+    show_regions = False
+    if 'regions' in context['page']:
+        region_pages = [field['region'] for field in context['page']['regions'] if field['region']]
+        regions_with_text = [field for field in context['page']['regions']
+                             if field['region'] and field['text']]
+        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
+            show_regions = True
+            regions_with_coordinates = get_regions_with_coordinates(context['page']['regions'])
+
     return {
-        'random_sectors': random_sectors
+        'random_sectors': random_sectors,
+        'show_regions': show_regions,
+        'scotland': regions_with_coordinates['scotland'],
+        'northern_ireland': regions_with_coordinates['northern-ireland'],
+        'north_england': regions_with_coordinates['north-england'],
+        'wales': regions_with_coordinates['wales'],
+        'midlands': regions_with_coordinates['midlands'],
+        'south_england': regions_with_coordinates['south-england'],
+        'regions_with_points': regions_with_coordinates
+    }
+
+
+@register_context_modifier('AboutUkRegionListingPage')
+def about_uk_region_listing_page_context_modifier(context, request):
+
+    regions_with_coordinates = {
+        'scotland': [],
+        'northern-ireland': [],
+        'north-england': [],
+        'wales': [],
+        'midlands': [],
+        'south-england': []
+    }
+
+    show_mapped_regions = False
+    if 'mapped_regions' in context['page']:
+        region_pages = [field['region'] for field in context['page']['mapped_regions'] if field['region']]
+        regions_with_text = [field for field in context['page']['mapped_regions']
+                             if field['region'] and field['text']]
+        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
+            show_mapped_regions = True
+            regions_with_coordinates = get_regions_with_coordinates(context['page']['mapped_regions'])
+
+    return {
+        'show_mapped_regions': show_mapped_regions,
+        'scotland': regions_with_coordinates['scotland'],
+        'northern_ireland': regions_with_coordinates['northern-ireland'],
+        'north_england': regions_with_coordinates['north-england'],
+        'wales': regions_with_coordinates['wales'],
+        'midlands': regions_with_coordinates['midlands'],
+        'south_england': regions_with_coordinates['south-england'],
+        'regions_with_points': regions_with_coordinates
     }
 
 
