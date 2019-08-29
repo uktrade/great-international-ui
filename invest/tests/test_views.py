@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import call, patch
+from unittest.mock import call, patch, Mock, PropertyMock
 from importlib import import_module
 from requests.exceptions import HTTPError
 from django.urls import reverse
@@ -7,6 +7,7 @@ from django.urls import reverse
 from directory_constants import choices
 
 from core.tests.helpers import create_response
+from core.views import InvestToExpandView
 from invest import views
 from . import helpers
 
@@ -376,4 +377,54 @@ def test_uk_region_page_cms_view(mock_get_page, client):
     url = reverse('cms-page-from-path', kwargs={'path': '/invest/uk-regions/region-slug'})
     response = client.get(url)
 
+    assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_page_exists_with_invest_home(mock_get_page, client):
+    mocked_response = Mock(status_code=200)
+    mocked_response.json.return_value = {'full_path': '/expand/'}
+    mock_get_page.return_value = mocked_response
+    url = reverse('invest-home')
+    response = client.get(url)
+
+    assert mock_get_page.call_args == call(
+        draft_token=None,
+        language_code='en-gb',
+        path='/expand/',
+        site_id=2
+    )
+    assert response.status_code == 302
+    assert response.url == '/expand/'
+
+
+@patch.object(InvestToExpandView, 'expand_page_exists',
+              new_callable=PropertyMock)
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_page_does_not_exist(mock_get_page, mock_page_exists, client):
+
+    page = {
+        'title': 'Invest',
+        'meta': {
+            'languages': [
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'invest'
+        },
+        'page_type': 'InvestInternationalHomePage'
+    }
+
+    mock_page_exists.return_value = None
+    mock_get_page.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+    url = reverse('invest-home')
+    response = client.get(url)
+    assert mock_get_page.call_args == call(
+        draft_token=None,
+        language_code='en-gb',
+        path='/invest/',
+        site_id=2
+    )
     assert response.status_code == 200

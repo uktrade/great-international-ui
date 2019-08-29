@@ -584,7 +584,9 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
 
 @register_context_modifier('InvestInternationalHomePage')
 def invest_homepage_context_modifier(context, request):
-    hpo_pages = context['page']['high_potential_opportunities'],
+    hpo_pages = []
+    if 'high_potential_opportunities' in context['page']:
+        hpo_pages = context['page']['high_potential_opportunities'],
 
     featured_cards = []
     if 'featured_cards' in context['page']:
