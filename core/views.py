@@ -656,9 +656,10 @@ def about_uk_landing_page_context_modifier(context, request):
 
     show_regions = False
     if 'regions' in context['page']:
-        regions = [field for field in context['page']['regions']
-                   if field['region'] and field['text']]
-        if len(regions) == 6:
+        region_pages = [field['region'] for field in context['page']['regions'] if field['region']]
+        regions_with_text = [field for field in context['page']['regions']
+                             if field['region'] and field['text']]
+        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
             show_regions = True
             regions_with_coordinates = get_regions_with_coordinates(context['page']['regions'])
 
@@ -689,9 +690,10 @@ def about_uk_region_listing_page_context_modifier(context, request):
 
     show_mapped_regions = False
     if 'mapped_regions' in context['page']:
-        regions = [field for field in context['page']['mapped_regions']
-                   if field['region'] and field['text']]
-        if len(regions) == 6:
+        region_pages = [field['region'] for field in context['page']['mapped_regions'] if field['region']]
+        regions_with_text = [field for field in context['page']['mapped_regions']
+                             if field['region'] and field['text']]
+        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
             show_mapped_regions = True
             regions_with_coordinates = get_regions_with_coordinates(context['page']['mapped_regions'])
 
