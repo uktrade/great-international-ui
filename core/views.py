@@ -652,7 +652,14 @@ def about_uk_landing_page_context_modifier(context, request):
         if len(regions) == 6:
             show_regions = True
 
-    regions_with_coordinates = {}
+    regions_with_coordinates = {
+        'scotland': [],
+        'northern-ireland': [],
+        'north-england': [],
+        'wales': [],
+        'midlands': [],
+        'south-england': []
+    }
     if 'regions' in context['page']:
         regions_with_coordinates = get_regions_with_coordinates(context['page']['regions'])
 
@@ -679,7 +686,14 @@ def about_uk_region_listing_page_context_modifier(context, request):
         if len(regions) == 6:
             show_mapped_regions = True
 
-    regions_with_coordinates = {}
+    regions_with_coordinates = {
+        'scotland': [],
+        'northern-ireland': [],
+        'north-england': [],
+        'wales': [],
+        'midlands': [],
+        'south-england': []
+    }
     if 'mapped_regions' in context['page']:
         regions_with_coordinates = get_regions_with_coordinates(context['page']['mapped_regions'])
 
