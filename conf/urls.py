@@ -67,7 +67,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         url(
             r'^international/invest/$',
             QuerystringRedirectView.as_view(pattern_name='expand-home'),
-            name='invest-home-to-expand-home-redirect'
+            name='invest-home'
         ),
         url(
             r'^international/content/invest/$',
