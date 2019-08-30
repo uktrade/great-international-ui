@@ -6,6 +6,7 @@ import pytest
 
 from django.urls import reverse
 
+from conf.tests.test_urls import reload_urlconf
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
 
@@ -2204,7 +2205,10 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page_when_null
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_expand_path_exists(mock_get_page, client):
+def test_expand_path_exists(mock_get_page, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
 
     page = {
         'title': 'Expand to the UK',
