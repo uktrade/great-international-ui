@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, Mock, call
 
 from bs4 import BeautifulSoup
 from directory_constants import urls
@@ -2201,3 +2201,56 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page_when_null
         request, path='/international/content/about-uk/')
 
     assert response.context_data['scotland'] == []
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_path_exists(mock_get_page, client):
+
+    page = {
+        'title': 'Expand to the UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'expand'
+        },
+        'page_type': 'InvestInternationalHomePage',
+    }
+
+    class PageResponse:
+        status_code = 200
+
+        def json(self):
+            return page
+
+        def raise_for_status(self):
+            return None
+
+    class Http404Response:
+        status_code = 404
+
+    class Http500Response:
+        status_code = 500
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == '/invest/':
+            not_found = Http404Response()
+            return not_found
+        if kwargs['path'] == '/expand/':
+            page_response = PageResponse()
+            return page_response
+        return Http500Response
+
+    mock_get_page.side_effect = side_effect
+
+    url = reverse('invest-home', kwargs={'path': '/invest/'})
+    response = client.get(url)
+
+    assert mock_get_page.call_count == 2
+    assert mock_get_page.mock_calls[1] == call(
+                                            draft_token=None,
+                                            language_code='en-gb',
+                                            path='/expand/',
+                                            site_id=2
+                                        )
+    assert response.status_code == 200
