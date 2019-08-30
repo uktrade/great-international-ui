@@ -2217,29 +2217,12 @@ def test_expand_path_exists(mock_get_page, client):
         'page_type': 'InvestInternationalHomePage',
     }
 
-    class PageResponse:
-        status_code = 200
-
-        def json(self):
-            return page
-
-        def raise_for_status(self):
-            return None
-
-    class Http404Response:
-        status_code = 404
-
-    class Http500Response:
-        status_code = 500
-
     def side_effect(*args, **kwargs):
         if kwargs['path'] == '/invest/':
-            not_found = Http404Response()
-            return not_found
+            return create_response(status_code=404)
         if kwargs['path'] == '/expand/':
-            page_response = PageResponse()
-            return page_response
-        return Http500Response
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
 
     mock_get_page.side_effect = side_effect
 
