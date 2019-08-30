@@ -89,7 +89,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         url(
             r'^international/content/expand/high-potential-opportunities/$',
             QuerystringRedirectView.as_view(
-                url=('/international/content/invest/#high-potential-opportunities')),
+                url=('/international/content/expand/#high-potential-opportunities')),
             name='hpo-landing-page-redirect'
         ),
         url(
@@ -101,7 +101,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         url(
             r'^international/content/expand/high-potential-opportunities/contact/success/$',
             invest.views.HighPotentialOpportunitySuccessView.as_view(),
-            {'path': '/invest/high-potential-opportunities/contact/success/'},
+            {'path': '/expand/high-potential-opportunities/contact/success/'},
             name='high-potential-opportunity-request-form-success'
         ),
 
