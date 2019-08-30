@@ -56,6 +56,7 @@ if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
         ),
     ]
 
+# Must stay first so isn't changed by expand feature flag
 urlpatterns += [
     url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
@@ -75,6 +76,11 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
             r'^international/content/invest/$',
             QuerystringRedirectView.as_view(pattern_name='expand-home'),
             name='content-invest-to-expand-home-redirect'
+        ),
+        url(
+            r'^international/invest/incoming/$',  # English homepage
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-incoming-homepage'
         ),
         url(
             r'^international/invest/(?P<path>[\w\-/]*)/$',
