@@ -779,3 +779,17 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class InvestToExpandRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/expand/' + self.kwargs['path']
+        return redirect(url)
+
+
+class ContentInvestToExpandRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/content/expand/' + self.kwargs['path']
+        return redirect(url)
