@@ -65,19 +65,50 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
             name='invest-incoming'
         ),
         url(
+            r'^international/invest/incoming/$',  # English homepage
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-incoming-homepage'
+        ),
+
+        # same pattern names so no names removed breaking url(reverse)
+        url(
             r'^international/invest/$',
             QuerystringRedirectView.as_view(pattern_name='expand-home'),
             name='invest-home'
         ),
         url(
+            r"^international/expand/contact/$",
+            contact.views.ContactFormView.as_view(),
+            name="invest-contact"
+        ),
+        url(
+            r"^international/expand/contact/success/$",
+            contact.views.ContactFormSuccessView.as_view(),
+            name="invest-contact-success"
+        ),
+        url(
+            r'^international/content/expand/high-potential-opportunities/$',
+            QuerystringRedirectView.as_view(
+                url=('/international/content/invest/#high-potential-opportunities')),
+            name='hpo-landing-page-redirect'
+        ),
+        url(
+            r'^international/content/expand/high-potential-opportunities/contact/$',
+            invest.views.HighPotentialOpportunityFormView.as_view(),
+            {'path': '/invest/high-potential-opportunities/contact/'},
+            name='high-potential-opportunity-request-form'
+        ),
+        url(
+            r'^international/content/expand/high-potential-opportunities/contact/success/$',
+            invest.views.HighPotentialOpportunitySuccessView.as_view(),
+            {'path': '/invest/high-potential-opportunities/contact/success/'},
+            name='high-potential-opportunity-request-form-success'
+        ),
+
+        url(
             r'^international/content/invest/$',
             QuerystringRedirectView.as_view(pattern_name='expand-home'),
             name='invest-home-to-expand-home-redirect'
-        ),
-        url(
-            r'^international/invest/incoming/$',  # English homepage
-            QuerystringRedirectView.as_view(pattern_name='expand-home'),
-            name='invest-incoming-homepage'
         ),
         url(
             r'^international/invest/(?P<path>[\w\-/]*)/$',
@@ -193,12 +224,12 @@ urlpatterns += [
     url(
         r"^international/expand/contact/$",
         contact.views.ContactFormView.as_view(),
-        name="invest-contact"
+        name="expand-contact"
     ),
     url(
         r"^international/expand/contact/success/$",
         contact.views.ContactFormSuccessView.as_view(),
-        name="invest-contact-success"
+        name="expand-contact-success"
     ),
     url(
         r'^international/content/invest/$',
@@ -244,13 +275,13 @@ urlpatterns += [
         r'^international/content/expand/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
         {'path': '/expand/high-potential-opportunities/contact/'},
-        name='high-potential-opportunity-request-form'
+        name='high-potential-opportunity-request-form-expand'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': '/expand/high-potential-opportunities/contact/success/'},
-        name='high-potential-opportunity-request-form-success'
+        name='high-potential-opportunity-request-form-success-expand'
     ),
     url(
         r'^international/contact/$',
