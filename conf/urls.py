@@ -95,7 +95,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         url(
             r'^international/content/expand/high-potential-opportunities/contact/$',
             invest.views.HighPotentialOpportunityFormView.as_view(),
-            {'path': '/invest/high-potential-opportunities/contact/'},
+            {'path': '/expand/high-potential-opportunities/contact/'},
             name='high-potential-opportunity-request-form'
         ),
         url(
