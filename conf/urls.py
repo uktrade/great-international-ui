@@ -121,7 +121,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
             name='content-invest-to-expand-redirect'
         ),
     ]
-elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
+else:
     urlpatterns += [
         url(
             r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
