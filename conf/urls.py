@@ -158,12 +158,12 @@ urlpatterns += [
     url(
         r"^international/expand/contact/$",
         contact.views.ContactFormView.as_view(),
-        name="invest-contact"
+        name="expand-contact"
     ),
     url(
         r"^international/expand/contact/success/$",
         contact.views.ContactFormSuccessView.as_view(),
-        name="invest-contact-success"
+        name="expand-contact-success"
     ),
     url(
         r'^international/content/invest/$',
