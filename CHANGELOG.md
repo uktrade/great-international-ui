@@ -11,6 +11,7 @@
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
 - CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url will try
+- CI-460 - Updated capital invest contact and success pages and confirmation email
 
 ### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
