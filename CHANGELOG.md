@@ -19,6 +19,7 @@
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
 - TT1752 - fix links on homepage
+- Fixed invest contact success going to expand 
 
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
