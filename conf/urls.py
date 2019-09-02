@@ -56,6 +56,44 @@ if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
         ),
     ]
 
+# Must stay first so isn't changed by expand feature flag
+urlpatterns += [
+    url(
+        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
+        invest.views.LegacyInvestURLRedirectView.as_view(),
+        name='invest-incoming'
+    ),
+]
+
+if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/invest/$',
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-home-to-expand-home-redirect'
+        ),
+        url(
+            r'^international/content/invest/$',
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='content-invest-to-expand-home-redirect'
+        ),
+        url(
+            r'^international/invest/incoming/$',  # English homepage
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-incoming-homepage'
+        ),
+        url(
+            r'^international/invest/(?P<path>[\w\-/]*)/$',
+            core.views.InvestToExpandRedirect.as_view(),
+            name='invest-to-expand-redirect'
+        ),
+        url(
+            r'^international/content/invest/(?P<path>[\w\-/]*)/$',
+            core.views.ContentInvestToExpandRedirect.as_view(),
+            name='content-invest-to-expand-redirect'
+        ),
+    ]
+
 
 urlpatterns += [
     url(
@@ -96,15 +134,16 @@ urlpatterns += [
         name='content-trade-contact-redirect'
     ),
     url(
-        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
-        invest.views.LegacyInvestURLRedirectView.as_view(),
-        name='invest-incoming'
-    ),
-    url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': '/invest/'},
         name='invest-home'
+    ),
+    url(
+        r'^international/expand/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': '/expand/'},
+        name='expand-home'
     ),
     url(
         r"^international/invest/contact/$",
@@ -117,9 +156,24 @@ urlpatterns += [
         name="invest-contact-success"
     ),
     url(
+        r"^international/expand/contact/$",
+        contact.views.ContactFormView.as_view(),
+        name="invest-contact"
+    ),
+    url(
+        r"^international/expand/contact/success/$",
+        contact.views.ContactFormSuccessView.as_view(),
+        name="invest-contact-success"
+    ),
+    url(
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
+    ),
+    url(
+        r'^international/content/expand/$',
+        QuerystringRedirectView.as_view(pattern_name='expand-home'),
+        name='content-expand-home-redirect'
     ),
     url(
         r'^trade/(?P<path>industries\/.*)/$',
@@ -164,6 +218,24 @@ urlpatterns += [
         r'^international/content/invest/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': '/invest/high-potential-opportunities/contact/success/'},
+        name='high-potential-opportunity-request-form-success'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/$',
+        QuerystringRedirectView.as_view(
+            url=('/international/content/expand/#high-potential-opportunities')),
+        name='hpo-landing-page-redirect'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/$',
+        invest.views.HighPotentialOpportunityFormView.as_view(),
+        {'path': '/expand/high-potential-opportunities/contact/'},
+        name='high-potential-opportunity-request-form'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/success/$',
+        invest.views.HighPotentialOpportunitySuccessView.as_view(),
+        {'path': '/expand/high-potential-opportunities/contact/success/'},
         name='high-potential-opportunity-request-form-success'
     ),
     url(

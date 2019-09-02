@@ -73,6 +73,16 @@ class MonolingualCMSPageFromPathView(
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
+
+        if response.status_code == 404 and 'invest/' in self.kwargs['path']:
+            new_path = self.kwargs['path'].replace('invest/', 'expand/')
+            response = cms_api_client.lookup_by_path(
+                site_id=self.cms_site_id,
+                path=new_path,
+                language_code=translation.get_language(),
+                draft_token=self.request.GET.get('draft_token'),
+            )
+
         return handle_cms_response(response)
 
     def get_context_data(self, **kwargs):
@@ -584,7 +594,9 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
 
 @register_context_modifier('InvestInternationalHomePage')
 def invest_homepage_context_modifier(context, request):
-    hpo_pages = context['page']['high_potential_opportunities'],
+    hpo_pages = []
+    if 'high_potential_opportunities' in context['page']:
+        hpo_pages = context['page']['high_potential_opportunities'],
 
     featured_cards = []
     if 'featured_cards' in context['page']:
@@ -767,3 +779,17 @@ class CapitalInvestContactFormView(
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+class InvestToExpandRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/expand/' + self.kwargs['path']
+        return redirect(url)
+
+
+class ContentInvestToExpandRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/content/expand/' + self.kwargs['path']
+        return redirect(url)

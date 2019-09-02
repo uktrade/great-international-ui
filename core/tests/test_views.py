@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, call
 
 from bs4 import BeautifulSoup
 from directory_constants import urls
@@ -6,6 +6,7 @@ import pytest
 
 from django.urls import reverse
 
+from conf.tests.test_urls import reload_urlconf
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
 
@@ -2201,3 +2202,42 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page_when_null
         request, path='/international/content/about-uk/')
 
     assert response.context_data['scotland'] == []
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_path_exists(mock_get_page, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    page = {
+        'title': 'Expand to the UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'expand'
+        },
+        'page_type': 'InvestInternationalHomePage',
+    }
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == '/invest/':
+            return create_response(status_code=404)
+        if kwargs['path'] == '/expand/':
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
+
+    mock_get_page.side_effect = side_effect
+
+    url = reverse('invest-home', kwargs={'path': '/invest/'})
+    response = client.get(url)
+
+    assert mock_get_page.call_count == 2
+    assert mock_get_page.mock_calls[1] == call(
+                                            draft_token=None,
+                                            language_code='en-gb',
+                                            path='/expand/',
+                                            site_id=2
+                                        )
+    assert response.status_code == 200

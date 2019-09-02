@@ -10,6 +10,7 @@
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
+- CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url will try
 
 ### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
