@@ -2204,6 +2204,6 @@ def test_capital_invest_contact_serialized_data(mock_submit_generic):
         'family_name': capital_invest_contact_form_data['family_name'],
         'email_address': capital_invest_contact_form_data['email_address'],
         'country': capital_invest_contact_form_data['country'],
-        'city':capital_invest_contact_form_data['city'],
+        'city': capital_invest_contact_form_data['city'],
         'message': capital_invest_contact_form_data['message']
     }

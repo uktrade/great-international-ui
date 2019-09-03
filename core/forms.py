@@ -3,12 +3,8 @@ from directory_forms_api_client.forms import GovNotifyActionMixin
 from django.forms import Select, Textarea, TextInput
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
-from directory_forms_api_client.actions import EmailAction
-from directory_forms_api_client.helpers import Sender
 from directory_constants import urls
 
-from django.conf import settings
-from django.template.loader import render_to_string
 from django.utils.html import mark_safe
 from directory_validators.common import not_contains_url_or_email
 from directory_validators.company import no_html

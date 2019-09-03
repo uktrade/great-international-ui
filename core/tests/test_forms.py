@@ -1,5 +1,3 @@
-from unittest.mock import call, patch
-
 import pytest
 
 from core.forms import CapitalInvestContactForm
