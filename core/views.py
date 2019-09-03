@@ -782,7 +782,7 @@ class CapitalInvestContactFormView(
             form_url=self.request.path,
             email_address=form.cleaned_data['email_address'],
             template_id=settings.CAPITAL_INVEST_USER_TEMPLATE_ID,
-            email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID
+            email_reply_to_id=settings.CAPITAL_INVEST_USER_REPLY_TO_ID
         )
         response.raise_for_status()
 
