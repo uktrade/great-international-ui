@@ -10,7 +10,7 @@ from conf.tests.test_urls import reload_urlconf
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView
 
 test_sectors = [
     {
@@ -2512,4 +2512,42 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
                                             path='about-uk/industries',
                                             site_id=2
                                         )
+    assert response.status_code == 200
+
+
+@pytest.fixture
+def business_environment_form_data(captcha_stub):
+    return {
+        'given_name': 'Thor',
+        'family_name': 'Odinson',
+        'email_address': 'most_powerful_avenger@avengers.com',
+        'company_name': 'Guardian of the Galaxy',
+        'number_of_staff': '1-10',
+        'industry': 'ADVANCED_MANUFACTURING',
+        'country': 'FR',
+        'mostly_interested_in': ['expand'],
+        'further_information': True,
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+
+
+def test_business_environment_form_view(client):
+    response = client.get(reverse('business-environment-guide-form'))
+    assert response.status_code == 200
+
+
+@patch.object(BusinessEnvironmentGuideFormView.form_class, 'save')
+def test_business_environment_form_submission(mock_save, business_environment_form_data, client):
+    mock_save.return_value = create_response(status_code=200)
+
+    response = client.post(reverse('business-environment-guide-form'), business_environment_form_data)
+
+    assert mock_save.call_count == 2
+    assert response.status_code == 302
+    assert response.url == reverse('business-environment-guide-form-success')
+
+
+def test_business_environment_form_success_view(client):
+    response = client.get(reverse('business-environment-guide-form-success'))
     assert response.status_code == 200

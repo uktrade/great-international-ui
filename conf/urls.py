@@ -337,6 +337,20 @@ urlpatterns += [
     ),
 ]
 
+if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
+    urlpatterns += [
+        url(
+            r"^international/about-uk/business-environment-guide/$",
+            core.views.BusinessEnvironmentGuideFormView.as_view(),
+            name='business-environment-guide-form'
+        ),
+        url(
+            r"^international/about-uk/business-environment-guide/success/$",
+            core.views.BusinessEnvironmentGuideFormSuccessView.as_view(),
+            name='business-environment-guide-form-success'
+        ),
+    ]
+
 perfectfit = [
     url(
         r'^international/invest/perfectfit/',
