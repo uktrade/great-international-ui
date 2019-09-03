@@ -20,7 +20,7 @@ def test_international_form(mock_lookup_by_slug, client):
         }
     )
 
-    response = client.get(reverse('eu-exit-international-contact-form'))
+    response = client.get(reverse('brexit-international-contact-form'))
 
     assert response.status_code == 200
     assert response.template_name == [
@@ -32,7 +32,7 @@ def test_international_form(mock_lookup_by_slug, client):
 def test_international_form_not_found(mock_lookup_by_slug, client):
     mock_lookup_by_slug.return_value = create_response(status_code=404)
 
-    url = reverse('eu-exit-international-contact-form')
+    url = reverse('brexit-international-contact-form')
     response = client.get(url)
 
     assert response.status_code == 404
@@ -55,7 +55,7 @@ def test_international_form_cms_retrieval_ok(
             'breadcrumbs_label': 'Title',
         }
     )
-    url = reverse('eu-exit-international-contact-form')
+    url = reverse('brexit-international-contact-form')
     response = client.get(url)
 
     assert response.status_code == 200
@@ -81,7 +81,7 @@ def test_international_form_submit(
     )
     settings.EU_EXIT_ZENDESK_SUBDOMAIN = 'eu-exit-subdomain'
 
-    url = reverse('eu-exit-international-contact-form')
+    url = reverse('brexit-international-contact-form')
 
     # sets referrer in the session
     client.get(url, {}, HTTP_REFERER='http://www.google.com')
@@ -100,7 +100,7 @@ def test_international_form_submit(
 
     assert response.status_code == 302
     assert response.url == reverse(
-        'eu-exit-international-contact-form-success'
+        'brexit-international-contact-form-success'
     )
     assert mock_save.call_count == 1
     assert mock_save.call_args == mock.call(
@@ -124,7 +124,7 @@ def test_form_success_page(mock_lookup_by_slug, client):
             'breadcrumbs_label': 'Title',
         }
     )
-    url = reverse('eu-exit-international-contact-form-success')
+    url = reverse('brexit-international-contact-form-success')
     response = client.get(url)
 
     assert response.status_code == 200
@@ -148,7 +148,7 @@ def test_form_urls(mock_lookup_by_slug, client):
             'breadcrumbs_label': 'Title',
         }
     )
-    url = reverse('eu-exit-international-contact-form')
+    url = reverse('brexit-international-contact-form')
     response = client.get(url, {}, HTTP_REFERER='http://www.google.com')
 
     assert response.status_code == 200
@@ -159,7 +159,7 @@ def test_form_urls(mock_lookup_by_slug, client):
 
 @mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_form_urls_no_referer(mock_lookup_by_slug, client):
-    url = reverse('eu-exit-international-contact-form')
+    url = reverse('brexit-international-contact-form')
     mock_lookup_by_slug.return_value = create_response(
         json_payload={
             'disclaimer': 'disclaim',
@@ -176,22 +176,22 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
 
 @pytest.mark.parametrize('url,page_type,status_code', (
     (
-        '/international/eu-exit-news/contact/',
+        '/international/brexit/contact/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/eu-exit-news/contact/',
+        '/international/brexit/contact/',
         'InternationalEUExitFormPage',
         200
     ),
     (
-        '/international/eu-exit-news/contact/success/',
+        '/international/brexit/contact/success/',
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/eu-exit-news/contact/success/',
+        '/international/brexit/contact/success/',
         'InternationalEUExitFormSuccessPage',
         200
     ),
