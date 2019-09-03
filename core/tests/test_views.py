@@ -1803,8 +1803,10 @@ def capital_invest_contact_form_data(captcha_stub):
         'given_name': 'Steve',
         'family_name': 'Rogers',
         'email_address': 'captain_america@avengers.com',
+        'phone_number': '01234 567891',
         'country': 'FR',
         'city': 'Kentucky',
+        'company_name': 'Guardian of the Galaxy',
         'message': 'foobar',
         'g-recaptcha-response': captcha_stub,
         'terms_agreed': True
@@ -2195,11 +2197,14 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
     assert form.is_valid()
 
     mock_save.return_value = create_response(status_code=200)
+
     assert form.serialized_data == {
         'given_name': capital_invest_contact_form_data['given_name'],
         'family_name': capital_invest_contact_form_data['family_name'],
         'email_address': capital_invest_contact_form_data['email_address'],
+        'phone_number': capital_invest_contact_form_data['phone_number'],
         'country': capital_invest_contact_form_data['country'],
         'city': capital_invest_contact_form_data['city'],
+        'company_name': capital_invest_contact_form_data['company_name'],
         'message': capital_invest_contact_form_data['message']
     }
