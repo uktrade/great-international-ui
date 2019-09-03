@@ -1,4 +1,5 @@
 from directory_components import forms
+from directory_forms_api_client.forms import GovNotifyActionMixin
 from django.forms import Select, Textarea, TextInput
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
@@ -91,12 +92,11 @@ TERMS_LABEL = mark_safe(
 )
 
 
-class CapitalInvestContactForm(forms.Form):
-    action_class = EmailAction
+class CapitalInvestContactForm(GovNotifyActionMixin, forms.Form):
 
     given_name = forms.CharField(label=_('Given name'), required=True)
     family_name = forms.CharField(label=_('Family name'), required=True)
-    email = forms.EmailField(label=_('Email address'), required=True)
+    email_address = forms.EmailField(label=_('Email address'), required=True)
     phone_number = forms.CharField(
         label=_('Phone number (Optional)'),
         required=False,
@@ -128,64 +128,12 @@ class CapitalInvestContactForm(forms.Form):
         required=True
     )
 
-    def __init__(self, utm_data, submission_url, *args, **kwargs):
-        self.utm_data = utm_data
-        self.submission_url = submission_url
-        super().__init__(*args, **kwargs)
-
-    def get_context_data(self):
+    @property
+    def serialized_data(self):
+        # this data will be sent to zendesk. `captcha` and `terms_agreed` are
+        # not useful to the zendesk user as those fields have to be present
+        # for the form to be submitted.
         data = self.cleaned_data.copy()
-        return {
-            'form_data': (
-                (_('Given name'), data['given_name']),
-                (_('Family name'), data['family_name']),
-                (_('Email address'), data['email']),
-                (_('Phone number'), data['phone_number']),
-                (_('Country'), data['country']),
-                (_('City'), data['city']),
-                (_('Company name'), data['company_name']),
-                (_('Message'), data['message']),
-            ),
-            'utm': self.utm_data,
-            'submission_url': self.submission_url,
-        }
-
-    def render_email(self, template_name):
-        context = self.get_context_data()
-        return render_to_string(template_name, context)
-
-    def send_agent_email(self):
-        sender = Sender(
-            email_address=self.cleaned_data['email'],
-            country_code=self.cleaned_data['country']
-        )
-        action = self.action_class(
-            recipients=[settings.CAPITAL_INVEST_CONTACT_EMAIL, settings.IIGB_AGENT_EMAIL],
-            subject='Capital Invest contact form lead',
-            reply_to=[settings.DEFAULT_FROM_EMAIL],
-            form_url=self.submission_url,
-            sender=sender,
-        )
-        response = action.save({
-            'text_body': self.render_email('core/capital_invest/email/capital_invest_email_agent.txt'),
-            'html_body': self.render_email('core/capital_invest/email/capital_invest_email_agent.html'),
-        })
-        response.raise_for_status()
-
-    def send_user_email(self):
-        # no need to set `sender` as this is just a confirmation email.
-        action = self.action_class(
-            recipients=[self.cleaned_data['email']],
-            subject=str(_('Thank you for your enquiry')),
-            reply_to=[settings.DEFAULT_FROM_EMAIL],
-            form_url=self.submission_url,
-        )
-        response = action.save({
-            'text_body': self.render_email('core/capital_invest/email/capital_invest_email_user.txt'),
-            'html_body': self.render_email('core/capital_invest/email/capital_invest_email_user.html'),
-        })
-        response.raise_for_status()
-
-    def save(self):
-        self.send_agent_email()
-        self.send_user_email()
+        del data['captcha']
+        del data['terms_agreed']
+        return data

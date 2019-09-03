@@ -757,27 +757,38 @@ class CapitalInvestContactFormView(
     GA360Mixin,
     FormView,
 ):
-    template_name = 'core/capital_invest/capital_invest_contact_form.html'
-    success_url = '/international/content/capital-invest/contact/success'
     form_class = forms.CapitalInvestContactForm
+    success_url = '/international/content/capital-invest/contact/success'
 
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='CapitalInvestContactForm',
-            business_unit='CapitalInvest',
-            site_section='Contact',
-            site_subsection='Contact'
+    def send_agent_email(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data['country'],
         )
+        spam_control = directory_forms_api_client.helpers.SpamControl(
+            contents=[form.cleaned_data['message']]
+        )
+        response = form.save(
+            form_url=self.request.path,
+            email_address=settings.CAPITAL_INVEST_CONTACT_EMAIL,
+            template_id=settings.CAPITAL_INVEST_AGENT_TEMPLATE_ID,
+            sender=sender,
+            spam_control=spam_control,
+        )
+        response.raise_for_status()
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['utm_data'] = self.request.utm
-        kwargs['submission_url'] = self.request.path
-        return kwargs
+    def send_user_email(self, form):
+        response = form.save(
+            form_url=self.request.path,
+            email_address=form.cleaned_data['email_address'],
+            template_id=settings.CAPITAL_INVEST_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.CONTACT_INDUSTRY_USER_REPLY_TO_ID
+        )
+        response.raise_for_status()
 
     def form_valid(self, form):
-        form.save()
+        self.send_agent_email(form)
+        self.send_user_email(form)
         return super().form_valid(form)
 
 
