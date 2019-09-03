@@ -583,6 +583,7 @@ CAPITAL_INVEST_USER_TEMPLATE_ID = env.str(
     'CAPITAL_INVEST_USER_TEMPLATE_ID',
     '11cef6bd-c3e6-43c6-8959-f749f3991188'
 )
+# When none, default GOV.UK Notify reply-to email is used
 CAPITAL_INVEST_USER_REPLY_TO_ID = env.str(
     'CAPITAL_INVEST_USER_REPLY_TO_ID',
     None
