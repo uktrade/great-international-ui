@@ -1,3 +1,6 @@
+from collections import namedtuple
+from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
+
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -256,36 +259,37 @@ GA_DATA_MAPPING = {
     },
 }
 
-HEADER_MAPPING = {
-    # Great international core
-    'InternationalHomePage': '',
-    'InternationalTopicLandingPage': 'industries',
-    'InternationalArticleListingPage': 'uk_setup_guide',
-    'InternationalArticlePage': 'uk_setup_guide',
-    'InternationalCampaignPage': '',
-    'InternationalSectorPage': 'industries',
-    'InternationalSubSectorPage': 'industries',
-    'InternationalCuratedTopicLandingPage': 'uk_setup_guide',
-    'InternationalGuideLandingPage': 'uk_setup_guide',
+HeaderConfig = namedtuple('HeaderConfig', 'section sub_section')
+HEADER_SECTION_MAPPING = {
+    # Home page
+    r'^$': HeaderConfig(section=None, sub_section=None),
 
-    # Brexit
-    'InternationalEUExitFormPage': '',
-    'InternationalEUExitFormSuccessPage': '',
+    # About the UK pages
+    r'^about-uk/why-choose-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.WHY_CHOOSE_THE_UK),  # noqa
+    r'^industries.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.INDUSTRIES),
+    r'^about-uk/regions.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.REGIONS),
+    r'^about-uk$': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.OVERVIEW_ABOUT),
+    r'^about-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=None),
 
-    # Capital investment
-    'InternationalCapitalInvestLandingPage': 'invest',
-    'CapitalInvestRegionPage': 'invest',
-    'CapitalInvestOpportunityPage': 'invest',
-    'CapitalInvestOpportunityListingPage': 'invest',
+    # Expand to the UK
+    r'^how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
+    r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
+    r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
+    r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),
 
-    # Invest
-    'InvestInternationalHomePage': 'invest',
-    'InvestHighPotentialOpportunityDetailPage': 'invest',
-    'InvestHighPotentialOpportunityFormPage': 'invest',
-    'InvestHighPotentialOpportunityFormSuccessPage': 'invest',
+    # Invest Capital in the UK
+    r'^opportunities.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.INVESTMENT_OPPORTUNITIES),  # noqa
+    r'^capital-invest/contact.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.CONTACT_US_INVEST_CAPITAL),  # noqa
+    r'^capital-invest$': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.OVERVIEW_INVEST_CAPITAL),
+    r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
+
+    # Buy from the UK
+    r'^trade/contact.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.CONTACT_US_TRADE),
+    r'^trade.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.FIND_A_SUPPLIER),
 
     # About DIT
-    'AboutDitLandingPage': '',
-    'AboutDitServicesPage': '',
-    'AboutUkWhyChooseTheUkPage': '',
+    r'^contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
+    r'^about-dit/contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
+    r'^about-dit$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
+    r'^about-dit.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
 }

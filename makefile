@@ -88,6 +88,7 @@ DEBUG_SET_ENV_VARS := \
 	export THUMBNAIL_KVSTORE_CLASS_NAME=redis; \
 	export FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED=True; \
 	export FEATURE_FIND_A_SUPPLIER_ENABLED=True; \
+	export FEATURE_NEW_IA_ENABLED=True; \
 	export CONTACT_INDUSTRY_AGENT_EMAIL_ADDRESS=buying@example.com
 
 TEST_SET_ENV_VARS := \
@@ -108,6 +109,9 @@ debug_pytest:
 
 debug_test:
 	$(DEBUG_SET_ENV_VARS) && $(TEST_SET_ENV_VARS) && $(COLLECT_STATIC) && $(PYTEST) --cov-report=html
+
+debug_test_last_failed:
+	$(DEBUG_SET_ENV_VARS) && $(TEST_SET_ENV_VARS) && $(COLLECT_STATIC) && $(PYTEST) --last-failed --cov-report=html
 
 debug_manage:
 	$(DEBUG_SET_ENV_VARS) && ./manage.py $(cmd)

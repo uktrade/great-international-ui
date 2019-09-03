@@ -13,7 +13,7 @@ from directory_constants import cms
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
-from core import constants, helpers
+from core import constants, helpers, header_config
 
 
 class NotFoundOnDisabledFeature:
@@ -131,4 +131,24 @@ class PersistSearchQuerystringMixin:
         return super().get_context_data(
             search_querystring=self.search_querystring,
             **kwargs,
+        )
+
+
+class InternationalHeaderMixin:
+    header_section = None
+    header_sub_section = None
+
+    @property
+    def navigation_tree(self):
+        if settings.FEATURE_FLAGS['NEW_IA_ON']:
+            return header_config.nav_tree.HEADER_TREE
+        return header_config.nav_tree.OLD_HEADER_TREE
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            navigation_tree=self.navigation_tree,
+            header_section=self.header_section.name if self.header_section else '',
+            header_sub_section=self.header_sub_section.name if self.header_sub_section else '',
+            *args,
+            **kwargs
         )

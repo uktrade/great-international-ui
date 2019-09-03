@@ -17,19 +17,15 @@ import directory_forms_api_client.helpers
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
-from directory_components.mixins import (
-    CMSLanguageSwitcherMixin,
-    GA360Mixin, CountryDisplayMixin, InternationalHeaderMixin)
+from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin
 
 
 from core import forms, helpers, constants
-from core.context_modifiers import (
-    register_context_modifier,
-    registry as context_modifier_registry
-)
+from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
 from core.helpers import get_map_labels_with_vertical_positions
-from core.mixins import (NotFoundOnDisabledFeature, RegionalContentMixin)
+from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin, InternationalHeaderMixin
 from core.templatetags.cms_tags import filter_by_active_language
+from core.header_config import tier_one_nav_items, tier_two_nav_items
 
 import find_a_supplier.forms
 
@@ -62,20 +58,36 @@ class MonolingualCMSPageFromPathView(
         return dispatch_result
 
     @property
+    def page_type(self):
+        return self.page['page_type']
+
+    @property
+    def path(self):
+        return self.kwargs['path']
+
+    @property
     def template_name(self):
-        return constants.TEMPLATE_MAPPING[self.page['page_type']]
+        return constants.TEMPLATE_MAPPING[self.page_type]
+
+    @property
+    def header_section(self):
+        return helpers.get_header_section(self.path)
+
+    @property
+    def header_sub_section(self):
+        return helpers.get_header_sub_section(self.path)
 
     @cached_property
     def page(self):
         response = cms_api_client.lookup_by_path(
             site_id=self.cms_site_id,
-            path=self.kwargs['path'],
+            path=self.path,
             language_code=translation.get_language(),
             draft_token=self.request.GET.get('draft_token'),
         )
 
-        if response.status_code == 404 and 'invest/' in self.kwargs['path']:
-            new_path = self.kwargs['path'].replace('invest/', 'expand/')
+        if response.status_code == 404 and 'invest' in self.kwargs['path']:
+            new_path = self.kwargs['path'].replace('invest', 'expand')
             response = cms_api_client.lookup_by_path(
                 site_id=self.cms_site_id,
                 path=new_path,
@@ -159,7 +171,7 @@ def sector_landing_page_context_modifier(context, request):
 def sector_page_context_modifier(context, request):
     page = context['page']
 
-    trade_contact_form = urls.build_fas_url('industries/contact/')
+    trade_contact_form = urls.international.ABOUT_UK_INDUSTRIES / 'contact'
 
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
@@ -168,7 +180,7 @@ def sector_page_context_modifier(context, request):
         random_opportunities = []
 
     return {
-        'invest_contact_us_url': urls.build_invest_url('contact/'),
+        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
         'num_of_statistics': helpers.count_data_with_field(
             page['statistics'], 'number'),
         'section_three_num_of_subsections': helpers.count_data_with_field(
@@ -199,7 +211,7 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 def sub_sector_context_modifier(context, request):
     page = context['page']
 
-    trade_contact_form = urls.build_fas_url('industries/contact/')
+    trade_contact_form = urls.international.ABOUT_UK_INDUSTRIES / 'contact'
 
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
@@ -208,7 +220,7 @@ def sub_sector_context_modifier(context, request):
         random_opportunities = []
 
     return {
-        'invest_contact_us_url': urls.build_invest_url('contact/'),
+        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
         'num_of_statistics': helpers.count_data_with_field(
             page['statistics'], 'number'),
         'section_three_num_of_subsections': helpers.count_data_with_field(
@@ -233,7 +245,7 @@ class InternationalContactPageView(CountryDisplayMixin, InternationalView):
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             hide_language_selector=True,
-            invest_contact_us_url=urls.build_invest_url('contact/'),
+            invest_contact_us_url=urls.international.EXPAND_CONTACT,
             *args, **kwargs
         )
 
@@ -304,8 +316,8 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         random.shuffle(opps_in_random_sector)
 
     return {
-        'invest_cta_link': urls.SERVICES_INVEST,
-        'buy_cta_link': urls.SERVICES_FAS,
+        'invest_cta_link': urls.international.EXPAND_HOME,
+        'buy_cta_link': urls.international.TRADE_HOME,
         'random_related_sector_title': random_sector,
         'random_opps_in_random_related_sector': opps_in_random_sector[0:3]
     }
@@ -315,8 +327,10 @@ class OpportunitySearchView(
     CountryDisplayMixin,
     InternationalView
 ):
-    template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'  # NOQA
+    template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'
     page_size = 10
+    header_section = tier_one_nav_items.INVEST_CAPITAL
+    header_sub_section = tier_two_nav_items.INVESTMENT_OPPORTUNITIES
 
     def __init__(self):
         super().__init__()
@@ -333,7 +347,7 @@ class OpportunitySearchView(
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
         except (EmptyPage, PageNotAnInteger):
-            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"  # NOQA
+            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"
             return redirect(url)
 
     @property
@@ -383,8 +397,7 @@ class OpportunitySearchView(
 
         for opp in self.opportunities:
             for sector in opp['related_sectors']:
-                if sector['related_sector'] \
-                        and sector['related_sector']['heading']:
+                if sector['related_sector'] and sector['related_sector']['heading']:
                     sectors.add(sector['related_sector']['heading'])
         sectors = list(sectors)
         sectors.sort()
@@ -525,7 +538,7 @@ class OpportunitySearchView(
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             page=self.page,
-            invest_url=urls.SERVICES_INVEST,
+            invest_url=urls.international.EXPAND_HOME,
             num_of_opportunities=self.num_of_opportunities,
             sectors=self.all_sectors,
             scales=self.all_scales,
@@ -605,13 +618,11 @@ def invest_homepage_context_modifier(context, request):
     number_of_featured_cards = len(featured_cards)
 
     return {
-        'international_home_page_link': urls.GREAT_INTERNATIONAL,
-        'investment_support_directory_link': urls.FAS_INVESTMENT_SUPPORT_DIRECTORY,
-        'how_to_set_up_visas_and_migration_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_VISAS_AND_MIGRATION,
-        'how_to_set_up_tax_and_incentives_link': urls.GREAT_INTERNATIONAL_HOW_TO_SET_UP_TAX_AND_INCENTIVES,
-        'show_hpo_section': bool(
-            hpo_pages and filter_by_active_language(hpo_pages[0])
-        ),
+        'international_home_page_link': urls.international.HOME,
+        'investment_support_directory_link': urls.international.EXPAND_ISD_HOME,
+        'how_to_set_up_visas_and_migration_link': urls.international.EXPAND_HOW_TO_SETUP_VISAS_AND_MIGRATION,
+        'how_to_set_up_tax_and_incentives_link': urls.international.EXPAND_HOW_TO_SETUP_TAX_AND_INCENTIVES,
+        'show_hpo_section': bool(hpo_pages and filter_by_active_language(hpo_pages[0])),
         'show_featured_cards': (number_of_featured_cards == 3),
     }
 
@@ -759,6 +770,8 @@ class CapitalInvestContactFormView(
 ):
     form_class = forms.CapitalInvestContactForm
     success_url = '/international/content/capital-invest/contact/success'
+    header_section = tier_one_nav_items.INVEST_CAPITAL
+    header_sub_section = tier_two_nav_items.CONTACT_US_INVEST_CAPITAL
 
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(

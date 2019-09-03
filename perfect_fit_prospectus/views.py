@@ -13,14 +13,18 @@ from directory_components import mixins
 from pir_client.client import pir_api_client
 
 from core import helpers
+from core.mixins import InternationalHeaderMixin
+from core.header_config import tier_one_nav_items
 from perfect_fit_prospectus.forms import PerfectFitProspectusForm
 
 
 class PerfectFitBaseView(
     mixins.CountryDisplayMixin,
-    mixins.InternationalHeaderMixin,
+    InternationalHeaderMixin,
     mixins.GA360Mixin
 ):
+    header_section = tier_one_nav_items.EXPAND
+
     def dispatch(self, request, *args, **kwargs):
         dispatch_result = super().dispatch(request, *args, **kwargs)
         ga360_data = helpers.get_ga_data_for_page(self.page_type)
