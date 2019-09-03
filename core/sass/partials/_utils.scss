@@ -22,6 +22,11 @@
   @include stone-section;
 }
 
+.top-page-section {
+  @include top-page-section-padding;
+}
+
+
 .background-stone-gradient-bottom {
   background-image: linear-gradient(to bottom, $white 10%, $stone-30 10%);
 }

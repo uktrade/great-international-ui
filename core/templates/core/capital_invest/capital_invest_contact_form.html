@@ -33,6 +33,7 @@
 
                 {% include 'includes/form_field.html' with field=form.captcha %}
                 {% include 'includes/form_field.html' with field=form.terms_agreed %}
+                <p class="font-small">{{ page.comment }}</p>
 
                 <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>
             </form>

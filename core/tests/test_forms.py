@@ -152,7 +152,7 @@ def test_send_user_email(
     assert mock_email_action.call_count == 1
     assert mock_email_action.call_args == call(
         recipients=[capital_invest_contact_form_data['email']],
-        subject='A copy of your message and what happens next',
+        subject='Thank you for your enquiry',
         reply_to=[settings.DEFAULT_FROM_EMAIL],
         form_url='http://www.google.com/submission_url',
     )
