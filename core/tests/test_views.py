@@ -1,4 +1,3 @@
-from unittest import mock
 from unittest.mock import patch, call
 
 from bs4 import BeautifulSoup
@@ -2186,24 +2185,21 @@ def test_expand_path_exists(mock_get_page, client, settings):
                                         )
     assert response.status_code == 200
 
-#
-# @mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
-# def test_capital_invest_contact_serialized_data(mock_submit_generic):
-#     form = CapitalInvestContactForm(data=capital_invest_contact_form_data)
-#
-#     assert form.is_valid()
-#
-#     form.save(
-#         template_id='foo',
-#         email_address='reply_to@example.com',
-#         form_url='/trade/some/path/',
-#     )
-#
-#     assert form.serialized_data == {
-#         'given_name': capital_invest_contact_form_data['given_name'],
-#         'family_name': capital_invest_contact_form_data['family_name'],
-#         'email_address': capital_invest_contact_form_data['email_address'],
-#         'country': capital_invest_contact_form_data['country'],
-#         'city': capital_invest_contact_form_data['city'],
-#         'message': capital_invest_contact_form_data['message']
-#     }
+
+@patch.object(CapitalInvestContactFormView.form_class, 'save')
+def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contact_form_data):
+    form = CapitalInvestContactForm(
+        data=capital_invest_contact_form_data
+    )
+
+    assert form.is_valid()
+
+    mock_save.return_value = create_response(status_code=200)
+    assert form.serialized_data == {
+        'given_name': capital_invest_contact_form_data['given_name'],
+        'family_name': capital_invest_contact_form_data['family_name'],
+        'email_address': capital_invest_contact_form_data['email_address'],
+        'country': capital_invest_contact_form_data['country'],
+        'city': capital_invest_contact_form_data['city'],
+        'message': capital_invest_contact_form_data['message']
+    }
