@@ -91,7 +91,7 @@ CONTACT_US_INVEST_CAPITAL = NavItem(
 
 FIND_A_SUPPLIER = NavItem(
     name='find-a-supplier',
-    title=_('Buy from the UK'),
+    title=_('Find a supplier'),
     url=urls.international.TRADE_FAS
 )
 
