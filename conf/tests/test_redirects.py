@@ -1,5 +1,4 @@
 import pytest
-import http
 
 from django.urls import reverse
 
@@ -18,9 +17,4 @@ redirects = [
 @pytest.mark.parametrize('url,expected', redirects)
 def test_redirects(url, expected, client):
     response = client.get(url)
-
-    assert response.status_code == http.client.FOUND
-    if not expected.startswith('http') and not expected.startswith('/'):
-        expected = reverse(expected)
-
     assert response.url == expected
