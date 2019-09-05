@@ -10,7 +10,10 @@
 
 {% block breadcrumbs %}
     <div class="container">
-        {% include 'core/includes/cms_breadcrumbs.html' %}
+        {% breadcrumbs page.breadcrumbs_label %}
+            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+            <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
+        {% endbreadcrumbs %}
     </div>
 {% endblock %}
 
