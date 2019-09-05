@@ -16,6 +16,7 @@
 - CI-476 - Allowed invest region pages to be linked to in maps in about uk pages
 
 ### Fixed bugs
+- no ticket - change FAS search input broken id
 - CMS-1826 - Fix engineering industry redirect
 - CMS-1826 - Fix healthcare and life-sciences redirects.
 - No ticket - Fix unloaded tag in template
