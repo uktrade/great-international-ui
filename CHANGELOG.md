@@ -15,6 +15,7 @@
 - CI-475 - About DIT services page uses featured description on featured cards instead so separate to teaser
 
 ### Fixed bugs
+- no ticket - change FAS search input broken id
 - CMS-1826 - Fix engineering industry redirect
 - CMS-1826 - Fix healthcare and life-sciences redirects.
 - No ticket - Fix unloaded tag in template
