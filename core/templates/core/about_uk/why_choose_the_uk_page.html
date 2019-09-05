@@ -8,13 +8,11 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
 
-<section id="breadcrumb-section">
+{% block breadcrumbs %}
     <div class="container">
-        {% breadcrumbs page.breadcrumbs_label %}
-            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-        {% endbreadcrumbs %}
+        {% include 'core/includes/cms_breadcrumbs.html' %}
     </div>
-</section>
+{% endblock %}
 
 {% if page.teaser %}
 <section id="teaser-section" class="padding-top-30 ">
