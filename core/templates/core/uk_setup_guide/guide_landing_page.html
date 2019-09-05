@@ -11,10 +11,11 @@
 
   <div class="container">
 
-      {% breadcrumbs page.display_title %}
-        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-      {% endbreadcrumbs %}
-
+    {% block breadcrumbs %}
+        <div class="container">
+            {% include 'core/includes/cms_breadcrumbs.html' %}
+        </div>
+    {% endblock %}
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
 
