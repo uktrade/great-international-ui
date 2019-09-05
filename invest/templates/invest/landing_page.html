@@ -11,10 +11,15 @@
 
 {% hero_with_cta heading=page.heading subtitle=page.sub_heading img_url=page.hero_image.url cta_text=page.hero_call_to_action_text cta_link=page.hero_call_to_action_url %}
 
+
 <div class="container">
-  {% breadcrumbs page.breadcrumbs_label %}
-    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-  {% endbreadcrumbs %}
+    {% if page.breadcrumbs_label %}
+        {% breadcrumbs page.breadcrumbs_label %}
+    {% else %}
+        {% breadcrumbs 'Invest' %}
+    {% endif %}
+        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+    {% endbreadcrumbs %}
 </div>
 
 
