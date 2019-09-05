@@ -26,7 +26,7 @@ class InternationalContactFormView(
 ):
     slug = slugs.EUEXIT_INTERNATIONAL_FORM
     form_class = forms.InternationalContactForm
-    success_url = reverse_lazy('eu-exit-international-contact-form-success')
+    success_url = reverse_lazy('brexit-international-contact-form-success')
     subject = 'Brexit international contact form'
     page_type = 'InternationalEUExitFormPage'
     header_section = tier_one_nav_items.ABOUT_DIT

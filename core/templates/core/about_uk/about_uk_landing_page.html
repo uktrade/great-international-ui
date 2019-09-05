@@ -89,7 +89,7 @@
                 {% endfor %}
             </div>
             <div class="column-half-xl center-vertical flex-shrink-0 max-width-100">
-                {% include 'core/includes/uk_map.html' with scotland=scotland northern_ireland=northern_ireland north_england=north_england south_england=south_england wales=wales midlands=midlands %}
+                {% include 'core/includes/uk_map.html' with regions=regions scotland=scotland northern_ireland=northern_ireland north_england=north_england south_england=south_england wales=wales midlands=midlands %}
             </div>
         </div>
         {% if page.regions_section_cta_link and page.regions_section_cta_text %}

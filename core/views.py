@@ -662,6 +662,10 @@ def get_regions_with_coordinates(regions):
 @register_context_modifier('AboutUkLandingPage')
 def about_uk_landing_page_context_modifier(context, request):
 
+    regions = []
+    if 'regions' in context['page']:
+        regions = context['page']['regions']
+
     random_sectors = []
     if 'all_sectors' in context['page']:
         all_sectors = context['page']['all_sectors']
@@ -678,9 +682,9 @@ def about_uk_landing_page_context_modifier(context, request):
     }
 
     show_regions = False
-    if 'regions' in context['page']:
-        region_pages = [field['region'] for field in context['page']['regions'] if field['region']]
-        regions_with_text = [field for field in context['page']['regions']
+    if regions:
+        region_pages = [field['region'] for field in regions if field['region']]
+        regions_with_text = [field for field in regions
                              if field['region'] and field['text']]
         if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
             show_regions = True
@@ -695,12 +699,17 @@ def about_uk_landing_page_context_modifier(context, request):
         'wales': regions_with_coordinates['wales'],
         'midlands': regions_with_coordinates['midlands'],
         'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates
+        'regions_with_points': regions_with_coordinates,
+        'regions': regions
     }
 
 
 @register_context_modifier('AboutUkRegionListingPage')
 def about_uk_region_listing_page_context_modifier(context, request):
+
+    regions = []
+    if 'mapped_regions' in context['page']:
+        regions = context['page']['mapped_regions']
 
     regions_with_coordinates = {
         'scotland': [],
@@ -712,13 +721,13 @@ def about_uk_region_listing_page_context_modifier(context, request):
     }
 
     show_mapped_regions = False
-    if 'mapped_regions' in context['page']:
-        region_pages = [field['region'] for field in context['page']['mapped_regions'] if field['region']]
-        regions_with_text = [field for field in context['page']['mapped_regions']
+    if regions:
+        region_pages = [field['region'] for field in regions if field['region']]
+        regions_with_text = [field for field in regions
                              if field['region'] and field['text']]
         if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
             show_mapped_regions = True
-            regions_with_coordinates = get_regions_with_coordinates(context['page']['mapped_regions'])
+            regions_with_coordinates = get_regions_with_coordinates(regions)
 
     return {
         'show_mapped_regions': show_mapped_regions,
@@ -728,7 +737,8 @@ def about_uk_region_listing_page_context_modifier(context, request):
         'wales': regions_with_coordinates['wales'],
         'midlands': regions_with_coordinates['midlands'],
         'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates
+        'regions_with_points': regions_with_coordinates,
+        'regions': regions
     }
 
 

@@ -10,6 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
+from conf.url_redirects import redirects
 import euexit.views
 import invest.views
 import contact.views
@@ -244,14 +245,14 @@ urlpatterns += [
         name='contact-page-international'
     ),
     url(
-        r'^international/eu-exit-news/contact/$',
+        r'^international/brexit/contact/$',
         euexit.views.InternationalContactFormView.as_view(),
-        name='eu-exit-international-contact-form'
+        name='brexit-international-contact-form'
     ),
     url(
-        r'^international/eu-exit-news/contact/success/$',
+        r'^international/brexit/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
-        name='eu-exit-international-contact-form-success'
+        name='brexit-international-contact-form-success'
     ),
     url(
         r'^international/content/capital-invest/contact/$',
@@ -317,3 +318,4 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     ]
 
 urlpatterns += perfectfit
+urlpatterns += redirects

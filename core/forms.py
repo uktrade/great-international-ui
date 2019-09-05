@@ -99,9 +99,6 @@ class CapitalInvestContactForm(GovNotifyActionMixin, forms.Form):
         widget=TextInput(attrs={'type': 'tel'}))
     country = forms.ChoiceField(
         label=_('Which country are you based in?'),
-        help_text=_(
-            'We will use this information to put you in touch with '
-            'your closest British embassy or high commission.'),
         choices=[('', '')] + COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'}), required=True
     )
