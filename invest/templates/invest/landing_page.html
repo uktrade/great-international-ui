@@ -15,11 +15,9 @@
 <div class="container">
     {% if page.breadcrumbs_label %}
         {% breadcrumbs page.breadcrumbs_label %}
-    {% else %}
-        {% breadcrumbs 'Invest' %}
+            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+        {% endbreadcrumbs %}
     {% endif %}
-        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-    {% endbreadcrumbs %}
 </div>
 
 
