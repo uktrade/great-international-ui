@@ -15,7 +15,7 @@
     {% hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url %}
 {% endif %}
 
-{% if page.breadcrumbs_label %}
+{% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
 <div class="container">
   {% breadcrumbs page.breadcrumbs_label %}
     <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>

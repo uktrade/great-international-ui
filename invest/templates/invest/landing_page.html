@@ -13,7 +13,7 @@
 
 
 <div class="container">
-    {% if page.breadcrumbs_label %}
+    {% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
         {% breadcrumbs page.breadcrumbs_label %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
         {% endbreadcrumbs %}
