@@ -6,7 +6,7 @@ from django.http import QueryDict
 from django.urls import reverse
 
 from core import helpers
-from core.helpers import get_map_labels_with_vertical_positions
+from core.helpers import get_map_labels_with_vertical_positions, get_header_config
 from core.tests.helpers import create_response
 
 
@@ -528,3 +528,39 @@ def test_get_map_labels_with_vertical_positions_four_words():
     assert words_with_coordinates[3]['title'] == 'england'
     assert words_with_coordinates[3]['x'] == '100'
     assert words_with_coordinates[3]['y'] == '137.5'
+
+
+@pytest.mark.parametrize('path,expected_section_name,expected_sub_section_name', [
+    ('', '', ''),
+    ('about-uk', 'about-uk', 'overview-about-uk'),
+    ('about-uk/regions', 'about-uk', 'regions'),
+    ('about-uk/regions/wales', 'about-uk', 'regions'),
+    ('about-uk/why-choose-uk', 'about-uk', 'why-choose-the-uk'),
+    ('about-uk/some-other-page', 'about-uk', ''),
+    ('industries', 'about-uk', 'industries'),
+    ('industries/energy', 'about-uk', 'industries'),
+    ('how-to-setup-in-the-uk', 'expand', 'how-to-expand'),
+    ('how-to-setup-in-the-uk/article-name', 'expand', 'how-to-expand'),
+    ('expand/contact', 'expand', 'contact-us-expand'),
+    ('expand', 'expand', 'overview-expand'),
+    ('expand/some-other-page', 'expand', ''),
+    ('opportunities', 'invest-capital', 'investment-opportunities'),
+    ('opportunities/an-opportunity', 'invest-capital', 'investment-opportunities'),
+    ('capital-invest/contact', 'invest-capital', 'contact-us-invest-capital'),
+    ('capital-invest/contact/success', 'invest-capital', 'contact-us-invest-capital'),
+    ('capital-invest', 'invest-capital', 'overview-invest-capital'),
+    ('capital-invest/some-other-page', 'invest-capital', ''),
+    ('trade', 'trade', 'find-a-supplier'),
+    ('trade/search', 'trade', 'find-a-supplier'),
+    ('trade/contact', 'trade', 'contact-us-trade'),
+    ('about-dit', 'about-dit', 'overview-about-dit'),
+    ('about-dit/some-other-page', 'about-dit', ''),
+    ('about-dit/contact', 'about-dit', 'contact-us-about-dit'),
+])
+def test_get_header_config(path, expected_section_name, expected_sub_section_name):
+    header_config = get_header_config(path)
+
+    section = header_config.section.name if header_config.section else ''
+    sub_section = header_config.sub_section.name if header_config.sub_section else ''
+    assert section == expected_section_name
+    assert sub_section == expected_sub_section_name

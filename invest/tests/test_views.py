@@ -397,7 +397,7 @@ def test_uk_region_page_cms_view(mock_get_page, client):
         }
     )
 
-    url = reverse('cms-page-from-path', kwargs={'path': '/invest/uk-regions/region-slug'})
+    url = reverse('cms-page-from-path', kwargs={'path': 'invest/uk-regions/region-slug'})
     response = client.get(url)
 
     assert response.status_code == 200

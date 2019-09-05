@@ -116,7 +116,7 @@ urlpatterns += [
     url(
         r'^international/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/'},
+        {'path': ''},
         name='index'
     ),
     url(
@@ -137,13 +137,13 @@ urlpatterns += [
     url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/invest/'},
+        {'path': 'invest'},
         name='invest-home'
     ),
     url(
         r'^international/expand/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/expand/'},
+        {'path': 'expand'},
         name='expand-home'
     ),
     url(
@@ -193,7 +193,7 @@ urlpatterns += [
     url(
         r'^international/trade/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/trade/'},
+        {'path': 'trade'},
         name='trade-home'
     ),
     url(
@@ -212,31 +212,31 @@ urlpatterns += [
     url(
         r'^international/content/invest/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': '/invest/high-potential-opportunities/contact/'},
+        {'path': 'invest/high-potential-opportunities/contact'},
         name='high-potential-opportunity-request-form'
     ),
     url(
         r'^international/content/invest/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': '/invest/high-potential-opportunities/contact/success/'},
+        {'path': 'invest/high-potential-opportunities/contact/success'},
         name='high-potential-opportunity-request-form-success'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(
-            url=('/international/content/expand/#high-potential-opportunities')),
+            url='/international/content/expand/#high-potential-opportunities'),
         name='hpo-landing-page-redirect'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': '/expand/high-potential-opportunities/contact/'},
+        {'path': 'expand/high-potential-opportunities/contact'},
         name='high-potential-opportunity-request-form'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': '/expand/high-potential-opportunities/contact/success/'},
+        {'path': 'expand/high-potential-opportunities/contact/success'},
         name='high-potential-opportunity-request-form-success'
     ),
     url(
@@ -257,7 +257,7 @@ urlpatterns += [
     url(
         r'^international/content/capital-invest/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
-        {'path': '/capital-invest/contact/'},
+        {'path': 'capital-invest/contact'},
         name='capital-invest-contact'
     ),
     # these next 3 named urls are required for breadcrumbs in templates

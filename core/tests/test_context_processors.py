@@ -14,7 +14,7 @@ def test_footer_contact_link_processor_flag_on_settings(settings):
 
     actual = context_processors.footer_contact_us_link(None)
 
-    expected = urls.build_great_url('international/contact/')
+    expected = urls.international.HOME / 'contact'
     assert actual['footer_contact_us_link'] == expected
 
 
@@ -26,7 +26,7 @@ def test_footer_contact_link_processor_flag(settings):
 
     actual = context_processors.footer_contact_us_link(None)
 
-    assert actual['footer_contact_us_link'] == urls.CONTACT_US
+    assert actual['footer_contact_us_link'] == urls.international.CONTACT
 
 
 def test_directory_components_html_lang_attribute(settings):

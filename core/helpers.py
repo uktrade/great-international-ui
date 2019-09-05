@@ -1,3 +1,4 @@
+import re
 from urllib.parse import urlencode
 import collections
 
@@ -11,7 +12,7 @@ from django.urls import reverse
 from django.utils.html import escape, mark_safe
 
 from core import constants
-
+from core.constants import HeaderConfig
 
 INDUSTRY_CHOICES = dict(choices.INDUSTRIES)
 
@@ -312,3 +313,21 @@ def get_map_labels_with_vertical_positions(list_of_title_words, middle_x, middle
     ]
 
     return labels_with_coordinates
+
+
+def get_header_config(path):
+    for (pattern, config) in constants.HEADER_SECTION_MAPPING.items():
+        compiled_pattern = re.compile(pattern)
+        if compiled_pattern.match(path):
+            return config
+
+    # If no matching URL is found, just return a default config.
+    return HeaderConfig(section=None, sub_section=None)
+
+
+def get_header_section(path):
+    return get_header_config(path).section
+
+
+def get_header_sub_section(path):
+    return get_header_config(path).sub_section

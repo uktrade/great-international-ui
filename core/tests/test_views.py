@@ -578,8 +578,8 @@ def test_get_capital_invest_opportunity_page_url_constants(
     response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/opportunities/ashton')
 
-    assert response.context_data['invest_cta_link'] == urls.SERVICES_INVEST
-    assert response.context_data['buy_cta_link'] == urls.SERVICES_FAS
+    assert response.context_data['invest_cta_link'] == urls.international.EXPAND_HOME
+    assert response.context_data['buy_cta_link'] == urls.international.TRADE_HOME
 
 
 @pytest.mark.usefixtures('international_capital_invest_page')
@@ -2167,22 +2167,22 @@ def test_expand_path_exists(mock_get_page, client, settings):
     }
 
     def side_effect(*args, **kwargs):
-        if kwargs['path'] == '/invest/':
+        if kwargs['path'] == 'invest':
             return create_response(status_code=404)
-        if kwargs['path'] == '/expand/':
+        if kwargs['path'] == 'expand':
             return create_response(json_payload=page, status_code=200)
         return create_response(status_code=500)
 
     mock_get_page.side_effect = side_effect
 
-    url = reverse('invest-home', kwargs={'path': '/invest/'})
+    url = reverse('invest-home')
     response = client.get(url)
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
                                             draft_token=None,
                                             language_code='en-gb',
-                                            path='/expand/',
+                                            path='expand',
                                             site_id=2
                                         )
     assert response.status_code == 200
