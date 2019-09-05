@@ -126,6 +126,15 @@
     }
 }
 
+@mixin top-page-section-padding {
+    padding-top: $spacing-3;
+    padding-bottom: $spacing-1;
+
+    @media (max-width: 641px) {
+      padding: $spacing-3 0;
+    }
+}
+
 @mixin white-section {
   @include page-section-padding;
 
@@ -135,4 +144,25 @@
   background: $stone-40;
 }
 
+@mixin uk-map{
+  stroke: $black;
 
+  .greyed-out-region{
+    fill: $stone-light;
+  }
+
+  path{
+    stroke-width: 2;
+    fill: $white;
+  }
+
+  circle {
+    stroke: $active-blue;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  text {
+    stroke: $active-blue;
+  }
+}

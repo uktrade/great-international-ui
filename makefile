@@ -78,6 +78,7 @@ DEBUG_SET_ENV_VARS := \
 	export FEATURE_CAPITAL_INVEST_REGION_SECTOR_OPP_PAGE_ENABLED=true; \
 	export FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED=true; \
 	export FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED=true; \
+	export FEATURE_EXPAND_REDIRECT_ENABLED=true; \
 	export PFP_API_CLIENT_API_KEY=debug; \
 	export PFP_API_CLIENT_BASE_URL=http://pfp.trade.great:8014; \
 	export PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID=debug; \
@@ -87,6 +88,7 @@ DEBUG_SET_ENV_VARS := \
 	export THUMBNAIL_KVSTORE_CLASS_NAME=redis; \
 	export FEATURE_INVESTMENT_SUPPORT_DIRECTORY_ENABLED=True; \
 	export FEATURE_FIND_A_SUPPLIER_ENABLED=True; \
+	export FEATURE_NEW_IA_ENABLED=True; \
 	export CONTACT_INDUSTRY_AGENT_EMAIL_ADDRESS=buying@example.com
 
 TEST_SET_ENV_VARS := \
@@ -107,6 +109,9 @@ debug_pytest:
 
 debug_test:
 	$(DEBUG_SET_ENV_VARS) && $(TEST_SET_ENV_VARS) && $(COLLECT_STATIC) && $(PYTEST) --cov-report=html
+
+debug_test_last_failed:
+	$(DEBUG_SET_ENV_VARS) && $(TEST_SET_ENV_VARS) && $(COLLECT_STATIC) && $(PYTEST) --last-failed --cov-report=html
 
 debug_manage:
 	$(DEBUG_SET_ENV_VARS) && ./manage.py $(cmd)

@@ -26,22 +26,19 @@
   </div>
 </section>
 
-
 {% if page.region_summary_section_content %}
 <section class="page-section">
     <div class="container">
+        <div class="grid-row">
+            <div class="column-two-thirds margin-bottom-30">
+                {{ page.region_summary_section_intro}}
+            </div>
+        </div>
         <div class="flex-grid">
-            {% if page.region_summary_section_image.url %}
-                <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
-                    <figure class="landing-page-image flex-shrink-0 margin-bottom-30">
-                        <img class="width-full" src="{{page.region_summary_section_image.url}}" alt="">
-                    </figure>
-                </div>
-            {%  endif %}
-            <div class="column-half-l center-vertical right-half-page-text">
-                <div>
-                    {{ page.region_summary_section_intro}}
-                </div>
+            <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
+                {% include 'core/includes/uk_map.html' with active_region=page.meta.slug %}
+            </div>
+            <div class="column-half-l center-vertical right-half-page-text margin-top-30">
                 <div>
                     {{ page.region_summary_section_content|add_export_elements_classes|safe }}
                 </div>

@@ -809,7 +809,7 @@ def test_industry_contact_submit_with_comment_forms_api(
 
     mock_save.return_value = create_response(status_code=200)
 
-    url = reverse('find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'})
+    url = reverse('find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'})
     data = {
         'full_name': 'Jeff',
         'email_address': 'jeff@example.com',
@@ -827,7 +827,7 @@ def test_industry_contact_submit_with_comment_forms_api(
 
     assert response.status_code == 302
     assert response.url == (
-        reverse('find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'})
+        reverse('find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'})
     )
     assert mock_save.call_count == 2
     assert mock_save.call_args_list[0] == call(
@@ -868,10 +868,10 @@ def test_industry_contact_sent_no_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     expected_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     response = client.get(url, {})
 
@@ -898,10 +898,10 @@ def test_industry_contact_sent_incorrect_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     expected_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     referer_url = 'http://www.googe.com'
     response = client.get(url, {}, HTTP_REFERER=referer_url)
@@ -929,10 +929,10 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     referer_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     response = client.get(url, {}, HTTP_REFERER=referer_url)
 
