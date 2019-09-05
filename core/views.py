@@ -684,7 +684,8 @@ def about_uk_landing_page_context_modifier(context, request):
         'wales': regions_with_coordinates['wales'],
         'midlands': regions_with_coordinates['midlands'],
         'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates
+        'regions_with_points': regions_with_coordinates,
+        'regions': context['page']['regions']
     }
 
 
@@ -717,7 +718,8 @@ def about_uk_region_listing_page_context_modifier(context, request):
         'wales': regions_with_coordinates['wales'],
         'midlands': regions_with_coordinates['midlands'],
         'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates
+        'regions_with_points': regions_with_coordinates,
+        'regions': context['page']['mapped_regions']
     }
 
 
