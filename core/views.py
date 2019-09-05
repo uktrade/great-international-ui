@@ -652,7 +652,7 @@ def get_regions_with_coordinates(regions):
 def about_uk_landing_page_context_modifier(context, request):
 
     regions = []
-    if 'regions' in context['page']['regions']:
+    if 'regions' in context['page']:
         regions = context['page']['regions']
 
     random_sectors = []
@@ -671,7 +671,7 @@ def about_uk_landing_page_context_modifier(context, request):
     }
 
     show_regions = False
-    if 'regions' in context['page']:
+    if regions:
         region_pages = [field['region'] for field in regions if field['region']]
         regions_with_text = [field for field in regions
                              if field['region'] and field['text']]
@@ -710,7 +710,7 @@ def about_uk_region_listing_page_context_modifier(context, request):
     }
 
     show_mapped_regions = False
-    if 'mapped_regions' in context['page']:
+    if regions:
         region_pages = [field['region'] for field in regions if field['region']]
         regions_with_text = [field for field in regions
                              if field['region'] and field['text']]
