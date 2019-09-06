@@ -422,7 +422,10 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_industry_page_context_modifier_renames_heading(mock_get_page, client):
+def test_industry_page_context_modifier_renames_heading(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     page = {
         'title': 'test',
         'landing_page_title': 'Industries',
@@ -686,6 +689,8 @@ def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
     client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = False
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
+    reload_urlconf(settings)
 
     response = client.get(
         '/international/content/industries/energy/mixed-use/'
