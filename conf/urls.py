@@ -225,19 +225,19 @@ urlpatterns += [
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(
             url='/international/content/expand/#high-potential-opportunities'),
-        name='hpo-landing-page-redirect'
+        name='hpo-landing-page-expand-redirect'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-form'
+        name='high-potential-opportunity-request-expand-form'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-form-success'
+        name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
         r'^international/contact/$',

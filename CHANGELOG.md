@@ -16,7 +16,8 @@
 ### Fixed bugs
 - no ticket - change FAS search input broken id
 - TT1752 - fix links on homepage
-- Fixed invest contact success going to expand
+- no ticket - Fixed invest contact success going to expand
+- no ticket - Fixed invest going to expand 
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
