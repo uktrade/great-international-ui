@@ -2350,7 +2350,7 @@ def test_this_industries_about_uk_path_exists(mock_get_page, client, settings):
     mock_get_page.side_effect = side_effect
 
     response = client.get('/international/content/industries/')
-    
+
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
                                             draft_token=None,
