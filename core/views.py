@@ -135,6 +135,35 @@ def article_page_context_modifier(context, request):
     }
 
 
+class InternationalHomePageView(MultilingualCMSPageFromPathView):
+
+    @property
+    def template_name(self):
+        is_new_page_ready = False
+        if 'is_new_page_ready' in self.page:
+            if self.page['is_new_page_ready']:
+                is_new_page_ready = True
+
+        if is_new_page_ready:
+            return 'core/new_international_landing_page.html'
+        else:
+            return 'core/landing_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        country_code = get_user_country(self.request)
+        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+        tariffs_country = {'code': country_code.lower(), 'name': country_name}
+        tariffs_country_selector_form = forms.TariffsCountryForm(
+            initial={'tariffs_country': country_code}
+        ),
+
+        return super().get_context_data(
+            tariffs_country=tariffs_country,
+            tariffs_country_selector_form=tariffs_country_selector_form,
+            *args, **kwargs
+        )
+
+
 @register_context_modifier('InternationalHomePage')
 def home_page_context_modifier(context, request):
 

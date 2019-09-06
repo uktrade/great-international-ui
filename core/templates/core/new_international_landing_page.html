@@ -1,0 +1,19 @@
+{% extends 'core/base_cms.html' %}
+{% load trans from i18n %}
+{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid card from directory_components %}
+
+{% block css_layout_class %}about-uk-landing-page{% endblock %}
+
+{% block content %}
+
+{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+
+<div class="container">
+    {% include 'core/includes/cms_breadcrumbs.html' %}
+</div>
+
+
+{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+JUST THIS ONE
+
+{% endblock %}
