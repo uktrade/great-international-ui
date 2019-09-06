@@ -2208,3 +2208,154 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
         'company_name': capital_invest_contact_form_data['company_name'],
         'message': capital_invest_contact_form_data['message']
     }
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_this_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    page = {
+        'title': 'How to set up in the UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'how-to-setup-in-the-uk'
+        },
+        'page_type': 'InternationalGuideLandingPage',
+        'guides': [
+            {
+                'title': 'Set up guide',
+                'meta': {
+                    'languages': [
+                        ['en-gb', 'English']
+                    ]
+                },
+                'page_type': 'InternationalArticlePage',
+            },
+        ]
+    }
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == 'how-to-setup-in-the-uk':
+            return create_response(status_code=404)
+        if kwargs['path'] == 'invest/how-to-setup-in-the-uk':
+            return create_response(status_code=404)
+        if kwargs['path'] == 'expand/how-to-setup-in-the-uk':
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
+
+    mock_get_page.side_effect = side_effect
+
+    response = client.get('/international/content/how-to-setup-in-the-uk/')
+
+    assert mock_get_page.call_count == 3
+    assert mock_get_page.mock_calls[2] == call(
+                                            draft_token=None,
+                                            language_code='en-gb',
+                                            path='expand/how-to-setup-in-the-uk',
+                                            site_id=2
+                                        )
+    assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_this_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    page = {
+        'title': 'How to set up in the UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'how-to-setup-in-the-uk'
+        },
+        'page_type': 'InternationalGuideLandingPage',
+        'guides': [
+            {
+                'title': 'Set up guide',
+                'meta': {
+                    'languages': [
+                        ['en-gb', 'English']
+                    ]
+                },
+                'page_type': 'InternationalArticlePage',
+            },
+        ]
+    }
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == 'how-to-setup-in-the-uk':
+            return create_response(status_code=404)
+        if kwargs['path'] == 'invest/how-to-setup-in-the-uk':
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
+
+    mock_get_page.side_effect = side_effect
+
+    response = client.get('/international/content/how-to-setup-in-the-uk/')
+
+    assert mock_get_page.call_count == 2
+    assert mock_get_page.mock_calls[1] == call(
+                                            draft_token=None,
+                                            language_code='en-gb',
+                                            path='invest/how-to-setup-in-the-uk',
+                                            site_id=2
+                                        )
+    assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_this_industries_about_uk_path_exists(mock_get_page, client, settings):
+
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    page = {
+        'title': 'Industries',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'industries'
+        },
+        'page_type': 'InternationalTopicLandingPage',
+        'landing_page_title': 'title',
+        'child_pages': [
+            {
+                'meta': {
+                    'slug': 'page',
+                    'languages': [['en-gb', 'English']],
+                },
+                'landing_page_title': 'title',
+                'heading': 'heading'
+            }
+        ]
+    }
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == 'industries':
+            return create_response(status_code=404)
+        if kwargs['path'] == 'about-uk/industries':
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
+
+    mock_get_page.side_effect = side_effect
+
+    response = client.get('/international/content/industries/')
+    
+    assert mock_get_page.call_count == 2
+    assert mock_get_page.mock_calls[1] == call(
+                                            draft_token=None,
+                                            language_code='en-gb',
+                                            path='about-uk/industries',
+                                            site_id=2
+                                        )
+    assert response.status_code == 200

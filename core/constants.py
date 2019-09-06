@@ -267,12 +267,14 @@ HEADER_SECTION_MAPPING = {
     # About the UK pages
     r'^about-uk/why-choose-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.WHY_CHOOSE_THE_UK),  # noqa
     r'^industries.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.INDUSTRIES),
+    r'^about-uk/industries.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.INDUSTRIES),
     r'^about-uk/regions.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.REGIONS),
     r'^about-uk$': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.OVERVIEW_ABOUT),
     r'^about-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=None),
 
     # Expand to the UK
     r'^how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
+    r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
     r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
     r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
     r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),

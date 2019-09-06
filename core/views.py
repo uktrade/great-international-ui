@@ -77,23 +77,33 @@ class MonolingualCMSPageFromPathView(
     def header_sub_section(self):
         return helpers.get_header_sub_section(self.path)
 
+    def get_look_up_by_path_response(self, path):
+        return cms_api_client.lookup_by_path(
+                    site_id=self.cms_site_id,
+                    path=path,
+                    language_code=translation.get_language(),
+                    draft_token=self.request.GET.get('draft_token'),
+                )
+
     @cached_property
     def page(self):
-        response = cms_api_client.lookup_by_path(
-            site_id=self.cms_site_id,
-            path=self.path,
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-        )
+        response = self.get_look_up_by_path_response(self.path)
 
-        if response.status_code == 404 and 'invest' in self.kwargs['path']:
-            new_path = self.kwargs['path'].replace('invest', 'expand')
-            response = cms_api_client.lookup_by_path(
-                site_id=self.cms_site_id,
-                path=new_path,
-                language_code=translation.get_language(),
-                draft_token=self.request.GET.get('draft_token'),
-            )
+        if response.status_code == 404 and 'invest' in self.path:
+            new_path = self.path.replace('invest', 'expand')
+            response = self.get_look_up_by_path_response(new_path)
+
+        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'invest/how-to-setup-in-the-uk')
+            response = self.get_look_up_by_path_response(new_path)
+
+        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'expand/how-to-setup-in-the-uk')
+            response = self.get_look_up_by_path_response(new_path)
+
+        if response.status_code == 404 and 'industries' in self.path:
+            new_path = self.path.replace('industries', 'about-uk/industries')
+            response = self.get_look_up_by_path_response(new_path)
 
         return handle_cms_response(response)
 
@@ -165,7 +175,6 @@ def sector_landing_page_context_modifier(context, request):
         for child_page in context['page']['child_pages']]
 
     context['about_uk_link'] = urls.international.ABOUT_UK_HOME
-
     return context
 
 
@@ -829,4 +838,25 @@ class ContentInvestToExpandRedirect(MultilingualCMSPageFromPathView):
 
     def dispatch(self, request, *args, **kwargs):
         url = '/international/content/expand/' + self.kwargs['path']
+        return redirect(url)
+
+
+class HowToSetUpToInvestRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/content/invest/how-to-setup-in-the-uk/' + self.kwargs['path']
+        return redirect(url)
+
+
+class HowToSetUpToExpandRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/content/expand/how-to-setup-in-the-uk/' + self.kwargs['path']
+        return redirect(url)
+
+
+class IndustriesToAboutUkRedirect(MultilingualCMSPageFromPathView):
+
+    def dispatch(self, request, *args, **kwargs):
+        url = '/international/content/about-uk/industries/' + self.kwargs['path']
         return redirect(url)
