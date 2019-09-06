@@ -274,7 +274,7 @@ HEADER_SECTION_MAPPING = {
 
     # Expand to the UK
     r'^how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
-    r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
+    r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),  # noqa
     r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
     r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
     r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),
