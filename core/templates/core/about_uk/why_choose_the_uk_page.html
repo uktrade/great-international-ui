@@ -8,13 +8,14 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
 
-<section id="breadcrumb-section">
+{% block breadcrumbs %}
     <div class="container">
         {% breadcrumbs page.breadcrumbs_label %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+            <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
         {% endbreadcrumbs %}
     </div>
-</section>
+{% endblock %}
 
 {% if page.teaser %}
 <section id="teaser-section" class="padding-top-30 ">
@@ -50,7 +51,7 @@
 {% if num_of_statistics != 0 %}
 <section id="sector-statistics-section" class="statistics">
     <div class="container">
-        {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics %}
+        {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics number_first=True %}
     </div>
 </section>
 {% endif %}

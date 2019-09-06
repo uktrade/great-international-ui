@@ -11,6 +11,7 @@
 - CI-405 - Added new IA candidate to nav header (behind a feature flag)
 - CI-475 - About DIT services page uses featured description on featured cards instead so separate to teaser
 - CI-476 - Allowed invest region pages to be linked to in maps in about uk pages
+- CI-335 - Added breadcrumbs and labels to pages missing them
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id

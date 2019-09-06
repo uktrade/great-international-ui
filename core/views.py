@@ -164,6 +164,8 @@ def sector_landing_page_context_modifier(context, request):
         rename_heading_field(child_page)
         for child_page in context['page']['child_pages']]
 
+    context['about_uk_link'] = urls.international.ABOUT_UK_HOME
+
     return context
 
 
@@ -203,7 +205,8 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
         'num_of_statistics': count_data_with_field(
             page['statistics'],
             'number'
-        )
+        ),
+        'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
 

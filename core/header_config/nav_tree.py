@@ -34,7 +34,6 @@ HEADER_TREE = [
         tier_one_item=tier_one_nav_items.INVEST_CAPITAL,
         tier_two_items=[
             tier_two_nav_items.OVERVIEW_INVEST_CAPITAL,
-            tier_two_nav_items.INVESTMENT_OPPORTUNITIES,
             tier_two_nav_items.CONTACT_US_INVEST_CAPITAL,
         ]
     ),
