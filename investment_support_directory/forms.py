@@ -176,7 +176,7 @@ class CompanySearchForm(forms.Form):
 
 class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
     TERMS_CONDITIONS_LABEL = (
-        f'<p>I agree to the <a href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'class="link" target="_blank"> great.gov.uk terms and conditions </a> and I '
         'understand that:</p>'
         '<ul class="list list-bullet">'

@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from directory_constants import choices
 
+from conf.tests.test_urls import reload_urlconf
 from core.tests.helpers import create_response
 from invest import views
 from . import helpers
@@ -15,6 +16,9 @@ from . import helpers
 def test_high_potential_opportunity_detail(
     mock_lookup_by_path, settings, client
 ):
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
             'meta': {'languages': [['en-gb', 'English']]},
@@ -36,6 +40,10 @@ def test_high_potential_opportunity_detail(
 def test_high_potential_opportunity_detail_not_found(
     mock_lookup_by_path, settings, client
 ):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_lookup_by_path.return_value = create_response(status_code=404)
 
     url = '/international/content/invest/high-potential-opportunities/rail/'
@@ -49,6 +57,10 @@ def test_high_potential_opportunity_detail_not_found(
 def test_high_potential_opportunity_detail_cms_retrieval_ok(
     mock_lookup_by_path, settings, client
 ):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
             'title': '1234',
@@ -72,6 +84,10 @@ def test_high_potential_opportunity_detail_cms_retrieval_ok(
 def test_high_potential_opportunity_detail_cms_retrieval_not_ok(
     mock_lookup_by_path, settings, client
 ):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_lookup_by_path.return_value = create_response(status_code=400)
 
     url = '/international/content/invest/high-potential-opportunities/rail/'
@@ -347,14 +363,22 @@ def test_invest_redirects_persist_querystrings(client):
     assert response.url == '/international/content/industries/?foo=bar&lang=es'
 
 
-def test_invest_redirect_homepage(client):
+def test_invest_redirect_homepage(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     url = reverse('invest-incoming', kwargs={'path': '/es/'})
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302
     assert response.url == '/international/invest/?foo=bar&lang=es'
 
 
-def test_invest_redirect_homepage_english(client):
+def test_invest_redirect_homepage_english(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     url = reverse('invest-incoming-homepage')
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302
@@ -373,7 +397,7 @@ def test_uk_region_page_cms_view(mock_get_page, client):
         }
     )
 
-    url = reverse('cms-page-from-path', kwargs={'path': '/invest/uk-regions/region-slug'})
+    url = reverse('cms-page-from-path', kwargs={'path': 'invest/uk-regions/region-slug'})
     response = client.get(url)
 
     assert response.status_code == 200

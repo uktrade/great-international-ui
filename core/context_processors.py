@@ -7,9 +7,9 @@ from directory_constants import urls
 
 def footer_contact_us_link(request):
     if settings.FEATURE_FLAGS.get('INTERNATIONAL_CONTACT_LINK_ON'):
-        footer_contact_us_link = urls.build_great_url('international/contact/')
+        footer_contact_us_link = urls.international.HOME / 'contact'
     else:
-        footer_contact_us_link = urls.CONTACT_US
+        footer_contact_us_link = urls.international.CONTACT
 
     return {
         'footer_contact_us_link': footer_contact_us_link

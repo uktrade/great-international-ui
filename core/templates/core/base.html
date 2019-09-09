@@ -7,7 +7,7 @@
 
 {% block head_title %}{{ international_home_link.label }}{% endblock %}
 
-{% load static_absolute from directory_components %}
+{% load static_absolute international_header from directory_components %}
 
 {% block head_css %}
   {{ block.super }}
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block body_header %}
-  {% include 'directory_components/header_footer/international_header.html' %}
+  {% international_header navigation_tree=navigation_tree site_section=header_section site_sub_section=header_sub_section %}
 {% endblock %}
 
 {% block feedback_reporter %}

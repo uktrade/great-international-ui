@@ -87,7 +87,7 @@ class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
         'Tick the box to confirm you agree to the terms and conditions.'
     )
     TERMS_CONDITIONS_LABEL = (
-        f'<p>I agree to the <a href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'class="link" target="_blank"> great.gov.uk terms and conditions </a> and I '
         'understand that:</p>'
         '<ul class="list list-bullet">'
@@ -165,7 +165,7 @@ class SubscribeForm(forms.Form):
         'Tick the box to confirm you agree to the terms and conditions.'
     )
     TERMS_CONDITIONS_LABEL = mark_safe(
-        f'<p>I agree to the <a class="link" href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a class="link" href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'target="_blank"> great.gov.uk terms and conditions</a>.</p>'
     )
 
@@ -221,7 +221,7 @@ class ContactForm(GovNotifyActionMixin, forms.Form):
             _(
                 'I agree to the <a href="{url}" target="_blank">'
                 'great.gov.uk terms and conditions</a>'
-            ).format(url=urls.TERMS_AND_CONDITIONS)
+            ).format(url=urls.domestic.TERMS_AND_CONDITIONS)
         )
         self.fields['sector'].choices = industry_choices
 

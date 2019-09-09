@@ -3,18 +3,28 @@
 ## Pre-release
 
 ### Implemented enhancements
-
+- CMS-1754 - Change /eu-exit-news to /brexit and add redirects
 - GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
+- CI-400 - Added clickable maps to About Uk landing pages
+- CI-366 - Added cta to invest home page
+- CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url will try
+- CI-460 - Updated capital invest contact and success pages and confirmation email and goes through GOV.UK Notify
+- CI-405 - Added new IA candidate to nav header (behind a feature flag)
+- CI-475 - About DIT services page uses featured description on featured cards instead so separate to teaser
+- CI-476 - Allowed invest region pages to be linked to in maps in about uk pages
 
 ### Fixed bugs
+- no ticket - change FAS search input broken id
 - CMS-1826 - Fix engineering industry redirect
 - CMS-1826 - Fix healthcare and life-sciences redirects.
 - No ticket - Fix unloaded tag in template
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
+- TT1752 - fix links on homepage
+- Fixed invest contact success going to expand
 
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
