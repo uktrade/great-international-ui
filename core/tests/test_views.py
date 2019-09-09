@@ -2223,6 +2223,7 @@ def test_new_international_landing_page_gets_random_sector(
             ],
             'slug': 'international'
         },
+        'is_new_page_ready': True,
         'page_type': 'InternationalHomePage',
         'all_sectors': [
             {
