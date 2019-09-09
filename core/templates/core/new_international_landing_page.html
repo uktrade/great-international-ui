@@ -1,19 +1,168 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
-{% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid card from directory_components %}
+{% load directory_components %}
+{% load filter_by_active_language from cms_tags %}
 
-{% block css_layout_class %}about-uk-landing-page{% endblock %}
+{% block css_layout_class %}new-international-landing-page{% endblock %}
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+{% hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
-<div class="container">
-    {% include 'core/includes/cms_breadcrumbs.html' %}
-</div>
+{% if ready_to_trade_stories|length > 0 %}
+<section class="top-page-section">
+    <div class="container">
+        <div class="flex-grid">
+            {% for story in ready_to_trade_stories %}
+                <div class="column-third-xl column-half-m">
+                    {{ story|add_export_elements_classes|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
+{% if page.benefits_of_uk_title and benefits_of_uk|length > 1 %}
+<section class="top-page-section">
+    <div class="container">
+        <div class="grid-row">
+            <h2 class="heading-large">{{ page.benefits_of_uk_title }}</h2>
+            <div class="column-two-thirds-l">
+                {{ page.benefits_of_uk_intro }}
+            </div>
+        </div>
+        <div class="flex-grid margin-top-30">
+            {% for benefit in benefits_of_uk %}
+                <div class="column-third-xl column-half-m">
+                    {{ benefit|add_export_elements_classes|safe }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
-{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
-JUST THIS ONE
+{% if page.ready_for_brexit_title and page.ready_for_brexit_cta_link and page.ready_for_brexit_cta_text %}
+<section class="ready-for-brexit-page-section">
+    <div class="container white-container">
+        <div class="flex-grid reverse-columns-s">
+            <div class="column-half">
+                <h3 class="heading-large padding-right-30">{{ page.ready_for_brexit_title }}</h3>
+                <div class="grid-row">
+                    <a class="button button-ghost-blue button-arrow-small" href="{{ page.ready_for_brexit_cta_link }}">{{ page.ready_for_brexit_cta_text }}</a>
+                </div>
+            </div>
+            <div class="column-half">
+                {% if page.ready_for_brexit_image.url %}
+                    <figure class="flex-shrink-0 center-vertical">
+                        <img class="width-full" src="{{page.ready_for_brexit_image.url}}" alt="">
+                    </figure>
+                {%  endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_we_help_title and how_we_help|length > 1 %}
+<section class="how-we-help-page-section">
+    <div class="container how-we-help-white-container">
+        <div class="grid-row margin-bottom-30">
+            <h3 class="heading-large">{{ page.how_we_help_title }}</h3>
+            <div class="column-two-thirds">
+                {{ page.how_we_help_intro }}
+            </div>
+        </div>
+        <ul class="flex-grid">
+            {% for how_we_help in how_we_help %}
+                <li class="column-third-xl column-half-m">
+                    <img class="icon" src="{{how_we_help.icon.url}}" alt="">
+                    {{ how_we_help.text|add_export_elements_classes|safe }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+
+{% if page.ways_of_doing_business_title and related_cards|length > 1 %}
+<section class="page-section">
+    <div class="container">
+        <h3 class="heading-large margin-bottom-30">{{ page.ways_of_doing_business_title }}</h3>
+        <div class="flex-grid">
+            <div class="column-third-xl column-half-m">
+                {% card url=page.related_page_expand.full_path img_src=page.related_page_expand.image.url title=page.related_page_expand.title description=page.related_page_expand_description|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% card url=page.related_page_invest_capital.full_path img_src=page.related_page_invest_capital.image.url title=page.related_page_invest_capital.title description=page.related_page_invest_capital_description|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
+            </div>
+            <div class="column-third-xl column-half-m">
+                {% card url=page.related_page_buy.full_path img_src=page.related_page_buy.image.url title=page.related_page_buy.title description=page.related_page_buy_description|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.case_study_title and page.case_study_image.url %}
+    <section>
+        {% include 'directory_components/case_study.html' with background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    </section>
+{% endif %}
+
+{% if page.industries_section_title and random_sector %}
+<section class="page-section">
+    <div class="container">
+        <div class="grid-row margin-bottom-30">
+            <h3 class="heading-large">{{ page.industries_section_title }}</h3>
+            <div class="column-two-thirds">
+                {{ page.industries_section_intro }}
+            </div>
+        </div>
+        <div class="flex-grid">
+            <div class="column-third">
+                <p class="font-xsmall">{{ page.industries_section_industry_label }}</p>
+                <a href="{{ random_sector.full_path }}"><h3 class="bold-medium">{{ random_sector.title }}</h3></a>
+                {{ random_sector.featured_description }}
+
+                {% if page.industries_section_cta_link and page.industries_section_cta_text %}
+                    <div class="grid-row">
+                        <a class="button button-ghost-blue button-arrow-small margin-top-45 margin-right-15 margin-left-15" href="{{ page.industries_section_cta_link }}">{{ page.industries_section_cta_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="column-two-thirds center-vertical padding-left-60">
+                <figure class="flex-shrink-0">
+                    <img class="width-full" src="{{random_sector.image.url}}" alt="">
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.link_to_section_title and link_to_section_links|length > 1 %}
+<section class="stone-page-section">
+    <div class="container">
+        <div class="grid-row margin-bottom-15">
+            <h3 class="heading-large">{{ page.link_to_section_title }}</h3>
+            <div class="column-two-thirds">
+                {{ page.link_to_section_intro }}
+            </div>
+        </div>
+        <ul class="flex-grid grid-row">
+            {% for link in link_to_section_links %}
+                <li class="column-third-xl column-half-m">
+                    {{ link.text|add_export_elements_classes|safe }}
+                    <div class="grid-row padding-left-15 padding-right-15">
+                        <a class="button button-ghost-blue button-arrow-small" href="{{ link.cta_link }}">{{ link.cta_text }}</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
 
 {% endblock %}

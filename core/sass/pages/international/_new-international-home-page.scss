@@ -1,0 +1,53 @@
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.new-international-landing-page {
+
+  .white-container {
+    background-color: $white;
+    padding: $spacing-1;
+  }
+
+  .how-we-help-white-container {
+    background-color: $white;
+    padding: 0 $spacing-1 $spacing-1;
+  }
+
+  .ready-for-brexit-page-section {
+    background: $stone-40;
+    padding-top: $spacing-1;
+    padding-bottom: $spacing-3;
+
+    .button-arrow-small {
+      margin-top: $spacing-2;
+      margin-left: $spacing-4;
+      margin-right: $spacing-4;
+    }
+  }
+
+  .how-we-help-page-section {
+    background: $stone-40;
+    padding-top: $spacing-3;
+    padding-bottom: $spacing-1;
+  }
+
+  @media (max-width: 768px) {
+    .ready-for-brexit-page-section {
+
+      .button-arrow-small {
+        margin-top: 15px;
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+
+    .how-we-help-white-container {
+      padding: 0 $spacing-3 $spacing-3;
+    }
+
+    .white-container {
+      padding: $spacing-3;
+    }
+
+  }
+}
