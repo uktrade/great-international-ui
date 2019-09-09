@@ -17,11 +17,6 @@
     background: $stone-40;
     padding-top: $spacing-1;
     padding-bottom: $spacing-3;
-
-    .button{
-      white-space: normal;
-    }
-
   }
 
   .how-we-help-page-section {
@@ -35,6 +30,11 @@
     .industry-image {
       padding-left: $spacing-1;
     }
+
+    .button{
+      white-space: normal;
+    }
+
   }
 
   @media (max-width: 768px) {
