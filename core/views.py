@@ -189,8 +189,12 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
         if 'related_page_expand' in page:
             if page['related_page_expand']['image'] and page['related_page_expand']['title']:
                 related_cards.append(page['related_page_expand'])
+
+        if 'related_page_invest_capital' in page:
             if page['related_page_invest_capital']['image'] and page['related_page_invest_capital']['title']:
                 related_cards.append(page['related_page_invest_capital'])
+
+        if 'related_page_buy' in page:
             if page['related_page_buy']['image'] and page['related_page_buy']['title']:
                 related_cards.append(page['related_page_buy'])
 

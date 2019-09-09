@@ -9,7 +9,8 @@ from django.urls import reverse
 from conf.tests.test_urls import reload_urlconf
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
-from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView
+from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
+    InternationalHomePageView
 
 test_sectors = [
     {
@@ -2208,3 +2209,238 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
         'company_name': capital_invest_contact_form_data['company_name'],
         'message': capital_invest_contact_form_data['message']
     }
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_random_sector(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'all_sectors': [
+            {
+                'heading': 'automotive',
+                'meta': {
+                    'languages': [['en-gb', 'English']],
+                }
+            },
+            {
+                'heading': 'aerospace',
+                'meta': {
+                    'languages': [['en-gb', 'English']],
+                }
+            },
+            {
+                'heading': 'energy',
+                'meta': {
+                    'languages': [['en-gb', 'English']],
+                }
+            },
+        ],
+        'ready_to_trade_stories': [
+            {'story': 'some text'},
+            {'story': ''},
+            {'story': 'some other text'}
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert 'random_sector' in response.context_data
+    assert 'heading' in response.context_data['random_sector']
+    assert response.context_data['random_sector']['heading']
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_random_sector_null(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert 'random_sector' in response.context_data
+    assert response.context_data['random_sector'] == []
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_ready_to_trade_stories(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'ready_to_trade_stories': [
+            {'story': 'some text'},
+            {'story': ''},
+            {'story': 'some other text'}
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert len(response.context_data['ready_to_trade_stories']) == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_how_we_help(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'how_we_help': [
+            {'icon': 'some text', 'text': 'The text'},
+            {'icon': 'some text', 'text': ''},
+            {'icon': [], 'text': ''},
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert len(response.context_data['how_we_help']) == 1
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_links_to_section_links(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'link_to_section_links': [
+            {'text': 'some text', 'cta_text': 'get in touch', 'cta_link': 'www.google.com'},
+            {'text': 'some text', 'cta_text': 'The text', 'cta_link': ''},
+            {'text': 'some text', 'cta_text': '', 'cta_link': ''},
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert len(response.context_data['link_to_section_links']) == 1
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_benefits_of_uk(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'benefits_of_uk': [
+            {'benefits_of_uk_text': 'some text'},
+            {'benefits_of_uk_text': ''},
+            {'benefits_of_uk_text': 'some text'},
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert len(response.context_data['benefits_of_uk']) == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_new_international_landing_page_gets_related_cards(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'International',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'international'
+        },
+        'page_type': 'InternationalHomePage',
+        'related_page_invest_capital': {
+            'title': 'Capital invest',
+            'image': {'url': 'www.google.com'}
+        },
+        'related_page_expand': {
+            'title': 'Expand to the UK',
+            'image': []
+        },
+        'related_page_buy': {
+            'title': '',
+            'image': {'url': 'www.google.com'}
+        }
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalHomePageView.as_view()(
+        request, path='/international')
+
+    assert len(response.context_data['related_cards']) == 1
