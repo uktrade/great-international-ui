@@ -18,11 +18,10 @@
     padding-top: $spacing-1;
     padding-bottom: $spacing-3;
 
-    .button-arrow-small {
-      margin-top: $spacing-2;
-      margin-left: $spacing-4;
-      margin-right: $spacing-4;
+    .button{
+      white-space: normal;
     }
+
   }
 
   .how-we-help-page-section {
@@ -31,13 +30,18 @@
     padding-bottom: $spacing-1;
   }
 
-  @media (max-width: 768px) {
-    .ready-for-brexit-page-section {
+  .industry-section {
 
-      .button-arrow-small {
-        margin-top: 15px;
-        margin-right: 0;
-        margin-left: 0;
+    .industry-image {
+      padding-left: $spacing-1;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .industry-section {
+      .industry-image {
+        padding-left: 0;
       }
     }
 
@@ -47,6 +51,10 @@
 
     .white-container {
       padding: $spacing-3;
+    }
+
+    .industry-image{
+      padding-left: 0;
     }
 
   }

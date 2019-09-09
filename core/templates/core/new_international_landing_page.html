@@ -50,7 +50,7 @@
             <div class="column-half">
                 <h3 class="heading-large padding-right-30">{{ page.ready_for_brexit_title }}</h3>
                 <div class="grid-row">
-                    <a class="button button-ghost-blue button-arrow-small" href="{{ page.ready_for_brexit_cta_link }}">{{ page.ready_for_brexit_cta_text }}</a>
+                    <a class="button button-ghost-blue button-arrow-small margin-top-45-l margin-left-15-l" href="{{ page.ready_for_brexit_cta_link }}">{{ page.ready_for_brexit_cta_text }}</a>
                 </div>
             </div>
             <div class="column-half">
@@ -112,7 +112,7 @@
 {% endif %}
 
 {% if page.industries_section_title and random_sector %}
-<section class="page-section">
+<section class="page-section industry-section">
     <div class="container">
         <div class="grid-row margin-bottom-30">
             <h3 class="heading-large">{{ page.industries_section_title }}</h3>
@@ -120,19 +120,16 @@
                 {{ page.industries_section_intro }}
             </div>
         </div>
-        <div class="flex-grid">
+        <div class="flex-grid reverse-columns-s">
             <div class="column-third">
                 <p class="font-xsmall">{{ page.industries_section_industry_label }}</p>
                 <a href="{{ random_sector.full_path }}"><h3 class="bold-medium">{{ random_sector.title }}</h3></a>
                 {{ random_sector.featured_description }}
-
                 {% if page.industries_section_cta_link and page.industries_section_cta_text %}
-                    <div class="grid-row">
-                        <a class="button button-ghost-blue button-arrow-small margin-top-45 margin-right-15 margin-left-15" href="{{ page.industries_section_cta_link }}">{{ page.industries_section_cta_text }}</a>
-                    </div>
+                    <a class="button button-ghost-blue button-arrow-small margin-top-45-l margin-top-15" href="{{ page.industries_section_cta_link }}">{{ page.industries_section_cta_text }}</a>
                 {% endif %}
             </div>
-            <div class="column-two-thirds center-vertical padding-left-60">
+            <div class="column-two-thirds center-vertical industry-image">
                 <figure class="flex-shrink-0">
                     <img class="width-full" src="{{random_sector.image.url}}" alt="">
                 </figure>
