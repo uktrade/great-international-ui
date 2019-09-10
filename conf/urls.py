@@ -154,7 +154,7 @@ urlpatterns += [
     ),
     url(
         r'^international/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
+        core.views.InternationalHomePageView.as_view(),
         {'path': ''},
         name='index'
     ),
