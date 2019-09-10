@@ -164,7 +164,8 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
             all_sectors = filter_by_active_language(page['all_sectors'])
             all_sectors = [sector for sector in all_sectors if sector['title'] and sector['featured_description']]
             random.shuffle(all_sectors)
-            random_sector = all_sectors[0]
+            if all_sectors:
+                random_sector = all_sectors[0]
 
         ready_to_trade_stories = []
         if 'ready_to_trade_stories' in page:
