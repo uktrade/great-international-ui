@@ -48,7 +48,7 @@
     <div class="container background-white padding-60-l padding-30">
         <div class="flex-grid reverse-columns-s">
             <div class="column-half">
-                <h3 class="heading-large padding-right-30">{{ page.ready_for_brexit_title }}</h3>
+                <h2 class="heading-large padding-right-30">{{ page.ready_for_brexit_title }}</h2>
                 <div class="grid-row">
                     <a class="button button-ghost-blue button-arrow-small margin-top-45-l margin-left-15-l" href="{{ page.ready_for_brexit_cta_link }}">{{ page.ready_for_brexit_cta_text }}</a>
                 </div>
@@ -69,7 +69,7 @@
 <section class="padding-top-30 padding-bottom-60 background-stone-40">
     <div class="container how-we-help-white-container background-white">
         <div class="grid-row margin-bottom-30">
-            <h3 class="heading-large">{{ page.how_we_help_title }}</h3>
+            <h2 class="heading-large">{{ page.how_we_help_title }}</h2 >
             <div class="column-two-thirds">
                 {{ page.how_we_help_intro }}
             </div>
@@ -89,7 +89,7 @@
 {% if page.ways_of_doing_business_title and related_cards %}
 <section class="page-section">
     <div class="container">
-        <h3 class="heading-large margin-bottom-30">{{ page.ways_of_doing_business_title }}</h3>
+        <h2 class="heading-large margin-bottom-30">{{ page.ways_of_doing_business_title }}</h2 >
         <div class="flex-grid">
             <div class="column-third-xl column-half-m">
                 {% card url=page.related_page_expand.full_path img_src=page.related_page_expand.image.url title=page.related_page_expand.title description=page.related_page_expand_description|add_export_elements_classes|override_elements_css_class:'a, link with-left-arrow'|safe  %}
@@ -115,7 +115,7 @@
 <section class="page-section industry-section">
     <div class="container">
         <div class="grid-row margin-bottom-30">
-            <h3 class="heading-large">{{ page.industries_section_title }}</h3>
+            <h2 class="heading-large">{{ page.industries_section_title }}</h2 >
             <div class="column-two-thirds">
                 {{ page.industries_section_intro }}
             </div>
@@ -123,7 +123,7 @@
         <div class="flex-grid reverse-columns-s">
             <div class="column-third">
                 <p class="font-xsmall">{{ page.industries_section_industry_label }}</p>
-                <a href="{{ random_sector.full_path }}"><h3 class="bold-medium">{{ random_sector.title }}</h3></a>
+                <a href="{{ random_sector.full_path }}"><h2 class="bold-medium">{{ random_sector.title }}</h2></a>
                 {{ random_sector.featured_description }}
                 {% if page.industries_section_cta_link and page.industries_section_cta_text %}
                     <a class="button button-ghost-blue button-arrow-small margin-top-45-l margin-top-15" href="{{ page.industries_section_cta_link }}">{{ page.industries_section_cta_text }}</a>
@@ -143,7 +143,7 @@
 <section class="stone-page-section">
     <div class="container">
         <div class="grid-row margin-bottom-15">
-            <h3 class="heading-large">{{ page.link_to_section_title }}</h3>
+            <h2 class="heading-large">{{ page.link_to_section_title }}</h2>
             <div class="column-two-thirds">
                 {{ page.link_to_section_intro }}
             </div>
