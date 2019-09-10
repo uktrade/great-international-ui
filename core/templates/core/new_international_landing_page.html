@@ -9,7 +9,7 @@
 
 {% hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
-{% if ready_to_trade_stories|length > 0 %}
+{% if ready_to_trade_stories %}
 <section class="top-page-section">
     <div class="container">
         <div class="flex-grid">
@@ -23,7 +23,7 @@
 </section>
 {% endif %}
 
-{% if page.benefits_of_uk_title and benefits_of_uk|length > 1 %}
+{% if page.benefits_of_uk_title and benefits_of_uk %}
 <section class="top-page-section">
     <div class="container">
         <div class="grid-row">
@@ -44,8 +44,8 @@
 {% endif %}
 
 {% if page.ready_for_brexit_title and page.ready_for_brexit_cta_link and page.ready_for_brexit_cta_text %}
-<section class="ready-for-brexit-page-section">
-    <div class="container white-container">
+<section class="background-stone-40 padding-top-60 padding-bottom-30">
+    <div class="container background-white padding-60-l padding-30">
         <div class="flex-grid reverse-columns-s">
             <div class="column-half">
                 <h3 class="heading-large padding-right-30">{{ page.ready_for_brexit_title }}</h3>
@@ -65,9 +65,9 @@
 </section>
 {% endif %}
 
-{% if page.how_we_help_title and how_we_help|length > 1 %}
-<section class="how-we-help-page-section">
-    <div class="container how-we-help-white-container">
+{% if page.how_we_help_title and how_we_help %}
+<section class="padding-top-30 padding-bottom-60 background-stone-40">
+    <div class="container how-we-help-white-container background-white">
         <div class="grid-row margin-bottom-30">
             <h3 class="heading-large">{{ page.how_we_help_title }}</h3>
             <div class="column-two-thirds">
@@ -86,7 +86,7 @@
 </section>
 {% endif %}
 
-{% if page.ways_of_doing_business_title and related_cards|length > 1 %}
+{% if page.ways_of_doing_business_title and related_cards %}
 <section class="page-section">
     <div class="container">
         <h3 class="heading-large margin-bottom-30">{{ page.ways_of_doing_business_title }}</h3>
@@ -129,7 +129,7 @@
                     <a class="button button-ghost-blue button-arrow-small margin-top-45-l margin-top-15" href="{{ page.industries_section_cta_link }}">{{ page.industries_section_cta_text }}</a>
                 {% endif %}
             </div>
-            <div class="column-two-thirds center-vertical industry-image">
+            <div class="column-two-thirds center-vertical padding-left-60-m">
                 <figure class="flex-shrink-0">
                     <img class="width-full" src="{{random_sector.image.url}}" alt="">
                 </figure>
@@ -139,7 +139,7 @@
 </section>
 {% endif %}
 
-{% if page.link_to_section_title and link_to_section_links|length > 1 %}
+{% if page.link_to_section_title and link_to_section_links %}
 <section class="stone-page-section">
     <div class="container">
         <div class="grid-row margin-bottom-15">
