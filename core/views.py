@@ -135,22 +135,80 @@ def article_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('InternationalHomePage')
-def home_page_context_modifier(context, request):
+class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
-    country_code = get_user_country(request)
-    country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+    @property
+    def template_name(self):
+        is_new_page_ready = False
+        if 'is_new_page_ready' in self.page:
+            if self.page['is_new_page_ready']:
+                is_new_page_ready = True
 
-    return {
-        'tariffs_country': {
-            # used for flag icon css class. must be lowercase
-            'code': country_code.lower(),
-            'name': country_name,
-        },
-        'tariffs_country_selector_form': forms.TariffsCountryForm(
+        if is_new_page_ready:
+            return 'core/new_international_landing_page.html'
+        else:
+            return 'core/landing_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        page = self.page
+
+        country_code = get_user_country(self.request)
+        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+        tariffs_country = {'code': country_code.lower(), 'name': country_name}
+        tariffs_country_selector_form = forms.TariffsCountryForm(
             initial={'tariffs_country': country_code}
         ),
-    }
+
+        random_sector = []
+        if 'all_sectors' in page:
+            all_sectors = filter_by_active_language(page['all_sectors'])
+            random.shuffle(all_sectors)
+            random_sector = all_sectors[0]
+
+        ready_to_trade_stories = []
+        if 'ready_to_trade_stories' in page:
+            ready_to_trade_stories = [story['story'] for story in page['ready_to_trade_stories']
+                                      if story['story']]
+
+        how_we_help = []
+        if 'how_we_help' in page:
+            how_we_help = [how_we_help for how_we_help in page['how_we_help']
+                           if how_we_help['icon'] and how_we_help['text']]
+
+        link_to_section_links = []
+        if 'link_to_section_links' in page:
+            link_to_section_links = [link for link in page['link_to_section_links']
+                                     if link['text'] and link['cta_text'] and link['cta_link']]
+
+        benefits_of_uk = []
+        if 'benefits_of_uk' in page:
+            benefits_of_uk = [benefit['benefits_of_uk_text'] for benefit in page['benefits_of_uk']
+                              if benefit['benefits_of_uk_text']]
+
+        related_cards = []
+        if 'related_page_expand' in page:
+            if page['related_page_expand']['image'] and page['related_page_expand']['title']:
+                related_cards.append(page['related_page_expand'])
+
+        if 'related_page_invest_capital' in page:
+            if page['related_page_invest_capital']['image'] and page['related_page_invest_capital']['title']:
+                related_cards.append(page['related_page_invest_capital'])
+
+        if 'related_page_buy' in page:
+            if page['related_page_buy']['image'] and page['related_page_buy']['title']:
+                related_cards.append(page['related_page_buy'])
+
+        return super().get_context_data(
+            tariffs_country=tariffs_country,
+            tariffs_country_selector_form=tariffs_country_selector_form,
+            random_sector=random_sector,
+            ready_to_trade_stories=ready_to_trade_stories,
+            how_we_help=how_we_help,
+            link_to_section_links=link_to_section_links,
+            benefits_of_uk=benefits_of_uk,
+            related_cards=related_cards,
+            *args, **kwargs,
+        )
 
 
 @register_context_modifier('InternationalTopicLandingPage')
