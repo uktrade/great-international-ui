@@ -94,8 +94,11 @@ class MonolingualCMSPageFromPathView(
             response = self.get_cms_data(new_path)
 
         if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
-            parent_slug = 'expand' if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] else 'invest'
-            new_path = self.path.replace('how-to-setup-in-the-uk', f'{parent_slug}/how-to-setup-in-the-uk')
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'invest/how-to-setup-in-the-uk')
+            response = self.get_cms_data(new_path)
+
+        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'expand/how-to-setup-in-the-uk')
             response = self.get_cms_data(new_path)
 
         if response.status_code == 404 and 'industries' in self.path:

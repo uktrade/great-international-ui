@@ -164,11 +164,11 @@ def test_url_redirect_how_set_up_expand_page_off(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
-    response = client.get('/international/content/how-to-setup-in-the-uk/')
-    assert response.status_code == 200
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-expand-redirect')
 
-    response = client.get('/international/content/how-to-setup-in-the-uk/some-set-up-guide/')
-    assert response.status_code == 200
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-home-invest-redirect')
 
 
 def test_url_redirect_how_set_up_redirect_off(client, settings):
@@ -177,11 +177,11 @@ def test_url_redirect_how_set_up_redirect_off(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
-    response = client.get('/international/content/how-to-setup-in-the-uk/')
-    assert response.status_code == 200
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-expand-redirect')
 
-    response = client.get('/international/content/how-to-setup-in-the-uk/some-set-up-guide/')
-    assert response.status_code == 200
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-home-invest-redirect')
 
 
 def test_url_redirect_industries_to_about_uk_page_on(client, settings):
@@ -204,10 +204,8 @@ def test_url_redirect_industries_to_about_uk_page_off(client, settings):
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
-    response = client.get('/international/content/industries/')
-    assert response.status_code == 200
-
-    response = client.get('/international/content/industries/automotive/')
-    assert response.status_code == 200
     with pytest.raises(NoReverseMatch):
         reverse('industries-home-to-about-uk-redirect')
+
+    with pytest.raises(NoReverseMatch):
+        reverse('industries-to-about-uk-redirect')

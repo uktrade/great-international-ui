@@ -2216,7 +2216,7 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_this_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
+def test_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
 
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
@@ -2268,7 +2268,7 @@ def test_this_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_this_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
+def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
 
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
@@ -2318,7 +2318,7 @@ def test_this_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_this_industries_about_uk_path_exists(mock_get_page, client, settings):
+def test_industries_about_uk_path_exists(mock_get_page, client, settings):
 
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
