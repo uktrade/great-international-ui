@@ -2270,8 +2270,6 @@ def test_new_international_landing_page_gets_random_sector(
     assert 'random_sector' in response.context_data
     assert 'title' in response.context_data['random_sector']
     assert 'featured_description' in response.context_data['random_sector']
-    assert response.context_data['random_sector']['title']
-    assert response.context_data['random_sector']['featured_description']
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
