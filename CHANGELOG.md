@@ -14,6 +14,7 @@
 - CI-335 - Added breadcrumbs and labels to pages missing them
 - CI-452 - Added new international home page template to use if `is_new_page_ready` is present and True
 - CI-479 - Added video to Why choose UK Page
+- CI-474 - Added feature flagged redirects and temporary look up by paths for when pages move in the cms
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
