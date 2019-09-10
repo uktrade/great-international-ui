@@ -4,10 +4,6 @@
 
 ### Implemented enhancements
 - CMS-1754 - Change /eu-exit-news to /brexit and add redirects
-- GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
-- CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
-- CI-437 - Ensure that all cookies are secure and httponly.
-- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
 - CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url will try
@@ -15,16 +11,32 @@
 - CI-405 - Added new IA candidate to nav header (behind a feature flag)
 - CI-475 - About DIT services page uses featured description on featured cards instead so separate to teaser
 - CI-476 - Allowed invest region pages to be linked to in maps in about uk pages
+- CI-335 - Added breadcrumbs and labels to pages missing them
+- CI-452 - Added new international home page template to use if `is_new_page_ready` is present and True
+- CI-479 - Added video to Why choose UK Page
+- CI-474 - Added feature flagged redirects and temporary look up by paths for when pages move in the cms
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
+- TT1752 - fix links on homepage
+- no ticket - Fixed invest contact success going to expand
+- no ticket - Fixed invest going to expand 
+
+## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
+
+### Implemented enhancements
+- GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
+- CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
+- CI-437 - Ensure that all cookies are secure and httponly.
+- CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
+
+### Fixed bugs
 - CMS-1826 - Fix engineering industry redirect
 - CMS-1826 - Fix healthcare and life-sciences redirects.
 - No ticket - Fix unloaded tag in template
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
-- TT1752 - fix links on homepage
-- Fixed invest contact success going to expand
 
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)

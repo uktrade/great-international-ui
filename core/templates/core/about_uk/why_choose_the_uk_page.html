@@ -8,13 +8,14 @@
 
 {% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
 
-<section id="breadcrumb-section">
+{% block breadcrumbs %}
     <div class="container">
         {% breadcrumbs page.breadcrumbs_label %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+            <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
         {% endbreadcrumbs %}
     </div>
-</section>
+{% endblock %}
 
 {% if page.teaser %}
 <section id="teaser-section" class="padding-top-30 ">
@@ -28,7 +29,7 @@
 </section>
 {% endif %}
 
-{% if page.section_one_body and page.section_one_image %}
+{% if page.section_one_body %}
 <section id="section-one" class="padding-bottom-60">
     <div class="container">
         <div class="flex-grid reverse-columns-l">
@@ -41,6 +42,13 @@
                 <div class="column-half-xl center-vertical">
                     <img src="{{ page.section_one_image.url }}" />
                 </div>
+            {% elif page.section_one_video %}
+                <div class="column-half-xl padding-right-60-xl center-vertical">
+                    <video controls class="width-full">
+                        <source src="{{ page.section_one_video.url }}" type="video/{{ page.section_one_video.file_extension }}">
+                        <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.section_one_video.url }}">link to the video</a> instead.</p>
+                    </video>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -50,7 +58,7 @@
 {% if num_of_statistics != 0 %}
 <section id="sector-statistics-section" class="statistics">
     <div class="container">
-        {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics %}
+        {% statistics_card_grid statistics=page.statistics num_of_statistics=num_of_statistics number_first=True %}
     </div>
 </section>
 {% endif %}

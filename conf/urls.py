@@ -85,16 +85,55 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         ),
         url(
             r'^international/invest/(?P<path>[\w\-/]*)/$',
-            core.views.InvestToExpandRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/expand'),
             name='invest-to-expand-redirect'
         ),
         url(
             r'^international/content/invest/(?P<path>[\w\-/]*)/$',
-            core.views.ContentInvestToExpandRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/content/expand'),
             name='content-invest-to-expand-redirect'
         ),
     ]
+    if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
+        urlpatterns += [
+            url(
+                r'^international/content/how-to-setup-in-the-uk/$',
+                QuerystringRedirectView.as_view(url='/international/content/expand/how-to-setup-in-the-uk/'),
+                name='how-to-set-up-home-expand-redirect'
+            ),
+            url(
+                r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
+                core.views.PathRedirectView.as_view(root_url='/international/content/expand/how-to-setup-in-the-uk'),
+                name='how-to-set-up-expand-redirect'
+            ),
+        ]
+elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/content/how-to-setup-in-the-uk/$',
+            QuerystringRedirectView.as_view(url='/international/content/invest/how-to-setup-in-the-uk/'),
+            name='how-to-set-up-home-invest-redirect'
+        ),
+        url(
+            r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/content/invest/how-to-setup-in-the-uk'),
+            name='how-to-set-up-invest-redirect'
+        ),
+    ]
 
+if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/content/industries/$',
+            QuerystringRedirectView.as_view(url='/international/content/about-uk/industries/'),
+            name='industries-home-to-about-uk-redirect'
+        ),
+        url(
+            r'^international/content/industries/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/content/about-uk/industries'),
+            name='industries-to-about-uk-redirect'
+        ),
+    ]
 
 urlpatterns += [
     url(
@@ -115,7 +154,7 @@ urlpatterns += [
     ),
     url(
         r'^international/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
+        core.views.InternationalHomePageView.as_view(),
         {'path': ''},
         name='index'
     ),
@@ -225,19 +264,19 @@ urlpatterns += [
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(
             url='/international/content/expand/#high-potential-opportunities'),
-        name='hpo-landing-page-redirect'
+        name='hpo-landing-page-expand-redirect'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-form'
+        name='high-potential-opportunity-request-expand-form'
     ),
     url(
         r'^international/content/expand/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-form-success'
+        name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
         r'^international/contact/$',

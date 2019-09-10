@@ -123,3 +123,89 @@ def test_url_redirect_expand_page_off(mock_get_page, client, settings):
     response = client.get('/international/invest/incoming/')
     assert response.status_code == 302
     assert response.url == '/international/invest/'
+
+
+def test_url_redirect_how_set_up_expand_page_on(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = True
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
+    reload_urlconf(settings)
+
+    assert reverse('how-to-set-up-home-expand-redirect')
+
+    response = client.get('/international/content/how-to-setup-in-the-uk/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/expand/how-to-setup-in-the-uk/'
+
+    response = client.get('/international/content/how-to-setup-in-the-uk/some-set-up-guide/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/expand/how-to-setup-in-the-uk/some-set-up-guide'
+
+
+def test_url_redirect_how_set_up_invest_page_on(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
+    reload_urlconf(settings)
+
+    assert reverse('how-to-set-up-home-invest-redirect')
+    response = client.get('/international/content/how-to-setup-in-the-uk/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/invest/how-to-setup-in-the-uk/'
+
+    response = client.get('/international/content/how-to-setup-in-the-uk/some-set-up-guide/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/invest/how-to-setup-in-the-uk/some-set-up-guide'
+
+
+def test_url_redirect_how_set_up_expand_page_off(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = True
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-expand-redirect')
+
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-home-invest-redirect')
+
+
+def test_url_redirect_how_set_up_redirect_off(client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-expand-redirect')
+
+    with pytest.raises(NoReverseMatch):
+        reverse('how-to-set-up-home-invest-redirect')
+
+
+def test_url_redirect_industries_to_about_uk_page_on(client, settings):
+
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = True
+    reload_urlconf(settings)
+
+    response = client.get('/international/content/industries/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/about-uk/industries/'
+
+    response = client.get('/international/content/industries/automotive/')
+    assert response.status_code == 302
+    assert response.url == '/international/content/about-uk/industries/automotive'
+    assert reverse('industries-home-to-about-uk-redirect')
+
+
+def test_url_redirect_industries_to_about_uk_page_off(client, settings):
+
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    with pytest.raises(NoReverseMatch):
+        reverse('industries-home-to-about-uk-redirect')
+
+    with pytest.raises(NoReverseMatch):
+        reverse('industries-to-about-uk-redirect')

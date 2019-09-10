@@ -77,23 +77,33 @@ class MonolingualCMSPageFromPathView(
     def header_sub_section(self):
         return helpers.get_header_sub_section(self.path)
 
+    def get_cms_data(self, path):
+        return cms_api_client.lookup_by_path(
+                    site_id=self.cms_site_id,
+                    path=path,
+                    language_code=translation.get_language(),
+                    draft_token=self.request.GET.get('draft_token'),
+                )
+
     @cached_property
     def page(self):
-        response = cms_api_client.lookup_by_path(
-            site_id=self.cms_site_id,
-            path=self.path,
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-        )
+        response = self.get_cms_data(self.path)
 
-        if response.status_code == 404 and 'invest' in self.kwargs['path']:
-            new_path = self.kwargs['path'].replace('invest', 'expand')
-            response = cms_api_client.lookup_by_path(
-                site_id=self.cms_site_id,
-                path=new_path,
-                language_code=translation.get_language(),
-                draft_token=self.request.GET.get('draft_token'),
-            )
+        if response.status_code == 404 and 'invest' in self.path:
+            new_path = self.path.replace('invest', 'expand')
+            response = self.get_cms_data(new_path)
+
+        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'invest/how-to-setup-in-the-uk')
+            response = self.get_cms_data(new_path)
+
+        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
+            new_path = self.path.replace('how-to-setup-in-the-uk', 'expand/how-to-setup-in-the-uk')
+            response = self.get_cms_data(new_path)
+
+        if response.status_code == 404 and 'industries' in self.path:
+            new_path = self.path.replace('industries', 'about-uk/industries')
+            response = self.get_cms_data(new_path)
 
         return handle_cms_response(response)
 
@@ -135,22 +145,56 @@ def article_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('InternationalHomePage')
-def home_page_context_modifier(context, request):
+class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
-    country_code = get_user_country(request)
-    country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+    @property
+    def is_new_page_ready(self):
+        if 'is_new_page_ready' in self.page:
+            if self.page['is_new_page_ready']:
+                return True
+        return False
 
-    return {
-        'tariffs_country': {
-            # used for flag icon css class. must be lowercase
-            'code': country_code.lower(),
-            'name': country_name,
-        },
-        'tariffs_country_selector_form': forms.TariffsCountryForm(
+    @property
+    def template_name(self):
+        if self.is_new_page_ready:
+            return 'core/new_international_landing_page.html'
+
+        return 'core/landing_page.html'
+
+    def get_context_data(self, *args, **kwargs):
+        page = self.page
+
+        country_code = get_user_country(self.request)
+        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
+        tariffs_country = {'code': country_code.lower(), 'name': country_name}
+        tariffs_country_selector_form = forms.TariffsCountryForm(
             initial={'tariffs_country': country_code}
         ),
-    }
+
+        random_sector = []
+        if 'all_sectors' in page:
+            all_sectors = filter_by_active_language(page['all_sectors'])
+            random.shuffle(all_sectors)
+            if all_sectors:
+                random_sector = all_sectors[0]
+
+        related_cards = []
+        if 'related_page_expand' in page and page['related_page_expand']:
+            related_cards.append(page['related_page_expand'])
+
+        if 'related_page_invest_capital' in page and page['related_page_invest_capital']:
+            related_cards.append(page['related_page_invest_capital'])
+
+        if 'related_page_buy' in page and page['related_page_buy']:
+            related_cards.append(page['related_page_buy'])
+
+        return super().get_context_data(
+            tariffs_country=tariffs_country,
+            tariffs_country_selector_form=tariffs_country_selector_form,
+            random_sector=random_sector,
+            related_cards=related_cards,
+            *args, **kwargs,
+        )
 
 
 @register_context_modifier('InternationalTopicLandingPage')
@@ -164,6 +208,7 @@ def sector_landing_page_context_modifier(context, request):
         rename_heading_field(child_page)
         for child_page in context['page']['child_pages']]
 
+    context['about_uk_link'] = urls.international.ABOUT_UK_HOME
     return context
 
 
@@ -186,7 +231,8 @@ def sector_page_context_modifier(context, request):
         'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
-        'trade_contact_form_url': trade_contact_form
+        'trade_contact_form_url': trade_contact_form,
+        'about_uk_link': urls.international.ABOUT_UK_HOME
         }
 
 
@@ -203,7 +249,8 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
         'num_of_statistics': count_data_with_field(
             page['statistics'],
             'number'
-        )
+        ),
+        'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
 
@@ -815,15 +862,11 @@ class CapitalInvestContactFormView(
         return super().form_valid(form)
 
 
-class InvestToExpandRedirect(MultilingualCMSPageFromPathView):
+class PathRedirectView(QuerystringRedirectView):
 
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/expand/' + self.kwargs['path']
-        return redirect(url)
+    root_url = None
 
-
-class ContentInvestToExpandRedirect(MultilingualCMSPageFromPathView):
-
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/content/expand/' + self.kwargs['path']
-        return redirect(url)
+    @property
+    def url(self, **kwargs):
+        path = self.kwargs['path']
+        return f'{self.root_url}/{path}'
