@@ -85,12 +85,12 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
         ),
         url(
             r'^international/invest/(?P<path>[\w\-/]*)/$',
-            core.views.InvestToExpandRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/expand'),
             name='invest-to-expand-redirect'
         ),
         url(
             r'^international/content/invest/(?P<path>[\w\-/]*)/$',
-            core.views.ContentInvestToExpandRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/content/expand'),
             name='content-invest-to-expand-redirect'
         ),
     ]
@@ -103,7 +103,7 @@ if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
             ),
             url(
                 r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
-                core.views.HowToSetUpToExpandRedirect.as_view(),
+                core.views.PathRedirectView.as_view(root_url='/international/content/expand/how-to-setup-in-the-uk'),
                 name='how-to-set-up-expand-redirect'
             ),
         ]
@@ -116,7 +116,7 @@ elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS
         ),
         url(
             r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
-            core.views.HowToSetUpToInvestRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/content/invest/how-to-setup-in-the-uk'),
             name='how-to-set-up-invest-redirect'
         ),
     ]
@@ -130,7 +130,7 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
         url(
             r'^international/content/industries/(?P<path>[\w\-/]*)/$',
-            core.views.IndustriesToAboutUkRedirect.as_view(),
+            core.views.PathRedirectView.as_view(root_url='/international/content/about-uk/industries'),
             name='industries-to-about-uk-redirect'
         ),
     ]

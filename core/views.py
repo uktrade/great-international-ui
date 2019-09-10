@@ -77,7 +77,7 @@ class MonolingualCMSPageFromPathView(
     def header_sub_section(self):
         return helpers.get_header_sub_section(self.path)
 
-    def get_look_up_by_path_response(self, path):
+    def get_cms_data(self, path):
         return cms_api_client.lookup_by_path(
                     site_id=self.cms_site_id,
                     path=path,
@@ -97,10 +97,6 @@ class MonolingualCMSPageFromPathView(
             parent_slug = 'expand' if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] else 'invest'
             new_path = self.path.replace('how-to-setup-in-the-uk', f'{parent_slug}/how-to-setup-in-the-uk')
             response = self.get_cms_data(new_path)
-
-        if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
-            new_path = self.path.replace('how-to-setup-in-the-uk', 'expand/how-to-setup-in-the-uk')
-            response = self.get_look_up_by_path_response(new_path)
 
         if response.status_code == 404 and 'industries' in self.path:
             new_path = self.path.replace('industries', 'about-uk/industries')
@@ -829,36 +825,11 @@ class CapitalInvestContactFormView(
         return super().form_valid(form)
 
 
-class InvestToExpandRedirect(MultilingualCMSPageFromPathView):
+class PathRedirectView(QuerystringRedirectView):
 
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/expand/' + self.kwargs['path']
-        return redirect(url)
+    root_url = None
 
-
-class ContentInvestToExpandRedirect(MultilingualCMSPageFromPathView):
-
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/content/expand/' + self.kwargs['path']
-        return redirect(url)
-
-
-class HowToSetUpToInvestRedirect(MultilingualCMSPageFromPathView):
-
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/content/invest/how-to-setup-in-the-uk/' + self.kwargs['path']
-        return redirect(url)
-
-
-class HowToSetUpToExpandRedirect(MultilingualCMSPageFromPathView):
-
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/content/expand/how-to-setup-in-the-uk/' + self.kwargs['path']
-        return redirect(url)
-
-
-class IndustriesToAboutUkRedirect(MultilingualCMSPageFromPathView):
-
-    def dispatch(self, request, *args, **kwargs):
-        url = '/international/content/about-uk/industries/' + self.kwargs['path']
-        return redirect(url)
+    @property
+    def url(self, **kwargs):
+        path = self.kwargs['path']
+        return f'{self.root_url}/{path}'
