@@ -87,15 +87,16 @@ class MonolingualCMSPageFromPathView(
 
     @cached_property
     def page(self):
-        response = self.get_look_up_by_path_response(self.path)
+        response = self.get_cms_data(self.path)
 
         if response.status_code == 404 and 'invest' in self.path:
             new_path = self.path.replace('invest', 'expand')
-            response = self.get_look_up_by_path_response(new_path)
+            response = self.get_cms_data(new_path)
 
         if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
-            new_path = self.path.replace('how-to-setup-in-the-uk', 'invest/how-to-setup-in-the-uk')
-            response = self.get_look_up_by_path_response(new_path)
+            parent_slug = 'expand' if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] else 'invest'
+            new_path = self.path.replace('how-to-setup-in-the-uk', f'{parent_slug}/how-to-setup-in-the-uk')
+            response = self.get_cms_data(new_path)
 
         if response.status_code == 404 and 'how-to-setup-in-the-uk' in self.path:
             new_path = self.path.replace('how-to-setup-in-the-uk', 'expand/how-to-setup-in-the-uk')
@@ -103,7 +104,7 @@ class MonolingualCMSPageFromPathView(
 
         if response.status_code == 404 and 'industries' in self.path:
             new_path = self.path.replace('industries', 'about-uk/industries')
-            response = self.get_look_up_by_path_response(new_path)
+            response = self.get_cms_data(new_path)
 
         return handle_cms_response(response)
 
