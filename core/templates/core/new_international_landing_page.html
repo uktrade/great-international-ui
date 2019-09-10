@@ -9,13 +9,13 @@
 
 {% hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
-{% if ready_to_trade_stories %}
+{% if page.ready_to_trade_stories %}
 <section class="top-page-section">
     <div class="container">
         <div class="flex-grid">
-            {% for story in ready_to_trade_stories %}
+            {% for ready_to_trade_story in page.ready_to_trade_stories %}
                 <div class="column-third-xl column-half-m">
-                    {{ story|add_export_elements_classes|safe }}
+                    {{ ready_to_trade_story.story|add_export_elements_classes|safe }}
                 </div>
             {% endfor %}
         </div>
@@ -23,7 +23,7 @@
 </section>
 {% endif %}
 
-{% if page.benefits_of_uk_title and benefits_of_uk %}
+{% if page.benefits_of_uk_title and page.benefits_of_uk %}
 <section class="top-page-section">
     <div class="container">
         <div class="grid-row">
@@ -33,9 +33,9 @@
             </div>
         </div>
         <div class="flex-grid margin-top-30">
-            {% for benefit in benefits_of_uk %}
+            {% for benefit in page.benefits_of_uk %}
                 <div class="column-third-xl column-half-m">
-                    {{ benefit|add_export_elements_classes|safe }}
+                    {{ benefit.benefits_of_uk_text|add_export_elements_classes|safe }}
                 </div>
             {% endfor %}
         </div>
@@ -65,7 +65,7 @@
 </section>
 {% endif %}
 
-{% if page.how_we_help_title and how_we_help %}
+{% if page.how_we_help_title and page.how_we_help %}
 <section class="padding-top-30 padding-bottom-60 background-stone-40">
     <div class="container how-we-help-white-container background-white">
         <div class="grid-row margin-bottom-30">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <ul class="flex-grid">
-            {% for how_we_help in how_we_help %}
+            {% for how_we_help in page.how_we_help %}
                 <li class="column-third-xl column-half-m">
                     <img class="icon" src="{{how_we_help.icon.url}}" alt="">
                     {{ how_we_help.text|add_export_elements_classes|safe }}
@@ -139,7 +139,7 @@
 </section>
 {% endif %}
 
-{% if page.link_to_section_title and link_to_section_links %}
+{% if page.link_to_section_title and page.link_to_section_links %}
 <section class="stone-page-section">
     <div class="container">
         <div class="grid-row margin-bottom-15">
@@ -149,7 +149,7 @@
             </div>
         </div>
         <ul class="flex-grid grid-row">
-            {% for link in link_to_section_links %}
+            {% for link in page.link_to_section_links %}
                 <li class="column-third-xl column-half-m">
                     {{ link.text|add_export_elements_classes|safe }}
                     <div class="grid-row padding-left-15 padding-right-15">

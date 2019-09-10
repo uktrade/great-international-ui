@@ -164,55 +164,24 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
         random_sector = []
         if 'all_sectors' in page:
             all_sectors = filter_by_active_language(page['all_sectors'])
-            all_sectors = [sector for sector in all_sectors if sector['title'] and sector['featured_description']]
             random.shuffle(all_sectors)
             if all_sectors:
                 random_sector = all_sectors[0]
 
-        ready_to_trade_stories = []
-        if 'ready_to_trade_stories' in page:
-            ready_to_trade_stories = [story['story'] for story in page['ready_to_trade_stories']
-                                      if story['story']]
-
-        how_we_help = []
-        if 'how_we_help' in page:
-            how_we_help = [how_we_help for how_we_help in page['how_we_help']
-                           if how_we_help['icon'] and how_we_help['text']]
-
-        link_to_section_links = []
-        if 'link_to_section_links' in page:
-            link_to_section_links = [link for link in page['link_to_section_links']
-                                     if link['text'] and link['cta_text'] and link['cta_link']]
-
-        benefits_of_uk = []
-        if 'benefits_of_uk' in page:
-            benefits_of_uk = [benefit['benefits_of_uk_text'] for benefit in page['benefits_of_uk']
-                              if benefit['benefits_of_uk_text']]
-
         related_cards = []
-        if 'related_page_expand' in page:
-            if 'image' in page['related_page_expand'] and 'title' in page['related_page_expand'] \
-                    and page['related_page_expand']['image'] and page['related_page_expand']['title']:
-                related_cards.append(page['related_page_expand'])
+        if 'related_page_expand' in page and page['related_page_expand']:
+            related_cards.append(page['related_page_expand'])
 
-        if 'related_page_invest_capital' in page:
-            if 'image' in page['related_page_invest_capital'] and 'title' in page['related_page_invest_capital'] \
-                    and page['related_page_invest_capital']['image'] and page['related_page_invest_capital']['title']:
-                related_cards.append(page['related_page_invest_capital'])
+        if 'related_page_invest_capital' in page and page['related_page_invest_capital']:
+            related_cards.append(page['related_page_invest_capital'])
 
-        if 'related_page_buy' in page:
-            if 'image' in page['related_page_buy'] and 'title' in page['related_page_buy'] \
-                    and page['related_page_buy']['image'] and page['related_page_buy']['title']:
-                related_cards.append(page['related_page_buy'])
+        if 'related_page_buy' in page and page['related_page_buy']:
+            related_cards.append(page['related_page_buy'])
 
         return super().get_context_data(
             tariffs_country=tariffs_country,
             tariffs_country_selector_form=tariffs_country_selector_form,
             random_sector=random_sector,
-            ready_to_trade_stories=ready_to_trade_stories,
-            how_we_help=how_we_help,
-            link_to_section_links=link_to_section_links,
-            benefits_of_uk=benefits_of_uk,
             related_cards=related_cards,
             *args, **kwargs,
         )
