@@ -2227,19 +2227,22 @@ def test_new_international_landing_page_gets_random_sector(
         'page_type': 'InternationalHomePage',
         'all_sectors': [
             {
-                'heading': 'automotive',
+                'title': 'automotive',
+                'featured_description': 'some description',
                 'meta': {
                     'languages': [['en-gb', 'English']],
                 }
             },
             {
-                'heading': 'aerospace',
+                'title': 'aerospace',
+                'featured_description': '',
                 'meta': {
                     'languages': [['en-gb', 'English']],
                 }
             },
             {
-                'heading': 'energy',
+                'title': 'energy',
+                'featured_description': '',
                 'meta': {
                     'languages': [['en-gb', 'English']],
                 }
@@ -2260,8 +2263,10 @@ def test_new_international_landing_page_gets_random_sector(
         request, path='/international')
 
     assert 'random_sector' in response.context_data
-    assert 'heading' in response.context_data['random_sector']
-    assert response.context_data['random_sector']['heading']
+    assert 'title' in response.context_data['random_sector']
+    assert 'featured_description' in response.context_data['random_sector']
+    assert response.context_data['random_sector']['title']
+    assert response.context_data['random_sector']['featured_description']
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
