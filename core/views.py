@@ -138,16 +138,18 @@ def article_page_context_modifier(context, request):
 class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
     @property
-    def template_name(self):
-        is_new_page_ready = False
+    def is_new_page_ready(self):
         if 'is_new_page_ready' in self.page:
             if self.page['is_new_page_ready']:
-                is_new_page_ready = True
+                return True
+        return False
 
-        if is_new_page_ready:
+    @property
+    def template_name(self):
+        if self.is_new_page_ready:
             return 'core/new_international_landing_page.html'
-        else:
-            return 'core/landing_page.html'
+
+        return 'core/landing_page.html'
 
     def get_context_data(self, *args, **kwargs):
         page = self.page
