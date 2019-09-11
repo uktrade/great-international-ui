@@ -221,7 +221,7 @@ def get_filters_labels(filters):
         'q',
         'page',
         # Prevents duplicates labels not to be displayed in filter list
-        'expertise_products_services_label'
+        'expertise_products_services_labels'
     ]
     for name, values in filters.items():
         if name in skip_fields:

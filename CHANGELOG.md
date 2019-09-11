@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1804 - Fixing double filters showing up on ISD search page
 - CMS-1754 - Change /eu-exit-news to /brexit and add redirects
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
@@ -20,7 +21,8 @@
 - no ticket - change FAS search input broken id
 - TT1752 - fix links on homepage
 - no ticket - Fixed invest contact success going to expand
-- no ticket - Fixed invest going to expand 
+- no ticket - Fixed invest going to expand
+- no ticket - Fix 'I want to Buy' URL on industry pages.
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
