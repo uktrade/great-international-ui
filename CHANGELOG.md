@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1804 - Fixing double filters showing up on ISD search page
 - CMS-1754 - Change /eu-exit-news to /brexit and add redirects
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
