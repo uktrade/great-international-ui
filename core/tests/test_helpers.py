@@ -357,7 +357,10 @@ def test_get_filters_labels():
         'page': 5,
         'expertise_regions': ['NORTH_EAST'],
         'expertise_products_services_financial': [expertise.FINANCIAL[1]],
-        'industries': [sectors.AEROSPACE, sectors.ADVANCED_MANUFACTURING]
+        'industries': [sectors.AEROSPACE, sectors.ADVANCED_MANUFACTURING],
+        'expertise_products_services_human_resources': [
+            'Employment and talent research'
+        ]
     }
 
     expected = [
@@ -366,6 +369,7 @@ def test_get_filters_labels():
         'Insurance',
         'Aerospace',
         'Advanced manufacturing',
+        'Employment and talent research',
     ]
 
     assert helpers.get_filters_labels(filters) == expected
