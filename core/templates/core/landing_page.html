@@ -16,9 +16,11 @@
 
 {% include 'core/includes/hero_landing_page.html' with heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
-<section class="padding-top-90 padding-bottom-30">
-{% include 'directory_components/informative_banner.html' with banner_content=page.brexit_banner_text %}
-</section>
+{% if brexit_banner_text in page and page.brexit_banner_text %}
+    <section class="padding-top-90 padding-bottom-30">
+        {% include 'directory_components/informative_banner.html' with banner_content=page.brexit_banner_text %}
+    </section>
+{% endif %}
 
 <section id="featured-cards-section" class="featured-cards-section padding-vertical-60 landing-page-section">
   <div class="container">
