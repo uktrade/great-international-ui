@@ -5,13 +5,10 @@
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
 {% block content %}
-    <section id="hero" class="hero hero-generic background-light-blue padding-bottom-30">
-      <div class="hero-background-container ls-noscript lazyloaded">
-        <div class="hero-background-image" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')"></div>
-      </div>
+    <section id="hero" class="hero hero-generic background-light-blue white-text padding-vertical-90-m padding-vertical-30" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
         <div class="container">
             <div class="width-two-thirds">
-                <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
+                <h1 class="heading-xlarge margin-0">Find a UK specialist</h1>
                 <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
             </div>
             {% ga360_data "isd-search-form" target="form" %}
