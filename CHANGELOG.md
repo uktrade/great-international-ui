@@ -3,6 +3,8 @@
 ## Pre-release
 
 ### Implemented enhancements
+- No ticket - Fix HPO contact box cut off by sticky header, fix wrong margin on guide landing page breadcrumbs
+- No ticket(?) - Fix missing ISD hero
 - CMS-1732 - Add image alt and video transcripts to HPO detail page
 - CMS-1804 - Fixing double filters showing up on ISD search page
 - CMS-1754 - Change /eu-exit-news to /brexit and add redirects
