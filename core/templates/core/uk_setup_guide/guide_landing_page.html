@@ -9,13 +9,11 @@
 {% block content %}
   {% hero background_image_url=page.hero_image.url hero_text=page.display_title large_title=True %}
 
-  <div class="container">
+  {% block breadcrumbs %}
+    {% include 'core/includes/cms_breadcrumbs.html' %}
+  {% endblock %}
 
-    {% block breadcrumbs %}
-        <div class="container">
-            {% include 'core/includes/cms_breadcrumbs.html' %}
-        </div>
-    {% endblock %}
+  <div class="container">
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
 
