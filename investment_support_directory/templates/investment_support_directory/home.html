@@ -1,6 +1,6 @@
 {% extends 'core/companies/base.html' %}
 {% load static from staticfiles %}
-{% load breadcrumbs ga360_data from directory_components %}
+{% load breadcrumbs render_form ga360_data from directory_components %}
 
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
@@ -13,7 +13,7 @@
             </div>
             {% ga360_data "isd-search-form" target="form" %}
             <form method="post">
-                {{ form }}
+                {% render_form form %}
                 <button class="button">Find a UK specialist</button>
             </form>
             {% end_ga360_data %}
