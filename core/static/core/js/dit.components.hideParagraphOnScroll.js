@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   (function() {
     var container = document.getElementById('contact-section');
+    var box = document.getElementById('contact-box');
     var propositionOne = document.getElementById('proposition-one');
     var paragraph = container.getElementsByTagName('p')[0];
     var hero = document.getElementById('hero');
@@ -17,9 +18,11 @@ $(document).ready(function() {
         propositionOne.style['margin-top'] = container.offsetHeight + 'px';
         paragraph.style.display = 'none';
         container.style.position = 'fixed';
-      } else if (paragraph.style.display != 'block' && rect.bottom > 30) {
+        container.style.top = '60px';
+      } else if (paragraph.style.display != 'block' && rect.bottom > 60) {
         paragraph.style.display = 'block';
         container.style.position = 'relative';
+        container.style.top = 'auto';
         propositionOne.style['margin-top'] = 0;
       }
     });
