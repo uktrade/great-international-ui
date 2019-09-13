@@ -40,7 +40,7 @@
             {% endif %}
             {% if page.section_one_image %}
                 <div class="column-half-xl center-vertical">
-                    <img src="{{ page.section_one_image.url }}" />
+                    <img src="{{ page.section_one_image.url }}" alt="" />
                 </div>
             {% elif page.section_one_video %}
                 <div class="column-half-xl padding-right-60-xl center-vertical">
@@ -70,7 +70,7 @@
         <div class="grid-row">
             <div class="column-half-l">
                 {% if article.image %}
-                    <img src="{{ article.image.url }}" />
+                    <img src="{{ article.image.url }}" alt="" />
                 {% endif %}
             </div>
             <div class="column-half-l {% if forloop.counter|divisibleby:2 %}padding-right-60-l{% else %}padding-left-60-l{% endif %}">
