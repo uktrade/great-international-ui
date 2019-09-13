@@ -45,8 +45,8 @@
 
   .proposition-two-grid {
     flex-direction: row;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: (-$spacing-4);
+    margin-right: (-$spacing-4);
   }
 
   @media(max-width: 640px) {
