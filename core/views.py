@@ -785,6 +785,17 @@ def about_uk_region_listing_page_context_modifier(context, request):
     }
 
 
+@register_context_modifier('AboutUkRegionPage')
+def about_uk_region_page_context_modifier(context, request):
+    regions = []
+    if 'mapped_regions' in context['page']:
+        regions = context['page']['mapped_regions']
+
+    return {
+        'regions': regions
+    }
+
+
 class LegacyRedirectCoreView(View):
     http_method_names = ['get']
     redirects_mapping = {}
