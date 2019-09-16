@@ -20,6 +20,7 @@
 - CI-479 - Added video to Why choose UK Page
 - CI-474 - Added feature flagged redirects and temporary look up by paths for when pages move in the cms
 - CI-486 - Added Brexit banner on International home page
+- CI-308 - Added UK Business Environment Form and success page behind a feature flag.
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
 
 ### Fixed bugs
