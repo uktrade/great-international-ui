@@ -9,14 +9,14 @@ beautifulsoup4==4.6.0
 boto3==1.7.55
 botocore==1.10.84         # via boto3, s3transfer
 cachetools==3.1.1         # via zenpy
-certifi==2019.6.16        # via requests
+certifi==2019.9.11        # via requests
 chardet==3.0.4            # via requests
 dateparser==0.7.0
 directory-api-client==14.0.0
 directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==31.1.0
-directory-constants==20.0.0
+directory-components==33.0.2
+directory-constants==20.1.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
