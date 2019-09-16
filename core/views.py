@@ -872,8 +872,9 @@ class BusinessEnvironmentGuideFormView(GA360Mixin, InternationalHeaderMixin, For
     template_name = "core/business_environment_guide_form.html"
     form_class = forms.BusinessEnvironmentGuideForm
     subject = "Business Environment Guide Form"
-    success_url = '/international/about-uk/business-environment-guide/success/'
+    success_url = '/international/about-uk/why-choose-uk/business-environment-guide/success/'
     header_section = tier_one_nav_items.ABOUT_UK
+    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
 
     def __init__(self):
         super().__init__()
@@ -916,6 +917,7 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
     template_name = 'core/business_environment_guide_form_success.html'
     page_type = 'BusinessEnvironmentGuideFormSuccessPage'
     header_section = tier_one_nav_items.ABOUT_UK
+    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
 
     def dispatch(self, request, *args, **kwargs):
         self.set_ga360_payload(
