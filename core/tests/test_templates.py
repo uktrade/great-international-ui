@@ -17,43 +17,6 @@ dummy_page = {
 }
 
 
-def test_homepage_button_how_to_do_business_feature_off(default_context):
-
-    page = dummy_page.copy()
-    page['hero_cta_text'] = 'Hero CTA text'
-
-    context = {
-        'page': page,
-        'features': {
-            'HOW_TO_DO_BUSINESS_ON': False,
-        },
-        **default_context
-    }
-
-    template_name = 'core/landing_page.html'
-    html = render_to_string(template_name, context)
-
-    assert 'Hero CTA text' not in html
-
-
-def test_homepage_button_how_to_do_business_feature_on(default_context):
-
-    page = dummy_page.copy()
-    page['hero_cta_text'] = 'Hero CTA text'
-
-    context = {
-        'page': page,
-        'features': {
-            'HOW_TO_DO_BUSINESS_ON': True,
-        },
-        **default_context
-    }
-
-    template_name = 'core/landing_page.html'
-    html = render_to_string(template_name, context)
-    assert 'Hero CTA text' in html
-
-
 def test_article_detail_page_no_related_content(default_context):
     test_article_page_no_related_content = {
         'title': 'Test article',
