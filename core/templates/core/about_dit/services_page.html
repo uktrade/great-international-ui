@@ -23,7 +23,7 @@
         {% endif %}
         {% if page.teaser_image %}
           <div class="column-half-l">
-            <img src="{{ page.teaser_image.url }}" />
+            <img src="{{ page.teaser_image.url }}" alt="" />
           </div>
         {% endif %}
       </div>
@@ -34,10 +34,10 @@
   {% if page.about_dit_services_fields %}
   <section id="services-fields-section" class="padding-vertical-15">
     <div class="container">
-      <div class="grid-row">
+      <div class="flex-grid">
         {% for service_field in page.about_dit_services_fields %}
           <div class="column-third-xl column-half-m padding-top-30 padding-bottom-30 padding-top-45-l padding-bottom-45-l">
-            <img src="{{ service_field.icon.url }}" />
+            <img src="{{ service_field.icon.url }}" alt="" />
             <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
             <p class="font-small">{{ service_field.summary }}</p>
             <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
