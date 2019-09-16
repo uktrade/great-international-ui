@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% load i18n static %}
+{% load hero breadcrumbs success_box from directory_components %}
+
+{% block content %}
+    <section>
+      <div class="container">
+        {% breadcrumbs 'Success' %}
+          <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+          <a href="{% url 'cms-page-from-path' 'about-uk' %}">About the UK</a>
+          <a href="{% url 'cms-page-from-path' 'why-choose-uk' %}">Why choose the UK</a>
+          <a href="{% url 'business-environment-guide-form' %}">UK business environment</a>
+        {% endbreadcrumbs %}
+
+        <div class="width-two-thirds">
+            {% success_box heading_level='h1' heading='Thank you' description='Your guide to investing in the UK has been emailed to you' %}
+        </div>
+
+        <div class="width-two-thirds">
+          <h2 class="heading-medium">Next steps</h2>
+          <p>Take a look at our other services on great:</p>
+          <ul class="list-bullet">
+            <li><a href="{{ services_urls.invest }}">Invest</a></li>
+            <li><a href="{{ services_urls.uk_setup_guide }}">How to set up in the UK</a></li>
+            <li><a href="{{ services_urls.fas }}">Find a supplier</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+{% endblock %}

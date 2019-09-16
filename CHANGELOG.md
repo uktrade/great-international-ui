@@ -20,6 +20,7 @@
 - CI-479 - Added video to Why choose UK Page
 - CI-474 - Added feature flagged redirects and temporary look up by paths for when pages move in the cms
 - CI-486 - Added Brexit banner on International home page
+- CI-308 - Added UK Business Environment Form and success page behind a feature flag.
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
