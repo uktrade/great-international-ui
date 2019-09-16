@@ -7,19 +7,6 @@
 
 .landing-page {
 
-  @mixin landingPageSection {
-    padding: $spacing-2 0;
-  }
-
-  .landing-page-section:nth-child(odd) {
-    @include landingPageSection;
-  }
-
-  .landing-page-section:nth-child(even) {
-    @include landingPageSection;
-    background: $stone-40;
-  }
-
   .features-highlight-section {
     .features-highlight-icon {
       height: 60px;
