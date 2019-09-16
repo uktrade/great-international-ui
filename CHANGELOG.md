@@ -22,6 +22,7 @@
 - CI-486 - Added Brexit banner on International home page
 - CI-308 - Added UK Business Environment Form and success page behind a feature flag.
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
+- CI-492 - Lots of little accessibility fixes over International pages
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
