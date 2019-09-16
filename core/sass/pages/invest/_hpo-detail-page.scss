@@ -14,8 +14,6 @@
 
   .contact-section {
     position: relative;
-    width: 100%;
-    top: 10px;
     z-index: 1;
   }
 
@@ -38,10 +36,17 @@
 
   .proposition-list-item {
     border-top: 4px solid $flag-red;
+    margin-bottom: $spacing-3;
+
+    & > *:first-child {
+      margin-top: $spacing-4;
+    }
   }
 
   .proposition-two-grid {
     flex-direction: row;
+    margin-left: (-$spacing-4);
+    margin-right: (-$spacing-4);
   }
 
   @media(max-width: 640px) {

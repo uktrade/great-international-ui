@@ -216,8 +216,6 @@ def sector_landing_page_context_modifier(context, request):
 def sector_page_context_modifier(context, request):
     page = context['page']
 
-    trade_contact_form = urls.international.ABOUT_UK_INDUSTRIES / 'contact'
-
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
         random_opportunities = page['related_opportunities'][0:3]
@@ -231,7 +229,7 @@ def sector_page_context_modifier(context, request):
         'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
-        'trade_contact_form_url': trade_contact_form,
+        'trade_contact_form_url': urls.international.TRADE_CONTACT,
         'about_uk_link': urls.international.ABOUT_UK_HOME
         }
 
@@ -258,8 +256,6 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 def sub_sector_context_modifier(context, request):
     page = context['page']
 
-    trade_contact_form = urls.international.ABOUT_UK_INDUSTRIES / 'contact'
-
     if 'related_opportunities' in page:
         random.shuffle(page['related_opportunities'])
         random_opportunities = page['related_opportunities'][0:3]
@@ -273,8 +269,8 @@ def sub_sector_context_modifier(context, request):
         'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
-        'trade_contact_form_url': trade_contact_form
-        }
+        'trade_contact_form_url': urls.international.TRADE_CONTACT
+    }
 
 
 class InternationalContactPageView(CountryDisplayMixin, InternationalView):
