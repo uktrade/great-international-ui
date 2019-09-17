@@ -13,7 +13,9 @@
   <div class="container">
       {% breadcrumbs page.heading %}
         <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-        <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
+        {% if features.INDUSTRIES_REDIRECT_ON %}
+            <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
+        {% endif %}
         <a href="{% url 'industries' %}">{% trans 'Industries' %}</a>
       {% endbreadcrumbs %}
   </div>
