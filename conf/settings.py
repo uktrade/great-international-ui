@@ -19,7 +19,8 @@ import directory_healthcheck.backends
 
 
 env = environ.Env()
-env.read_env()
+for env_file in env.list('ENV_FILES', default=[]):
+    env.read_env(f'conf/env/{env_file}')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -146,7 +147,6 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGE_COOKIE_NAME = env.str('LANGUAGE_COOKIE_NAME', 'django_language')
-
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-LANGUAGE_COOKIE_NAME
 LANGUAGE_COOKIE_DEPRECATED_NAME = 'django-language'
 
@@ -212,8 +212,10 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_HOST = env.str('STATIC_HOST', '')
 STATIC_URL = STATIC_HOST + '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = env.str(
+    'STATICFILES_STORAGE',
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 # Logging for development
 if DEBUG:

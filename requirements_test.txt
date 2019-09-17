@@ -6,7 +6,7 @@
 #
 apipkg==1.5               # via execnet
 atomicwrites==1.2.1       # via pytest
-attrs==18.2.0             # via jsonschema, pytest
+attrs==18.2.0             # via jsonschema, packaging, pytest
 beautifulsoup4==4.6.0
 boto3==1.7.55
 botocore==1.10.84         # via boto3, s3transfer
@@ -20,8 +20,8 @@ dateparser==0.7.0
 directory-api-client==14.0.0
 directory-client-core==5.1.1  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.1.0
-directory-components==33.0.2
-directory-constants==20.1.0
+directory-components==33.1.2
+directory-constants==20.3.0
 directory-forms-api-client==4.0.0
 directory-healthcheck==1.0.1
 directory-validators==5.0.0
@@ -41,29 +41,32 @@ flake8==3.0.4
 freezegun==0.3.8
 gunicorn==19.5.0
 idna==2.6                 # via requests
+importlib-metadata==0.23  # via pluggy, pytest
 jmespath==0.9.3           # via boto3, botocore
 jsonschema==3.0.1         # via directory-components
 mccabe==0.5.3             # via flake8
 mohawk==0.3.4             # via sigauth
 monotonic==1.4            # via directory-client-core
-more-itertools==4.3.0     # via pytest
+more-itertools==4.3.0     # via pytest, zipp
 olefile==0.44             # via directory-validators, pillow
+packaging==19.1           # via pytest
 phonenumberslite==7.7.4   # via directory-validators
 pillow==4.2.1             # via directory-validators
 pip-tools==3.8.0
 pir-client==1.0.0
-pluggy==0.7.1             # via pytest
+pluggy==0.13.0            # via pytest
 py==1.5.2                 # via pytest, pytest-catchlog
 pycodestyle==2.0.0        # via flake8
 pyflakes==1.2.3           # via flake8
+pyparsing==2.4.2          # via packaging
 pyrsistent==0.15.2        # via jsonschema
 pytest-catchlog==1.2.2
-pytest-cov==2.3.1
-pytest-django==3.4.2
+pytest-cov==2.7.1
+pytest-django==3.5.1
 pytest-forked==0.2        # via pytest-xdist
 pytest-sugar==0.9.1
-pytest-xdist==1.24.0
-pytest==3.8.0
+pytest-xdist==1.29.0
+pytest==5.1.2
 python-dateutil==2.6.1    # via botocore, dateparser, freezegun, zenpy
 pytz==2017.2              # via dateparser, directory-validators, django, tzlocal
 raven==6.9.0
@@ -73,15 +76,17 @@ requests-mock==1.1.0
 requests==2.21.0
 s3transfer==0.1.13        # via boto3
 sigauth==4.0.1            # via directory-client-core
-six==1.11.0               # via freezegun, jsonschema, mohawk, more-itertools, pip-tools, pyrsistent, pytest, pytest-xdist, python-dateutil, requests-mock, w3lib
+six==1.11.0               # via freezegun, jsonschema, mohawk, more-itertools, packaging, pip-tools, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
 sorl-thumbnail==12.5
 termcolor==1.1.0          # via pytest-sugar
 tzlocal==1.5.1            # via dateparser
 urllib3==1.24.2
 w3lib==1.19.0             # via directory-client-core
 waitress==0.8.9
+wcwidth==0.1.7            # via pytest
 whitenoise==3.3.1
 zenpy==1.1.10
+zipp==0.6.0               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via jsonschema, pytest, waitress
+# setuptools==41.2.0        # via jsonschema, waitress
