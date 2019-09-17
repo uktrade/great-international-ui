@@ -110,7 +110,7 @@ CONTACT_US_TRADE = NavItem(
 
 OVERVIEW_ABOUT_DIT = NavItem(
     name='overview-about-dit',
-    title=_('Overview'),
+    title=_('What we do'),
     url=urls.international.ABOUT_DIT_HOME
 )
 
