@@ -70,7 +70,10 @@
 
                 <div class="column-three-quarters-xl">
                     <div class="font-small sort-by-container">
-                        <span>{% trans 'Sort by' %}:</span> {{ form.sort_by}}
+                        <label>
+                            <span>{% trans 'Sort by' %}:</span>
+                            {{ form.sort_by}}
+                        </label>
                     </div>
                     <ul>
                         {% for opportunity in pagination.object_list %}

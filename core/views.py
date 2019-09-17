@@ -319,6 +319,12 @@ def capital_invest_region_page_context_modifier(context, request):
 def about_uk_region_page_context_modifier(context, request):
     page = context['page']
 
+    show_mapped_regions = False
+    regions = []
+    if 'mapped_regions' in page:
+        regions = page['mapped_regions']
+        show_mapped_regions = True if len(regions) == 6 else False
+
     show_accordions = False
 
     if 'subsections' in page:
@@ -333,7 +339,9 @@ def about_uk_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'show_accordions': show_accordions
+        'show_accordions': show_accordions,
+        'show_mapped_regions': show_mapped_regions,
+        'regions': regions
     }
 
 

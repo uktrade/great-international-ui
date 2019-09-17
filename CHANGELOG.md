@@ -23,6 +23,7 @@
 - CI-308 - Added UK Business Environment Form and success page behind a feature flag.
 - No ticket - Change 'Professional Services' Nav label to 'Find a UK specialist'.
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
+- CI-492 - Lots of little accessibility fixes over International pages
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id

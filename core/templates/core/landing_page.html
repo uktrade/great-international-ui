@@ -62,7 +62,7 @@
     <div class="flex-grid">
       {% for subsection in page.section_two_subsections %}
         <div class="column-third-xl column-half-m">
-          <img class="icon" src="{{ subsection.icon.url }}"/>
+          <img class="icon" src="{{ subsection.icon.url }}" alt=""/>
           <h3 class="heading-medium margin-top-15">{{ subsection.heading|add_export_elements_classes|safe }}</h3>
           <p class="font-xsmall">{{ subsection.body }}</p>
         </div>
