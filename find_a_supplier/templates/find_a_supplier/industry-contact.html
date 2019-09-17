@@ -1,7 +1,7 @@
 {% extends 'core/base_cms.html' %}
 {% load static from staticfiles %}
 {% load add_href_target from cms_tags %}
-{% load add_export_elements_classes render_form ga360_data from directory_components %}
+{% load add_export_elements_classes ga360_data from directory_components %}
 
 {% block css_layout_class %}find-a-supplier-industry-contact{% endblock %}
 
@@ -21,7 +21,7 @@
 
         {% ga360_data "contact-industry-form" target="form" ga-value=industry_page.breadcrumbs_label %}
         <form action="" method="post">
-            {% render_form form %}
+            {{ form }}
             <input class="button button-blue" type="submit" value="{{ page.submit_button_text }}">
         </form>
         {% end_ga360_data %}

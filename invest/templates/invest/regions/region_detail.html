@@ -1,8 +1,8 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load filter_by_active_language from cms_tags %}
-{% load add_export_elements_classes hero from directory_components %}
+{% load filter_by_active_language cms_hero from cms_tags %}
+{% load add_export_elements_classes from directory_components %}
 
 {% block head_js %}
   {{ block.super }}
@@ -14,7 +14,7 @@
 
 {% block content %}
 
-{% hero hero_text=page.heading background_image_url=page.hero_image.url %}
+{% cms_hero hero_text=page.heading %}
 
 {% if page.pullout.text %}
 <section class="pullout">

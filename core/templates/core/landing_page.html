@@ -3,7 +3,8 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load directory_components %}
+{% load cta_card add_export_elements_classes override_elements_css_class from directory_components %}
+{% load cms_hero_with_cta filter_by_active_language from cms_tags %}
 
 {% block css_layout_class %}landing-page{% endblock %}
 
@@ -14,7 +15,7 @@
 
 {% block content %}
 
-{% hero_with_cta heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+{% cms_hero_with_cta heading=page.hero_title subtitle=page.hero_subtitle %}
 
 {% if 'brexit_banner_text' in page and page.brexit_banner_text %}
     <section class="page-section">

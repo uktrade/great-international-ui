@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 
-{% load filter_by_active_language from cms_tags %}
+{% load filter_by_active_language cms_hero from cms_tags %}
 {% load breadcrumbs card hero from directory_components %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
@@ -8,7 +8,7 @@
 {% block content %}
 
 {% block hero %}
-  {% hero background_image_url=page.hero_image.url hero_text=page.landing_page_title large_title=True %}
+  {% cms_hero hero_text=page.landing_page_title %}
 {% endblock %}
 
 {% block breadcrumbs %}

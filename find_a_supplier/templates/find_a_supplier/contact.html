@@ -1,6 +1,6 @@
 {% extends 'core/companies/base-contact.html' %}
 
-{% load breadcrumbs render_form from directory_components %}
+{% load breadcrumbs from directory_components %}
 {% block head_title %}Find a UK supplier - GREAT.gov.uk{% endblock %}
 {% block breadcrumbs %}
     {% url 'find-a-supplier:profile' company_number=company.number slug=company.slug as company_url %}
