@@ -24,6 +24,7 @@
 - No ticket - Change 'Professional Services' Nav label to 'Find a UK specialist'.
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
 - CI-492 - Lots of little accessibility fixes over International pages
+- CI-498 - Replace ebook download button with a regular CTA.
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
