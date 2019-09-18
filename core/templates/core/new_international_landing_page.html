@@ -2,12 +2,13 @@
 {% load trans from i18n %}
 {% load directory_components %}
 {% load filter_by_active_language from cms_tags %}
+{% load cms_hero_with_cta from cms_tags %}
 
 {% block css_layout_class %}new-international-landing-page{% endblock %}
 
 {% block content %}
 
-{% hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+{% cms_hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
 {% if page.ready_to_trade_stories %}
 <section class="top-page-section">

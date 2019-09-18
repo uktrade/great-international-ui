@@ -253,16 +253,6 @@ def test_article_detail_page_social_share_links_no_title(
 
 test_child_pages = [
     {
-        'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {
-            'slug': 'campaign-one',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalCampaignPage',
-        'teaser': 'Campaign one teaser',
-        'title': 'Campaign one'
-    },
-    {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
@@ -285,16 +275,6 @@ test_child_pages = [
 ]
 
 test_localised_child_pages = [
-    {
-        'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {
-            'slug': 'campaign-one',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalCampaignPage',
-        'teaser': 'Campaign one teaser',
-        'title': 'Campaign one'
-    },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {

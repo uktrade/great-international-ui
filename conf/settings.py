@@ -19,7 +19,8 @@ import directory_healthcheck.backends
 
 
 env = environ.Env()
-env.read_env()
+for env_file in env.list('ENV_FILES', default=[]):
+    env.read_env(f'conf/env/{env_file}')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -146,7 +147,6 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGE_COOKIE_NAME = env.str('LANGUAGE_COOKIE_NAME', 'django_language')
-
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-LANGUAGE_COOKIE_NAME
 LANGUAGE_COOKIE_DEPRECATED_NAME = 'django-language'
 
@@ -212,8 +212,10 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_HOST = env.str('STATIC_HOST', '')
 STATIC_URL = STATIC_HOST + '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = env.str(
+    'STATICFILES_STORAGE',
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 # Logging for development
 if DEBUG:
@@ -298,6 +300,8 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+LANGUAGE_COOKIE_SECURE = env.bool('LANGUAGE_COOKIE_SECURE', True)
+COUNTRY_COOKIE_SECURE = env.bool('COUNTRY_COOKIE_SECURE', True)
 
 # Sentry
 RAVEN_CONFIG = {
@@ -441,8 +445,8 @@ EMAIL_USE_TLS = True
 DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC = env.str(
     'DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC', ''
 )
-DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL = env.str(
-    'DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL', ''
+DIRECTORY_CONSTANTS_URL_INTERNATIONAL = env.str(
+    'DIRECTORY_CONSTANTS_URL_INTERNATIONAL', ''
 )
 DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES = env.str(
     'DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES', ''
