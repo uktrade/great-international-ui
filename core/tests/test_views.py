@@ -409,9 +409,10 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_ready_to_trade_landing_page_attaches_array_lengths_to_view(
-    mock_cms_response,
-    rf
+    mock_cms_response, rf, settings
 ):
+    settings.FEATURE_FLAGS['READY_TO_TRADE_LANDING_PAGE_ON'] = True
+    reload_urlconf(settings)
 
     page = {
         'title': 'test',
@@ -442,9 +443,10 @@ def test_get_ready_to_trade_landing_page_attaches_array_lengths_to_view(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_ready_to_trade_landing_page_attaches_array_lengths_to_view_null(
-    mock_cms_response,
-    rf
+    mock_cms_response, rf, settings
 ):
+    settings.FEATURE_FLAGS['READY_TO_TRADE_LANDING_PAGE_ON'] = True
+    reload_urlconf(settings)
 
     page = {
         'title': 'test',
