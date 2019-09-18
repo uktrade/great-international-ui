@@ -907,7 +907,7 @@ def test_ready_to_trade_landing_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
-@pytest.mark.usefixtures('ready_to_trade_landing_page_')
+@pytest.mark.usefixtures('ready_to_trade_landing_page')
 def test_ready_to_trade_landing_page_page_returns_404_when_feature_flag_off(
     client, settings
 ):
