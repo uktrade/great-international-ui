@@ -255,17 +255,18 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 @register_context_modifier('ReadyToTradeLandingPage')
 def ready_to_trade_landing_page_context_modifier(context, request):
 
+    page = context['page']
+
     def count_data_with_field(list_of_data, field):
         filtered_list = [item for item in list_of_data if item[field]]
         return len(filtered_list)
 
-    page = context['page']
+    num_of_stats = 0
+    if 'statistics' in page and page['statistics']:
+        num_of_stats = count_data_with_field(page['statistics'], 'number')
 
     return {
-        'num_of_statistics': count_data_with_field(
-            page['statistics'],
-            'number'
-        ),
+        'num_of_statistics': num_of_stats,
         'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 

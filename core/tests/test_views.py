@@ -423,6 +423,67 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_ready_to_trade_landing_page_attaches_array_lengths_to_view(
+    mock_cms_response,
+    rf
+):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ReadyToTradeLandingPage',
+        'statistics': [
+            {'number': '1'},
+            {'number': '2', 'heading': 'heading'},
+            {'number': None, 'heading': 'no-number-stat'}
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/ready-to-trade/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/ready-to-trade/')
+
+    assert response.context_data['num_of_statistics'] == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_ready_to_trade_landing_page_attaches_array_lengths_to_view_null(
+    mock_cms_response,
+    rf
+):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'ReadyToTradeLandingPage',
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/ready-to-trade/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/ready-to-trade/')
+
+    assert response.context_data['num_of_statistics'] == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_industry_page_context_modifier_renames_heading(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
