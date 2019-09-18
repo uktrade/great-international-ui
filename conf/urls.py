@@ -319,6 +319,18 @@ urlpatterns += [
         name='how-to-do-business-with-the-uk'
     ),
     url(
+        r'^international/content/ready-to-trade/$',
+        QuerystringRedirectView.as_view(pattern_name='ready-to-trade'),
+        {'path': 'ready-to-trade'},
+        name='ready-to-trade-content-redirect'
+    ),
+    url(
+        r'^international/ready-to-trade/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': 'ready-to-trade'},
+        name='ready-to-trade'
+    ),
+    url(
         r'^international/content/opportunities/$',
         core.views.OpportunitySearchView.as_view(),
         {'path': 'opportunities'},

@@ -53,6 +53,9 @@ TEMPLATE_MAPPING = {
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
     'InternationalTradeIndustryContactPage': 'find_a_supplier/industry-contact.html',
+
+    # Ready to Trade
+    'ReadyToTradeLandingPage': 'core/ready_to_trade_landing_page.html'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -256,6 +259,13 @@ GA_DATA_MAPPING = {
         'business_unit': 'FindASupplier',
         'site_section': 'Industries',
         'site_subsection': 'LandingPageContact'
+    },
+
+    # Ready to trade
+    'ReadyToTradeLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'ReadyToTradeCampaign',
+        'site_subsection': 'ReadyToTrade'
     },
 }
 
