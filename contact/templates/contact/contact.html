@@ -1,7 +1,7 @@
 {% extends 'contact/base.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load ga360_data from directory_components %}
+{% load ga360_data hero from directory_components %}
 
 {% block title %}Invest In Great Britain - {% trans "Contact us" %}{% endblock %}
 
@@ -13,7 +13,7 @@
 {% block content %}
 
 {% trans "Contact the investment team" as page_title %}
-{% include 'directory_components/hero.html' with hero_text=page_title %}
+{% hero hero_text=page_title %}
 
 <div class="container">
   {% ga360_data "contact-form" target="form" %}

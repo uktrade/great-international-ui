@@ -1,12 +1,13 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
 {% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid from directory_components %}
+{% load cms_hero from cms_tags %}
 
 {% block css_layout_class %}about-uk-why-choose-the-uk-page{% endblock %}
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+{% cms_hero hero_text=page.hero_title %}
 
 {% block breadcrumbs %}
     <div class="container">

@@ -2,23 +2,14 @@
 {% load static %}
 {% load directory_components %}
 {% load filter_by_active_language from cms_tags %}
-{% load parse_date from cms_tags %}
+{% load cms_hero parse_date from cms_tags %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
 
 {% block content %}
 
 {% block hero %}
-  <section class="hero hero-generic" id="hero" style="background-image: url('{{ page.hero_image.url }}')">
-    <div class="container">
-      <div class="hero-title">
-        <h1 class="heading-hero-generic-compact" id="hero-heading">{{ page.landing_page_title }}</h1>
-        {% with page.localised_child_pages|length as num_localised_articles %}
-        <p class="hero-description" id="hero-description">{{ page.articles_count|add:num_localised_articles }} article{{ page.articles_count|pluralize }}</p>
-        {% endwith %}
-      </div>
-    </div>
-  </section>
+  {% cms_hero hero_text=page.landing_page_title %}
 {% endblock %}
 
 <section id="{% block page_id %}article-list-page{% endblock %}">
