@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE %}
+{% load filter_by_active_language from cms_tags %}
+{% load directory_components %}
+
+{% block css_layout_class %}landing-page{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        {% breadcrumbs 'Contact' %}
+            <a href="https://great.gov.uk/">great.gov.uk</a>
+            <a href="https://great.gov.uk/contact/triage/location/">Contact us</a>
+        {% endbreadcrumbs %}
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="grid-row">
+            <div class="column-half">
+                <h1 class="heading-large">What would you like to know more about?</h1>
+                <form method="post">
+                    {{form.choice}}
+                    <button type="submit" name="button" class="button button-blue">Continue</button>
+                </form>
+            </div>
+        </div>
+        <div class="margin-top-30">
+            <a href="{{ domestic_contact_home }}" type="submit" >Back</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

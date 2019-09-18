@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
@@ -15,7 +16,7 @@ from directory_cms_client.helpers import handle_cms_response
 import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
-from directory_constants import urls
+from directory_constants import urls, slugs
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin
 
@@ -935,3 +936,37 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
             site_subsection='BusinessEnvironment'
         )
         return super().dispatch(request, *args, **kwargs)
+
+
+def build_exporting_guidance_url(slug):
+    return reverse_lazy(
+        'contact-us-exporting-to-the-uk-guidance', kwargs={'slug': slug}
+    )
+
+
+class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = 'core/contact_international_triage.html'
+    form_class = forms.InternationalRoutingForm
+    success_url = '/contact/'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='GreatInternationalContactTriage',
+            business_unit='GreatInternational',
+            site_section='GreatInternational',
+            site_subsection='ContactTriage'
+        )
+
+    def form_valid(self, form):
+        selected = form.cleaned_data['choice']
+        if selected in constants.CONTACT_TRIAGE_REDIRECT_MAPPING:
+            return redirect(constants.CONTACT_TRIAGE_REDIRECT_MAPPING[selected])
+        else:
+            raise Http404
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            domestic_contact_home=urls.domestic.CONTACT_US,
+            *args, **kwargs,
+        )

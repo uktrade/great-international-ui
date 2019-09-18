@@ -1,6 +1,8 @@
 from collections import namedtuple
-from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
 
+from conf import settings
+from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
+from directory_constants import urls, slugs
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -294,4 +296,21 @@ HEADER_SECTION_MAPPING = {
     r'^about-dit/contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
     r'^about-dit$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
     r'^about-dit.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
+}
+
+INVESTING = 'investing'
+CAPITAL_INVEST = 'capital-invest'
+EXPORTING_TO_UK = 'exporting-to-uk'
+BUYING = 'buying'
+EUEXIT = 'euexit'
+OTHER = 'other'
+COMPANY_NOT_FOUND = 'company-not-found'
+
+CONTACT_TRIAGE_REDIRECT_MAPPING = {
+    INVESTING: urls.international.EXPAND_CONTACT,
+    CAPITAL_INVEST: urls.international.CAPITAL_INVEST_CONTACT,
+    EXPORTING_TO_UK: urls.international.INTERNATIONAL_CONTACT_TRIAGE + 'exporting-to-the-uk/',
+    BUYING: urls.international.TRADE_CONTACT,
+    EUEXIT: settings.EU_EXIT_INTERNATIONAL_CONTACT_URL,
+    OTHER: urls.domestic.CONTACT_US + 'international/',
 }

@@ -326,9 +326,13 @@ urlpatterns += [
     ),
     url(
         r'^international/invest-capital/$',
-        QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
-        {'path': 'capital-invest'},
+        core.views.OpportunitySearchView.as_view(),
         name='invest-capital-home'
+    ),
+    url(
+        r'^contact/$',
+        core.views.InternationalContactTriageView.as_view(),
+        name='international-contact-triage'
     ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',
