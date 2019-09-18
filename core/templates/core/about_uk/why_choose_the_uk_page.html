@@ -77,16 +77,16 @@
 <section id="{{ article.title|slugify }}-article-section" class="article-section padding-vertical-60 padding-vertical-90-l">
     <div class="container">
         <div class="grid-row">
-            <div class="column-half-l">
+            <div class="column-half-l center-vertical">
                 {% if article.image %}
                     <img src="{{ article.image.url }}" alt="" />
                 {% endif %}
             </div>
             <div class="column-half-l {% if forloop.counter|divisibleby:2 %}padding-right-60-l{% else %}padding-left-60-l{% endif %}">
                 <h2 class="heading-large margin-top-0-l">{{ article.title }}</h2>
-                <p class="margin-bottom-60-l">{{ article.summary|add_export_elements_classes|safe }}</p>
+                {{ article.summary|add_export_elements_classes|add_anchors_to_all_headings:'-section' }}
                 {% if article.link_text and article.link_url %}
-                    <a class="button button-ghost-blue button-arrow-small margin-bottom-0" href="{{ article.link_url }}">
+                    <a class="button button-ghost-blue button-arrow-small margin-bottom-0 margin-top-30" href="{{ article.link_url }}">
                         {{ article.link_text }}
                     </a>
                 {% endif %}
