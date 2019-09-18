@@ -1,6 +1,26 @@
 @import '../../partials/vars';
 
 .about-uk-why-choose-the-uk-page {
+
+  .great-hero-with-cta {
+      .container{
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+      }
+
+      .great-hero-text h1 {
+        font-size: 0px !important;
+        line-height: 0px !important;
+      }
+
+  }
+
   #section-one {
     img {
       width: 100%;
