@@ -95,6 +95,11 @@ def capital_invest_contact_form_success_page():
     yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
 
 
+@pytest.fixture
+def ready_to_trade_landing_page():
+    yield from stub_page({'page_type': 'ReadyToTradeLandingPage'})
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
 
@@ -862,6 +867,52 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 
     response = client.get(
         '/international/content/capital-invest/contact/success/'
+    )
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_ready_to_trade_landing_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['READY_TO_TRADE_LANDING_PAGE_ON'] = True
+
+    page = {
+        'title': 'Ready to trade',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'ready-to-trade'
+        },
+        'page_type': 'ReadyToTradeLandingPage',
+    }
+
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/ready-to-trade/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/ready-to-trade/'
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.usefixtures('ready_to_trade_landing_page_')
+def test_ready_to_trade_landing_page_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['READY_TO_TRADE_LANDING_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/ready-to-trade/'
     )
     assert response.status_code == 404
 

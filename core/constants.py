@@ -74,6 +74,8 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
         'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'InternationalTradeIndustryContactPage':
         'FIND_A_SUPPLIER_ON',
+    'ReadyToTradeLandingPage':
+        'READY_TO_TRADE_LANDING_PAGE_ON'
 }
 
 GA_DATA_MAPPING = {
