@@ -19,35 +19,31 @@
 
     $ git clone https://github.com/uktrade/great-international-ui
     $ cd great-international-ui
-    $ make
+    $ [create and activate virutal environment]
+    $ make install_requirements
 
 ## Development
 
 ### Configuration
 
-Secrets such as API keys and environment specific configurations are placed in `conf/.env` - a file that is not added to version control. You will need to create that file locally in order for the project to run.
+Secrets such as API keys and environment specific configurations are placed in `conf/env/secrets-do-not-commit` - a file that is not added to version control. To create a template secrets file with dummy values run `make secrets`.
 
-Here are the env vars to get you going:
+### Commands
 
-```
-DIRECTORY_FORMS_API_API_KEY
-DIRECTORY_FORMS_API_SENDER_ID
-DIRECTORY_FORMS_API_BASE_URL
-```
-
-## Running the webserver
-
-### Setup debug environment
-
-    $ make debug
-
-### Run debug webserver
-
-    $ make debug_webserver
-
-### Run debug tests
-
-    $ make debug_test
+| Command                       | Description |
+| ----------------------------- | ------------|
+| make clean                    | Delete pyc files |
+| make pytest                   | Run all tests |
+| make pytest test_foo.py       | Run all tests in file called test_foo.py |
+| make pytest -- --last-failed` | Run the last tests to fail |
+| make pytest -- -k foo         | Run the test called foo |
+| make pytest -- <foo>          | Run arbitrary pytest command |
+| make manage <foo>             | Run arbitrary management command |
+| make webserver                | Run the development web server |
+| make requirements             | Compile the requirements file |
+| make install_requirements     | Installed the compile requirements file |
+| make css                      | Compile scss to css |
+| make secrets                  | Create your secret env var file |
 
 ## CSS development
 
@@ -64,15 +60,6 @@ If you're doing front-end development work you will need to be able to compile t
 
     $ npm install yarn
     $ yarn install --production=false
-
-
-### Update CSS under version control
-
-	$ make compile_css
-
-### Rebuild the CSS files when the scss file changes
-
-	$ make watch_css
 
 ## Session
 
@@ -92,10 +79,10 @@ Then run the server and visit `international.trade.great:8012`
 [code-climate-image]: https://codeclimate.com/github/uktrade/great-international-ui/badges/issue_count.svg
 [code-climate]: https://codeclimate.com/github/uktrade/great-international-ui
 
-[circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/master.svg?style=svg
-[circle-ci]: https://circleci.com/gh/uktrade/great-international/tree/master
+[circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/develop.svg?style=svg
+[circle-ci]: https://circleci.com/gh/uktrade/great-international/tree/develop
 
-[codecov-image]: https://codecov.io/gh/uktrade/great-international-ui/branch/master/graph/badge.svg
+[codecov-image]: https://codecov.io/gh/uktrade/great-international-ui/branch/develop/graph/badge.svg
 [codecov]: https://codecov.io/gh/uktrade/great-international-ui
 
 [gitflow-image]: https://img.shields.io/badge/Branching%20strategy-gitflow-5FBB1C.svg

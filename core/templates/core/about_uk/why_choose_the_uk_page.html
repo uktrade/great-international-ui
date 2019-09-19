@@ -1,12 +1,14 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
 {% load breadcrumbs convert_headings_to add_export_elements_classes override_elements_css_class statistics_card_grid from directory_components %}
+{% load cms_hero from cms_tags %}
+{% load directory_components %}
 
 {% block css_layout_class %}about-uk-why-choose-the-uk-page{% endblock %}
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.hero_title %}
+{% cms_hero hero_text=page.hero_title %}
 
 {% block breadcrumbs %}
     <div class="container">
@@ -18,13 +20,20 @@
 {% endblock %}
 
 {% if page.teaser %}
-<section id="teaser-section" class="padding-top-30 ">
+<section id="teaser-section" class="top-page-section">
     <div class="container">
         <div class="grid-row">
             <div class="column-three-quarters-l">
                 {{ page.teaser|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
             </div>
         </div>
+        {% if page.primary_contact_cta_text and page.primary_contact_cta_link %}
+        <div class="margin-top-30 margin-bottom-30">
+            <a class="button button-ghost-blue button-arrow-small margin-bottom-0" href="{{ page.primary_contact_cta_link }}">
+                {{ page.primary_contact_cta_text }}
+            </a>
+        </div>
+        {% endif %}
     </div>
 </section>
 {% endif %}
@@ -75,9 +84,9 @@
             </div>
             <div class="column-half-l {% if forloop.counter|divisibleby:2 %}padding-right-60-l{% else %}padding-left-60-l{% endif %}">
                 <h2 class="heading-large margin-top-0-l">{{ article.title }}</h2>
-                <p class="margin-bottom-60-l">{{ article.summary }}</p>
+                {{ article.summary|add_export_elements_classes|safe }}
                 {% if article.link_text and article.link_url %}
-                    <a class="button button-ghost-blue button-arrow-small margin-bottom-0" href="{{ article.link_url }}">
+                    <a class="button button-ghost-blue button-arrow-small margin-bottom-0 margin-top-30" href="{{ article.link_url }}">
                         {{ article.link_text }}
                     </a>
                 {% endif %}
@@ -100,12 +109,29 @@
             <div class="column-three-quarters-l padding-left-60-l">
                 <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
                 {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
-                {% if page.ebook_section_cta_text and page.ebook_section_pdf_link %}
-                    <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" target="_blank" href="{{ page.ebook_section_pdf_link }}">
+                {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+                    <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
                         {{ page.ebook_section_cta_text }}
                     </a>
                 {% endif %}
             </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_dit_help_title and page.related_pages %}
+<section class="stone-page-section">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_dit_help_title }} </h2>
+        <div class="flex-grid padding-top-30">
+            {% for card in page.related_pages %}
+                {% if card.hero_title and card.hero_image.url and card.featured_description %}
+                    <div class="column-third-xl column-half-m">
+                        {% card img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.featured_description|add_export_elements_classes|safe %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>

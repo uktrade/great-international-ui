@@ -24,6 +24,8 @@
 - No ticket - Change 'Professional Services' Nav label to 'Find a UK specialist'.
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
 - CI-492 - Lots of little accessibility fixes over International pages
+- CI-498 - Replace ebook download button with a regular CTA.
+- CI-503 - Added new fields to Why choose the UK page
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id
@@ -31,6 +33,7 @@
 - no ticket - Fixed invest contact success going to expand
 - no ticket - Fixed invest going to expand
 - no ticket - Fix 'I want to Buy' URL on industry pages.
+- no ticket = Fixed `About UK` breadcrumb showing before industry pages moved
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)

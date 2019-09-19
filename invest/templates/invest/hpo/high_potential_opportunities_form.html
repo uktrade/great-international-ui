@@ -1,6 +1,5 @@
 {% extends 'core/base.html' %}
 {% load static from staticfiles %}
-{% load render_form from directory_components %}
 
 {% load add_export_elements_classes from directory_components %}
 {% block head_css %}
@@ -30,7 +29,7 @@
       </div>
       <div id="form-container" class="grid-row">
         <form method="post" class="column-two-thirds-m column-half-l">
-            {% render_form form %}
+            {{ form }}
             <button type="submit" id="submit-button" class="button">Submit</button>
         </form>
       </div>

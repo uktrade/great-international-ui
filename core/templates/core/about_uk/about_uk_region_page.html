@@ -1,8 +1,8 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load i18n %}
 {% load static from staticfiles %}
-{% load filter_by_active_language from cms_tags %}
-{% load card hero add_export_elements_classes statistics_card_grid case_study breadcrumbs from directory_components %}
+{% load filter_by_active_language cms_hero from cms_tags %}
+{% load card add_export_elements_classes statistics_card_grid case_study breadcrumbs from directory_components %}
 
 {% block css_layout_class %}about-uk-region-page{% endblock %}
 
@@ -14,7 +14,7 @@
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with hero_text=page.hero_title background_image_url=page.hero_image.url  %}
+{% cms_hero hero_text=page.hero_title %}
 
 <section id="breadcrumb-section">
   <div class="container">

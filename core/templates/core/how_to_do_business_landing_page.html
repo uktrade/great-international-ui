@@ -2,19 +2,14 @@
 
 {% load trans from i18n %}
 {% load breadcrumbs cta_card add_export_elements_classes override_elements_css_class from directory_components %}
+{% load cms_hero from cms_tags %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
 
 {% block content %}
 
-  <section class="hero hero-generic padding-0" id="campaign-hero" style="background-image: url('{{ page.hero_image.url }}')">
-    <div class="container white-text">
-      <div class="hero-title">
-        <h1 class="heading-hero-generic">{{ page.display_title }}</h1>
-      </div>
-    </div>
-  </section>
+  {% cms_hero hero_text=page.display_title %}
 
   <div class="container">
 

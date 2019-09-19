@@ -10,28 +10,20 @@ TEMPLATE_MAPPING = {
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/article_detail.html',
-    'InternationalCampaignPage': 'core/campaign.html',
     'InternationalSectorPage': 'core/sector_page.html',
     'InternationalSubSectorPage': 'core/sector_page.html',
-    'InternationalCuratedTopicLandingPage':
-        'core/how_to_do_business_landing_page.html',
-    'InternationalGuideLandingPage':
-        'core/uk_setup_guide/guide_landing_page.html',
+    'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',
+    'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
 
     # Brexit
     'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
-    'InternationalEUExitFormSuccessPage':
-        'euexit/international-contact-form-success.html',
+    'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',
 
     # Capital investment
-    'InternationalCapitalInvestLandingPage':
-        'core/capital_invest/capital_invest_landing_page.html',
-    'CapitalInvestRegionPage':
-        'core/capital_invest/capital_invest_region_page.html',
-    'CapitalInvestOpportunityPage':
-        'core/capital_invest/capital_invest_opportunity_page.html',
-    'CapitalInvestOpportunityListingPage':
-        'core/capital_invest/capital_invest_opportunity_listing_page.html',
+    'InternationalCapitalInvestLandingPage': 'core/capital_invest/capital_invest_landing_page.html',
+    'CapitalInvestRegionPage': 'core/capital_invest/capital_invest_region_page.html',
+    'CapitalInvestOpportunityPage': 'core/capital_invest/capital_invest_opportunity_page.html',
+    'CapitalInvestOpportunityListingPage': 'core/capital_invest/capital_invest_opportunity_listing_page.html',
     'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
     'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
@@ -45,11 +37,9 @@ TEMPLATE_MAPPING = {
 
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
-    'InvestHighPotentialOpportunityDetailPage':
-        'invest/hpo/high_potential_opportunity_detail.html',
+    'InvestHighPotentialOpportunityDetailPage': 'invest/hpo/high_potential_opportunity_detail.html',
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
-    'InvestHighPotentialOpportunityFormSuccessPage':
-        'invest/hpo/high_potential_opportunities_form_success.html',
+    'InvestHighPotentialOpportunityFormSuccessPage': 'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
 
     # Find a supplier
@@ -106,11 +96,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'Article',
         'site_subsection': 'DetailPage'
-    },
-    'InternationalCampaignPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Campaign',
-        'site_subsection': 'LandingPage'
     },
     'InternationalSectorPage': {
         'business_unit': 'GreatInternational',

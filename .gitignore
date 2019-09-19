@@ -15,7 +15,6 @@ node_modules/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -100,8 +99,8 @@ Temporary Items
 # JS
 node_modules/
 
-# Docker
 .env
+conf/env/secrets-do-not-commit
 
 # Generated files
 ui/staticfiles
