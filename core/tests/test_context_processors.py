@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 
 from directory_constants import urls
 
-from core import context_processors
+from core import context_processors, header_config
 
 
 def test_footer_contact_link_processor_flag_on_settings(settings):
@@ -62,3 +62,19 @@ def test_services_home_links():
             'label': 'Invest',
         },
     }
+
+
+def test_header_navigation_uses_new_ia_when_flag_is_on(settings):
+    settings.FEATURE_FLAGS['NEW_IA_ON'] = True
+
+    context = context_processors.header_navigation(None)
+
+    assert context['navigation_tree'] == header_config.nav_tree.HEADER_TREE
+
+
+def test_header_navigation_uses_new_ia_when_flag_is_off(settings):
+    settings.FEATURE_FLAGS['NEW_IA_ON'] = False
+
+    context = context_processors.header_navigation(None)
+
+    assert context['navigation_tree'] == header_config.nav_tree.OLD_HEADER_TREE

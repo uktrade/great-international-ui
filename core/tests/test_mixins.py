@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from django.views.generic import TemplateView
 from core import mixins
-from core.header_config import nav_tree, tier_one_nav_items, tier_two_nav_items
+from core.header_config import tier_one_nav_items, tier_two_nav_items
 from core.mixins import InternationalHeaderMixin
 from core.tests.helpers import create_response
 
@@ -94,9 +94,7 @@ def test_country_region(mock_cms_response, mock_country, country_code, rf):
         assert not response.context_data['region']
 
 
-def test_international_header_mixin_uses_old_ia_when_flag_is_off(settings):
-    settings.FEATURE_FLAGS['NEW_IA_ON'] = False
-
+def test_international_header_mixin():
     class TestView(InternationalHeaderMixin, TemplateView):
         template_name = 'core/base.html'
         header_section = tier_one_nav_items.ABOUT_UK
@@ -104,21 +102,5 @@ def test_international_header_mixin_uses_old_ia_when_flag_is_off(settings):
 
     context_data = TestView().get_context_data()
 
-    assert context_data['navigation_tree'] == nav_tree.OLD_HEADER_TREE
-    assert context_data['header_section'] == 'about-uk'
-    assert context_data['header_sub_section'] == 'industries'
-
-
-def test_international_header_mixin_uses_old_ia_when_flag_is_on(settings):
-    settings.FEATURE_FLAGS['NEW_IA_ON'] = True
-
-    class TestView(InternationalHeaderMixin, TemplateView):
-        template_name = 'core/base.html'
-        header_section = tier_one_nav_items.ABOUT_UK
-        header_sub_section = tier_two_nav_items.INDUSTRIES
-
-    context_data = TestView().get_context_data()
-
-    assert context_data['navigation_tree'] == nav_tree.HEADER_TREE
     assert context_data['header_section'] == 'about-uk'
     assert context_data['header_sub_section'] == 'industries'
