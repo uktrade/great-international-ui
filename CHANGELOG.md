@@ -25,6 +25,7 @@
 - CI-496 - Updated International home page, is now using `hero_with_cta` and page sections
 - CI-492 - Lots of little accessibility fixes over International pages
 - CI-498 - Replace ebook download button with a regular CTA.
+- CI-503 - Added new fields to Why choose the UK page
 
 ### Fixed bugs
 - no ticket - change FAS search input broken id

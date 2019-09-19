@@ -128,7 +128,7 @@ def cms_hero_with_cta(context, heading, subheading=None, subtitle=None, cta_text
         'subtitle': subtitle,
         'cta_text': cta_text,
         'cta_link': cta_link,
-        'medium_image': get_image_url(context, 'hero_medium'),
+        'medium_image': get_image_url(context, 'hero_medium_tall'),
         'large_image': get_image_url(context, 'hero_large'),
-        'xlarge_image': get_image_url(context, 'hero_xlarge'),
+        'xlarge_image': get_image_url(context, 'hero_xlarge_tall'),
     }
