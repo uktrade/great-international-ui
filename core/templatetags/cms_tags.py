@@ -104,7 +104,7 @@ def parse_date(date_string):
 def get_image_url(context, image_name):
     try:
         return context['page'][image_name]['url']
-    except KeyError:
+    except (KeyError, TypeError):
         return None
 
 
