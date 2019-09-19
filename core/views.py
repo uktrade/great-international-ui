@@ -4,7 +4,7 @@ import random
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
@@ -935,3 +935,11 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
             site_subsection='BusinessEnvironment'
         )
         return super().dispatch(request, *args, **kwargs)
+
+
+def handler404(request, *args, **kwargs):
+    return render(request, '404.html', status=404)
+
+
+def handler500(request, *args, **kwargs):
+    return render(request, '500.html', status=500)

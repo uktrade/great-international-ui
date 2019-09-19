@@ -95,14 +95,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
                 'core.context_processors.services_home_links',
+                'core.context_processors.header_navigation',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
                 'directory_components.context_processors.feature_flags',
-                ('directory_components.context_processors.'
-                    'header_footer_processor'),
-                ('core.context_processors.'
-                    'directory_components_html_lang_attribute'),
+                'directory_components.context_processors.header_footer_processor',
+                'core.context_processors.directory_components_html_lang_attribute',
             ],
         },
     },

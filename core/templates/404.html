@@ -1,20 +1,9 @@
 {% extends 'core/base.html' %}
-{% load static %}
-{% load i18n %}
+{% load content_404 from directory_components %}
 
-{% block body_header %}
-  {% include 'core/includes/header_no_country_select.html' %}
-{% endblock %}
 
 {% block content %}
-<section dir="ltr" class="error">
-  <div class="container">
-    <h1 class="heading-xlarge">{% trans "This page cannot be found" %}</h1>
-    <ul class="list list-bullet">
-        <li>{% trans "If you entered a web address please check it’s correct." %}</li>
-        <li>{% trans "If you followed a link here, " %}<a class="link" href="{{ services_urls.contact_us }}">{% trans "let us know" %}</a>.</li>
-        <li><a class="link" href="{% url 'index' %}">{% trans "Go to the homepage" %}</a></li>
-    </ul>
-  </div>
-</section>
+  {% content_404 feedback_url=services_urls.feedback home_page_url=services_urls.great_international %}
 {% endblock %}
+
+{% block feedback_reporter %}{% endblock %}
