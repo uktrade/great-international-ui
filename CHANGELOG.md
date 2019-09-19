@@ -33,7 +33,7 @@
 - no ticket - Fixed invest contact success going to expand
 - no ticket - Fixed invest going to expand
 - no ticket - Fix 'I want to Buy' URL on industry pages.
-- no ticket = Fixed `About UK` breadcrumb showing before industry pages moved
+- no ticket - Fixed `About UK` breadcrumb showing before industry pages moved
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
