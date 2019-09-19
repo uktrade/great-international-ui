@@ -28,6 +28,7 @@
 - CI-503 - Added new fields to Why choose the UK page
 
 ### Fixed bugs
+- No ticket - Fix invest hero cut off text at certain screen sizes
 - no ticket - change FAS search input broken id
 - TT1752 - fix links on homepage
 - no ticket - Fixed invest contact success going to expand
