@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+{% load content_500 from directory_components %}
+
+
+{% block content %}
+  {% content_500 feedback_url=services_urls.feedback home_page_url=services_urls.great_international %}
+{% endblock %}
+
+{% block feedback_reporter %}{% endblock %}
