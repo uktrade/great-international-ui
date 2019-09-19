@@ -7,54 +7,6 @@
 
 .landing-page {
 
-  @mixin landingPageSection {
-    padding: $spacing-2 0;
-  }
-
-  .landing-page-section:nth-child(odd) {
-    @include landingPageSection;
-  }
-
-  .landing-page-section:nth-child(even) {
-    @include landingPageSection;
-    background: $stone-40;
-  }
-
-  .hero {
-    padding: $spacing-1 + 200px 0 $spacing-1;
-    background-color: $black;
-
-    h1 {
-      margin-top: 0;
-      font-family: $hero-brand-font;
-    }
-
-    h2 {
-      font-weight: 400;
-      margin-bottom: $spacing-3;
-    }
-
-    .container {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-    }
-
-    .hero-brand {
-      position: absolute;
-      right: 0;
-      top: 0;
-
-      img {
-        height: 100px;
-      }
-    }
-
-    .hero-text {
-      width: 50%;
-    }
-  }
-
   .features-highlight-section {
     .features-highlight-icon {
       height: 60px;

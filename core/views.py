@@ -4,7 +4,7 @@ import random
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
@@ -319,6 +319,12 @@ def capital_invest_region_page_context_modifier(context, request):
 def about_uk_region_page_context_modifier(context, request):
     page = context['page']
 
+    show_mapped_regions = False
+    regions = []
+    if 'mapped_regions' in page:
+        regions = page['mapped_regions']
+        show_mapped_regions = True if len(regions) == 6 else False
+
     show_accordions = False
 
     if 'subsections' in page:
@@ -333,7 +339,9 @@ def about_uk_region_page_context_modifier(context, request):
             page['economics_stats'], 'number'),
         'num_of_location_statistics': helpers.count_data_with_field(
             page['location_stats'], 'number'),
-        'show_accordions': show_accordions
+        'show_accordions': show_accordions,
+        'show_mapped_regions': show_mapped_regions,
+        'regions': regions
     }
 
 
@@ -866,3 +874,72 @@ class PathRedirectView(QuerystringRedirectView):
     def url(self, **kwargs):
         path = self.kwargs['path']
         return f'{self.root_url}/{path}'
+
+
+class BusinessEnvironmentGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = "core/business_environment_guide_form.html"
+    form_class = forms.BusinessEnvironmentGuideForm
+    subject = "Business Environment Guide Form"
+    success_url = '/international/about-uk/why-choose-uk/business-environment-guide/success/'
+    header_section = tier_one_nav_items.ABOUT_UK
+    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='BusinessEnvironmentForm',
+            business_unit='GreatInternational',
+            site_section='AboutUk',
+            site_subsection='BusinessEnvironment'
+        )
+
+    def send_agent_email(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data['country'],
+        )
+        response = form.save(
+            form_url=self.request.path,
+            email_address=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL,
+            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID,
+            sender=sender,
+        )
+        response.raise_for_status()
+
+    def send_user_email(self, form):
+        response = form.save(
+            form_url=self.request.path,
+            email_address=form.cleaned_data['email_address'],
+            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_agent_email(form)
+        self.send_user_email(form)
+        return super().form_valid(form)
+
+
+class BusinessEnvironmentGuideFormSuccessView(InternationalView):
+    template_name = 'core/business_environment_guide_form_success.html'
+    page_type = 'BusinessEnvironmentGuideFormSuccessPage'
+    header_section = tier_one_nav_items.ABOUT_UK
+    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
+
+    def dispatch(self, request, *args, **kwargs):
+        self.set_ga360_payload(
+            page_id='BusinessEnvironmentGuideFormSuccessPage',
+            business_unit='GreatInternational',
+            site_section='AboutUk',
+            site_subsection='BusinessEnvironment'
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+
+def handler404(request, *args, **kwargs):
+    return render(request, '404.html', status=404)
+
+
+def handler500(request, *args, **kwargs):
+    return render(request, '500.html', status=500)

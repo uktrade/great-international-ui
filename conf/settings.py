@@ -19,7 +19,8 @@ import directory_healthcheck.backends
 
 
 env = environ.Env()
-env.read_env()
+for env_file in env.list('ENV_FILES', default=[]):
+    env.read_env(f'conf/env/{env_file}')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
@@ -94,14 +95,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.footer_contact_us_link',
                 'core.context_processors.services_home_links',
+                'core.context_processors.header_navigation',
                 'directory_components.context_processors.analytics',
                 'directory_components.context_processors.urls_processor',
                 'directory_components.context_processors.cookie_notice',
                 'directory_components.context_processors.feature_flags',
-                ('directory_components.context_processors.'
-                    'header_footer_processor'),
-                ('core.context_processors.'
-                    'directory_components_html_lang_attribute'),
+                'directory_components.context_processors.header_footer_processor',
+                'core.context_processors.directory_components_html_lang_attribute',
             ],
         },
     },
@@ -146,7 +146,6 @@ USE_L10N = True
 USE_TZ = True
 
 LANGUAGE_COOKIE_NAME = env.str('LANGUAGE_COOKIE_NAME', 'django_language')
-
 # https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-LANGUAGE_COOKIE_NAME
 LANGUAGE_COOKIE_DEPRECATED_NAME = 'django-language'
 
@@ -212,8 +211,10 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_HOST = env.str('STATIC_HOST', '')
 STATIC_URL = STATIC_HOST + '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = env.str(
+    'STATICFILES_STORAGE',
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
 
 # Logging for development
 if DEBUG:
@@ -298,6 +299,8 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+LANGUAGE_COOKIE_SECURE = env.bool('LANGUAGE_COOKIE_SECURE', True)
+COUNTRY_COOKIE_SECURE = env.bool('COUNTRY_COOKIE_SECURE', True)
 
 # Sentry
 RAVEN_CONFIG = {
@@ -441,8 +444,8 @@ EMAIL_USE_TLS = True
 DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC = env.str(
     'DIRECTORY_CONSTANTS_URL_GREAT_DOMESTIC', ''
 )
-DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL = env.str(
-    'DIRECTORY_CONSTANTS_URL_GREAT_INTERNATIONAL', ''
+DIRECTORY_CONSTANTS_URL_INTERNATIONAL = env.str(
+    'DIRECTORY_CONSTANTS_URL_INTERNATIONAL', ''
 )
 DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES = env.str(
     'DIRECTORY_CONSTANTS_URL_EXPORT_OPPORTUNITIES', ''
@@ -488,8 +491,9 @@ FEATURE_FLAGS = {
     'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED', False),
     'EXPAND_REDIRECT_ON': env.bool('FEATURE_EXPAND_REDIRECT_ENABLED', False),
     'NEW_IA_ON': env.bool('FEATURE_NEW_IA_ENABLED', False),
+    'GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON': env.bool('FEATURE_GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ENABLED', False),
     'INDUSTRIES_REDIRECT_ON': env.bool('FEATURE_INDUSTRIES_REDIRECT_ENABLED', False),
-    'HOW_TO_SET_UP_REDIRECT_ON': env.bool('FEATURE_HOW_TO_SET_UP_REDIRECT_ENABLED', False)
+    'HOW_TO_SET_UP_REDIRECT_ON': env.bool('FEATURE_HOW_TO_SET_UP_REDIRECT_ENABLED', False),
 }
 
 # Invest High Potential Opportunities
@@ -591,3 +595,16 @@ CAPITAL_INVEST_USER_REPLY_TO_ID = env.str(
     'CAPITAL_INVEST_USER_REPLY_TO_ID',
     None
 )
+
+GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID = env.str(
+    'GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID',
+    'e372134d-ffaa-44e8-abff-3ed6648485a5'
+)
+
+GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID = env.str(
+    'GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID',
+    '69d8223e-83a2-4a49-b35a-841278acd790'
+)
+
+GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL = env.str('GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL')
+GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID = env.str('GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID', None)

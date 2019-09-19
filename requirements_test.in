@@ -1,11 +1,11 @@
 -r requirements.in
 
 pip-tools
-pytest
-pytest-cov
-pytest-django
+pytest>=4.4.0<5.0.0
+pytest-cov==2.7.1
+pytest-django>=3.5.1<4.0.0
 pytest-sugar
-pytest-xdist
+pytest-xdist==1.29.0
 flake8
 pytest-catchlog
 requests_mock

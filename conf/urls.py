@@ -337,6 +337,20 @@ urlpatterns += [
     ),
 ]
 
+if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
+    urlpatterns += [
+        url(
+            r"^international/about-uk/why-choose-uk/business-environment-guide/$",
+            core.views.BusinessEnvironmentGuideFormView.as_view(),
+            name='business-environment-guide-form'
+        ),
+        url(
+            r"^international/about-uk/why-choose-uk/business-environment-guide/success/$",
+            core.views.BusinessEnvironmentGuideFormSuccessView.as_view(),
+            name='business-environment-guide-form-success'
+        ),
+    ]
+
 perfectfit = [
     url(
         r'^international/invest/perfectfit/',
@@ -358,3 +372,6 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
 
 urlpatterns += perfectfit
 urlpatterns += redirects
+
+handler404 = core.views.handler404
+handler500 = core.views.handler500

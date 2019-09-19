@@ -1,10 +1,8 @@
-{% load render_form from directory_components %}
-
 <div class="grid-row">
   <form class="column-two-thirds-m column-half-xl" action="{% url 'find-a-supplier:subscribe' %}" method="post">
-    <h1 class="heading-medium margin-bottom-30">Receive email updates of the latest UK companies in your industry</h2>
+    <h2 class="heading-medium margin-bottom-30">Receive email updates of the latest UK companies in your industry</h2>
     {% csrf_token %}
-    {% render_form form %}
+    {{ form }}
     <button class="button button-blue">Send</button>
   </form>
 </div>

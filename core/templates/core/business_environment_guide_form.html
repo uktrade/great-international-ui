@@ -1,0 +1,52 @@
+{% extends "core/base.html" %}
+
+{% load i18n %}
+{% load breadcrumbs from directory_components %}
+
+{% block content %}
+    <section id="form-content">
+        <div class="container">
+            {% breadcrumbs 'Your Guide to the UK business environment' %}
+                <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+                <a href="{% url 'cms-page-from-path' 'about-uk' %}">About the UK</a>
+                <a href="{% url 'cms-page-from-path' 'why-choose-uk' %}">Why choose the UK</a>
+            {% endbreadcrumbs %}
+
+            <div class="grid-row">
+                <div class="column-two-thirds-xl">
+                    <h1 class="heading-xlarge">{% trans 'Your Guide to the UK business environment' %}</h1>
+                    <div class="margin-vertical-60">
+                        <p>{% trans 'If you are thinking about setting up your business internationally and would like to explore what the UK has to offer, download our Guide to the UK business environment today.' %}</p>
+                        <p>{% trans "Simply enter your details below to access a wealth of insights into the UK's business environment together with help and advice." %}</p>
+                    </div>
+                </div>
+                <div class="column-two-thirds-m column-half-xl">
+                    <form method="post">
+                        {% include 'core/includes/form_field.html' with field=form.given_name %}
+                        {% include 'core/includes/form_field.html' with field=form.family_name %}
+                        {% include 'core/includes/form_field.html' with field=form.email_address %}
+                        {% include 'core/includes/form_field.html' with field=form.company_name %}
+                        {% include 'core/includes/form_field.html' with field=form.number_of_staff %}
+                        {% include 'core/includes/form_field.html' with field=form.industry %}
+                        {% include 'core/includes/form_field.html' with field=form.country %}
+                        {% include 'core/includes/form_field.html' with field=form.mostly_interested_in %}
+                        <p>
+                          The Department for International Trade will use the information provided in this form to send
+                          you a PDF brochure. You can read about how we protect your data through our
+                          <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy policy</a>
+                        </p>
+                        <p>
+                          If you would like to receive further information about setting up your business in the UK,
+                          you can subscribe to our mailing list. You can also subscribe to taking part in surveys to
+                          help us improve DIT services.
+                        </p>
+                        {% include 'core/includes/form_field.html' with field=form.further_information %}
+                        {% include 'core/includes/form_field.html' with field=form.terms_agreed %}
+                        {% include 'core/includes/form_field.html' with field=form.captcha %}
+                        <button class="button">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -10,7 +10,7 @@ from conf.tests.test_urls import reload_urlconf
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView
 
 test_sectors = [
     {
@@ -253,16 +253,6 @@ def test_article_detail_page_social_share_links_no_title(
 
 test_child_pages = [
     {
-        'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {
-            'slug': 'campaign-one',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalCampaignPage',
-        'teaser': 'Campaign one teaser',
-        'title': 'Campaign one'
-    },
-    {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
@@ -285,16 +275,6 @@ test_child_pages = [
 ]
 
 test_localised_child_pages = [
-    {
-        'last_published_at': '2019-02-28T10:56:30.455848Z',
-        'meta': {
-            'slug': 'campaign-one',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalCampaignPage',
-        'teaser': 'Campaign one teaser',
-        'title': 'Campaign one'
-    },
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
@@ -2513,3 +2493,109 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
                                             site_id=2
                                         )
     assert response.status_code == 200
+
+
+@pytest.fixture
+def business_environment_form_data(captcha_stub):
+    return {
+        'given_name': 'Thor',
+        'family_name': 'Odinson',
+        'email_address': 'most_powerful_avenger@avengers.com',
+        'company_name': 'Guardian of the Galaxy',
+        'number_of_staff': '1-10',
+        'industry': 'ADVANCED_MANUFACTURING',
+        'country': 'FR',
+        'mostly_interested_in': ['expand'],
+        'further_information': True,
+        'terms_agreed': True,
+        'g-recaptcha-response': captcha_stub,
+    }
+
+
+def test_business_environment_form_view(client):
+    response = client.get(reverse('business-environment-guide-form'))
+    assert response.status_code == 200
+
+
+@patch.object(BusinessEnvironmentGuideFormView.form_class, 'save')
+def test_business_environment_form_submission(mock_save, business_environment_form_data, client):
+    mock_save.return_value = create_response(status_code=200)
+
+    response = client.post(reverse('business-environment-guide-form'), business_environment_form_data)
+
+    assert mock_save.call_count == 2
+    assert response.status_code == 302
+    assert response.url == reverse('business-environment-guide-form-success')
+
+
+def test_business_environment_form_success_view(client):
+    response = client.get(reverse('business-environment-guide-form-success'))
+    assert response.status_code == 200
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_getting_regions_on_region_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionPage',
+        'mapped_regions': [
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+        ],
+        'economics_stats': [],
+        'location_stats': [],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/regions/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/midlands/')
+
+    assert len(response.context_data['regions']) == 6
+    assert response.context_data['show_mapped_regions'] is True
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_getting_regions_on_region_page_null(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionPage',
+        'mapped_regions': [
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+        ],
+        'economics_stats': [],
+        'location_stats': [],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/regions/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/midlands/')
+
+    assert len(response.context_data['regions']) == 4
+    assert response.context_data['show_mapped_regions'] is False

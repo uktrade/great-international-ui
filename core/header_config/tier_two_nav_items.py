@@ -47,7 +47,7 @@ HOW_TO_EXPAND = NavItem(
 
 INVESTMENT_SUPPORT_DIRECTORY = NavItem(
     name='investment-support-directory',
-    title=_('Professional services'),
+    title=_('Find a UK specialist'),
     url=urls.international.EXPAND_ISD_HOME
 )
 
