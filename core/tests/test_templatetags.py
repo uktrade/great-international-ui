@@ -270,3 +270,13 @@ def test_filter_by_active_language(rf):
 ])
 def test_title_from_heading(value, expected_result):
     assert cms_tags.title_from_heading(value) == expected_result
+
+
+def test_get_image_url_handles_missing_images():
+    missing_image_result = cms_tags.get_image_url({'page': {}}, 'small_image')
+    assert missing_image_result is None
+
+
+def test_get_image_url_handles_image_being_none():
+    none_image_result = cms_tags.get_image_url({'page': {'small_image': None}}, 'small_image')
+    assert none_image_result is None
