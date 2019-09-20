@@ -4,6 +4,7 @@ import core.views
 
 from . import views
 
+app_name = 'find-a-supplier'
 
 urlpatterns = [
     url(

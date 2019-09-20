@@ -1,4 +1,7 @@
-class GoogleCampaignMiddleware:
+from django.utils.deprecation import MiddlewareMixin
+
+
+class GoogleCampaignMiddleware(MiddlewareMixin):
     """This middleware captures the various utm*
     querystring parameters and saves them in session."""
 
