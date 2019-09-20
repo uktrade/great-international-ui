@@ -121,7 +121,7 @@ class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
         validators=[not_contains_url_or_email],
     )
     email_address = forms.EmailField(
-        label='Your email address:',
+        label='Your email address',
     )
     sector = forms.ChoiceField(
         label='Your industry',
