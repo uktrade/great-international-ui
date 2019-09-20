@@ -113,10 +113,7 @@ def cms_hero(context, hero_text, hero_subheading=None):
     return {
         'hero_text': hero_text,
         'hero_subheading': hero_subheading,
-        'small_image': get_image_url(context, 'hero_small'),
-        'medium_image': get_image_url(context, 'hero_medium'),
-        'large_image': get_image_url(context, 'hero_large'),
-        'xlarge_image': get_image_url(context, 'hero_xlarge'),
+        'image': get_image_url(context, 'hero_image'),
     }
 
 
@@ -128,7 +125,5 @@ def cms_hero_with_cta(context, heading, subheading=None, subtitle=None, cta_text
         'subtitle': subtitle,
         'cta_text': cta_text,
         'cta_link': cta_link,
-        'medium_image': get_image_url(context, 'hero_medium_tall'),
-        'large_image': get_image_url(context, 'hero_large'),
-        'xlarge_image': get_image_url(context, 'hero_xlarge_tall'),
+        'image': get_image_url(context, 'hero_image'),
     }
