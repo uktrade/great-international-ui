@@ -11,7 +11,7 @@ manage:
 	ENV_FILES='secrets-do-not-commit,dev' ./manage.py $(ARGUMENTS)
 
 webserver:
-	ENV_FILES='secrets-do-not-commit,dev' python manage.py runserver 0.0.0.0:8007 $(ARGUMENTS)
+	ENV_FILES='secrets-do-not-commit,dev' python manage.py runserver 0.0.0.0:8012 $(ARGUMENTS)
 
 requirements:
 	pip-compile requirements.in
