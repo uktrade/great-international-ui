@@ -279,11 +279,6 @@ urlpatterns += [
         name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
-        r'^international/contact/$',
-        core.views.InternationalContactPageView.as_view(),
-        name='contact-page-international'
-    ),
-    url(
         r'^international/brexit/contact/$',
         euexit.views.InternationalContactFormView.as_view(),
         name='brexit-international-contact-form'
@@ -330,7 +325,7 @@ urlpatterns += [
         name='invest-capital-home'
     ),
     url(
-        r'^contact/$',
+        r'^international/contact/$',
         core.views.InternationalContactTriageView.as_view(),
         name='international-contact-triage'
     ),
