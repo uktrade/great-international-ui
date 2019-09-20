@@ -813,7 +813,7 @@ def test_international_contact_form(mock_cms_response, client, settings):
 
     mock_cms_response.return_value = create_response(dummy_page)
 
-    url = reverse('international-contact-triage')
+    url = reverse('contact-page-international')
     response = client.get(url)
 
     assert response.status_code == 200

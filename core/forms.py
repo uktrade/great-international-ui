@@ -13,7 +13,7 @@ from captcha.fields import ReCaptchaField
 
 from directory_constants.choices import COUNTRY_CHOICES, EMPLOYEES, INDUSTRIES
 
-from conf import settings
+from django.conf import settings
 from core import constants
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES

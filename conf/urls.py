@@ -138,7 +138,7 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
 if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
     urlpatterns += [
         url(
-            r'^contact/$',
+            r'^international/contact/$',
             core.views.InternationalContactTriageView.as_view(),
             name='international-contact-triage'
         ),
@@ -146,7 +146,7 @@ if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
 else:
     urlpatterns += [
         url(
-            r'^international/contact/$',
+            r'^contact/$',
             core.views.InternationalContactPageView.as_view(),
             name='contact-page-international'
         ),

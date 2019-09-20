@@ -5,7 +5,7 @@ clean:
 	-find . -type d -name "__pycache__" -delete
 
 pytest:
-	ENV_FILES='test,dev' pytest $(ARGUMENTS) \
+	ENV_FILES='test,dev' pytest $(ARGUMENTS) --ignore=node_modules \
 
 manage:
 	ENV_FILES='secrets-do-not-commit,dev' ./manage.py $(ARGUMENTS)
