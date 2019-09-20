@@ -12,7 +12,7 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -2607,7 +2607,7 @@ def test_getting_regions_on_region_page_null(
     assert response.context_data['show_mapped_regions'] is False
 
 
-@patch.object(CapitalInvestContactFormView.form_class, 'save')
+@patch.object(InternationalContactTriageView.form_class, 'save')
 @pytest.mark.parametrize(
     'choice,contact_url',
     [(constants.INVESTING, urls.international.EXPAND_CONTACT),
