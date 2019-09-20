@@ -2620,7 +2620,9 @@ def test_getting_regions_on_region_page_null(
 def test_international_contact_triage_redirects(
         mock_save, choice, contact_url, client, feature_flags
 ):
-    feature_flags['FEATURE_INTERNATIONAL_TRIAGE_ENABLED'] = True
+    feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
+    feature_flags['EXPORTING_TO_UK_ON'] = True
+    feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
     mock_save.return_value = create_response(status_code=200)
 
     response = client.post('/international/contact/', {'choice': choice})
