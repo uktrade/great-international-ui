@@ -26,6 +26,7 @@
 - CI-492 - Lots of little accessibility fixes over International pages
 - CI-498 - Replace ebook download button with a regular CTA.
 - CI-503 - Added new fields to Why choose the UK page
+- No ticket - Upgrade to Django 2.2.5
 
 ### Fixed bugs
 - XOT-1115 - Fix IE hero bug

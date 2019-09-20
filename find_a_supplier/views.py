@@ -84,7 +84,7 @@ class CompanySearchView(
             return TemplateResponse(self.request, self.template_name, context)
 
     def get_results_and_count(self, form):
-        response = api_client.company.search_company(
+        response = api_client.company.search_find_a_supplier(
             term=form.cleaned_data['q'],
             page=form.cleaned_data['page'],
             sectors=form.cleaned_data['industries'],

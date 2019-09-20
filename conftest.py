@@ -110,7 +110,7 @@ def supplier_case_study_data(retrieve_profile_data):
 @pytest.fixture(autouse=True)
 def retrieve_supplier_case_study(supplier_case_study_data):
     stub = mock.patch.object(
-        api_client.company, 'retrieve_public_case_study',
+        api_client.company, 'published_case_study_retrieve',
         return_value=create_response(supplier_case_study_data),
     )
     stub.start()
