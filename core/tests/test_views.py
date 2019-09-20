@@ -806,7 +806,11 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_international_contact_form(mock_cms_response, client):
+def test_international_contact_form(mock_cms_response, client, settings):
+
+    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
+    reload_urlconf(settings)
+
     mock_cms_response.return_value = create_response(dummy_page)
 
     url = reverse('international-contact-triage')
