@@ -2607,7 +2607,6 @@ def test_getting_regions_on_region_page_null(
     assert response.context_data['show_mapped_regions'] is False
 
 
-@patch.object(InternationalContactTriageView.form_class, 'save')
 @pytest.mark.parametrize(
     'choice,contact_url',
     [(constants.INVESTING, urls.international.EXPAND_CONTACT),
@@ -2618,12 +2617,11 @@ def test_getting_regions_on_region_page_null(
      (constants.OTHER, urls.domestic.CONTACT_US + 'international/')]
 )
 def test_international_contact_triage_redirects(
-        mock_save, choice, contact_url, client, feature_flags
+        choice, contact_url, client, feature_flags
 ):
     feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
     feature_flags['EXPORTING_TO_UK_ON'] = True
     feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
-    mock_save.return_value = create_response(status_code=200)
 
     response = client.post('/international/contact/', {'choice': choice})
     assert response.status_code == 302
