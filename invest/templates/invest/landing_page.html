@@ -9,15 +9,7 @@
 
 {% block content %}
 
-<section data-ga-section="hero" class="invest-hero-with-cta" style="background-image: url({{ page.hero_image.url }}); background-size: cover; background-position: 50%">
-  <div class="container padding-top-90-l padding-top-45 padding-bottom-45-l">
-    <div class="great-hero-text width-half-xl width-two-thirds-l width-full">
-      <h1 class="heading-xlarge margin-bottom-30">{{ page.heading }}</h1>
-      <p class="margin-bottom-45">{{ page.sub_heading }}</p>
-      <a href="{{ page.hero_call_to_action_url }}" class="button button-arrow-small button-blue margin-bottom-30">{{ page.hero_call_to_action_text }}</a>
-    </div>
-  </div>
-</section>
+{% cms_hero_with_cta heading=page.heading subheading=page.sub_heading cta_text=page.hero_call_to_action_text cta_link=page.hero_call_to_action_url %}
 
 <div class="container">
     {% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
