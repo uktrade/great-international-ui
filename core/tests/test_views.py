@@ -3,14 +3,16 @@ from unittest.mock import patch, call
 from bs4 import BeautifulSoup
 from directory_constants import urls
 import pytest
+from django.conf import settings
 
 from django.urls import reverse
 
 from conf.tests.test_urls import reload_urlconf
+from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -2603,3 +2605,24 @@ def test_getting_regions_on_region_page_null(
 
     assert len(response.context_data['regions']) == 4
     assert response.context_data['show_mapped_regions'] is False
+
+
+@patch.object(CapitalInvestContactFormView.form_class, 'save')
+@pytest.mark.parametrize(
+    'choice,contact_url',
+    [(constants.INVESTING, urls.international.EXPAND_CONTACT),
+     (constants.CAPITAL_INVEST, urls.international.CAPITAL_INVEST_CONTACT),
+     (constants.EXPORTING_TO_UK, urls.international.INTERNATIONAL_CONTACT_TRIAGE + 'exporting-to-the-uk/'),
+     (constants.BUYING, urls.international.TRADE_CONTACT),
+     (constants.EUEXIT, settings.EU_EXIT_INTERNATIONAL_CONTACT_URL),
+     (constants.OTHER, urls.domestic.CONTACT_US + 'international/')]
+)
+def test_international_contact_triage_redirects(
+        mock_save, choice, contact_url, client, feature_flags
+):
+    feature_flags['FEATURE_INTERNATIONAL_TRIAGE_ENABLED'] = True
+    mock_save.return_value = create_response(status_code=200)
+
+    response = client.post('/international/contact/', {'choice': choice})
+    assert response.status_code == 302
+    assert response.url == contact_url

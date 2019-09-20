@@ -289,7 +289,6 @@ EXPORTING_TO_UK = 'exporting-to-uk'
 BUYING = 'buying'
 EUEXIT = 'euexit'
 OTHER = 'other'
-COMPANY_NOT_FOUND = 'company-not-found'
 
 CONTACT_TRIAGE_REDIRECT_MAPPING = {
     INVESTING: urls.international.EXPAND_CONTACT,
