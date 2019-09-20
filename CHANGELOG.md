@@ -28,6 +28,7 @@
 - CI-503 - Added new fields to Why choose the UK page
 
 ### Fixed bugs
+- XOT-1115 - Fix IE hero bug
 - No ticket - Fix HPO page sticky width
 - No ticket - Fix invest hero cut off text at certain screen sizes
 - no ticket - change FAS search input broken id
