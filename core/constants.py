@@ -2,7 +2,7 @@ from collections import namedtuple
 
 from conf import settings
 from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
-from directory_constants import urls, slugs
+from directory_constants import urls
 
 TEMPLATE_MAPPING = {
     # Great international core

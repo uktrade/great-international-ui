@@ -16,7 +16,7 @@ from directory_cms_client.helpers import handle_cms_response
 import directory_forms_api_client.helpers
 
 from directory_constants.choices import COUNTRY_CHOICES
-from directory_constants import urls, slugs
+from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin
 
