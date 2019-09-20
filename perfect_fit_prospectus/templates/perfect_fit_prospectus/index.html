@@ -1,7 +1,6 @@
 {% extends 'core/base.html' %}
 {% load i18n static %}
-{% load breadcrumbs from directory_components %}
-{% load cms_hero from cms_tags %}
+{% load directory_components %}
 
 {% block head_title %}{% trans "Perfect Fit Prospectus" %}{% endblock %}
 
@@ -11,7 +10,7 @@
 
 {% static 'header-image.jpg' as header_image %}
 {% trans "Perfect fit" as perfect_fit %}
-{% cms_hero hero_text=perfect_fit %}
+{% hero hero_text=perfect_fit image=header_image %}
 
 <section>
   <div class="container">
