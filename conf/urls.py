@@ -135,6 +135,24 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
     ]
 
+if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
+    urlpatterns += [
+        url(
+            r'^contact/$',
+            core.views.InternationalContactTriageView.as_view(),
+            name='international-contact-triage'
+        ),
+    ]
+else:
+    urlpatterns += [
+        url(
+            r'^international/contact/$',
+            core.views.InternationalContactPageView.as_view(),
+            name='contact-page-international'
+        ),
+    ]
+
+
 urlpatterns += [
     url(
         r'^international/healthcheck/',
@@ -323,11 +341,6 @@ urlpatterns += [
         r'^international/invest-capital/$',
         core.views.OpportunitySearchView.as_view(),
         name='invest-capital-home'
-    ),
-    url(
-        r'^international/contact/$',
-        core.views.InternationalContactTriageView.as_view(),
-        name='international-contact-triage'
     ),
     url(
         r'^international/content/(?P<path>[\w\-/]*)/$',

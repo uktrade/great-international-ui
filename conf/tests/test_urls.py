@@ -209,3 +209,29 @@ def test_url_redirect_industries_to_about_uk_page_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('industries-to-about-uk-redirect')
+
+
+def test_url_redirect_international_contact_triage_on(client, settings):
+
+    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = True
+    reload_urlconf(settings)
+
+    assert reverse('international-contact-triage')
+    response = client.get('/international/contact/')
+    assert response.status_code == 200
+    assert response.url == '/international/contact/'
+
+    with pytest.raises(NoReverseMatch):
+        reverse('contact-page-international')
+
+
+def test_url_redirect_international_contact_triage_off(client, settings):
+
+    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
+    reload_urlconf(settings)
+
+    assert reverse('contact-page-international')
+    response = client.get('/international/contact/')
+    assert response.status_code == 404
+    response = client.get('/contact/')
+    assert response.status_code == 200
