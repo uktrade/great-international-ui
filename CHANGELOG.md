@@ -28,6 +28,8 @@
 - CI-503 - Added new fields to Why choose the UK page
 
 ### Fixed bugs
+- No ticket - Fix HPO page sticky width
+- No ticket - Fix invest hero cut off text at certain screen sizes
 - no ticket - change FAS search input broken id
 - TT1752 - fix links on homepage
 - no ticket - Fixed invest contact success going to expand
@@ -50,6 +52,13 @@
 - No ticket - Fix unloaded tag in template
 - CMS-1825 - Fix breadcrumbs on ISD company contact page
 - CMS-1827 - Fix FAS search term
+
+## [2019.09.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.19)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20..2019.09.19)
+
+### Fixed bugs
+- CI-505 - Article tag hot fix
+
 
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
