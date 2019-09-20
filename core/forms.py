@@ -1,5 +1,5 @@
 from directory_components import forms
-from directory_forms_api_client.forms import GovNotifyActionMixin
+from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from django.forms import Select, Textarea, TextInput
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.utils.translation import ugettext_lazy as _
@@ -89,7 +89,7 @@ TERMS_LABEL = mark_safe(
 )
 
 
-class CapitalInvestContactForm(GovNotifyActionMixin, forms.Form):
+class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
 
     given_name = forms.CharField(label=_('Given name'), required=True)
     family_name = forms.CharField(label=_('Family name'), required=True)
@@ -133,7 +133,7 @@ class CapitalInvestContactForm(GovNotifyActionMixin, forms.Form):
         return data
 
 
-class BusinessEnvironmentGuideForm(GovNotifyActionMixin, forms.Form):
+class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
     given_name = forms.CharField(label=_('Given name'), required=True)
     family_name = forms.CharField(label=_('Family name'), required=True)
     email_address = forms.EmailField(label=_('Email address'), required=True)
