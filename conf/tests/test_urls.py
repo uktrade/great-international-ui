@@ -231,7 +231,6 @@ def test_url_redirect_international_contact_triage_off(client, settings):
     reload_urlconf(settings)
 
     assert reverse('contact-page-international')
-    response = client.get('/international/contact/')
-    assert response.status_code == 404
+
     response = client.get('/contact/')
     assert response.status_code == 200
