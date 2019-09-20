@@ -26,8 +26,10 @@
 - CI-492 - Lots of little accessibility fixes over International pages
 - CI-498 - Replace ebook download button with a regular CTA.
 - CI-503 - Added new fields to Why choose the UK page
+- No ticket - Upgrade to Django 2.2.5
 
 ### Fixed bugs
+- XOT-1115 - Fix IE hero bug
 - No ticket - Fix HPO page sticky width
 - No ticket - Fix invest hero cut off text at certain screen sizes
 - no ticket - change FAS search input broken id

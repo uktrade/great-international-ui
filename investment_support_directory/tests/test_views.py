@@ -15,7 +15,7 @@ from investment_support_directory import forms, views
 @pytest.fixture(autouse=True)
 def mock_retrieve_company(retrieve_profile_data):
     patch = mock.patch.object(
-        api_client.company, 'retrieve_public_profile',
+        api_client.company, 'published_profile_retrieve',
         return_value=create_response(retrieve_profile_data)
     )
     yield patch.start()
@@ -26,7 +26,7 @@ def mock_retrieve_company(retrieve_profile_data):
 def mock_retrieve_company_non_isd(retrieve_profile_data):
     retrieve_profile_data['is_published_investment_support_directory'] = False
     patch = mock.patch.object(
-        api_client.company, 'retrieve_public_profile',
+        api_client.company, 'published_profile_retrieve',
         return_value=create_response(retrieve_profile_data)
     )
     yield patch.start()
@@ -418,11 +418,11 @@ def test_contact_company_success(client):
     assert response.template_name == [views.ContactSuccessView.template_name]
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_case_study_exposes_context(
-    mock_retrieve_public_case_study, client, supplier_case_study_data,
+    mock_published_case_study_retrieve, client, supplier_case_study_data,
 ):
-    mock_retrieve_public_case_study.return_value = create_response(json_payload=supplier_case_study_data)
+    mock_published_case_study_retrieve.return_value = create_response(json_payload=supplier_case_study_data)
     expected_case_study = get_case_study_details_from_response(
         create_response(json_payload=supplier_case_study_data)
     )
@@ -446,11 +446,11 @@ def test_case_study_exposes_context(
     }
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_case_study_calls_api(
-    mock_retrieve_public_case_study, client, supplier_case_study_data,
+    mock_published_case_study_retrieve, client, supplier_case_study_data,
 ):
-    mock_retrieve_public_case_study.return_value = create_response(json_payload=supplier_case_study_data)
+    mock_published_case_study_retrieve.return_value = create_response(json_payload=supplier_case_study_data)
     url = reverse(
         'investment-support-directory:case-study-details',
         kwargs={
@@ -461,8 +461,8 @@ def test_case_study_calls_api(
 
     client.get(url)
 
-    assert mock_retrieve_public_case_study.call_count == 1
-    assert mock_retrieve_public_case_study.call_args == mock.call('2')
+    assert mock_published_case_study_retrieve.call_count == 1
+    assert mock_published_case_study_retrieve.call_args == mock.call('2')
 
 
 def test_case_study_different_slug_redirected(
@@ -523,11 +523,11 @@ def test_case_study_same_slug_not_redirected(supplier_case_study_data, client):
     assert response.status_code == 200
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_case_study_handles_bad_status(
-    mock_retrieve_public_case_study, client, supplier_case_study_data
+    mock_published_case_study_retrieve, client, supplier_case_study_data
 ):
-    mock_retrieve_public_case_study.return_value = create_response(status_code=400)
+    mock_published_case_study_retrieve.return_value = create_response(status_code=400)
     url = reverse(
         'investment-support-directory:case-study-details',
         kwargs={
@@ -540,9 +540,9 @@ def test_case_study_handles_bad_status(
         client.get(url)
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
-def test_case_study_handles_404(mock_retrieve_public_case_study, client, supplier_case_study_data):
-    mock_retrieve_public_case_study.return_value = create_response(status_code=404)
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
+def test_case_study_handles_404(mock_published_case_study_retrieve, client, supplier_case_study_data):
+    mock_published_case_study_retrieve.return_value = create_response(status_code=404)
     url = reverse(
         'investment-support-directory:case-study-details',
         kwargs={
