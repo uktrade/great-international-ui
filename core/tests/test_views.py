@@ -809,7 +809,7 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 def test_international_contact_form(mock_cms_response, client):
     mock_cms_response.return_value = create_response(dummy_page)
 
-    url = reverse('contact-page-international')
+    url = reverse('international-contact-triage')
     response = client.get(url)
 
     assert response.status_code == 200
