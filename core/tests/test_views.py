@@ -2685,10 +2685,7 @@ def test_about_uk_breadcrumbs_article_page_feature_on(
     response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/about-uk/why-choose-uk/tax/')
 
-    assert len(response.context_data['tree_based_breadcrumbs']) == 1
-    assert response.context_data['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
-    assert 'http://international.trade.great:8012/international/content/about-uk/' \
-           not in response.context_data['tree_based_breadcrumbs']
+    assert len(response.context_data['page']['tree_based_breadcrumbs']) == 2
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -2724,6 +2721,5 @@ def test_about_uk_breadcrumbs_article_page_feature_off(
     response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/about-uk/why-choose-uk/tax/')
 
-    assert len(response.context_data['tree_based_breadcrumbs']) == 2
-    assert 'http://international.trade.great:8012/international/content/about-uk/' \
-           in response.context_data['tree_based_breadcrumbs']
+    assert len(response.context_data['page']['tree_based_breadcrumbs']) == 1
+    assert response.context_data['page']['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
