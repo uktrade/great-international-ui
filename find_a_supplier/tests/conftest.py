@@ -23,42 +23,10 @@ def valid_contact_company_data(captcha_stub):
     }
 
 
-@pytest.fixture
-def list_public_profiles_data(retrieve_profile_data):
-    return {
-        'results': [
-            retrieve_profile_data,
-        ],
-        'count': 20,
-    }
-
-
 @pytest.fixture(autouse=True)
-def list_public_profiles(list_public_profiles_data):
+def published_profile_retrieve(retrieve_profile_data):
     stub = patch.object(
-        api_client.company, 'list_public_profiles',
-        return_value=create_response(list_public_profiles_data),
-    )
-    stub.start()
-    yield
-    stub.stop()
-
-
-@pytest.fixture(autouse=True)
-def retrieve_profile(retrieve_profile_data):
-    stub = patch.object(
-        api_client.company, 'retrieve_private_profile',
-        return_value=create_response(retrieve_profile_data),
-    )
-    stub.start()
-    yield
-    stub.stop()
-
-
-@pytest.fixture(autouse=True)
-def retrieve_public_profile(retrieve_profile_data):
-    stub = patch.object(
-        api_client.company, 'retrieve_public_profile',
+        api_client.company, 'published_profile_retrieve',
         return_value=create_response(retrieve_profile_data),
     )
     stub.start()

@@ -1,7 +1,7 @@
 from captcha.fields import ReCaptchaField
 from directory_components import forms
 from directory_constants import choices, urls
-from directory_forms_api_client.actions import GovNotifyAction
+from directory_forms_api_client.actions import GovNotifyEmailAction
 from directory_forms_api_client.helpers import Sender
 
 from django.conf import settings
@@ -10,7 +10,7 @@ from django.utils.safestring import mark_safe
 
 
 class HighPotentialOpportunityForm(forms.Form):
-    action_class = GovNotifyAction
+    action_class = GovNotifyEmailAction
     COMPANY_SIZE_CHOICES = [
         ('1 - 10', '1 - 10'),
         ('11 - 50', '11 - 50'),

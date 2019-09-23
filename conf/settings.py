@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'captcha',
     'sorl.thumbnail',
     'directory_components',
-    'crispy_forms',
     'health_check.cache',
     'directory_healthcheck',
     'euexit',
@@ -63,10 +62,11 @@ INSTALLED_APPS = [
     'contact',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'directory_components.middleware.MaintenanceModeMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'directory_components.middleware.LocaleQuerystringMiddleware',
     'directory_components.middleware.ForceDefaultLocale',
     'directory_components.middleware.PersistLocaleMiddleware',
@@ -614,3 +614,5 @@ GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID = env.str(
 
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL = env.str('GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL')
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID = env.str('GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID', None)
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

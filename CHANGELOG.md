@@ -26,8 +26,10 @@
 - CI-492 - Lots of little accessibility fixes over International pages
 - CI-498 - Replace ebook download button with a regular CTA.
 - CI-503 - Added new fields to Why choose the UK page
+- No ticket - Upgrade to Django 2.2.5
 
 ### Fixed bugs
+- XOT-1115 - Fix IE hero bug
 - No ticket - Fix HPO page sticky width
 - No ticket - Fix invest hero cut off text at certain screen sizes
 - no ticket - change FAS search input broken id
@@ -35,7 +37,8 @@
 - no ticket - Fixed invest contact success going to expand
 - no ticket - Fixed invest going to expand
 - no ticket - Fix 'I want to Buy' URL on industry pages.
-- no ticket = Fixed `About UK` breadcrumb showing before industry pages moved
+- no ticket - Fixed `About UK` breadcrumb showing before industry pages moved
+- no ticket - Fix broken invest hero image text.
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
