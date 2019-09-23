@@ -971,7 +971,7 @@ class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormV
         if selected in constants.CONTACT_TRIAGE_REDIRECT_MAPPING:
             return redirect(constants.CONTACT_TRIAGE_REDIRECT_MAPPING[selected])
         else:
-            raise Http404
+            return redirect(constants.CONTACT_TRIAGE_REDIRECT_MAPPING['other'])
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
