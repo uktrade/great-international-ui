@@ -146,7 +146,7 @@ if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
 else:
     urlpatterns += [
         url(
-            r'^contact/$',
+            r'^international/contact/$',
             core.views.InternationalContactPageView.as_view(),
             name='contact-page-international'
         ),
@@ -339,7 +339,8 @@ urlpatterns += [
     ),
     url(
         r'^international/invest-capital/$',
-        core.views.OpportunitySearchView.as_view(),
+        QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
+        {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
     url(
