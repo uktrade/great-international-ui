@@ -2,19 +2,21 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
-{% load filter_by_active_language from cms_tags %}
+{% load filter_by_active_language cms_hero_with_cta from cms_tags %}
 {% load directory_components %}
 
 {% block css_layout_class %}invest-landing-page{% endblock %}
 
 {% block content %}
 
-{% hero_with_cta heading=page.heading subtitle=page.sub_heading img_url=page.hero_image.url cta_text=page.hero_call_to_action_text cta_link=page.hero_call_to_action_url %}
+{% cms_hero_with_cta heading=page.heading subtitle=page.sub_heading cta_text=page.hero_call_to_action_text cta_link=page.hero_call_to_action_url %}
 
 <div class="container">
-  {% breadcrumbs 'Invest' %}
-    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-  {% endbreadcrumbs %}
+    {% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
+        {% breadcrumbs page.breadcrumbs_label %}
+            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+        {% endbreadcrumbs %}
+    {% endif %}
 </div>
 
 
@@ -40,11 +42,14 @@
             {% if page.benefits_section_img.url %}
                 <div class="column-half-l center-vertical flex-shrink-0">
                     <figure class="landing-page-image">
-                        <img class="width-full" src="{{page.benefits_section_img.url}}">
+                        <img class="width-full" src="{{page.benefits_section_img.url}}" alt="">
                     </figure>
                 </div>
-            {%  endif %}
+            {% endif %}
         </div>
+        {% if page.benefits_section_cta_text and page.benefits_section_cta_url %}
+              <a href="{{ page.benefits_section_cta_url }}" class="button button-arrow-small margin-top-30">{{ page.benefits_section_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 {% endif %}

@@ -1,20 +1,19 @@
 {% extends 'core/base_cms_with_invest_header.html' %}
 {% load trans from i18n %}
-{% load filter_by_active_language from cms_tags %}
+{% load filter_by_active_language cms_hero from cms_tags %}
 {% load directory_components %}
 
 
 {% block css_layout_class %}curated-topic-landing-page{% endblock css_layout_class %}
 
 {% block content %}
-  {% hero background_image_url=page.hero_image.url hero_text=page.display_title large_title=True %}
+  {% cms_hero hero_text=page.display_title %}
+
+  {% block breadcrumbs %}
+    {% include 'core/includes/cms_breadcrumbs.html' %}
+  {% endblock %}
 
   <div class="container">
-
-      {% breadcrumbs page.display_title %}
-        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-      {% endbreadcrumbs %}
-
     <p class="font-medium width-two-thirds">{{ page.teaser }}</p>
   </div>
 

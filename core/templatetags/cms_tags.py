@@ -99,3 +99,31 @@ def parse_date(date_string):
     if date_string:
         return dateparser.parse(date_string).strftime('%d %B %Y')
     return None
+
+
+def get_image_url(context, image_name):
+    try:
+        return context['page'][image_name]['url']
+    except (KeyError, TypeError):
+        return None
+
+
+@register.inclusion_tag('directory_components/hero.html', takes_context=True)
+def cms_hero(context, hero_text, hero_subheading=None):
+    return {
+        'hero_text': hero_text,
+        'hero_subheading': hero_subheading,
+        'image': get_image_url(context, 'hero_image'),
+    }
+
+
+@register.inclusion_tag('directory_components/hero_with_cta.html', takes_context=True)
+def cms_hero_with_cta(context, heading, subheading=None, subtitle=None, cta_text=None, cta_link=None):
+    return {
+        'heading': heading,
+        'subheading': subheading,
+        'subtitle': subtitle,
+        'cta_text': cta_text,
+        'cta_link': cta_link,
+        'image': get_image_url(context, 'hero_image'),
+    }

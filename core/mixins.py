@@ -132,3 +132,16 @@ class PersistSearchQuerystringMixin:
             search_querystring=self.search_querystring,
             **kwargs,
         )
+
+
+class InternationalHeaderMixin:
+    header_section = None
+    header_sub_section = None
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            header_section=self.header_section.name if self.header_section else '',
+            header_sub_section=self.header_sub_section.name if self.header_sub_section else '',
+            *args,
+            **kwargs
+        )

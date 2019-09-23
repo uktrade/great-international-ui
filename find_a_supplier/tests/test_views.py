@@ -39,7 +39,7 @@ def test_fas_homepage_search_form(mock_cms_response, fas_home_page, client):
 def mock_retrieve_company_non_find_a_supplier(retrieve_profile_data):
     retrieve_profile_data['is_published_find_a_supplier'] = False
     patch = mock.patch.object(
-        api_client.company, 'retrieve_public_profile',
+        api_client.company, 'published_profile_retrieve',
         return_value=create_response(retrieve_profile_data)
     )
     yield patch.start()
@@ -134,7 +134,7 @@ def test_public_profile_details_non_verbose_context(
     assert response.context_data['show_description'] is False
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_profile', mock.Mock)
+@mock.patch.object(views.api_client.company, 'published_profile_retrieve', mock.Mock)
 @mock.patch('core.helpers.get_company_profile')
 def test_public_profile_details_exposes_context(
     mock_get_company_profile, client, retrieve_profile_data
@@ -200,9 +200,9 @@ def test_public_profile_details_calls_api(
     )
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_profile')
-def test_public_profile_details_handles_bad_status(mock_retrieve_public_profile, client):
-    mock_retrieve_public_profile.return_value = create_response(status_code=400)
+@mock.patch.object(views.api_client.company, 'published_profile_retrieve')
+def test_public_profile_details_handles_bad_status(mock_published_profile_retrieve, client):
+    mock_published_profile_retrieve.return_value = create_response(status_code=400)
     url = reverse(
         'find-a-supplier:profile',
         kwargs={'company_number': '01234567', 'slug': 'thing'}
@@ -212,9 +212,9 @@ def test_public_profile_details_handles_bad_status(mock_retrieve_public_profile,
         client.get(url)
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_profile')
-def test_public_profile_details_handles_404(mock_retrieve_public_profile, client):
-    mock_retrieve_public_profile.return_value = create_response(status_code=404)
+@mock.patch.object(views.api_client.company, 'published_profile_retrieve')
+def test_public_profile_details_handles_404(mock_published_profile_retrieve, client):
+    mock_published_profile_retrieve.return_value = create_response(status_code=404)
     url = reverse(
         'find-a-supplier:profile',
         kwargs={'company_number': '01234567', 'slug': 'thing'}
@@ -243,12 +243,12 @@ def test_public_profile_details_404_non_fas(
     assert response.status_code == 404
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_supplier_case_study_exposes_context(
-    mock_retrieve_public_case_study, client, supplier_case_study_data,
+    mock_published_case_study_retrieve, client, supplier_case_study_data,
 ):
     response = create_response(json_payload=supplier_case_study_data)
-    mock_retrieve_public_case_study.return_value = response
+    mock_published_case_study_retrieve.return_value = response
 
     expected_case_study = get_case_study_details_from_response(response)
     url = reverse(
@@ -270,12 +270,12 @@ def test_supplier_case_study_exposes_context(
     }
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_supplier_case_study_calls_api(
-    mock_retrieve_public_case_study, client, supplier_case_study_data
+    mock_published_case_study_retrieve, client, supplier_case_study_data
 ):
 
-    mock_retrieve_public_case_study.return_value = create_response(json_payload=supplier_case_study_data)
+    mock_published_case_study_retrieve.return_value = create_response(json_payload=supplier_case_study_data)
     url = reverse(
         'find-a-supplier:case-study-details',
         kwargs={
@@ -286,8 +286,8 @@ def test_supplier_case_study_calls_api(
 
     client.get(url)
 
-    assert mock_retrieve_public_case_study.call_count == 1
-    assert mock_retrieve_public_case_study.call_args == mock.call('2')
+    assert mock_published_case_study_retrieve.call_count == 1
+    assert mock_published_case_study_retrieve.call_args == mock.call('2')
 
 
 def test_case_study_different_slug_redirected(
@@ -362,11 +362,11 @@ def test_invest_redirect_homepage_english(client):
     assert response.url == '/international/trade/?foo=bar'
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
 def test_supplier_case_study_handles_bad_status(
-    mock_retrieve_public_case_study, client, supplier_case_study_data
+    mock_published_case_study_retrieve, client, supplier_case_study_data
 ):
-    mock_retrieve_public_case_study.return_value = create_response(status_code=400)
+    mock_published_case_study_retrieve.return_value = create_response(status_code=400)
     url = reverse(
         'find-a-supplier:case-study-details',
         kwargs={
@@ -379,9 +379,9 @@ def test_supplier_case_study_handles_bad_status(
         client.get(url)
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_case_study')
-def test_supplier_case_study_handles_404(mock_retrieve_public_case_study, client, supplier_case_study_data):
-    mock_retrieve_public_case_study.return_value = create_response(status_code=404)
+@mock.patch.object(views.api_client.company, 'published_case_study_retrieve')
+def test_supplier_case_study_handles_404(mock_published_case_study_retrieve, client, supplier_case_study_data):
+    mock_published_case_study_retrieve.return_value = create_response(status_code=404)
     url = reverse(
         'find-a-supplier:case-study-details',
         kwargs={
@@ -451,7 +451,7 @@ def test_contact_company_view_feature_submit_api_forms_failure(
         client.post(url, valid_contact_company_data)
 
 
-@mock.patch.object(views.api_client.company, 'retrieve_public_profile', mock.Mock)
+@mock.patch.object(views.api_client.company, 'published_profile_retrieve', mock.Mock)
 @mock.patch('core.helpers.get_company_profile')
 def test_contact_company_exposes_context(mock_get_company_profile, client):
     mock_get_company_profile.return_value = data = {
@@ -509,7 +509,7 @@ def test_company_search_pagination_count(mock_get_results_and_count, client, sea
     assert response.context_data['pagination'].paginator.count == 20
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_pagination_param(mock_search, client, search_results):
     mock_search.return_value = create_response(search_results)
 
@@ -525,7 +525,7 @@ def test_company_search_pagination_param(mock_search, client, search_results):
     )
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_sector_empty(mock_search, client, search_results):
     mock_search.return_value = create_response(search_results)
 
@@ -540,7 +540,7 @@ def test_company_search_sector_empty(mock_search, client, search_results):
     )
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_pagination_empty_page(mock_search, client, search_results):
     mock_search.return_value = create_response(search_results)
 
@@ -561,7 +561,7 @@ def test_company_search_not_submit_without_params(
     mock_get_results_and_count.assert_not_called()
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_api_call_error(mock_search, client):
     mock_search.return_value = create_response(status_code=400)
 
@@ -569,7 +569,7 @@ def test_company_search_api_call_error(mock_search, client):
         client.get(reverse('find-a-supplier:search'), {'q': '123'})
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 @mock.patch.object(views, 'get_results_from_search_response')
 def test_company_search_api_success(mock_get_results_from_search_response, mock_search, client, search_results):
     mock_search.return_value = api_response = create_response(search_results)
@@ -584,7 +584,7 @@ def test_company_search_api_success(mock_get_results_from_search_response, mock_
     assert mock_get_results_from_search_response.call_args == mock.call(api_response)
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_response_no_highlight(mock_search, client, search_results):
     mock_search.return_value = create_response(search_results)
 
@@ -593,7 +593,7 @@ def test_company_search_response_no_highlight(mock_search, client, search_result
     assert b'this is a short summary' in response.content
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_highlight_description(
     mock_search, search_results_description_highlight, client
 ):
@@ -608,7 +608,7 @@ def test_company_highlight_description(
     assert expected in response.content
 
 
-@mock.patch('directory_api_client.client.api_client.company.search_company')
+@mock.patch('directory_api_client.client.api_client.company.search_find_a_supplier')
 def test_company_search_highlight_summary(
     mock_search, search_results_summary_highlight, client
 ):
@@ -809,7 +809,7 @@ def test_industry_contact_submit_with_comment_forms_api(
 
     mock_save.return_value = create_response(status_code=200)
 
-    url = reverse('find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'})
+    url = reverse('find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'})
     data = {
         'full_name': 'Jeff',
         'email_address': 'jeff@example.com',
@@ -827,7 +827,7 @@ def test_industry_contact_submit_with_comment_forms_api(
 
     assert response.status_code == 302
     assert response.url == (
-        reverse('find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'})
+        reverse('find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'})
     )
     assert mock_save.call_count == 2
     assert mock_save.call_args_list[0] == call(
@@ -868,10 +868,10 @@ def test_industry_contact_sent_no_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     expected_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     response = client.get(url, {})
 
@@ -898,10 +898,10 @@ def test_industry_contact_sent_incorrect_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     expected_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     referer_url = 'http://www.googe.com'
     response = client.get(url, {}, HTTP_REFERER=referer_url)
@@ -929,10 +929,10 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
     mock_cms_page.return_value = create_response(dummy_page)
 
     url = reverse(
-        'find-a-supplier:industry-contact-success', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact-success', kwargs={'path': 'trade/contact'}
     )
     referer_url = reverse(
-        'find-a-supplier:industry-contact', kwargs={'path': '/trade/contact/'}
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
     )
     response = client.get(url, {}, HTTP_REFERER=referer_url)
 

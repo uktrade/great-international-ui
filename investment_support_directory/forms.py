@@ -5,7 +5,7 @@ from django.utils.html import mark_safe
 from directory_constants import choices, urls
 from directory_components import forms
 from directory_components.forms import fields, widgets
-from directory_forms_api_client.forms import GovNotifyActionMixin
+from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.common import not_contains_url_or_email
 
 
@@ -174,9 +174,9 @@ class CompanySearchForm(forms.Form):
         return [item.replace('-', ' ') for item in self.cleaned_data[field]]
 
 
-class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
+class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     TERMS_CONDITIONS_LABEL = (
-        f'<p>I agree to the <a href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'class="link" target="_blank"> great.gov.uk terms and conditions </a> and I '
         'understand that:</p>'
         '<ul class="list list-bullet">'

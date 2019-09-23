@@ -3,6 +3,8 @@ from perfect_fit_prospectus.views import PerfectFitProspectusMainView, \
     PerfectFitProspectusReportProxyView, PerfectFitProspectusSuccessView
 
 
+app_name = 'perfect_fit_prospectus'
+
 urlpatterns = [
     url(
         '^$',

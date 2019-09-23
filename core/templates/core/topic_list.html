@@ -1,6 +1,6 @@
 {% extends 'core/base_cms.html' %}
 
-{% load filter_by_active_language from cms_tags %}
+{% load filter_by_active_language cms_hero from cms_tags %}
 {% load breadcrumbs card hero from directory_components %}
 
 {% block css_layout_class %}article-list-page{% endblock css_layout_class %}
@@ -8,18 +8,14 @@
 {% block content %}
 
 {% block hero %}
-  {% hero background_image_url=page.hero_image.url hero_text=page.landing_page_title large_title=True %}
+  {% cms_hero hero_text=page.landing_page_title %}
 {% endblock %}
 
-<section class="breadcrumbs-section">
-  <div class="container">
-    {% url 'industries' as industries_url %}
-
-    {% breadcrumbs page.landing_page_title %}
-      <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-    {% endbreadcrumbs %}
-  </div>
-</section>
+{% block breadcrumbs %}
+    <div class="container">
+        {% include 'core/includes/cms_breadcrumbs.html' %}
+    </div>
+{% endblock %}
 
 <section class="topic-list-section background-stone-30 padding-vertical-60">
     <div class="container">

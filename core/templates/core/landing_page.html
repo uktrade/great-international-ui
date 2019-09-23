@@ -3,7 +3,8 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load directory_components %}
+{% load cta_card add_export_elements_classes override_elements_css_class from directory_components %}
+{% load cms_hero_with_cta filter_by_active_language from cms_tags %}
 
 {% block css_layout_class %}landing-page{% endblock %}
 
@@ -14,9 +15,15 @@
 
 {% block content %}
 
-{% include 'core/includes/hero_landing_page.html' with heading=page.hero_title subtitle=page.hero_subtitle img_url=page.hero_image.url cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+{% cms_hero_with_cta heading=page.hero_title subtitle=page.hero_subtitle cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
 
-<section id="featured-cards-section" class="featured-cards-section padding-vertical-60 landing-page-section">
+{% if 'brexit_banner_text' in page and page.brexit_banner_text %}
+    <section class="page-section">
+        {% include 'directory_components/informative_banner.html' with banner_content=page.brexit_banner_text %}
+    </section>
+{% endif %}
+
+<section id="featured-cards-section" class="featured-cards-section stone-page-section">
   <div class="container">
     <div class="flex-grid">
       <div class="column-half">
@@ -45,7 +52,7 @@
   </div>
 </section>
 
-<section id="features-highlight-section" class="features-highlight-section landing-page-section">
+<section id="features-highlight-section" class="features-highlight-section page-section">
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -56,8 +63,8 @@
     <div class="flex-grid">
       {% for subsection in page.section_two_subsections %}
         <div class="column-third-xl column-half-m">
-          <img class="icon" src="{{ subsection.icon.url }}"/>
-          <h3 class="heading-medium margin-top-15">{{ subsection.heading }}</h3>
+          <img class="icon" src="{{ subsection.icon.url }}" alt=""/>
+          <h3 class="heading-medium margin-top-15">{{ subsection.heading|add_export_elements_classes|safe }}</h3>
           <p class="font-xsmall">{{ subsection.body }}</p>
         </div>
       {% endfor %}
@@ -66,7 +73,7 @@
 </section>
 
 {% if features.INTERNATIONAL_TARIFFS_ON %}
-<section id="tariffs-section" class="tariffs-section landing-page-section">
+<section id="tariffs-section" class="tariffs-section page-section">
 	<div class="container">
 		<div class="grid-row" >
 			<div class="column-full column-half-l margin-vertical-60 tariffs-image">
@@ -113,7 +120,7 @@
 {% endif %}
 
 {% if page.featured_links %}
-<section id="featured-links-section" class="featured-links-section landing-page-section">
+<section id="featured-links-section" class="featured-links-section stone-page-section">
   <div class="container">
     <div class="grid-row">
       <div class="column-full column-two-thirds-m column-half-l">
@@ -138,7 +145,7 @@
 
 {% with page.related_pages|filter_by_active_language as related_pages %}
 {% if related_pages %}
-<section id="news-events-section" class="news-events-section padding-vertical-60 landing-page-section">
+<section id="news-events-section" class="news-events-section padding-vertical-60 page-section">
   <div class="container wrap-tight">
 		<h2 class="heading-large margin-bottom-45">{{ page.news_title }}</h2>
     <div class="flex-grid">

@@ -11,17 +11,22 @@ from django.views.generic.edit import FormView
 
 from directory_api_client.client import api_client
 from directory_constants import expertise
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin
 
 from core.views import BaseNotifyFormView
 from core.helpers import (
     NotifySettings, get_filters_labels, get_results_from_search_response, get_case_study
 )
-import core.mixins
+from core.mixins import CompanyProfileMixin, InternationalHeaderMixin, PersistSearchQuerystringMixin, \
+    SubmitFormOnGetMixin
+from core.header_config import tier_one_nav_items, tier_two_nav_items
 from investment_support_directory import forms, helpers
 
 
-class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
+class CompanyProfileMixin(CompanyProfileMixin, InternationalHeaderMixin):
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
+
     @cached_property
     def company(self):
         company = super().company
@@ -33,6 +38,8 @@ class CompanyProfileMixin(core.mixins.CompanyProfileMixin):
 class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'investment_support_directory/home.html'
     form_class = forms.CompanyHomeSearchForm
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -62,14 +69,16 @@ class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormVi
 class CompanySearchView(
     CountryDisplayMixin,
     InternationalHeaderMixin,
-    core.mixins.SubmitFormOnGetMixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    SubmitFormOnGetMixin,
+    PersistSearchQuerystringMixin,
     GA360Mixin,
     FormView,
 ):
     form_class = forms.CompanySearchForm
     page_size = 10
     template_name = 'investment_support_directory/search.html'
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -142,11 +151,13 @@ class ProfileView(
     CompanyProfileMixin,
     CountryDisplayMixin,
     InternationalHeaderMixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
 ):
     template_name = 'investment_support_directory/profile.html'
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -174,10 +185,12 @@ class ContactView(
     CompanyProfileMixin,
     CountryDisplayMixin,
     InternationalHeaderMixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     GA360Mixin,
     BaseNotifyFormView,
 ):
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -209,11 +222,13 @@ class ContactSuccessView(
     CompanyProfileMixin,
     CountryDisplayMixin,
     InternationalHeaderMixin,
-    core.mixins.PersistSearchQuerystringMixin,
+    PersistSearchQuerystringMixin,
     GA360Mixin,
     TemplateView
 ):
     template_name = 'investment_support_directory/sent.html'
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -227,6 +242,8 @@ class ContactSuccessView(
 
 class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'core/companies/case-study.html'
+    header_section = tier_one_nav_items.EXPAND
+    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()

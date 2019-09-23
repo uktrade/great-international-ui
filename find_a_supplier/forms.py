@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from captcha.fields import ReCaptchaField
 from directory_constants import choices, urls
 from directory_components import forms
-from directory_forms_api_client.forms import GovNotifyActionMixin
+from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.common import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
@@ -82,12 +82,12 @@ class CompanySearchForm(forms.Form):
         return self.cleaned_data['page'] or self.fields['page'].initial
 
 
-class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
+class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     TERMS_CONDITIONS_MESSAGE = (
         'Tick the box to confirm you agree to the terms and conditions.'
     )
     TERMS_CONDITIONS_LABEL = (
-        f'<p>I agree to the <a href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'class="link" target="_blank"> great.gov.uk terms and conditions </a> and I '
         'understand that:</p>'
         '<ul class="list list-bullet">'
@@ -121,7 +121,7 @@ class ContactCompanyForm(GovNotifyActionMixin, forms.Form):
         validators=[not_contains_url_or_email],
     )
     email_address = forms.EmailField(
-        label='Your email address:',
+        label='Your email address',
     )
     sector = forms.ChoiceField(
         label='Your industry',
@@ -165,7 +165,7 @@ class SubscribeForm(forms.Form):
         'Tick the box to confirm you agree to the terms and conditions.'
     )
     TERMS_CONDITIONS_LABEL = mark_safe(
-        f'<p>I agree to the <a class="link" href="{urls.TERMS_AND_CONDITIONS}" '
+        f'<p>I agree to the <a class="link" href="{urls.domestic.TERMS_AND_CONDITIONS}" '
         'target="_blank"> great.gov.uk terms and conditions</a>.</p>'
     )
 
@@ -212,7 +212,7 @@ def serialize_anonymous_subscriber_forms(cleaned_data):
     }
 
 
-class ContactForm(GovNotifyActionMixin, forms.Form):
+class ContactForm(GovNotifyEmailActionMixin, forms.Form):
 
     def __init__(self, industry_choices, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -221,7 +221,7 @@ class ContactForm(GovNotifyActionMixin, forms.Form):
             _(
                 'I agree to the <a href="{url}" target="_blank">'
                 'great.gov.uk terms and conditions</a>'
-            ).format(url=urls.TERMS_AND_CONDITIONS)
+            ).format(url=urls.domestic.TERMS_AND_CONDITIONS)
         )
         self.fields['sector'].choices = industry_choices
 

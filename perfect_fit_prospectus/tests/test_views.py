@@ -7,6 +7,7 @@ from unittest.mock import patch, MagicMock
 from django.urls import reverse
 from requests import HTTPError
 
+from conf.tests.test_urls import reload_urlconf
 from core.tests.helpers import create_response
 
 
@@ -51,7 +52,11 @@ OPTIONS_DATA = {
 
 
 @patch('pir_client.client.pir_api_client.get_options')
-def test_perfect_fit_main_view_get(mock_get_options, client):
+def test_perfect_fit_main_view_get(mock_get_options, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_get_options.return_value = create_response(OPTIONS_DATA)
     url = reverse('perfect_fit_prospectus:main')
     response = client.get(url)
@@ -59,7 +64,11 @@ def test_perfect_fit_main_view_get(mock_get_options, client):
 
 
 @patch('pir_client.client.pir_api_client.get_options')
-def test_perfect_fit_main_view_get_error(mock_get_options, client):
+def test_perfect_fit_main_view_get_error(mock_get_options, client, settings):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_get_options.side_effect = HTTPError
 
     with pytest.raises(HTTPError):
@@ -71,8 +80,12 @@ def test_perfect_fit_main_view_get_error(mock_get_options, client):
 @patch('pir_client.client.pir_api_client.create_report')
 @patch('pir_client.client.pir_api_client.get_options')
 def test_perfect_fit_main_view_post_client_error(
-    mock_get_options, mock_create_report, client, captcha_stub
+    mock_get_options, mock_create_report, client, captcha_stub, settings
 ):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_get_options.return_value = create_response(OPTIONS_DATA)
 
     mock_create_report.side_effect = HTTPError
@@ -94,8 +107,12 @@ def test_perfect_fit_main_view_post_client_error(
 @patch('pir_client.client.pir_api_client.create_report')
 @patch('pir_client.client.pir_api_client.get_options')
 def test_perfect_fit_main_view_post_valid_data(
-    mock_get_options, mock_create_report, captcha_stub, client
+    mock_get_options, mock_create_report, captcha_stub, client, settings
 ):
+
+    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
     mock_get_options.return_value = create_response(OPTIONS_DATA)
 
     valid_data = {

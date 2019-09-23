@@ -4,12 +4,13 @@ import core.views
 
 from . import views
 
+app_name = 'find-a-supplier'
 
 urlpatterns = [
     url(
         r'^$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/trade/'},
+        {'path': 'trade'},
         name='trade-home'
     ),
     url(
@@ -20,13 +21,13 @@ urlpatterns = [
     url(
         r'^contact/$',
         views.IndustryLandingPageContactCMSView.as_view(),
-        {'path': '/trade/contact/'},
+        {'path': 'trade/contact'},
         name='industry-contact'
     ),
     url(
         r'^contact/success/$',
         views.IndustryLandingPageContactCMSSuccessView.as_view(),
-        {'path': '/trade/contact/'},
+        {'path': 'trade/contact'},
         name='industry-contact-success'
     ),
     url(

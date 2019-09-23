@@ -7,7 +7,7 @@
 <section class="related-content-cards background-stone">
     <div class="container">
       <h2 class="heading-large">{% trans 'Related content' %}</h2>
-      <ul class="flex-grid" aria-labelledby="related-content-heading" id="related-pages-list">
+      <ul class="flex-grid" id="related-pages-list">
         {% for article in related_pages %}
           <li class="column-third-xl column-half-m">
             {% with 'related-article-'|add:article.meta.slug as card_id %}

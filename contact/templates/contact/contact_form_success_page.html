@@ -1,10 +1,11 @@
 {% extends 'contact/base.html' %}
 {% load i18n %}
+{% load hero from directory_components %}
 
 {% block content %}
 
   {% trans "Contact us" as page_title %}
-  {% include 'directory_components/hero.html' with hero_text=page_title %}
+  {% hero hero_text=page_title %}
 
   <section class="contact-success">
     <div class="container">

@@ -1,6 +1,6 @@
 {% extends 'core/companies/base.html' %}
 {% load staticfiles %}
-{% load breadcrumbs render_form from directory_components %}
+{% load breadcrumbs from directory_components %}
 
 {% block css_layout_class %}investment-support-directory-contact-page{% endblock %}
 
@@ -14,7 +14,7 @@
         {% url request.resolver_match.namespace|add:':company-contact' company_number=company.number as contact_url %}
 
         <form method="post" action="{{contact_url}}?{{ search_querystring }}">
-            {% render_form form %}
+            {{ form }}
             <button class="button">Send message</button>
         </form>
       </div>

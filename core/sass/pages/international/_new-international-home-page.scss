@@ -1,0 +1,23 @@
+@import '../../partials/vars';
+@import '../../partials/mixins';
+
+.new-international-landing-page {
+
+  .how-we-help-white-container {
+    padding: 0 $spacing-1 $spacing-1;
+  }
+
+  .industry-section {
+    .button{
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .how-we-help-white-container {
+      padding: 0 $spacing-3 $spacing-3;
+    }
+
+  }
+}

@@ -1,18 +1,21 @@
 {% extends 'core/base_cms.html' %}
 {% load trans from i18n %}
-{% load filter_by_active_language from cms_tags %}
+{% load filter_by_active_language cms_hero from cms_tags %}
 {% load breadcrumbs card image_with_caption cta_link add_export_elements_classes override_elements_css_class convert_headings_to statistics_card_grid case_study from directory_components %}
 
 {% block css_layout_class %}sector-page{% endblock %}
 
 {% block content %}
 
-{% include 'directory_components/hero.html' with background_image_url=page.hero_image.url hero_text=page.heading hero_subheading=page.sub_heading %}
+{% cms_hero hero_text=page.heading hero_subheading=page.sub_heading %}
 
 <section id="breadcrumb-section">
   <div class="container">
       {% breadcrumbs page.heading %}
         <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+        {% if features.INDUSTRIES_REDIRECT_ON %}
+            <a href="{{ about_uk_link }}">{% trans 'About the UK' %}</a>
+        {% endif %}
         <a href="{% url 'industries' %}">{% trans 'Industries' %}</a>
       {% endbreadcrumbs %}
   </div>

@@ -10,6 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
+from conf.url_redirects import redirects
 import euexit.views
 import invest.views
 import contact.views
@@ -56,6 +57,83 @@ if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
         ),
     ]
 
+# Must stay first so isn't changed by expand feature flag
+urlpatterns += [
+    url(
+        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
+        invest.views.LegacyInvestURLRedirectView.as_view(),
+        name='invest-incoming'
+    ),
+]
+
+if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/invest/$',
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-home-to-expand-home-redirect'
+        ),
+        url(
+            r'^international/content/invest/$',
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='content-invest-to-expand-home-redirect'
+        ),
+        url(
+            r'^international/invest/incoming/$',  # English homepage
+            QuerystringRedirectView.as_view(pattern_name='expand-home'),
+            name='invest-incoming-homepage'
+        ),
+        url(
+            r'^international/invest/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/expand'),
+            name='invest-to-expand-redirect'
+        ),
+        url(
+            r'^international/content/invest/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/content/expand'),
+            name='content-invest-to-expand-redirect'
+        ),
+    ]
+    if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
+        urlpatterns += [
+            url(
+                r'^international/content/how-to-setup-in-the-uk/$',
+                QuerystringRedirectView.as_view(url='/international/content/expand/how-to-setup-in-the-uk/'),
+                name='how-to-set-up-home-expand-redirect'
+            ),
+            url(
+                r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
+                core.views.PathRedirectView.as_view(root_url='/international/content/expand/how-to-setup-in-the-uk'),
+                name='how-to-set-up-expand-redirect'
+            ),
+        ]
+elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/content/how-to-setup-in-the-uk/$',
+            QuerystringRedirectView.as_view(url='/international/content/invest/how-to-setup-in-the-uk/'),
+            name='how-to-set-up-home-invest-redirect'
+        ),
+        url(
+            r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/content/invest/how-to-setup-in-the-uk'),
+            name='how-to-set-up-invest-redirect'
+        ),
+    ]
+
+if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
+    urlpatterns += [
+        url(
+            r'^international/content/industries/$',
+            QuerystringRedirectView.as_view(url='/international/content/about-uk/industries/'),
+            name='industries-home-to-about-uk-redirect'
+        ),
+        url(
+            r'^international/content/industries/(?P<path>[\w\-/]*)/$',
+            core.views.PathRedirectView.as_view(root_url='/international/content/about-uk/industries'),
+            name='industries-to-about-uk-redirect'
+        ),
+    ]
 
 urlpatterns += [
     url(
@@ -76,8 +154,8 @@ urlpatterns += [
     ),
     url(
         r'^international/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/'},
+        core.views.InternationalHomePageView.as_view(),
+        {'path': ''},
         name='index'
     ),
     url(
@@ -96,15 +174,16 @@ urlpatterns += [
         name='content-trade-contact-redirect'
     ),
     url(
-        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
-        invest.views.LegacyInvestURLRedirectView.as_view(),
-        name='invest-incoming'
-    ),
-    url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/invest/'},
+        {'path': 'invest'},
         name='invest-home'
+    ),
+    url(
+        r'^international/expand/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': 'expand'},
+        name='expand-home'
     ),
     url(
         r"^international/invest/contact/$",
@@ -117,9 +196,24 @@ urlpatterns += [
         name="invest-contact-success"
     ),
     url(
+        r"^international/expand/contact/$",
+        contact.views.ContactFormView.as_view(),
+        name="expand-contact"
+    ),
+    url(
+        r"^international/expand/contact/success/$",
+        contact.views.ContactFormSuccessView.as_view(),
+        name="expand-contact-success"
+    ),
+    url(
         r'^international/content/invest/$',
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='content-invest-home-redirect'
+    ),
+    url(
+        r'^international/content/expand/$',
+        QuerystringRedirectView.as_view(pattern_name='expand-home'),
+        name='content-expand-home-redirect'
     ),
     url(
         r'^trade/(?P<path>industries\/.*)/$',
@@ -138,7 +232,7 @@ urlpatterns += [
     url(
         r'^international/trade/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': '/trade/'},
+        {'path': 'trade'},
         name='trade-home'
     ),
     url(
@@ -157,14 +251,32 @@ urlpatterns += [
     url(
         r'^international/content/invest/high-potential-opportunities/contact/$',
         invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': '/invest/high-potential-opportunities/contact/'},
+        {'path': 'invest/high-potential-opportunities/contact'},
         name='high-potential-opportunity-request-form'
     ),
     url(
         r'^international/content/invest/high-potential-opportunities/contact/success/$',
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': '/invest/high-potential-opportunities/contact/success/'},
+        {'path': 'invest/high-potential-opportunities/contact/success'},
         name='high-potential-opportunity-request-form-success'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/expand/#high-potential-opportunities'),
+        name='hpo-landing-page-expand-redirect'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/$',
+        invest.views.HighPotentialOpportunityFormView.as_view(),
+        {'path': 'expand/high-potential-opportunities/contact'},
+        name='high-potential-opportunity-request-expand-form'
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/success/$',
+        invest.views.HighPotentialOpportunitySuccessView.as_view(),
+        {'path': 'expand/high-potential-opportunities/contact/success'},
+        name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
         r'^international/contact/$',
@@ -172,19 +284,19 @@ urlpatterns += [
         name='contact-page-international'
     ),
     url(
-        r'^international/eu-exit-news/contact/$',
+        r'^international/brexit/contact/$',
         euexit.views.InternationalContactFormView.as_view(),
-        name='eu-exit-international-contact-form'
+        name='brexit-international-contact-form'
     ),
     url(
-        r'^international/eu-exit-news/contact/success/$',
+        r'^international/brexit/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
-        name='eu-exit-international-contact-form-success'
+        name='brexit-international-contact-form-success'
     ),
     url(
         r'^international/content/capital-invest/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
-        {'path': '/capital-invest/contact/'},
+        {'path': 'capital-invest/contact'},
         name='capital-invest-contact'
     ),
     # these next 3 named urls are required for breadcrumbs in templates
@@ -225,6 +337,20 @@ urlpatterns += [
     ),
 ]
 
+if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
+    urlpatterns += [
+        url(
+            r"^international/about-uk/why-choose-uk/business-environment-guide/$",
+            core.views.BusinessEnvironmentGuideFormView.as_view(),
+            name='business-environment-guide-form'
+        ),
+        url(
+            r"^international/about-uk/why-choose-uk/business-environment-guide/success/$",
+            core.views.BusinessEnvironmentGuideFormSuccessView.as_view(),
+            name='business-environment-guide-form-success'
+        ),
+    ]
+
 perfectfit = [
     url(
         r'^international/invest/perfectfit/',
@@ -245,3 +371,7 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     ]
 
 urlpatterns += perfectfit
+urlpatterns += redirects
+
+handler404 = core.views.handler404
+handler500 = core.views.handler500

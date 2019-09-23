@@ -7,9 +7,7 @@ from django.utils.functional import cached_property
 from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
-from directory_components.mixins import (
-    CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, CMSLanguageSwitcherMixin
-)
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin, CMSLanguageSwitcherMixin
 from directory_constants import slugs, choices
 
 import directory_forms_api_client.helpers
@@ -18,8 +16,9 @@ from directory_api_client.client import api_client
 from core.views import InternationalView, LegacyRedirectCoreView, MultilingualCMSPageFromPathView
 from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
 from core.mixins import (
-    PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin
+    PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin, InternationalHeaderMixin
 )
+from core.header_config import tier_one_nav_items, tier_two_nav_items
 
 from find_a_supplier import forms, helpers
 
@@ -46,6 +45,8 @@ class CompanySearchView(
     template_name = 'find_a_supplier/search.html'
     form_class = forms.CompanySearchForm
     page_size = 10
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -83,7 +84,7 @@ class CompanySearchView(
             return TemplateResponse(self.request, self.template_name, context)
 
     def get_results_and_count(self, form):
-        response = api_client.company.search_company(
+        response = api_client.company.search_find_a_supplier(
             term=form.cleaned_data['q'],
             page=form.cleaned_data['page'],
             sectors=form.cleaned_data['industries'],
@@ -130,6 +131,8 @@ class CompanySearchView(
 
 
 class PublishedProfileListView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, RedirectView):
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -158,6 +161,8 @@ class ProfileView(
     TemplateView,
 ):
     template_name = 'find_a_supplier/profile.html'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -206,6 +211,8 @@ class ContactCompanyView(
 ):
     template_name = 'find_a_supplier/contact.html'
     form_class = forms.ContactCompanyForm
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -254,6 +261,8 @@ class ContactCompanySentView(
 ):
 
     template_name = 'find_a_supplier/sent.html'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -268,6 +277,8 @@ class ContactCompanySentView(
 
 class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'core/companies/case-study.html'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -312,6 +323,8 @@ class SubscribeFormView(
     success_url = reverse_lazy('find-a-supplier:subscribe-success')
     template_name = 'find_a_supplier/subscribe.html'
     form_class = forms.SubscribeForm
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -331,6 +344,8 @@ class SubscribeFormView(
 
 class AnonymousSubscribeSuccessView(InternationalView):
     template_name = 'find_a_supplier/subscribe-success.html'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
         super().__init__()
@@ -350,12 +365,15 @@ class LegacySupplierURLRedirectView(LegacyRedirectCoreView):
 class BaseIndustryContactView(
     MultilingualCMSPageFromPathView, CMSLanguageSwitcherMixin, CountryDisplayMixin, InternationalHeaderMixin
 ):
-    pass
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
 
 class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
     form_class = forms.ContactForm
     success_url = reverse_lazy('find-a-supplier:industry-contact-success')
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.CONTACT_US_TRADE
 
     def get_form_kwargs(self, *args, **kwargs):
         return {

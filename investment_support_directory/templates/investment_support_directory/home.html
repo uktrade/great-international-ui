@@ -1,22 +1,19 @@
 {% extends 'core/companies/base.html' %}
 {% load static from staticfiles %}
-{% load breadcrumbs render_form ga360_data from directory_components %}
+{% load breadcrumbs ga360_data from directory_components %}
 
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
 {% block content %}
-    <section id="hero" class="hero hero-generic background-light-blue padding-bottom-30">
-      <div class="hero-background-container ls-noscript lazyloaded">
-        <div class="hero-background-image" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}')"></div>
-      </div>
+    <section id="hero" class="hero hero-generic background-light-blue white-text padding-vertical-90-m padding-vertical-30" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
         <div class="container">
             <div class="width-two-thirds">
-                <h1 class="heading-xlarge margin-bottom-0">Find a UK specialist</h1>
+                <h1 class="heading-xlarge margin-0">Find a UK specialist</h1>
                 <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
             </div>
             {% ga360_data "isd-search-form" target="form" %}
             <form method="post">
-                {% render_form form %}
+                {{ form }}
                 <button class="button">Find a UK specialist</button>
             </form>
             {% end_ga360_data %}
@@ -67,13 +64,13 @@
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Financial</h3>
                     {% for choice in CHOICES_FINANCIAL %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_financial={{ choice }}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_financial={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Management consulting</h3>
                     {% for choice in CHOICES_MANAGEMENT_CONSULTING %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_management={{ choice}}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_management={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="column-one-third">
@@ -87,19 +84,19 @@
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Legal</h3>
                     {% for choice in CHOICES_LEGAL %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_legal={{ choice }}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_legal={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Publicity and communications</h3>
                     {% for choice in CHOICES_PUBLICITY %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_publicity={{ choice }}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_publicity={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Business support</h3>
                     {% for choice in CHOICES_BUSINESS_SUPPORT %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_business_support={{ choice }}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?expertise_products_services_business_support={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
