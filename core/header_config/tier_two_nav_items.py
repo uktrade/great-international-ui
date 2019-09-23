@@ -51,6 +51,12 @@ INVESTMENT_SUPPORT_DIRECTORY = NavItem(
     url=urls.international.EXPAND_ISD_HOME
 )
 
+HOW_WE_HELP_EXPAND = NavItem(
+    name='how-we-help-expand',
+    title=_('How we help'),
+    url=urls.international.ABOUT_DIT_HOME + 'how-we-help-you-expand-your-business-uk'
+)
+
 CONTACT_US_EXPAND = NavItem(
     name='contact-us-expand',
     title=_('Contact us'),
@@ -83,6 +89,12 @@ HOW_TO_INVEST_CAPITAL = NavItem(
     url=urls.international.CAPITAL_INVEST_HOME / 'how-to-invest-capital'
 )
 
+HOW_WE_HELP_CAPITAL_INVEST = NavItem(
+    name='how-we-help-invest',
+    title=_('How we help'),
+    url=urls.international.ABOUT_DIT_HOME + 'how-we-help-you-invest-capital-uk'
+)
+
 CONTACT_US_INVEST_CAPITAL = NavItem(
     name='contact-us-invest-capital',
     title=_('Contact us'),
@@ -100,6 +112,12 @@ HOW_TO_TRADE = NavItem(
     name='how-to-trade',
     title=_('How to buy from the UK'),
     url=urls.international.TRADE_HOME / 'how-to-trade'
+)
+
+HOW_WE_HELP_BUY = NavItem(
+    name='how-we-help-buy',
+    title=_('How we help'),
+    url=urls.international.ABOUT_DIT_HOME + 'how-we-help-you-buy-uk'
 )
 
 CONTACT_US_TRADE = NavItem(
