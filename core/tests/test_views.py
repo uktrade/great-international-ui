@@ -12,7 +12,7 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -2626,3 +2626,26 @@ def test_international_contact_triage_redirects(
     response = client.post('/international/contact/', {'choice': choice})
     assert response.status_code == 302
     assert response.url == contact_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_international_contact_triage_view(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        }
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/contact/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalContactTriageView.as_view()(
+        request, path='/international/contact/')
+
+    assert 'domestic_contact_home' in response.context_data
