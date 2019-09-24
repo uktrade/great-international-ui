@@ -28,6 +28,7 @@
 - CI-503 - Added new fields to Why choose the UK page
 - No ticket - Upgrade to Django 2.2.5
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
+- CI-510 - Removed intro image being required for section on DIT services page
 
 ### Fixed bugs
 - XOT-1115 - Fix IE hero bug
