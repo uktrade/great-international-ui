@@ -4,7 +4,6 @@ import random
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
-from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
