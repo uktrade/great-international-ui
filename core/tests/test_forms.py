@@ -133,7 +133,7 @@ def test_routing_forms_capital_invest_feature_flag(value, feature_flags):
     feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = value
     choices = InternationalRoutingForm().fields['choice'].choices
 
-    assert any(value == constants.CAPITAL_INVEST for value, label in choices) is value
+    assert any(value == constants.CAPITAL_INVEST_CONTACT_URL for value, label in choices) is value
 
 
 @pytest.mark.parametrize('value_one,value_two', [(True, True), (False, False), (True, False), (False, True)])
@@ -143,5 +143,5 @@ def test_routing_forms_feature_flag_for_int_routing_form(value_one, value_two, f
 
     choices = InternationalRoutingForm().fields['choice'].choices
 
-    assert any(value == constants.CAPITAL_INVEST for value, label in choices) is value_one
-    assert any(value == constants.EXPORTING_TO_UK for value, label in choices) is value_two
+    assert any(value == constants.CAPITAL_INVEST_CONTACT_URL for value, label in choices) is value_one
+    assert any(value == constants.EXPORTING_TO_UK_CONTACT_URL for value, label in choices) is value_two
