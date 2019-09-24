@@ -191,8 +191,8 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
 
 def choice_is_enabled(value):
     flagged_choices = {
-        constants.EXPORTING_TO_UK: 'EXPORTING_TO_UK_ON',
-        constants.CAPITAL_INVEST: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
+        constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
+        constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
     }
     if value not in flagged_choices:
         return True
@@ -202,12 +202,12 @@ def choice_is_enabled(value):
 
 def international_choices():
     all_choices = (
-        (constants.INVESTING, 'Investing in the UK'),
-        (constants.CAPITAL_INVEST, 'Capital investment in the UK'),
-        (constants.EXPORTING_TO_UK, 'Exporting to the UK'),
-        (constants.BUYING, 'Find a UK business partner'),
-        (constants.EUEXIT, 'Brexit enquiries'),
-        (constants.OTHER, 'Other'),
+        (constants.INVEST_CONTACT_URL, 'Investing in the UK'),
+        (constants.CAPITAL_INVEST_CONTACT_URL, 'Capital investment in the UK'),
+        (constants.EXPORTING_TO_UK_CONTACT_URL, 'Exporting to the UK'),
+        (constants.BUYING_CONTACT_URL, 'Find a UK business partner'),
+        (constants.EUEXIT_CONTACT_URL, 'Brexit enquiries'),
+        (constants.OTHER_CONTACT_URL, 'Other'),
     )
     return ((value, label) for value, label in all_choices if choice_is_enabled(value))
 

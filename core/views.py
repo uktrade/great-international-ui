@@ -971,11 +971,7 @@ class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormV
         )
 
     def form_valid(self, form):
-        selected = form.cleaned_data['choice']
-        if selected in constants.CONTACT_TRIAGE_REDIRECT_MAPPING:
-            return redirect(constants.CONTACT_TRIAGE_REDIRECT_MAPPING[selected])
-        else:
-            return redirect(constants.CONTACT_TRIAGE_REDIRECT_MAPPING['other'])
+        return redirect(form.cleaned_data['choice'])
 
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
