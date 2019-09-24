@@ -28,7 +28,7 @@
 - CI-503 - Added new fields to Why choose the UK page
 - No ticket - Upgrade to Django 2.2.5
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
-- CI-508 - Added how we help sections back into the new nav
+- CI-508 - Added how dit help sections back into the new nav
 
 ### Fixed bugs
 - XOT-1115 - Fix IE hero bug
