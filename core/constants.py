@@ -264,19 +264,19 @@ HEADER_SECTION_MAPPING = {
     r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),  # noqa
     r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
     r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
-    r'^about-dit/how-we-help-you-expand': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_WE_HELP_EXPAND),  # noqa
+    r'^(expand|invest)/how-we-help-you-expand.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_WE_HELP_EXPAND),  # noqa
     r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),
 
     # Invest Capital in the UK
     r'^opportunities.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.INVESTMENT_OPPORTUNITIES),  # noqa
     r'^capital-invest/contact.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.CONTACT_US_INVEST_CAPITAL),  # noqa
     r'^capital-invest$': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.OVERVIEW_INVEST_CAPITAL),
-    r'^about-dit/how-we-help-you-invest': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.HOW_WE_HELP_CAPITAL_INVEST),  # noqa
+    r'^capital-invest/how-we-help-you-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.HOW_WE_HELP_CAPITAL_INVEST),  # noqa
     r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
 
     # Buy from the UK
     r'^trade/contact.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.CONTACT_US_TRADE),
-    r'^about-dit/how-we-help-you-buy': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.HOW_WE_HELP_BUY),
+    r'^trade/how-we-help-you-buy.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.HOW_WE_HELP_BUY),
     r'^trade.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.FIND_A_SUPPLIER),
 
     # About DIT
