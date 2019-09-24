@@ -122,6 +122,10 @@ class MonolingualCMSPageFromPathView(
         ):
             context.update(modifier(context, request=self.request))
 
+        if not settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] and 'tree_based_breadcrumbs' in self.page:
+            self.page['tree_based_breadcrumbs'] = [crumb for crumb in self.page['tree_based_breadcrumbs']
+                                                   if not crumb['url'].endswith('/international/content/about-uk/')]
+
         return context
 
 

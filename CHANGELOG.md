@@ -27,6 +27,7 @@
 - CI-498 - Replace ebook download button with a regular CTA.
 - CI-503 - Added new fields to Why choose the UK page
 - No ticket - Upgrade to Django 2.2.5
+- CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
 - CI-501 - Added international triage contact form from great-domestic-ui
 
 ### Fixed bugs

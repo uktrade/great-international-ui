@@ -21,7 +21,9 @@
   <div class="container">
       {% breadcrumbs page.breadcrumbs_label %}
         <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+        {% if features.ABOUT_UK_LANDING_PAGE_ON %}
         <a href="{% url 'cms-page-from-path' 'about-uk' %}">{% trans 'About the UK' %}</a>
+        {% endif %}
       {% endbreadcrumbs %}
   </div>
 </section>
