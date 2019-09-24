@@ -950,12 +950,6 @@ def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
 
 
-def build_exporting_guidance_url(slug):
-    return reverse_lazy(
-        'contact-us-exporting-to-the-uk-guidance', kwargs={'slug': slug}
-    )
-
-
 class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
