@@ -3,7 +3,6 @@ from unittest.mock import patch, call
 from bs4 import BeautifulSoup
 from directory_constants import urls
 import pytest
-from django.conf import settings
 
 from django.urls import reverse
 
