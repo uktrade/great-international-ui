@@ -2628,6 +2628,18 @@ def test_international_contact_triage_redirects(
     assert response.url == contact_url
 
 
+def test_international_contact_triage_invalid_selected(
+        client, feature_flags
+):
+    feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
+    feature_flags['EXPORTING_TO_UK_ON'] = True
+    feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
+
+    response = client.post('/international/contact/', {'choice': 'bad-choice'})
+    assert response.status_code == 302
+    assert response.url == urls.domestic.CONTACT_US + 'international/'
+
+
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_international_contact_triage_view(
         mock_cms_response, rf

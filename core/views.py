@@ -955,7 +955,7 @@ def build_exporting_guidance_url(slug):
 class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
-    success_url = '/contact/'
+    success_url = urls.domestic.CONTACT_US + 'international/'
 
     def __init__(self):
         super().__init__()
