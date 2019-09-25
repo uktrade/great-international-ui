@@ -3,6 +3,14 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
+- CI-508 - Added how dit help sections back into the new nav
+- CI-510 - Removed intro image being required for section on DIT services page
+
+## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
+
+### Implemented enhancements
 - No ticket - Fix HPO contact box cut off by sticky header, fix wrong margin on guide landing page breadcrumbs
 - No ticket(?) - Fix missing ISD hero
 - CMS-1732 - Add image alt and video transcripts to HPO detail page
@@ -27,9 +35,6 @@
 - CI-498 - Replace ebook download button with a regular CTA.
 - CI-503 - Added new fields to Why choose the UK page
 - No ticket - Upgrade to Django 2.2.5
-- CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
-- CI-508 - Added how dit help sections back into the new nav
-- CI-510 - Removed intro image being required for section on DIT services page
 
 ### Fixed bugs
 - XOT-1115 - Fix IE hero bug
@@ -43,6 +48,7 @@
 - no ticket - Fixed `About UK` breadcrumb showing before industry pages moved
 - no ticket - Fix broken invest hero image text.
 - no ticket - Fixed button on Capital invest landing page going on two lines at desktop
+
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
