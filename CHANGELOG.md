@@ -7,6 +7,9 @@
 - CI-508 - Added how dit help sections back into the new nav
 - CI-510 - Removed intro image being required for section on DIT services page
 
+### Fixed bugs
+- no ticket - Fixed button on Capital invest landing page going to two lines at desktop
+
 ## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
 
