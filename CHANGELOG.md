@@ -41,6 +41,7 @@
 - no ticket - Fix 'I want to Buy' URL on industry pages.
 - no ticket - Fixed `About UK` breadcrumb showing before industry pages moved
 - no ticket - Fix broken invest hero image text.
+- no ticket - Fixed button on Capital invest landing page going on two lines at desktop
 
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
