@@ -10,6 +10,7 @@
 ### Fixed bugs
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study
+- no ticket - Fixed `advanced-engineering` redirects taking users to 404 page.
 
 ## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
