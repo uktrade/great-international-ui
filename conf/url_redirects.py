@@ -15,7 +15,12 @@ redirects = [
     ),
     url(
         r'^international/content/industries/advanced-manufacturing/$',
-        QuerystringRedirectView.as_view(url='/international/content/industries/engineering-and-manufacturing/'),
+        QuerystringRedirectView.as_view(pattern_name=''),
+        name='advanced-manufacturing-redirect'
+    ),
+    url(
+        r'^international/content/about-uk/industries/advanced-manufacturing/$',
+        QuerystringRedirectView.as_view(pattern_name=''),
         name='advanced-manufacturing-redirect'
     ),
 ]
