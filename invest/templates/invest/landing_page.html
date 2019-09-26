@@ -147,20 +147,19 @@
                 {% endif %}
             </div>
         </div>
-        <div class="grid-row">
-            <ul>
-                {% for section in page.how_we_help %}
-                    {% if section.text and section.icon %}
-                        <li>
-                            <div class="column-third-xl column-half-m">
-                                <img class="icon" src="{{ section.icon.url }}" alt="">
-                                <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
-                            </div>
+        <ul class="grid-row">
+            {% for section in page.how_we_help %}
+                {% if section.text and section.icon %}
+                        <li class="column-third-xl column-half-m">
+                            <img class="icon" src="{{ section.icon.url }}" alt="">
+                            <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
                         </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% if page.how_we_help_cta_text and page.how_we_help_cta_link %}
+            <a href="{{ page.how_we_help_cta_link }}" class="button button-arrow-small margin-top-30 margin-bottom-15">{{ page.how_we_help_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 {% endif %}

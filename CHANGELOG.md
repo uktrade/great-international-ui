@@ -6,6 +6,9 @@
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
 - CI-508 - Added how dit help sections back into the new nav
 - CI-510 - Removed intro image being required for section on DIT services page
+- CI-518 - Replace how we help on International home page with How DIT help cards section
+- CI-501 - Added international triage contact form from great-domestic-ui
+- CI-493 - Added how we help ctas to Invest, Expand and Trade home pages 
 
 ### Fixed bugs
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop

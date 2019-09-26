@@ -20,7 +20,7 @@
 {% endif %}
 
 {% if page.reason_to_invest_section_title and page.reason_to_invest_section_content %}
-<section class="page-section ">
+<section class="page-section">
     <div class="container">
         <h2 class="heading-large">{{ page.reason_to_invest_section_title }} </h2>
         <div class="grid-row">
@@ -57,6 +57,9 @@
                 {% endif %}
             {% endfor %}
             </ul>
+            {% if page.how_we_help_cta_text and page.how_we_help_cta_link %}
+                <a href="{{ page.how_we_help_cta_link }}" class="button button-arrow-small margin-top-30 margin-bottom-15">{{ page.how_we_help_cta_text }}</a>
+            {% endif %}
         </div>
     {% endif %}
 </section>
