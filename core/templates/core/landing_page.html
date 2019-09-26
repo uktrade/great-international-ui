@@ -3,7 +3,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE %}
 {% load filter_by_active_language from cms_tags %}
-{% load cta_card add_export_elements_classes override_elements_css_class from directory_components %}
+{% load cta_card card add_export_elements_classes override_elements_css_class from directory_components %}
 {% load cms_hero_with_cta filter_by_active_language from cms_tags %}
 
 {% block css_layout_class %}landing-page{% endblock %}
@@ -52,25 +52,22 @@
   </div>
 </section>
 
-<section id="features-highlight-section" class="features-highlight-section page-section">
-  <div class="container">
-    <div class="grid-row">
-      <div class="column-full column-two-thirds-m column-half-l">
-        <h2 class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
-        <p>{{ page.section_two_teaser }}</p>
-      </div>
-    </div>
-    <div class="flex-grid">
-      {% for subsection in page.section_two_subsections %}
-        <div class="column-third-xl column-half-m">
-          <img class="icon" src="{{ subsection.icon.url }}" alt=""/>
-          <h3 class="heading-medium margin-top-15">{{ subsection.heading|add_export_elements_classes|safe }}</h3>
-          <p class="font-xsmall">{{ subsection.body }}</p>
+{% if page.how_dit_help_title and page.related_how_dit_help_pages %}
+<section class="page-section">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_dit_help_title }} </h2>
+        <div class="flex-grid padding-top-30">
+            {% for card in page.related_how_dit_help_pages %}
+                {% if card.hero_title and card.hero_image.url and card.featured_description %}
+                    <div class="column-third-xl column-half-m">
+                        {% card img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.featured_description|add_export_elements_classes|safe %}
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-      {% endfor %}
     </div>
-  </div>
 </section>
+{% endif %}
 
 {% if features.INTERNATIONAL_TARIFFS_ON %}
 <section id="tariffs-section" class="tariffs-section page-section">

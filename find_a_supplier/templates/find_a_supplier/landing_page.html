@@ -124,6 +124,9 @@
                 </div>
             </div>
         </div>
+        {% if page.how_we_help_cta_text and page.how_we_help_cta_link %}
+            <a href="{{ page.how_we_help_cta_link }}" class="button button-arrow-small margin-top-30 margin-bottom-15">{{ page.how_we_help_cta_text }}</a>
+        {% endif %}
     </div>
 </section>
 

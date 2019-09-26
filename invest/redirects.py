@@ -48,7 +48,7 @@ TRANSLATED_REDIRECTS = {
     'industries/electrical-networks': '/international/content/industries/',
     'industries/nuclear-energy': '/international/content/invest/industries/nuclear-energy',
     'industries/energy-from-waste-market': '/international/content/industries/renewable-energy/',
-    'industries/advanced-manufacturing': '/international/content/industries/advanced-manufacturing/'
+    'industries/advanced-manufacturing': '/international/content/industries/engineering-and-manufacturing/'
 }
 
 REDIRECTS = {**ENGLISH_ONLY_REDIRECTS, **TRANSLATED_REDIRECTS}

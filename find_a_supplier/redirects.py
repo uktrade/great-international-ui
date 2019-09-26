@@ -33,9 +33,9 @@ REDIRECTS = {
     'industry-articles/leading-the-world-in-cancer-care': '/international/content/industries/health-and-life-sciences/leading-the-world-in-cancer-care/',  # NOQA
     'industry-articles/highly-rated-primary-care': '/international/content/industries/health-and-life-sciences/highly-rated-primary-care/',  # NOQA
     'industry-articles/helping-you-buy-from-the-uk-article-ukef': '/international/content/industries/infrastructure/helping-you-buy-from-the-uk-article-ukef/',  # NOQA
-    'industry-articles/global-rail-experience-article': '/international/content/industries/advanced-manufacturing/global-rail-experience/',  # NOQA
-    'industry-articles/established-mining-industry-article': '/international/content/industries/advanced-manufacturing/established-mining-industry',  # NOQA
-    'industry-articles/trusted-construction-partners-article': '/international/content/industries/advanced-manufacturing/trusted-construction-partners/',  # NOQA
+    'industry-articles/global-rail-experience-article': '/international/content/industries/engineering-and-manufacturing/global-rail-experience/',  # NOQA
+    'industry-articles/established-mining-industry-article': '/international/content/industries/engineering-and-manufacturing/established-mining-industry',  # NOQA
+    'industry-articles/trusted-construction-partners-article': '/international/content/industries/engineering-and-manufacturing/trusted-construction-partners/',  # NOQA
     'industry-articles/how-tech-is-changing-the-way-we-bank-article': '/international/content/industries/financial-services/how-tech-is-changing-the-way-we-bank/',  # NOQA
     'industry-articles/a-global-centre-for-life-sciences': '/international/content/industries/health-and-life-sciences/a-global-centre-for-life-sciences/',  # NOQA
     'industry-articles/building-fintech-bridges-article': '/international/content/industries/financial-services/building-fintech-bridges/',  # NOQA

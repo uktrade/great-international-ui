@@ -121,6 +121,13 @@ elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS
         ),
     ]
 
+urlpatterns += [
+    url(
+        r'^international/content/industries/advanced-manufacturing/$',
+        QuerystringRedirectView.as_view(url='/international/content/industries/engineering-and-manufacturing/'),
+        name='advanced-manufacturing-redirect'
+    )
+]
 if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
     urlpatterns += [
         url(
@@ -134,6 +141,24 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
             name='industries-to-about-uk-redirect'
         ),
     ]
+
+if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
+    urlpatterns += [
+        url(
+            r'^international/contact/$',
+            core.views.InternationalContactTriageView.as_view(),
+            name='international-contact-triage'
+        ),
+    ]
+else:
+    urlpatterns += [
+        url(
+            r'^international/contact/$',
+            core.views.InternationalContactPageView.as_view(),
+            name='contact-page-international'
+        ),
+    ]
+
 
 urlpatterns += [
     url(
@@ -277,11 +302,6 @@ urlpatterns += [
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact/success'},
         name='high-potential-opportunity-request-expand-form-success'
-    ),
-    url(
-        r'^international/contact/$',
-        core.views.InternationalContactPageView.as_view(),
-        name='contact-page-international'
     ),
     url(
         r'^international/brexit/contact/$',

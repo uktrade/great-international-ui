@@ -7,7 +7,6 @@ pytest-django>=3.5.1<4.0.0
 pytest-sugar
 pytest-xdist==1.29.0
 flake8
-pytest-catchlog
 requests_mock
 freezegun
 codecov

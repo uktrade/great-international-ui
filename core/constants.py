@@ -1,6 +1,8 @@
 from collections import namedtuple
-from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
 
+from django.conf import settings
+from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
+from directory_constants import urls
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -71,6 +73,8 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
         'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'InternationalTradeIndustryContactPage':
         'FIND_A_SUPPLIER_ON',
+    'AboutUkLandingPage':
+        'ABOUT_UK_LANDING_PAGE_ON',
 }
 
 GA_DATA_MAPPING = {
@@ -262,16 +266,19 @@ HEADER_SECTION_MAPPING = {
     r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),  # noqa
     r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
     r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
+    r'^(expand|invest)/how-we-help-you-expand.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_WE_HELP_EXPAND),  # noqa
     r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),
 
     # Invest Capital in the UK
     r'^opportunities.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.INVESTMENT_OPPORTUNITIES),  # noqa
     r'^capital-invest/contact.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.CONTACT_US_INVEST_CAPITAL),  # noqa
     r'^capital-invest$': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.OVERVIEW_INVEST_CAPITAL),
+    r'^capital-invest/how-we-help-you-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.HOW_WE_HELP_CAPITAL_INVEST),  # noqa
     r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
 
     # Buy from the UK
     r'^trade/contact.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.CONTACT_US_TRADE),
+    r'^trade/how-we-help-you-buy.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.HOW_WE_HELP_BUY),
     r'^trade.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.FIND_A_SUPPLIER),
 
     # About DIT
@@ -280,3 +287,10 @@ HEADER_SECTION_MAPPING = {
     r'^about-dit$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
     r'^about-dit.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
 }
+
+INVEST_CONTACT_URL = urls.international.EXPAND_CONTACT
+CAPITAL_INVEST_CONTACT_URL = urls.international.CAPITAL_INVEST_CONTACT
+EXPORTING_TO_UK_CONTACT_URL = urls.international.INTERNATIONAL_CONTACT_TRIAGE / 'exporting-to-the-uk/'
+BUYING_CONTACT_URL = urls.international.TRADE_CONTACT
+EUEXIT_CONTACT_URL = settings.EU_EXIT_INTERNATIONAL_CONTACT_URL
+OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'

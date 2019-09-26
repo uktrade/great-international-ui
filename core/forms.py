@@ -13,6 +13,9 @@ from captcha.fields import ReCaptchaField
 
 from directory_constants.choices import COUNTRY_CHOICES, EMPLOYEES, INDUSTRIES
 
+from django.conf import settings
+from core import constants
+
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 COMPANY_SIZE = BLANK_CHOICE_DASH + list(EMPLOYEES)
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
@@ -184,3 +187,39 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         del data['captcha']
         del data['terms_agreed']
         return data
+
+
+def choice_is_enabled(value):
+    flagged_choices = {
+        constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
+        constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
+    }
+    if value not in flagged_choices:
+        return True
+
+    return settings.FEATURE_FLAGS[flagged_choices[value]]
+
+
+def international_choices():
+    all_choices = (
+        (constants.INVEST_CONTACT_URL, 'Expanding to the UK'),
+        (constants.CAPITAL_INVEST_CONTACT_URL, 'Capital investment in the UK'),
+        (constants.EXPORTING_TO_UK_CONTACT_URL, 'Exporting to the UK'),
+        (constants.BUYING_CONTACT_URL, 'Find a UK business partner'),
+        (constants.EUEXIT_CONTACT_URL, 'Brexit enquiries'),
+        (constants.OTHER_CONTACT_URL, 'Other'),
+    )
+    return ((value, label) for value, label in all_choices if choice_is_enabled(value))
+
+
+class InternationalRoutingForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['choice'].choices = international_choices()
+
+    choice = forms.ChoiceField(
+        label='',
+        widget=forms.RadioSelect(),
+        choices=[],  # array overridden by constructor
+    )
