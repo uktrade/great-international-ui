@@ -12,7 +12,6 @@ SESSION_COOKIE_SECURE=false
 SECURE_HSTS_SECONDS=0
 SECURE_SSL_REDIRECT=false
 CMS_URL=http://cms.trade.great:8010
-CMS_SIGNATURE_SECRET=debug
 DEFAULT_FROM_EMAIL=jessica.gilbert@digital.trade.gov.uk
 IIGB_AGENT_EMAIL=foo@bar.com
 CAPITAL_INVEST_CONTACT_EMAIL=jessica.gilbert@digital.trade.gov.uk
