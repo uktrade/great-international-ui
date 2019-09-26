@@ -13,12 +13,12 @@
       {% include 'core/includes/cms_breadcrumbs.html' %}
    </div>
 
-  {% if page.teaser and page.teaser_image %}
+  {% if page.teaser %}
   <section id="teaser-section" class="padding-top-30 padding-bottom-60">
     <div class="container">
       <div class="grid-row">
         {% if page.teaser %}
-          <div class="column-half-l">
+          <div class="column-two-thirds-l">
             {{ page.teaser|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-medium'|safe }}
           </div>
         {% endif %}
@@ -54,7 +54,7 @@
   {% endif %}
 
   {% if page.contact_us_section_title and page.contact_us_section_summary %}
-    <section id="contact-us-section">
+    <section id="contact-us-section" class="page-section">
       <div class="container">
         <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
         {% if page.contact_us_section_summary %}

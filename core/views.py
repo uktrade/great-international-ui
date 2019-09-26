@@ -121,6 +121,10 @@ class MonolingualCMSPageFromPathView(
         ):
             context.update(modifier(context, request=self.request))
 
+        if not settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] and 'tree_based_breadcrumbs' in self.page:
+            self.page['tree_based_breadcrumbs'] = [crumb for crumb in self.page['tree_based_breadcrumbs']
+                                                   if not crumb['url'].endswith('/international/content/about-uk/')]
+
         return context
 
 
@@ -943,3 +947,27 @@ def handler404(request, *args, **kwargs):
 
 def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
+
+
+class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = 'core/contact_international_triage.html'
+    form_class = forms.InternationalRoutingForm
+    success_url = urls.domestic.CONTACT_US + 'international/'
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='GreatInternationalContactTriage',
+            business_unit='GreatInternational',
+            site_section='GreatInternational',
+            site_subsection='ContactTriage'
+        )
+
+    def form_valid(self, form):
+        return redirect(form.cleaned_data['choice'])
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            domestic_contact_home=urls.domestic.CONTACT_US,
+            *args, **kwargs,
+        )

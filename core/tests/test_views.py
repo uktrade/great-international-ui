@@ -7,10 +7,11 @@ import pytest
 from django.urls import reverse
 
 from conf.tests.test_urls import reload_urlconf
+from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -93,6 +94,11 @@ def capital_invest_contact_form_page():
 @pytest.fixture
 def capital_invest_contact_form_success_page():
     yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
+
+
+@pytest.fixture
+def about_uk_landing_page():
+    yield from stub_page({'page_type': 'AboutUkLandingPage'})
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -806,7 +812,57 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_international_contact_form(mock_cms_response, client):
+def test_about_uk_landing_page_returns_200_when_feature_flag_on(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = True
+
+    page = {
+        'title': 'About UK',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'about-uk'
+        },
+        'page_type': 'AboutUkLandingPage',
+    }
+
+    mock_cms_response.return_value = create_response(
+        status_code=200,
+        json_payload=page
+    )
+
+    request = rf.get(
+        '/international/content/about-uk/'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/about-uk/'
+    )
+
+    assert response.status_code == 200
+
+
+@pytest.mark.usefixtures('about_uk_landing_page')
+def test_about_uk_landing_page_returns_404_when_feature_flag_off(
+    client, settings
+):
+    settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = False
+
+    response = client.get(
+        '/international/content/about-uk/'
+    )
+    assert response.status_code == 404
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_international_contact_form(mock_cms_response, client, settings):
+
+    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
+    reload_urlconf(settings)
+
     mock_cms_response.return_value = create_response(dummy_page)
 
     url = reverse('contact-page-international')
@@ -2599,3 +2655,116 @@ def test_getting_regions_on_region_page_null(
 
     assert len(response.context_data['regions']) == 4
     assert response.context_data['show_mapped_regions'] is False
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_about_uk_breadcrumbs_article_page_feature_on(
+        mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = True
+
+    page = {
+        'title': 'Tax and incentives',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'InternationalArticlePage',
+        'tree_based_breadcrumbs': [
+            {
+                'title': 'About the UK',
+                'url': 'http://international.trade.great:8012/international/content/about-uk/'
+            },
+            {
+                'title': 'Why choose the UK',
+                'url': 'http://international.trade.great:8012/international/content/about-uk/why-choose-uk/'
+            }
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/why-choose-uk/tax/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/why-choose-uk/tax/')
+
+    assert len(response.context_data['page']['tree_based_breadcrumbs']) == 2
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_about_uk_breadcrumbs_article_page_feature_off(
+        mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = False
+
+    page = {
+        'title': 'Tax and incentives',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'InternationalArticlePage',
+        'tree_based_breadcrumbs': [
+            {
+                'title': 'About the UK',
+                'url': 'http://international.trade.great:8012/international/content/about-uk/'
+            },
+            {
+                'title': 'Why choose the UK',
+                'url': 'http://international.trade.great:8012/international/content/about-uk/why-choose-uk/'
+            }
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/about-uk/why-choose-uk/tax/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/why-choose-uk/tax/')
+
+    assert len(response.context_data['page']['tree_based_breadcrumbs']) == 1
+    assert response.context_data['page']['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
+
+
+@pytest.mark.parametrize(
+    'choice_contact_url',
+    [constants.INVEST_CONTACT_URL, constants.CAPITAL_INVEST_CONTACT_URL, constants.EXPORTING_TO_UK_CONTACT_URL,
+     constants.BUYING_CONTACT_URL, constants.EUEXIT_CONTACT_URL, constants.OTHER_CONTACT_URL]
+)
+def test_international_contact_triage_redirects(
+        choice_contact_url, client, feature_flags
+):
+    feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
+    feature_flags['EXPORTING_TO_UK_ON'] = True
+    feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
+
+    response = client.post('/international/contact/', {'choice': choice_contact_url})
+    assert response.status_code == 302
+    assert response.url == choice_contact_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_international_contact_triage_view(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        }
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/contact/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalContactTriageView.as_view()(
+        request, path='/international/contact/')
+
+    assert 'domestic_contact_home' in response.context_data
