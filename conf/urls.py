@@ -121,6 +121,13 @@ elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS
         ),
     ]
 
+urlpatterns += [
+    url(
+        r'^international/content/industries/advanced-manufacturing/$',
+        QuerystringRedirectView.as_view(url='/international/content/industries/engineering-and-manufacturing/'),
+        name='advanced-manufacturing-redirect'
+    )
+]
 if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
     urlpatterns += [
         url(
