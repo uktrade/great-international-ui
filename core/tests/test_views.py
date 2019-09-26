@@ -7,10 +7,11 @@ import pytest
 from django.urls import reverse
 
 from conf.tests.test_urls import reload_urlconf
+from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -857,7 +858,11 @@ def test_about_uk_landing_page_returns_404_when_feature_flag_off(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_international_contact_form(mock_cms_response, client):
+def test_international_contact_form(mock_cms_response, client, settings):
+
+    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
+    reload_urlconf(settings)
+
     mock_cms_response.return_value = create_response(dummy_page)
 
     url = reverse('contact-page-international')
@@ -2723,3 +2728,43 @@ def test_about_uk_breadcrumbs_article_page_feature_off(
 
     assert len(response.context_data['page']['tree_based_breadcrumbs']) == 1
     assert response.context_data['page']['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
+
+
+@pytest.mark.parametrize(
+    'choice_contact_url',
+    [constants.INVEST_CONTACT_URL, constants.CAPITAL_INVEST_CONTACT_URL, constants.EXPORTING_TO_UK_CONTACT_URL,
+     constants.BUYING_CONTACT_URL, constants.EUEXIT_CONTACT_URL, constants.OTHER_CONTACT_URL]
+)
+def test_international_contact_triage_redirects(
+        choice_contact_url, client, feature_flags
+):
+    feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
+    feature_flags['EXPORTING_TO_UK_ON'] = True
+    feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
+
+    response = client.post('/international/contact/', {'choice': choice_contact_url})
+    assert response.status_code == 302
+    assert response.url == choice_contact_url
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_international_contact_triage_view(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        }
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/contact/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InternationalContactTriageView.as_view()(
+        request, path='/international/contact/')
+
+    assert 'domestic_contact_home' in response.context_data
