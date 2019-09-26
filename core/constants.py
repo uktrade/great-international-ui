@@ -1,6 +1,8 @@
 from collections import namedtuple
-from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
 
+from django.conf import settings
+from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
+from directory_constants import urls
 
 TEMPLATE_MAPPING = {
     # Great international core
@@ -285,3 +287,10 @@ HEADER_SECTION_MAPPING = {
     r'^about-dit$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
     r'^about-dit.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
 }
+
+INVEST_CONTACT_URL = urls.international.EXPAND_CONTACT
+CAPITAL_INVEST_CONTACT_URL = urls.international.CAPITAL_INVEST_CONTACT
+EXPORTING_TO_UK_CONTACT_URL = urls.international.INTERNATIONAL_CONTACT_TRIAGE / 'exporting-to-the-uk/'
+BUYING_CONTACT_URL = urls.international.TRADE_CONTACT
+EUEXIT_CONTACT_URL = settings.EU_EXIT_INTERNATIONAL_CONTACT_URL
+OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'

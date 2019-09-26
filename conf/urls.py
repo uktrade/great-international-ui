@@ -135,6 +135,24 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
     ]
 
+if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
+    urlpatterns += [
+        url(
+            r'^international/contact/$',
+            core.views.InternationalContactTriageView.as_view(),
+            name='international-contact-triage'
+        ),
+    ]
+else:
+    urlpatterns += [
+        url(
+            r'^international/contact/$',
+            core.views.InternationalContactPageView.as_view(),
+            name='contact-page-international'
+        ),
+    ]
+
+
 urlpatterns += [
     url(
         r'^international/healthcheck/',
@@ -277,11 +295,6 @@ urlpatterns += [
         invest.views.HighPotentialOpportunitySuccessView.as_view(),
         {'path': 'expand/high-potential-opportunities/contact/success'},
         name='high-potential-opportunity-request-expand-form-success'
-    ),
-    url(
-        r'^international/contact/$',
-        core.views.InternationalContactPageView.as_view(),
-        name='contact-page-international'
     ),
     url(
         r'^international/brexit/contact/$',
