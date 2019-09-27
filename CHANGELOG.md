@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-528 - Updated capital invest label on form triage
 
 ### Fixed bugs
 
