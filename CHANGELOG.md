@@ -2,6 +2,11 @@
 
 ## Pre-release
 
+### Implemented enhancements
+
+### Fixed bugs
+
+
 ## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
 
