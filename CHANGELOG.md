@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
+
 ### Implemented enhancements
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
 - CI-508 - Added how dit help sections back into the new nav
