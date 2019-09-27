@@ -203,7 +203,7 @@ def choice_is_enabled(value):
 def international_choices():
     all_choices = (
         (constants.INVEST_CONTACT_URL, 'Expanding to the UK'),
-        (constants.CAPITAL_INVEST_CONTACT_URL, 'Capital investment in the UK'),
+        (constants.CAPITAL_INVEST_CONTACT_URL, 'Investing capital in the UK'),
         (constants.EXPORTING_TO_UK_CONTACT_URL, 'Exporting to the UK'),
         (constants.BUYING_CONTACT_URL, 'Find a UK business partner'),
         (constants.EUEXIT_CONTACT_URL, 'Brexit enquiries'),
