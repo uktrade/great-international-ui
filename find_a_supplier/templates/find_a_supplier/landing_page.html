@@ -44,6 +44,15 @@
     </div>
 </section>
 
+
+{% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
+<div class="container">
+  {% breadcrumbs page.breadcrumbs_label %}
+    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+  {% endbreadcrumbs %}
+</div>
+{% endif %}
+
 {% if features.EU_EXIT_BANNER_ON and cms_component %}
   <div class="banner-container margin-bottom-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
     <div class="container">
