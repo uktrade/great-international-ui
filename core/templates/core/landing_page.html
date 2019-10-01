@@ -69,6 +69,28 @@
 </section>
 {% endif %}
 
+{% if page.section_two_heading and page.section_two_teaser %}
+<section id="features-highlight-section" class="features-highlight-section page-section">
+  <div class="container">
+    <div class="grid-row">
+      <div class="column-full column-two-thirds-m column-half-l">
+        <h2 class="heading-large margin-top-0">{{ page.section_two_heading }}</h2>
+        <p>{{ page.section_two_teaser }}</p>
+      </div>
+    </div>
+    <div class="flex-grid">
+      {% for subsection in page.section_two_subsections %}
+        <div class="column-third-xl column-half-m">
+          <img class="icon" src="{{ subsection.icon.url }}" alt=""/>
+          <h3 class="heading-medium margin-top-15">{{ subsection.heading|add_export_elements_classes|safe }}</h3>
+          <p class="font-xsmall">{{ subsection.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 {% if features.INTERNATIONAL_TARIFFS_ON %}
 <section id="tariffs-section" class="tariffs-section page-section">
 	<div class="container">
