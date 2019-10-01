@@ -24,6 +24,13 @@
 - no ticket - Fixed spacing on DIT services page when no case study
 - no ticket - Fixed `advanced-engineering` redirects taking users to 404 page.
 
+## [2019.10.01](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.01)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.10.01)
+
+### Fixed bugs
+- no ticket - Add how we help section back into International home page
+
+
 ## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
 
