@@ -200,7 +200,7 @@ urlpatterns += [
     ),
     url(
         r'^international/invest/$',
-            core.views.MultilingualCMSPageFromPathView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': 'invest'},
         name='invest-home'
     ),
