@@ -5,7 +5,7 @@
 {% load filter_by_active_language cms_hero_with_cta from cms_tags %}
 {% load directory_components %}
 
-{% block css_layout_class %}invest-landing-page{% endblock %}
+{% block css_layout_class %}expand-landing-page{% endblock %}
 
 {% block content %}
 
@@ -28,27 +28,27 @@
     </div>
 {% endif %}
 
-{% if page.benefits_section_title and page.benefits_section_content %}
-<section class="landing-page-section landing-page-benefits" id="benefits">
+{% if page.benefits_section_title and page.benefits_section_intro %}
+<section class="top-page-section" id="benefits">
     <div class="container">
         <h2 class="heading-large margin-bottom-30">{{ page.benefits_section_title }}</h2>
-        <div class="grid-row padding-bottom-45 ">
+        <div class="grid-row padding-bottom-45-l">
             <p class="font-small line-height-normal column-half"> {{ page.benefits_section_intro }}  </p>
         </div>
-        <div class="flex-grid reverse-columns-s">
+        <div class="flex-grid reverse-columns-m">
             <div class="column-half-l left-half-page-text">
                 {{ page.benefits_section_content|add_export_elements_classes|safe }}
             </div>
             {% if page.benefits_section_img.url %}
                 <div class="column-half-l center-vertical flex-shrink-0">
                     <figure class="landing-page-image">
-                        <img class="width-full" src="{{page.benefits_section_img.url}}" alt="">
+                        <img class="width-full" alt="{{ page.benefits_section_img_alt_text }}" src="{{page.benefits_section_img.url}}">
                     </figure>
                 </div>
-            {% endif %}
+            {%  endif %}
         </div>
         {% if page.benefits_section_cta_text and page.benefits_section_cta_url %}
-              <a href="{{ page.benefits_section_cta_url }}" class="button button-arrow-small margin-top-30">{{ page.benefits_section_cta_text }}</a>
+            <a href="{{ page.benefits_section_cta_url }}" class="button button-ghost-blue button-arrow-small margin-top-30">{{ page.benefits_section_cta_text }}</a>
         {% endif %}
     </div>
 </section>
@@ -97,33 +97,94 @@
 </section>
 {% endif %}
 
-{% if page.sector_title and page.sectors|filter_by_active_language %}
-<section class="landing-page-section" id="industries">
-    <div class="container">
-        <h2 class="heading-large">{{ page.sector_title }}</h2>
-            <div class="grid-row padding-bottom-45">
-                <p class="font-small column-half"> {{  page.sector_intro }} </p>
+{% if page.how_to_expand_title and page.how_to_expand_image.url and how_to_expand_items_length > 0 %}
+<section class="how-to-expand" style="background-image: url('{{ page.how_to_expand_image.url }}')">
+    <div class="container page-section">
+        <h1 class="heading-large">{{ page.how_to_expand_title }}</h1>
+        <div class="grid-row">
+            <div class="grid-row column-two-thirds-l padding-bottom-15">
+                {{ page.how_to_expand_intro|add_export_elements_classes|safe }}
             </div>
-        <div class="flex-grid padding-bottom-45">
-            {% for sector in page.sectors|filter_by_active_language %}
-                <div class="column-third-xl column-half-m">
-                    {% card ga_tag='industry-link' title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+            <div class="column-half-xl column-full-m">
+                <div class="flex-grid">
+                    {% for how_to in how_to_expand_items %}
+                    <div class="column-half-l">
+                        <h2 class="bold-medium how_to_expand_item padding-top-15">{{ how_to.title }}</h2>
+                        <span class="font-xsmall">{{ how_to.text|add_export_elements_classes|safe }}</span>
+                    </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
-        {% if page.sector_button_url and page.sector_button_text %}
-            <a href="{{ page.sector_button_url }}" class="button button-arrow-small" id="see-more-industries">{{ page.sector_button_text }}</a>
-        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% if page.how_we_help_title and page.how_we_help_lead_in %}
+<section class="how-we-help page-section" id="how-we-help">
+    <div class="container">
+        <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                {{ page.how_we_help_lead_in|add_export_elements_classes|safe }}
+            </div>
+        </div>
+        <ul class="flex-grid margin-top-45">
+            {% for section in page.how_we_help %}
+                {% if section.text and section.icon %}
+                    <li class="column-third-xl column-half-m">
+                        <img class="icon" src="{{ section.icon.url }}" alt="">
+                        <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+
+{% if page.contact_section_title and page.contact_section_content  %}
+<section class="stone-page-section" id="get-in-touch">
+    <div class="container">
+        <div class="flex-grid">
+            <div class="column-two-thirds-l">
+                <h2 class="heading-large">{{ page.contact_section_title }}</h2>
+                <p class="font-small margin-bottom-45">{{ page.contact_section_content }}</p>
+                {% if page.contact_section_call_to_action_url and page.contact_section_call_to_action_text %}
+                    <div>
+                      <a href="{{ page.contact_section_call_to_action_url }}" class="button button-arrow-small">{{ page.contact_section_call_to_action_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% if page.isd_section_title and page.isd_section_text  %}
+<section class="page-section" id="get-in-touch">
+    <div class="container">
+        <div class="flex-grid">
+            <div class="column-two-thirds-l">
+                <h2 class="heading-large">{{ page.isd_section_title }}</h2>
+                <p class="font-small">{{ page.isd_section_text|add_export_elements_classes|safe }}</p>
+                {% if page.isd_section_cta_link and page.isd_section_cta_text %}
+                    <div>
+                        <a href="{{ page.isd_section_cta_link }}" class="button button-ghost-blue button-arrow-small">{{ page.isd_section_cta_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </section>
 {% endif %}
 
 {% if show_hpo_section %}
-<section class="landing-page-section" id="high-potential-opportunities">
+<section class="stone-page-section" id="high-potential-opportunities">
     <div class="container">
         <h2 class="heading-large"> {{ page.hpo_title }} </h2>
             <div class="grid-row padding-bottom-45">
-                <p class="font-small column-half"> {{ page.hpo_intro }}  </p>
+                <p class="font-small column-two-thirds-xl column-two-thirds-m"> {{ page.hpo_intro }}  </p>
             </div>
         <div class="flex-grid">
         {% for hpo in page.high_potential_opportunities|filter_by_active_language %}
@@ -136,48 +197,23 @@
 </section>
 {% endif %}
 
-{% if page.how_we_help_title and page.how_we_help_lead_in %}
-<section class="landing-page-how-we-help landing-page-section with-flag" id="how-we-help">
+{% if page.sector_title and page.sectors|filter_by_active_language %}
+<section class="page-section" id="industries">
     <div class="container">
-        <h2 class="heading-large">{{ page.how_we_help_title }}</h2>
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                {% if page.how_we_help_lead_in %}
-                    <p class="margin-bottom-45">{{ page.how_we_help_lead_in }}</p>
-                {% endif %}
+        <h2 class="heading-large">{{ page.sector_title }}</h2>
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-two-thirds"> {{  page.sector_intro }} </p>
             </div>
-        </div>
-        <ul class="grid-row">
-            {% for section in page.how_we_help %}
-                {% if section.text and section.icon %}
-                        <li class="column-third-xl column-half-m">
-                            <img class="icon" src="{{ section.icon.url }}" alt="">
-                            <p class="font-xsmall margin-bottom-30">{{ section.text }}</p>
-                        </li>
-                {% endif %}
+        <div class="flex-grid padding-bottom-45">
+            {% for sector in page.sectors|filter_by_active_language %}
+                <div class="column-third-xl column-half-m">
+                    {% card ga_tag='industry-link' title=sector.heading description=sector.featured_description|add_export_elements_classes|safe img_src=sector.hero_image_thumbnail.url url=sector.full_url %}
+                </div>
             {% endfor %}
-        </ul>
-        {% if page.how_we_help_cta_text and page.how_we_help_cta_link %}
-            <a href="{{ page.how_we_help_cta_link }}" class="button button-arrow-small margin-top-30 margin-bottom-15">{{ page.how_we_help_cta_text }}</a>
-        {% endif %}
-    </div>
-</section>
-{% endif %}
-
-{% if page.contact_section_title and page.contact_section_content  %}
-<section class="landing-page-section" id="get-in-touch">
-    <div class="container">
-        <div class="flex-grid">
-            <div class="column-half">
-                <h2 class="heading-large">{{ page.contact_section_title }}</h2>
-                <p class="font-small margin-bottom-45">{{ page.contact_section_content }}</p>
-                {% if page.contact_section_call_to_action_text and page.contact_section_call_to_action_url %}
-                    <div>
-                      <a href="{{ page.contact_section_call_to_action_url }}" class="button button-arrow-small">{{ page.contact_section_call_to_action_text }}</a>
-                    </div>
-                {% endif %}
-            </div>
         </div>
+        {% if page.sector_button_url and page.sector_button_text %}
+            <a href="{{ page.sector_button_url }}" class="button button-ghost-blue button-arrow-small" id="see-more-industries">{{ page.sector_button_text }}</a>
+        {% endif %}
     </div>
 </section>
 {% endif %}

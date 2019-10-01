@@ -5,9 +5,9 @@
 @import '../../partials/vars';
 @import '../../partials/mixins';
 
-.invest-landing-page {
+.expand-landing-page {
 
-  .landing-page-how-we-help {
+  .how-we-help {
 
     ul {
       width: 100%;
@@ -23,6 +23,22 @@
     .contact-button {
       @extend .icon;
       border-bottom: 0;
+    }
+  }
+
+  .how-to-expand{
+    width: 100%;
+    min-height: 500px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    a {
+      color: white;
+    }
+
+    .how_to_expand_item {
+      border-top: 3px solid $great-red;
     }
   }
 

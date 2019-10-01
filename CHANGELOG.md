@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
+- CI-522 - Updated invest/expand home page
 
 ### Fixed bugs
 
