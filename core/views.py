@@ -2,6 +2,7 @@ import copy
 import random
 
 from django.conf import settings
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect, render
@@ -922,6 +923,7 @@ class BusinessEnvironmentGuideFormView(GA360Mixin, InternationalHeaderMixin, For
     def form_valid(self, form):
         self.send_agent_email(form)
         self.send_user_email(form)
+        messages.success(self.request, helpers.create_email_message(form.cleaned_data["email_address"]))
         return super().form_valid(form)
 
 
@@ -939,6 +941,15 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
             site_subsection='BusinessEnvironment'
         )
         return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        address = helpers.get_email_address_or_default(messages.get_messages(self.request))
+        thank_you_message = f'Thank you. Your guide to investing in the UK has been emailed to {address}'
+
+        return super().get_context_data(
+            thank_you_message=thank_you_message,
+            *args, **kwargs
+        )
 
 
 def handler404(request, *args, **kwargs):

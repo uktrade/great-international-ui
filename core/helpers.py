@@ -331,3 +331,20 @@ def get_header_section(path):
 
 def get_header_sub_section(path):
     return get_header_config(path).sub_section
+
+
+EMAIL_MESSAGE_PREFIX = 'email::'
+
+
+def create_email_message(email):
+    return f'{EMAIL_MESSAGE_PREFIX}{email}'
+
+
+def get_email_address_or_default(messages, default='you'):
+    for message_object in messages:
+        message = message_object.message
+        if message.startswith(EMAIL_MESSAGE_PREFIX):
+            return message[len(EMAIL_MESSAGE_PREFIX):]
+
+    # If can't find a email address in the messages, fall back to the default value.
+    return default

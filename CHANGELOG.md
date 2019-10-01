@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
+- CI-490 - Business Environment Success page now displays the email address it was sent to.
 
 ### Fixed bugs
 

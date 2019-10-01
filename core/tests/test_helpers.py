@@ -1,12 +1,15 @@
 import pytest
 
 from directory_constants import expertise, sectors
+from django.contrib.messages import SUCCESS, ERROR
+from django.contrib.messages.storage.base import Message
 
 from django.http import QueryDict
 from django.urls import reverse
 
 from core import helpers
-from core.helpers import get_map_labels_with_vertical_positions, get_header_config
+from core.helpers import get_map_labels_with_vertical_positions, get_header_config, create_email_message, \
+    get_email_address_or_default
 from core.tests.helpers import create_response
 
 
@@ -568,3 +571,40 @@ def test_get_header_config(path, expected_section_name, expected_sub_section_nam
     sub_section = header_config.sub_section.name if header_config.sub_section else ''
     assert section == expected_section_name
     assert sub_section == expected_sub_section_name
+
+
+def test_create_email_message():
+    message = create_email_message('foo@bar.com')
+
+    assert message == 'email::foo@bar.com'
+
+
+def test_get_email_address_or_default_with_email_present():
+    messages = [
+        Message(SUCCESS, 'some other message'),
+        Message(SUCCESS, create_email_message('foo@bar.com'))
+    ]
+
+    address = get_email_address_or_default(messages)
+
+    assert address == 'foo@bar.com'
+
+
+def test_get_email_address_or_default_with_no_messages():
+    messages = []
+
+    address = get_email_address_or_default(messages)
+
+    assert address == 'you'
+
+
+def test_get_email_address_or_default_ignores_other_messages():
+    messages = [
+        Message(SUCCESS, 'some other message'),
+        Message(SUCCESS, 'foo@bar.com'),
+        Message(ERROR, 'Something went wrong.'),
+    ]
+
+    address = get_email_address_or_default(messages, 'your email address')
+
+    assert address == 'your email address'
