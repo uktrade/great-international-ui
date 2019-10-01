@@ -11,8 +11,7 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView, \
-    InvestInternationalHomePageView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
 
 test_sectors = [
     {
@@ -1707,7 +1706,7 @@ def test_show_featured_cards_section_on_invest_home_page(
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = InvestInternationalHomePageView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is True
@@ -1752,7 +1751,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_some_on_invest_hom
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = InvestInternationalHomePageView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is False
@@ -1779,7 +1778,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = InvestInternationalHomePageView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is False
@@ -1812,7 +1811,7 @@ def test_how_to_expand_items_on_invest_home_page(
 
     request = rf.get('/international/invest/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = InvestInternationalHomePageView.as_view()(
+    response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/invest/')
 
     assert len(response.context_data['how_to_expand_items']) == 2
