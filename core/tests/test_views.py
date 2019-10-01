@@ -1803,7 +1803,7 @@ def test_how_to_expand_items_on_invest_home_page(
         'how_to_expand': [
             {'title': 'some title', 'text': 'some text'},
             {'title': '', 'text': 'text with no title'},
-            {'title': 'title with no text', 'text': ']'},
+            {'title': 'title with no text', 'text': ''},
             {'title': 'some title2', 'text': 'some text2'},
         ],
     }
