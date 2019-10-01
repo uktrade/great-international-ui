@@ -35,6 +35,13 @@ if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
             )
         ),
         url(
+            r'^international/capital-invest/investment-support-directory/',
+            include(
+                'investment_support_directory.urls',
+                namespace='investment-support-directory',
+            )
+        ),
+        url(
             r'^international/trade/investment-support-directory/search/',
             QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
         ),

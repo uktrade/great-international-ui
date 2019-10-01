@@ -6,7 +6,10 @@
   {% url 'investment-support-directory:company-contact' company_number=company.number as contact_url %}
   {% breadcrumbs 'Message sent' %}
     <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-    <a href="{{ contact_url}}?{{ search_querystring }}">Contact company</a>
+    {% if breadcrumbs.label and breadcrumbs.url %}
+        <a href="{{ breadcrumbs.url }}">{{ breadcrumbs.label }}</a>
+    {% endif %}
+    <a href="{{ isd_url}}{{company.number}}/contact/?{{ search_querystring }}">Contact company</a>
   {% endbreadcrumbs %}
 
 {% endblock %}

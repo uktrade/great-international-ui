@@ -1,7 +1,8 @@
 from collections import namedtuple
 
 from django.conf import settings
-from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
+from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two, tier_one_nav_items, \
+    tier_two_nav_items
 from directory_constants import urls
 
 TEMPLATE_MAPPING = {
@@ -294,3 +295,23 @@ EXPORTING_TO_UK_CONTACT_URL = urls.international.INTERNATIONAL_CONTACT_TRIAGE / 
 BUYING_CONTACT_URL = urls.international.TRADE_CONTACT
 EUEXIT_CONTACT_URL = settings.EU_EXIT_INTERNATIONAL_CONTACT_URL
 OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'
+
+ISD_SECTION_MAPPING = {
+    'expand': {
+        'header_section': tier_one_nav_items.EXPAND,
+        'header_sub_section': tier_two_nav_items.EXPAND_INVESTMENT_SUPPORT_DIRECTORY,
+        'breadcrumbs': {'label': 'Expand to the UK', 'url': urls.international.EXPAND_HOME},
+        'search_url': urls.international.EXPAND_ISD_SEARCH,
+        'search_label': 'Find a UK specialist',
+        'isd_url': urls.international.EXPAND_ISD_HOME
+    },
+    'capital-invest': {
+        'header_section': tier_one_nav_items.INVEST_CAPITAL,
+        'header_sub_section': tier_two_nav_items.CAPITAL_INVEST_INVESTMENT_SUPPORT_DIRECTORY,
+        'breadcrumbs': {'label': 'Invest capital in the UK', 'url': urls.international.CAPITAL_INVEST_HOME},
+        'search_url': urls.international.CAPITAL_INVEST_ISD_SEARCH,
+        'search_label': 'Find a UK specialist',
+        'company_breadcrumbs': {'label: '},
+        'isd_url': urls.international.CAPITAL_INVEST_ISD
+    },
+}

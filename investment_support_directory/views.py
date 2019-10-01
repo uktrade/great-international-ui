@@ -13,19 +13,23 @@ from directory_api_client.client import api_client
 from directory_constants import expertise
 from directory_components.mixins import CountryDisplayMixin, GA360Mixin
 
+from core.constants import ISD_SECTION_MAPPING
 from core.views import BaseNotifyFormView
 from core.helpers import (
     NotifySettings, get_filters_labels, get_results_from_search_response, get_case_study
 )
 from core.mixins import CompanyProfileMixin, InternationalHeaderMixin, PersistSearchQuerystringMixin, \
     SubmitFormOnGetMixin
-from core.header_config import tier_one_nav_items, tier_two_nav_items
 from investment_support_directory import forms, helpers
 
 
+def get_section(request):
+    if '/capital-invest/' in request:
+        return 'capital-invest'
+    return 'expand'
+
+
 class CompanyProfileMixin(CompanyProfileMixin, InternationalHeaderMixin):
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     @cached_property
     def company(self):
@@ -38,8 +42,6 @@ class CompanyProfileMixin(CompanyProfileMixin, InternationalHeaderMixin):
 class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = 'investment_support_directory/home.html'
     form_class = forms.CompanyHomeSearchForm
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -51,6 +53,8 @@ class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormVi
         )
 
     def get_context_data(self, **kwargs):
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
         return super().get_context_data(
             CHOICES_FINANCIAL=expertise.FINANCIAL,
             CHOICES_HUMAN_RESOURCES=expertise.HUMAN_RESOURCES,
@@ -58,6 +62,8 @@ class HomeView(CountryDisplayMixin, GA360Mixin, InternationalHeaderMixin, FormVi
             CHOICES_PUBLICITY=expertise.PUBLICITY,
             CHOICES_BUSINESS_SUPPORT=expertise.BUSINESS_SUPPORT,
             CHOICES_MANAGEMENT_CONSULTING=expertise.MANAGEMENT_CONSULTING,
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
             **kwargs,
         )
 
@@ -77,8 +83,6 @@ class CompanySearchView(
     form_class = forms.CompanySearchForm
     page_size = 10
     template_name = 'investment_support_directory/search.html'
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -91,8 +95,13 @@ class CompanySearchView(
         )
 
     def get_context_data(self, **kwargs):
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
         return super().get_context_data(
             show_search_guide='show-guide' in self.request.GET,
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
+            search_label=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_label'],
             **kwargs,
         )
 
@@ -156,8 +165,6 @@ class ProfileView(
     TemplateView
 ):
     template_name = 'investment_support_directory/profile.html'
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -180,6 +187,16 @@ class ProfileView(
             return redirect(to=self.get_canonical_url())
         return super().get(*args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
+        return super().get_context_data(
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
+            search_label=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_label'],
+            **kwargs,
+        )
+
 
 class ContactView(
     CompanyProfileMixin,
@@ -189,8 +206,6 @@ class ContactView(
     GA360Mixin,
     BaseNotifyFormView,
 ):
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -217,6 +232,16 @@ class ContactView(
         )
         return f'{url}?{self.search_querystring}'
 
+    def get_context_data(self, **kwargs):
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
+        return super().get_context_data(
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
+            search_label=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_label'],
+            **kwargs,
+        )
+
 
 class ContactSuccessView(
     CompanyProfileMixin,
@@ -227,8 +252,6 @@ class ContactSuccessView(
     TemplateView
 ):
     template_name = 'investment_support_directory/sent.html'
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -239,11 +262,19 @@ class ContactSuccessView(
             site_subsection='ContactSuccess'
         )
 
+    def get_context_data(self, **kwargs):
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
+        return super().get_context_data(
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
+            search_label=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_label'],
+            **kwargs,
+        )
+
 
 class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'core/companies/case-study.html'
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.INVESTMENT_SUPPORT_DIRECTORY
 
     def __init__(self):
         super().__init__()
@@ -274,8 +305,13 @@ class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mi
             'description': self.case_study['description'],
             'image': self.case_study['image_one'],
         }
+        self.header_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_section']
+        self.header_sub_section = ISD_SECTION_MAPPING[get_section(self.request.path)]['header_sub_section']
         return super().get_context_data(
             case_study=self.case_study,
+            breadcrumbs=ISD_SECTION_MAPPING[get_section(self.request.path)]['breadcrumbs'],
+            search_url=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_url'],
+            search_label=ISD_SECTION_MAPPING[get_section(self.request.path)]['search_label'],
             social=social,
             **kwargs
         )

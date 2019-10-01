@@ -45,7 +45,7 @@ HOW_TO_EXPAND = NavItem(
     url=urls.international.EXPAND_HOW_TO_SETUP
 )
 
-INVESTMENT_SUPPORT_DIRECTORY = NavItem(
+EXPAND_INVESTMENT_SUPPORT_DIRECTORY = NavItem(
     name='investment-support-directory',
     title=_('Find a UK specialist'),
     url=urls.international.EXPAND_ISD_HOME
@@ -67,6 +67,12 @@ OVERVIEW_INVEST_CAPITAL = NavItem(
     name='overview-invest-capital',
     title=_('Overview'),
     url=urls.international.CAPITAL_INVEST_HOME
+)
+
+CAPITAL_INVEST_INVESTMENT_SUPPORT_DIRECTORY = NavItem(
+    name='investment-support-directory',
+    title=_('Find a UK specialist'),
+    url=urls.international.CAPITAL_INVEST_ISD
 )
 
 # This page does not yet exist - will 404 for now.

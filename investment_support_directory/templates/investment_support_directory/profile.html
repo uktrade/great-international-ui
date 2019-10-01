@@ -7,7 +7,10 @@
     {% url 'investment-support-directory:search' as search_url %}
     {% breadcrumbs company.name %}
         <a href="{{ services_urls.great_international }}">great.gov.uk international</a>
-        <a href="{% url 'investment-support-directory:home' %}?{{ search_querystring }}">Find a UK specialist</a>
+        {% if breadcrumbs.label and breadcrumbs.url %}
+            <a href="{{ breadcrumbs.url }}">{{ breadcrumbs.label }}</a>
+        {% endif %}
+        <a href="{{ search_url }}?{{ search_querystring }}">{{ search_label }}</a>
     {% endbreadcrumbs %}
 {% endblock %}
 

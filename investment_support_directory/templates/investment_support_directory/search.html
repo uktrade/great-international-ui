@@ -4,10 +4,12 @@
 
 {% block breadcrumbs %}
     <div class="container">
-        {% url 'investment-support-directory:search' as search_url %}
         {% breadcrumbs 'Search results' %}
           <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-          <a href="{{ search_url }}">Find a UK specialist</a>
+          {% if breadcrumbs.label and breadcrumbs.url %}
+            <a href="{{ breadcrumbs.url }}">{{ breadcrumbs.label }}</a>
+          {% endif %}
+          <a href="{{ search_url }}">{{ search_label }}</a>
         {% endbreadcrumbs %}
     </div>
 {% endblock %}
