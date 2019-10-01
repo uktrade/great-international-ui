@@ -11,7 +11,8 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView, \
+    InvestInternationalHomePageView
 
 test_sectors = [
     {
@@ -1706,7 +1707,7 @@ def test_show_featured_cards_section_on_invest_home_page(
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
+    response = InvestInternationalHomePageView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is True
@@ -1751,7 +1752,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_some_on_invest_hom
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
+    response = InvestInternationalHomePageView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is False
@@ -1778,7 +1779,7 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 
     request = rf.get('/international/content/midlands/')
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
+    response = InvestInternationalHomePageView.as_view()(
         request, path='/international/content/midlands/')
 
     assert response.context_data['show_featured_cards'] is False
