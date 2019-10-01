@@ -660,38 +660,36 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
     pass
 
 
-class InvestInternationalHomePageView(MultilingualCMSPageFromPathView):
+@register_context_modifier('InvestInternationalHomePage')
+def invest_homepage_context_modifier(context, request):
 
-    def get_context_data(self, *args, **kwargs):
-        hpo_pages = []
-        if 'high_potential_opportunities' in self.page:
-            hpo_pages = self.page['high_potential_opportunities'],
+    hpo_pages = []
+    if 'high_potential_opportunities' in context['page']:
+        hpo_pages = context['page']['high_potential_opportunities'],
 
-        how_to_expand_items = []
-        if 'how_to_expand' in self.page:
-            how_to_expand_items = [
-                {'title': how_to['title'], 'text': how_to['text']}
-                for how_to in self.page['how_to_expand'] if how_to['title'] and how_to['text']
-            ]
+    featured_cards = []
+    if 'featured_cards' in context['page']:
+        featured_cards = [card for card in context['page']['featured_cards']
+                          if card['title'] and card['summary'] and card['image']]
+    number_of_featured_cards = len(featured_cards)
 
-        featured_cards = []
-        if 'featured_cards' in self.page:
-            featured_cards = [card for card in self.page['featured_cards']
-                              if card['title'] and card['summary'] and card['image']]
-        number_of_featured_cards = len(featured_cards)
+    how_to_expand_items = []
+    if 'how_to_expand' in context['page']:
+        how_to_expand_items = [
+            {'title': how_to['title'], 'text': how_to['text']}
+            for how_to in context['page']['how_to_expand'] if how_to['title'] and how_to['text']
+        ]
 
-        return super().get_context_data(
-            investment_support_directory_link=urls.international.EXPAND_ISD_HOME,
-            how_to_set_up_visas_and_migration_link=urls.international.EXPAND_HOW_TO_SETUP_VISAS_AND_MIGRATION,
-            how_to_set_up_tax_and_incentives_link=urls.international.EXPAND_HOW_TO_SETUP_TAX_AND_INCENTIVES,
-            international_home_page_link=urls.international.HOME,
-            how_to_expand_items=how_to_expand_items,
-            how_to_expand_items_length=len(how_to_expand_items),
-            show_hpo_section=bool(
-                hpo_pages and filter_by_active_language(hpo_pages[0])
-            ),
-            show_featured_cards=(number_of_featured_cards == 3),
-        )
+    return {
+        'international_home_page_link': urls.international.HOME,
+        'investment_support_directory_link': urls.international.EXPAND_ISD_HOME,
+        'how_to_set_up_visas_and_migration_link': urls.international.EXPAND_HOW_TO_SETUP_VISAS_AND_MIGRATION,
+        'how_to_set_up_tax_and_incentives_link': urls.international.EXPAND_HOW_TO_SETUP_TAX_AND_INCENTIVES,
+        'show_hpo_section': bool(hpo_pages and filter_by_active_language(hpo_pages[0])),
+        'show_featured_cards': (number_of_featured_cards == 3),
+        'how_to_expand_items': how_to_expand_items,
+        'how_to_expand_items_length': len(how_to_expand_items),
+    }
 
 
 @register_context_modifier('InternationalTradeHomePage')
