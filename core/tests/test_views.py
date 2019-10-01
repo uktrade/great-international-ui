@@ -1786,6 +1786,42 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_how_to_expand_items_on_invest_home_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InvestInternationalHomePage',
+        'high_potential_opportunities': [],
+        'how_to_expand': [
+            {'title': 'some title', 'text': 'some text'},
+            {'title': '', 'text': 'text with no title'},
+            {'title': 'title with no text', 'text': ']'},
+            {'title': 'some title2', 'text': 'some text2'},
+        ],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/invest/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestInternationalHomePageView.as_view()(
+        request, path='/international/invest/')
+
+    assert len(response.context_data['how_to_expand_items']) == 2
+    for how_to in response.context_data['how_to_expand_items']:
+        assert how_to['title']
+        assert how_to['text']
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_for_about_uk_landing_page(
         mock_cms_response, rf):
 
