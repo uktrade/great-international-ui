@@ -171,7 +171,7 @@
                         {% if parity == 'odd' %}<div class="grid-row">{% endif %}
                             <div class="column-one-half">
                                 {% with "case-study-"|add:forloop.counter as card_id %}
-                                    {% url request.resolver_match.namespace|add:':case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
+                                    {% with url=isd_url|add:'case-study/'|add:case_study.pk|add:case_study.slug as case_study_url %}
                                     {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
                                 {% endwith %}
                             </div>
