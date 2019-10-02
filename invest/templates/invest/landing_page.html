@@ -97,7 +97,9 @@
 </section>
 {% endif %}
 
+{% if page.how_to_expand_title and page.how_to_expand_image.url and how_to_expand_items_length > 0 %}
 {% full_width_image_with_list_and_media title=page.how_to_expand_title background_image=page.how_to_expand_image.url intro_markdown=page.how_to_expand_intro items_list=how_to_expand_items %}
+{% endif %}
 
 {% if page.how_we_help_title and page.how_we_help_lead_in %}
 <section class="how-we-help page-section" id="how-we-help">
