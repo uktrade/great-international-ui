@@ -97,28 +97,7 @@
 </section>
 {% endif %}
 
-{% if page.how_to_expand_title and page.how_to_expand_image.url and how_to_expand_items_length > 0 %}
-<section class="how-to-expand" style="background-image: url('{{ page.how_to_expand_image.url }}')">
-    <div class="container page-section">
-        <h1 class="heading-large">{{ page.how_to_expand_title }}</h1>
-        <div class="grid-row">
-            <div class="grid-row column-two-thirds-l padding-bottom-15">
-                {{ page.how_to_expand_intro|add_export_elements_classes|safe }}
-            </div>
-            <div class="column-half-xl column-full-m">
-                <div class="flex-grid">
-                    {% for how_to in how_to_expand_items %}
-                    <div class="column-half-l">
-                        <h2 class="bold-medium how_to_expand_item padding-top-15">{{ how_to.title }}</h2>
-                        <span class="font-xsmall">{{ how_to.text|add_export_elements_classes|safe }}</span>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endif %}
+{% full_width_image_with_list_and_media title=page.how_to_expand_title background_image=page.how_to_expand_image.url intro_markdown=page.how_to_expand_intro items_list=how_to_expand_items %}
 
 {% if page.how_we_help_title and page.how_we_help_lead_in %}
 <section class="how-we-help page-section" id="how-we-help">
