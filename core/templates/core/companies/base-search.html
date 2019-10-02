@@ -72,7 +72,7 @@
                             {% for company in results %}
                                 <li>
                                     {% ga360_data "company-detail-link" ga-value=company.name %}
-                                    <a href="{{ isd_url}}/{{company.number}}/{{company.slug}}?{{ search_querystring }}">
+                                    <a href="{{ isd_url}}{{company.number}}/{{company.slug}}?{{ search_querystring }}">
                                         <div class="logo-container padding-15 padding-30-m">
                                             {% thumbnail company.logo "x135" as logo %}
                                                 <img src="{{ logo.url }}" alt="{{ company.name }}" />
