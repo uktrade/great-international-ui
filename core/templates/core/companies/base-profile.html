@@ -24,7 +24,7 @@
                 </section>
                 <section id="contact-company-container">
                     {% block contact %}
-                        <a href="{% url request.resolver_match.namespace|add:':company-contact' company_number=company.number %}?{{ search_querystring }}" class="button">Contact company</a>
+                        <a href="{{isd_url}}/{{company.number}}/contact/?{{ search_querystring }}" class="button">Contact company</a>
                     {% endblock %}
                 </section>
                 <section id="about-company-container" class="margin-top-15 margin-top-45-m">

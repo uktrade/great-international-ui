@@ -11,9 +11,7 @@
       <div class="column-two-thirds-l column-half-xl" >
         <h1 class="heading-xlarge margin-bottom-0">Send a message to {{ company.name }}</h1>
         <p class="hero-subtitle margin-bottom-45 margin-top-15">Enter your details and a brief message about your needs. We’ll send these to the business you’ve selected.</p>
-        {% url request.resolver_match.namespace|add:':company-contact' company_number=company.number as contact_url %}
-
-        <form method="post" action="{{contact_url}}?{{ search_querystring }}">
+        <form method="post" action="{{isd_url}}/{{company.number}}/contact/?{{ search_querystring }}">
             {{ form }}
             <button class="button">Send message</button>
         </form>

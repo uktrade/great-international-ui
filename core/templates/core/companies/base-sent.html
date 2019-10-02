@@ -19,7 +19,7 @@
     <section id="next-container" class="background-stone-30 padding-bottom-30">
       <div class="container">
         <h2 class="heading-large">Next steps</h2>
-        <a class="link" href="{% url request.resolver_match.namespace|add:':search' %}?{{ search_querystring }}">Browse more companies</a>
+        <a class="link" href="{{ search_url }}?{{ search_querystring }}">Browse more companies</a>
       </div>
     </section>
 
