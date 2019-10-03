@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+## hotfix
+-- TT-1867 - Broken isd links hotfix
+
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
 - CI-537 - Added breadcrumbs to FAS overview page
