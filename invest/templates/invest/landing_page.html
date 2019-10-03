@@ -161,7 +161,7 @@
 {% endif %}
 
 {% if show_hpo_section %}
-<section class="stone-page-section" id="high-potential-opportunities">
+<section class="{% if page.isd_section_title and page.isd_section_text %} stone-page-section {% else %} page-section {% endif %}" id="high-potential-opportunities">
     <div class="container">
         <h2 class="heading-large"> {{ page.hpo_title }} </h2>
             <div class="grid-row padding-bottom-45">
@@ -179,7 +179,7 @@
 {% endif %}
 
 {% if page.sector_title and page.sectors|filter_by_active_language %}
-<section class="page-section" id="industries">
+<section class="{% if page.isd_section_title and page.isd_section_text %} page-section {% else %} stone-page-section {% endif %}" id="industries">
     <div class="container">
         <h2 class="heading-large">{{ page.sector_title }}</h2>
             <div class="grid-row padding-bottom-45">
