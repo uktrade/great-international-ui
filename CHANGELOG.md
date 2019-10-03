@@ -4,6 +4,8 @@
 
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
+- CI-537 - Added breadcrumbs to FAS overview page
+- no ticket - Update navbar to link from `about-dit` to `about-us`
 
 ### Fixed bugs
 
@@ -17,8 +19,6 @@
 - CI-518 - Replace how we help on International home page with How DIT help cards section
 - CI-501 - Added international triage contact form from great-domestic-ui
 - CI-493 - Added how we help ctas to Invest, Expand and Trade home pages 
-- CI-537 - Added breadcrumbs to FAS overview page
-
 ### Fixed bugs
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study

@@ -4,7 +4,7 @@ dateparser==0.7.0
 directory-api-client==20.0.0
 directory-cms-client==10.2.0
 directory-components==34.0.1
-directory-constants==20.5.0
+directory-constants==20.7.0
 directory-forms-api-client==5.0.0
 directory-healthcheck==1.1.2
 directory-validators==5.2.0
