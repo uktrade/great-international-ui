@@ -27,7 +27,7 @@ TRADE = NavItem(
 )
 
 ABOUT_DIT = NavItem(
-    name='about-dit',
+    name='about-us',
     title=_('About us'),
     url=urls.international.ABOUT_DIT_HOME
 )
