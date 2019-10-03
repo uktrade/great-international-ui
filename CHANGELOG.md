@@ -5,7 +5,7 @@
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
 - CI-537 - Added breadcrumbs to FAS overview page
-- no ticket - Update nav link from `about-dit` to `about-us`
+- no ticket - Update navbar to link from `about-dit` to `about-us`
 
 ### Fixed bugs
 
