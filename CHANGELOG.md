@@ -3,13 +3,22 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-528 - Updated capital invest label on form triage
+- CI-537 - Added breadcrumbs to FAS overview page
+- no ticket - Update navbar to link from `about-dit` to `about-us`
+
+### Fixed bugs
+
+## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
+
+### Implemented enhancements
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
 - CI-508 - Added how dit help sections back into the new nav
 - CI-510 - Removed intro image being required for section on DIT services page
 - CI-518 - Replace how we help on International home page with How DIT help cards section
 - CI-501 - Added international triage contact form from great-domestic-ui
 - CI-493 - Added how we help ctas to Invest, Expand and Trade home pages 
-
 ### Fixed bugs
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study
