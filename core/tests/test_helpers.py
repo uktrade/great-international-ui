@@ -557,9 +557,9 @@ def test_get_map_labels_with_vertical_positions_four_words():
     ('trade', 'trade', 'find-a-supplier'),
     ('trade/search', 'trade', 'find-a-supplier'),
     ('trade/contact', 'trade', 'contact-us-trade'),
-    ('about-dit', 'about-us', 'overview-about-dit'),
-    ('about-dit/some-other-page', 'about-us', ''),
-    ('about-dit/contact', 'about-us', 'contact-us-about-dit'),
+    ('about-us', 'about-us', 'overview-about-dit'),
+    ('about-us/some-other-page', 'about-us', ''),
+    ('about-us/contact', 'about-us', 'contact-us-about-dit'),
 ])
 def test_get_header_config(path, expected_section_name, expected_sub_section_name):
     header_config = get_header_config(path)
