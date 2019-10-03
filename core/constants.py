@@ -283,9 +283,9 @@ HEADER_SECTION_MAPPING = {
 
     # About DIT
     r'^contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
-    r'^about-dit/contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
-    r'^about-dit$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
-    r'^about-dit.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
+    r'^about-us/contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
+    r'^about-us$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
+    r'^about-us.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
 }
 
 INVEST_CONTACT_URL = urls.international.EXPAND_CONTACT
