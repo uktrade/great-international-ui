@@ -3,7 +3,8 @@
 ## Pre-release
 
 ## hotfix
--- TT-1867 - Broken isd links hotfix
+- TT-1867 - Broken isd links hotfix
+- TT-2000 - fix broken HR links
 
 ### Implemented enhancements
 - CI-528 - Updated capital invest label on form triage
