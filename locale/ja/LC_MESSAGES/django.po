@@ -266,7 +266,7 @@ msgstr ""
 
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
-msgstr ""
+msgstr "このページに関するお問い合わせはこちら"
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
 msgid "Filter results"
@@ -312,22 +312,22 @@ msgstr ""
 
 #: core/templates/core/sector_page.html:166
 msgid "Next steps"
-msgstr ""
+msgstr "検討してみませんか？"
 
 #: core/templates/core/sector_page.html:167
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
 "on how to do business in the UK."
-msgstr ""
+msgstr "英国の企業との取引、または英国での事業設立をご検討の際はご連絡ください。英国でのビジネスについて、わかりやすくアドバイスいたします。"
 
 #: core/templates/core/sector_page.html:172
 msgid "I want to invest in the UK"
-msgstr ""
+msgstr "英国への事業投資を検討"
 
 #: core/templates/core/sector_page.html:176
 msgid "I want to buy from the UK"
-msgstr ""
+msgstr "英国との取引を検討"
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"

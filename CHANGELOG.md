@@ -3,9 +3,11 @@
 ## Pre-release
 
 ## hotfix
--- TT-1867 - Broken isd links hotfix
+- TT-1867 - Broken isd links hotfix
 
 ### Implemented enhancements
+- CMS-1848 - Make landing page hero text full width in Japanese
+- CI-529 - Add hardcoded Japanese translations for content on industry pages
 - CI-528 - Updated capital invest label on form triage
 - CI-537 - Added breadcrumbs to FAS overview page
 - no ticket - Update navbar to link from `about-dit` to `about-us`
@@ -21,7 +23,7 @@
 - CI-510 - Removed intro image being required for section on DIT services page
 - CI-518 - Replace how we help on International home page with How DIT help cards section
 - CI-501 - Added international triage contact form from great-domestic-ui
-- CI-493 - Added how we help ctas to Invest, Expand and Trade home pages 
+- CI-493 - Added how we help ctas to Invest, Expand and Trade home pages
 ### Fixed bugs
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study
