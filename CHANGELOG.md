@@ -4,6 +4,7 @@
 
 ## hotfix
 - TT-1867 - Broken isd links hotfix
+- TT-2000 - fix broken HR links
 
 ### Implemented enhancements
 - CMS-1848 - Make landing page hero text full width in Japanese

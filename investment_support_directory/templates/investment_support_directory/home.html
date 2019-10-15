@@ -76,7 +76,7 @@
                 <ul class="column-one-third">
                     <h3 class="heading-medium">Human resources and recruitment</h3>
                     {% for choice in CHOICES_HUMAN_RESOURCES %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_human_resources={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_human_resources={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
