@@ -2,10 +2,6 @@
 
 ## Pre-release
 
-## hotfix
-- TT-1867 - Broken isd links hotfix
-- TT-2000 - fix broken HR links
-
 ### Implemented enhancements
 - CMS-1848 - Make landing page hero text full width in Japanese
 - CI-529 - Add hardcoded Japanese translations for content on industry pages
@@ -14,6 +10,12 @@
 - no ticket - Update navbar to link from `about-dit` to `about-us`
 
 ### Fixed bugs
+
+## [2019.10.03_3](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03_3)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_1...2019.10.03_3)
+## hotfix
+- TT-1867 - Broken isd links hotfix
+- TT-2000 - fix broken HR links
 
 ## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
