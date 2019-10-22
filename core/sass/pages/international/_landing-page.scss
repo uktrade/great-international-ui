@@ -5,6 +5,12 @@
 @import '../../partials/vars';
 @import '../../partials/mixins';
 
+:lang(ja) .landing-page {
+  .great-hero-text {
+    width: 100%;
+  }
+}
+
 .landing-page {
 
   .features-highlight-section {
