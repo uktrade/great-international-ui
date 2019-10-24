@@ -262,7 +262,7 @@ msgstr ""
 #: core/templates/core/article_related_content_list.html:7
 #: core/templates/core/sector_page.html:148
 msgid "Related content"
-msgstr ""
+msgstr "関連情報"
 
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
