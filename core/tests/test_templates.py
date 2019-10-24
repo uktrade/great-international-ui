@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.template.loader import render_to_string
 
 from bs4 import BeautifulSoup
@@ -157,3 +159,81 @@ def test_homepage_related_pages(default_context):
     assert 'Related article title' in html
     assert 'Related article teaser' in html
     assert '/topic/list/article' in html
+
+
+@patch('django.utils.translation.get_language')
+def test_guide_child_articles_less_than_nine(mock_language):
+    mock_language.return_value = 'fr'
+
+    french_page = {
+        'meta': {
+            'languages': [['fr', 'Français']]
+        }
+    }
+    german_page = {
+        'meta': {
+            'languages': [['de', 'Deutsch']]
+        }
+    }
+
+    context = {
+        'page': {
+            'title': 'test',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English'],
+                    ['fr', 'Français'],
+                    ['de', 'Deutsch'],
+                ]
+            },
+            'page_type': '',
+            'guides': [
+                french_page, french_page, french_page, french_page, french_page, german_page, german_page
+            ]
+        }
+    }
+
+    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
+    soup = BeautifulSoup(html, 'html.parser')
+
+    assert len(soup.find(id='guide-articles').find_all('article')) == 5
+
+
+@patch('django.utils.translation.get_language')
+def test_guide_child_articles_more_than_nine(mock_language):
+    mock_language.return_value = 'fr'
+
+    french_page = {
+        'meta': {
+            'languages': [['fr', 'Français']]
+        }
+    }
+    german_page = {
+        'meta': {
+            'languages': [['de', 'Deutsch']]
+        }
+    }
+
+    context = {
+        'page': {
+            'title': 'test',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English'],
+                    ['fr', 'Français'],
+                    ['de', 'Deutsch'],
+                ]
+            },
+            'page_type': '',
+            'guides': [
+                french_page, french_page, french_page, french_page, french_page,
+                french_page, french_page, french_page, french_page, french_page,
+                german_page, german_page
+            ]
+        }
+    }
+
+    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
+    soup = BeautifulSoup(html, 'html.parser')
+
+    assert len(soup.find(id='guide-articles').find_all('article')) == 9
