@@ -11,6 +11,7 @@
 - no ticket - Update navbar to link from `about-dit` to `about-us`
 
 ### Fixed bugs
+- XOT-1183 - Show top 9 articles on how to setup page
 
 ## [2019.10.03_3](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03_3)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_1...2019.10.03_3)
