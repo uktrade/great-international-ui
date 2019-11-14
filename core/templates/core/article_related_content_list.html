@@ -9,7 +9,7 @@
     <ul>
       {% for article in related_pages %}
         <li>
-          <h3 class="heading-small"><a href="{{ article.meta.url }}" class="link">{{ article.title }}</a></h3>
+          <h3 class="heading-small"><a id="related-article-{{ article.meta.slug }}-link" href="{{ article.full_path }}" class="link">{{ article.title }}</a></h3>
         </li>
       {% endfor %}
     </ul>

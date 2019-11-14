@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-551 - Remove duplicated related content from article template
 - CI-545 - Add JP translation for 'Related content'
 - CMS-1848 - Make landing page hero text full width in Japanese
 - CI-529 - Add hardcoded Japanese translations for content on industry pages
