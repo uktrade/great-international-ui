@@ -16,6 +16,9 @@
 - XOT-1183 - Show top 9 articles on how to setup page
 - TT-2174 - Fix alignment of employees label
 - TT-1854 - Fix industries redirects and add missing trailing slashes
+- TT-2091 - Fix missing logos in s3 bucket
+- no ticket - upgrade pillow for security vulnerability fix
+- no ticket - upgrade directory-components for accessibility fix
 
 ## [2019.10.03_3](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03_3)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_1...2019.10.03_3)
