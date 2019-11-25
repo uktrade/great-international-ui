@@ -24,11 +24,38 @@
 - no ticket - upgrade pillow for security vulnerability fix
 - no ticket - upgrade directory-components for accessibility fix
 
+
+### Fixed bugs
+
+## [2019.11.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.11.25)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_3...2019.11.25)
+
+## Hotfix
+- TT-2186 - Fix captcha on industry subscribe form
+
 ## [2019.10.03_3](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03_3)
-[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_1...2019.10.03_3)
-## hotfix
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03...2019.10.03_3)
+
+## Hotfix
+
+- TT-2000 - isd bad links hotfix
 - TT-1867 - Broken isd links hotfix
-- TT-2000 - fix broken HR links
+
+## [2019.10.03](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.01...2019.10.03)
+
+### Implemented enhancements
+- CMS-1848 - Make landing page hero text full width in Japanese
+- CI-529 - Add hardcoded Japanese translations for content on industry pages
+- CI-528 - Updated capital invest label on form triage
+- CI-537 - Added breadcrumbs to FAS overview page
+- no ticket - Update navbar to link from `about-dit` to `about-us`
+
+## [2019.10.01](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.01)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.26...2019.10.01)
+
+### Fixed bugs
+- no ticket - Add how we help section back into International home page
 
 ## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
@@ -44,13 +71,6 @@
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study
 - no ticket - Fixed `advanced-engineering` redirects taking users to 404 page.
-
-## [2019.10.01](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.01)
-[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.10.01)
-
-### Fixed bugs
-- no ticket - Add how we help section back into International home page
-
 
 ## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
