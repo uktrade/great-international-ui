@@ -2,16 +2,17 @@ from django.forms import HiddenInput, Select, Textarea, TextInput, ValidationErr
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
-from captcha.fields import ReCaptchaField
+import captcha.fields
 from directory_constants import choices, urls
 from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.common import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
-from core.fields import DirectoryComponentsRecaptchaField
-
 from . import constants
+
+
+ReCaptchaField = forms.field_factory(captcha.fields.ReCaptchaField)
 
 
 SELECT_LABEL = 'Please select your industry'
@@ -183,7 +184,7 @@ class SubscribeForm(forms.Form):
         choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
         widget=Select(attrs={'data-ga-id': 'country-input'})
     )
-    captcha = DirectoryComponentsRecaptchaField(label=_(''))
+    captcha = captcha.fields.ReCaptchaField()
     terms = forms.BooleanField(
         widget=forms.CheckboxWithInlineLabel(
             attrs={'class': 'visually-hidden-label'}
