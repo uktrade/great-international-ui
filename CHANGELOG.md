@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-555 - Update HPO page design
 - CI-551 - Remove duplicated related content from article template
 - CI-545 - Add JP translation for 'Related content'
 - CMS-1848 - Make landing page hero text full width in Japanese
