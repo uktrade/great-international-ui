@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-547 - Remove tariffs section
 - CMS-1787 - Use correct header on Invest pages
 - CI-302 - Added translations for new header
 - CI-555 - Update HPO page design
