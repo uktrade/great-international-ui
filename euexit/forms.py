@@ -2,8 +2,8 @@ from captcha.fields import ReCaptchaField
 from directory_components import forms
 from directory_constants import choices, urls
 from directory_forms_api_client.forms import ZendeskActionMixin
-from directory_validators.common import not_contains_url_or_email
-from directory_validators.company import no_html
+from directory_validators.url import not_contains_url_or_email
+from directory_validators.string import no_html
 
 from django.forms import Select, Textarea
 from django.utils.html import mark_safe

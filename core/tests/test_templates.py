@@ -55,8 +55,8 @@ def test_article_detail_page_related_content(default_context):
                 'title': 'Related article 1',
                 'teaser': 'Related article 1 teaser',
                 'thumbnail': {'url': 'related_article_one.jpg'},
+                'full_path': '/international/test-list/test-one/',
                 'meta': {
-                    'url': '/international/test-list/test-one/',
                     'slug': 'test-one',
                     'languages': [('en-gb', 'English')],
                 }
@@ -65,11 +65,11 @@ def test_article_detail_page_related_content(default_context):
                 'title': 'Related article 2',
                 'teaser': 'Related article 2 teaser',
                 'thumbnail': {'url': 'related_article_two.jpg'},
+                'full_path': '/international/test-list/test-two/',
                 'meta': {
-                    'url': '/international/test-list/test-two/',
                     'slug': 'test-two',
                     'languages': [('en-gb', 'English')],
-                }
+                },
             },
         ],
         'meta': {
@@ -97,11 +97,11 @@ def test_article_detail_page_related_content(default_context):
     ).attrs['href'] == '/international/test-list/test-two/'
 
     assert soup.find(
-        id='related-article-test-one'
-    ).select('h3')[0].text == 'Related article 1'
+        id='related-article-test-one-link'
+    ).text == 'Related article 1'
     assert soup.find(
-        id='related-article-test-two'
-    ).select('h3')[0].text == 'Related article 2'
+        id='related-article-test-two-link'
+    ).text == 'Related article 2'
 
 
 def test_homepage_no_related_pages(default_context):
