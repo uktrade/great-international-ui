@@ -1,11 +1,23 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_with_invest_header.html' %}
 {% load static from staticfiles %}
 {% load directory_components %}
 {% load cms_hero from cms_tags %}
+{% load invest_tags %}
 
 {% block head_js %}
     {{ block.super }}
     <script src="{% static 'core/js/dit.components.hideParagraphOnScroll.js' %}"></script>
+{% endblock %}
+
+{% block head_css %}
+    {{ block.super }}
+    {# Prevent header sub navigation from sticking only on this type of page #}
+    <style>
+      .great-sub-header {
+        position: static;
+        top: auto;
+      }
+    </style>
 {% endblock %}
 
 {% block css_layout_class %}hpo-detail-page{% endblock %}
@@ -28,17 +40,17 @@
 <section id="contact-section" class="contact-section">
     <div class="container">
         {% url 'high-potential-opportunity-request-form' as hpo_contact_url %}
-        {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone-60' box_content=page.contact_proposition|add_export_elements_classes|convert_headings_to:'h2'|override_elements_css_class:'h2,heading-medium'|safe button_text=page.contact_button button_url=hpo_contact_url %}
+        {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone' box_content=page.contact_proposition|add_export_elements_classes|convert_headings_to:'h2'|override_elements_css_class:'h2,heading-medium'|safe button_text=page.contact_button button_url=hpo_contact_url button_class='button-arrow-large button-blue' %}
     </div>
 </section>
 
 <section id="proposition-one" class="hpo-page-section padding-top-60 padding-bottom-60">
     <div class="container">
         <div class="grid-row">
-            <div class="column-half wrap-tight margin-bottom-30">
+            <div class="column-full column-half-l wrap-tight margin-bottom-30">
                 {{ page.proposition_one|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-large'|safe }}
             </div>
-            <div class="column-half">
+            <div class="column-full column-half-l">
               {% if page.proposition_one_video %}
                   <video controls data-ga-class="hpo-video" class="width-full">
                     <source src="{{ page.proposition_one_video.url }}" type="video/{{ page.proposition_one_video.file_extension }}">
@@ -50,7 +62,7 @@
             </div>
         </div>
         {% if page.proposition_one_video %}
-          <details closed class="width-two-thirds">
+          <details closed class="width-two-thirds-l">
             <summary>View video transcript</summary>
             {{ page.proposition_one_video_transcript|add_export_elements_classes }}
           </details>
@@ -58,12 +70,12 @@
     </div>
 </section>
 
-<section id="opportunity-list" class="hpo-page-section padding-vertical-60">
-    <div class="container wrap-tight">
-        <h2 class="heading-large">{{ page.opportunity_list_title }}</h2>
+<section id="opportunity-list" class="background-stone-30 hpo-page-section padding-vertical-60">
+    <div class="container">
         <div class="grid-row">
-            <div class="column-third-xl column-half-m">
-                <ol class="list">
+            <div class="column-half-l margin-bottom-30 margin-bottom-0-l wrap-tight">
+              <h2 class="heading-large">{{ page.opportunity_list_title }}</h2>
+                <ol class="list width-two-thirds">
                     <li>
                       {{ page.opportunity_list_item_one|add_export_elements_classes|convert_headings_to:'h3'|override_elements_css_class:'h3,heading-small'|override_elements_css_class:'p,font-xsmall'|safe }}
                     </li>
@@ -77,8 +89,8 @@
                     {% endif %}
                 </ol>
             </div>
-            <div class="column-two-thirds">
-                <img src="{{ page.opportunity_list_image.url }}" alt="{{ page.opportunity_list_image_alt }}" class="opportunity-list-image"/>
+            <div class="column-half-l">
+                <img src="{{ page.opportunity_list_image.url }}" alt="{{ page.opportunity_list_image_alt }}" class="width-full"/>
             </div>
         </div>
     </div>
@@ -86,14 +98,11 @@
 
 <section id="proposition-two" class="proposition-two hpo-page-section padding-vertical-60">
     <div class="container">
-        <div class="flex-grid">
-            <div class="column-half">
+        <div class="grid-row">
+            <div class="column-half-l">
                 <div class="proposition-two-intro-container wrap-tight padding-bottom-30">
                     {{ page.proposition_two|add_export_elements_classes }}
                 </div>
-            </div>
-            <div class="proposition-two-grid">
-              <div class="column-half">
                   <ul class="proposition-list">
                       <li class="proposition-list-item">
                         {{ page.proposition_two_list_item_one|add_export_elements_classes|override_elements_css_class:'li,font-xsmall'|safe }}
@@ -106,7 +115,7 @@
                       </li>
                   </ul>
               </div>
-              <div class="column-half padding-bottom-30" id="proposition-one-media-container">
+              <div class="column-half-l padding-bottom-30" id="proposition-one-media-container">
                   {% if page.proposition_two_video %}
                     <video controls class="width-full">
                       <source src="{{ page.proposition_two_video.url }}" type="video/{{ page.proposition_two_video.file_extension }}">
@@ -127,7 +136,7 @@
     </div>
 </section>
 
-<section id="competitive-advantages" class="competitive-advantages hpo-page-section padding-vertical-60">
+<section id="competitive-advantages" class="background-stone-30 competitive-advantages hpo-page-section padding-vertical-60">
     <div class="container wrap-tight">
         <h2 id="advantages-heading" class="heading-large margin-bottom-60">{{ page.competitive_advantages_title }}</h2>
         <ul class="flex-grid" aria-labelledby="advantages-heading">
@@ -213,46 +222,75 @@
 <section id="case-studies" class="hpo-page-section case-studies padding-vertical-60">
     <div class="container wrap-tight">
         <h2 class="heading-large margin-bottom-45">{{ page.case_study_list_title }}</h2>
-            <ul>
-                <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
-                    <div class="column-third wrap-tight">
-                        {{ page.case_study_one_text|add_export_elements_classes }}
-                    </div>
-                    <div class="column-two-thirds">
-                        <img src="{{ page.case_study_one_image.url }}" class="width-full" alt="{{ page.case_study_one_image_alt }}" />
-                    </div>
-                </li>
-                {% if page.case_study_two_text %}
-                    <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
-                        <div class="column-third wrap-tight">
-                            {{ page.case_study_two_text|add_export_elements_classes }}
-                        </div>
-                        <div class="column-two-thirds">
-                            <img src="{{ page.case_study_two_image.url }}" class="width-full" alt="{{ page.case_study_two_image_alt }}" />
-                        </div>
-                    </li>
-                {% endif %}
-                {% if page.case_study_three_text %}
-                    <li class="grid-row hpo-case-study padding-bottom-30 margin-bottom-30">
-                        <div class="column-third wrap-tight">
-                            {{ page.case_study_three_text|add_export_elements_classes }}
-                        </div>
-                        <div class="column-two-thirds">
-                            <img src="{{ page.case_study_three_image.url }}" class="width-full" alt="{{ page.case_study_three_image_alt }}" />
-                        </div>
-                    </li>
-                {% endif %}
-                {% if page.case_study_four_text %}
-                    <li class="grid-row hpo-case-study">
-                        <div class="column-third wrap-tight">
-                            {{ page.case_study_four_text|add_export_elements_classes }}
-                        </div>
-                        <div class="column-two-thirds">
-                            <img src="{{ page.case_study_four_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
-                        </div>
-                    </li>
-                {% endif %}
-            </ul>
+          <div class="great-accordion-list">
+            <details open class="great-accordion">
+              <summary class="width-full">
+                <span class="bold-small link">{{ page.case_study_one_text|get_first_heading }}</span>
+              </summary>
+              <div>
+                <div class="grid-row">
+                  <div class="column-third-m">
+                    {{ page.case_study_one_text|add_export_elements_classes }}
+                  </div>
+                  <div class="column-two-thirds-m">
+                    <img src="{{ page.case_study_one_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                  </div>
+                </div>
+              </div>
+            </details>
+
+          {% if page.case_study_two_text %}
+            <details closed class="great-accordion">
+              <summary class="width-full">
+                <span class="bold-small link">{{ page.case_study_two_text|get_first_heading }}</span>
+              </summary>
+              <div>
+                <div class="grid-row">
+                  <div class="column-third-m">
+                    {{ page.case_study_two_text|add_export_elements_classes }}
+                  </div>
+                  <div class="column-two-thirds-m">
+                    <img src="{{ page.case_study_two_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                  </div>
+                </div>
+              </div>
+            </details>
+          {% endif %}
+          {% if page.case_study_three_text %}
+            <details closed class="great-accordion">
+              <summary class="width-full">
+                <span class="bold-small link">{{ page.case_study_three_text|get_first_heading }}</span>
+              </summary>
+              <div>
+                <div class="grid-row">
+                  <div class="column-third-m">
+                    {{ page.case_study_three_text|add_export_elements_classes }}
+                  </div>
+                  <div class="column-two-thirds-m">
+                    <img src="{{ page.case_study_three_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                  </div>
+                </div>
+              </div>
+            </details>
+          {% endif %}
+          {% if page.case_study_four_text %}
+            <details closed class="great-accordion">
+              <summary class="width-full">
+                <span class="bold-small link">{{ page.case_study_four_text|get_first_heading }}</span>
+              </summary>
+              <div>
+                <div class="grid-row">
+                  <div class="column-third-m">
+                    {{ page.case_study_four_text|add_export_elements_classes }}
+                  </div>
+                  <div class="column-two-thirds-m">
+                    <img src="{{ page.case_study_four_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                  </div>
+                </div>
+              </div>
+            </details>
+          {% endif %}
+      </div>
 
     </div>
 </section>
@@ -264,7 +302,7 @@
             <div class="flex-grid">
                 {% for opportunity in page.other_opportunities %}
                      <div class="column-half">
-                        {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.meta.url title=opportunity.heading %}
+                        {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.full_path title=opportunity.heading %}
                      </div>
                 {% endfor %}
             </div>

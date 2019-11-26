@@ -59,11 +59,13 @@
     <div class="container">
       <h2 class="heading-large grey-text">{{ page.guides_section_heading }}</h2>
 
-      <div class="flex-grid">
+      <div class="flex-grid" id="guide-articles">
         {% for guide in page.guides|filter_by_active_language %}
-          <div class="column-third-xl column-half-m">
+          {% if forloop.counter < 10 %}
+            <article class="column-third-xl column-half-m">
               {% card img_src=guide.thumbnail.url url=guide.meta.url heading=guide.title description=guide.teaser %}
-          </div>
+            </article>
+          {% endif %}
         {% endfor %}
       </div>
     </div>
