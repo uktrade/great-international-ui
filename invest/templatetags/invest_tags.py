@@ -13,4 +13,7 @@ register = template.Library()
 @stringfilter
 def get_first_heading(html):
     soup = BeautifulSoup(html, 'html.parser')
-    return soup.find_all(re.compile(r'h\d+'))[0].string
+    heading = soup.find_all(re.compile(r'h\d+'))
+    if heading:
+        return soup.find_all(re.compile(r'h\d+'))[0].string
+    return ''
