@@ -14,11 +14,11 @@ dateparser==0.7.0
 directory-api-client==20.0.0
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.2.0
-directory-components==34.0.1
+directory-components==35.6.2
 directory-constants==20.7.0
 directory-forms-api-client==5.0.0
 directory-healthcheck==1.1.2
-directory-validators==5.2.0
+directory-validators==6.0.0
 django-countries==5.5
 django-environ==0.4.5
 django-formtools==2.1
@@ -35,9 +35,8 @@ jmespath==0.9.4           # via boto3, botocore
 jsonschema==3.0.2         # via directory-components
 mohawk==0.3.4             # via sigauth
 monotonic==1.5            # via directory-client-core
-olefile==0.44             # via directory-validators, pillow
-phonenumberslite==7.7.4   # via directory-validators
-pillow==4.2.1             # via directory-validators
+olefile==0.44             # via directory-validators
+pillow==6.2.1             # via directory-validators
 pir-client==1.1.0
 pyrsistent==0.15.4        # via jsonschema
 python-dateutil==2.8.0    # via botocore, dateparser
@@ -59,4 +58,4 @@ waitress==1.3.1
 whitenoise==4.1.3
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.2.0        # via jsonschema
+# setuptools==42.0.1        # via jsonschema

@@ -336,11 +336,13 @@ UTM_COOKIE_DOMAIN = env.str('UTM_COOKIE_DOMAIN')
 PRIVACY_COOKIE_DOMAIN = env.str('PRIVACY_COOKIE_DOMAIN', '')
 
 # django-storages for thumbnails
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY', '')
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID', '')
 AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME', '')
-AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = None
 AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = False
-AWS_S3_ENCRYPTION = False
+AWS_S3_ENCRYPTION = True
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN', '')
 AWS_S3_REGION_NAME = env.str('AWS_S3_REGION_NAME', 'eu-west-1')
@@ -515,7 +517,6 @@ HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
 # Directory healthcheck
 DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
 DIRECTORY_HEALTHCHECK_BACKENDS = [
-    directory_healthcheck.backends.SentryBackend,
     directory_healthcheck.backends.FormsAPIBackend,
     directory_healthcheck.backends.CMSAPIBackend,
     directory_healthcheck.backends.APIBackend,
@@ -602,7 +603,7 @@ CAPITAL_INVEST_USER_REPLY_TO_ID = env.str(
 
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID = env.str(
     'GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID',
-    'e372134d-ffaa-44e8-abff-3ed6648485a5'
+    '4c84e82d-abb1-49a1-b664-5b6872ec31ae'
 )
 
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID = env.str(
