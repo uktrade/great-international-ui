@@ -20,3 +20,33 @@ select.form-control {
 input[type=checkbox].form-control {
   width: auto;
 }
+
+.quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+details.great-accordion, // if no open or closed attribute details is closed by default
+details.great-accordion[closed],
+details.great-accordion[open=false] {
+
+  summary:before {
+    display: none;
+  }
+
+  summary:after {
+    content: '+';
+  }
+}
+
+details.great-accordion[open],
+details.great-accordion[closed=false] {
+
+  summary:before {
+    display: none;
+  }
+
+  summary:after {
+    content: '–';
+  }
+}

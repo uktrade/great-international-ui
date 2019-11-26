@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-555 - Update HPO page design
 - CI-513 - Update gov notify template for business environment guide
 - CI-551 - Remove duplicated related content from article template
 - CI-545 - Add JP translation for 'Related content'

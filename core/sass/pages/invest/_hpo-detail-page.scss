@@ -4,18 +4,31 @@
 
 .hpo-detail-page {
 
-  .hpo-page-section:nth-child(odd) {
-    background-color: $white;
-  }
-
-  .hpo-page-section:nth-child(even) {
-    background: $stone-30;
-  }
-
   .contact-section {
     position: relative;
     z-index: 1;
     width: 100%;
+  }
+
+  .contact-section.sticky {
+    top: 0;
+    position: fixed;
+    background-color: $stone;
+    padding: 16px 0;
+    border-bottom: 4px solid $active-blue;
+
+    p {
+      display: none;
+    }
+
+    .contact-box {
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-box-content h2 {
+      margin: 0;
+    }
   }
 
   .opportunity-list-image {
@@ -25,34 +38,12 @@
     display: block;
   }
 
-  .proposition-two-image {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  .proposition-one-media-container {
-    height: 0;
-  }
-
   .proposition-list-item {
     border-top: 4px solid $flag-red;
     margin-bottom: $spacing-3;
 
     & > *:first-child {
       margin-top: $spacing-4;
-    }
-  }
-
-  .proposition-two-grid {
-    flex-direction: row;
-    margin-left: (-$spacing-4);
-    margin-right: (-$spacing-4);
-  }
-
-  @media(max-width: 640px) {
-    .proposition-two-grid {
-      flex-direction: column-reverse;
     }
   }
 
