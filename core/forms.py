@@ -164,7 +164,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         choices=(
             ('expand', _('Setting up a business in the UK')),
             ('invest_capital', _('Investing capital in the UK')),
-            ('buy_goods', _('Buying good from the UK')),
+            ('buy_goods', _('Buying goods from the UK')),
         ),
         required=True
     )

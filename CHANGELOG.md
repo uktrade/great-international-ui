@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-302 - Added translations for new header
 - CI-555 - Update HPO page design
 - CI-513 - Update gov notify template for business environment guide
 - CI-551 - Remove duplicated related content from article template
