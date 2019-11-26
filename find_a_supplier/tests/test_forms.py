@@ -3,7 +3,7 @@ import pytest
 from django.forms.fields import Field
 from unittest import mock
 
-from directory_validators.common import not_contains_url_or_email
+from directory_validators.url import not_contains_url_or_email
 
 from find_a_supplier import forms, views
 from core.tests.helpers import create_response

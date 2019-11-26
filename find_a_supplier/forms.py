@@ -6,7 +6,7 @@ from captcha.fields import ReCaptchaField
 from directory_constants import choices, urls
 from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
-from directory_validators.common import not_contains_url_or_email
+from directory_validators.url import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
 from core.fields import DirectoryComponentsRecaptchaField
