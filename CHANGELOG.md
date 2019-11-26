@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CMS-1787 - Use correct header on Invest pages
 - CI-302 - Added translations for new header
 - CI-555 - Update HPO page design
 - CI-513 - Update gov notify template for business environment guide
