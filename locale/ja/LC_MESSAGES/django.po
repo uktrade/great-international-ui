@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 17:25+0000\n"
+"POT-Creation-Date: 2019-11-14 16:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,13 +47,11 @@ msgstr "役職"
 msgid "Email address"
 msgstr "勤務先の電子メール"
 
-#: contact/forms.py:43 contact/forms.py:90 core/forms.py:143
-#: find_a_supplier/forms.py:243
+#: contact/forms.py:43 contact/forms.py:90 find_a_supplier/forms.py:243
 msgid "Phone number"
 msgstr "勤務先の電話番号"
 
-#: contact/forms.py:46 contact/forms.py:91 core/forms.py:146
-#: find_a_supplier/forms.py:181
+#: contact/forms.py:46 contact/forms.py:91 find_a_supplier/forms.py:181
 msgid "Company name"
 msgstr "企業名"
 
@@ -65,7 +63,7 @@ msgstr "企業ウェブサイト"
 msgid "Which country are you based in?"
 msgstr "国名"
 
-#: contact/forms.py:54 core/forms.py:107
+#: contact/forms.py:54
 msgid ""
 "We will use this information to put you in touch with your closest British "
 "embassy or high commission."
@@ -90,7 +88,7 @@ msgstr ""
 "貴社の事業概要、及び対英投資の計画（規模・運営・採用）についてご説明くださ"
 "い。また、英国政府からどのようなサポートをご希望か、併せてお聞かせください。"
 
-#: contact/forms.py:93 core/forms.py:144 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:93 core/forms.py:155 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国"
 
@@ -103,16 +101,20 @@ msgid "Contact form user email subject"
 msgstr ""
 
 #: contact/templates/contact/contact.html:6
-#: contact/templates/contact/contact_form_success_page.html:6
+#: contact/templates/contact/contact_form_success_page.html:7
+#: core/header_config/tier_two_nav_items.py:32
+#: core/header_config/tier_two_nav_items.py:62
+#: core/header_config/tier_two_nav_items.py:100
+#: core/header_config/tier_two_nav_items.py:125
+#: core/header_config/tier_two_nav_items.py:137
 msgid "Contact us"
-msgstr "連絡する"
+msgstr "お問い合わせ"
 
 #: contact/templates/contact/contact.html:15
 msgid "Contact the investment team"
 msgstr "対英投資チームに連絡する"
 
 #: contact/templates/contact/contact.html:24
-#: core/templates/core/capital_invest/capital_invest_contact_form.html:23
 msgid "Contact Information"
 msgstr "ご連絡先情報"
 
@@ -141,11 +143,11 @@ msgstr "連絡する"
 msgid "Type here"
 msgstr ""
 
-#: contact/templates/contact/contact_form_success_page.html:13
+#: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
 msgstr "英国における投資にご関心をお持ちいただき、ありがとうございました。"
 
-#: contact/templates/contact/contact_form_success_page.html:14
+#: contact/templates/contact/contact_form_success_page.html:15
 msgid "Thank you, your form has been submitted."
 msgstr ""
 "ご提供いただいた情報は、貴社の投資計画について当省が理解し、より良くお手伝い"
@@ -156,40 +158,38 @@ msgstr ""
 
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
-#: core/templates/core/capital_invest/email/capital_invest_email_agent.html:166
-#: core/templates/core/capital_invest/email/capital_invest_email_agent.txt:12
 msgid "Submission url"
 msgstr ""
 
-#: core/context_processors.py:29
+#: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
 
-#: core/context_processors.py:33
+#: core/context_processors.py:34 core/header_config/tier_two_nav_items.py:106
 msgid "Find a supplier"
-msgstr ""
+msgstr "サプライヤー検索"
 
-#: core/context_processors.py:37
+#: core/context_processors.py:38 core/header_config/old_nav_items.py:8
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:34
+#: core/forms.py:35
 msgid "sector"
 msgstr ""
 
-#: core/forms.py:42
+#: core/forms.py:43
 msgid "scale"
 msgstr ""
 
-#: core/forms.py:50
+#: core/forms.py:51
 msgid "region"
 msgstr ""
 
-#: core/forms.py:58
+#: core/forms.py:59
 msgid "sub_sector"
 msgstr ""
 
-#: core/forms.py:66
+#: core/forms.py:67
 msgid "sort_by"
 msgstr ""
 
@@ -205,68 +205,173 @@ msgstr ""
 msgid "Phone number (Optional)"
 msgstr "勤務先の電話番号"
 
-#: core/forms.py:112
+#: core/forms.py:109
 msgid "City (Optional)"
 msgstr ""
 
-#: core/forms.py:113
+#: core/forms.py:110 core/forms.py:143
 msgid "Company name (Optional)"
 msgstr ""
 
-#: core/forms.py:115 core/forms.py:147
+#: core/forms.py:112
 msgid "Message"
 msgstr ""
 
-#: core/forms.py:119
+#: core/forms.py:116
 msgid "How can we help?"
 msgstr ""
 
 #: core/forms.py:145
-msgid "City"
+msgid "Current number of staff (Optional)"
+msgstr "現在の従業員数 (推定でも構いません)"
+
+#: core/forms.py:150 find_a_supplier/forms.py:175
+msgid "Industry"
+msgstr "産業"
+
+#: core/forms.py:161
+msgid "I am mainly interested in:"
 msgstr ""
 
-#: core/forms.py:179
-msgid "Thank you for contacting us"
+#: core/forms.py:162
+msgid "Select all that apply"
 msgstr ""
 
-#: core/templates/404.html:12
-msgid "This page cannot be found"
+#: core/forms.py:165
+msgid "Setting up a business in the UK"
 msgstr ""
 
-#: core/templates/404.html:14
-msgid "If you entered a web address please check it’s correct."
+#: core/forms.py:166
+msgid "Investing capital in the UK"
+msgstr "英国への事業投資を検討"
+
+#: core/forms.py:167
+msgid "Buying goods from the UK"
+msgstr "英国との取引を検討"
+
+#: core/forms.py:173
+msgid "I would like to receive further information"
 msgstr ""
 
-#: core/templates/404.html:15
-msgid "If you followed a link here, "
+#: core/forms.py:177
+msgid ""
+"I confirm the information provided is true and I accept DIT's terms and "
+"conditions"
+msgstr ""
+"本情報をお送りいただいた時点で、送付情報が正確かつ当省の利用規約に同意したこ"
+"ととみなします 当省の利用規約に同意していただいたことをご確認いただくことにな"
+"りますのでご了解ください。"
+
+#: core/header_config/old_nav_items.py:14
+msgid "UK setup guide"
 msgstr ""
 
-#: core/templates/404.html:15
-msgid "let us know"
+#: core/header_config/old_nav_items.py:20
+msgid "Find a UK supplier"
 msgstr ""
 
-#: core/templates/404.html:16
-msgid "Go to the homepage"
-msgstr ""
+#: core/header_config/old_nav_items.py:26
+#: core/header_config/tier_two_nav_items.py:20
+#: core/templates/core/sector_page.html:19
+msgid "Industries"
+msgstr "産業"
 
-#: core/templates/core/about_uk/about_uk_region_listing_page.html:23
-#: core/templates/core/about_uk/about_uk_region_page.html:23
-msgid "About the UK"
-msgstr ""
-
+#: core/header_config/tier_one_nav_items.py:7
+#: core/templates/core/about_uk/about_uk_region_listing_page.html:25
 #: core/templates/core/about_uk/about_uk_region_page.html:24
-msgid "Regions"
+#: core/templates/core/about_uk/why_choose_the_uk_page.html:18
+#: core/templates/core/sector_page.html:17
+msgid "About the UK"
+msgstr "英国について"
+
+#: core/header_config/tier_one_nav_items.py:13
+msgid "Expand to the UK"
+msgstr "英国への展開"
+
+#: core/header_config/tier_one_nav_items.py:19
+msgid "Invest capital in the UK"
+msgstr "英国への投資"
+
+#: core/header_config/tier_one_nav_items.py:25
+msgid "Buy from the UK"
+msgstr "英国からの輸入"
+
+#: core/header_config/tier_one_nav_items.py:31
+msgid "About us"
 msgstr ""
+
+#: core/header_config/tier_two_nav_items.py:8
+#: core/header_config/tier_two_nav_items.py:38
+#: core/header_config/tier_two_nav_items.py:68
+#: core/header_config/tier_two_nav_items.py:131
+msgid "Overview"
+msgstr "概要"
+
+#: core/header_config/tier_two_nav_items.py:14
+msgid "Why choose the UK"
+msgstr "英国を選ぶ理由"
+
+#: core/header_config/tier_two_nav_items.py:26
+#: core/templates/core/about_uk/about_uk_region_page.html:26
+msgid "Regions"
+msgstr "地域"
+
+#: core/header_config/tier_two_nav_items.py:44
+msgid "How to expand to the UK"
+msgstr "英国への事業展開"
+
+#: core/header_config/tier_two_nav_items.py:50
+msgid "Find a UK specialist"
+msgstr "英国の専門家検索"
+
+#: core/header_config/tier_two_nav_items.py:56
+#: core/header_config/tier_two_nav_items.py:94
+#: core/header_config/tier_two_nav_items.py:119
+msgid "How we help"
+msgstr "私たちがお手伝いいたします"
+
+#: core/header_config/tier_two_nav_items.py:75
+msgid "Investment types"
+msgstr ""
+
+#: core/header_config/tier_two_nav_items.py:81
+msgid "Investment Opportunities"
+msgstr ""
+
+#: core/header_config/tier_two_nav_items.py:88
+msgid "How to invest capital"
+msgstr ""
+
+#: core/header_config/tier_two_nav_items.py:113
+msgid "How to buy from the UK"
+msgstr "英国との取引を検討"
 
 #: core/templates/core/article_related_content_cards.html:9
-#: core/templates/core/article_related_content_list.html:7
-#: core/templates/core/sector_page.html:148
+#: core/templates/core/article_related_content_list.html:8
+#: core/templates/core/sector_page.html:151
 msgid "Related content"
-msgstr ""
+msgstr "関連情報"
 
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
 msgstr "このページに関するお問い合わせはこちら"
+
+#: core/templates/core/business_environment_guide_form.html:17
+msgid "Your Guide to the UK business environment"
+msgstr ""
+
+#: core/templates/core/business_environment_guide_form.html:19
+msgid ""
+"If you are thinking about setting up your business internationally and would "
+"like to explore what the UK has to offer, download our Guide to the UK "
+"business environment today."
+msgstr ""
+
+#: core/templates/core/business_environment_guide_form.html:20
+msgid ""
+"Simply enter your details below to access a wealth of insights into the UK's "
+"business environment together with help and advice."
+msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
 msgid "Filter results"
@@ -276,11 +381,11 @@ msgstr ""
 msgid "Update results"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:73
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:74
 msgid "Sort by"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:91
+#: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:94
 msgid "No results"
 msgstr ""
 
@@ -292,40 +397,38 @@ msgstr ""
 msgid "Other projects in"
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:66
+#: core/templates/core/how_to_do_business_landing_page.html:61
 msgid "Need help?"
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:68
+#: core/templates/core/how_to_do_business_landing_page.html:63
 msgid ""
 "The UK Government helps businesses expand to and trade with the UK. If you "
 "have questions, we can help."
 msgstr ""
 
-#: core/templates/core/how_to_do_business_landing_page.html:70
+#: core/templates/core/how_to_do_business_landing_page.html:65
 msgid "Contact the Brexit enquiry service"
 msgstr ""
 
-#: core/templates/core/sector_page.html:16
-msgid "Industries"
-msgstr ""
-
-#: core/templates/core/sector_page.html:166
+#: core/templates/core/sector_page.html:169
 msgid "Next steps"
 msgstr "検討してみませんか？"
 
-#: core/templates/core/sector_page.html:167
+#: core/templates/core/sector_page.html:170
 msgid ""
 "Whether you’re looking for a supplier or starting a business in the UK, we "
 "can help. Get in touch with us for simple, straightforward help and advice "
 "on how to do business in the UK."
-msgstr "英国の企業との取引、または英国での事業設立をご検討の際はご連絡ください。英国でのビジネスについて、わかりやすくアドバイスいたします。"
+msgstr ""
+"英国の企業との取引、または英国での事業設立をご検討の際はご連絡ください。英国"
+"でのビジネスについて、わかりやすくアドバイスいたします。"
 
-#: core/templates/core/sector_page.html:172
+#: core/templates/core/sector_page.html:175
 msgid "I want to invest in the UK"
 msgstr "英国への事業投資を検討"
 
-#: core/templates/core/sector_page.html:176
+#: core/templates/core/sector_page.html:179
 msgid "I want to buy from the UK"
 msgstr "英国との取引を検討"
 
@@ -377,10 +480,6 @@ msgstr ""
 msgid "Your name"
 msgstr ""
 
-#: find_a_supplier/forms.py:175
-msgid "Industry"
-msgstr "産業"
-
 #: find_a_supplier/forms.py:222
 #, python-brace-format
 msgid ""
@@ -402,7 +501,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:261
 msgid "Size of your organisation"
-msgstr ""
+msgstr "企業の人数"
 
 #: find_a_supplier/forms.py:266
 msgid "Your country"
@@ -476,7 +575,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: perfect_fit_prospectus/views.py:41
+#: perfect_fit_prospectus/views.py:45
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
