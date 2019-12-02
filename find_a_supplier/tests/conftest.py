@@ -1,6 +1,8 @@
 from unittest.mock import patch
 
 from directory_api_client.client import api_client
+from directory_constants import choices
+
 import pytest
 
 from core.tests.helpers import create_response
@@ -20,6 +22,23 @@ def valid_contact_company_data(captcha_stub):
         'body': 'and salutations',
         'g-recaptcha-response': captcha_stub,
         'terms': True,
+    }
+
+
+@pytest.fixture
+def valid_contact_data(captcha_stub):
+    return {
+        'country': choices.COUNTRIES_AND_TERRITORIES[0][0],
+        'body': 'a',
+        'email_address': 'a@a.com',
+        'full_name': 'a',
+        'organisation_name': 'a',
+        'phone_number': 'a',
+        'sector': choices.sectors.AEROSPACE,
+        'terms_agreed': 'a',
+        'g-recaptcha-response': captcha_stub,
+        'organisation_size': choices.EMPLOYEES[0][0],
+        'source': '',
     }
 
 

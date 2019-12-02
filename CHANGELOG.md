@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- DATAPROJECTS-276 - Updated find a supplier form with countries drop down
 - CI-547 - Remove tariffs section
 - CMS-1787 - Use correct header on Invest pages
 - CI-302 - Added translations for new header
