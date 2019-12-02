@@ -4,6 +4,13 @@
 
 ### Fixed bugs
 
+## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.11.25...2019.12.02)
+
+## Hotfix
+- TT-2186 - Fix captcha on contact form
+
+
 ## [2019.11.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.11.25)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_3...2019.11.25)
 

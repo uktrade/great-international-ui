@@ -301,7 +301,7 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         validators=[not_contains_url_or_email],
     )
     terms_agreed = forms.BooleanField()
-    captcha = ReCaptchaField()
+    captcha = captcha.fields.ReCaptchaField()
 
     @property
     def serialized_data(self):
