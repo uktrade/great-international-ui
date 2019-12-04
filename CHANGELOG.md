@@ -10,7 +10,6 @@
 - CMS-1787 - Use correct header on Invest pages
 - CI-302 - Added translations for new header
 - CI-555 - Update HPO page design
-- CI-513 - Update gov notify template for business environment guide
 - CI-551 - Remove duplicated related content from article template
 - CI-545 - Add JP translation for 'Related content'
 - CMS-1848 - Make landing page hero text full width in Japanese
