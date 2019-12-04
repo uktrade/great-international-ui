@@ -20,6 +20,8 @@ def contact_form_data(captcha_stub):
         'country': 'United States',
         'staff_number': forms.STAFF_CHOICES[0][0],
         'description': 'foobar',
+        'email_contact_consent': True,
+        'telephone_contact_consent': True,
         'g-recaptcha-response': captcha_stub,
     }
 
