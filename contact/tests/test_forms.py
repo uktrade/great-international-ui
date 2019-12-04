@@ -16,6 +16,8 @@ def contact_form_data(captcha_stub):
         'country': 'United States',
         'staff_number': forms.STAFF_CHOICES[0][0],
         'description': 'foobar',
+        'email_contact_consent': True,
+        'telephone_contact_consent': True,
         'g-recaptcha-response': captcha_stub,
     }
 
@@ -58,6 +60,8 @@ def test_contact_form_invalid_data(captcha_stub):
             'country': 'United States',
             'staff_number': forms.STAFF_CHOICES[0][0],
             'description': 'foobar',
+            'email_contact_consent': True,
+            'telephone_contact_consent': True,
             'g-recaptcha-response': captcha_stub
         },
         utm_data={},
@@ -195,7 +199,9 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
                 ('Company website', data['company_website']),
                 ('Country', data['country']),
                 ('Current number of staff', data['staff_number']),
-                ('Your investment', data['description'])
+                ('Your investment', data['description']),
+                ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
+                ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
             'utm': {'field_one': 'value_one'},
             'submission_url': 'http://www.google.com/submission_url'
@@ -229,7 +235,9 @@ def test_send_email_render_email_optional_fields(
                 ('Company website', ''),
                 ('Country', contact_form_data['country']),
                 ('Current number of staff', 'Less than 10'),
-                ('Your investment', contact_form_data['description'])
+                ('Your investment', contact_form_data['description']),
+                ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
+                ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
             'utm': {'field_one': 'value_one'},
             'submission_url': 'http://www.google.com/submission_url'
