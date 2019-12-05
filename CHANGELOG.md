@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-548 - Remove padding on homepage help section cards
 - CI-591 - Add consent fields to invest contact form
 - DATAPROJECTS-258 - Updated euexit form with countries and territories drop down
 - DATAPROJECTS-276 - Updated find a supplier form with countries drop down
