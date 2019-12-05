@@ -18,6 +18,7 @@
 - CI-528 - Updated capital invest label on form triage
 - CI-537 - Added breadcrumbs to FAS overview page
 - no ticket - Update navbar to link from `about-dit` to `about-us`
+- TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
 - XOT-1183 - Show top 9 articles on how to setup page
