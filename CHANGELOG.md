@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-606 - Upgrade components to disable sticky nav
 - CI-591 - Add consent fields to invest contact form
 - DATAPROJECTS-258 - Updated euexit form with countries and territories drop down
 - DATAPROJECTS-276 - Updated find a supplier form with countries drop down
