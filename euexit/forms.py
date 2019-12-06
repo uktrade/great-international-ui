@@ -68,7 +68,7 @@ class InternationalContactForm(
     )
     company_name = forms.CharField()
     country = forms.ChoiceField(
-        choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
+        choices=[('', 'Please select')] + choices.COUNTRIES_AND_TERRITORIES,
         widget=Select(attrs={'id': 'js-country-select'}),
     )
     city = forms.CharField()

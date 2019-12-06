@@ -817,7 +817,7 @@ def test_industry_contact_submit_with_comment_forms_api(
         'sector': sectors.AEROSPACE,
         'organisation_name': 'My name is Jeff',
         'organisation_size': '1-10',
-        'country': 'United Kingdom',
+        'country': choices.COUNTRIES_AND_TERRITORIES[1][0],
         'body': 'hello',
         'source': constants.MARKETING_SOURCES[1][0],
         'terms_agreed': True,
@@ -835,7 +835,7 @@ def test_industry_contact_submit_with_comment_forms_api(
         form_url='/international/trade/contact/',
         sender={
             'email_address': 'jeff@example.com',
-            'country_code': 'United Kingdom'
+            'country_code': choices.COUNTRIES_AND_TERRITORIES[1][0]
         },
         spam_control={
             'contents': ['hello']},
@@ -943,21 +943,10 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
 
 
 @mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
-def test_industry_contact_serialized_data(mock_submit_generic, captcha_stub):
-    data = {
-        'full_name': 'Jeff',
-        'email_address': 'jeff@example.com',
-        'phone_number': '3223232',
-        'sector': sectors.AEROSPACE,
-        'organisation_name': 'My name is Jeff',
-        'organisation_size': '1-10',
-        'country': 'United Kingdom',
-        'body': 'hello',
-        'source': constants.MARKETING_SOURCES[1][0],
-        'terms_agreed': True,
-        'g-recaptcha-response': captcha_stub,
-    }
-    form = forms.ContactForm(data=data, industry_choices=choices.INDUSTRIES)
+def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_data):
+    mock_submit_generic.return_value = None
+    form = forms.ContactForm(data=valid_contact_data, industry_choices=choices.INDUSTRIES)
+    data = valid_contact_data
 
     assert form.is_valid()
 
@@ -973,8 +962,9 @@ def test_industry_contact_serialized_data(mock_submit_generic, captcha_stub):
         'phone_number': data['phone_number'],
         'sector': data['sector'],
         'organisation_name': data['organisation_name'],
-        'organisation_size': data['organisation_size'],
-        'country': data['country'],
+        'organisation_size': choices.EMPLOYEES[0][1],
+        'country': choices.COUNTRIES_AND_TERRITORIES[0][0],
+        'country_name': choices.COUNTRIES_AND_TERRITORIES[0][1],
         'body': data['body'],
         'source': data['source'],
         'source_other': '',

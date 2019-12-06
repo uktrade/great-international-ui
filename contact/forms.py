@@ -70,6 +70,12 @@ class ContactForm(forms.Form):
             ),
         widget=Textarea()
     )
+    email_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by email')
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by telephone')
+    )
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
@@ -92,7 +98,9 @@ class ContactForm(forms.Form):
                 (_('Company website'), data.get('company_website', '')),
                 (_('Country'), data['country']),
                 (_('Current number of staff'), data['staff_number']),
-                (_('Your investment'), data['description'])
+                (_('Your investment'), data['description']),
+                (_('I would like to be contacted by email'), data['email_contact_consent']),
+                (_('I would like to be contacted by telephone'), data['telephone_contact_consent'])
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,

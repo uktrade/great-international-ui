@@ -60,7 +60,7 @@
             {% for card in page.related_how_dit_help_pages %}
                 {% if card.hero_title and card.hero_image.url and card.featured_description %}
                     <div class="column-third-xl column-half-m">
-                        {% card img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.featured_description|add_export_elements_classes|safe %}
+                        {% card no_padding_card=True img_src=card.hero_image.url img_alt='' url=card.full_url title=card.hero_title description=card.featured_description|add_export_elements_classes|safe %}
                     </div>
                 {% endif %}
             {% endfor %}

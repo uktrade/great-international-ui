@@ -16,6 +16,8 @@ import environ
 
 from directory_constants import cms
 import directory_healthcheck.backends
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 
 env = environ.Env()
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.messages',
-    'raven.contrib.django.raven_compat',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'core',
@@ -248,48 +249,14 @@ if DEBUG:
             },
         }
     }
-else:
-    # Sentry logging
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'root': {
-            'level': 'WARNING',
-            'handlers': ['sentry'],
-        },
-        'formatters': {
-            'verbose': {
-                'format': '%(levelname)s %(asctime)s %(module)s '
-                          '%(process)d %(thread)d %(message)s'
-            },
-        },
-        'handlers': {
-            'sentry': {
-                'level': 'ERROR',
-                'class': (
-                    'raven.contrib.django.raven_compat.handlers.SentryHandler'
-                ),
-                'tags': {'custom-tag': 'x'},
-            },
-            'console': {
-                'level': 'DEBUG',
-                'class': 'logging.StreamHandler',
-                'formatter': 'verbose'
-            }
-        },
-        'loggers': {
-            'raven': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-            'sentry.errors': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-        },
-    }
+
+# Sentry
+if env.str('SENTRY_DSN', ''):
+    sentry_sdk.init(
+        dsn=env.str('SENTRY_DSN'),
+        environment=env.str('SENTRY_ENVIRONMENT'),
+        integrations=[DjangoIntegration()]
+    )
 
 
 ANALYTICS_ID = env.str('ANALYTICS_ID', '')
@@ -304,15 +271,6 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 LANGUAGE_COOKIE_SECURE = env.bool('LANGUAGE_COOKIE_SECURE', True)
 COUNTRY_COOKIE_SECURE = env.bool('COUNTRY_COOKIE_SECURE', True)
-
-# Sentry
-RAVEN_CONFIG = {
-    'dsn': env.str('SENTRY_DSN', ''),
-    'processors': (
-        'raven.processors.SanitizePasswordsProcessor',
-        'core.sentry_processors.SanitizeEmailMessagesProcessor',
-    )
-}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
@@ -603,7 +561,7 @@ CAPITAL_INVEST_USER_REPLY_TO_ID = env.str(
 
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID = env.str(
     'GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID',
-    '4c84e82d-abb1-49a1-b664-5b6872ec31ae'
+    'e372134d-ffaa-44e8-abff-3ed6648485a5'
 )
 
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID = env.str(
