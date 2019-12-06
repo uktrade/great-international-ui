@@ -10,7 +10,7 @@ attrs==19.1.0             # via jsonschema, pytest
 beautifulsoup4==4.8.0
 boto3==1.9.232
 botocore==1.12.232        # via boto3, s3transfer
-certifi==2019.9.11        # via requests
+certifi==2019.9.11        # via requests, sentry-sdk
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
 codecov==2.0.15
@@ -22,7 +22,7 @@ directory-cms-client==10.2.0
 directory-components==35.8.0
 directory-constants==20.10.0
 directory-forms-api-client==5.0.0
-directory-healthcheck==1.1.2
+directory-healthcheck==2.0.0
 directory-validators==6.0.0
 django-countries==5.5
 django-environ==0.4.5
@@ -31,7 +31,7 @@ django-health-check==3.8.0  # via directory-healthcheck
 django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
-django==2.2.5
+django==2.2.8
 djangorestframework==3.10.3
 docutils==0.15.2          # via botocore
 entrypoints==0.3          # via flake8
@@ -66,12 +66,12 @@ pytest-xdist==1.29.0
 pytest==5.1.2
 python-dateutil==2.8.0    # via botocore, dateparser, freezegun
 pytz==2017.2              # via dateparser, directory-validators, django, tzlocal
-raven==6.9.0
 redis==3.3.8              # via django-redis
 regex==2019.8.19          # via dateparser
 requests-mock==1.7.0
 requests==2.21.0
 s3transfer==0.2.1         # via boto3
+sentry-sdk==0.13.4
 sigauth==4.1.1            # via directory-client-core
 six==1.12.0               # via django-countries, freezegun, jsonschema, mohawk, packaging, pip-tools, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
 sorl-thumbnail==12.5.0

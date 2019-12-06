@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 - CI-606 - Upgrade components to disable sticky nav
+- CI-548 - Remove padding on homepage help section cards
 - CI-591 - Add consent fields to invest contact form
 - DATAPROJECTS-258 - Updated euexit form with countries and territories drop down
 - DATAPROJECTS-276 - Updated find a supplier form with countries drop down
@@ -18,6 +19,7 @@
 - CI-528 - Updated capital invest label on form triage
 - CI-537 - Added breadcrumbs to FAS overview page
 - no ticket - Update navbar to link from `about-dit` to `about-us`
+- TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
 - XOT-1183 - Show top 9 articles on how to setup page
