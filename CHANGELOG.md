@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- XOT-1256 - Add html and styles for article template to match domestic template
 - CI-591 - Remove content from invest contact form
 - CI-606 - Upgrade components to disable sticky nav
 - CI-548 - Remove padding on homepage help section cards

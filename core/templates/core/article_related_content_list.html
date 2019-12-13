@@ -1,9 +1,21 @@
 {% load filter_by_active_language from cms_tags %}
 {% load trans from i18n %}
 
+<div class="column-quarter related-content-list">
+
+{% if page.cta_title or page.cta_link_label and page.cta_link %}
+    <div class="panel-vertical-narrow content-list cta-list">
+      <h2 class="heading heading-small">{{ page.cta_title }}</h2>
+      {% if page.cta_link_label and page.cta_link %}
+      <div>
+        <a href="{{ page.cta_link }}" class="button cta">{{ page.cta_link_label }}</a>
+      </div>
+      {% endif %}
+    </div>
+{% endif %}
+
 {% with page.related_pages|filter_by_active_language as related_pages %}
 {% if related_pages %}
-<div class="column-quarter">
   <div class="panel-vertical-narrow content-list">
     <h2 class="heading heading-small">{% trans 'Related content' %}</h2>
     <ul>
@@ -14,6 +26,8 @@
       {% endfor %}
     </ul>
   </div>
-</div>
 {% endif %}
 {% endwith %}
+
+</div>
+
