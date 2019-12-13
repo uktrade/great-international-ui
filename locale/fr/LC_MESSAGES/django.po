@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 14:59+0000\n"
+"POT-Creation-Date: 2019-12-10 14:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,7 +142,8 @@ msgid ""
 "      </p>\n"
 "      <p>\n"
 "        You can read about how we protect your data in <a class=\"link\" "
-"href=\"https://great.gov.uk/privacy-and-cookies/\">our privacy notice</a>.\n"
+"href=\"https://great.gov.uk/privacy-and-cookies/\" target=\"_blank\">our "
+"privacy notice</a>.\n"
 "      </p>\n"
 "      "
 msgstr ""
@@ -154,20 +155,11 @@ msgid ""
 "time."
 msgstr ""
 
-#: contact/templates/contact/contact.html:60
-msgid ""
-"By sending us your details you can confirm that the information you've "
-"shared with us is true and you accept our terms and conditions."
-msgstr ""
-"En nous envoyant ces données, vous confirmez que les informations que vous "
-"avez partagées avec nous sont authentiques et que vous acceptez nos "
-"conditions générales."
-
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:59
 msgid "Submit"
 msgstr "Contactez nous"
 
-#: contact/templates/contact/contact.html:80
+#: contact/templates/contact/contact.html:76
 msgid "Type here"
 msgstr ""
 

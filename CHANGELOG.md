@@ -3,6 +3,8 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-591 - Remove content from invest contact form
+- CI-606 - Upgrade components to disable sticky nav
 - CI-548 - Remove padding on homepage help section cards
 - CI-591 - Add consent fields to invest contact form
 - DATAPROJECTS-258 - Updated euexit form with countries and territories drop down
