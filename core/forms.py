@@ -236,22 +236,10 @@ class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
 
     procuring_products = forms.RadioNested(
         label=_('Are you interested in procuring products or services from the UK, either now or in the near future?:'),
-        # widget=forms.RadioSelect(),
         choices=(
             ('yes', _('Yes')),
             ('no', _('No')),
         ),
-        required=True,
-        nested_form_class=HowWeHelpGuideFormNestedDetails,
-        nested_form_choice='yes',
-    )
-
-    procuring_products = forms.RadioNested(
-        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?:'),
-        choices=[
-            ('yes', _('Yes')),
-            ('no', _('No')),
-        ],
         nested_form_class=HowWeHelpGuideFormNestedDetails,
         nested_form_choice='yes',
     )

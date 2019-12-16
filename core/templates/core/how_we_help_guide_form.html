@@ -22,24 +22,19 @@
                 </div>
                 <div class="column-two-thirds-m column-half-xl">
                     <form method="post">
-                        form media....{{ form.media }}end form media
-
-                        {% include 'core/includes/form_field.html' with field=form.name %}
-                        {% include 'core/includes/form_field.html' with field=form.email_address %}
-                        {% include 'core/includes/form_field.html' with field=form.company_name %}
-                        {% include 'core/includes/form_field.html' with field=form.job_title %}
-                        {% include 'core/includes/form_field.html' with field=form.city %}
-                        {% include 'core/includes/form_field.html' with field=form.country %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.city %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
 
 
-                        {% include 'directory_components/form_widgets/nested-radio.html' with field=form.procuring_products %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.procuring_products %}
 
 
-
-
-                        {% include 'core/includes/form_field.html' with field=form.more_options %}
-                        {% include 'core/includes/form_field.html' with field=form.industry %}
-                        {% include 'core/includes/form_field.html' with field=form.additional_requirements %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.additional_requirements %}
 
                         <h3 class="heading-medium">How we use your information</h3>
                         <p>
@@ -49,10 +44,10 @@
                         <p>
                          If you would like to receive further information about investing in the UK you can opt in below. You can opt out of these additional updates at any time.
                         </p>
-                        {% include 'core/includes/form_field.html' with field=form.contact_email %}
-                        {% include 'core/includes/form_field.html' with field=form.contact_phone %}
-                        {% include 'core/includes/form_field.html' with field=form.terms_agreed %}
-                        {% include 'core/includes/form_field.html' with field=form.captcha %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.terms_agreed %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
                         <button class="button">Submit</button>
                     </form>
 

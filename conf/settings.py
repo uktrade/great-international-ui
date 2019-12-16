@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
+    'django.forms',
     'core',
     'directory_constants',
     'captcha',
