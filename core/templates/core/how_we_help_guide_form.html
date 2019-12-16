@@ -30,7 +30,13 @@
                         {% include 'core/includes/form_field.html' with field=form.job_title %}
                         {% include 'core/includes/form_field.html' with field=form.city %}
                         {% include 'core/includes/form_field.html' with field=form.country %}
-                        {% include 'core/includes/form_field.html' with field=form.procuring_products %}
+
+
+                        {% include 'directory_components/form_widgets/nested-radio.html' with field=form.procuring_products %}
+
+
+
+
                         {% include 'core/includes/form_field.html' with field=form.more_options %}
                         {% include 'core/includes/form_field.html' with field=form.industry %}
                         {% include 'core/includes/form_field.html' with field=form.additional_requirements %}
@@ -45,10 +51,12 @@
                         </p>
                         {% include 'core/includes/form_field.html' with field=form.contact_email %}
                         {% include 'core/includes/form_field.html' with field=form.contact_phone %}
-                        {% comment %} {% include 'core/includes/form_field.html' with field=form.terms_agreed %}
-                        {% include 'core/includes/form_field.html' with field=form.captcha %} {% endcomment %}
+                        {% include 'core/includes/form_field.html' with field=form.terms_agreed %}
+                        {% include 'core/includes/form_field.html' with field=form.captcha %}
                         <button class="button">Submit</button>
                     </form>
+
+
                 </div>
             </div>
         </div>
