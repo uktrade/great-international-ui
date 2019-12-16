@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-628 - Change order of header links under 'Expand to the UK'
 - CI-629 - Fix broken breadcrumb links
 - CI-626 - Switch order of 'How we help' and 'Find a supplier' links in header
 - XOT-1256 - Add html and styles for article template to match domestic template
