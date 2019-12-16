@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-629 - Fix broken breadcrumb links
 - CI-626 - Switch order of 'How we help' and 'Find a supplier' links in header
 - XOT-1256 - Add html and styles for article template to match domestic template
 - CI-591 - Remove content from invest contact form
