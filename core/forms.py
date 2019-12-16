@@ -212,6 +212,89 @@ def international_choices():
     return ((value, label) for value, label in all_choices if choice_is_enabled(value))
 
 
+class HowWeHelpGuideFormNestedDetails(forms.Form):
+    more_options = forms.CharField(
+        widget=Textarea,
+        label=_( 'Please provide as much information as possible about the type of products or servicesyou’re interested in procuring from the UK.  '),
+        help_text=('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
+        required=False,
+    )
+
+class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
+    name = forms.CharField(label=_('Name'), required=True)
+    email_address = forms.EmailField(label=_('Email address'), required=True)
+    company_name = forms.CharField(label=_('Company name'), required=True)
+    job_title = forms.CharField(label=_('Job title'), required=True)
+    phone_number = forms.CharField(label=_('Phone number'), required=True)
+    city = forms.CharField(label=_('City (Optional)'), required=False)
+
+    country = forms.ChoiceField(
+        label=_('Country'),
+        widget=Select(attrs={'id': 'js-country-select'}),
+        choices=COUNTRIES
+    )
+
+    procuring_products = forms.RadioNested(
+        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?:'),
+        # widget=forms.RadioSelect(),
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        ),
+        required=True,
+        nested_form_class=HowWeHelpGuideFormNestedDetails,
+        nested_form_choice='yes',
+    )
+
+    procuring_products = forms.RadioNested(
+        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?:'),
+        choices=[
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        ],
+        nested_form_class=HowWeHelpGuideFormNestedDetails,
+        nested_form_choice='yes',
+    )
+
+    industry = forms.ChoiceField(
+        label=_('Industry/Sector'),
+        choices=INDUSTRY_OPTIONS,
+        required=False,
+    )
+
+    additional_requirements = forms.CharField(
+        widget=Textarea,
+        label=_('Additional requirements'),
+        required=False,
+    )
+
+    contact_email = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False,
+    )
+
+    contact_phone = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False,
+    )
+
+    terms_agreed = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=True,
+    )
+
+    captcha = ReCaptchaField(label='', label_suffix='')
+
+    @property
+    def serialized_data(self):
+        # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
+        data = self.cleaned_data.copy()
+        del data['captcha']
+        del data['terms_agreed']
+        return data
+
+
+
 class InternationalRoutingForm(forms.Form):
 
     def __init__(self, *args, **kwargs):

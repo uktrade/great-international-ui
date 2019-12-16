@@ -941,6 +941,68 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
         return super().dispatch(request, *args, **kwargs)
 
 
+class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = "core/how_we_help_guide_form.html"
+    form_class = forms.HowWeHelpGuideFormView
+    subject = "How we help Guide Form"
+    success_url = '/international/trade/how-we-help-you-buy/how-we-help-guide/success/'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='HowWeHelpForm',
+            business_unit='GreatInternational',
+            site_section='AboutUk',
+            site_subsection='BusinessEnvironment'
+        )
+
+    def send_agent_email(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data['country'],
+        )
+        response = form.save(
+            form_url=self.request.path,
+            email_address=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL,
+            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID,
+            sender=sender,
+        )
+        response.raise_for_status()
+
+    def send_user_email(self, form):
+        response = form.save(
+            form_url=self.request.path,
+            email_address=form.cleaned_data['email_address'],
+            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_agent_email(form)
+        self.send_user_email(form)
+        return super().form_valid(form)
+
+
+class HowWeHelpGuideFormViewSuccess(InternationalView):
+    template_name = 'core/business_environment_guide_form_success.html'
+    page_type = 'BusinessEnvironmentGuideFormSuccessPage'
+    header_section = tier_one_nav_items.ABOUT_UK
+    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
+
+    def dispatch(self, request, *args, **kwargs):
+        self.set_ga360_payload(
+            page_id='BusinessEnvironmentGuideFormSuccessPage',
+            business_unit='GreatInternational',
+            site_section='AboutUk',
+            site_subsection='BusinessEnvironment'
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+
+
 def handler404(request, *args, **kwargs):
     return render(request, '404.html', status=404)
 

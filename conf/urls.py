@@ -355,6 +355,16 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'
     ),
+    url(
+        r"^international/trade/how-we-help-you-buy/how-we-help-guide/$",
+        core.views.HowWeHelpGuideFormView.as_view(),
+        name='how-we-help-guide-form'
+        ),
+    url(
+        r"^international/trade/how-we-help-you-buy/how-we-help-guide/success/$",
+        core.views.HowWeHelpGuideFormViewSuccess.as_view(),
+        name='how-we-help-guide-form-success'
+        ),
 ]
 
 if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
