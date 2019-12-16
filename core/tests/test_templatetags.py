@@ -263,6 +263,10 @@ def test_filter_by_active_language(rf):
     assert soup.find('h1').string == 'Automotive'
 
 
+def test_filter_by_active_language_empty():
+    assert cms_tags.filter_by_active_language(None) == []
+
+
 @pytest.mark.parametrize('value, expected_result', [
     ('title: heading', 'title'),
     ('アグリテック：貴社のビジネスを英国で発展させよう', 'アグリテック'),
