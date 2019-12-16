@@ -45,7 +45,7 @@ class CompanySearchView(
     template_name = 'find_a_supplier/search.html'
     form_class = forms.CompanySearchForm
     page_size = 10
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -131,7 +131,7 @@ class CompanySearchView(
 
 
 class PublishedProfileListView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, RedirectView):
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -161,7 +161,7 @@ class ProfileView(
     TemplateView,
 ):
     template_name = 'find_a_supplier/profile.html'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -211,7 +211,7 @@ class ContactCompanyView(
 ):
     template_name = 'find_a_supplier/contact.html'
     form_class = forms.ContactCompanyForm
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -261,7 +261,7 @@ class ContactCompanySentView(
 ):
 
     template_name = 'find_a_supplier/sent.html'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -277,7 +277,7 @@ class ContactCompanySentView(
 
 class CaseStudyDetailView(CountryDisplayMixin, InternationalHeaderMixin, GA360Mixin, TemplateView):
     template_name = 'core/companies/case-study.html'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -323,7 +323,7 @@ class SubscribeFormView(
     success_url = reverse_lazy('find-a-supplier:subscribe-success')
     template_name = 'find_a_supplier/subscribe.html'
     form_class = forms.SubscribeForm
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -344,7 +344,7 @@ class SubscribeFormView(
 
 class AnonymousSubscribeSuccessView(InternationalView):
     template_name = 'find_a_supplier/subscribe-success.html'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
     def __init__(self):
@@ -365,14 +365,14 @@ class LegacySupplierURLRedirectView(LegacyRedirectCoreView):
 class BaseIndustryContactView(
     MultilingualCMSPageFromPathView, CMSLanguageSwitcherMixin, CountryDisplayMixin, InternationalHeaderMixin
 ):
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.FIND_A_SUPPLIER
 
 
 class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
     form_class = forms.ContactForm
     success_url = reverse_lazy('find-a-supplier:industry-contact-success')
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.CONTACT_US_TRADE
 
     def get_form_kwargs(self, *args, **kwargs):
