@@ -277,9 +277,10 @@ HEADER_SECTION_MAPPING = {
     r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
 
     # Buy from the UK
-    r'^trade/contact.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.CONTACT_US_TRADE),
-    r'^trade/how-we-help-you-buy.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.HOW_WE_HELP_BUY),
-    r'^trade.*': HeaderConfig(section=tier_one.TRADE, sub_section=tier_two.FIND_A_SUPPLIER),
+    r'^trade/contact.*': HeaderConfig(section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.CONTACT_US_TRADE),
+    r'^trade/how-we-help-you-buy.*': HeaderConfig(
+        section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.HOW_WE_HELP_BUY),
+    r'^trade.*': HeaderConfig(section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.FIND_A_SUPPLIER),
 
     # About DIT
     r'^contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),

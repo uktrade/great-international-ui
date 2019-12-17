@@ -20,10 +20,10 @@ INVEST_CAPITAL = NavItem(
     url=urls.international.CAPITAL_INVEST_HOME
 )
 
-TRADE = NavItem(
+BUY_FROM_THE_UK = NavItem(
     name='trade',
     title=_('Buy from the UK'),
-    url=urls.international.TRADE_HOME
+    url=urls.international.TRADE_HOW_WE_HELP
 )
 
 ABOUT_DIT = NavItem(

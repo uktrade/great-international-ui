@@ -9,9 +9,7 @@
 
   {% cms_hero hero_text=page.hero_title %}
 
-   <div class="container">
-      {% include 'core/includes/cms_breadcrumbs.html' %}
-   </div>
+  {% include 'core/includes/cms_breadcrumbs.html' %}
 
   {% if page.teaser %}
   <section id="teaser-section" class="padding-top-30 padding-bottom-60">
@@ -29,6 +27,28 @@
         {% endif %}
       </div>
     </div>
+  </section>
+  {% endif %}
+
+  {% if page.ebook_section_body %}
+  <section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
+      <div class="container">
+          <div class="grid-row">
+              {% if page.ebook_section_image %}
+                  <div class="column-quarter-l">
+                      <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
+                  </div>
+              {% endif %}
+              <div class="column-three-quarters-l padding-left-60-l">
+                  {{ page.ebook_section_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+                  {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+                      <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
+                          {{ page.ebook_section_cta_text }}
+                      </a>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
   </section>
   {% endif %}
 

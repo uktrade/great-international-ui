@@ -3,6 +3,11 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-627 - Add ebook section to about DIT services page
+- CI-628 - Change order of header links under 'Expand to the UK'
+- CI-629 - Fix broken breadcrumb links
+- CI-626 - Switch order of 'How we help' and 'Find a supplier' links in header
+- XOT-1256 - Add html and styles for article template to match domestic template
 - CI-591 - Remove content from invest contact form
 - CI-606 - Upgrade components to disable sticky nav
 - CI-548 - Remove padding on homepage help section cards
@@ -23,6 +28,7 @@
 - TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
+- CI-543 - Filter trade homepage industries by active language
 - XOT-1183 - Show top 9 articles on how to setup page
 - TT-2174 - Fix alignment of employees label
 - TT-1854 - Fix industries redirects and add missing trailing slashes
