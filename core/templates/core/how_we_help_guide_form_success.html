@@ -6,11 +6,10 @@
     <section>
       <div class="container">
         {% breadcrumbs 'How we help campaign title' %}
-                <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-                <a href="{{ international_trade_home }}">Buy from the UK</a>
-                <a href="{{international_trade_how_we_help}}">How we help you buy</a>
-            {% endbreadcrumbs %}
-
+            <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+            <a href="{{ international_trade_home }}">Buy from the UK</a>
+            <a href="{{international_trade_how_we_help}}">How we help you buy</a>
+        {% endbreadcrumbs %}
 
         <div class="width-two-thirds">
             {% success_box heading_level='h1' heading='Thank you' description='Your guide to investing in the UK has been emailed to you' %}

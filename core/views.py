@@ -941,24 +941,12 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
         return super().dispatch(request, *args, **kwargs)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = "core/how_we_help_guide_form.html"
     form_class = forms.HowWeHelpGuideFormView
     subject = "How we help Guide Form"
     success_url = '/international/trade/how-we-help-you-buy/how-we-help-guide/success/'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
 
     def __init__(self):
@@ -1005,11 +993,10 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         )
 
 
-
 class HowWeHelpGuideFormViewSuccess(InternationalView):
-    template_name = 'core/business_environment_guide_form_success.html'
+    template_name = 'core/how_we_help_guide_form_success.html'
     page_type = 'HowWeHelpGuideFormViewSuccessPage'
-    header_section = tier_one_nav_items.TRADE
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
 
     def dispatch(self, request, *args, **kwargs):
@@ -1020,6 +1007,13 @@ class HowWeHelpGuideFormViewSuccess(InternationalView):
             site_subsection='HowWeHelpYou'
         )
         return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            international_trade_home=urls.international.TRADE_HOME,
+            international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            *args, **kwargs,
+        )
 
 
 
