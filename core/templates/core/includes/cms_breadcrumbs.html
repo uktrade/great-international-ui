@@ -4,7 +4,7 @@
     <ol>
       {% block landing_page_link %}
       <li>
-          <a href="{% url 'index' %}">great.gov.uk International</a>
+          <a href="{% url 'index' %}">{{ international_home_link.label }}</a>
       </li>
       {% endblock %}
       {% for crumb in page.tree_based_breadcrumbs %}

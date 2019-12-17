@@ -9,9 +9,7 @@
 
 {% cms_hero hero_text=page.hero_title %}
 
-<div class="container">
-    {% include 'core/includes/cms_breadcrumbs.html' %}
-</div>
+{% include 'core/includes/cms_breadcrumbs.html' %}
 
 {% if page.intro %}
 <section class="padding-top-30 padding-bottom-60">
@@ -173,4 +171,3 @@
 {% endif %}
 
 {% endblock %}
-

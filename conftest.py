@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils import translation
 
 from core import context_processors
-from core.tests.helpers import create_response
+from core.tests.helpers import create_response, stub_page
 
 
 @pytest.fixture()
@@ -17,6 +17,13 @@ def captcha_stub():
     os.environ['RECAPTCHA_TESTING'] = 'True'
     yield 'PASSED'
     os.environ['RECAPTCHA_TESTING'] = 'False'
+
+
+@pytest.fixture
+def fas_home_page():
+    yield from stub_page({
+        'page_type': 'InternationalTradeHomePage',
+    })
 
 
 @pytest.fixture
