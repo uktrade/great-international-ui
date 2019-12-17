@@ -941,6 +941,18 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
         return super().dispatch(request, *args, **kwargs)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = "core/how_we_help_guide_form.html"
     form_class = forms.HowWeHelpGuideFormView
@@ -954,8 +966,8 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         self.set_ga360_payload(
             page_id='HowWeHelpForm',
             business_unit='GreatInternational',
-            site_section='AboutUk',
-            site_subsection='BusinessEnvironment'
+            site_section='Trade',
+            site_subsection='HowWeHelpYou'
         )
 
     def send_agent_email(self, form):
@@ -965,8 +977,8 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         )
         response = form.save(
             form_url=self.request.path,
-            email_address=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL,
-            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_TEMPLATE_ID,
+            email_address=settings.HOW_WE_HELP_GUIDE_AGENT_EMAIL,
+            template_id=settings.HOW_WE_HELP_GUIDE_AGENT_TEMPLATE_ID,
             sender=sender,
         )
         response.raise_for_status()
@@ -975,8 +987,8 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         response = form.save(
             form_url=self.request.path,
             email_address=form.cleaned_data['email_address'],
-            template_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_USER_TEMPLATE_ID,
-            email_reply_to_id=settings.GUIDE_TO_UK_BUSINESS_ENVIRONMENT_REPLY_TO_ID
+            template_id=settings.HOW_WE_HELP_GUIDE_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.HOW_WE_HELP_GUIDE_REPLY_TO_ID
         )
         response.raise_for_status()
 
@@ -985,21 +997,39 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         self.send_user_email(form)
         return super().form_valid(form)
 
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            international_trade_home=urls.international.TRADE_HOME,
+            international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            *args, **kwargs,
+        )
+
+
 
 class HowWeHelpGuideFormViewSuccess(InternationalView):
     template_name = 'core/business_environment_guide_form_success.html'
-    page_type = 'BusinessEnvironmentGuideFormSuccessPage'
-    header_section = tier_one_nav_items.ABOUT_UK
-    header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK
+    page_type = 'HowWeHelpGuideFormViewSuccessPage'
+    header_section = tier_one_nav_items.TRADE
+    header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
 
     def dispatch(self, request, *args, **kwargs):
         self.set_ga360_payload(
-            page_id='BusinessEnvironmentGuideFormSuccessPage',
+            page_id='HowWeHelpGuideFormViewSuccessPage',
             business_unit='GreatInternational',
-            site_section='AboutUk',
-            site_subsection='BusinessEnvironment'
+            site_section='Trade',
+            site_subsection='HowWeHelpYou'
         )
         return super().dispatch(request, *args, **kwargs)
+
+
+
+
+
+
+
+
+
+
 
 
 

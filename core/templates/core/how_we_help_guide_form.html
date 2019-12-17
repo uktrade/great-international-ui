@@ -3,18 +3,21 @@
 {% load i18n %}
 {% load breadcrumbs from directory_components %}
 
+
 {% block content %}
     <section id="form-content">
         <div class="container">
             {% breadcrumbs 'How we help campaign title' %}
                 <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-                <a href="{% url 'cms-page-from-path' 'trade' %}">Trade</a>
-                <a href="{% url 'cms-page-from-path' 'how-we-help-you-buy' %}">How we help you buy</a>
+
+                <a href="{{ international_trade_home }}">Buy from the UK</a>
+
+                <a href="{{international_trade_how_we_help}}">How we help you buy</a>
             {% endbreadcrumbs %}
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">
-                    <h1 class="heading-xlarge">{% trans 'Your Guide to the UK business environment' %}</h1>
+                    <h1 class="heading-xlarge">How we help guide</h1>
                     <div class="margin-vertical-60">
                         <p>{% trans 'If you are thinking about setting up your business internationally and would like to explore what the UK has to offer, download our Guide to the UK business environment today.' %}</p>
                         <p>{% trans "Simply enter your details below to access a wealth of insights into the UK's business environment together with help and advice." %}</p>
@@ -25,6 +28,7 @@
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.city %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
@@ -46,8 +50,7 @@
                         </p>
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.terms_agreed %}
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
+
                         <button class="button">Submit</button>
                     </form>
 

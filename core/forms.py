@@ -19,6 +19,19 @@ from core import constants
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 COMPANY_SIZE = BLANK_CHOICE_DASH + list(EMPLOYEES)
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
+INDUSTRY_OPTIONS_CREATIVE = BLANK_CHOICE_DASH + list((
+    ('Writing/Editing', _('Writing/Editing')),
+    ('Computer Gaming/gaming ', _('Computer Gaming/gaming')),
+    ('Media Production', _('Media Production')),
+    ('Animation', _('Animation')),
+    ('Graphic Design', _('Graphic Design')),
+    ('Motion Pictures and Film', _('Motion Pictures and Film')),
+    ('Publishing ', _('Publishing')),
+    ('Design', _('Design')),
+    ('Online Media', _('Online Media'))
+))
+
+
 
 
 class TariffsCountryForm(forms.Form):
@@ -213,19 +226,19 @@ def international_choices():
 
 
 class HowWeHelpGuideFormNestedDetails(forms.Form):
-    more_options = forms.CharField(
+    provide_more_info = forms.CharField(
         widget=Textarea,
         label=_( 'Please provide as much information as possible about the type of products or servicesyou’re interested in procuring from the UK.  '),
         help_text=('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
         required=False,
     )
 
-class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
-    name = forms.CharField(label=_('Name'), required=True)
-    email_address = forms.EmailField(label=_('Email address'), required=True)
-    company_name = forms.CharField(label=_('Company name'), required=True)
-    job_title = forms.CharField(label=_('Job title'), required=True)
-    phone_number = forms.CharField(label=_('Phone number'), required=True)
+class HowWeHelpGuideFormView(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
+    name = forms.CharField(label=_('Name'))
+    email_address = forms.EmailField(label=_('Email address'))
+    company_name = forms.CharField(label=_('Company name'))
+    job_title = forms.CharField(label=_('Job title'))
+    phone_number = forms.CharField(label=_('Phone number'))
     city = forms.CharField(label=_('City (Optional)'), required=False)
 
     country = forms.ChoiceField(
@@ -235,7 +248,7 @@ class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
     )
 
     procuring_products = forms.RadioNested(
-        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?:'),
+        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?'),
         choices=(
             ('yes', _('Yes')),
             ('no', _('No')),
@@ -246,7 +259,7 @@ class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
 
     industry = forms.ChoiceField(
         label=_('Industry/Sector'),
-        choices=INDUSTRY_OPTIONS,
+        choices=INDUSTRY_OPTIONS_CREATIVE,
         required=False,
     )
 
@@ -265,22 +278,6 @@ class HowWeHelpGuideFormView(forms.BindNestedFormMixin, forms.Form):
         label=_('I would like to be contacted by telephone'),
         required=False,
     )
-
-    terms_agreed = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
-        required=True,
-    )
-
-    captcha = ReCaptchaField(label='', label_suffix='')
-
-    @property
-    def serialized_data(self):
-        # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
-        data = self.cleaned_data.copy()
-        del data['captcha']
-        del data['terms_agreed']
-        return data
-
 
 
 class InternationalRoutingForm(forms.Form):
