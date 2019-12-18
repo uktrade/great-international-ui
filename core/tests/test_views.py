@@ -2769,6 +2769,7 @@ def test_international_contact_triage_view(
 
     assert 'domestic_contact_home' in response.context_data
 
+
 @pytest.fixture
 def why_buy_from_uk_form_data(captcha_stub):
     return {
