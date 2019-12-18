@@ -2589,10 +2589,6 @@ def test_business_environment_form_success_view(client):
     assert response.status_code == 200
 
 
-
-
-
-
 @pytest.fixture
 def why_buy_from_uk_form_data(captcha_stub):
     return {
@@ -2626,8 +2622,8 @@ def test_why_buy_from_uk_submission(mock_save, why_buy_from_uk_form_data, client
     assert response.url == reverse('why-buy-from-uk-form-success')
 
 
-def test_business_environment_form_success_view(client):
-    response = client.get(reverse('business-environment-guide-form-success'))
+def test_why_buy_from_uk_form_success_view(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
     assert response.status_code == 200
 
 
