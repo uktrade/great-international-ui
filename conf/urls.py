@@ -356,14 +356,14 @@ urlpatterns += [
         name='cms-page-from-path'
     ),
     url(
-        r"^international/trade/how-we-help-you-buy/how-we-help-guide/$",
-        core.views.HowWeHelpGuideFormView.as_view(),
-        name='how-we-help-guide-form'
+        r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/$",
+        core.views.WhyBuyFromUKFormView.as_view(),
+        name='why-buy-from-uk-form'
         ),
     url(
-        r"^international/trade/how-we-help-you-buy/how-we-help-guide/success/$",
-        core.views.HowWeHelpGuideFormViewSuccess.as_view(),
-        name='how-we-help-guide-form-success'
+        r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/success/$",
+        core.views.WhyBuyFromUKFormViewSuccess.as_view(),
+        name='why-buy-from-uk-form-success'
         ),
 ]
 

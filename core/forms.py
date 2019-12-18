@@ -19,17 +19,6 @@ from core import constants
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 COMPANY_SIZE = BLANK_CHOICE_DASH + list(EMPLOYEES)
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
-INDUSTRY_OPTIONS_CREATIVE = BLANK_CHOICE_DASH + list((
-    ('Writing/Editing', _('Writing/Editing')),
-    ('Computer Gaming/gaming ', _('Computer Gaming/gaming')),
-    ('Media Production', _('Media Production')),
-    ('Animation', _('Animation')),
-    ('Graphic Design', _('Graphic Design')),
-    ('Motion Pictures and Film', _('Motion Pictures and Film')),
-    ('Publishing ', _('Publishing')),
-    ('Design', _('Design')),
-    ('Online Media', _('Online Media'))
-))
 
 
 
@@ -225,15 +214,17 @@ def international_choices():
     return ((value, label) for value, label in all_choices if choice_is_enabled(value))
 
 
-class HowWeHelpGuideFormNestedDetails(forms.Form):
+class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
-        label=_( 'Please provide as much information as possible about the type of products or servicesyou’re interested in procuring from the UK.  '),
+        label=_('Please provide as much information as possible about the type of'
+                'products or services you’re interested in procuring from the UK.'),
         help_text=('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
         required=False,
     )
 
-class HowWeHelpGuideFormView(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
+
+class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
     name = forms.CharField(label=_('Name'))
     email_address = forms.EmailField(label=_('Email address'))
     company_name = forms.CharField(label=_('Company name'))
@@ -253,13 +244,13 @@ class HowWeHelpGuideFormView(GovNotifyEmailActionMixin, forms.BindNestedFormMixi
             ('yes', _('Yes')),
             ('no', _('No')),
         ),
-        nested_form_class=HowWeHelpGuideFormNestedDetails,
+        nested_form_class=WhyBuyFromUKFormNestedDetails,
         nested_form_choice='yes',
     )
 
     industry = forms.ChoiceField(
         label=_('Industry/Sector'),
-        choices=INDUSTRY_OPTIONS_CREATIVE,
+        choices=INDUSTRY_OPTIONS,
         required=False,
     )
 

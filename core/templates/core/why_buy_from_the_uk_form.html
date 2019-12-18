@@ -7,7 +7,7 @@
 {% block content %}
     <section id="form-content">
         <div class="container">
-            {% breadcrumbs 'How we help campaign title' %}
+            {% breadcrumbs 'Why buy from the UK' %}
                 <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
 
                 <a href="{{ international_trade_home }}">Buy from the UK</a>
@@ -17,11 +17,7 @@
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">
-                    <h1 class="heading-xlarge">How we help guide</h1>
-                    <div class="margin-vertical-60">
-                        <p>{% trans 'If you are thinking about setting up your business internationally and would like to explore what the UK has to offer, download our Guide to the UK business environment today.' %}</p>
-                        <p>{% trans "Simply enter your details below to access a wealth of insights into the UK's business environment together with help and advice." %}</p>
-                    </div>
+                    <h1 class="heading-xlarge">Why buy from the UK</h1>
                 </div>
                 <div class="column-two-thirds-m column-half-xl">
                     <form method="post">
@@ -46,7 +42,7 @@
                         </p>
                         <h3 class="heading-medium">Contacting you</h3>
                         <p>
-                         If you would like to receive further information about investing in the UK you can opt in below. You can opt out of these additional updates at any time.
+                         If you would like to receive further information from the UK Government in relation to Trade & Investment you can opt in below. You can opt out of these additional updates at any time.
                         </p>
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}

@@ -941,21 +941,21 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
-    template_name = "core/how_we_help_guide_form.html"
-    form_class = forms.HowWeHelpGuideFormView
+class WhyBuyFromUKFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = "core/why_buy_from_the_uk_form.html"
+    form_class = forms.WhyBuyFromUKForm
     subject = "How we help Guide Form"
-    success_url = '/international/trade/how-we-help-you-buy/how-we-help-guide/success/'
+    success_url = '/international/trade/how-we-help-you-buy/why-buy-from-the-uk/success/'
     header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
 
     def __init__(self):
         super().__init__()
         self.set_ga360_payload(
-            page_id='HowWeHelpForm',
+            page_id='WhyBuyFromUKForm',
             business_unit='GreatInternational',
             site_section='Trade',
-            site_subsection='HowWeHelpYou'
+            site_subsection='HowWeHelp'
         )
 
     def send_agent_email(self, form):
@@ -993,8 +993,8 @@ class HowWeHelpGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
         )
 
 
-class HowWeHelpGuideFormViewSuccess(InternationalView):
-    template_name = 'core/how_we_help_guide_form_success.html'
+class WhyBuyFromUKFormViewSuccess(InternationalView):
+    template_name = 'core/why_buy_from_the_uk_form_success.html'
     page_type = 'HowWeHelpGuideFormViewSuccessPage'
     header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
@@ -1004,7 +1004,7 @@ class HowWeHelpGuideFormViewSuccess(InternationalView):
             page_id='HowWeHelpGuideFormViewSuccessPage',
             business_unit='GreatInternational',
             site_section='Trade',
-            site_subsection='HowWeHelpYou'
+            site_subsection='HowWeHelp'
         )
         return super().dispatch(request, *args, **kwargs)
 
@@ -1014,17 +1014,6 @@ class HowWeHelpGuideFormViewSuccess(InternationalView):
             international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
             *args, **kwargs,
         )
-
-
-
-
-
-
-
-
-
-
-
 
 
 def handler404(request, *args, **kwargs):
