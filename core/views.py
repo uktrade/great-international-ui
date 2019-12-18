@@ -966,7 +966,7 @@ class WhyBuyFromUKFormView(GA360Mixin, InternationalHeaderMixin, FormView):
             country_code=form.cleaned_data['country'],
         )
         response = form.save(
-            form_url=self.request.path,
+            form_url=self.request.get_full_path(),
             email_address=settings.HOW_WE_HELP_GUIDE_AGENT_EMAIL,
             template_id=settings.HOW_WE_HELP_GUIDE_AGENT_TEMPLATE_ID,
             sender=sender,
