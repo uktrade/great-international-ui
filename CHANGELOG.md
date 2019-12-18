@@ -28,6 +28,7 @@
 - TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
+- No ticket - Add template logic for optional CMS fields to prevent empty elements
 - No ticket - Fixed missing href in breadcrumb causing 500 on sub sector pages
 - CI-543 - Filter trade homepage industries by active language
 - XOT-1183 - Show top 9 articles on how to setup page
