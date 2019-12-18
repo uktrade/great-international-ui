@@ -9,6 +9,7 @@ from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
+from django.urls import reverse_lazy
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
@@ -946,7 +947,7 @@ class WhyBuyFromUKFormView(GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = "core/why_buy_from_the_uk_form.html"
     form_class = forms.WhyBuyFromUKForm
     subject = "How we help Guide Form"
-    success_url = '/international/trade/how-we-help-you-buy/why-buy-from-the-uk/success/'
+    success_url = reverse_lazy('why-buy-from-uk-form-success')
     header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
 
