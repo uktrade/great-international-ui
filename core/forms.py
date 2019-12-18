@@ -21,8 +21,6 @@ COMPANY_SIZE = BLANK_CHOICE_DASH + list(EMPLOYEES)
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
 
 
-
-
 class TariffsCountryForm(forms.Form):
     tariffs_country = forms.ChoiceField(
         label='Country',

@@ -72,4 +72,3 @@ class LegacyInvestURLRedirectView(LegacyRedirectCoreView):
             if lang not in settings.INVEST_REDIRECTS_UNUSED_LANGUAGES:  # these go to English
                 params['lang'] = lang
         return path, params
-
