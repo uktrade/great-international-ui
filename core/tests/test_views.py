@@ -2806,3 +2806,12 @@ def test_why_buy_from_uk_submission(mock_save, why_buy_from_uk_form_data, client
 def test_why_buy_from_uk_form_success_view(client):
     response = client.get(reverse('why-buy-from-uk-form'))
     assert response.status_code == 200
+
+
+def test_why_buy_from_uk_context(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
+    assert '/international/trade/' in response.context_data['international_trade_home']
+    assert (
+        '/international/content/trade/how-we-help-you-buy/'
+        in response.context_data['international_trade_how_we_help']
+    )
