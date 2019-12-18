@@ -58,10 +58,18 @@
       <div class="flex-grid">
         {% for service_field in page.about_dit_services_fields %}
           <div class="column-third-xl column-half-m padding-top-30 padding-bottom-30 padding-top-45-l padding-bottom-45-l">
-            <img src="{{ service_field.icon.url }}" alt="" />
-            <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
-            <p class="font-small">{{ service_field.summary }}</p>
-            <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
+            {% if service_field.icon %}
+              <img src="{{ service_field.icon.url }}" alt="" />
+            {% endif %}
+            {% if service_field.title %}
+              <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
+            {% endif %}
+            {% if service_field.summary %}
+              <p class="font-small">{{ service_field.summary }}</p>
+            {% endif %}
+            {% if service_field.link_url and service_field.link_text %}
+              <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
+            {% endif %}
           </div>
         {% endfor %}
       </div>
