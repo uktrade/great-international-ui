@@ -11,7 +11,8 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView, WhyBuyFromUKFormView
+    InternationalHomePageView, BusinessEnvironmentGuideFormView, \
+    InternationalContactTriageView, WhyBuyFromUKFormView, WhyBuyFromUKFormViewSuccess
 
 test_sectors = [
     {
@@ -2847,6 +2848,17 @@ def test_why_buy_from_uk_context(rf, client):
     request = rf.get('/')
     response = WhyBuyFromUKFormView.as_view()(
         request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/')
+    assert '/international/trade/' in response.context_data['international_trade_home']
+    assert (
+        '/international/content/trade/how-we-help-you-buy/'
+        in response.context_data['international_trade_how_we_help']
+    )
+
+
+def test_why_buy_from_uk_success_context(rf, client):
+    request = rf.get('/')
+    response = WhyBuyFromUKFormViewSuccess.as_view()(
+        request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/success/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
         '/international/content/trade/how-we-help-you-buy/'
