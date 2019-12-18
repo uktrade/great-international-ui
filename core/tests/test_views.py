@@ -10,9 +10,11 @@ from conf.tests.test_urls import reload_urlconf
 from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
-from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView, \
+from core.views import (
+    MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView,
+    InternationalHomePageView, BusinessEnvironmentGuideFormView,
     InternationalContactTriageView, WhyBuyFromUKFormView, WhyBuyFromUKFormViewSuccess
+)
 
 test_sectors = [
     {
