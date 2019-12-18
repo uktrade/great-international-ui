@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates
 - CI-627 - Add ebook section to about DIT services page
 - CI-628 - Change order of header links under 'Expand to the UK'
 - CI-629 - Fix broken breadcrumb links
