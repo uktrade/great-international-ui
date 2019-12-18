@@ -2589,42 +2589,39 @@ def test_business_environment_form_success_view(client):
     assert response.status_code == 200
 
 
-@pytest.fixture
-def why_buy_from_uk_form_data(captcha_stub):
-    return {
-        'name': 'Test User',
-        'email_address': 'me@here.com',
-        'company_name': 'Company LTD',
-        'job_title': 'Director',
-        'phone_number': '07777777777',
-        'country': 'FR',
-        'industry': 'ADVANCED_MANUFACTURING',
-        'procuring_products': 'yes',
-        'contact_email': False,
-        'contact_phone': True,
-        'city': 'London',
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_getting_regions_on_region_page(
+        mock_cms_response, rf
+):
+    page = {
+        'title': 'Midlands',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ]
+        },
+        'page_type': 'AboutUkRegionPage',
+        'mapped_regions': [
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+        ],
+        'economics_stats': [],
+        'location_stats': [],
     }
 
+    mock_cms_response.return_value = create_response(page)
 
-def test_why_buy_from_uk_form_data_view(client):
-    response = client.get(reverse('why-buy-from-uk-form'))
-    assert response.status_code == 200
+    request = rf.get('/international/content/about-uk/regions/midlands/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/about-uk/regions/midlands/')
 
-
-@patch.object(WhyBuyFromUKFormView.form_class, 'save')
-def test_why_buy_from_uk_submission(mock_save, why_buy_from_uk_form_data, client):
-    mock_save.return_value = create_response(status_code=200)
-
-    response = client.post(reverse('why-buy-from-uk-form'), why_buy_from_uk_form_data)
-
-    assert mock_save.call_count == 2
-    assert response.status_code == 302
-    assert response.url == reverse('why-buy-from-uk-form-success')
-
-
-def test_why_buy_from_uk_form_success_view(client):
-    response = client.get(reverse('why-buy-from-uk-form'))
-    assert response.status_code == 200
+    assert len(response.context_data['regions']) == 6
+    assert response.context_data['show_mapped_regions'] is True
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -2771,3 +2768,40 @@ def test_international_contact_triage_view(
         request, path='/international/contact/')
 
     assert 'domestic_contact_home' in response.context_data
+
+@pytest.fixture
+def why_buy_from_uk_form_data(captcha_stub):
+    return {
+        'name': 'Test User',
+        'email_address': 'me@here.com',
+        'company_name': 'Company LTD',
+        'job_title': 'Director',
+        'phone_number': '07777777777',
+        'country': 'FR',
+        'industry': 'ADVANCED_MANUFACTURING',
+        'procuring_products': 'yes',
+        'contact_email': False,
+        'contact_phone': True,
+        'city': 'London',
+    }
+
+
+def test_why_buy_from_uk_form_data_view(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
+    assert response.status_code == 200
+
+
+@patch.object(WhyBuyFromUKFormView.form_class, 'save')
+def test_why_buy_from_uk_submission(mock_save, why_buy_from_uk_form_data, client):
+    mock_save.return_value = create_response(status_code=200)
+
+    response = client.post(reverse('why-buy-from-uk-form'), why_buy_from_uk_form_data)
+
+    assert mock_save.call_count == 2
+    assert response.status_code == 302
+    assert response.url == reverse('why-buy-from-uk-form-success')
+
+
+def test_why_buy_from_uk_form_success_view(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
+    assert response.status_code == 200
