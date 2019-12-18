@@ -2843,8 +2843,10 @@ def test_why_buy_from_uk_form_success_view(client):
     assert response.status_code == 200
 
 
-def test_why_buy_from_uk_context(client):
-    response = client.get(reverse('why-buy-from-uk-form'))
+def test_why_buy_from_uk_context(rf, client):
+    request = rf.get('/')
+    response = WhyBuyFromUKFormView.as_view()(
+        request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
         '/international/content/trade/how-we-help-you-buy/'
