@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-10 14:36+0000\n"
+"POT-Creation-Date: 2019-12-19 15:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,8 +146,8 @@ msgid ""
 "      </p>\n"
 "      <p>\n"
 "        You can read about how we protect your data in <a class=\"link\" "
-"href=\"https://great.gov.uk/privacy-and-cookies/\" target=\"_blank\">our "
-"privacy notice</a>.\n"
+"href=\"https://great.gov.uk/privacy-and-cookies/fair-processing-notice-"
+"invest-in-great-britain/\" target=\"_blank\">our privacy notice</a>.\n"
 "      </p>\n"
 "      "
 msgstr ""
@@ -370,7 +370,7 @@ msgid "How to buy from the UK"
 msgstr ""
 
 #: core/templates/core/article_related_content_cards.html:9
-#: core/templates/core/article_related_content_list.html:8
+#: core/templates/core/article_related_content_list.html:20
 #: core/templates/core/sector_page.html:151
 msgid "Related content"
 msgstr ""

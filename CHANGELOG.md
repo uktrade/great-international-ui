@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- No ticket - Update privacy link in Invest contact form
 - CI-627 - Add ebook section to about DIT services page
 - CI-628 - Change order of header links under 'Expand to the UK'
 - CI-629 - Fix broken breadcrumb links
@@ -28,6 +29,7 @@
 - TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
+- No ticket - Fix bad translation string in fr
 - No ticket - Add template logic for optional CMS fields to prevent empty elements
 - No ticket - Fixed missing href in breadcrumb causing 500 on sub sector pages
 - CI-543 - Filter trade homepage industries by active language
