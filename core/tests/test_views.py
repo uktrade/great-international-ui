@@ -720,6 +720,41 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_capital_invest_sub_sector_page_about_uk_link(
+    mock_cms_response, rf, settings
+):
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = True
+
+    page = {
+        'title': 'Housing',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'housing'
+        },
+        'page_type': 'InternationalSubSectorPage',
+        'statistics': [],
+        'section_three_subsections': [],
+        'related_opportunities': [],
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/content/industries/energy/housing'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request,
+        path='/international/content/industries/energy/housing'
+    )
+
+    assert response.status_code == 200
+    assert 'about_uk_link' in response.context_data
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
     mock_cms_response, rf, settings
 ):

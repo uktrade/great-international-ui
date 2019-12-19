@@ -273,7 +273,8 @@ def sub_sector_context_modifier(context, request):
         'section_three_num_of_subsections': helpers.count_data_with_field(
             page['section_three_subsections'], 'heading'),
         'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT
+        'trade_contact_form_url': urls.international.TRADE_CONTACT,
+        'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
 
