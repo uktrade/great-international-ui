@@ -5,7 +5,7 @@
 {% block breadcrumbs %}
   {% url 'find-a-supplier:company-contact' company_number=company.number as contact_url %}
   {% breadcrumbs 'Message sent' %}
-  	<a href="{{ services_urls.great_international }}">Great.gov.uk international</a>
+  	<a href="{{ services_urls.great_international }}">{{ international_home_link.label }}</a>
   	<a href="{{ contact_url|add:'?'|add:search_querystring }}">Contact company</a>
   {% endbreadcrumbs %}
 {% endblock %}

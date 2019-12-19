@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.template.loader import render_to_string
 
 from bs4 import BeautifulSoup
@@ -15,7 +17,8 @@ dummy_page = {
 }
 
 
-def test_article_detail_page_no_related_content(default_context):
+def test_article_detail_page_no_related_content(default_context, rf):
+
     test_article_page_no_related_content = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -32,6 +35,7 @@ def test_article_detail_page_no_related_content(default_context):
 
     context = {
         'page': test_article_page_no_related_content,
+        'request': rf.get('/'),
         **default_context
     }
 
@@ -40,7 +44,7 @@ def test_article_detail_page_no_related_content(default_context):
     assert 'Related content' not in html
 
 
-def test_article_detail_page_related_content(default_context):
+def test_article_detail_page_related_content(default_context, rf):
 
     article_page = {
         'title': 'Test article',
@@ -53,8 +57,8 @@ def test_article_detail_page_related_content(default_context):
                 'title': 'Related article 1',
                 'teaser': 'Related article 1 teaser',
                 'thumbnail': {'url': 'related_article_one.jpg'},
+                'full_path': '/international/test-list/test-one/',
                 'meta': {
-                    'url': '/international/test-list/test-one/',
                     'slug': 'test-one',
                     'languages': [('en-gb', 'English')],
                 }
@@ -63,11 +67,11 @@ def test_article_detail_page_related_content(default_context):
                 'title': 'Related article 2',
                 'teaser': 'Related article 2 teaser',
                 'thumbnail': {'url': 'related_article_two.jpg'},
+                'full_path': '/international/test-list/test-two/',
                 'meta': {
-                    'url': '/international/test-list/test-two/',
                     'slug': 'test-two',
                     'languages': [('en-gb', 'English')],
-                }
+                },
             },
         ],
         'meta': {
@@ -79,6 +83,7 @@ def test_article_detail_page_related_content(default_context):
 
     context = {
         'page': article_page,
+        'request': rf.get('/'),
         **default_context
     }
 
@@ -95,11 +100,42 @@ def test_article_detail_page_related_content(default_context):
     ).attrs['href'] == '/international/test-list/test-two/'
 
     assert soup.find(
-        id='related-article-test-one'
-    ).select('h3')[0].text == 'Related article 1'
+        id='related-article-test-one-link'
+    ).text == 'Related article 1'
     assert soup.find(
-        id='related-article-test-two'
-    ).select('h3')[0].text == 'Related article 2'
+        id='related-article-test-two-link'
+    ).text == 'Related article 2'
+
+
+def test_article_detail_page_media_rendered(default_context, rf):
+    context = {
+        'request': rf.get('/')
+    }
+    page = {
+        "article_video": {
+            "url": "test.mp4",
+            "file_extension": "mp4"
+        },
+        "article_image": {
+            "url": "campaign.jpg"
+        }
+    }
+
+    context = {
+        'page': page,
+        'request': rf.get('/'),
+        **default_context
+    }
+
+    html = render_to_string('core/article_detail.html', context)
+
+    soup = BeautifulSoup(html, 'html.parser')
+    src = soup.find(id='article-video').select('source')[0]
+
+    assert '<div class="video-container">' in html
+    assert src.attrs['src'] == 'test.mp4'
+    assert src.attrs['type'] == 'video/mp4'
+    assert 'src="campaign.jpg"' not in html
 
 
 def test_homepage_no_related_pages(default_context):
@@ -157,3 +193,81 @@ def test_homepage_related_pages(default_context):
     assert 'Related article title' in html
     assert 'Related article teaser' in html
     assert '/topic/list/article' in html
+
+
+@patch('django.utils.translation.get_language')
+def test_guide_child_articles_less_than_nine(mock_language):
+    mock_language.return_value = 'fr'
+
+    french_page = {
+        'meta': {
+            'languages': [['fr', 'Français']]
+        }
+    }
+    german_page = {
+        'meta': {
+            'languages': [['de', 'Deutsch']]
+        }
+    }
+
+    context = {
+        'page': {
+            'title': 'test',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English'],
+                    ['fr', 'Français'],
+                    ['de', 'Deutsch'],
+                ]
+            },
+            'page_type': '',
+            'guides': [
+                french_page, french_page, french_page, french_page, french_page, german_page, german_page
+            ]
+        }
+    }
+
+    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
+    soup = BeautifulSoup(html, 'html.parser')
+
+    assert len(soup.find(id='guide-articles').find_all('article')) == 5
+
+
+@patch('django.utils.translation.get_language')
+def test_guide_child_articles_more_than_nine(mock_language):
+    mock_language.return_value = 'fr'
+
+    french_page = {
+        'meta': {
+            'languages': [['fr', 'Français']]
+        }
+    }
+    german_page = {
+        'meta': {
+            'languages': [['de', 'Deutsch']]
+        }
+    }
+
+    context = {
+        'page': {
+            'title': 'test',
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English'],
+                    ['fr', 'Français'],
+                    ['de', 'Deutsch'],
+                ]
+            },
+            'page_type': '',
+            'guides': [
+                french_page, french_page, french_page, french_page, french_page,
+                french_page, french_page, french_page, french_page, french_page,
+                german_page, german_page
+            ]
+        }
+    }
+
+    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
+    soup = BeautifulSoup(html, 'html.parser')
+
+    assert len(soup.find(id='guide-articles').find_all('article')) == 9

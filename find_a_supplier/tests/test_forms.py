@@ -3,7 +3,8 @@ import pytest
 from django.forms.fields import Field
 from unittest import mock
 
-from directory_validators.common import not_contains_url_or_email
+from directory_validators.url import not_contains_url_or_email
+from directory_constants import choices
 
 from find_a_supplier import forms, views
 from core.tests.helpers import create_response
@@ -184,4 +185,70 @@ def test_search_required_empty_sector_term():
 
     assert form.errors == {
         '__all__': [forms.CompanySearchForm.MESSAGE_MISSING_SECTOR_TERM]
+    }
+
+
+def test_contact_required_fields():
+    form = forms.ContactForm(data={}, industry_choices=[])
+
+    assert form.is_valid() is False
+    assert form.errors == {
+        'body': ['This field is required.'],
+        'captcha': ['This field is required.'],
+        'country': ['This field is required.'],
+        'email_address': ['This field is required.'],
+        'full_name': ['This field is required.'],
+        'organisation_name': ['This field is required.'],
+        'phone_number': ['This field is required.'],
+        'sector': ['This field is required.'],
+        'terms_agreed': ['This field is required.']
+    }
+
+
+def test_contact_invalid_country(valid_contact_data):
+    data = valid_contact_data
+    data['country'] = 'fake country'
+    form = forms.ContactForm(
+        data=data,
+        industry_choices=[(forms.choices.sectors.AEROSPACE, 'Aerospace')]
+    )
+
+    assert form.is_valid() is False
+    assert form.errors == {
+        'country': ['Select a valid choice. fake country is not one of the available choices.'],
+    }
+
+
+@mock.patch(
+    'directory_forms_api_client.client.forms_api_client.submit_generic'
+)
+def test_contact_body_text(
+    mock_submit_generic, valid_contact_data
+):
+    mock_submit_generic.return_value = None
+    form = forms.ContactForm(
+        data=valid_contact_data,
+        industry_choices=[(choices.sectors.AEROSPACE, 'Aerospace')]
+    )
+
+    assert form.is_valid()
+
+    form.save(
+        template_id='foo',
+        email_address='reply_to@example.com',
+        form_url='/trade/some/path/',
+    )
+
+    assert form.serialized_data == {
+        'body': valid_contact_data['body'],
+        'country': valid_contact_data['country'],
+        'country_name': choices.COUNTRIES_AND_TERRITORIES[0][1],
+        'email_address': valid_contact_data['email_address'],
+        'organisation_name': valid_contact_data['organisation_name'],
+        'organisation_size': choices.EMPLOYEES[0][1],
+        'sector': choices.sectors.AEROSPACE,
+        'source': '',
+        'source_other': '',
+        'full_name': valid_contact_data['full_name'],
+        'phone_number': valid_contact_data['phone_number']
     }

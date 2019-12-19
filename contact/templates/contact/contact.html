@@ -35,11 +35,26 @@
 
       <h2 class="heading-medium">{% trans "Your plans" %}</h2>
       {% include 'includes/form_field.html' with field=form.description %}
-      {% include 'includes/form_field.html' with field=form.captcha %}
 
+      <h2 class="heading-medium">How we use your information</h2>
+
+      {% blocktrans %}
       <p>
-        {% trans "By sending us your details you can confirm that the information you've shared with us is true and you accept our terms and conditions." %}
+        The Department for International Trade will use the information provided in this form to respond to your enquiry.
       </p>
+      <p>
+        You can read about how we protect your data in <a class="link" href="https://great.gov.uk/privacy-and-cookies/fair-processing-notice-invest-in-great-britain/" target="_blank">our privacy notice</a>.
+      </p>
+      {% endblocktrans %}
+
+      <h2 class="heading-medium">Contacting you</h2>
+      <p>
+        {% trans "If you would like to receive further information about investing in the UK you can opt in below. You can opt out of these additional updates at any time." %}
+      </p>
+
+      {% include 'includes/form_field.html' with field=form.email_contact_consent %}
+      {% include 'includes/form_field.html' with field=form.telephone_contact_consent %}
+      {% include 'includes/form_field.html' with field=form.captcha %}
 
       <button type="submit" name="button" class="button button-blue">{% trans "Submit" %}</button>
     </form>

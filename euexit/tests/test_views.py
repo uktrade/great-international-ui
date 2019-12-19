@@ -69,8 +69,15 @@ def test_international_form_cms_retrieval_ok(
 @mock.patch.object(
     views.InternationalContactFormView.form_class, 'save'
 )
+@pytest.mark.parametrize(
+    'country',
+    (
+        choices.COUNTRIES_AND_TERRITORIES[1][0],
+        'HK',
+    )
+)
 def test_international_form_submit(
-        mock_save, mock_lookup_by_slug, settings, client, captcha_stub
+    mock_save, mock_lookup_by_slug, settings, client, captcha_stub, country
 ):
     mock_lookup_by_slug.return_value = create_response(
         status_code=200, json_payload={
@@ -91,7 +98,7 @@ def test_international_form_submit(
         'email': 'test@example.com',
         'organisation_type': 'COMPANY',
         'company_name': 'thing',
-        'country': choices.COUNTRY_CHOICES[1][0],
+        'country': country,
         'city': 'London',
         'comment': 'hello',
         'terms_agreed': True,

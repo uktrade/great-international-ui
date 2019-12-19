@@ -2,14 +2,50 @@
 
 ## Pre-release
 
+### Implemented enhancements
+- No ticket - Update privacy link in Invest contact form
+- CI-627 - Add ebook section to about DIT services page
+- CI-628 - Change order of header links under 'Expand to the UK'
+- CI-629 - Fix broken breadcrumb links
+- CI-626 - Switch order of 'How we help' and 'Find a supplier' links in header
+- XOT-1256 - Add html and styles for article template to match domestic template
+- CI-591 - Remove content from invest contact form
+- CI-606 - Upgrade components to disable sticky nav
+- CI-548 - Remove padding on homepage help section cards
+- CI-591 - Add consent fields to invest contact form
+- DATAPROJECTS-258 - Updated euexit form with countries and territories drop down
+- DATAPROJECTS-276 - Updated find a supplier form with countries drop down
+- CI-547 - Remove tariffs section
+- CMS-1787 - Use correct header on Invest pages
+- CI-302 - Added translations for new header
+- CI-555 - Update HPO page design
+- CI-551 - Remove duplicated related content from article template
+- CI-545 - Add JP translation for 'Related content'
+- CMS-1848 - Make landing page hero text full width in Japanese
+- CI-529 - Add hardcoded Japanese translations for content on industry pages
+- CI-528 - Updated capital invest label on form triage
+- CI-537 - Added breadcrumbs to FAS overview page
+- no ticket - Update navbar to link from `about-dit` to `about-us`
+- TT-1304 - Upgrade sentry client
+
 ### Fixed bugs
+- No ticket - Fix bad translation string in fr
+- No ticket - Add template logic for optional CMS fields to prevent empty elements
+- No ticket - Fixed missing href in breadcrumb causing 500 on sub sector pages
+- CI-543 - Filter trade homepage industries by active language
+- XOT-1183 - Show top 9 articles on how to setup page
+- TT-2174 - Fix alignment of employees label
+- TT-1854 - Fix industries redirects and add missing trailing slashes
+- TT-2091 - Fix missing logos in s3 bucket
+- no ticket - upgrade pillow for security vulnerability fix
+- no ticket - upgrade directory-components for accessibility fix
+
 
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.11.25...2019.12.02)
 
 ## Hotfix
 - TT-2186 - Fix captcha on contact form
-
 
 ## [2019.11.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.11.25)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_3...2019.11.25)

@@ -1,7 +1,7 @@
 {% extends 'find_a_supplier/base.html' %}
 
 {% load static from staticfiles %}
-{% load first_paragraph grouper from cms_tags %}
+{% load first_paragraph filter_by_active_language from cms_tags %}
 {% load directory_components %}
 
 {% block css_layout_class %}find-a-supplier-landing-page{% endblock %}
@@ -79,15 +79,13 @@
         <div class="heading-large">
           {{ page.industries_list_text|safe }}
         </div>
-        {% for row in page.industries|grouper:3 %}
-            <div class="grid-row">
-                {% for industry in row %}
-                <div class="column-third-xl column-half-m">
-                  {% labelled_image_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
-                </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
+        <ul class="flex-grid">
+          {% for industry in page.industries|filter_by_active_language %}
+            <li class="column-third-xl column-half-m">
+              {% labelled_image_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
+            </li>
+          {% endfor %}
+        </ul>
         <a class="button" href="{% url 'industries' %}">{{ page.industries_list_call_to_action_text }}</a>
     </div>
 </section>

@@ -16,6 +16,8 @@ import environ
 
 from directory_constants import cms
 import directory_healthcheck.backends
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 
 env = environ.Env()
@@ -44,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.messages',
-    'raven.contrib.django.raven_compat',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'core',
@@ -248,48 +249,14 @@ if DEBUG:
             },
         }
     }
-else:
-    # Sentry logging
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'root': {
-            'level': 'WARNING',
-            'handlers': ['sentry'],
-        },
-        'formatters': {
-            'verbose': {
-                'format': '%(levelname)s %(asctime)s %(module)s '
-                          '%(process)d %(thread)d %(message)s'
-            },
-        },
-        'handlers': {
-            'sentry': {
-                'level': 'ERROR',
-                'class': (
-                    'raven.contrib.django.raven_compat.handlers.SentryHandler'
-                ),
-                'tags': {'custom-tag': 'x'},
-            },
-            'console': {
-                'level': 'DEBUG',
-                'class': 'logging.StreamHandler',
-                'formatter': 'verbose'
-            }
-        },
-        'loggers': {
-            'raven': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-            'sentry.errors': {
-                'level': 'DEBUG',
-                'handlers': ['console'],
-                'propagate': False,
-            },
-        },
-    }
+
+# Sentry
+if env.str('SENTRY_DSN', ''):
+    sentry_sdk.init(
+        dsn=env.str('SENTRY_DSN'),
+        environment=env.str('SENTRY_ENVIRONMENT'),
+        integrations=[DjangoIntegration()]
+    )
 
 
 ANALYTICS_ID = env.str('ANALYTICS_ID', '')
@@ -304,15 +271,6 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 LANGUAGE_COOKIE_SECURE = env.bool('LANGUAGE_COOKIE_SECURE', True)
 COUNTRY_COOKIE_SECURE = env.bool('COUNTRY_COOKIE_SECURE', True)
-
-# Sentry
-RAVEN_CONFIG = {
-    'dsn': env.str('SENTRY_DSN', ''),
-    'processors': (
-        'raven.processors.SanitizePasswordsProcessor',
-        'core.sentry_processors.SanitizeEmailMessagesProcessor',
-    )
-}
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
@@ -336,11 +294,13 @@ UTM_COOKIE_DOMAIN = env.str('UTM_COOKIE_DOMAIN')
 PRIVACY_COOKIE_DOMAIN = env.str('PRIVACY_COOKIE_DOMAIN', '')
 
 # django-storages for thumbnails
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY', '')
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID', '')
 AWS_STORAGE_BUCKET_NAME = env.str('AWS_STORAGE_BUCKET_NAME', '')
-AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = None
 AWS_AUTO_CREATE_BUCKET = True
 AWS_QUERYSTRING_AUTH = False
-AWS_S3_ENCRYPTION = False
+AWS_S3_ENCRYPTION = True
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = env.str('AWS_S3_CUSTOM_DOMAIN', '')
 AWS_S3_REGION_NAME = env.str('AWS_S3_REGION_NAME', 'eu-west-1')
@@ -473,10 +433,7 @@ DIRECTORY_CONSTANTS_URL_FIND_A_BUYER = env.str(
 # feature flags
 FEATURE_FLAGS = {
     'HOW_TO_DO_BUSINESS_ON': env.bool('FEATURE_HOW_TO_DO_BUSINESS_ENABLED', False),
-    'NEWS_SECTION_ON': env.bool('FEATURE_NEWS_SECTION_ENABLED', False),
     'INTERNATIONAL_CONTACT_LINK_ON': env.bool('FEATURE_INTERNATIONAL_CONTACT_LINK_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ON': env.bool('FEATURE_INTERNATIONAL_TARIFFS_COUNTRY_SELECT_ENABLED', False),
-    'INTERNATIONAL_TARIFFS_ON': env.bool('FEATURE_INTERNATIONAL_TARIFFS_ENABLED', False),
     'MAINTENANCE_MODE_ON': env.bool('FEATURE_MAINTENANCE_MODE_ENABLED', False),
     'RECOMMENDED_FOR_CHOSEN_COUNTRY_ON': env.bool('FEATURE_RECOMMENDED_FOR_CHOSEN_COUNTRY_ENABLED', False),
     'COUNTRY_SELECTOR_ON': env.bool('FEATURE_COUNTRY_SELECTOR_ENABLED', False),
@@ -518,7 +475,6 @@ HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str(
 # Directory healthcheck
 DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')
 DIRECTORY_HEALTHCHECK_BACKENDS = [
-    directory_healthcheck.backends.SentryBackend,
     directory_healthcheck.backends.FormsAPIBackend,
     directory_healthcheck.backends.CMSAPIBackend,
     directory_healthcheck.backends.APIBackend,

@@ -6,7 +6,7 @@ import captcha.fields
 from directory_constants import choices, urls
 from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
-from directory_validators.common import not_contains_url_or_email
+from directory_validators.url import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
 from . import constants
@@ -263,13 +263,10 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         choices=choices.EMPLOYEES,
         required=False,
     )
-    country = forms.CharField(
+    country = forms.ChoiceField(
         label=_('Your country'),
-        max_length=255,
-        validators=[not_contains_url_or_email],
-        widget=TextInput(
-            attrs={'dir': 'auto'}
-        ),
+        choices=[('', 'Please select')] + choices.COUNTRIES_AND_TERRITORIES,
+        widget=Select(attrs={'id': 'js-country-select'}),
     )
     body = forms.CharField(
         label=_('Describe what products or services you need'),
@@ -311,4 +308,5 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         data = self.cleaned_data.copy()
         del data['captcha']
         del data['terms_agreed']
+        data['country_name'] = dict(choices.COUNTRIES_AND_TERRITORIES)[data['country']]
         return data

@@ -6,8 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 from directory_constants import urls
 
 from django.utils.html import mark_safe
-from directory_validators.common import not_contains_url_or_email
-from directory_validators.company import no_html
+from directory_validators.url import not_contains_url_or_email
+from directory_validators.string import no_html
 from captcha.fields import ReCaptchaField
 
 
@@ -164,7 +164,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         choices=(
             ('expand', _('Setting up a business in the UK')),
             ('invest_capital', _('Investing capital in the UK')),
-            ('buy_goods', _('Buying good from the UK')),
+            ('buy_goods', _('Buying goods from the UK')),
         ),
         required=True
     )

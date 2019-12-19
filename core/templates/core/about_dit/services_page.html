@@ -9,9 +9,7 @@
 
   {% cms_hero hero_text=page.hero_title %}
 
-   <div class="container">
-      {% include 'core/includes/cms_breadcrumbs.html' %}
-   </div>
+  {% include 'core/includes/cms_breadcrumbs.html' %}
 
   {% if page.teaser %}
   <section id="teaser-section" class="padding-top-30 padding-bottom-60">
@@ -32,16 +30,46 @@
   </section>
   {% endif %}
 
+  {% if page.ebook_section_body %}
+  <section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
+      <div class="container">
+          <div class="grid-row">
+              {% if page.ebook_section_image %}
+                  <div class="column-quarter-l">
+                      <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
+                  </div>
+              {% endif %}
+              <div class="column-three-quarters-l padding-left-60-l">
+                  {{ page.ebook_section_body|convert_headings_to:'h2'|add_export_elements_classes|override_elements_css_class:'h2,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+                  {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+                      <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
+                          {{ page.ebook_section_cta_text }}
+                      </a>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </section>
+  {% endif %}
+
   {% if page.about_dit_services_fields %}
   <section id="services-fields-section" class="padding-vertical-15">
     <div class="container">
       <div class="flex-grid">
         {% for service_field in page.about_dit_services_fields %}
           <div class="column-third-xl column-half-m padding-top-30 padding-bottom-30 padding-top-45-l padding-bottom-45-l">
-            <img src="{{ service_field.icon.url }}" alt="" />
-            <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
-            <p class="font-small">{{ service_field.summary }}</p>
-            <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
+            {% if service_field.icon %}
+              <img src="{{ service_field.icon.url }}" alt="" />
+            {% endif %}
+            {% if service_field.title %}
+              <h2 class="heading-medium margin-top-30">{{ service_field.title }}</h2>
+            {% endif %}
+            {% if service_field.summary %}
+              <p class="font-small">{{ service_field.summary }}</p>
+            {% endif %}
+            {% if service_field.link_url and service_field.link_text %}
+              <a class="link bold-small" href="{{ service_field.link_url }}">{{ service_field.link_text }}</a>
+            {% endif %}
           </div>
         {% endfor %}
       </div>
