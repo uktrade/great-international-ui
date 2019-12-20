@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)
+
 ### Implemented enhancements
 - No ticket - Update privacy link in Invest contact form
 - CI-627 - Add ebook section to about DIT services page
