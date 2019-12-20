@@ -212,6 +212,63 @@ def international_choices():
     return ((value, label) for value, label in all_choices if choice_is_enabled(value))
 
 
+class WhyBuyFromUKFormNestedDetails(forms.Form):
+    provide_more_info = forms.CharField(
+        widget=Textarea,
+        label=_('Please provide as much information as possible about the type of'
+                'products or services you’re interested in procuring from the UK.'),
+        help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
+        required=False,
+    )
+
+
+class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
+    name = forms.CharField(label=_('Name'))
+    email_address = forms.EmailField(label=_('Email address'))
+    company_name = forms.CharField(label=_('Company name'))
+    job_title = forms.CharField(label=_('Job title'))
+    phone_number = forms.CharField(label=_('Phone number'))
+    city = forms.CharField(label=_('City (Optional)'), required=False)
+
+    country = forms.ChoiceField(
+        label=_('Country'),
+        widget=Select(attrs={'id': 'js-country-select'}),
+        choices=COUNTRIES
+    )
+
+    procuring_products = forms.RadioNested(
+        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?'),
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        ),
+        nested_form_class=WhyBuyFromUKFormNestedDetails,
+        nested_form_choice='yes',
+    )
+
+    industry = forms.ChoiceField(
+        label=_('Industry/Sector'),
+        choices=INDUSTRY_OPTIONS,
+        required=False,
+    )
+
+    additional_requirements = forms.CharField(
+        widget=Textarea,
+        label=_('Additional requirements'),
+        required=False,
+    )
+
+    contact_email = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False,
+    )
+
+    contact_phone = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False,
+    )
+
+
 class InternationalRoutingForm(forms.Form):
 
     def __init__(self, *args, **kwargs):

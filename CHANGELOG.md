@@ -2,11 +2,16 @@
 
 ## Pre-release
 
+### Implemented enhancements
+- XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates
+
 ## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)
 
 ### Implemented enhancements
+
 - No ticket - Update privacy link in Invest contact form
+
 - CI-627 - Add ebook section to about DIT services page
 - CI-628 - Change order of header links under 'Expand to the UK'
 - CI-629 - Fix broken breadcrumb links

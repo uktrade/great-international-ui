@@ -355,6 +355,16 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'
     ),
+    url(
+        r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/$",
+        core.views.WhyBuyFromUKFormView.as_view(),
+        name='why-buy-from-uk-form'
+    ),
+    url(
+        r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/success/$",
+        core.views.WhyBuyFromUKFormViewSuccess.as_view(),
+        name='why-buy-from-uk-form-success'
+    ),
 ]
 
 if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:

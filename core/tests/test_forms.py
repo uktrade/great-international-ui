@@ -1,7 +1,9 @@
 import pytest
 
 from core import constants
-from core.forms import CapitalInvestContactForm, BusinessEnvironmentGuideForm, InternationalRoutingForm
+from core.forms import (
+    CapitalInvestContactForm, BusinessEnvironmentGuideForm, InternationalRoutingForm, WhyBuyFromUKForm
+)
 
 
 @pytest.fixture
@@ -125,6 +127,67 @@ def test_business_environment_serialized_data(business_environment_form_data):
 
 def test_business_environment_form_accepts_valid_data(business_environment_form_data):
     form = BusinessEnvironmentGuideForm(data=business_environment_form_data)
+    assert form.is_valid()
+
+
+@pytest.fixture
+def why_buy_from_the_uk_form_data():
+    return {
+        'name': 'Test User',
+        'email_address': 'me@here.com',
+        'company_name': 'Company LTD',
+        'job_title': 'Director',
+        'phone_number': '07777777777',
+        'country': 'FR',
+        'industry': 'ADVANCED_MANUFACTURING',
+        'procuring_products': 'yes',
+        'contact_email': False,
+        'contact_phone': True,
+        'city': 'London',
+    }
+
+
+def test_why_buy_from_the_uk_form_required():
+    form = WhyBuyFromUKForm()
+    assert form.fields['name'].required is True
+    assert form.fields['email_address'].required is True
+    assert form.fields['company_name'].required is True
+    assert form.fields['job_title'].required is True
+    assert form.fields['phone_number'].required is True
+    assert form.fields['city'].required is False
+    assert form.fields['industry'].required is False
+    assert form.fields['country'].required is True
+    assert form.fields['procuring_products'].required is True
+    assert form.fields['additional_requirements'].required is False
+    assert form.fields['contact_email'].required is False
+    assert form.fields['contact_phone'].required is False
+    assert form.fields['procuring_products'].nested_form.fields['provide_more_info'].required is False
+
+
+def test_why_buy_from_the_uk_form_serialized_data(why_buy_from_the_uk_form_data):
+    form = WhyBuyFromUKForm(data=why_buy_from_the_uk_form_data)
+    form.full_clean()
+
+    data = form.serialized_data
+
+    assert 'name' in data
+    assert 'email_address' in data
+    assert 'company_name' in data
+    assert 'job_title' in data
+    assert 'phone_number' in data
+    assert 'city' in data
+    assert 'industry' in data
+    assert 'procuring_products' in data
+    assert 'provide_more_info' in data
+    assert 'additional_requirements' in data
+    assert 'contact_phone' in data
+    assert 'contact_email' in data
+    assert 'country' in data
+    assert 'city' in data
+
+
+def test_why_buy_from_the_uk_form_accepts_valid_data(why_buy_from_the_uk_form_data):
+    form = WhyBuyFromUKForm(data=why_buy_from_the_uk_form_data)
     assert form.is_valid()
 
 

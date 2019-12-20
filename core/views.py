@@ -9,6 +9,7 @@ from django.views.generic.base import RedirectView, View
 from django.views.generic import TemplateView, FormView
 from django.utils.functional import cached_property
 from django.utils import translation
+from django.urls import reverse_lazy
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
@@ -940,6 +941,81 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
             site_subsection='BusinessEnvironment'
         )
         return super().dispatch(request, *args, **kwargs)
+
+
+class WhyBuyFromUKFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = "core/why_buy_from_the_uk_form.html"
+    form_class = forms.WhyBuyFromUKForm
+    subject = "How we help Guide Form"
+    success_url = reverse_lazy('why-buy-from-uk-form-success')
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
+    header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
+
+    def __init__(self):
+        super().__init__()
+        self.set_ga360_payload(
+            page_id='WhyBuyFromUKForm',
+            business_unit='GreatInternational',
+            site_section='Trade',
+            site_subsection='HowWeHelp'
+        )
+
+    def send_agent_email(self, form):
+        sender = directory_forms_api_client.helpers.Sender(
+            email_address=form.cleaned_data['email_address'],
+            country_code=form.cleaned_data['country'],
+        )
+        response = form.save(
+            form_url=self.request.get_full_path(),
+            email_address=settings.HOW_WE_HELP_GUIDE_AGENT_EMAIL,
+            template_id=settings.HOW_WE_HELP_GUIDE_AGENT_TEMPLATE_ID,
+            sender=sender,
+        )
+        response.raise_for_status()
+
+    def send_user_email(self, form):
+        response = form.save(
+            form_url=self.request.path,
+            email_address=form.cleaned_data['email_address'],
+            template_id=settings.HOW_WE_HELP_GUIDE_USER_TEMPLATE_ID,
+            email_reply_to_id=settings.HOW_WE_HELP_GUIDE_REPLY_TO_ID
+        )
+        response.raise_for_status()
+
+    def form_valid(self, form):
+        self.send_agent_email(form)
+        self.send_user_email(form)
+        return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            international_trade_home=urls.international.TRADE_HOME,
+            international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            *args, **kwargs,
+        )
+
+
+class WhyBuyFromUKFormViewSuccess(InternationalView):
+    template_name = 'core/why_buy_from_the_uk_form_success.html'
+    page_type = 'HowWeHelpGuideFormViewSuccessPage'
+    header_section = tier_one_nav_items.BUY_FROM_THE_UK
+    header_sub_section = tier_two_nav_items.HOW_WE_HELP_BUY
+
+    def dispatch(self, request, *args, **kwargs):
+        self.set_ga360_payload(
+            page_id='HowWeHelpGuideFormViewSuccessPage',
+            business_unit='GreatInternational',
+            site_section='Trade',
+            site_subsection='HowWeHelp'
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            international_trade_home=urls.international.TRADE_HOME,
+            international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            *args, **kwargs,
+        )
 
 
 def handler404(request, *args, **kwargs):
