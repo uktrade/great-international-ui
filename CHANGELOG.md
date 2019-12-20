@@ -40,6 +40,12 @@
 - no ticket - upgrade pillow for security vulnerability fix
 - no ticket - upgrade directory-components for accessibility fix
 
+## [2019.12.20](https://github.com/uktrade/directory-api/releases/tag/2019.12.20)
+[Full Changelog](https://github.com/uktrade/directory-api/compare/2019.12.02...2019.12.20)
+
+### Hotfix
+- No ticket - Fix thumbnail upload in s3
+
 
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.11.25...2019.12.02)
