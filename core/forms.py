@@ -216,7 +216,7 @@ class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
         label=_('Please provide as much information as possible about the type of'
-                'products or services you’re interested in procuring from the UK.'),
+                'products or services you’re interested in procuring from the UK. (Optional)'),
         help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
         required=False,
     )
@@ -247,14 +247,14 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
 
     industry = forms.ChoiceField(
-        label=_('Industry/Sector'),
+        label=_('Industry/Sector (Optional)'),
         choices=INDUSTRY_OPTIONS,
         required=False,
     )
 
     additional_requirements = forms.CharField(
         widget=Textarea,
-        label=_('Additional requirements'),
+        label=_('Additional requirements (Optional)'),
         required=False,
     )
 
