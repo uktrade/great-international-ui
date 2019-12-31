@@ -227,7 +227,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         label=_('Name'),
         error_messages={
             'required': _('Enter your full name'),
-        },
+        }
     )
     email_address = forms.EmailField(
         label=_('Email address'),
@@ -240,19 +240,19 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         label=_('Company name'),
         error_messages={
             'required': _('Enter your company name'),
-        },
+        }
     )
     job_title = forms.CharField(
         label=_('Job title'),
         error_messages={
             'required': _('Enter your job title'),
-        },
+        }
     )
     phone_number = forms.CharField(
         label=_('Phone number'),
         error_messages={
             'required': _('Enter your phone number'),
-        },
+        }
     )
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
@@ -262,7 +262,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         choices=COUNTRIES,
         error_messages={
             'required': _('Select a country'),
-        },
+        }
     )
 
     procuring_products = forms.RadioNested(
@@ -275,7 +275,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         nested_form_choice='yes',
         error_messages={
             'required': _('Select either yes or no'),
-        },
+        }
     )
 
     industry = forms.ChoiceField(
