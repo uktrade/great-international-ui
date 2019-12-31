@@ -216,7 +216,7 @@ class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
         label=_('Please provide as much information as possible about the type of'
-                'products or services you’re interested in procuring from the UK. (Optional)'),
+                ' products or services you’re interested in procuring from the UK. (Optional)'),
         help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
         required=False,
     )
