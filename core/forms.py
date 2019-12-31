@@ -223,17 +223,46 @@ class WhyBuyFromUKFormNestedDetails(forms.Form):
 
 
 class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
-    name = forms.CharField(label=_('Name'))
-    email_address = forms.EmailField(label=_('Email address'))
-    company_name = forms.CharField(label=_('Company name'))
-    job_title = forms.CharField(label=_('Job title'))
-    phone_number = forms.CharField(label=_('Phone number'))
-    city = forms.CharField(label=_('City (Optional)'), required=False)
+    name = forms.CharField(
+        label=_('Name'),
+        error_messages={
+            'required': _('Enter your full name'),
+        },
+    )
+    email_address = forms.EmailField(
+        label=_('Email address'),
+        error_messages={
+            'required': _('Enter an email address in the correct format,'
+                          ' like name@example.com'),
+        }
+    )
+    company_name = forms.CharField(
+        label=_('Company name'),
+        error_messages={
+            'required': _('Enter your company name'),
+        },
+    )
+    job_title = forms.CharField(
+        label=_('Job title'),
+        error_messages={
+            'required': _('Enter your job title'),
+        },
+    )
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        error_messages={
+            'required': _('Enter your phone number'),
+        },
+    )
+    city = forms.CharField(label=_('City (Optional)'), required=False,)
 
     country = forms.ChoiceField(
         label=_('Country'),
         widget=Select(attrs={'id': 'js-country-select'}),
-        choices=COUNTRIES
+        choices=COUNTRIES,
+        error_messages={
+            'required': _('Select a country'),
+        },
     )
 
     procuring_products = forms.RadioNested(
@@ -244,6 +273,9 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         ),
         nested_form_class=WhyBuyFromUKFormNestedDetails,
         nested_form_choice='yes',
+        error_messages={
+            'required': _('Select either yes or no'),
+        },
     )
 
     industry = forms.ChoiceField(
