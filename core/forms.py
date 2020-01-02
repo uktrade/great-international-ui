@@ -137,45 +137,26 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
 
 
 class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
-    given_name = forms.CharField(label=_('Given name'), required=True)
-    family_name = forms.CharField(label=_('Family name'), required=True)
-    email_address = forms.EmailField(label=_('Email address'), required=True)
-    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
-    number_of_staff = forms.ChoiceField(
-        label=_('Current number of staff (Optional)'),
-        choices=COMPANY_SIZE,
-        required=False,
-    )
-    industry = forms.ChoiceField(
-        label=_('Industry'),
-        choices=INDUSTRY_OPTIONS,
-        required=True,
-    )
+    given_name = forms.CharField(label=_('First name'), required=True)
+    family_name = forms.CharField(label=_('Last name'), required=True)
+    email_address = forms.EmailField(label=_('Email'), required=True)
+    phone_number = forms.CharField(label=_('Phone number (Optional)'), required=False)
     country = forms.ChoiceField(
         label=_('Country'),
         widget=Select(attrs={'id': 'js-country-select'}),
         choices=COUNTRIES
     )
-
-    mostly_interested_in = forms.MultipleChoiceField(
-        label=_('I am mainly interested in:'),
-        help_text=_('Select all that apply'),
-        widget=forms.CheckboxSelectInlineLabelMultiple(),
-        choices=(
-            ('expand', _('Setting up a business in the UK')),
-            ('invest_capital', _('Investing capital in the UK')),
-            ('buy_goods', _('Buying goods from the UK')),
-        ),
-        required=True
-    )
-
-    further_information = forms.BooleanField(
-        label=_('I would like to receive further information'),
-        required=False,
-    )
-    terms_agreed = forms.BooleanField(
-        label=_('I confirm the information provided is true and I accept DIT\'s terms and conditions'),
+    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
+    industry = forms.ChoiceField(
+        label=_('Industry'),
+        choices=INDUSTRY_OPTIONS,
         required=True,
+    )
+    email_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by email')
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by telephone')
     )
 
     captcha = ReCaptchaField(label='', label_suffix='')
@@ -185,7 +166,6 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
-        del data['terms_agreed']
         return data
 
 
