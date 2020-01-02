@@ -6,6 +6,7 @@ To do (delete all that do not apply):
  - [ ] (if updating requirements) Requirements have been compiled.
  - [ ] (if adding CSS) CSS have been compiled.
  - [ ] (if adding HTML) Change is accessible to the standards we subscribe to.
+ - [ ] (if changing content) Locale files have been updated and translated strings have been added if available.
  - [ ] (if adding env vars) Added any new environment variable to vault.
  - [ ] (if adding feature flags) Cleaned up old flags
  - [ ] (if changing the UI) Add a printscreen to the PR
