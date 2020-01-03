@@ -9,6 +9,9 @@ from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.url import not_contains_url_or_email
 
 
+SEARCH_PLACEHOLDER = 'Enter the skills or service you need'
+
+
 class CompanyHomeSearchForm(forms.Form):
 
     q = fields.CharField(
@@ -19,9 +22,8 @@ class CompanyHomeSearchForm(forms.Form):
             attrs={
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'placeholder': 'Enter the name of the skills or service you’re looking for',
+                'placeholder': SEARCH_PLACEHOLDER,
                 'data-ga-id': 'search-input',
-                'value': '',
             }
         ),
     )
@@ -29,9 +31,7 @@ class CompanyHomeSearchForm(forms.Form):
 
 class CompanySearchForm(forms.Form):
 
-    MESSAGE_MINIMUM_VIABLE_SEARCH = (
-        'Please specify a search term or expertise.'
-    )
+    MESSAGE_MINIMUM_VIABLE_SEARCH = 'Please specify a search term or expertise.'
 
     q = fields.CharField(
         label='Search by product, service or company keyword',
@@ -39,10 +39,11 @@ class CompanySearchForm(forms.Form):
         required=False,
         widget=TextInput(
             attrs={
-                'placeholder': 'Search for UK suppliers',
+                'placeholder': SEARCH_PLACEHOLDER,
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'data-ga-id': 'search-input'
+                'data-ga-id': 'search-input',
+                'value': '',
             }
         ),
     )
