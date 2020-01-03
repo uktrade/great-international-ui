@@ -66,16 +66,8 @@ def test_international_form_cms_retrieval_ok(
 
 
 @mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-@mock.patch.object(
-    views.InternationalContactFormView.form_class, 'save'
-)
-@pytest.mark.parametrize(
-    'country',
-    (
-        choices.COUNTRIES_AND_TERRITORIES[1][0],
-        'HK',
-    )
-)
+@mock.patch.object(views.InternationalContactFormView.form_class, 'save')
+@pytest.mark.parametrize('country', (choices.COUNTRIES_AND_TERRITORIES[1][0], 'HK'))
 def test_international_form_submit(
     mock_save, mock_lookup_by_slug, settings, client, captcha_stub, country
 ):
@@ -117,7 +109,7 @@ def test_international_form_submit(
         service_name='eu_exit',
         subdomain=settings.EU_EXIT_ZENDESK_SUBDOMAIN,
         form_url=url,
-        sender={'email_address': 'test@example.com', 'country_code': None}
+        sender={'email_address': 'test@example.com', 'country_code': None, 'ip_address': '127.0.0.1'}
     )
 
 

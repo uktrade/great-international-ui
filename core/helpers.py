@@ -5,6 +5,7 @@ import collections
 from directory_api_client.client import api_client
 from directory_constants import choices
 import directory_components.helpers
+from ipware import get_client_ip
 
 from django.http import Http404
 from django.utils import translation
@@ -331,3 +332,8 @@ def get_header_section(path):
 
 def get_header_sub_section(path):
     return get_header_config(path).sub_section
+
+
+def get_sender_ip_address(request):
+    ip, is_routable = get_client_ip(request)
+    return ip or None

@@ -83,7 +83,7 @@ def test_save_calls_send_email(
     )
     assert form.is_valid()
 
-    form.save()
+    form.save(sender_ip_address='127.0.0.1')
 
     assert mock_send_user_email.call_count == 1
     assert mock_send_agent_email.call_count == 1
@@ -101,7 +101,7 @@ def test_send_agent_email(
     )
     assert form.is_valid()
 
-    form.send_agent_email()
+    form.send_agent_email(sender_ip_address='127.0.0.1')
 
     assert mock_email_action.call_count == 1
     assert mock_email_action.call_args == call(
@@ -111,7 +111,8 @@ def test_send_agent_email(
         form_url='http://www.google.com/submission_url',
         sender={
             'email_address': 'sm@example.com',
-            'country_code': 'United States'
+            'country_code': 'United States',
+            'ip_address': '127.0.0.1',
         }
     )
 

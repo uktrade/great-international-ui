@@ -20,10 +20,9 @@ from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
 from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin
 
-
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
-from core.helpers import get_map_labels_with_vertical_positions
+from core.helpers import get_map_labels_with_vertical_positions, get_sender_ip_address
 from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin, InternationalHeaderMixin
 from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
@@ -617,6 +616,7 @@ class SendContactNotifyMessagesMixin:
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
             country_code=None,
+            ip_address=get_sender_ip_address(self.request),
         )
         spam_control = directory_forms_api_client.helpers.SpamControl(
             contents=[form.cleaned_data['subject'], form.cleaned_data['body']]

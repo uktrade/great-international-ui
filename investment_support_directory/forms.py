@@ -19,11 +19,9 @@ class CompanyHomeSearchForm(forms.Form):
             attrs={
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'placeholder': (
-                    'Enter the name of the skills or service '
-                    'you’re looking for'
-                ),
-                'data-ga-id': 'search-input'
+                'placeholder': 'Enter the name of the skills or service you’re looking for',
+                'data-ga-id': 'search-input',
+                'value': '',
             }
         ),
     )

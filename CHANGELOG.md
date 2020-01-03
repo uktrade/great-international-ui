@@ -7,6 +7,8 @@
 - XOT-1253 - add missing optional fields
 - XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates
 - TT2231 - reverse filters on ISD
+- TT-2177 - Add search icon to ISD and FAS search boxes
+- No ticket - Provide sender ip address when submitting forms
 
 ## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)

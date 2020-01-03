@@ -53,7 +53,8 @@ class CompanySearchForm(forms.Form):
                 'placeholder': 'Search for UK suppliers',
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'data-ga-id': 'search-input'
+                'data-ga-id': 'search-input',
+                'value': '',
             }
         ),
         required=False,

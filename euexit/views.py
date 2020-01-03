@@ -10,6 +10,7 @@ from django.views.generic.edit import FormView
 from core.mixins import CMSPageFromSlugMixin, InternationalHeaderMixin
 from core.views import InternationalView
 from core.header_config import tier_one_nav_items, tier_two_nav_items
+from core.helpers import get_sender_ip_address
 
 from euexit import forms
 
@@ -61,6 +62,7 @@ class InternationalContactFormView(
         sender = Sender(
             email_address=form.cleaned_data['email'],
             country_code=form.cleaned_data.get('country_name'),
+            ip_address=get_sender_ip_address(self.request),
         )
         response = form.save(
             subject=self.subject,
