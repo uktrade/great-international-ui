@@ -146,7 +146,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         widget=Select(attrs={'id': 'js-country-select'}),
         choices=COUNTRIES
     )
-    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
+    company_name = forms.CharField(label=_('Company name'), required=True)
     industry = forms.ChoiceField(
         label=_('Industry'),
         choices=INDUSTRY_OPTIONS,
