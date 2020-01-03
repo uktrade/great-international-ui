@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
     <div class="container">
-        {% url 'investment-support-directory:search' as search_url %}
+        {% url 'investment-support-directory:home' as search_url %}
         {% breadcrumbs 'Search results' %}
           <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
           <a href="{{ search_url }}">Find a UK specialist</a>
