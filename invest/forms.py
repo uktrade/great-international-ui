@@ -25,10 +25,7 @@ class HighPotentialOpportunityForm(forms.Form):
         'utm_content',
     )
 
-    def __init__(
-        self, field_attributes, opportunity_choices,
-        utm_data=None, *args, **kwargs
-    ):
+    def __init__(self, field_attributes, opportunity_choices, utm_data=None, *args, **kwargs):
         for field_name, field in self.base_fields.items():
             attributes = field_attributes.get(field_name)
             if attributes:
@@ -89,10 +86,11 @@ class HighPotentialOpportunityForm(forms.Form):
             'opportunity_urls': '\n'.join(formatted_opportunities),
         }
 
-    def send_agent_email(self, form_url):
+    def send_agent_email(self, form_url, sender_ip_address):
         sender = Sender(
             email_address=self.cleaned_data['email_address'],
-            country_code=self.cleaned_data['country']
+            country_code=self.cleaned_data['country'],
+            ip_address=sender_ip_address,
         )
         action = self.action_class(
             template_id=settings.HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID,
@@ -114,6 +112,6 @@ class HighPotentialOpportunityForm(forms.Form):
         response = action.save(self.serialized_data)
         response.raise_for_status()
 
-    def save(self, form_url):
-        self.send_agent_email(form_url=form_url)
+    def save(self, form_url, sender_ip_address):
+        self.send_agent_email(form_url=form_url, sender_ip_address=sender_ip_address)
         self.send_user_email(form_url=form_url)

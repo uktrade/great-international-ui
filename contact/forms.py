@@ -110,10 +110,11 @@ class ContactForm(forms.Form):
         context = self.get_context_data()
         return render_to_string(template_name, context)
 
-    def send_agent_email(self):
+    def send_agent_email(self, sender_ip_address):
         sender = Sender(
             email_address=self.cleaned_data['email'],
-            country_code=self.cleaned_data['country']
+            country_code=self.cleaned_data['country'],
+            ip_address=sender_ip_address,
         )
         action = self.action_class(
             recipients=[settings.IIGB_AGENT_EMAIL],
@@ -142,6 +143,6 @@ class ContactForm(forms.Form):
         })
         response.raise_for_status()
 
-    def save(self):
-        self.send_agent_email()
+    def save(self, sender_ip_address):
+        self.send_agent_email(sender_ip_address=sender_ip_address)
         self.send_user_email()
