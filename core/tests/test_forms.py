@@ -104,8 +104,8 @@ def test_business_environment_form_required():
     assert form.fields['country'].required is True
     assert form.fields['company_name'].required is True
     assert form.fields['industry'].required is True
-    assert form.fields['email_contact_consent'].required is True
-    assert form.fields['telephone_contact_consent'].required is True
+    assert form.fields['email_contact_consent'].required is False
+    assert form.fields['telephone_contact_consent'].required is False
     assert form.fields['captcha'].required is True
 
 

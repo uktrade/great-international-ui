@@ -153,10 +153,12 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         required=True,
     )
     email_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by email')
+        label=_('I would like to be contacted by email'),
+        required=False
     )
     telephone_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by telephone')
+        label=_('I would like to be contacted by telephone'),
+        required=False
     )
 
     captcha = ReCaptchaField(label='', label_suffix='')
