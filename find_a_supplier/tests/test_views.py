@@ -423,6 +423,7 @@ def test_contact_company_view_feature_submit_forms_api_success(
         sender={
             'email_address': valid_contact_company_data['email_address'],
             'country_code': valid_contact_company_data['country'],
+            'ip_address': '127.0.0.1',
         },
         spam_control={'contents': ['greetings', 'and salutations']},
         template_id=settings.CONTACT_FAS_COMPANY_NOTIFY_TEMPLATE_ID,
@@ -750,7 +751,8 @@ def test_industry_contact_submit_with_comment_forms_api(
         form_url='/international/trade/contact/',
         sender={
             'email_address': 'jeff@example.com',
-            'country_code': choices.COUNTRIES_AND_TERRITORIES[1][0]
+            'country_code': choices.COUNTRIES_AND_TERRITORIES[1][0],
+            'ip_address': '127.0.0.1'
         },
         spam_control={
             'contents': ['hello']},

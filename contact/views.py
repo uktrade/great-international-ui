@@ -1,4 +1,5 @@
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import CountryDisplayMixin, EnableTranslationsMixin, GA360Mixin
+
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
@@ -6,10 +7,9 @@ from django.conf import settings
 
 from contact import forms
 from contact.mixins import LocalisedURLsMixin
-
-from directory_components.mixins import EnableTranslationsMixin
-from core.mixins import InternationalHeaderMixin
 from core.header_config import tier_one_nav_items, tier_two_nav_items
+from core.helpers import get_sender_ip_address
+from core.mixins import InternationalHeaderMixin
 
 
 class ContactFormView(
@@ -42,7 +42,7 @@ class ContactFormView(
         return kwargs
 
     def form_valid(self, form):
-        form.save()
+        form.save(sender_ip_address=get_sender_ip_address(self.request))
         return super().form_valid(form)
 
 

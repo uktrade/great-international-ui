@@ -1,12 +1,13 @@
 from directory_components.mixins import GA360Mixin
 from directory_constants import slugs
-from django.conf import settings
 
+from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
 from django.urls import reverse, reverse_lazy
 
-from . import helpers, forms, redirects
+from invest import helpers, forms, redirects
+from core.helpers import get_sender_ip_address
 from core.views import MonolingualCMSPageFromPathView, LegacyRedirectCoreView
 
 SESSION_KEY_SELECTED_OPPORTUNITIES = 'SELECTED_OPPORTUNITIES'
@@ -28,7 +29,10 @@ class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixi
         return kwargs
 
     def form_valid(self, form):
-        form.save(form_url=self.request.path)
+        form.save(
+            form_url=self.request.path,
+            sender_ip_address=get_sender_ip_address(self.request),
+        )
         self.request.session[SESSION_KEY_SELECTED_OPPORTUNITIES] = (
             form.cleaned_data['opportunities']
         )

@@ -5,6 +5,18 @@
 
 {% block css_layout_class %}investment-support-directory-search-page{% endblock %}
 
+{% block head_css %}
+    {{ block.super }}
+    <style type="text/css">
+        #id_q {
+            background-image: url({% static 'core/images/icon-search.png' %});
+            background-repeat: no-repeat;
+            background-position-y: center;
+            background-position-x: right 15px;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     {% ga360_data "breadcrumbs" %}
     {% block breadcrumbs %}{% endblock %}
@@ -25,11 +37,11 @@
                         {% endif %}
                     </div>
                     <div class="column-one-third">
-                        <span class="{{ field.css_classes }}" id="{{ field.id_for_label }}-container">
+                        <span class="{{ form.q.css_classes }}" id="{{ form.q.id_for_label }}-container">
                           {% if form.q.errors %}
                             <div class="error-message">{{ form.q.errors }}</div>
                           {% else %}
-                          <label for="{{ form.q.id_for_label }}">New search</label>
+                            <label for="{{ form.q.id_for_label }}">New search</label>
                           {% endif %}
                           {{ form.q }}
                         </span>
