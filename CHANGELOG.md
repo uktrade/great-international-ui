@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-631 - Update business environment form required fields. Update consent section to match invest contact form
 - XOT-1266 - add specific error messsages to the campaign form
 - XOT-1253 - add missing optional fields
 - XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates

@@ -1,0 +1,21 @@
+{% load i18n %}
+
+
+<h2 class="heading-medium">How we use your information</h2>
+
+{% blocktrans %}
+<p>
+  The Department for International Trade will use the information provided in this form to respond to your enquiry.
+</p>
+<p>
+  You can read about how we protect your data in <a class="link" href="https://great.gov.uk/privacy-and-cookies/fair-processing-notice-invest-in-great-britain/" target="_blank">our privacy notice</a>.
+</p>
+{% endblocktrans %}
+
+<h2 class="heading-medium">Contacting you</h2>
+<p>
+  {% trans "If you would like to receive further information about investing in the UK you can opt in below. You can opt out of these additional updates at any time." %}
+</p>
+
+{% include 'includes/form_field.html' with field=form.email_contact_consent %}
+{% include 'includes/form_field.html' with field=form.telephone_contact_consent %}

@@ -16,8 +16,8 @@ def contact_form_data(captcha_stub):
         'country': 'United States',
         'staff_number': forms.STAFF_CHOICES[0][0],
         'description': 'foobar',
-        'email_contact_consent': True,
-        'telephone_contact_consent': True,
+        'email_contact_consent': False,
+        'telephone_contact_consent': False,
         'g-recaptcha-response': captcha_stub,
     }
 
@@ -60,8 +60,8 @@ def test_contact_form_invalid_data(captcha_stub):
             'country': 'United States',
             'staff_number': forms.STAFF_CHOICES[0][0],
             'description': 'foobar',
-            'email_contact_consent': True,
-            'telephone_contact_consent': True,
+            'email_contact_consent': False,
+            'telephone_contact_consent': False,
             'g-recaptcha-response': captcha_stub
         },
         utm_data={},

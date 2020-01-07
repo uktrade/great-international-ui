@@ -25,23 +25,13 @@
                         {% include 'core/includes/form_field.html' with field=form.given_name %}
                         {% include 'core/includes/form_field.html' with field=form.family_name %}
                         {% include 'core/includes/form_field.html' with field=form.email_address %}
-                        {% include 'core/includes/form_field.html' with field=form.company_name %}
-                        {% include 'core/includes/form_field.html' with field=form.number_of_staff %}
-                        {% include 'core/includes/form_field.html' with field=form.industry %}
+                        {% include 'core/includes/form_field.html' with field=form.phone_number %}
                         {% include 'core/includes/form_field.html' with field=form.country %}
-                        {% include 'core/includes/form_field.html' with field=form.mostly_interested_in %}
-                        <p>
-                          The Department for International Trade will use the information provided in this form to send
-                          you a PDF brochure. You can read about how we protect your data through our
-                          <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy policy</a>
-                        </p>
-                        <p>
-                          If you would like to receive further information about setting up your business in the UK,
-                          you can subscribe to our mailing list. You can also subscribe to taking part in surveys to
-                          help us improve DIT services.
-                        </p>
-                        {% include 'core/includes/form_field.html' with field=form.further_information %}
-                        {% include 'core/includes/form_field.html' with field=form.terms_agreed %}
+                        {% include 'core/includes/form_field.html' with field=form.company_name %}
+                        {% include 'core/includes/form_field.html' with field=form.industry %}
+
+                        {% include 'core/includes/form_consent.html' with form=form %}
+
                         {% include 'core/includes/form_field.html' with field=form.captcha %}
                         <button class="button">Submit</button>
                     </form>
