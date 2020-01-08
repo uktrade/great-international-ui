@@ -82,7 +82,7 @@ termcolor==1.1.0          # via pytest-sugar
 tzlocal==2.0.0            # via dateparser
 urllib3==1.24.3
 w3lib==1.21.0             # via directory-client-core
-waitress==1.4.1
+waitress==1.4.2
 wcwidth==0.1.7            # via pytest
 whitenoise==4.1.3
 zipp==0.6.0               # via importlib-metadata
