@@ -14,6 +14,7 @@
 - TT-2177 - Add search icon to ISD and FAS search boxes
 - No ticket - Upgrade waitress to fix security vulnerability
 - TT-2230 - Fix location of ISD homepage in breadcrumbs
+- TT-2237 - Move s3-to-pas (ensure s3 pas is setup in prod and configured AWS_STORAGE_BUCKET_NAME)
 
 ## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)
