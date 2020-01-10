@@ -14,7 +14,7 @@ import directory_forms_api_client.helpers
 from directory_api_client.client import api_client
 
 from core.views import InternationalView, LegacyRedirectCoreView, MultilingualCMSPageFromPathView
-from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
+from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study, get_sender_ip_address
 from core.mixins import (
     PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin, InternationalHeaderMixin
 )
@@ -239,6 +239,7 @@ class ContactCompanyView(
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
             country_code=form.cleaned_data['country'],
+            ip_address=get_sender_ip_address(self.request),
         )
         spam_control = directory_forms_api_client.helpers.SpamControl(
             contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
@@ -385,6 +386,7 @@ class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
             country_code=form.cleaned_data['country'],
+            ip_address=get_sender_ip_address(self.request),
         )
         spam_control = directory_forms_api_client.helpers.SpamControl(
             contents=[form.cleaned_data['body']]

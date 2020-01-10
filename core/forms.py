@@ -137,45 +137,28 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
 
 
 class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
-    given_name = forms.CharField(label=_('Given name'), required=True)
-    family_name = forms.CharField(label=_('Family name'), required=True)
-    email_address = forms.EmailField(label=_('Email address'), required=True)
-    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
-    number_of_staff = forms.ChoiceField(
-        label=_('Current number of staff (Optional)'),
-        choices=COMPANY_SIZE,
-        required=False,
-    )
-    industry = forms.ChoiceField(
-        label=_('Industry'),
-        choices=INDUSTRY_OPTIONS,
-        required=True,
-    )
+    given_name = forms.CharField(label=_('First name'), required=True)
+    family_name = forms.CharField(label=_('Last name'), required=True)
+    email_address = forms.EmailField(label=_('Email'), required=True)
+    phone_number = forms.CharField(label=_('Phone number (Optional)'), required=False)
     country = forms.ChoiceField(
         label=_('Country'),
         widget=Select(attrs={'id': 'js-country-select'}),
         choices=COUNTRIES
     )
-
-    mostly_interested_in = forms.MultipleChoiceField(
-        label=_('I am mainly interested in:'),
-        help_text=_('Select all that apply'),
-        widget=forms.CheckboxSelectInlineLabelMultiple(),
-        choices=(
-            ('expand', _('Setting up a business in the UK')),
-            ('invest_capital', _('Investing capital in the UK')),
-            ('buy_goods', _('Buying goods from the UK')),
-        ),
-        required=True
-    )
-
-    further_information = forms.BooleanField(
-        label=_('I would like to receive further information'),
-        required=False,
-    )
-    terms_agreed = forms.BooleanField(
-        label=_('I confirm the information provided is true and I accept DIT\'s terms and conditions'),
+    company_name = forms.CharField(label=_('Company name'), required=True)
+    industry = forms.ChoiceField(
+        label=_('Industry'),
+        choices=INDUSTRY_OPTIONS,
         required=True,
+    )
+    email_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False
     )
 
     captcha = ReCaptchaField(label='', label_suffix='')
@@ -185,7 +168,6 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
-        del data['terms_agreed']
         return data
 
 
@@ -210,6 +192,95 @@ def international_choices():
         (constants.OTHER_CONTACT_URL, 'Other'),
     )
     return ((value, label) for value, label in all_choices if choice_is_enabled(value))
+
+
+class WhyBuyFromUKFormNestedDetails(forms.Form):
+    provide_more_info = forms.CharField(
+        widget=Textarea,
+        label=_('Please provide as much information as possible about the type of'
+                ' products or services you’re interested in procuring from the UK. (Optional)'),
+        help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
+        required=False,
+    )
+
+
+class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
+    name = forms.CharField(
+        label=_('Name'),
+        error_messages={
+            'required': _('Enter your full name'),
+        }
+    )
+    email_address = forms.EmailField(
+        label=_('Email address'),
+        error_messages={
+            'required': _('Enter an email address in the correct format,'
+                          ' like name@example.com'),
+        }
+    )
+    company_name = forms.CharField(
+        label=_('Company name'),
+        error_messages={
+            'required': _('Enter your company name'),
+        }
+    )
+    job_title = forms.CharField(
+        label=_('Job title'),
+        error_messages={
+            'required': _('Enter your job title'),
+        }
+    )
+    phone_number = forms.CharField(
+        label=_('Phone number'),
+        error_messages={
+            'required': _('Enter your phone number'),
+        }
+    )
+    city = forms.CharField(label=_('City (Optional)'), required=False,)
+
+    country = forms.ChoiceField(
+        label=_('Country'),
+        widget=Select(attrs={'id': 'js-country-select'}),
+        choices=COUNTRIES,
+        error_messages={
+            'required': _('Select a country'),
+        }
+    )
+
+    procuring_products = forms.RadioNested(
+        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?'),
+        choices=(
+            ('yes', _('Yes')),
+            ('no', _('No')),
+        ),
+        nested_form_class=WhyBuyFromUKFormNestedDetails,
+        nested_form_choice='yes',
+        error_messages={
+            'required': _('Select either yes or no'),
+        }
+    )
+
+    industry = forms.ChoiceField(
+        label=_('Industry/Sector (Optional)'),
+        choices=INDUSTRY_OPTIONS,
+        required=False,
+    )
+
+    additional_requirements = forms.CharField(
+        widget=Textarea,
+        label=_('Additional requirements (Optional)'),
+        required=False,
+    )
+
+    contact_email = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False,
+    )
+
+    contact_phone = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False,
+    )
 
 
 class InternationalRoutingForm(forms.Form):

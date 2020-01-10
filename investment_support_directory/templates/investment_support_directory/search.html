@@ -4,7 +4,7 @@
 
 {% block breadcrumbs %}
     <div class="container">
-        {% url 'investment-support-directory:search' as search_url %}
+        {% url 'investment-support-directory:home' as search_url %}
         {% breadcrumbs 'Search results' %}
           <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
           <a href="{{ search_url }}">Find a UK specialist</a>
@@ -14,13 +14,6 @@
 
 {% block filters %}
     <fieldset>
-        <legend>Filter by expertise</legend>
-        {% include 'core/includes/filter.html' with label='Regional expertise' alt='Toggle list of regions' field=form.expertise_regions %}
-        {% include 'core/includes/filter.html' with label='Industry expertise' alt='Toggle list of industries' field=form.expertise_industries %}
-        {% include 'core/includes/filter.html' with label='Language expertise' alt='Toggle list of languages' field=form.expertise_languages %}
-        {% include 'core/includes/filter.html' with label='International expertise' alt='Toggle list of countries' field=form.expertise_countries %}
-    </fieldset>
-    <fieldset>
         <legend>Filter by services</legend>
         {% include 'core/includes/filter.html' with label='Financial' alt='Toggle list of Financial skills' field=form.expertise_products_services_financial %}
         {% include 'core/includes/filter.html' with label='Management consulting' alt='Toggle list of Management consulting skills' field=form.expertise_products_services_management %}
@@ -28,5 +21,12 @@
         {% include 'core/includes/filter.html' with label='Legal' alt='Toggle list of Legal skills' field=form.expertise_products_services_legal %}
         {% include 'core/includes/filter.html' with label='Publicity and communications' alt='Toggle list of Publicity and communication skills' field=form.expertise_products_services_publicity %}
         {% include 'core/includes/filter.html' with label='Business support' alt='Toggle list of Business Support skills' field=form.expertise_products_services_business_support %}
+    </fieldset>
+    <fieldset>
+        <legend>Filter by expertise</legend>
+        {% include 'core/includes/filter.html' with label='Regional expertise' alt='Toggle list of regions' field=form.expertise_regions %}
+        {% include 'core/includes/filter.html' with label='Industry expertise' alt='Toggle list of industries' field=form.expertise_industries %}
+        {% include 'core/includes/filter.html' with label='Language expertise' alt='Toggle list of languages' field=form.expertise_languages %}
+        {% include 'core/includes/filter.html' with label='International expertise' alt='Toggle list of countries' field=form.expertise_countries %}
     </fieldset>
 {% endblock %}
