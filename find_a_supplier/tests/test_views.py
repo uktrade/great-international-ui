@@ -1,6 +1,6 @@
 import requests
 import pytest
-import http
+
 from unittest import mock
 from unittest.mock import call, patch
 
@@ -693,13 +693,13 @@ def test_home_page_hide_guide(mock_get_results_and_count, client, params):
 def test_anonymous_subscribe(client):
     response = client.get(reverse('find-a-supplier:subscribe'))
 
-    assert response.status_code == http.client.OK
+    assert response.status_code == 200
 
 
 def test_anonymous_subscribe_success(client):
     response = client.get(reverse('find-a-supplier:subscribe-success'))
 
-    assert response.status_code == http.client.OK
+    assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -886,3 +886,46 @@ def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_dat
         'source': data['source'],
         'source_other': '',
     }
+
+
+def test_unsubscribe_required_params(client):
+    response = client.get(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+
+    assert response.status_code == 200
+    assert response.template_name == [views.UnsubscribeView.template_name]
+
+
+def test_unsubscribe_missing_required_params(client):
+    response = client.get(reverse('find-a-supplier:unsubscribe'))
+
+    assert response.status_code == 302
+    assert response.url == reverse('find-a-supplier:trade-home')
+
+
+@patch.object(views.api_client.notifications, 'anonymous_unsubscribe')
+def test_unsubscribe_api_validation_failure(mock_unsubscribe, client):
+    mock_unsubscribe.return_value = create_response(status_code=400)
+
+    response = client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+
+    assert response.status_code == 200
+    assert response.template_name == views.UnsubscribeView.failure_template_name
+
+
+@patch.object(views.api_client.notifications, 'anonymous_unsubscribe')
+def test_unsubscribe_api_error(mock_unsubscribe, client):
+    mock_unsubscribe.return_value = create_response(status_code=500)
+
+    with pytest.raises(requests.exceptions.HTTPError):
+        client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+
+
+@patch.object(views.api_client.notifications, 'anonymous_unsubscribe')
+def test_unsubscribe_api_success(mock_unsubscribe, client):
+    mock_unsubscribe.return_value = create_response()
+
+    response = client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+
+    mock_unsubscribe.assert_called_once_with('123')
+    assert response.status_code == 200
+    assert response.template_name == views.UnsubscribeView.success_template_name
