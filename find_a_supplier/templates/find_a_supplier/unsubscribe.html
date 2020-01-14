@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load breadcrumbs from directory_components %}
+
+{% block content %}
+
+<div class="container">
+  {% breadcrumbs 'Unsubscribe' %}
+      <a href="{{ trade_home_link.url }}">{{ trade_home_link.label }}</a>
+  {% endbreadcrumbs %}
+</div>
+
+<section class="padding-bottom-30">
+  <div class="container">
+    <div class="width-two-thirds">
+      <h1 class="heading-large">Unsubscribe from notifications</h1>
+      <p class="ed-international-success-synopsis">You will no longer receive automated notifications if you unsubscribe.</p>
+      <br>
+      <div class="row-fluid">
+        <form action="" method="post">
+            {{ form }}
+            <div class="row-fluid">
+                <div class="span2 btn-container ed-landing-page-register-button-container">
+                    <button class="button">Unsubscribe</button>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
