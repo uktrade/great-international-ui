@@ -2,6 +2,7 @@ REDIRECTS = {
     '': '/international/trade/',
     'industries/contact': '/international/trade/contact/',
     'search': '/international/trade/search/',
+    'unsubscribe': '/international/trade/unsubscribe/',
     'industries': '/international/content/industries/',
     'industries/creative-services': '/international/content/industries/creative-industries/',
     'industries/creative': '/international/content/industries/creative-industries/',

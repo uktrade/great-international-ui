@@ -60,6 +60,7 @@ from django.urls import reverse
     ('industry-articles/a-focus-on-regulatory-technology-solutions-article/',
      '/international/content/industries/financial-services/a-focus-on-regulatory-technology-solutions/'),
     ('industries/infrastructure/', '/international/content/industries/infrastructure/'),
+    ('unsubscribe', '/international/trade/unsubscribe/'),
 ])
 def test_supplier_redirects(source, destination, client):
     url = reverse('trade-incoming', kwargs={'path': source})

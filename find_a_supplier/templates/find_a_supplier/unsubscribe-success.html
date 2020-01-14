@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load breadcrumbs from directory_components %}
+
+{% block content %}
+
+<div class="container">
+  {% breadcrumbs 'Success' %}
+      <a href="{{ trade_home_link.url }}">{{ trade_home_link.label }}</a>
+      <a href="{% url 'find-a-supplier:unsubscribe' %}">Unsubscribe</a>
+  {% endbreadcrumbs %}
+</div>
+
+<section class="padding-bottom-30">
+  <div class="container">
+    <div class="width-two-thirds">
+      <h1 class="heading-large">You have successfully unsubscribed from marketing emails from the Find a supplier service</h1>
+      <p class="ed-international-success-synopsis">
+        You may still receive emails about your account, for example, if our terms of use change or there are specific changes to the service(s) offered
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
