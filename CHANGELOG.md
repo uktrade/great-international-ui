@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
 - CI-631 - Update business environment form required fields. Update consent section to match invest contact form
 - XOT-1266 - add specific error messsages to the campaign form
 - XOT-1253 - add missing optional fields
