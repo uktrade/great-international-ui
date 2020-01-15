@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+
+{% load i18n %}
+{% load breadcrumbs from directory_components %}
+
+
+{% block content %}
+    <section id="form-content">
+        <div class="container">
+            {% breadcrumbs 'Why buy from the UK' %}
+                <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+
+                <a href="{{ international_trade_home }}">Buy from the UK</a>
+
+                <a href="{{international_trade_how_we_help}}">How we help you buy</a>
+            {% endbreadcrumbs %}
+
+            <div class="grid-row">
+                <div class="column-two-thirds-xl">
+                    <h1 class="heading-xlarge">Why buy from the UK</h1>
+                </div>
+                <div class="column-two-thirds-m column-half-xl">
+                    <form method="post">
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.city %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
+
+
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.procuring_products %}
+
+
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.additional_requirements %}
+
+                        <h3 class="heading-medium">How we use your information</h3>
+                        <p>
+                          The Department for International Trade will use the information provided in this form to send you a PDF brochure.  You can read about how we protect your data in our <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy notice</a>.
+                        </p>
+                        <h3 class="heading-medium">Contacting you</h3>
+                        <p>
+                         If you would like to receive further information from the UK Government in relation to Trade & Investment you can opt in below. You can opt out of these additional updates at any time.
+                        </p>
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}
+
+                        <button class="button">Submit</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

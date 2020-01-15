@@ -10,8 +10,11 @@ from conf.tests.test_urls import reload_urlconf
 from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
-from core.views import MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView, \
-    InternationalHomePageView, BusinessEnvironmentGuideFormView, InternationalContactTriageView
+from core.views import (
+    MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView,
+    InternationalHomePageView,
+    InternationalContactTriageView, WhyBuyFromUKFormView, WhyBuyFromUKFormViewSuccess
+)
 
 test_sectors = [
     {
@@ -2586,37 +2589,9 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
     assert response.status_code == 200
 
 
-@pytest.fixture
-def business_environment_form_data(captcha_stub):
-    return {
-        'given_name': 'Thor',
-        'family_name': 'Odinson',
-        'email_address': 'most_powerful_avenger@avengers.com',
-        'company_name': 'Guardian of the Galaxy',
-        'number_of_staff': '1-10',
-        'industry': 'ADVANCED_MANUFACTURING',
-        'country': 'FR',
-        'mostly_interested_in': ['expand'],
-        'further_information': True,
-        'terms_agreed': True,
-        'g-recaptcha-response': captcha_stub,
-    }
-
-
 def test_business_environment_form_view(client):
     response = client.get(reverse('business-environment-guide-form'))
     assert response.status_code == 200
-
-
-@patch.object(BusinessEnvironmentGuideFormView.form_class, 'save')
-def test_business_environment_form_submission(mock_save, business_environment_form_data, client):
-    mock_save.return_value = create_response(status_code=200)
-
-    response = client.post(reverse('business-environment-guide-form'), business_environment_form_data)
-
-    assert mock_save.call_count == 2
-    assert response.status_code == 302
-    assert response.url == reverse('business-environment-guide-form-success')
 
 
 def test_business_environment_form_success_view(client):
@@ -2803,3 +2778,63 @@ def test_international_contact_triage_view(
         request, path='/international/contact/')
 
     assert 'domestic_contact_home' in response.context_data
+
+
+@pytest.fixture
+def why_buy_from_uk_form_data(captcha_stub):
+    return {
+        'name': 'Test User',
+        'email_address': 'me@here.com',
+        'company_name': 'Company LTD',
+        'job_title': 'Director',
+        'phone_number': '07777777777',
+        'country': 'FR',
+        'industry': 'ADVANCED_MANUFACTURING',
+        'procuring_products': 'yes',
+        'contact_email': False,
+        'contact_phone': True,
+        'city': 'London',
+    }
+
+
+def test_why_buy_from_uk_form_data_view(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
+    assert response.status_code == 200
+
+
+@patch.object(WhyBuyFromUKFormView.form_class, 'save')
+def test_why_buy_from_uk_submission(mock_save, why_buy_from_uk_form_data, client):
+    mock_save.return_value = create_response(status_code=200)
+
+    response = client.post(reverse('why-buy-from-uk-form'), why_buy_from_uk_form_data)
+
+    assert mock_save.call_count == 2
+    assert response.status_code == 302
+    assert response.url == reverse('why-buy-from-uk-form-success')
+
+
+def test_why_buy_from_uk_form_success_view(client):
+    response = client.get(reverse('why-buy-from-uk-form'))
+    assert response.status_code == 200
+
+
+def test_why_buy_from_uk_context(rf, client):
+    request = rf.get('/')
+    response = WhyBuyFromUKFormView.as_view()(
+        request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/')
+    assert '/international/trade/' in response.context_data['international_trade_home']
+    assert (
+        '/international/content/trade/how-we-help-you-buy/'
+        in response.context_data['international_trade_how_we_help']
+    )
+
+
+def test_why_buy_from_uk_success_context(rf, client):
+    request = rf.get('/')
+    response = WhyBuyFromUKFormViewSuccess.as_view()(
+        request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/success/')
+    assert '/international/trade/' in response.context_data['international_trade_home']
+    assert (
+        '/international/content/trade/how-we-help-you-buy/'
+        in response.context_data['international_trade_how_we_help']
+    )

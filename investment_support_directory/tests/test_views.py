@@ -353,13 +353,7 @@ def test_company_search_highlight_summary(
 
 
 @mock.patch.object(forms.ContactCompanyForm, 'save')
-def test_contact_company(
-    mock_save,
-    client,
-    settings,
-    captcha_stub,
-    retrieve_profile_data,
-):
+def test_contact_company(mock_save, client, settings, captcha_stub, retrieve_profile_data):
     url = reverse(
         'investment-support-directory:company-contact',
         kwargs={'company_number': 'ST121'}
@@ -389,7 +383,7 @@ def test_contact_company(
     assert mock_save.call_args_list[0] == mock.call(
         email_address=retrieve_profile_data['email_address'],
         form_url=url,
-        sender={'email_address': 'jim@example.com', 'country_code': None},
+        sender={'email_address': 'jim@example.com', 'country_code': None, 'ip_address': '127.0.0.1'},
         spam_control={'contents': ['Hello', 'foo bar bax']},
         template_id=settings.CONTACT_ISD_COMPANY_NOTIFY_TEMPLATE_ID,
     )

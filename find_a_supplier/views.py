@@ -14,7 +14,7 @@ import directory_forms_api_client.helpers
 from directory_api_client.client import api_client
 
 from core.views import InternationalView, LegacyRedirectCoreView, MultilingualCMSPageFromPathView
-from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study
+from core.helpers import get_filters_labels, get_results_from_search_response, get_case_study, get_sender_ip_address
 from core.mixins import (
     PersistSearchQuerystringMixin, CompanyProfileMixin, SubmitFormOnGetMixin, InternationalHeaderMixin
 )
@@ -239,6 +239,7 @@ class ContactCompanyView(
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
             country_code=form.cleaned_data['country'],
+            ip_address=get_sender_ip_address(self.request),
         )
         spam_control = directory_forms_api_client.helpers.SpamControl(
             contents=[form.cleaned_data['subject'], form.cleaned_data['body']]
@@ -385,6 +386,7 @@ class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
             country_code=form.cleaned_data['country'],
+            ip_address=get_sender_ip_address(self.request),
         )
         spam_control = directory_forms_api_client.helpers.SpamControl(
             contents=[form.cleaned_data['body']]
@@ -444,3 +446,46 @@ class IndustryLandingPageContactCMSSuccessView(SpecificRefererRequiredMixin, Bas
     @property
     def expected_referer_url(self):
         return reverse('find-a-supplier:industry-contact', kwargs=self.kwargs)
+
+
+class UnsubscribeView(CountryDisplayMixin, GA360Mixin, FormView):
+    form_class = forms.UnsubscribeForm
+    template_name = 'find_a_supplier/unsubscribe.html'
+    success_template_name = 'find_a_supplier/unsubscribe-success.html'
+    failure_template_name = 'find_a_supplier/unsubscribe-failure.html'
+
+    def __init__(self):
+        super().__init__()
+
+        self.set_ga360_payload(
+            page_id='FindASupplierAnonymousUnsubscribe',
+            business_unit='FindASupplier',
+            site_section='Notifications',
+            site_subsection='AnonymousUnsubscribe'
+        )
+
+    def get_initial(self):
+        if self.request.method == 'GET' and self.request.GET.get('email'):
+            return {'email': self.request.GET['email']}
+        return {}
+
+    def get(self, *args, **kwargs):
+        if not self.request.GET.get('email'):
+            return redirect('find-a-supplier:trade-home')
+        return super().get(*args, **kwargs)
+
+    def form_valid(self, form):
+        response = api_client.notifications.anonymous_unsubscribe(form.cleaned_data['email'])
+        if response.ok:
+            return TemplateResponse(
+                self.request,
+                self.success_template_name,
+                context=self.get_context_data()
+            )
+        elif response.status_code == 400:
+            return TemplateResponse(
+                self.request,
+                self.failure_template_name,
+                context=self.get_context_data()
+            )
+        response.raise_for_status()

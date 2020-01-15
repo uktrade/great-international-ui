@@ -3,7 +3,27 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-631 - Update business environment form required fields. Update consent section to match invest contact form
+- XOT-1266 - add specific error messsages to the campaign form
+- XOT-1253 - add missing optional fields
+- XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates
+- TT2231 - reverse filters on ISD
+- No ticket - Provide sender ip address when submitting forms
+
+### Bugs fixed
+- TT-2177 - Add search icon to ISD and FAS search boxes
+- No ticket - Upgrade waitress to fix security vulnerability
+- TT-2230 - Fix location of ISD homepage in breadcrumbs
+- TT-2237 - Move s3-to-pas (ensure s3 pas is setup in prod and configured AWS_STORAGE_BUCKET_NAME)
+- TT-2249 - Add missing unsubscribe form
+
+## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)
+
+### Implemented enhancements
+
 - No ticket - Update privacy link in Invest contact form
+
 - CI-627 - Add ebook section to about DIT services page
 - CI-628 - Change order of header links under 'Expand to the UK'
 - CI-629 - Fix broken breadcrumb links

@@ -75,4 +75,11 @@ urlpatterns = [
         views.CaseStudyDetailView.as_view(),
         name='case-study-details-slugless'
     ),
+
+    url(
+        r'^unsubscribe/$',
+        views.UnsubscribeView.as_view(),
+        name='unsubscribe'
+    ),
+
 ]

@@ -53,7 +53,8 @@ class CompanySearchForm(forms.Form):
                 'placeholder': 'Search for UK suppliers',
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'data-ga-id': 'search-input'
+                'data-ga-id': 'search-input',
+                'value': '',
             }
         ),
         required=False,
@@ -310,3 +311,8 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         del data['terms_agreed']
         data['country_name'] = dict(choices.COUNTRIES_AND_TERRITORIES)[data['country']]
         return data
+
+
+class UnsubscribeForm(forms.Form):
+    # not using EmailField because the value is signed
+    email = forms.CharField(widget=HiddenInput)
