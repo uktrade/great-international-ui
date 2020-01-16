@@ -345,7 +345,7 @@ msgstr "Achetez au Royaume-Uni"
 
 #: core/header_config/tier_one_nav_items.py:31
 msgid "About us"
-msgstr ""
+msgstr "Qui sommes-nous ?"
 
 #: core/header_config/tier_two_nav_items.py:8
 #: core/header_config/tier_two_nav_items.py:38

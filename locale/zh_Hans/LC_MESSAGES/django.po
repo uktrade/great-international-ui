@@ -341,7 +341,7 @@ msgstr "购买英国产品"
 
 #: core/header_config/tier_one_nav_items.py:31
 msgid "About us"
-msgstr ""
+msgstr "关于我们"
 
 #: core/header_config/tier_two_nav_items.py:8
 #: core/header_config/tier_two_nav_items.py:38
