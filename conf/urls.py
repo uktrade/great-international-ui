@@ -22,40 +22,31 @@ sitemaps = {
 }
 
 
-urlpatterns = []
-
-
-if settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON']:
-    urlpatterns += [
-        url(
-            r'^international/investment-support-directory/',
-            include(
-                'investment_support_directory.urls',
-                namespace='investment-support-directory',
-            )
-        ),
-        url(
-            r'^international/trade/investment-support-directory/search/',
-            QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
-        ),
-    ]
-
-
-if settings.FEATURE_FLAGS['FIND_A_SUPPLIER_ON']:
-    urlpatterns += [
-        url(
-            r'^international/trade/',
-            include(
-                'find_a_supplier.urls',
-                namespace='find-a-supplier',
-            )
-        ),
-        url(
-            r'^international/content/trade/$',
-            QuerystringRedirectView.as_view(pattern_name='trade-home'),
-            name='content-trade-home-redirect'
-        ),
-    ]
+urlpatterns = [
+    url(
+        r'^international/investment-support-directory/',
+        include(
+            'investment_support_directory.urls',
+            namespace='investment-support-directory',
+        )
+    ),
+    url(
+        r'^international/trade/investment-support-directory/search/',
+        QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
+    ),
+    url(
+        r'^international/trade/',
+        include(
+            'find_a_supplier.urls',
+            namespace='find-a-supplier',
+        )
+    ),
+    url(
+        r'^international/content/trade/$',
+        QuerystringRedirectView.as_view(pattern_name='trade-home'),
+        name='content-trade-home-redirect'
+    ),
+]
 
 # Must stay first so isn't changed by expand feature flag
 urlpatterns += [

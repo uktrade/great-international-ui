@@ -6,7 +6,7 @@
 - CI-645 - Add translations for 'About us'
 
 ### Bugs fixed
-
+- TT-2254 - Remove obsolete settings and code
 
 ## [2020.01.15](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.15)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.19...2020.01.15)
