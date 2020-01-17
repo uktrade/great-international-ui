@@ -5,11 +5,13 @@
 #    pip-compile requirements.in
 #
 attrs==19.1.0             # via jsonschema
-beautifulsoup4==4.8.0
+beautifulsoup4==4.8.0     # via directory-components
 boto3==1.9.232
 botocore==1.12.232        # via boto3, s3transfer
 certifi==2019.9.11        # via requests, sentry-sdk
+cffi==1.13.2              # via cryptography
 chardet==3.0.4            # via requests
+cryptography==2.8         # via pyopenssl, requests
 dateparser==0.7.0
 directory-api-client==20.0.0
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
@@ -27,7 +29,7 @@ django-ipware==2.1.0
 django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
-django==2.2.8
+django==2.2.9
 djangorestframework==3.10.3
 docutils==0.15.2          # via botocore
 gunicorn==19.9.0
@@ -39,16 +41,18 @@ monotonic==1.5            # via directory-client-core
 olefile==0.44             # via directory-validators
 pillow==6.2.1             # via directory-validators
 pir-client==1.1.0
+pycparser==2.19           # via cffi
+pyopenssl==19.1.0         # via requests
 pyrsistent==0.15.4        # via jsonschema
 python-dateutil==2.8.0    # via botocore, dateparser
 pytz==2017.2              # via dateparser, directory-validators, django, tzlocal
 redis==3.3.8              # via django-redis
 regex==2019.8.19          # via dateparser
-requests==2.21.0
+requests[security]==2.22.0
 s3transfer==0.2.1         # via boto3
 sentry-sdk==0.13.4
 sigauth==4.1.1            # via directory-client-core
-six==1.12.0               # via django-countries, jsonschema, mohawk, pyrsistent, python-dateutil, w3lib
+six==1.12.0               # via cryptography, django-countries, jsonschema, mohawk, pyopenssl, pyrsistent, python-dateutil, w3lib
 sorl-thumbnail==12.5.0
 soupsieve==1.9.3          # via beautifulsoup4
 sqlparse==0.3.0           # via django

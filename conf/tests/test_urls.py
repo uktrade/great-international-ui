@@ -18,21 +18,6 @@ def reload_urlconf(settings):
         import_module(settings.ROOT_URLCONF)
 
 
-def test_investment_support_directory_feature_off(settings):
-    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON'] = False
-    reload_urlconf(settings)
-
-    with pytest.raises(NoReverseMatch):
-        reverse('investment-support-directory:home')
-
-
-def test_investment_support_directory_feature_on(settings):
-    settings.FEATURE_FLAGS['INVESTMENT_SUPPORT_DIRECTORY_ON'] = True
-    reload_urlconf(settings)
-
-    assert reverse('investment-support-directory:home')
-
-
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_url_redirect_expand_page_on(mock_get_page, client, settings):
 
