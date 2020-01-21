@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-631 - Update business environment guide form
 - CI-645 - Add translations for 'About us'
 
 ### Bugs fixed
