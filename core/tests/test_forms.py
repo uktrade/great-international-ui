@@ -100,7 +100,7 @@ def test_business_environment_form_required():
     assert form.fields['given_name'].required is True
     assert form.fields['family_name'].required is True
     assert form.fields['email_address'].required is True
-    assert form.fields['phone_number'].required is False
+    assert form.fields['phone_number'].required is True
     assert form.fields['country'].required is True
     assert form.fields['company_name'].required is True
     assert form.fields['industry'].required is True
