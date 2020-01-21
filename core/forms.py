@@ -140,7 +140,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
     given_name = forms.CharField(label=_('First name'), required=True)
     family_name = forms.CharField(label=_('Last name'), required=True)
     email_address = forms.EmailField(label=_('Email'), required=True)
-    phone_number = forms.CharField(label=_('Phone number (Optional)'), required=False)
+    phone_number = forms.CharField(label=_('Phone number'), required=True)
     country = forms.ChoiceField(
         label=_('Country'),
         widget=Select(attrs={'id': 'js-country-select'}),
