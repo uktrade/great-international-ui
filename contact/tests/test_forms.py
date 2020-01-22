@@ -8,17 +8,22 @@ from contact import forms
 @pytest.fixture
 def contact_form_data(captcha_stub):
     return {
-        'name': 'Scrooge McDuck',
-        'email': 'sm@example.com',
+        'given_name': 'Scrooge',
+        'family_name': 'McDuck',
         'job_title': 'President',
+        'email': 'sm@example.com',
         'phone_number': '0000000000',
         'company_name': 'Acme',
-        'country': 'United States',
-        'staff_number': forms.STAFF_CHOICES[0][0],
-        'description': 'foobar',
+        'company_website': 'www.test.com',
+        'company_hq_address': 'London',
+        'country': forms.COUNTRY_CHOICES[0][0],
+        'industry': forms.INDUSTRIES[0][0],
+        'expanding_to_uk': forms.EXPANDING_TO_UK_CHOICES[1][0],
+        'description': 'lorum ipsum',
+        'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[1][0],
         'email_contact_consent': False,
         'telephone_contact_consent': False,
-        'g-recaptcha-response': captcha_stub,
+        'g-recaptcha-response': captcha_stub
     }
 
 
@@ -29,15 +34,19 @@ def test_contact_form_required():
     )
 
     assert form.is_valid() is False
-    assert form.fields['name'].required is True
+    assert form.fields['given_name'].required is True
+    assert form.fields['family_name'].required is True
     assert form.fields['email'].required is True
     assert form.fields['job_title'].required is True
     assert form.fields['phone_number'].required is True
     assert form.fields['company_name'].required is True
-    assert form.fields['company_website'].required is False
+    assert form.fields['company_hq_address'].required is True
     assert form.fields['country'].required is True
-    assert form.fields['staff_number'].required is True
-    assert form.fields['description'].required is True
+    assert form.fields['industry'].required is True
+    assert form.fields['expanding_to_uk'].required is True
+    assert form.fields['description'].required is False
+    assert form.fields['arrange_callback'].required is True
+    assert form.fields['arrange_callback'].nested_form.fields['when_to_call'].required is False
     assert form.fields['captcha'].required is True
 
 
@@ -53,13 +62,12 @@ def test_contact_form_accept_valid_data(captcha_stub, contact_form_data):
 def test_contact_form_invalid_data(captcha_stub):
     form = forms.ContactForm(
         data={
+            'company_website': 'www.google.com',
+            'company_hq_address': 'London',
             'email': 'sm@example.com',
             'phone_number': '0000000000',
             'job_title': 'President',
             'company_name': 'Acme',
-            'country': 'United States',
-            'staff_number': forms.STAFF_CHOICES[0][0],
-            'description': 'foobar',
             'email_contact_consent': False,
             'telephone_contact_consent': False,
             'g-recaptcha-response': captcha_stub
@@ -67,7 +75,15 @@ def test_contact_form_invalid_data(captcha_stub):
         utm_data={},
         submission_url='http://www.google.com/submission_url'
     )
-    assert form.errors == {'name': ['This field is required.']}
+
+    assert form.errors == {
+        'given_name': ['This field is required.'],
+        'family_name': ['This field is required.'],
+        'country': ['This field is required.'],
+        'industry': ['This field is required.'],
+        'expanding_to_uk': ['This field is required.'],
+        'arrange_callback': ['This field is required.']
+    }
     assert form.is_valid() is False
 
 
@@ -111,7 +127,7 @@ def test_send_agent_email(
         form_url='http://www.google.com/submission_url',
         sender={
             'email_address': 'sm@example.com',
-            'country_code': 'United States',
+            'country_code': forms.COUNTRY_CHOICES[0][0],
             'ip_address': '127.0.0.1',
         }
     )
@@ -134,7 +150,6 @@ def test_render_agent_email_context(contact_form_data):
         utm_data={'field_one': 'value_one'},
         submission_url='http://www.google.com/submission_url'
     )
-
     assert form.is_valid()
 
     html = form.render_email('email/email_agent.html')
@@ -183,6 +198,7 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
         utm_data={'field_one': 'value_one'},
         submission_url='http://www.google.com/submission_url'
     )
+
     assert form.is_valid()
 
     form.render_email('hello.html')
@@ -192,15 +208,19 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
         'hello.html',
         {
             'form_data': (
-                ('Name', data['name']),
-                ('Email address', data['email']),
+                ('Given name', data['given_name']),
+                ('Family name', data['family_name']),
                 ('Job title', data['job_title']),
+                ('Work email address', data['email']),
                 ('Phone number', data['phone_number']),
                 ('Company name', data['company_name']),
                 ('Company website', data['company_website']),
+                ('Company HQ address', data['company_hq_address']),
                 ('Country', data['country']),
-                ('Current number of staff', data['staff_number']),
-                ('Your investment', data['description']),
+                ('Industry', data['industry']),
+                ('Which of these best describes how you feel about expanding to the UK?', data['expanding_to_uk']),
+                ('Tell us about your investment', data['description']),
+                ('Would you like us to arrange a call?', data['arrange_callback']),
                 ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
                 ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
@@ -228,15 +248,20 @@ def test_send_email_render_email_optional_fields(
         'hello.html',
         {
             'form_data': (
-                ('Name', contact_form_data['name']),
-                ('Email address', contact_form_data['email']),
+                ('Given name', contact_form_data['given_name']),
+                ('Family name', contact_form_data['family_name']),
                 ('Job title', contact_form_data['job_title']),
+                ('Work email address', contact_form_data['email']),
                 ('Phone number', contact_form_data['phone_number']),
                 ('Company name', contact_form_data['company_name']),
-                ('Company website', ''),
+                ('Company website', contact_form_data['company_website']),
+                ('Company HQ address', contact_form_data['company_hq_address']),
                 ('Country', contact_form_data['country']),
-                ('Current number of staff', 'Less than 10'),
-                ('Your investment', contact_form_data['description']),
+                ('Industry', contact_form_data['industry']),
+                ('Which of these best describes how you feel about expanding to the UK?',
+                    contact_form_data['expanding_to_uk']),
+                ('Tell us about your investment', contact_form_data['description']),
+                ('Would you like us to arrange a call?', contact_form_data['arrange_callback']),
                 ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
                 ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
