@@ -94,7 +94,7 @@ msgstr "Website da empresa"
 #, fuzzy
 #| msgid "Company name"
 msgid "Company HQ address"
-msgstr "Nombre registrado de la empresa"
+msgstr ""
 
 #: contact/forms.py:81 contact/forms.py:139 core/forms.py:145 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
@@ -235,7 +235,7 @@ msgstr "Número de teléfono de la empresa"
 
 #: core/forms.py:105
 msgid "Which country are you based in?"
-msgstr "País"
+msgstr ""
 
 #: core/forms.py:109 core/forms.py:239
 msgid "City (Optional)"

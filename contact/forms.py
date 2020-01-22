@@ -12,7 +12,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 
-COUNTRIES = BLANK_CHOICE_DASH + list(COUNTRY_CHOICES)
+COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 INDUSTRY_CHOICES = BLANK_CHOICE_DASH + list(INDUSTRIES)
 ARRANGE_CALLBACK_CHOICES = list((
     ('yes', _('Yes')),
@@ -143,8 +143,6 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Would you like us to arrange a call?'), data['arrange_callback']),
                 (_('I would like to be contacted by email'), data['email_contact_consent']),
                 (_('I would like to be contacted by telephone'), data['telephone_contact_consent']),
-
-                # (_('When should we call you?'), data['when_to_call'])
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,
