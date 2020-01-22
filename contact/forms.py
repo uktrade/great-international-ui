@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 COUNTRIES = BLANK_CHOICE_DASH + list(COUNTRY_CHOICES)
 INDUSTRY_CHOICES = BLANK_CHOICE_DASH + list(INDUSTRIES)
-ARRANGE_CALLBACK_CHOICES = BLANK_CHOICE_DASH + list((
+ARRANGE_CALLBACK_CHOICES = list((
     ('yes', _('Yes')),
     ('no', _('No'))
 ))
