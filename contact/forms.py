@@ -141,6 +141,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Which of these best describes how you feel about expanding to the UK?'), data['expanding_to_uk']),
                 (_('Tell us about your investment'), data['description']),
                 (_('Would you like us to arrange a call?'), data['arrange_callback']),
+                (_('When should we call you?'), data['when_to_call']),
                 (_('I would like to be contacted by email'), data['email_contact_consent']),
                 (_('I would like to be contacted by telephone'), data['telephone_contact_consent']),
             ),
