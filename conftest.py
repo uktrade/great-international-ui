@@ -1,4 +1,3 @@
-import os
 from unittest import mock
 
 from directory_api_client.client import api_client

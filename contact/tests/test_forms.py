@@ -3,7 +3,6 @@ from unittest.mock import call, patch
 import pytest
 
 from contact import forms
-from django.db.models.fields import BLANK_CHOICE_DASH
 
 
 @pytest.fixture
@@ -21,7 +20,7 @@ def contact_form_data(captcha_stub):
         'industry': forms.INDUSTRIES[0][0],
         'expanding_to_uk': forms.EXPANDING_TO_UK_CHOICES[1][0],
         'description': 'lorum ipsum',
-        'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[2][0],
+        'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[1][0],
         'email_contact_consent': False,
         'telephone_contact_consent': False,
         'g-recaptcha-response': captcha_stub
@@ -232,7 +231,6 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
     )
 
 
-
 @patch('contact.forms.render_to_string')
 def test_send_email_render_email_optional_fields(
     mock_render_to_string, contact_form_data
@@ -261,7 +259,8 @@ def test_send_email_render_email_optional_fields(
                 ('Company HQ address', contact_form_data['company_hq_address']),
                 ('Country', contact_form_data['country']),
                 ('Industry', contact_form_data['industry']),
-                ('Which of these best describes how you feel about expanding to the UK?', contact_form_data['expanding_to_uk']),
+                ('Which of these best describes how you feel about expanding to the UK?',
+                    contact_form_data['expanding_to_uk']),
                 ('Tell us about your investment', contact_form_data['description']),
                 ('Would you like us to arrange a call?', contact_form_data['arrange_callback']),
                 ('I would like to be contacted by email', contact_form_data['email_contact_consent']),

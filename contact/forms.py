@@ -21,7 +21,7 @@ ARRANGE_CALLBACK_CHOICES = list((
 
 EXPANDING_TO_UK_CHOICES = BLANK_CHOICE_DASH + list((
     (
-        'm',
+        'I’m convinced and want to talk to someone about my plans.',
         _('I’m convinced and want to talk to someone about my plans.')
 
     ),
