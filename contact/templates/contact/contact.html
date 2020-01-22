@@ -22,21 +22,25 @@
       {% csrf_token %}
 
       <h2 class="heading-medium">{% trans "Contact Information" %}</h2>
-      {% include 'includes/form_field.html' with field=form.name %}
-      {% include 'includes/form_field.html' with field=form.job_title %}
-      {% include 'includes/form_field.html' with field=form.email %}
-      {% include 'includes/form_field.html' with field=form.phone_number %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.email %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
 
       <h2 class="heading-medium">{% trans "Company information" %}</h2>
-      {% include 'includes/form_field.html' with field=form.company_name %}
-      {% include 'includes/form_field.html' with field=form.company_website %}
-      {% include 'includes/form_field.html' with field=form.country %}
-      {% include 'includes/form_field.html' with field=form.staff_number %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.company_website %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.company_hq_address %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.expanding_to_uk %}
 
       <h2 class="heading-medium">{% trans "Your plans" %}</h2>
-      {% include 'includes/form_field.html' with field=form.description %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.description %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.arrange_callback %}
       {% include 'core/includes/form_consent.html' with form=form %}
-      {% include 'includes/form_field.html' with field=form.captcha %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
 
       <button type="submit" name="button" class="button button-blue">{% trans "Submit" %}</button>
     </form>

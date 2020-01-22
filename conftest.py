@@ -6,6 +6,7 @@ import pytest
 
 from django.conf import settings
 from django.utils import translation
+from captcha.client import RecaptchaResponse
 
 from core import context_processors
 from core.tests.helpers import create_response, stub_page
@@ -13,10 +14,11 @@ from core.tests.helpers import create_response, stub_page
 
 @pytest.fixture()
 def captcha_stub():
-    # https://github.com/praekelt/django-recaptcha#id5
-    os.environ['RECAPTCHA_TESTING'] = 'True'
+    stub = mock.patch('captcha.fields.client.submit')
+    stub.return_value = RecaptchaResponse(is_valid=True)
+    stub.start()
     yield 'PASSED'
-    os.environ['RECAPTCHA_TESTING'] = 'False'
+    stub.stop()
 
 
 @pytest.fixture
