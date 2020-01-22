@@ -25,13 +25,11 @@
                 {% include 'includes/form_field.html' with field=form.email_address %}
                 {% include 'includes/form_field.html' with field=form.phone_number %}
                 {% include 'includes/form_field.html' with field=form.country %}
-                {% include 'includes/form_field.html' with field=form.city %}
-                {% include 'includes/form_field.html' with field=form.company_name %}
 
                 {% include 'includes/form_field.html' with field=form.message %}
 
+                {% include 'core/includes/form_consent.html' with form=form %}
                 {% include 'includes/form_field.html' with field=form.captcha %}
-                {% include 'includes/form_field.html' with field=form.terms_agreed %}
                 <p class="font-small">{{ page.comment }}</p>
 
                 <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>

@@ -106,8 +106,6 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
         choices=[('', '')] + COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'}), required=True
     )
-    city = forms.CharField(label=_('City (Optional)'), required=False)
-    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,
@@ -120,19 +118,20 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
         label_suffix='',
         required=True
     )
-    terms_agreed = forms.BooleanField(
-        label=_(TERMS_LABEL),
-        required=True
+    email_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False
     )
 
     @property
     def serialized_data(self):
-        # `captcha` and `terms_agreed` are not useful to agent
-        # as those fields have to be present
-        # for the form to be submitted.
+        # `captcha` is not useful to the agent so remove it from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
-        del data['terms_agreed']
         return data
 
 
@@ -165,7 +164,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
 
     @property
     def serialized_data(self):
-        # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
+        # `captcha` is not useful to the agent so remove it from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
         return data
