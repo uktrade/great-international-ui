@@ -51,10 +51,10 @@ def test_capital_invest_contact_form_required():
     assert form.fields['family_name'].required is True
     assert form.fields['email_address'].required is True
     assert form.fields['country'].required is True
-    assert form.fields['city'].required is False
     assert form.fields['message'].required is True
     assert form.fields['captcha'].required is True
-    assert form.fields['terms_agreed'].required is True
+    assert form.fields['email_contact_consent'].required is False
+    assert form.fields['telephone_contact_consent'].required is False
 
 
 def test_capital_invest_contact_form_accept_valid_data(captcha_stub, capital_invest_contact_form_data):
