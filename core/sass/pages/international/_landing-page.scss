@@ -13,6 +13,8 @@
 
 .landing-page {
 
+  @include hero-height-override;
+
   .features-highlight-section {
     .features-highlight-icon {
       height: 60px;
