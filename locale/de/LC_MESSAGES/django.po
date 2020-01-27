@@ -279,9 +279,9 @@ msgstr "Eingetragener Firmenname"
 
 #: core/forms.py:232
 #, fuzzy
-#| msgid "Phone number (Optional)"
+#| msgid "Job title (Optional)"
 msgid "Job title (Optional)"
-msgstr "Arbeits-Telefon"
+msgstr ""
 
 #: core/forms.py:239
 msgid "City (Optional)"
