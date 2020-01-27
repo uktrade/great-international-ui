@@ -17,11 +17,15 @@
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">
-                    <h1 class="heading-xlarge">Why buy from the UK</h1>
+                    <h1 class="heading-xlarge">Download our ebook: 5 reasons to buy from the UK</h1>
+                    <p>The UK is a nation of innovators with more Nobel Prize winners than anywhere outside of the US. Every day, businesses all over the world buy products and services of the highest quality from the UK.</p>
+                    <p>Our ebook, 5 Reasons to buy from the UK, gives insight into how the unique combination of innovation, creativity, infrastructure, robust regulatory framework, and access to capital makes the UK one of the top markets to find a supplier.
+                    </p>
                 </div>
                 <div class="column-two-thirds-m column-half-xl">
                     <form method="post">
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
@@ -34,15 +38,14 @@
 
 
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.additional_requirements %}
 
                         <h3 class="heading-medium">How we use your information</h3>
                         <p>
-                          The Department for International Trade will use the information provided in this form to send you a PDF brochure.  You can read about how we protect your data in our <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy notice</a>.
+                          The Department for International Trade will use the information provided in this form to send you an ebook. You can read about how we protect your data in our <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy notice</a>.
                         </p>
-                        <h3 class="heading-medium">Contacting you</h3>
+                        <h3 class="heading-medium">Additional information</h3>
                         <p>
-                         If you would like to receive further information from the UK Government in relation to Trade & Investment you can opt in below. You can opt out of these additional updates at any time.
+                         If you would like to receive additional information about UK Trade & Investment you can opt in below. You can opt out of these updates at any time.
                         </p>
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}

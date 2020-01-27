@@ -2783,7 +2783,8 @@ def test_international_contact_triage_view(
 @pytest.fixture
 def why_buy_from_uk_form_data(captcha_stub):
     return {
-        'name': 'Test User',
+        'given_name': 'Test',
+        'family_name': 'User',
         'email_address': 'me@here.com',
         'company_name': 'Company LTD',
         'job_title': 'Director',
