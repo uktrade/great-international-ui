@@ -18,6 +18,13 @@ ARRANGE_CALLBACK_CHOICES = list((
     ('yes', _('Yes')),
     ('no', _('No'))
 ))
+HOW_DID_YOU_HEAR_CHOICES = BLANK_CHOICE_DASH + list((
+    ('Press ad (newspaper/trade publication)', _('Press ad (newspaper/trade publication)')),
+    ('Outdoor ad/billboard', _('Outdoor ad/billboard')),
+    ('LinkedIn', _('LinkedIn')),
+    ('Other social media (e.g. Twitter/Facebook)', _('Other social media (e.g. Twitter/Facebook)')),
+    ('Internet search', _('Internet search'))
+))
 
 EXPANDING_TO_UK_CHOICES = BLANK_CHOICE_DASH + list((
     (
@@ -106,6 +113,10 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
         nested_form_class=ContactFormNestedDetails,
         nested_form_choice='yes',
     )
+    how_did_you_hear = forms.ChoiceField(
+        label=_('How did you hear about us? (Optional)'),
+        choices=HOW_DID_YOU_HEAR_CHOICES,
+    )
     email_contact_consent = forms.BooleanField(
         label=_('I would like to be contacted by email'),
         required=False
@@ -142,6 +153,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Tell us about your investment'), data['description']),
                 (_('Would you like us to arrange a call?'), data['arrange_callback']),
                 (_('When should we call you?'), data['when_to_call']),
+                (_('How did you hear about us?'), data['how_did_you_hear']),
                 (_('I would like to be contacted by email'), data['email_contact_consent']),
                 (_('I would like to be contacted by telephone'), data['telephone_contact_consent']),
             ),
