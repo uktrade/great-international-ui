@@ -196,9 +196,8 @@ def international_choices():
 class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
-        label=_('Please provide as much information as possible about the type of products or services '
-                'you’re interested in procuring from the UK. The more you tell us, the quicker we can respond '
-                'and the more relevant our response will be. (Optional)'),
+        label=_('Tell us more about the type of products or services you’re interested in. '
+                'The more you tell us, the quicker our response will be. (Optional)'),
         required=False,
     )
 
@@ -249,7 +248,8 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
 
     procuring_products = forms.RadioNested(
-        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?'),
+        label=_('Are you interested in buying products or services from UK businesses, '
+                'either now or in the near future?'),
         choices=(
             ('yes', _('Yes')),
             ('no', _('No')),
@@ -275,6 +275,14 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         label=_(' I would like to receive additional information by telephone'),
         required=False,
     )
+    captcha = ReCaptchaField(label='', label_suffix='')
+
+    @property
+    def serialized_data(self):
+        # `captcha` is not useful to the agent so remove it from the submitted data.
+        data = self.cleaned_data.copy()
+        del data['captcha']
+        return data
 
 
 class InternationalRoutingForm(forms.Form):

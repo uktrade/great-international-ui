@@ -144,7 +144,7 @@ def test_business_environment_form_submission(mock_save, business_environment_fo
 
 
 @pytest.fixture
-def why_buy_from_the_uk_form_data():
+def why_buy_from_the_uk_form_data(captcha_stub):
     return {
         'given_name': 'Test',
         'family_name': 'User',
@@ -158,6 +158,7 @@ def why_buy_from_the_uk_form_data():
         'contact_email': False,
         'contact_phone': True,
         'city': 'London',
+        'g-recaptcha-response': captcha_stub,
     }
 
 
