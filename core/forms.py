@@ -196,16 +196,22 @@ def international_choices():
 class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
-        label=_('Please provide as much information as possible about the type of'
-                ' products or services you’re interested in procuring from the UK. (Optional)'),
-        help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
+        label=_('Please provide as much information as possible about the type of products or services '
+                'you’re interested in procuring from the UK. The more you tell us, the quicker we can respond '
+                'and the more relevant our response will be. (Optional)'),
         required=False,
     )
 
 
 class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
-    name = forms.CharField(
-        label=_('Name'),
+    given_name = forms.CharField(
+        label=_('Given name'),
+        error_messages={
+            'required': _('Enter your full name'),
+        }
+    )
+    family_name = forms.CharField(
+        label=_('Family name'),
         error_messages={
             'required': _('Enter your full name'),
         }
@@ -224,16 +230,12 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         }
     )
     job_title = forms.CharField(
-        label=_('Job title'),
-        error_messages={
-            'required': _('Enter your job title'),
-        }
+        label=_('Job title (Optional)'),
+        required=False
     )
     phone_number = forms.CharField(
-        label=_('Phone number'),
-        error_messages={
-            'required': _('Enter your phone number'),
-        }
+        label=_('Phone number (Optional)'),
+        required=False
     )
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
@@ -264,20 +266,13 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         choices=INDUSTRY_OPTIONS,
         required=False,
     )
-
-    additional_requirements = forms.CharField(
-        widget=Textarea,
-        label=_('Additional requirements (Optional)'),
-        required=False,
-    )
-
     contact_email = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
+        label=_('I would like to receive additional information by email'),
         required=False,
     )
 
     contact_phone = forms.BooleanField(
-        label=_('I would like to be contacted by telephone'),
+        label=_(' I would like to receive additional information by telephone'),
         required=False,
     )
 
