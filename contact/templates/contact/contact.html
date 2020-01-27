@@ -39,6 +39,7 @@
       <h2 class="heading-medium">{% trans "Your plans" %}</h2>
       {% include 'directory_components/form_widgets/form_field.html' with field=form.description %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.arrange_callback %}
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.how_did_you_hear %}
       {% include 'core/includes/form_consent.html' with form=form %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
 

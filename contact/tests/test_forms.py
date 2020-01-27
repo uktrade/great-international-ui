@@ -22,6 +22,7 @@ def contact_form_data(captcha_stub):
         'description': 'lorum ipsum',
         'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[0][0],
         'when_to_call': 'in the morning',
+        'how_did_you_hear': forms.HOW_DID_YOU_HEAR_CHOICES[1][0],
         'email_contact_consent': False,
         'telephone_contact_consent': False,
         'g-recaptcha-response': captcha_stub
@@ -69,6 +70,7 @@ def test_contact_form_invalid_data(captcha_stub):
             'phone_number': '0000000000',
             'job_title': 'President',
             'company_name': 'Acme',
+            'how_did_you_hear': forms.HOW_DID_YOU_HEAR_CHOICES[1][0],
             'email_contact_consent': False,
             'telephone_contact_consent': False,
             'g-recaptcha-response': captcha_stub
@@ -223,6 +225,7 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
                 ('Tell us about your investment', data['description']),
                 ('Would you like us to arrange a call?', data['arrange_callback']),
                 ('When should we call you?', data['when_to_call']),
+                ('How did you hear about us?', data['how_did_you_hear']),
                 ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
                 ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
@@ -265,6 +268,7 @@ def test_send_email_render_email_optional_fields(
                 ('Tell us about your investment', contact_form_data['description']),
                 ('Would you like us to arrange a call?', contact_form_data['arrange_callback']),
                 ('When should we call you?', contact_form_data['when_to_call']),
+                ('How did you hear about us?', contact_form_data['how_did_you_hear']),
                 ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
                 ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
             ),
