@@ -23,7 +23,8 @@ HOW_DID_YOU_HEAR_CHOICES = BLANK_CHOICE_DASH + list((
     ('Outdoor ad/billboard', _('Outdoor ad/billboard')),
     ('LinkedIn', _('LinkedIn')),
     ('Other social media (e.g. Twitter/Facebook)', _('Other social media (e.g. Twitter/Facebook)')),
-    ('Internet search', _('Internet search'))
+    ('Internet search', _('Internet search')),
+    ('Other', _('Other'))
 ))
 
 EXPANDING_TO_UK_CHOICES = BLANK_CHOICE_DASH + list((
