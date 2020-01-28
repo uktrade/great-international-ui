@@ -1842,9 +1842,9 @@ def capital_invest_contact_form_data(captcha_stub):
         'email_address': 'captain_america@avengers.com',
         'phone_number': '01234 567891',
         'country': 'FR',
-        'city': 'Kentucky',
-        'company_name': 'Guardian of the Galaxy',
         'message': 'foobar',
+        'email_contact_consent': True,
+        'telephone_contact_consent': True,
         'g-recaptcha-response': captcha_stub,
         'terms_agreed': True
     }
@@ -2241,9 +2241,9 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
         'email_address': capital_invest_contact_form_data['email_address'],
         'phone_number': capital_invest_contact_form_data['phone_number'],
         'country': capital_invest_contact_form_data['country'],
-        'city': capital_invest_contact_form_data['city'],
-        'company_name': capital_invest_contact_form_data['company_name'],
-        'message': capital_invest_contact_form_data['message']
+        'message': capital_invest_contact_form_data['message'],
+        'email_contact_consent': capital_invest_contact_form_data['email_contact_consent'],
+        'telephone_contact_consent': capital_invest_contact_form_data['telephone_contact_consent'],
     }
 
 
@@ -2740,7 +2740,8 @@ def test_international_contact_triage_view(
 @pytest.fixture
 def why_buy_from_uk_form_data(captcha_stub):
     return {
-        'name': 'Test User',
+        'given_name': 'Test',
+        'family_name': 'User',
         'email_address': 'me@here.com',
         'company_name': 'Company LTD',
         'job_title': 'Director',
@@ -2751,6 +2752,7 @@ def why_buy_from_uk_form_data(captcha_stub):
         'contact_email': False,
         'contact_phone': True,
         'city': 'London',
+        'g-recaptcha-response': captcha_stub,
     }
 
 

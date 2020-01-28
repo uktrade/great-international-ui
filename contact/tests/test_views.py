@@ -12,17 +12,23 @@ from contact import forms, views
 @pytest.fixture
 def contact_form_data(captcha_stub):
     return {
-        'name': 'Scrooge McDuck',
-        'email': 'sm@example.com',
+        'given_name': 'Scrooge',
+        'family_name': 'McDuck',
         'job_title': 'President',
+        'email': 'sm@example.com',
         'phone_number': '0000000000',
         'company_name': 'Acme',
-        'country': 'United States',
-        'staff_number': forms.STAFF_CHOICES[0][0],
-        'description': 'foobar',
-        'email_contact_consent': True,
-        'telephone_contact_consent': True,
-        'g-recaptcha-response': captcha_stub,
+        'company_website': 'www.test.com',
+        'company_hq_address': 'London',
+        'country': forms.COUNTRY_CHOICES[0][0],
+        'industry': forms.INDUSTRIES[0][0],
+        'expanding_to_uk': forms.EXPANDING_TO_UK_CHOICES[1][0],
+        'description': 'lorum ipsum',
+        'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[1][0],
+        'how_did_you_hear': forms.HOW_DID_YOU_HEAR_CHOICES[1][0],
+        'email_contact_consent': False,
+        'telephone_contact_consent': False,
+        'g-recaptcha-response': captcha_stub
     }
 
 
