@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- XOT-1253 - text changes
 - CI-649 - add missing field to invest contact form
 - CI-644 - Update capital invest form
 - CI-649 - Update invest contact form fields, email options and tests
