@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
 - XOT-1253 - text changes
 - CI-649 - add missing field to invest contact form
 - CI-644 - Update capital invest form
