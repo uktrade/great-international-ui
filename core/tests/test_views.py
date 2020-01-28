@@ -2795,6 +2795,7 @@ def why_buy_from_uk_form_data(captcha_stub):
         'contact_email': False,
         'contact_phone': True,
         'city': 'London',
+        'g-recaptcha-response': captcha_stub,
     }
 
 

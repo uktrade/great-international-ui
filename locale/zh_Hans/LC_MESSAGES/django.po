@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-22 10:09+0000\n"
+"POT-Creation-Date: 2020-01-27 14:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,124 +17,154 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: contact/forms.py:18 core/forms.py:253
+#: contact/forms.py:18 core/forms.py:254
 msgid "Yes"
 msgstr ""
 
-#: contact/forms.py:19 core/forms.py:254
+#: contact/forms.py:19 core/forms.py:255
 msgid "No"
 msgstr ""
 
+#: contact/forms.py:22
+msgid "Press ad (newspaper/trade publication)"
+msgstr ""
+
+#: contact/forms.py:23
+msgid "Outdoor ad/billboard"
+msgstr ""
+
+#: contact/forms.py:24
+msgid "LinkedIn"
+msgstr ""
+
 #: contact/forms.py:25
+msgid "Other social media (e.g. Twitter/Facebook)"
+msgstr ""
+
+#: contact/forms.py:26
+msgid "Internet search"
+msgstr ""
+
+#: contact/forms.py:27 find_a_supplier/constants.py:38
+msgid "Other"
+msgstr ""
+
+#: contact/forms.py:33
 msgid "I’m convinced and want to talk to someone about my plans."
 msgstr ""
 
-#: contact/forms.py:30
+#: contact/forms.py:38
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
 msgstr ""
 
-#: contact/forms.py:35
+#: contact/forms.py:43
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
 msgstr ""
 
-#: contact/forms.py:40
+#: contact/forms.py:48
 msgid "I’m not yet ready to invest. Keep me informed."
 msgstr ""
 
-#: contact/forms.py:48
+#: contact/forms.py:56 contact/forms.py:156
 msgid "When should we call you?"
 msgstr ""
 
-#: contact/forms.py:52
+#: contact/forms.py:60
 msgid "In the morning"
 msgstr ""
 
-#: contact/forms.py:56
+#: contact/forms.py:64
 msgid "In the afternoon"
 msgstr ""
 
-#: contact/forms.py:66 contact/forms.py:131 core/forms.py:97
+#: contact/forms.py:74 contact/forms.py:143 core/forms.py:97 core/forms.py:207
 msgid "Given name"
 msgstr ""
 
-#: contact/forms.py:67 contact/forms.py:132 core/forms.py:98
+#: contact/forms.py:75 contact/forms.py:144 core/forms.py:98 core/forms.py:213
 msgid "Family name"
 msgstr ""
 
-#: contact/forms.py:68 contact/forms.py:133 core/forms.py:228
+#: contact/forms.py:76 contact/forms.py:145
 msgid "Job title"
 msgstr "职务"
 
-#: contact/forms.py:69 contact/forms.py:134
+#: contact/forms.py:77 contact/forms.py:146
 #, fuzzy
 #| msgid "Email address"
 msgid "Work email address"
 msgstr "工作电子邮件"
 
-#: contact/forms.py:71 contact/forms.py:135 core/forms.py:143 core/forms.py:234
+#: contact/forms.py:79 contact/forms.py:147 core/forms.py:142
 #: find_a_supplier/forms.py:245
 msgid "Phone number"
 msgstr "工作电话"
 
-#: contact/forms.py:73 contact/forms.py:136 core/forms.py:149 core/forms.py:222
+#: contact/forms.py:81 contact/forms.py:148 core/forms.py:148 core/forms.py:226
 #: find_a_supplier/forms.py:183
 msgid "Company name"
 msgstr "公司名称"
 
-#: contact/forms.py:75 contact/forms.py:137
+#: contact/forms.py:83 contact/forms.py:149
 msgid "Company website"
 msgstr "公司网站"
 
-#: contact/forms.py:78 contact/forms.py:138
-#, fuzzy
-#| msgid "Company name"
+#: contact/forms.py:86 contact/forms.py:150
 msgid "Company HQ address"
 msgstr ""
 
-#: contact/forms.py:81 contact/forms.py:139 core/forms.py:145 core/forms.py:242
+#: contact/forms.py:89 contact/forms.py:151 core/forms.py:144 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国家"
 
-#: contact/forms.py:86 contact/forms.py:140 core/forms.py:151
+#: contact/forms.py:94 contact/forms.py:152 core/forms.py:150
 #: find_a_supplier/forms.py:177
 msgid "Industry"
 msgstr "行业"
 
-#: contact/forms.py:90 contact/forms.py:141
+#: contact/forms.py:98 contact/forms.py:153
 msgid "Which of these best describes how you feel about expanding to the UK?"
 msgstr ""
 
-#: contact/forms.py:94 contact/forms.py:142
+#: contact/forms.py:102 contact/forms.py:154
 msgid "Tell us about your investment"
 msgstr "告知我们您的投资相关信息"
 
-#: contact/forms.py:96
+#: contact/forms.py:104
 msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
 
-#: contact/forms.py:104 contact/forms.py:143
+#: contact/forms.py:112 contact/forms.py:155
 msgid "Would you like us to arrange a call?"
 msgstr ""
 
-#: contact/forms.py:110 contact/forms.py:144 core/forms.py:156
-#: core/forms.py:276
+#: contact/forms.py:118
+msgid "How did you hear about us? (Optional)"
+msgstr ""
+
+#: contact/forms.py:122 contact/forms.py:158 core/forms.py:122
+#: core/forms.py:155
 msgid "I would like to be contacted by email"
 msgstr ""
 
-#: contact/forms.py:114 contact/forms.py:145 core/forms.py:160
-#: core/forms.py:281
+#: contact/forms.py:126 contact/forms.py:159 core/forms.py:126
+#: core/forms.py:159
 msgid "I would like to be contacted by telephone"
 msgstr ""
 
-#: contact/forms.py:180
+#: contact/forms.py:157
+msgid "How did you hear about us?"
+msgstr ""
+
+#: contact/forms.py:192
 msgid "Contact form user email subject"
 msgstr ""
 
@@ -164,11 +194,11 @@ msgstr "您的公司"
 msgid "Your plans"
 msgstr "您的投资"
 
-#: contact/templates/contact/contact.html:45
+#: contact/templates/contact/contact.html:46
 msgid "Submit"
 msgstr "保持联系"
 
-#: contact/templates/contact/contact.html:62
+#: contact/templates/contact/contact.html:63
 msgid "Type here"
 msgstr ""
 
@@ -220,12 +250,12 @@ msgstr ""
 msgid "sort_by"
 msgstr ""
 
-#: core/forms.py:99 core/forms.py:215 find_a_supplier/forms.py:175
+#: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
 #: find_a_supplier/forms.py:239
 msgid "Email address"
 msgstr "工作电子邮件"
 
-#: core/forms.py:101
+#: core/forms.py:101 core/forms.py:236
 msgid "Phone number (Optional)"
 msgstr "工作电话"
 
@@ -233,73 +263,53 @@ msgstr "工作电话"
 msgid "Which country are you based in?"
 msgstr ""
 
-#: core/forms.py:109 core/forms.py:239
-msgid "City (Optional)"
-msgstr ""
-
 #: core/forms.py:110
-msgid "Company name (Optional)"
-msgstr ""
-
-#: core/forms.py:112
 msgid "Message"
 msgstr ""
 
-#: core/forms.py:116
+#: core/forms.py:114
 msgid "How can we help?"
 msgstr ""
 
-#: core/forms.py:140
+#: core/forms.py:139
 msgid "First name"
 msgstr ""
 
-#: core/forms.py:141
+#: core/forms.py:140
 msgid "Last name"
 msgstr ""
 
-#: core/forms.py:142 perfect_fit_prospectus/forms.py:21
+#: core/forms.py:141 perfect_fit_prospectus/forms.py:21
 msgid "Email"
 msgstr ""
 
-#: core/forms.py:200
+#: core/forms.py:199
 msgid ""
-"Please provide as much information as possible about the type of products or "
-"services you’re interested in procuring from the UK. (Optional)"
+"Tell us more about the type of products or services you’re interested in. "
+"The more you tell us, the quicker our response will be. (Optional)"
 msgstr ""
 
-#: core/forms.py:202
-msgid ""
-"The more you tell us, the quicker we can respond and the more relevant our "
-"response will be."
-msgstr ""
-
-#: core/forms.py:209 perfect_fit_prospectus/forms.py:12
-msgid "Name"
-msgstr "全名"
-
-#: core/forms.py:211
+#: core/forms.py:209 core/forms.py:215
 msgid "Enter your full name"
 msgstr ""
 
-#: core/forms.py:217
+#: core/forms.py:221
 msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
-#: core/forms.py:224
+#: core/forms.py:228
 #, fuzzy
 #| msgid "Company name"
 msgid "Enter your company name"
 msgstr "公司名称"
 
-#: core/forms.py:230
-msgid "Enter your job title"
+#: core/forms.py:232
+msgid "Job title (Optional)"
 msgstr ""
 
-#: core/forms.py:236
-#, fuzzy
-#| msgid "Phone number"
-msgid "Enter your phone number"
-msgstr "工作电话"
+#: core/forms.py:239
+msgid "City (Optional)"
+msgstr ""
 
 #: core/forms.py:246
 msgid "Select a country"
@@ -307,22 +317,26 @@ msgstr ""
 
 #: core/forms.py:251
 msgid ""
-"Are you interested in procuring products or services from the UK, either now "
-"or in the near future?"
+"Are you interested in buying products or services from UK businesses, either "
+"now or in the near future?"
 msgstr ""
 
-#: core/forms.py:259
+#: core/forms.py:260
 msgid "Select either yes or no"
 msgstr ""
 
-#: core/forms.py:264
+#: core/forms.py:265
 #, fuzzy
 #| msgid "Phone number (Optional)"
 msgid "Industry/Sector (Optional)"
 msgstr "工作电话"
 
-#: core/forms.py:271
-msgid "Additional requirements (Optional)"
+#: core/forms.py:270
+msgid "I would like to receive additional information by email"
+msgstr ""
+
+#: core/forms.py:275
+msgid " I would like to receive additional information by telephone"
 msgstr ""
 
 #: core/header_config/old_nav_items.py:14
@@ -564,10 +578,6 @@ msgstr ""
 msgid "At an event"
 msgstr ""
 
-#: find_a_supplier/constants.py:38
-msgid "Other"
-msgstr ""
-
 #: find_a_supplier/forms.py:30
 msgid "All industries"
 msgstr "行业"
@@ -627,6 +637,10 @@ msgstr ""
 msgid "Other source (optional)"
 msgstr ""
 
+#: perfect_fit_prospectus/forms.py:12
+msgid "Name"
+msgstr "全名"
+
 #: perfect_fit_prospectus/forms.py:16
 msgid "Company"
 msgstr ""
@@ -677,6 +691,11 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Phone number"
+#~ msgid "Enter your phone number"
+#~ msgstr "工作电话"
 
 #~ msgid "Less than 10"
 #~ msgstr "少于 10"
