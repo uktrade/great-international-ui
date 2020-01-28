@@ -4,6 +4,10 @@
 
 ### Implemented enhancements
 - CI-653 - Add opportunities search link to the header
+- CI-651 - Override min height on homepage hero components
+- XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
+- XOT-1253 - text changes
+- CI-649 - add missing field to invest contact form
 - CI-644 - Update capital invest form
 - CI-649 - Update invest contact form fields, email options and tests
 - CI-631 - Update business environment guide form

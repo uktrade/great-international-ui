@@ -4,6 +4,17 @@
 
 @import '../partials/vars';
 
+@mixin hero-height-override {
+  .great-hero,
+  .great-hero > .container {
+    min-height: 300px;
+
+    @media (min-width: 641px) {
+      min-height: 450px;
+    }
+  }
+}
+
 @mixin float-clear {
   &:after {
     display: block;

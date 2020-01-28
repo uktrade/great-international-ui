@@ -25,6 +25,7 @@ def contact_form_data(captcha_stub):
         'expanding_to_uk': forms.EXPANDING_TO_UK_CHOICES[1][0],
         'description': 'lorum ipsum',
         'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[1][0],
+        'how_did_you_hear': forms.HOW_DID_YOU_HEAR_CHOICES[1][0],
         'email_contact_consent': False,
         'telephone_contact_consent': False,
         'g-recaptcha-response': captcha_stub
