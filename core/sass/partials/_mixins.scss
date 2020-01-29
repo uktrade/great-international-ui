@@ -4,14 +4,15 @@
 
 @import '../partials/vars';
 
-@mixin hero-height-override {
-  .great-hero,
-  .great-hero > .container {
-    min-height: 300px;
-
-    @media (min-width: 641px) {
-      min-height: 450px;
-    }
+@mixin hero-gradient($deg) {
+  .great-hero:before {
+    background: linear-gradient($deg, rgba(0,0,0,0.5), transparent 50%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 }
 

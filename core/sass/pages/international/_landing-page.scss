@@ -13,7 +13,26 @@
 
 .landing-page {
 
-  @include hero-height-override;
+  @include hero-gradient(0deg);
+
+  .great-hero,
+  .great-hero > .container {
+    min-height: 300px;
+
+    @media (min-width: 641px) {
+      min-height: 450px;
+    }
+  }
+
+  .great-hero-text {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 15px;
+
+    @media (min-width: 641px) {
+      padding-bottom: 45px;
+    }
+  }
 
   .features-highlight-section {
     .features-highlight-icon {
