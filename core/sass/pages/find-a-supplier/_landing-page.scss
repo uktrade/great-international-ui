@@ -4,7 +4,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
 
 .find-a-supplier-landing-page {
 
-  @include hero-gradient;
+  @include hero-gradient(90deg);
 
   #search-area {
     .button {

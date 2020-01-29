@@ -7,7 +7,7 @@
 
 .invest-landing-page {
 
-  @include hero-gradient;
+  @include hero-gradient(90deg);
 
   .landing-page-how-we-help {
 
