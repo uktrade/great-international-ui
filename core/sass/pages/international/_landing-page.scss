@@ -13,6 +13,7 @@
 
 .landing-page {
 
+  @include hero-height-override;
   @include hero-gradient;
 
   .features-highlight-section {
