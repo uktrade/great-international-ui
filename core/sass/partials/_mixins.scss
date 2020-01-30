@@ -4,6 +4,18 @@
 
 @import '../partials/vars';
 
+@mixin hero-gradient($deg) {
+  .great-hero:before {
+    background: linear-gradient($deg, rgba(0,0,0,0.5), transparent 50%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
 @mixin float-clear {
   &:after {
     display: block;

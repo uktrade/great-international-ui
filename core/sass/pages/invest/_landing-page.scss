@@ -7,6 +7,8 @@
 
 .invest-landing-page {
 
+  @include hero-gradient(90deg);
+
   .landing-page-how-we-help {
 
     ul {

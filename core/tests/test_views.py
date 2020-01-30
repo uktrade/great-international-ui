@@ -783,10 +783,12 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
         '/international/content/capital-invest/contact/'
     )
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
+    response = CapitalInvestContactFormView.as_view()(
         request,
         path='/international/content/capital-invest/contact/'
     )
+
+    assert 'fair-processing-notice-invest-in-great-britain' in response.context_data['privacy_url']
 
     assert response.status_code == 200
 
@@ -1527,49 +1529,6 @@ def test_when_no_opportunity_list_in_page_for_opportunity_search(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_random_three_opportunities_for_opportunity_page(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'sector'
-        },
-        'page_type': 'CapitalInvestOpportunityPage',
-        'related_sectors': [
-            {'related_sector': {'id': 8, 'heading': 'Housing'}},
-            {'related_sector': {'id': 4, 'heading': 'Energy'}}
-        ],
-        'related_sector_with_opportunities': {
-            'Housing': [
-                {'title': 'Ashton Green'},
-                {'title': 'Ashton Green2'},
-                {'title': 'Ashton Green3'},
-                {'title': 'Ashton Green4'},
-                {'title': 'Ashton Green5'},
-            ],
-            'Energy': [
-                {'title': 'Birmingham Curzon'},
-                {'title': 'Birmingham Curzon2'},
-            ]
-        }
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/industries/sector')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/industries/sector')
-
-    assert len(response
-               .context_data['random_opps_in_random_related_sector']) <= 3
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_for_region_page(
         mock_cms_response, rf):
 
@@ -1885,9 +1844,9 @@ def capital_invest_contact_form_data(captcha_stub):
         'email_address': 'captain_america@avengers.com',
         'phone_number': '01234 567891',
         'country': 'FR',
-        'city': 'Kentucky',
-        'company_name': 'Guardian of the Galaxy',
         'message': 'foobar',
+        'email_contact_consent': True,
+        'telephone_contact_consent': True,
         'g-recaptcha-response': captcha_stub,
         'terms_agreed': True
     }
@@ -1896,7 +1855,7 @@ def capital_invest_contact_form_data(captcha_stub):
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success(
-        mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
+    mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
 ):
 
     mock_lookup_by_path.return_value = create_response(
@@ -2284,9 +2243,9 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
         'email_address': capital_invest_contact_form_data['email_address'],
         'phone_number': capital_invest_contact_form_data['phone_number'],
         'country': capital_invest_contact_form_data['country'],
-        'city': capital_invest_contact_form_data['city'],
-        'company_name': capital_invest_contact_form_data['company_name'],
-        'message': capital_invest_contact_form_data['message']
+        'message': capital_invest_contact_form_data['message'],
+        'email_contact_consent': capital_invest_contact_form_data['email_contact_consent'],
+        'telephone_contact_consent': capital_invest_contact_form_data['telephone_contact_consent'],
     }
 
 
@@ -2591,6 +2550,7 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
 
 def test_business_environment_form_view(client):
     response = client.get(reverse('business-environment-guide-form'))
+    assert 'privacy-notice-uk-investment-prospectus' in response.context_data['privacy_url']
     assert response.status_code == 200
 
 
@@ -2783,7 +2743,8 @@ def test_international_contact_triage_view(
 @pytest.fixture
 def why_buy_from_uk_form_data(captcha_stub):
     return {
-        'name': 'Test User',
+        'given_name': 'Test',
+        'family_name': 'User',
         'email_address': 'me@here.com',
         'company_name': 'Company LTD',
         'job_title': 'Director',
@@ -2794,6 +2755,7 @@ def why_buy_from_uk_form_data(captcha_stub):
         'contact_email': False,
         'contact_phone': True,
         'city': 'London',
+        'g-recaptcha-response': captcha_stub,
     }
 
 
