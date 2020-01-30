@@ -3,16 +3,33 @@
 ## Pre-release
 
 ### Implemented enhancements
+- CI-653 - Add opportunities search link to the header
+- CI-651 - Alter text alignment and add vignettes to hero components
+- XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
+- XOT-1253 - text changes
+- CI-649 - add missing field to invest contact form
+- CI-644 - Update capital invest form
+- CI-649 - Update invest contact form fields, email options and tests
+- CI-631 - Update business environment guide form
+- CI-645 - Add translations for 'About us'
+
+### Bugs fixed
+- TT-2254 - Remove obsolete settings and code
+
+## [2020.01.15](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.15)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.19...2020.01.15)
+
+### Implemented enhancements
 - CI-631 - Update business environment form required fields. Update consent section to match invest contact form
 - XOT-1266 - add specific error messsages to the campaign form
 - XOT-1253 - add missing optional fields
 - XOT-1253 and XOT-1260 - add why buy from the uk form and success page, set up for email templates
-- TT2231 - reverse filters on ISD
+- TT-2231 - reverse filters on ISD
 - No ticket - Provide sender ip address when submitting forms
 
 ### Bugs fixed
 - TT-2177 - Add search icon to ISD and FAS search boxes
-- No ticket - Upgrade waitress to fix security vulnerability
+- XOT-1268 - Upgrade waitress to fix security vulnerability
 - TT-2230 - Fix location of ISD homepage in breadcrumbs
 - TT-2237 - Move s3-to-pas (ensure s3 pas is setup in prod and configured AWS_STORAGE_BUCKET_NAME)
 - TT-2249 - Add missing unsubscribe form

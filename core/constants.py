@@ -53,28 +53,16 @@ FEATURE_FLAGGED_URLS_MAPPING = {
 }
 
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
-    'CapitalInvestRegionPage':
-        'CAPITAL_INVEST_REGION_PAGE_ON',
-    'AboutUkRegionPage':
-        'ABOUT_UK_REGION_PAGE_ON',
-    'AboutUkRegionListingPage':
-        'ABOUT_UK_REGION_LISTING_PAGE_ON',
-    'CapitalInvestOpportunityPage':
-        'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
-    'InternationalCapitalInvestLandingPage':
-        'CAPITAL_INVEST_LANDING_PAGE_ON',
-    'CapitalInvestOpportunityListingPage':
-        'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
-    'InternationalSubSectorPage':
-        'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
-    'CapitalInvestContactFormPage':
-        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
-    'CapitalInvestContactFormSuccessPage':
-        'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
-    'InternationalTradeIndustryContactPage':
-        'FIND_A_SUPPLIER_ON',
-    'AboutUkLandingPage':
-        'ABOUT_UK_LANDING_PAGE_ON',
+    'CapitalInvestRegionPage': 'CAPITAL_INVEST_REGION_PAGE_ON',
+    'AboutUkRegionPage': 'ABOUT_UK_REGION_PAGE_ON',
+    'AboutUkRegionListingPage': 'ABOUT_UK_REGION_LISTING_PAGE_ON',
+    'CapitalInvestOpportunityPage': 'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
+    'InternationalCapitalInvestLandingPage': 'CAPITAL_INVEST_LANDING_PAGE_ON',
+    'CapitalInvestOpportunityListingPage': 'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
+    'InternationalSubSectorPage': 'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
+    'CapitalInvestContactFormPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'CapitalInvestContactFormSuccessPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
+    'AboutUkLandingPage': 'ABOUT_UK_LANDING_PAGE_ON',
 }
 
 GA_DATA_MAPPING = {

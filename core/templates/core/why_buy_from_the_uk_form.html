@@ -17,11 +17,20 @@
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">
-                    <h1 class="heading-xlarge">Why buy from the UK</h1>
+                    <h1 class="heading-xlarge">Download our ebook: 5 reasons to buy from the UK</h1>
+                    <p>The UK is a global, outward-facing nation with strong international ties to 160 markets around the world. Enter your details below to download our ebook 5 reasons to buy from the UK, including;</p>
+                    <ol class="list list-number margin-bottom-45-l">
+                        <li>the excitement and creativity of the UK</li>
+                        <li>UK industries and companies pushing the boundaries</li>
+                        <li>infrastructure, export finance and collaboration</li>
+                        <li>why UK businesses are stable and professional</li>
+                        <li>commitment to the highest standards for better long-term value</li>
+                    </ol>
                 </div>
                 <div class="column-two-thirds-m column-half-xl">
                     <form method="post">
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
+                        {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
@@ -34,18 +43,18 @@
 
 
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
-                        {% include 'directory_components/form_widgets/form_field.html' with field=form.additional_requirements %}
 
                         <h3 class="heading-medium">How we use your information</h3>
                         <p>
-                          The Department for International Trade will use the information provided in this form to send you a PDF brochure.  You can read about how we protect your data in our <a href="{{ header_footer_urls.privacy_and_cookies }}">privacy notice</a>.
+                          The Department for International Trade will use the information provided in this form to send you an ebook. You can read about how we protect your data in our <a href="{{ header_footer_urls.privacy_and_cookies }}privacy-notice-5-reasons-buy-uk/" class="link">privacy notice</a>.
                         </p>
-                        <h3 class="heading-medium">Contacting you</h3>
+                        <h3 class="heading-medium">Additional information</h3>
                         <p>
-                         If you would like to receive further information from the UK Government in relation to Trade & Investment you can opt in below. You can opt out of these additional updates at any time.
+                         If you would like to receive additional information about UK Trade & Investment you can opt in below. You can opt out of these updates at any time.
                         </p>
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_email %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.contact_phone %}
+                        {% include 'core/includes/form_field.html' with field=form.captcha %}
 
                         <button class="button">Submit</button>
                     </form>

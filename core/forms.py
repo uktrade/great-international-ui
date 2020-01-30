@@ -106,8 +106,6 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
         choices=[('', '')] + COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'}), required=True
     )
-    city = forms.CharField(label=_('City (Optional)'), required=False)
-    company_name = forms.CharField(label=_('Company name (Optional)'), required=False)
     message = forms.CharField(
         label=_('Message'),
         widget=Textarea,
@@ -120,19 +118,20 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
         label_suffix='',
         required=True
     )
-    terms_agreed = forms.BooleanField(
-        label=_(TERMS_LABEL),
-        required=True
+    email_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by email'),
+        required=False
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=_('I would like to be contacted by telephone'),
+        required=False
     )
 
     @property
     def serialized_data(self):
-        # `captcha` and `terms_agreed` are not useful to agent
-        # as those fields have to be present
-        # for the form to be submitted.
+        # `captcha` is not useful to the agent so remove it from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
-        del data['terms_agreed']
         return data
 
 
@@ -140,7 +139,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
     given_name = forms.CharField(label=_('First name'), required=True)
     family_name = forms.CharField(label=_('Last name'), required=True)
     email_address = forms.EmailField(label=_('Email'), required=True)
-    phone_number = forms.CharField(label=_('Phone number (Optional)'), required=False)
+    phone_number = forms.CharField(label=_('Phone number'), required=True)
     country = forms.ChoiceField(
         label=_('Country'),
         widget=Select(attrs={'id': 'js-country-select'}),
@@ -165,7 +164,7 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
 
     @property
     def serialized_data(self):
-        # `captcha` and `terms_agreed` are not useful to the agent so remove them from the submitted data.
+        # `captcha` is not useful to the agent so remove it from the submitted data.
         data = self.cleaned_data.copy()
         del data['captcha']
         return data
@@ -197,16 +196,21 @@ def international_choices():
 class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
-        label=_('Please provide as much information as possible about the type of'
-                ' products or services you’re interested in procuring from the UK. (Optional)'),
-        help_text=_('The more you tell us, the quicker we can respond and the more relevant our response will be.'),
+        label=_('Tell us more about the type of products or services you’re interested in. '
+                'The more you tell us, the quicker our response will be. (Optional)'),
         required=False,
     )
 
 
 class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, forms.Form):
-    name = forms.CharField(
-        label=_('Name'),
+    given_name = forms.CharField(
+        label=_('Given name'),
+        error_messages={
+            'required': _('Enter your full name'),
+        }
+    )
+    family_name = forms.CharField(
+        label=_('Family name'),
         error_messages={
             'required': _('Enter your full name'),
         }
@@ -225,16 +229,12 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         }
     )
     job_title = forms.CharField(
-        label=_('Job title'),
-        error_messages={
-            'required': _('Enter your job title'),
-        }
+        label=_('Job title (Optional)'),
+        required=False
     )
     phone_number = forms.CharField(
-        label=_('Phone number'),
-        error_messages={
-            'required': _('Enter your phone number'),
-        }
+        label=_('Phone number (Optional)'),
+        required=False
     )
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
@@ -248,7 +248,8 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
 
     procuring_products = forms.RadioNested(
-        label=_('Are you interested in procuring products or services from the UK, either now or in the near future?'),
+        label=_('Are you interested in buying products or services from UK businesses, '
+                'either now or in the near future?'),
         choices=(
             ('yes', _('Yes')),
             ('no', _('No')),
@@ -265,22 +266,23 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         choices=INDUSTRY_OPTIONS,
         required=False,
     )
-
-    additional_requirements = forms.CharField(
-        widget=Textarea,
-        label=_('Additional requirements (Optional)'),
-        required=False,
-    )
-
     contact_email = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
+        label=_('I would like to receive additional information by email'),
         required=False,
     )
 
     contact_phone = forms.BooleanField(
-        label=_('I would like to be contacted by telephone'),
+        label=_(' I would like to receive additional information by telephone'),
         required=False,
     )
+    captcha = ReCaptchaField(label='', label_suffix='')
+
+    @property
+    def serialized_data(self):
+        # `captcha` is not useful to the agent so remove it from the submitted data.
+        data = self.cleaned_data.copy()
+        del data['captcha']
+        return data
 
 
 class InternationalRoutingForm(forms.Form):

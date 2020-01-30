@@ -353,36 +353,13 @@ def about_uk_region_page_context_modifier(context, request):
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
-    page = context['page']
-    random_sector = ''
-    opps_in_random_sector = []
-
-    if 'related_sectors' in page and page['related_sectors'] and any(page['related_sectors']):
-        sectors = [sector['related_sector']['heading']
-                   for sector in page['related_sectors']
-                   if sector['related_sector']]
-        random.shuffle(sectors)
-        if sectors:
-            random_sector = sectors[0]
-
-    if 'related_sector_with_opportunities' in page \
-            and page['related_sector_with_opportunities']:
-        opps_in_random_sector = \
-            page['related_sector_with_opportunities'][random_sector]
-        random.shuffle(opps_in_random_sector)
-
     return {
         'invest_cta_link': urls.international.EXPAND_HOME,
         'buy_cta_link': urls.international.TRADE_HOME,
-        'random_related_sector_title': random_sector,
-        'random_opps_in_random_related_sector': opps_in_random_sector[0:3]
     }
 
 
-class OpportunitySearchView(
-    CountryDisplayMixin,
-    InternationalView
-):
+class OpportunitySearchView(CountryDisplayMixin, InternationalView):
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'
     page_size = 10
     header_section = tier_one_nav_items.INVEST_CAPITAL
