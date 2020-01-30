@@ -226,8 +226,11 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
                 ('Would you like us to arrange a call?', data['arrange_callback']),
                 ('When should we call you?', data['when_to_call']),
                 ('How did you hear about us?', data['how_did_you_hear']),
-                ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
-                ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
+                ('I would like to receive additional information by email', contact_form_data['email_contact_consent']),
+                (
+                    'I would like to receive additional information by telephone',
+                    contact_form_data['telephone_contact_consent']
+                )
             ),
             'utm': {'field_one': 'value_one'},
             'submission_url': 'http://www.google.com/submission_url'
@@ -269,8 +272,11 @@ def test_send_email_render_email_optional_fields(
                 ('Would you like us to arrange a call?', contact_form_data['arrange_callback']),
                 ('When should we call you?', contact_form_data['when_to_call']),
                 ('How did you hear about us?', contact_form_data['how_did_you_hear']),
-                ('I would like to be contacted by email', contact_form_data['email_contact_consent']),
-                ('I would like to be contacted by telephone', contact_form_data['telephone_contact_consent'])
+                ('I would like to receive additional information by email', contact_form_data['email_contact_consent']),
+                (
+                    'I would like to receive additional information by telephone',
+                    contact_form_data['telephone_contact_consent']
+                )
             ),
             'utm': {'field_one': 'value_one'},
             'submission_url': 'http://www.google.com/submission_url'

@@ -1,4 +1,5 @@
 from directory_components.mixins import CountryDisplayMixin, EnableTranslationsMixin, GA360Mixin
+from directory_constants import urls
 
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
@@ -44,6 +45,11 @@ class ContactFormView(
     def form_valid(self, form):
         form.save(sender_ip_address=get_sender_ip_address(self.request))
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'fair-processing-notice-invest-in-great-britain/',
+            *args, **kwargs)
 
 
 class ContactFormSuccessView(

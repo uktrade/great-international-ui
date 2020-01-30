@@ -783,10 +783,12 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
         '/international/content/capital-invest/contact/'
     )
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
+    response = CapitalInvestContactFormView.as_view()(
         request,
         path='/international/content/capital-invest/contact/'
     )
+
+    assert 'fair-processing-notice-invest-in-great-britain' in response.context_data['privacy_url']
 
     assert response.status_code == 200
 
@@ -1853,7 +1855,7 @@ def capital_invest_contact_form_data(captcha_stub):
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success(
-        mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
+    mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
 ):
 
     mock_lookup_by_path.return_value = create_response(
@@ -2548,6 +2550,7 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
 
 def test_business_environment_form_view(client):
     response = client.get(reverse('business-environment-guide-form'))
+    assert 'privacy-notice-uk-investment-prospectus' in response.context_data['privacy_url']
     assert response.status_code == 200
 
 
