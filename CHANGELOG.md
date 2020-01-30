@@ -11,6 +11,7 @@
 - CI-644 - Update capital invest form
 - CI-649 - Update invest contact form fields, email options and tests
 - CI-645 - Add translations for 'About us'
+- TT-2262 - Change urls on brexit forms
 
 ### Bugs fixed
 - TT-2254 - Remove obsolete settings and code
