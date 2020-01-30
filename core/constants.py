@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from collections import namedtuple
 
 from django.conf import settings
@@ -283,3 +284,6 @@ EXPORTING_TO_UK_CONTACT_URL = urls.international.INTERNATIONAL_CONTACT_TRIAGE / 
 BUYING_CONTACT_URL = urls.international.TRADE_CONTACT
 EUEXIT_CONTACT_URL = settings.EU_EXIT_INTERNATIONAL_CONTACT_URL
 OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'
+
+EMAIL_CONSENT_LABEL = _('I would like to receive additional information by email')
+PHONE_CONSENT_LABEL = _('I would like to receive additional information by telephone')

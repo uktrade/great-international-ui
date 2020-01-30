@@ -119,11 +119,11 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
         required=True
     )
     email_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
+        label=constants.EMAIL_CONSENT_LABEL,
         required=False
     )
     telephone_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by telephone'),
+        label=constants.PHONE_CONSENT_LABEL,
         required=False
     )
 
@@ -152,11 +152,11 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         required=True,
     )
     email_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
+        label=constants.EMAIL_CONSENT_LABEL,
         required=False
     )
     telephone_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by telephone'),
+        label=constants.PHONE_CONSENT_LABEL,
         required=False
     )
 
@@ -267,12 +267,12 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         required=False,
     )
     contact_email = forms.BooleanField(
-        label=_('I would like to receive additional information by email'),
+        label=constants.EMAIL_CONSENT_LABEL,
         required=False,
     )
 
     contact_phone = forms.BooleanField(
-        label=_(' I would like to receive additional information by telephone'),
+        label=constants.PHONE_CONSENT_LABEL,
         required=False,
     )
     captcha = ReCaptchaField(label='', label_suffix='')
