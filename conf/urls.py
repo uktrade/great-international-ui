@@ -295,12 +295,12 @@ urlpatterns += [
         name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
-        r'^international/brexit/contact/$',
+        r'^international/transition-period/contact/$',
         euexit.views.InternationalContactFormView.as_view(),
         name='brexit-international-contact-form'
     ),
     url(
-        r'^international/brexit/contact/success/$',
+        r'^international/transition-period/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
         name='brexit-international-contact-form-success'
     ),

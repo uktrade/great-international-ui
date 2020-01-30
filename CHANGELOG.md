@@ -6,7 +6,6 @@
 
 ### Implemented enhancements
 - CI-631 - Update business environment guide form and content in form consent sections
-- CI-653 - Add opportunities search link to the header
 - CI-651 - Alter text alignment and add vignettes to hero components
 - XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
 - XOT-1253 - text changes
@@ -14,6 +13,7 @@
 - CI-644 - Update capital invest form
 - CI-649 - Update invest contact form fields, email options and tests
 - CI-645 - Add translations for 'About us'
+- TT-2262 - Change urls on brexit forms
 
 ### Bugs fixed
 - TT-2254 - Remove obsolete settings and code
