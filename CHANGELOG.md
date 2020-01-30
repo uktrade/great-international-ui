@@ -2,6 +2,8 @@
 
 ## Pre-release
 
+- XOT-1280 - update components for cookie banner
+
 ### Implemented enhancements
 - CI-631 - Update business environment guide form and content in form consent sections
 - CI-651 - Alter text alignment and add vignettes to hero components
