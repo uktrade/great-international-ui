@@ -2,6 +2,8 @@
 
 ## Pre-release
 
+- XOT-1280 - update components for cookie banner
+
 ### Implemented enhancements
 - CI-653 - Add opportunities search link to the header
 - CI-651 - Alter text alignment and add vignettes to hero components
