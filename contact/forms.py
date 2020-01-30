@@ -11,6 +11,8 @@ from django.forms import Textarea, Select
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from core.constants import EMAIL_CONSENT_LABEL, PHONE_CONSENT_LABEL
+
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 INDUSTRY_CHOICES = BLANK_CHOICE_DASH + list(INDUSTRIES)
@@ -119,11 +121,11 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
         choices=HOW_DID_YOU_HEAR_CHOICES,
     )
     email_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by email'),
+        label=EMAIL_CONSENT_LABEL,
         required=False
     )
     telephone_contact_consent = forms.BooleanField(
-        label=_('I would like to be contacted by telephone'),
+        label=PHONE_CONSENT_LABEL,
         required=False
     )
     captcha = ReCaptchaField(
@@ -155,8 +157,8 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Would you like us to arrange a call?'), data['arrange_callback']),
                 (_('When should we call you?'), data['when_to_call']),
                 (_('How did you hear about us?'), data['how_did_you_hear']),
-                (_('I would like to be contacted by email'), data['email_contact_consent']),
-                (_('I would like to be contacted by telephone'), data['telephone_contact_consent']),
+                (EMAIL_CONSENT_LABEL, data['email_contact_consent']),
+                (PHONE_CONSENT_LABEL, data['telephone_contact_consent']),
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,

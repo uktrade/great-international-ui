@@ -105,3 +105,9 @@ def test_contact_pages_localised_urls_all_languages(language_code, client, setti
         link_tag = soup.select(f'link[hreflang="{code}"]')[0]
         assert link_tag
         assert 'http://testserver' in link_tag.attrs['href']
+
+
+def test_invest_contact_form_view(client):
+    response = client.get(reverse('invest-contact'))
+    assert 'fair-processing-notice-invest-in-great-britain' in response.context_data['privacy_url']
+    assert response.status_code == 200
