@@ -175,22 +175,22 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
 
 @pytest.mark.parametrize('url,page_type,status_code', (
     (
-        '/international/brexit/contact/',
+        reverse('brexit-international-contact-form'),
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/brexit/contact/',
+        reverse('brexit-international-contact-form'),
         'InternationalEUExitFormPage',
         200
     ),
     (
-        '/international/brexit/contact/success/',
+        reverse('brexit-international-contact-form-success'),
         'InternationalArticlePage',
         404
     ),
     (
-        '/international/brexit/contact/success/',
+        reverse('brexit-international-contact-form-success'),
         'InternationalEUExitFormSuccessPage',
         200
     ),
