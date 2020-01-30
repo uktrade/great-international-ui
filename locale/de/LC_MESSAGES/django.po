@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-27 14:21+0000\n"
+"POT-Creation-Date: 2020-01-30 12:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,154 +18,152 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: contact/forms.py:18 core/forms.py:254
+#: contact/forms.py:20 core/forms.py:254
 msgid "Yes"
 msgstr ""
 
-#: contact/forms.py:19 core/forms.py:255
+#: contact/forms.py:21 core/forms.py:255
 msgid "No"
 msgstr ""
 
-#: contact/forms.py:22
+#: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
 msgstr ""
 
-#: contact/forms.py:23
+#: contact/forms.py:25
 msgid "Outdoor ad/billboard"
 msgstr ""
 
-#: contact/forms.py:24
+#: contact/forms.py:26
 msgid "LinkedIn"
 msgstr ""
 
-#: contact/forms.py:25
+#: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
 msgstr ""
 
-#: contact/forms.py:26
+#: contact/forms.py:28
 msgid "Internet search"
 msgstr ""
 
-#: contact/forms.py:27 find_a_supplier/constants.py:38
+#: contact/forms.py:29 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr ""
 
-#: contact/forms.py:33
+#: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
 msgstr ""
 
-#: contact/forms.py:38
+#: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
 msgstr ""
 
-#: contact/forms.py:43
+#: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
 msgstr ""
 
-#: contact/forms.py:48
+#: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
 msgstr ""
 
-#: contact/forms.py:56 contact/forms.py:156
+#: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
 msgstr ""
 
-#: contact/forms.py:60
+#: contact/forms.py:62
 msgid "In the morning"
 msgstr ""
 
-#: contact/forms.py:64
+#: contact/forms.py:66
 msgid "In the afternoon"
 msgstr ""
 
-#: contact/forms.py:74 contact/forms.py:143 core/forms.py:97 core/forms.py:207
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
 msgid "Given name"
 msgstr ""
 
-#: contact/forms.py:75 contact/forms.py:144 core/forms.py:98 core/forms.py:213
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
 msgid "Family name"
 msgstr ""
 
-#: contact/forms.py:76 contact/forms.py:145
+#: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
 msgstr "Position"
 
-#: contact/forms.py:77 contact/forms.py:146
+#: contact/forms.py:79 contact/forms.py:148
 #, fuzzy
 #| msgid "Email address"
 msgid "Work email address"
 msgstr "Arbeits-E-Mail"
 
-#: contact/forms.py:79 contact/forms.py:147 core/forms.py:142
+#: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:245
 msgid "Phone number"
 msgstr "Arbeits-Telefon"
 
-#: contact/forms.py:81 contact/forms.py:148 core/forms.py:148 core/forms.py:226
+#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
 #: find_a_supplier/forms.py:183
 msgid "Company name"
 msgstr "Eingetragener Firmenname"
 
-#: contact/forms.py:83 contact/forms.py:149
+#: contact/forms.py:85 contact/forms.py:151
 msgid "Company website"
 msgstr "Unternehmenswebseite"
 
-#: contact/forms.py:86 contact/forms.py:150
+#: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
 msgstr ""
 
-#: contact/forms.py:89 contact/forms.py:151 core/forms.py:144 core/forms.py:242
+#: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "Land"
 
-#: contact/forms.py:94 contact/forms.py:152 core/forms.py:150
+#: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
 #: find_a_supplier/forms.py:177
 msgid "Industry"
 msgstr "Branchen"
 
-#: contact/forms.py:98 contact/forms.py:153
+#: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
 msgstr ""
 
-#: contact/forms.py:102 contact/forms.py:154
+#: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
 msgstr "Angaben zu Ihrer Investition"
 
-#: contact/forms.py:104
+#: contact/forms.py:106
 msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
 
-#: contact/forms.py:112 contact/forms.py:155
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
 msgstr ""
 
-#: contact/forms.py:118
+#: contact/forms.py:120
 msgid "How did you hear about us? (Optional)"
 msgstr ""
 
-#: contact/forms.py:122 contact/forms.py:158 core/forms.py:122
-#: core/forms.py:155
-msgid "I would like to be contacted by email"
-msgstr ""
-
-#: contact/forms.py:126 contact/forms.py:159 core/forms.py:126
-#: core/forms.py:159
-msgid "I would like to be contacted by telephone"
-msgstr ""
-
-#: contact/forms.py:157
+#: contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr ""
 
-#: contact/forms.py:192
+#: contact/forms.py:160 core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr ""
+
+#: contact/forms.py:161 core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr ""
+
+#: contact/forms.py:194
 msgid "Contact form user email subject"
 msgstr ""
 
@@ -337,14 +335,6 @@ msgstr ""
 msgid "Industry/Sector (Optional)"
 msgstr "Arbeits-Telefon"
 
-#: core/forms.py:270
-msgid "I would like to receive additional information by email"
-msgstr ""
-
-#: core/forms.py:275
-msgid " I would like to receive additional information by telephone"
-msgstr ""
-
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
 msgstr ""
@@ -513,25 +503,41 @@ msgstr ""
 msgid "Contact the Brexit enquiry service"
 msgstr "Wenden Sie sich an den Auskunftsdienst zum EU-Austritt."
 
-#: core/templates/core/includes/form_consent.html:6
+#: core/templates/core/includes/form_consent.html:4
+msgid "How we use your information"
+msgstr ""
+
+#: core/templates/core/includes/form_consent.html:8
+msgid ""
+"The Department for International Trade will use the information provided in "
+"this form to respond to your enquiry."
+msgstr ""
+
+#: core/templates/core/includes/form_consent.html:12
+#, python-format
 msgid ""
 "\n"
 "<p>\n"
-"  The Department for International Trade will use the information provided "
-"in this form to respond to your enquiry.\n"
-"</p>\n"
-"<p>\n"
 "  You can read about how we protect your data in <a class=\"link\" href="
-"\"https://great.gov.uk/privacy-and-cookies/fair-processing-notice-invest-in-"
-"great-britain/\" target=\"_blank\">our privacy notice</a>.\n"
+"\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
 
-#: core/templates/core/includes/form_consent.html:17
+#: core/templates/core/includes/form_consent.html:18
+msgid "Additional information"
+msgstr ""
+
+#: core/templates/core/includes/form_consent.html:20
 msgid ""
-"If you would like to receive further information about investing in the UK "
-"you can opt in below. You can opt out of these additional updates at any "
+"If you would like to receive additional information about investing in the "
+"UK you can opt in below. You can opt out of these additional updates at any "
 "time."
+msgstr ""
+
+#: core/templates/core/includes/form_consent_business_env_guide.html:6
+msgid ""
+"The Department for International Trade will use the information provided in "
+"this form to send you the UK Investment Prospectus."
 msgstr ""
 
 #: core/templates/core/sector_page.html:169

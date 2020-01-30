@@ -807,11 +807,7 @@ class LegacyRedirectCoreView(View):
         return path
 
 
-class CapitalInvestContactFormView(
-    MultilingualCMSPageFromPathView,
-    GA360Mixin,
-    FormView,
-):
+class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, FormView):
     form_class = forms.CapitalInvestContactForm
     success_url = '/international/content/capital-invest/contact/success'
     header_section = tier_one_nav_items.INVEST_CAPITAL
@@ -847,6 +843,11 @@ class CapitalInvestContactFormView(
         self.send_agent_email(form)
         self.send_user_email(form)
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'fair-processing-notice-invest-in-great-britain/',
+            *args, **kwargs)
 
 
 class PathRedirectView(QuerystringRedirectView):
@@ -902,6 +903,11 @@ class BusinessEnvironmentGuideFormView(GA360Mixin, InternationalHeaderMixin, For
         self.send_agent_email(form)
         self.send_user_email(form)
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'privacy-notice-uk-investment-prospectus/',
+            *args, **kwargs)
 
 
 class BusinessEnvironmentGuideFormSuccessView(InternationalView):
