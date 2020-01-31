@@ -28,43 +28,43 @@ msgstr ""
 
 #: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
-msgstr ""
+msgstr "Publicidad en prensa (publicación en un periódico/comercial)"
 
 #: contact/forms.py:25
 msgid "Outdoor ad/billboard"
-msgstr ""
+msgstr "Publicidad exterior/valla publicitaria"
 
 #: contact/forms.py:26
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
-msgstr ""
+msgstr "Otras redes sociales (p. ej., Twitter/Facebook)"
 
 #: contact/forms.py:28
 msgid "Internet search"
-msgstr ""
+msgstr "Búsqueda en Internet"
 
 #: contact/forms.py:29 find_a_supplier/constants.py:38
 msgid "Other"
-msgstr ""
+msgstr "Otros"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "Estoy convencido y quiero hablar con alguien sobre mis planes."
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr ""
+msgstr "El Reino Unido está en mi lista. ¿Cómo me puede ayudar el Departamento de Comercio Internacional?"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr ""
+msgstr "Todavía estoy explorando opciones para la expansión de mi negocio y me gustaría tener más información sobre la oferta del Reino Unido."
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -76,19 +76,19 @@ msgstr ""
 
 #: contact/forms.py:62
 msgid "In the morning"
-msgstr ""
+msgstr "Por la mañana"
 
 #: contact/forms.py:66
 msgid "In the afternoon"
-msgstr ""
+msgstr "Por la tarde"
 
 #: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
 msgid "Given name"
-msgstr ""
+msgstr "Nombre"
 
 #: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
 msgid "Family name"
-msgstr ""
+msgstr "Apellidos"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
@@ -96,27 +96,27 @@ msgstr "Cargo"
 
 #: contact/forms.py:79 contact/forms.py:148
 #, fuzzy
-#| msgid "Email address"
+#| msgid "Work email address"
 msgid "Work email address"
-msgstr "Dirección de correo electrónico de la empresa"
+msgstr "Dirección de correo electrónico"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:245
 msgid "Phone number"
-msgstr "Número de teléfono de la empresa"
+msgstr "Número de teléfono"
 
 #: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
 #: find_a_supplier/forms.py:183
 msgid "Company name"
-msgstr "Nombre registrado de la empresa"
+msgstr "Nombre de la empresa"
 
 #: contact/forms.py:85 contact/forms.py:151
 msgid "Company website"
-msgstr "Website da empresa"
+msgstr "Sitio web de la empresa"
 
 #: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
-msgstr ""
+msgstr "Dirección de la sede de la empresa"
 
 #: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
@@ -130,38 +130,38 @@ msgstr ""
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr ""
+msgstr "¿Cuál de las siguientes opciones describe mejor su opinión sobre la expansión en el Reino Unido?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "Cuéntenos acerca de su inversión"
+msgstr "Háblenos de su inversión"
 
 #: contact/forms.py:106
 msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
-msgstr ""
+msgstr "Háganos las preguntas que necesite o coméntenos sus planes de expansión al Reino Unido, sin olvidar el tamaño de las operaciones, el motivo por el que está pensando en el Reino Unido y lo que necesitará para materializar sus planes. "
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
-msgstr ""
+msgstr "¿Desea concertar una llamada?"
 
 #: contact/forms.py:120
 msgid "How did you hear about us? (Optional)"
-msgstr ""
+msgstr "¿Cómo nos ha conocido?"
 
 #: contact/forms.py:159
 msgid "How did you hear about us?"
-msgstr ""
+msgstr "¿Cómo nos ha conocido?"
 
 #: contact/forms.py:160 core/constants.py:288
 msgid "I would like to receive additional information by email"
-msgstr ""
+msgstr "Me gustaría recibir información adicional por correo electrónico"
 
 #: contact/forms.py:161 core/constants.py:289
 msgid "I would like to receive additional information by telephone"
-msgstr ""
+msgstr "Me gustaría recibir información adicional por teléfono"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -183,10 +183,10 @@ msgstr "Contacte con el equipo de inversión"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact Information"
-msgstr "Su empresa"
+msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:31
-msgid "Company information"
+msgid "Información de la empresa"
 msgstr "Su empresa"
 
 #: contact/templates/contact/contact.html:39
@@ -195,11 +195,11 @@ msgstr "Su inversión"
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr "Contacto"
+msgstr "Enviar"
 
 #: contact/templates/contact/contact.html:63
 msgid "Type here"
-msgstr ""
+msgstr "Escriba aquí"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
@@ -263,15 +263,15 @@ msgstr "Número de teléfono de la empresa"
 
 #: core/forms.py:105
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "¿En qué país se encuentra?"
 
 #: core/forms.py:110
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #: core/forms.py:114
 msgid "How can we help?"
-msgstr ""
+msgstr "¿Cómo podemos ayudarle?"
 
 #: core/forms.py:139
 msgid "First name"
@@ -311,7 +311,7 @@ msgstr ""
 
 #: core/forms.py:239
 msgid "City (Optional)"
-msgstr ""
+msgstr "Ciudad (opcional)"
 
 #: core/forms.py:246
 msgid "Select a country"
@@ -503,34 +503,37 @@ msgstr ""
 
 #: core/templates/core/includes/form_consent.html:4
 msgid "How we use your information"
-msgstr ""
+msgstr "Cómo usamos su información"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr ""
+msgstr "El Departamento de Comercio Internacional utilizará la información proporcionada en este formulario para responder a su consulta."
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
 msgid ""
 "\n"
 "<p>\n"
-"  You can read about how we protect your data in <a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
+"Puede obtener información detallada acerca de cómo protegemos sus datos en nuestro<a class=\"link\" href="
+"\"%(privacy_url)s\" target=\"_blank\">Aviso de privacidad</a>.\n"
 "</p>\n"
-msgstr ""
+msgstr "<p>\n"
+"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a class=\"link\" href="
+"\"%(privacy_url)s\" target=\"_blank\">Datenschutzhinweis</a>.\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
-msgstr ""
+msgstr "Información adicional"
 
 #: core/templates/core/includes/form_consent.html:20
 msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr ""
+msgstr "Si desea recibir más información acerca de las inversiones de capital en el Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a estas actualizaciones en cualquier momento."
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -618,7 +621,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:251
 msgid "Your industry"
-msgstr ""
+msgstr "Su sector"
 
 #: find_a_supplier/forms.py:255
 msgid "Your organisation name"
