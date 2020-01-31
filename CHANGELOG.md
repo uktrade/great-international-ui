@@ -2,7 +2,13 @@
 
 ## Pre-release
 
-- XOT-1280 - update components for cookie banner
+### Implemented enhancements
+
+### Bugs fixed
+
+
+## [2020.01.30](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.30)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.15...2020.01.30)
 
 ### Implemented enhancements
 - CI-631 - Update business environment guide form and content in form consent sections
@@ -14,6 +20,7 @@
 - CI-649 - Update invest contact form fields, email options and tests
 - CI-645 - Add translations for 'About us'
 - TT-2262 - Change urls on brexit forms
+- XOT-1280 - update components for cookie banner
 
 ### Bugs fixed
 - TT-2254 - Remove obsolete settings and code
