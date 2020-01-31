@@ -100,8 +100,6 @@ msgid "Job title"
 msgstr "Cargo"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
 msgid "Work email address"
 msgstr "Endereço de e-mail"
 
@@ -131,7 +129,7 @@ msgstr "País"
 #: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
 #: find_a_supplier/forms.py:177
 msgid "Industry"
-msgstr ""
+msgstr "Indústria"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
@@ -338,10 +336,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
 msgid "Industry/Sector (Optional)"
-msgstr "Telefone comercial"
+msgstr "Indústria"
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"

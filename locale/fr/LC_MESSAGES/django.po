@@ -100,8 +100,6 @@ msgid "Job title"
 msgstr "Poste"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
 msgid "Work email address"
 msgstr "Adresse e-mail"
 

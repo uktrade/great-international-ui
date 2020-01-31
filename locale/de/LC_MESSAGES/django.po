@@ -53,9 +53,7 @@ msgstr "Sonstiges"
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
 msgstr ""
-"Wenn Sie weitere Informationen zu Investitionen in Großbritannien erhalten "
-"möchten, können Sie sich unten anmelden. Sie können sich von diesen "
-"Aktualisierungen jederzeit wieder abmelden."
+""
 
 #: contact/forms.py:40
 msgid ""
@@ -98,8 +96,6 @@ msgid "Job title"
 msgstr "Position"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Work email address"
 msgid "Work email address"
 msgstr "E-Mail-Adresse"
 
@@ -133,7 +129,7 @@ msgstr "Branchen"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr ""
+msgstr "Welche der folgenden Aussagen beschreibt am besten, was Sie von einer Expansion nach Großbritannien halten?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
@@ -527,8 +523,11 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
-"Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem "
-"[Datenschutzhinweis](www.privacynotice.com)."
+"\n"
+"<p>\n"
+"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a class=\"link\" href="
+"\"%(privacy_url)s\" target=\"_blank\">Datenschutzhinweis</a>.\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
@@ -709,11 +708,6 @@ msgid ""
 "your business in the UK, you can subscribe to our mailing list.</p>\n"
 "        "
 msgstr ""
-"<p>\n"
-"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a "
-"class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
-"\">Datenschutzhinweis</a>.\n"
-"</p>\n"
 
 #: perfect_fit_prospectus/views.py:45
 #, python-format

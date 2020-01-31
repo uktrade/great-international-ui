@@ -99,8 +99,6 @@ msgid "Job title"
 msgstr "Cargo"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Work email address"
 msgid "Work email address"
 msgstr "Dirección de correo electrónico"
 
@@ -130,7 +128,7 @@ msgstr "País"
 #: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
 #: find_a_supplier/forms.py:177
 msgid "Industry"
-msgstr ""
+msgstr "Sector"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
@@ -188,10 +186,8 @@ msgid "Contact Information"
 msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:31
-#, fuzzy
-#| msgid "Contact Information"
 msgid "Company information"
-msgstr "Información de contacto"
+msgstr "Información de la empresa"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
@@ -340,10 +336,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
 msgid "Industry/Sector (Optional)"
-msgstr "Número de teléfono de la empresa"
+msgstr ""
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
@@ -526,14 +520,6 @@ msgstr ""
 "proporcionada en este formulario para responder a su consulta."
 
 #: core/templates/core/includes/form_consent.html:12
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "<p>\n"
-#| "Puede obtener información detallada acerca de cómo protegemos sus datos "
-#| "en nuestro<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
-#| "\">Aviso de privacidad</a>.\n"
-#| "</p>\n"
 msgid ""
 "\n"
 "<p>\n"
@@ -541,10 +527,11 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
+"\n"
 "<p>\n"
-"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a "
-"class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
-"\">Datenschutzhinweis</a>.\n"
+"Puede obtener información detallada acerca de cómo protegemos sus datos "
+"en nuestro<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">Aviso de privacidad</a>.\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
