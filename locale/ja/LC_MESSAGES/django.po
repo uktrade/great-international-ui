@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-01-31 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -214,6 +214,14 @@ msgstr ""
 #: contact/templates/email/email_agent.html:166
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
+msgstr ""
+
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr ""
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
 msgstr ""
 
 #: core/context_processors.py:30
