@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-01-31 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,10 @@ msgstr "Sonstiges"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr "Wenn Sie weitere Informationen zu Investitionen in Großbritannien erhalten möchten, können Sie sich unten anmelden. Sie können sich von diesen Aktualisierungen jederzeit wieder abmelden."
+msgstr ""
+"Wenn Sie weitere Informationen zu Investitionen in Großbritannien erhalten "
+"möchten, können Sie sich unten anmelden. Sie können sich von diesen "
+"Aktualisierungen jederzeit wieder abmelden."
 
 #: contact/forms.py:40
 msgid ""
@@ -155,14 +158,6 @@ msgstr "Wie haben Sie von uns erfahren?"
 msgid "How did you hear about us?"
 msgstr "Wie haben Sie von uns erfahren?"
 
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr "Ich möchte weitere Informationen per E-Mail erhalten"
-
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr "Ich möchte weitere Informationen per Telefon erhalten"
-
 #: contact/forms.py:194
 msgid "Contact form user email subject"
 msgstr ""
@@ -221,6 +216,14 @@ msgstr ""
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
 msgstr ""
+
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "Ich möchte weitere Informationen per E-Mail erhalten"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "Ich möchte weitere Informationen per Telefon erhalten"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -511,7 +514,9 @@ msgstr "Verwendung Ihrer Informationen"
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr "Das Department for International Trade verwendet die in diesem Formular angegebenen Informationen, um auf Ihre Anfrage zu antworten."
+msgstr ""
+"Das Department for International Trade verwendet die in diesem Formular "
+"angegebenen Informationen, um auf Ihre Anfrage zu antworten."
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -521,7 +526,9 @@ msgid ""
 "  You can read about how we protect your data in <a class=\"link\" href="
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
-msgstr "Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem [Datenschutzhinweis](www.privacynotice.com)."
+msgstr ""
+"Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem "
+"[Datenschutzhinweis](www.privacynotice.com)."
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
@@ -532,7 +539,10 @@ msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr "Wenn Sie weitere Informationen zur Expansion Ihres Unternehmens nach Großbritannien erhalten möchten, können Sie sich unten anmelden. Sie können sich von diesen Aktualisierungen jederzeit wieder abmelden."
+msgstr ""
+"Wenn Sie weitere Informationen zur Expansion Ihres Unternehmens nach "
+"Großbritannien erhalten möchten, können Sie sich unten anmelden. Sie können "
+"sich von diesen Aktualisierungen jederzeit wieder abmelden."
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -698,10 +708,12 @@ msgid ""
 "        <p>If you would like to receive further information about setting up "
 "your business in the UK, you can subscribe to our mailing list.</p>\n"
 "        "
-msgstr ""<p>\n"
-"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">Datenschutzhinweis</a>.\n"
-"</p>\n""
+msgstr ""
+"<p>\n"
+"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a "
+"class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">Datenschutzhinweis</a>.\n"
+"</p>\n"
 
 #: perfect_fit_prospectus/views.py:45
 #, python-format
@@ -728,9 +740,10 @@ msgstr ""
 #~ msgid ""
 #~ "We will use this information to put you in touch with your closest "
 #~ "British embassy or high commission."
-#~ msgstr "Wir verwenden diese Angaben, um Sie mit Ihrer nächsten britischen Botschaft oder Ihrem nächsten britischen Hochkommissariat in Verbindung zu setzen.
-Geben Sie zwei oder mehr Zeichen für die Ergebnisse ein..."
-
+#~ msgstr ""
+#~ "Wir verwenden diese Angaben, um Sie mit Ihrer nächsten britischen "
+#~ "Botschaft oder Ihrem nächsten britischen Hochkommissariat in Verbindung "
+#~ "zu setzen. Geben Sie zwei oder mehr Zeichen für die Ergebnisse ein..."
 
 #~ msgid "Current number of staff"
 #~ msgstr "Geschätzte derzeitige Mitarbeiteranzahl"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-01-31 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,13 +58,17 @@ msgstr "Estoy convencido y quiero hablar con alguien sobre mis planes."
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr "El Reino Unido está en mi lista. ¿Cómo me puede ayudar el Departamento de Comercio Internacional?"
+msgstr ""
+"El Reino Unido está en mi lista. ¿Cómo me puede ayudar el Departamento de "
+"Comercio Internacional?"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr "Todavía estoy explorando opciones para la expansión de mi negocio y me gustaría tener más información sobre la oferta del Reino Unido."
+msgstr ""
+"Todavía estoy explorando opciones para la expansión de mi negocio y me "
+"gustaría tener más información sobre la oferta del Reino Unido."
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -130,7 +134,9 @@ msgstr ""
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr "¿Cuál de las siguientes opciones describe mejor su opinión sobre la expansión en el Reino Unido?"
+msgstr ""
+"¿Cuál de las siguientes opciones describe mejor su opinión sobre la "
+"expansión en el Reino Unido?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
@@ -141,7 +147,11 @@ msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
-msgstr "Háganos las preguntas que necesite o coméntenos sus planes de expansión al Reino Unido, sin olvidar el tamaño de las operaciones, el motivo por el que está pensando en el Reino Unido y lo que necesitará para materializar sus planes. "
+msgstr ""
+"Háganos las preguntas que necesite o coméntenos sus planes de expansión al "
+"Reino Unido, sin olvidar el tamaño de las operaciones, el motivo por el que "
+"está pensando en el Reino Unido y lo que necesitará para materializar sus "
+"planes. "
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
@@ -154,14 +164,6 @@ msgstr "¿Cómo nos ha conocido?"
 #: contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "¿Cómo nos ha conocido?"
-
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr "Me gustaría recibir información adicional por correo electrónico"
-
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr "Me gustaría recibir información adicional por teléfono"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -186,8 +188,10 @@ msgid "Contact Information"
 msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:31
-msgid "Información de la empresa"
-msgstr "Su empresa"
+#, fuzzy
+#| msgid "Contact Information"
+msgid "Company information"
+msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
@@ -219,6 +223,14 @@ msgstr ""
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
 msgstr ""
+
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "Me gustaría recibir información adicional por correo electrónico"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "Me gustaría recibir información adicional por teléfono"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -509,19 +521,30 @@ msgstr "Cómo usamos su información"
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr "El Departamento de Comercio Internacional utilizará la información proporcionada en este formulario para responder a su consulta."
+msgstr ""
+"El Departamento de Comercio Internacional utilizará la información "
+"proporcionada en este formulario para responder a su consulta."
 
 #: core/templates/core/includes/form_consent.html:12
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "<p>\n"
+#| "Puede obtener información detallada acerca de cómo protegemos sus datos "
+#| "en nuestro<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+#| "\">Aviso de privacidad</a>.\n"
+#| "</p>\n"
 msgid ""
 "\n"
 "<p>\n"
-"Puede obtener información detallada acerca de cómo protegemos sus datos en nuestro<a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">Aviso de privacidad</a>.\n"
+"  You can read about how we protect your data in <a class=\"link\" href="
+"\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
-msgstr "<p>\n"
-"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">Datenschutzhinweis</a>.\n"
+msgstr ""
+"<p>\n"
+"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a "
+"class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">Datenschutzhinweis</a>.\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
@@ -533,7 +556,10 @@ msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr "Si desea recibir más información acerca de las inversiones de capital en el Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a estas actualizaciones en cualquier momento."
+msgstr ""
+"Si desea recibir más información acerca de las inversiones de capital en el "
+"Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a "
+"estas actualizaciones en cualquier momento."
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -705,6 +731,9 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
+
+#~ msgid "Información de la empresa"
+#~ msgstr "Su empresa"
 
 #, fuzzy
 #~| msgid "Phone number"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-01-31 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,19 +52,24 @@ msgstr "Outros"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr "Estou convencido e gostaria de ser contactado para discutir os meus planos"
+msgstr ""
+"Estou convencido e gostaria de ser contactado para discutir os meus planos"
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr "O Reino Unido está na minha lista de opções. Como é que o Department for International Trade pode ajudar-me"
+msgstr ""
+"O Reino Unido está na minha lista de opções. Como é que o Department for "
+"International Trade pode ajudar-me"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr "Ainda estou a explorar as opções relativamente à expansão do meu negócio e gostaria de obter mais informações acerca da oferta do Reino Unido."
+msgstr ""
+"Ainda estou a explorar as opções relativamente à expansão do meu negócio e "
+"gostaria de obter mais informações acerca da oferta do Reino Unido."
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -130,7 +135,9 @@ msgstr ""
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr "Qual das seguintes opções melhor descreve como se sente em relação a uma expansão para o Reino Unido?"
+msgstr ""
+"Qual das seguintes opções melhor descreve como se sente em relação a uma "
+"expansão para o Reino Unido?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
@@ -141,7 +148,11 @@ msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
-msgstr "Coloque-nos qualquer questão que tenha ou fale-nos sobre os seus planos de expansão para o Reino Unido, incluindo as dimensões da operação, o motivo pelo qual está a considerar o Reino Unido e do que necessita para o fazer acontecer."
+msgstr ""
+"Coloque-nos qualquer questão que tenha ou fale-nos sobre os seus planos de "
+"expansão para o Reino Unido, incluindo as dimensões da operação, o motivo "
+"pelo qual está a considerar o Reino Unido e do que necessita para o fazer "
+"acontecer."
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
@@ -154,14 +165,6 @@ msgstr "Como teve conhecimento sobre nós?"
 #: contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "Como teve conhecimento sobre nós?"
-
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr "Gostaria de receber mais informações por e-mail"
-
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr "Gostaria de receber mais informações por telefone"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -218,6 +221,14 @@ msgstr ""
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
 msgstr ""
+
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "Gostaria de receber mais informações por e-mail"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "Gostaria de receber mais informações por telefone"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -507,7 +518,9 @@ msgstr "Como utilizamos as suas informações"
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr "O Department for International Trade utilizará as informações fornecidas neste formulário para responder à sua consulta."
+msgstr ""
+"O Department for International Trade utilizará as informações fornecidas "
+"neste formulário para responder à sua consulta."
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -517,7 +530,7 @@ msgid ""
 "  You can read about how we protect your data in <a class=\"link\" href="
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
-msgstr
+msgstr ""
 "\n"
 "<p>\n"
 " Pode saber como protegemos os seus dados na nossa<a class=\"link\" href="
@@ -533,7 +546,10 @@ msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr "Se pretender receber mais informações sobre expandir o seu negócio para o Reino Unido, pode selecionar esta opção abaixo. Pode optar por não receber estas atualizações a qualquer momento."
+msgstr ""
+"Se pretender receber mais informações sobre expandir o seu negócio para o "
+"Reino Unido, pode selecionar esta opção abaixo. Pode optar por não receber "
+"estas atualizações a qualquer momento."
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -725,7 +741,9 @@ msgstr ""
 #~ msgid ""
 #~ "We will use this information to put you in touch with your closest "
 #~ "British embassy or high commission."
-#~ msgstr "Utilizaremos estas informações para o colocar em contacto com a embaixada ou o alto comissariado britânico mais próximos."
+#~ msgstr ""
+#~ "Utilizaremos estas informações para o colocar em contacto com a embaixada "
+#~ "ou o alto comissariado britânico mais próximos."
 
 #~ msgid "Current number of staff"
 #~ msgstr "Número total de funcionários atual"

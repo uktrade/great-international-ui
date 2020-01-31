@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-01-31 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,20 +52,24 @@ msgstr "Autre"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr "Je suis convaincu, et je souhaite parler avec quelqu'un de mes projets."
+msgstr ""
+"Je suis convaincu, et je souhaite parler avec quelqu'un de mes projets."
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr "Le Royaume-Uni est dans ma liste de présélection. Comment le ministère du Commerce international peut-il m'aider ?"
+msgstr ""
+"Le Royaume-Uni est dans ma liste de présélection. Comment le ministère du "
+"Commerce international peut-il m'aider ?"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr "J'envisage plusieurs options de développement de mon entreprise et je souhaite en savoir plus sur l'offre du Royaume-Uni.
-"
+msgstr ""
+"J'envisage plusieurs options de développement de mon entreprise et je "
+"souhaite en savoir plus sur l'offre du Royaume-Uni."
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -115,7 +119,7 @@ msgstr "Nom de l'entreprise"
 msgid "Company website"
 msgstr "Site Web de l'entreprise"
 
-#: contact/forms.py:88 contact/forms.fpy:152
+#: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
 msgstr "Adresse du siège social de la société"
 
@@ -131,7 +135,9 @@ msgstr ""
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr "Parmi les propositions suivantes, laquelle décrit le mieux votre sentiment concernant le développement au Royaume-Uni ?"
+msgstr ""
+"Parmi les propositions suivantes, laquelle décrit le mieux votre sentiment "
+"concernant le développement au Royaume-Uni ?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
@@ -155,14 +161,6 @@ msgstr "Où avez-vous entendu parler de nous ?"
 #: contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "Où avez-vous entendu parler de nous ?"
-
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr "J'aimerais recevoir plus d'informations par e-mail"
-
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr "J'aimerais recevoir plus d'informations par téléphone"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -221,6 +219,14 @@ msgstr ""
 #: contact/templates/email/email_agent.txt:12
 msgid "Submission url"
 msgstr ""
+
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "J'aimerais recevoir plus d'informations par e-mail"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "J'aimerais recevoir plus d'informations par téléphone"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -510,19 +516,30 @@ msgstr "Comment nous utilisons vos informations"
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr "Le ministère du Commerce international (DiT) utilise les informations fournies dans ce formulaire pour répondre à votre demande. "
+msgstr ""
+"Le ministère du Commerce international (DiT) utilise les informations "
+"fournies dans ce formulaire pour répondre à votre demande. "
 
 #: core/templates/core/includes/form_consent.html:12
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "<p>\n"
+#| "  You can read about how we protect your data in <a class=\"link\" href="
+#| "\"%(privacy_url)s\" target=\"_blank\">déclaration de confidentialité</"
+#| "a>.\n"
+#| "</p>\n"
 msgid ""
 "\n"
 "<p>\n"
 "  You can read about how we protect your data in <a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">déclaration de confidentialité</a>.\n"
-"</p>\n"
-msgstr "<p>\n"
-" Vous pouvez vous renseigner sur la manière dont nous protégeons vos données dans notre <a class=\"link\" href="
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
+"</p>\n"
+msgstr ""
+"<p>\n"
+" Vous pouvez vous renseigner sur la manière dont nous protégeons vos données "
+"dans notre <a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank\">our "
+"privacy notice</a>.\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
@@ -534,7 +551,10 @@ msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr "Si vous souhaitez recevoir plus d'informations sur l'investissement de capitaux au Royaume-Uni, vous pouvez cocher la case ci-dessous. Vous pouvez vous désabonner de ces mises à jour à tout moment."
+msgstr ""
+"Si vous souhaitez recevoir plus d'informations sur l'investissement de "
+"capitaux au Royaume-Uni, vous pouvez cocher la case ci-dessous. Vous pouvez "
+"vous désabonner de ces mises à jour à tout moment."
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -727,8 +747,10 @@ msgstr ""
 #~ msgid ""
 #~ "We will use this information to put you in touch with your closest "
 #~ "British embassy or high commission."
-#~ msgstr "Nous utiliserons ces informations pour vous mettre en contact avec l’ambassade ou le haut-commissariat britannique le plus proche.  Saisissez 2 caractères ou plus pour obtenir des résultats."
-
+#~ msgstr ""
+#~ "Nous utiliserons ces informations pour vous mettre en contact avec "
+#~ "l’ambassade ou le haut-commissariat britannique le plus proche.  "
+#~ "Saisissez 2 caractères ou plus pour obtenir des résultats."
 
 #~ msgid "Current number of staff"
 #~ msgstr "Nombre total actuel d'employés"
