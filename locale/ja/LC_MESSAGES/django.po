@@ -19,15 +19,15 @@ msgstr ""
 
 #: contact/forms.py:20 core/forms.py:254
 msgid "Yes"
-msgstr ""
+msgstr "はい"
 
 #: contact/forms.py:21 core/forms.py:255
 msgid "No"
-msgstr ""
+msgstr "いいえ"
 
 #: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
-msgstr ""
+msgstr "出版物の広告（新聞、業界誌）"
 
 #: contact/forms.py:25
 msgid "Outdoor ad/billboard"
@@ -39,31 +39,31 @@ msgstr ""
 
 #: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
-msgstr ""
+msgstr "その他のソーシャルメディア（例：Twitter、Facebook）"
 
 #: contact/forms.py:28
 msgid "Internet search"
-msgstr ""
+msgstr "インターネット検索"
 
 #: contact/forms.py:29 find_a_supplier/constants.py:38
 msgid "Other"
-msgstr ""
+msgstr "その他"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "すでに方針を固めている。計画について相談したい。"
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr ""
+msgstr "最終候補として英国を検討している。国際通商省からどのような支援が得られるのか知りたい。"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr ""
+msgstr "事業の展開方針を検討している段階のため、英国の支援について詳しく知りたい。"
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -75,29 +75,27 @@ msgstr ""
 
 #: contact/forms.py:62
 msgid "In the morning"
-msgstr ""
+msgstr "午前"
 
 #: contact/forms.py:66
 msgid "In the afternoon"
-msgstr ""
+msgstr "午後"
 
 #: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
 msgid "Given name"
-msgstr ""
+msgstr "氏名"
 
 #: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
 msgid "Family name"
-msgstr ""
+msgstr "姓"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
 msgstr "役職"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
 msgid "Work email address"
-msgstr "勤務先の電子メール"
+msgstr "メールアドレス"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:245
@@ -107,7 +105,7 @@ msgstr "勤務先の電話番号"
 #: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
 #: find_a_supplier/forms.py:183
 msgid "Company name"
-msgstr "企業名"
+msgstr "会社名"
 
 #: contact/forms.py:85 contact/forms.py:151
 msgid "Company website"
@@ -115,7 +113,7 @@ msgstr "企業ウェブサイト"
 
 #: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
-msgstr ""
+msgstr "企業の本社所在地"
 
 #: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
@@ -129,30 +127,38 @@ msgstr "産業"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr ""
+msgstr "英国への展開についてどのようにお考えですか？"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "貴社の投資についてお聞かせください。"
+msgstr "投資に関するご相談"
 
 #: contact/forms.py:106
 msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
-msgstr ""
+msgstr "事業の規模、英国を検討されている理由、実現に必要な事項など、英国への展開に関する計画についてのご相談やご質問を受け付けています。"
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
-msgstr ""
+msgstr "電話でのご相談を希望されますか？ "
 
 #: contact/forms.py:120
 msgid "How did you hear about us? (Optional)"
-msgstr ""
+msgstr "国際通商省についてどこでお聞きになりましたか？"
 
 #: contact/forms.py:159
 msgid "How did you hear about us?"
-msgstr ""
+msgstr "国際通商省についてどこでお聞きになりましたか？"
+
+#: contact/forms.py:160 core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "メールによる追加情報のお知らせを希望"
+
+#: contact/forms.py:161 core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "電話による追加情報のお知らせを希望"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -174,11 +180,11 @@ msgstr "対英投資チームに連絡する"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact Information"
-msgstr "ご連絡先情報"
+msgstr "ご連絡先"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
-msgstr "貴社について"
+msgstr "会社情報"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
@@ -186,11 +192,11 @@ msgstr "貴社の投資について"
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr "連絡する"
+msgstr "送信"
 
 #: contact/templates/contact/contact.html:63
 msgid "Type here"
-msgstr ""
+msgstr "ここに入力"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
@@ -261,7 +267,7 @@ msgstr "勤務先の電話番号"
 
 #: core/forms.py:105
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "拠点とされている国はどちらですか？"
 
 #: core/forms.py:110
 msgid "Message"
@@ -326,10 +332,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
 msgid "Industry/Sector (Optional)"
-msgstr "勤務先の電話番号"
+msgstr "産業"
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
@@ -498,13 +502,13 @@ msgstr ""
 
 #: core/templates/core/includes/form_consent.html:4
 msgid "How we use your information"
-msgstr ""
+msgstr "ご提供いただいた情報の用途"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr ""
+msgstr "国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの対応に使用いたします。"
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -515,23 +519,29 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"  個人情報の保護については<a class=\"link\" href="
+"\"%(privacy_url)s\" target=\"_blank\">privacy notice</a>をご覧ください。\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
-msgstr ""
+msgstr "追加情報"
 
 #: core/templates/core/includes/form_consent.html:20
 msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr ""
+msgstr "英国への展開に関する追加情報をご希望の場合は、以下でご希望の方法をお選びください。"
+"このお知らせはいつでもオプトアウトできます。"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
-msgstr ""
+msgstr "国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの対応に使用いたします。"
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"
@@ -564,7 +574,7 @@ msgstr ""
 
 #: find_a_supplier/constants.py:15
 msgid "Outdoor advertising digital screen"
-msgstr ""
+msgstr "屋外広告、看板"
 
 #: find_a_supplier/constants.py:19
 msgid "Website advertisement"
@@ -611,7 +621,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:251
 msgid "Your industry"
-msgstr "産業"
+msgstr "業種"
 
 #: find_a_supplier/forms.py:255
 msgid "Your organisation name"
@@ -639,7 +649,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:291
 msgid "Other source (optional)"
-msgstr ""
+msgstr "その他"
 
 #: perfect_fit_prospectus/forms.py:12
 msgid "Name"
