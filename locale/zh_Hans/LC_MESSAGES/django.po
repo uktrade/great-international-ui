@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 16:25+0000\n"
+"POT-Creation-Date: 2020-02-03 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,19 +19,19 @@ msgstr ""
 
 #: contact/forms.py:20 core/forms.py:254
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: contact/forms.py:21 core/forms.py:255
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
-msgstr ""
+msgstr "媒体广告（报纸/行业刊物）"
 
 #: contact/forms.py:25
 msgid "Outdoor ad/billboard"
-msgstr ""
+msgstr "户外广告/广告牌"
 
 #: contact/forms.py:26
 msgid "LinkedIn"
@@ -39,31 +39,31 @@ msgstr ""
 
 #: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
-msgstr ""
+msgstr "其他社交媒体（例如 Twitter/Facebook）"
 
 #: contact/forms.py:28
 msgid "Internet search"
-msgstr ""
+msgstr "互联网搜索"
 
 #: contact/forms.py:29 find_a_supplier/constants.py:38
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "我深信这一点，并且想要谈谈我的计划。"
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr ""
+msgstr "英国在我的候选清单上。国际贸易部如何帮助我？"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr ""
+msgstr "我仍在探索在哪里拓展我的业务，也想更多地了解英国的报价。"
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -75,34 +75,32 @@ msgstr ""
 
 #: contact/forms.py:62
 msgid "In the morning"
-msgstr ""
+msgstr "上午"
 
 #: contact/forms.py:66
 msgid "In the afternoon"
-msgstr ""
+msgstr "下午"
 
 #: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
 msgid "Given name"
-msgstr ""
+msgstr "名"
 
 #: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
 msgid "Family name"
-msgstr ""
+msgstr "姓"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
 msgstr "职务"
 
 #: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
 msgid "Work email address"
-msgstr "工作电子邮件"
+msgstr "电子邮件地址"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:245
 msgid "Phone number"
-msgstr "工作电话"
+msgstr "电话号码"
 
 #: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
 #: find_a_supplier/forms.py:183
@@ -115,7 +113,7 @@ msgstr "公司网站"
 
 #: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
-msgstr ""
+msgstr "公司总部地址"
 
 #: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
 #: perfect_fit_prospectus/forms.py:32
@@ -129,11 +127,11 @@ msgstr "行业"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr ""
+msgstr "下面哪一项能最准确地描述您对登陆英国市场的感受。"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "告知我们您的投资相关信息"
+msgstr "告诉我们您的投资计划"
 
 #: contact/forms.py:106
 msgid ""
@@ -141,14 +139,16 @@ msgid ""
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
+"向我们咨询您的问题，或者告诉我们您到英国的拓展计划，包括运营规模、您为什么考"
+"虑英国以及您如何实现。"
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
-msgstr ""
+msgstr "您是否希望安排通话？"
 
 #: contact/forms.py:120
 msgid "How did you hear about us? (Optional)"
-msgstr ""
+msgstr "您是通过哪种渠道了解到我们的？"
 
 #: contact/forms.py:159
 msgid "How did you hear about us?"
@@ -178,7 +178,7 @@ msgstr "联系信息"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
-msgstr "您的公司"
+msgstr "公司信息电话号码"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
@@ -186,11 +186,11 @@ msgstr "您的投资"
 
 #: contact/templates/contact/contact.html:46
 msgid "Submit"
-msgstr "保持联系"
+msgstr "提交"
 
 #: contact/templates/contact/contact.html:63
 msgid "Type here"
-msgstr ""
+msgstr "在此处键入"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
@@ -210,11 +210,11 @@ msgstr ""
 
 #: core/constants.py:288
 msgid "I would like to receive additional information by email"
-msgstr ""
+msgstr "我想通过电子邮件收到更多信息"
 
 #: core/constants.py:289
 msgid "I would like to receive additional information by telephone"
-msgstr ""
+msgstr "我想通过电话收到更多信息"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -228,26 +228,6 @@ msgstr "供应商信息"
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
-msgstr ""
-
 #: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
 #: find_a_supplier/forms.py:239
 msgid "Email address"
@@ -259,7 +239,7 @@ msgstr "工作电话"
 
 #: core/forms.py:105
 msgid "Which country are you based in?"
-msgstr ""
+msgstr "您所在的国家/地区？"
 
 #: core/forms.py:110
 msgid "Message"
@@ -303,7 +283,7 @@ msgstr "公司名称"
 
 #: core/forms.py:232
 msgid "Job title (Optional)"
-msgstr ""
+msgstr "职务姓"
 
 #: core/forms.py:239
 msgid "City (Optional)"
@@ -500,13 +480,13 @@ msgstr "联系脱欧咨询服务部门"
 
 #: core/templates/core/includes/form_consent.html:4
 msgid "How we use your information"
-msgstr ""
+msgstr "我们如何使用您的信息"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr ""
+msgstr "国际贸易部将使用此表格中提供的信息回复您的询问。"
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -517,10 +497,15 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"  您可以在我们的<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">privacy notice</a>中了解我们如何保护您的数据。\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
-msgstr ""
+msgstr "更多信息"
 
 #: core/templates/core/includes/form_consent.html:20
 msgid ""
@@ -528,6 +513,8 @@ msgid ""
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
 msgstr ""
+"如果您想收到更多关于登陆英国市场的信息，那么可以在下方选择加入。您可以随时选"
+"择取消接收更新。"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
@@ -613,7 +600,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:251
 msgid "Your industry"
-msgstr "行业"
+msgstr "您的行业"
 
 #: find_a_supplier/forms.py:255
 msgid "Your organisation name"

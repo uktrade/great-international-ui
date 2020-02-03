@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 16:25+0000\n"
+"POT-Creation-Date: 2020-02-03 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,26 +238,6 @@ msgstr "Encontre um fornecedor"
 
 #: core/context_processors.py:38 core/header_config/old_nav_items.py:8
 msgid "Invest"
-msgstr ""
-
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
 msgstr ""
 
 #: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175

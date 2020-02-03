@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 16:25+0000\n"
+"POT-Creation-Date: 2020-02-03 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,6 @@ msgstr "Sonstiges"
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
 msgstr ""
-""
 
 #: contact/forms.py:40
 msgid ""
@@ -129,11 +128,13 @@ msgstr "Branchen"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr "Welche der folgenden Aussagen beschreibt am besten, was Sie von einer Expansion nach Großbritannien halten?"
+msgstr ""
+"Welche der folgenden Aussagen beschreibt am besten, was Sie von einer "
+"Expansion nach Großbritannien halten?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "Absenden"
+msgstr ""
 
 #: contact/forms.py:106
 msgid ""
@@ -231,26 +232,6 @@ msgstr "Anbieter finden"
 
 #: core/context_processors.py:38 core/header_config/old_nav_items.py:8
 msgid "Invest"
-msgstr ""
-
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
 msgstr ""
 
 #: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
@@ -525,8 +506,9 @@ msgid ""
 msgstr ""
 "\n"
 "<p>\n"
-"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">Datenschutzhinweis</a>.\n"
+"  Weitere Informationen zum Schutz Ihrer Daten finden Sie in unserem <a "
+"class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">Datenschutzhinweis</a>.\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18

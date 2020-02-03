@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-31 16:25+0000\n"
+"POT-Creation-Date: 2020-02-03 11:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,13 +57,16 @@ msgstr "すでに方針を固めている。計画について相談したい。
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr "最終候補として英国を検討している。国際通商省からどのような支援が得られるのか知りたい。"
+msgstr ""
+"最終候補として英国を検討している。国際通商省からどのような支援が得られるのか"
+"知りたい。"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr "事業の展開方針を検討している段階のため、英国の支援について詳しく知りたい。"
+msgstr ""
+"事業の展開方針を検討している段階のため、英国の支援について詳しく知りたい。"
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -138,7 +141,9 @@ msgid ""
 "Ask us any questions you might have or tell us your plans to expand to the "
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
-msgstr "事業の規模、英国を検討されている理由、実現に必要な事項など、英国への展開に関する計画についてのご相談やご質問を受け付けています。"
+msgstr ""
+"事業の規模、英国を検討されている理由、実現に必要な事項など、英国への展開に関"
+"する計画についてのご相談やご質問を受け付けています。"
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like us to arrange a call?"
@@ -151,14 +156,6 @@ msgstr "国際通商省についてどこでお聞きになりましたか？"
 #: contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "国際通商省についてどこでお聞きになりましたか？"
-
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr "メールによる追加情報のお知らせを希望"
-
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr "電話による追加情報のお知らせを希望"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -218,11 +215,11 @@ msgstr ""
 
 #: core/constants.py:288
 msgid "I would like to receive additional information by email"
-msgstr ""
+msgstr "メールによる追加情報のお知らせを希望"
 
 #: core/constants.py:289
 msgid "I would like to receive additional information by telephone"
-msgstr ""
+msgstr "電話による追加情報のお知らせを希望"
 
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
@@ -234,26 +231,6 @@ msgstr "サプライヤー検索"
 
 #: core/context_processors.py:38 core/header_config/old_nav_items.py:8
 msgid "Invest"
-msgstr ""
-
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
 msgstr ""
 
 #: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
@@ -508,7 +485,9 @@ msgstr "ご提供いただいた情報の用途"
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr "国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの対応に使用いたします。"
+msgstr ""
+"国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの"
+"対応に使用いたします。"
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -521,8 +500,8 @@ msgid ""
 msgstr ""
 "\n"
 "<p>\n"
-"  個人情報の保護については<a class=\"link\" href="
-"\"%(privacy_url)s\" target=\"_blank\">privacy notice</a>をご覧ください。\n"
+"  個人情報の保護については<a class=\"link\" href=\"%(privacy_url)s\" target="
+"\"_blank\">privacy notice</a>をご覧ください。\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
@@ -534,14 +513,17 @@ msgid ""
 "If you would like to receive additional information about investing in the "
 "UK you can opt in below. You can opt out of these additional updates at any "
 "time."
-msgstr "英国への展開に関する追加情報をご希望の場合は、以下でご希望の方法をお選びください。"
-"このお知らせはいつでもオプトアウトできます。"
+msgstr ""
+"英国への展開に関する追加情報をご希望の場合は、以下でご希望の方法をお選びくだ"
+"さい。このお知らせはいつでもオプトアウトできます。"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
-msgstr "国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの対応に使用いたします。"
+msgstr ""
+"国際通商省は、このフォームにてご提供いただいた情報を貴社からの問い合わせへの"
+"対応に使用いたします。"
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"

@@ -32,7 +32,7 @@ class TariffsCountryForm(forms.Form):
 class OpportunitySearchForm(forms.Form):
 
     sector = forms.ChoiceField(
-        label=_('sector'),
+        label='sector',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sector'},
             use_nice_ids=True,
@@ -40,7 +40,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     scale = forms.ChoiceField(
-        label=_('scale'),
+        label='scale',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-scale'},
             use_nice_ids=True,
@@ -48,7 +48,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     region = forms.ChoiceField(
-        label=_('region'),
+        label='region',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-region'},
             use_nice_ids=True,
@@ -56,7 +56,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     sub_sector = forms.ChoiceField(
-        label=_('sub_sector'),
+        label='sub_sector',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sub_sector'},
             use_nice_ids=True,
@@ -64,7 +64,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     sort_by = forms.ChoiceField(
-        label=_('sort_by'),
+        label='sort_by',
         widget=Select(
             attrs={
                 'onchange': 'this.form.submit()'
