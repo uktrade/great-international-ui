@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 11:59+0000\n"
+"POT-Creation-Date: 2020-02-03 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "その他のソーシャルメディア（例：Twitter、Facebook）"
 msgid "Internet search"
 msgstr "インターネット検索"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:191 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "その他"
 
@@ -168,6 +168,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "お問い合わせ"
 
@@ -264,6 +265,32 @@ msgstr ""
 
 #: core/forms.py:141 perfect_fit_prospectus/forms.py:21
 msgid "Email"
+msgstr ""
+
+#: core/forms.py:186
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Expanding to the UK"
+msgstr "英国への展開"
+
+#: core/forms.py:187
+msgid "Investing capital in the UK"
+msgstr "英国への事業投資を検討"
+
+#: core/forms.py:188
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Exporting to the UK"
+msgstr "英国への展開"
+
+#: core/forms.py:189
+#, fuzzy
+#| msgid "Buy from the UK"
+msgid "Buying from the UK"
+msgstr "英国からの輸入"
+
+#: core/forms.py:190
+msgid "The transition period (now that the UK has left the EU)"
 msgstr ""
 
 #: core/forms.py:199
@@ -461,6 +488,20 @@ msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:25
+#, fuzzy
+#| msgid "Would you like us to arrange a call?"
+msgid "What would you like to know more about?"
+msgstr "電話でのご相談を希望されますか？ "
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:61
@@ -689,6 +730,16 @@ msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
 
 #, fuzzy
+#~| msgid "Find a UK specialist"
+#~ msgid "Find a UK business partner"
+#~ msgstr "英国の専門家検索"
+
+#, fuzzy
+#~| msgid "Contact us"
+#~ msgid "Contact"
+#~ msgstr "お問い合わせ"
+
+#, fuzzy
 #~| msgid "Phone number"
 #~ msgid "Enter your phone number"
 #~ msgstr "勤務先の電話番号"
@@ -729,9 +780,6 @@ msgstr ""
 
 #~ msgid "Current number of staff (Optional)"
 #~ msgstr "現在の従業員数 (推定でも構いません)"
-
-#~ msgid "Investing capital in the UK"
-#~ msgstr "英国への事業投資を検討"
 
 #~ msgid "Buying goods from the UK"
 #~ msgstr "英国との取引を検討"

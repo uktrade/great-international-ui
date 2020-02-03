@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 11:59+0000\n"
+"POT-Creation-Date: 2020-02-03 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr "Andere soziale Medien (z. B. Twitter/Facebook)"
 msgid "Internet search"
 msgstr "Internetrecherche"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:191 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "Sonstiges"
 
@@ -124,7 +124,7 @@ msgstr "Land"
 #: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
 #: find_a_supplier/forms.py:177
 msgid "Industry"
-msgstr "Branchen"
+msgstr "Branche"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
@@ -166,6 +166,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "Kontakt"
 
@@ -267,6 +268,27 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
+#: core/forms.py:186
+msgid "Expanding to the UK"
+msgstr "Expansion nach Großbritannien"
+
+#: core/forms.py:187
+msgid "Investing capital in the UK"
+msgstr "Kapitalinvestitionen in Großbritannien"
+
+#: core/forms.py:188
+msgid "Exporting to the UK"
+msgstr ""
+
+#: core/forms.py:189
+msgid "Buying from the UK"
+msgstr "Handel mit Großbritannien"
+
+#: core/forms.py:190
+msgid "The transition period (now that the UK has left the EU)"
+msgstr ""
+"Die Übergangsphase (die Phase nach dem Austritt Großbritanniens aus der EU)"
+
 #: core/forms.py:199
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
@@ -282,8 +304,6 @@ msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
 #: core/forms.py:228
-#, fuzzy
-#| msgid "Company name"
 msgid "Enter your company name"
 msgstr "Eingetragener Firmenname"
 
@@ -310,10 +330,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
 msgid "Industry/Sector (Optional)"
-msgstr "Arbeits-Telefon"
+msgstr "Branche"
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
@@ -465,6 +483,18 @@ msgstr ""
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
 msgstr ""
+
+#: core/templates/core/contact_international_triage.html:25
+msgid "What would you like to know more about?"
+msgstr "Worüber möchten Sie mehr erfahren?"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr "Weiter"
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
+msgstr "Zurück"
 
 #: core/templates/core/how_to_do_business_landing_page.html:61
 msgid "Need help?"
@@ -695,61 +725,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#, fuzzy
-#~| msgid "Phone number"
-#~ msgid "Enter your phone number"
-#~ msgstr "Arbeits-Telefon"
-
-#~ msgid "Less than 10"
-#~ msgstr "Weniger als 10"
-
-#~ msgid "10 to 50"
-#~ msgstr "Zwischen 10 und 50"
-
-#~ msgid "51 to 250"
-#~ msgstr "Zwischen 51 und 250"
-
-#~ msgid "More than 250"
-#~ msgstr "Mehr als 250"
-
-#~ msgid ""
-#~ "We will use this information to put you in touch with your closest "
-#~ "British embassy or high commission."
-#~ msgstr ""
-#~ "Wir verwenden diese Angaben, um Sie mit Ihrer nächsten britischen "
-#~ "Botschaft oder Ihrem nächsten britischen Hochkommissariat in Verbindung "
-#~ "zu setzen. Geben Sie zwei oder mehr Zeichen für die Ergebnisse ein..."
-
-#~ msgid "Current number of staff"
-#~ msgstr "Geschätzte derzeitige Mitarbeiteranzahl"
-
-#~ msgid ""
-#~ "Tell us about your company and your plans for the UK in terms of size of "
-#~ "investment, operational and recruitment plans. Please also tell us what "
-#~ "help you would like from the UK government."
-#~ msgstr ""
-#~ "Bitte machen Sie Angaben zu Ihrem Unternehmen und zu Ihren Plänen in "
-#~ "Bezug auf die Höhe der Investition sowie auf operative Pläne und Pläne "
-#~ "bezüglich der Einstellung von Mitarbeitern in Großbritannien. Bitte "
-#~ "teilen Sie uns auch mit, welche Hilfe Sie von den britischen Behörden "
-#~ "erhalten möchten."
-
-#~ msgid "Your investment"
-#~ msgstr "Ihre Investition"
-
-#~ msgid "Current number of staff (Optional)"
-#~ msgstr "Geschätzte derzeitige Mitarbeiteranzahl"
-
-#~ msgid "Investing capital in the UK"
-#~ msgstr "Ich möchte in Großbritannien investieren"
-
-#~ msgid "Buying goods from the UK"
-#~ msgstr "Ich möchte aus Großbritannien einkaufen"
-
-#~ msgid ""
-#~ "I confirm the information provided is true and I accept DIT's terms and "
-#~ "conditions"
-#~ msgstr ""
-#~ "Mit Absenden Ihrer Daten bestätigen Sie, dass die von Ihnen eingegebenen "
-#~ "Daten korrekt sind und stimmen unseren Nutzungsbedingungen zu."

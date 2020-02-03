@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 11:59+0000\n"
+"POT-Creation-Date: 2020-02-03 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr "Otras redes sociales (p. ej., Twitter/Facebook)"
 msgid "Internet search"
 msgstr "Búsqueda en Internet"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:191 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "Otros"
 
@@ -174,6 +174,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "Contacto"
 
@@ -273,6 +274,26 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
+#: core/forms.py:186
+msgid "Expanding to the UK"
+msgstr "Expansión al Reino Unido"
+
+#: core/forms.py:187
+msgid "Investing capital in the UK"
+msgstr "Inversión de capitales en el Reino Unido"
+
+#: core/forms.py:188
+msgid "Exporting to the UK"
+msgstr ""
+
+#: core/forms.py:189
+msgid "Buying from the UK"
+msgstr "Adquisiciones en el Reino Unido"
+
+#: core/forms.py:190
+msgid "The transition period (now that the UK has left the EU)"
+msgstr "Periodo de transición (ahora que el Reino Unido ha salido de la UE)"
+
 #: core/forms.py:199
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
@@ -288,8 +309,6 @@ msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
 #: core/forms.py:228
-#, fuzzy
-#| msgid "Company name"
 msgid "Enter your company name"
 msgstr "Nombre registrado de la empresa"
 
@@ -468,6 +487,18 @@ msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:25
+msgid "What would you like to know more about?"
+msgstr "¿Sobre qué tema le gustaría obtener más información?"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:61
@@ -699,62 +730,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "Información de la empresa"
-#~ msgstr "Su empresa"
-
-#, fuzzy
-#~| msgid "Phone number"
-#~ msgid "Enter your phone number"
-#~ msgstr "Número de teléfono de la empresa"
-
-#~ msgid "Less than 10"
-#~ msgstr "Menos de 10"
-
-#~ msgid "10 to 50"
-#~ msgstr "Entre 10 y 50"
-
-#~ msgid "51 to 250"
-#~ msgstr "Entre 51 y 250"
-
-#~ msgid "More than 250"
-#~ msgstr "Más de 250"
-
-#~ msgid ""
-#~ "We will use this information to put you in touch with your closest "
-#~ "British embassy or high commission."
-#~ msgstr ""
-#~ "Utilizaremos esta información para ponerle en contacto con la Embajada o "
-#~ "el Alto Comisionado británicos más cercanos. Empiece a escribir para "
-#~ "seleccionar una opción."
-
-#~ msgid "Current number of staff"
-#~ msgstr "Número aproximado de personal en la actualidad"
-
-#~ msgid ""
-#~ "Tell us about your company and your plans for the UK in terms of size of "
-#~ "investment, operational and recruitment plans. Please also tell us what "
-#~ "help you would like from the UK government."
-#~ msgstr ""
-#~ "Cuéntenos sobre su empresa y sus planes para el Reino Unido en cuanto a "
-#~ "la magnitud de su inversión, sus planes operativos y de contratación. "
-#~ "Díganos qué ayuda le gustaría recibir del gobierno británico."
-
-#~ msgid "Your investment"
-#~ msgstr "Su inversión"
-
-#~ msgid "Current number of staff (Optional)"
-#~ msgstr "Número aproximado de personal en la actualidad"
-
-#~ msgid "Investing capital in the UK"
-#~ msgstr "Quiero invertir en el Reino Unido"
-
-#~ msgid "Buying goods from the UK"
-#~ msgstr "Quiero comprar desde el Reino Unido"
-
-#~ msgid ""
-#~ "I confirm the information provided is true and I accept DIT's terms and "
-#~ "conditions"
-#~ msgstr ""
-#~ "Al enviarnos sus datos, usted confirma que la información que nos "
-#~ "proporciona es verídica y acepta nuestros términos y condiciones."

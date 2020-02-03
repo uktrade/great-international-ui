@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 11:59+0000\n"
+"POT-Creation-Date: 2020-02-03 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr "Autres réseaux sociaux (par ex. Twitter/Facebook)"
 msgid "Internet search"
 msgstr "Recherche sur Internet"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:191 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "Autre"
 
@@ -171,6 +171,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "Contactez-nous"
 
@@ -269,6 +270,34 @@ msgstr ""
 
 #: core/forms.py:141 perfect_fit_prospectus/forms.py:21
 msgid "Email"
+msgstr ""
+
+#: core/forms.py:186
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Expanding to the UK"
+msgstr "Se développer au Royaume-Uni"
+
+#: core/forms.py:187
+#, fuzzy
+#| msgid "Invest capital in the UK"
+msgid "Investing capital in the UK"
+msgstr "Investir des capitaux au Royaume-Uni"
+
+#: core/forms.py:188
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Exporting to the UK"
+msgstr "Se développer au Royaume-Uni"
+
+#: core/forms.py:189
+#, fuzzy
+#| msgid "Buy from the UK"
+msgid "Buying from the UK"
+msgstr "Achetez au Royaume-Uni"
+
+#: core/forms.py:190
+msgid "The transition period (now that the UK has left the EU)"
 msgstr ""
 
 #: core/forms.py:199
@@ -468,6 +497,20 @@ msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:25
+#, fuzzy
+#| msgid "Would you like us to arrange a call?"
+msgid "What would you like to know more about?"
+msgstr "Voulez-vous planifier un appel ?"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:61
@@ -704,6 +747,21 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Find a UK specialist"
+#~ msgid "Find a UK business partner"
+#~ msgstr "Trouver un spécialiste du Royaume-Uni"
+
+#, fuzzy
+#~| msgid "Contact the Brexit enquiry service"
+#~ msgid "Brexit enquiries"
+#~ msgstr "Contactez un service de renseignements sur la sortie de l'UE"
+
+#, fuzzy
+#~| msgid "Contact us"
+#~ msgid "Contact"
+#~ msgstr "Contactez-nous"
 
 #, fuzzy
 #~| msgid "Phone number"

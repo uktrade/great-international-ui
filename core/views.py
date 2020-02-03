@@ -18,7 +18,8 @@ import directory_forms_api_client.helpers
 from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
 from directory_components.helpers import get_user_country, SocialLinkBuilder
-from directory_components.mixins import CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin
+from directory_components.mixins import (
+    CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin, EnableTranslationsMixin)
 
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
@@ -1009,7 +1010,7 @@ def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
 
 
-class InternationalContactTriageView(GA360Mixin, InternationalHeaderMixin, FormView):
+class InternationalContactTriageView(GA360Mixin, EnableTranslationsMixin, InternationalHeaderMixin, FormView):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
     success_url = urls.domestic.CONTACT_US + 'international/'

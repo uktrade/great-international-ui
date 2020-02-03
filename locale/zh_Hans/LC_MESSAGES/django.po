@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-03 11:59+0000\n"
+"POT-Creation-Date: 2020-02-03 13:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "其他社交媒体（例如 Twitter/Facebook）"
 msgid "Internet search"
 msgstr "互联网搜索"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:191 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "其他"
 
@@ -165,6 +165,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "联系我们"
 
@@ -259,6 +260,34 @@ msgstr ""
 
 #: core/forms.py:141 perfect_fit_prospectus/forms.py:21
 msgid "Email"
+msgstr ""
+
+#: core/forms.py:186
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Expanding to the UK"
+msgstr "在英国扩展业务"
+
+#: core/forms.py:187
+#, fuzzy
+#| msgid "I want to invest in the UK"
+msgid "Investing capital in the UK"
+msgstr "我想投资英国"
+
+#: core/forms.py:188
+#, fuzzy
+#| msgid "Expand to the UK"
+msgid "Exporting to the UK"
+msgstr "在英国扩展业务"
+
+#: core/forms.py:189
+#, fuzzy
+#| msgid "Buy from the UK"
+msgid "Buying from the UK"
+msgstr "购买英国产品"
+
+#: core/forms.py:190
+msgid "The transition period (now that the UK has left the EU)"
 msgstr ""
 
 #: core/forms.py:199
@@ -460,6 +489,20 @@ msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
 msgid "Other projects in"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:25
+#, fuzzy
+#| msgid "Would you like us to arrange a call?"
+msgid "What would you like to know more about?"
+msgstr "您是否希望安排通话？"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
 msgstr ""
 
 #: core/templates/core/how_to_do_business_landing_page.html:61
@@ -686,6 +729,21 @@ msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
 
 #, fuzzy
+#~| msgid "Find a UK specialist"
+#~ msgid "Find a UK business partner"
+#~ msgstr "在英国企业数据库中查找"
+
+#, fuzzy
+#~| msgid "Contact the Brexit enquiry service"
+#~ msgid "Brexit enquiries"
+#~ msgstr "联系脱欧咨询服务部门"
+
+#, fuzzy
+#~| msgid "Contact us"
+#~ msgid "Contact"
+#~ msgstr "联系我们"
+
+#, fuzzy
 #~| msgid "Phone number"
 #~ msgid "Enter your phone number"
 #~ msgstr "工作电话"
@@ -727,11 +785,6 @@ msgstr ""
 #~| msgid "Current number of staff"
 #~ msgid "Current number of staff (Optional)"
 #~ msgstr "当前员工总数"
-
-#, fuzzy
-#~| msgid "I want to invest in the UK"
-#~ msgid "Investing capital in the UK"
-#~ msgstr "我想投资英国"
 
 #, fuzzy
 #~| msgid "I want to buy from the UK"
