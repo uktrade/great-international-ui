@@ -6,7 +6,7 @@
 - TT-2263 - Add japanese translations
 
 ### Bugs fixed
-
+- No ticket - CVE-2020-5236 & CVE-2020-7471: Potential SQL injection via StringAgg(delimiter)
 
 ## [2020.01.30](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.30)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.15...2020.01.30)
