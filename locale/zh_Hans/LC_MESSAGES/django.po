@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:39+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,13 +144,13 @@ msgstr ""
 "向我们咨询您的问题，或者告诉我们您到英国的拓展计划，包括运营规模、您为什么考"
 "虑英国以及您如何实现。"
 
-#: contact/forms.py:114
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
-msgstr ""
+msgstr "您是否希望安排通话？"
 
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
-msgstr ""
+msgstr "您是通过哪种渠道了解到我们的？"
 
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
@@ -159,10 +159,6 @@ msgstr "国家"
 #: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
 msgid "Industry"
 msgstr "行业"
-
-#: contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr "您是否希望安排通话？"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -185,7 +181,7 @@ msgstr "请联系投资组"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "联系信息"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -626,7 +622,10 @@ msgid ""
 "The UK is a global, outward-facing nation with strong international ties to "
 "160 markets around the world. Enter your details below to download our ebook "
 "5 reasons to buy from the UK, including:"
-msgstr "英国是一个对外开放的国家，与全世界保持有良好的沟通与联系，并与全球 160 个市场建立起稳固的国际关系。在下面输入您的个人信息，下载《从英国采购的 5 大理由》电子书，书中内容包括："
+msgstr ""
+"英国是一个对外开放的国家，与全世界保持有良好的沟通与联系，并与全球 160 个市场"
+"建立起稳固的国际关系。在下面输入您的个人信息，下载《从英国采购的 5 大理由》电"
+"子书，书中内容包括："
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
@@ -814,9 +813,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "How did you hear about us? (Optional)"
-#~ msgstr "您是通过哪种渠道了解到我们的？"
-
-#~ msgid "Contact Information"
-#~ msgstr "联系信息"

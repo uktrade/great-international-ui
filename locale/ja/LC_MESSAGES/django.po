@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:39+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,9 +147,9 @@ msgstr ""
 "事業の規模、英国を検討されている理由、実現に必要な事項など、英国への展開に関"
 "する計画についてのご相談やご質問を受け付けています。"
 
-#: contact/forms.py:114
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
-msgstr ""
+msgstr "電話でのご相談を希望されますか？ "
 
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
@@ -162,10 +162,6 @@ msgstr "国"
 #: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
 msgid "Industry"
 msgstr "産業"
-
-#: contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr "電話でのご相談を希望されますか？ "
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -188,7 +184,7 @@ msgstr "対英投資チームに連絡する"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "ご連絡先"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -640,7 +636,9 @@ msgid ""
 "160 markets around the world. Enter your details below to download our ebook "
 "5 reasons to buy from the UK, including:"
 msgstr ""
-"英国は、世界の 160 の市場と国際的な強いつながりを持つ、グローバルで外交的な国です。eBook『5 reasons to buy from the UK』をダウンロードするには、以下の情報を入力してください。内容は次のとおりです。"
+"英国は、世界の 160 の市場と国際的な強いつながりを持つ、グローバルで外交的な国"
+"です。eBook『5 reasons to buy from the UK』をダウンロードするには、以下の情報"
+"を入力してください。内容は次のとおりです。"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
@@ -837,9 +835,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "Industry/Sector (Optional)"
-#~ msgstr "産業"
-
-#~ msgid "How did you hear about us? (Optional)"
-#~ msgstr "国際通商省についてどこでお聞きになりましたか？"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:39+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,9 +150,9 @@ msgid ""
 "you’ll need to make it happen."
 msgstr ""
 
-#: contact/forms.py:114
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
-msgstr ""
+msgstr "Voulez-vous planifier un appel ?"
 
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
@@ -165,10 +165,6 @@ msgstr "Pays"
 #: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
 msgid "Industry"
 msgstr ""
-
-#: contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr "Voulez-vous planifier un appel ?"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -191,7 +187,7 @@ msgstr "Contactez l’équipe investissement"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "Informations de contact"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -660,7 +656,10 @@ msgid ""
 "160 markets around the world. Enter your details below to download our ebook "
 "5 reasons to buy from the UK, including:"
 msgstr ""
-"Le Royaume-Uni est une nation globale ouverte sur le monde, jouissant de solides liens internationaux avec 160 marchés dans le monde entier. Saisissez vos coordonnées ci-dessous pour télécharger notre livre électronique 5 raisons d'acheter au Royaume-Uni, notamment :"
+"Le Royaume-Uni est une nation globale ouverte sur le monde, jouissant de "
+"solides liens internationaux avec 160 marchés dans le monde entier. "
+"Saisissez vos coordonnées ci-dessous pour télécharger notre livre "
+"électronique 5 raisons d'acheter au Royaume-Uni, notamment :"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
@@ -680,7 +679,9 @@ msgstr "pourquoi les entreprises britanniques sont stables et professionnelles"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:28
 msgid "commitment to the highest standards for better long-term value"
-msgstr "l'engagement à respecter les normes les plus strictes pour une valeur optimale à long terme"
+msgstr ""
+"l'engagement à respecter les normes les plus strictes pour une valeur "
+"optimale à long terme"
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -848,6 +849,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "Industry/Sector (Optional)"
-#~ msgstr "Téléphone de travail"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:39+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,9 +154,9 @@ msgstr ""
 "pelo qual está a considerar o Reino Unido e do que necessita para o fazer "
 "acontecer."
 
-#: contact/forms.py:114
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
-msgstr ""
+msgstr "Gostaria de agendar uma chamada?"
 
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
@@ -169,10 +169,6 @@ msgstr "País"
 #: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
 msgid "Industry"
 msgstr "Indústria"
-
-#: contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr "Gostaria de agendar uma chamada?"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -195,7 +191,7 @@ msgstr "Contacte a nossa equipa de investimento"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "Informações de contacto"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -658,7 +654,11 @@ msgid ""
 "The UK is a global, outward-facing nation with strong international ties to "
 "160 markets around the world. Enter your details below to download our ebook "
 "5 reasons to buy from the UK, including:"
-msgstr "O Reino Unido é uma nação global orientada para o exterior, com fortes laços internacionais com 160 mercados em todo o mundo. Introduza os seus detalhes abaixo para transferir o nosso e-book sobre os 5 motivos para comprar produtos/serviços do Reino Unido, incluindo:"
+msgstr ""
+"O Reino Unido é uma nação global orientada para o exterior, com fortes laços "
+"internacionais com 160 mercados em todo o mundo. Introduza os seus detalhes "
+"abaixo para transferir o nosso e-book sobre os 5 motivos para comprar "
+"produtos/serviços do Reino Unido, incluindo:"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
@@ -674,11 +674,13 @@ msgstr "infraestrutura, financiamento de exportações e colaboração"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:27
 msgid "why UK businesses are stable and professional"
-msgstr "o motivo pelo qual as empresas do Reino Unido são estáveis e profissionais"
+msgstr ""
+"o motivo pelo qual as empresas do Reino Unido são estáveis e profissionais"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:28
 msgid "commitment to the highest standards for better long-term value"
-msgstr "O compromisso com os padrões mais elevados para um melhor valor a longo prazo"
+msgstr ""
+"O compromisso com os padrões mais elevados para um melhor valor a longo prazo"
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -846,6 +848,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "Industry/Sector (Optional)"
-#~ msgstr "Indústria"

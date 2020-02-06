@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:39+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,11 +72,11 @@ msgstr ""
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "Todavía no estoy listo a expandir. Manténgame informado."
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "¿Cuándo le deberíamos llamar? "
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -153,9 +153,9 @@ msgstr ""
 "está pensando en el Reino Unido y lo que necesitará para materializar sus "
 "planes. "
 
-#: contact/forms.py:114
+#: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
-msgstr ""
+msgstr "¿Desea concertar una llamada?"
 
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
@@ -168,10 +168,6 @@ msgstr "País"
 #: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
 msgid "Industry"
 msgstr "Sector"
-
-#: contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr "¿Desea concertar una llamada?"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -194,7 +190,7 @@ msgstr "Contacte con el equipo de inversión"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -663,7 +659,10 @@ msgid ""
 "160 markets around the world. Enter your details below to download our ebook "
 "5 reasons to buy from the UK, including:"
 msgstr ""
-"El Reino Unido es una nación con vocación global y centrada en el exterior, y cuenta con fuertes vínculos internacionales con 160 mercados de todo el mundo. Introduzca sus datos a continuación para descargar nuestro ebook con las 5 razones para realizar adquisiciones en el Reino Unido:"
+"El Reino Unido es una nación con vocación global y centrada en el exterior, "
+"y cuenta con fuertes vínculos internacionales con 160 mercados de todo el "
+"mundo. Introduzca sus datos a continuación para descargar nuestro ebook con "
+"las 5 razones para realizar adquisiciones en el Reino Unido:"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
@@ -671,7 +670,8 @@ msgstr "la emoción y la creatividad del Reino Unido"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:25
 msgid "UK industries and companies pushing the boundaries"
-msgstr "Las industrias y empresas del Reino Unido van más allá de las fronteras"
+msgstr ""
+"Las industrias y empresas del Reino Unido van más allá de las fronteras"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:26
 msgid "infrastructure, export finance and collaboration"
@@ -679,11 +679,13 @@ msgstr "infraestructura, financiación de exportaciones y colaboración"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:27
 msgid "why UK businesses are stable and professional"
-msgstr "¿Por qué las empresas del Reino Unido son tan estables y profesionales?"
+msgstr ""
+"¿Por qué las empresas del Reino Unido son tan estables y profesionales?"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:28
 msgid "commitment to the highest standards for better long-term value"
-msgstr "el compromiso con los más altos estándares y un mejor valor a largo plazo"
+msgstr ""
+"el compromiso con los más altos estándares y un mejor valor a largo plazo"
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -851,20 +853,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#~ msgid "How did you hear about us? (Optional)"
-#~ msgstr "¿Cómo nos ha conocido?"
-
-#~ msgid "Contact Information"
-#~ msgstr "Información de contacto"
-
-#~ msgid ""
-#~ "If you would like to receive additional information you can opt in below. "
-#~ "You can opt out of these additional updates at any time."
-#~ msgstr ""
-#~ "Si desea recibir más información acerca de las inversiones de capital en "
-#~ "el Reino Unido, puede suscribirse a continuación. Puede anular la "
-#~ "suscripción a estas actualizaciones en cualquier momento."
-
-#~ msgid "Work email address"
-#~ msgstr "Dirección de correo electrónico"
