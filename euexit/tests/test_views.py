@@ -10,32 +10,11 @@ from core.constants import TEMPLATE_MAPPING
 from euexit import views
 
 
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_international_form(mock_lookup_by_slug, client):
-    mock_lookup_by_slug.return_value = create_response(
-        status_code=200, json_payload={
-            'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage',
-            'breadcrumbs_label': 'Title',
-        }
-    )
+def test_international_form(client):
 
     response = client.get(reverse('brexit-international-contact-form'))
 
     assert response.status_code == 200
-    assert response.template_name == [
-        TEMPLATE_MAPPING[views.InternationalContactFormView.page_type]
-    ]
-
-
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_international_form_not_found(mock_lookup_by_slug, client):
-    mock_lookup_by_slug.return_value = create_response(status_code=404)
-
-    url = reverse('brexit-international-contact-form')
-    response = client.get(url)
-
-    assert response.status_code == 404
 
 
 @mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
@@ -50,7 +29,6 @@ def test_international_form_cms_retrieval_ok(
             'last_name': {
                 'label': 'Family name'
             },
-            'disclaimer': 'disclaim',
             'page_type': 'InternationalEUExitFormPage',
             'breadcrumbs_label': 'Title',
         }
@@ -62,22 +40,11 @@ def test_international_form_cms_retrieval_ok(
     form = response.context_data['form']
     assert form.fields['first_name'].label == 'Given name'
     assert form.fields['last_name'].label == 'Family name'
-    assert form.fields['terms_agreed'].widget.label.endswith('disclaim')
 
 
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-@mock.patch.object(views.InternationalContactFormView.form_class, 'save')
+@mock.patch.object(views.TransitionContactFormView.form_class, 'save')
 @pytest.mark.parametrize('country', (choices.COUNTRIES_AND_TERRITORIES[1][0], 'HK'))
-def test_international_form_submit(
-    mock_save, mock_lookup_by_slug, settings, client, captcha_stub, country
-):
-    mock_lookup_by_slug.return_value = create_response(
-        status_code=200, json_payload={
-            'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage',
-            'breadcrumbs_label': 'Title',
-        }
-    )
+def test_international_form_submit(mock_save, settings, client, captcha_stub, country):
     settings.EU_EXIT_ZENDESK_SUBDOMAIN = 'eu-exit-subdomain'
 
     url = reverse('brexit-international-contact-form')
@@ -93,7 +60,6 @@ def test_international_form_submit(
         'country': country,
         'city': 'London',
         'comment': 'hello',
-        'terms_agreed': True,
         'g-recaptcha-response': captcha_stub,
     })
 
@@ -138,21 +104,12 @@ def test_form_success_page(mock_lookup_by_slug, client):
     }
 
 
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-def test_form_urls(mock_lookup_by_slug, client):
-    mock_lookup_by_slug.return_value = create_response(
-        status_code=200, json_payload={
-            'disclaimer': 'disclaim',
-            'page_type': 'InternationalEUExitFormPage',
-            'breadcrumbs_label': 'Title',
-        }
-    )
+def test_transition_form_ingress_url(client):
     url = reverse('brexit-international-contact-form')
     response = client.get(url, {}, HTTP_REFERER='http://www.google.com')
 
     assert response.status_code == 200
     form = response.context_data['form']
-    assert form.fields['terms_agreed'].widget.label.endswith('disclaim')
     assert form.ingress_url == 'http://www.google.com'
 
 
@@ -174,16 +131,6 @@ def test_form_urls_no_referer(mock_lookup_by_slug, client):
 
 
 @pytest.mark.parametrize('url,page_type,status_code', (
-    (
-        reverse('brexit-international-contact-form'),
-        'InternationalArticlePage',
-        404
-    ),
-    (
-        reverse('brexit-international-contact-form'),
-        'InternationalEUExitFormPage',
-        200
-    ),
     (
         reverse('brexit-international-contact-form-success'),
         'InternationalArticlePage',

@@ -189,7 +189,7 @@ def test_search_required_empty_sector_term():
 
 
 def test_contact_required_fields():
-    form = forms.ContactForm(data={}, industry_choices=[])
+    form = forms.BuyFromTheUKForm(data={})
 
     assert form.is_valid() is False
     assert form.errors == {
@@ -197,21 +197,18 @@ def test_contact_required_fields():
         'captcha': ['This field is required.'],
         'country': ['This field is required.'],
         'email_address': ['This field is required.'],
-        'full_name': ['This field is required.'],
+        'given_name': ['This field is required.'],
+        'family_name': ['This field is required.'],
         'organisation_name': ['This field is required.'],
         'phone_number': ['This field is required.'],
         'sector': ['This field is required.'],
-        'terms_agreed': ['This field is required.']
     }
 
 
 def test_contact_invalid_country(valid_contact_data):
     data = valid_contact_data
     data['country'] = 'fake country'
-    form = forms.ContactForm(
-        data=data,
-        industry_choices=[(forms.choices.sectors.AEROSPACE, 'Aerospace')]
-    )
+    form = forms.BuyFromTheUKForm(data=data)
 
     assert form.is_valid() is False
     assert form.errors == {
@@ -219,17 +216,10 @@ def test_contact_invalid_country(valid_contact_data):
     }
 
 
-@mock.patch(
-    'directory_forms_api_client.client.forms_api_client.submit_generic'
-)
-def test_contact_body_text(
-    mock_submit_generic, valid_contact_data
-):
+@mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
+def test_contact_body_text(mock_submit_generic, valid_contact_data):
     mock_submit_generic.return_value = None
-    form = forms.ContactForm(
-        data=valid_contact_data,
-        industry_choices=[(choices.sectors.AEROSPACE, 'Aerospace')]
-    )
+    form = forms.BuyFromTheUKForm(data=valid_contact_data)
 
     assert form.is_valid()
 
@@ -249,6 +239,9 @@ def test_contact_body_text(
         'sector': choices.sectors.AEROSPACE,
         'source': '',
         'source_other': '',
-        'full_name': valid_contact_data['full_name'],
+        'given_name': valid_contact_data['given_name'],
+        'family_name': valid_contact_data['family_name'],
+        'email_contact_consent': valid_contact_data['email_contact_consent'],
+        'telephone_contact_consent': valid_contact_data['telephone_contact_consent'],
         'phone_number': valid_contact_data['phone_number']
     }

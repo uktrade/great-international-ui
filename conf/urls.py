@@ -296,7 +296,7 @@ urlpatterns += [
     ),
     url(
         r'^international/transition-period/contact/$',
-        euexit.views.InternationalContactFormView.as_view(),
+        euexit.views.TransitionContactFormView.as_view(),
         name='brexit-international-contact-form'
     ),
     url(

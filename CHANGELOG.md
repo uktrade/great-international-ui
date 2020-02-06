@@ -3,8 +3,6 @@
 ## Pre-release
 
 ### Implemented enhancements
-
-### Bugs fixed
 - no ticket - Upgrade waitress
 
 ## [2020.02.06](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
@@ -12,6 +10,7 @@
 
 ### Implemented enhancements
 - XOT-1280 - update components for cookie banner
+- TT-2263 - Add translations for all forms
 
 ## [2020.02.04](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.30...2020.02.04)
@@ -32,6 +31,7 @@
 - CI-649 - Update invest contact form fields, email options and tests
 - CI-645 - Add translations for 'About us'
 - TT-2262 - Change urls on brexit forms
+- XOT-1280 - update components for cookie banner
 
 ### Bugs fixed
 - TT-2254 - Remove obsolete settings and code

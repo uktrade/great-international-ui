@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: contact/forms.py:20 core/forms.py:254
+#: contact/forms.py:20 core/forms.py:231
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: contact/forms.py:21 core/forms.py:255
+#: contact/forms.py:21 core/forms.py:232
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
-msgstr ""
+msgstr "媒体广告（报纸/行业刊物）"
 
 #: contact/forms.py:25
 msgid "Outdoor ad/billboard"
-msgstr ""
+msgstr "户外广告/广告牌"
 
 #: contact/forms.py:26
 msgid "LinkedIn"
@@ -39,31 +39,31 @@ msgstr ""
 
 #: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
-msgstr ""
+msgstr "其他社交媒体（例如 Twitter/Facebook）"
 
 #: contact/forms.py:28
 msgid "Internet search"
-msgstr ""
+msgstr "互联网搜索"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:294 find_a_supplier/constants.py:38
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "我深信这一点，并且想要谈谈我的计划。"
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
-msgstr ""
+msgstr "英国在我的候选清单上。国际贸易部如何帮助我？"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
-msgstr ""
+msgstr "我仍在探索在哪里拓展我的业务，也想更多地了解英国的报价。"
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
@@ -75,37 +75,39 @@ msgstr ""
 
 #: contact/forms.py:62
 msgid "In the morning"
-msgstr ""
+msgstr "上午"
 
 #: contact/forms.py:66
 msgid "In the afternoon"
-msgstr ""
+msgstr "下午"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
+#: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
-msgstr ""
+msgstr "名"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
+#: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
 msgid "Family name"
-msgstr ""
+msgstr "姓"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
-msgstr "职务"
+msgstr "职务（可选）"
 
-#: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
-msgid "Work email address"
+#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
+#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
+#: find_a_supplier/forms.py:237
+msgid "Email address"
 msgstr "工作电子邮件"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
-#: find_a_supplier/forms.py:245
+#: find_a_supplier/forms.py:243
 msgid "Phone number"
-msgstr "工作电话"
+msgstr "电话号码"
 
-#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
-#: find_a_supplier/forms.py:183
+#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:203
+#: euexit/forms.py:58 find_a_supplier/forms.py:184
 msgid "Company name"
 msgstr "公司名称"
 
@@ -115,25 +117,23 @@ msgstr "公司网站"
 
 #: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
-msgstr ""
+msgstr "公司总部地址"
 
-#: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
-#: perfect_fit_prospectus/forms.py:32
-msgid "Country"
-msgstr "国家"
+#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:60
+msgid "Which country are you based in?"
+msgstr "您所在的国家/地区？"
 
-#: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
-#: find_a_supplier/forms.py:177
-msgid "Industry"
-msgstr "行业"
+#: contact/forms.py:96 find_a_supplier/forms.py:249
+msgid "Your industry"
+msgstr "您的行业"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
-msgstr ""
+msgstr "下面哪一项能最准确地描述您对登陆英国市场的感受。"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "告知我们您的投资相关信息"
+msgstr "告诉我们您的投资计划"
 
 #: contact/forms.py:106
 msgid ""
@@ -141,26 +141,24 @@ msgid ""
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
+"向我们咨询您的问题，或者告诉我们您到英国的拓展计划，包括运营规模、您为什么考"
+"虑英国以及您如何实现。"
 
 #: contact/forms.py:114 contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr ""
+msgid "Would you like to arrange a call?"
+msgstr "您是否希望安排通话？"
 
-#: contact/forms.py:120
-msgid "How did you hear about us? (Optional)"
-msgstr ""
-
-#: contact/forms.py:159
+#: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
-msgstr ""
+msgstr "您是通过哪种渠道了解到我们的？"
 
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr ""
+#: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
+msgid "Country"
+msgstr "国家"
 
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr ""
+#: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
+msgid "Industry"
+msgstr "行业"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -173,32 +171,36 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
-msgstr "联系我们"
+msgstr "联系"
 
 #: contact/templates/contact/contact.html:15
 msgid "Contact the investment team"
 msgstr "请联系投资组"
 
 #: contact/templates/contact/contact.html:24
-msgid "Contact Information"
+msgid "Contact information"
 msgstr "联系信息"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
-msgstr "您的公司"
+msgstr "公司信息电话号码"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
 msgstr "您的投资"
 
 #: contact/templates/contact/contact.html:46
+#: core/templates/core/investment_prospectus_form.html:42
+#: core/templates/core/why_buy_from_the_uk_form.html:54
+#: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
-msgstr "保持联系"
+msgstr "提交"
 
 #: contact/templates/contact/contact.html:63
 msgid "Type here"
-msgstr ""
+msgstr "在此处键入"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
@@ -216,6 +218,14 @@ msgstr ""
 msgid "Submission url"
 msgstr ""
 
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "我想通过电子邮件收到更多信息"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "我想通过电话收到更多信息"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -228,38 +238,9 @@ msgstr "供应商信息"
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
-msgstr ""
-
-#: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
-#: find_a_supplier/forms.py:239
-msgid "Email address"
-msgstr "工作电子邮件"
-
-#: core/forms.py:101 core/forms.py:236
+#: core/forms.py:101 core/forms.py:213
 msgid "Phone number (Optional)"
 msgstr "工作电话"
-
-#: core/forms.py:105
-msgid "Which country are you based in?"
-msgstr ""
 
 #: core/forms.py:110
 msgid "Message"
@@ -269,65 +250,73 @@ msgstr ""
 msgid "How can we help?"
 msgstr ""
 
-#: core/forms.py:139
-msgid "First name"
-msgstr ""
-
-#: core/forms.py:140
-msgid "Last name"
-msgstr ""
-
-#: core/forms.py:141 perfect_fit_prospectus/forms.py:21
-msgid "Email"
-msgstr ""
-
-#: core/forms.py:199
+#: core/forms.py:176
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
 msgstr ""
 
-#: core/forms.py:209 core/forms.py:215
+#: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
 msgstr ""
 
-#: core/forms.py:221
+#: core/forms.py:199
 msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
-#: core/forms.py:228
-#, fuzzy
-#| msgid "Company name"
+#: core/forms.py:205
 msgid "Enter your company name"
-msgstr "公司名称"
+msgstr ""
 
-#: core/forms.py:232
+#: core/forms.py:209
 msgid "Job title (Optional)"
-msgstr ""
+msgstr "职务姓"
 
-#: core/forms.py:239
+#: core/forms.py:216
 msgid "City (Optional)"
-msgstr ""
+msgstr "城市（可选）"
 
-#: core/forms.py:246
+#: core/forms.py:219 find_a_supplier/forms.py:266
+msgid "Your country"
+msgstr "您所在的国家/地区"
+
+#: core/forms.py:223
 msgid "Select a country"
 msgstr ""
 
-#: core/forms.py:251
+#: core/forms.py:228
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
 msgstr ""
 
-#: core/forms.py:260
+#: core/forms.py:237
 msgid "Select either yes or no"
 msgstr ""
 
-#: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
-msgid "Industry/Sector (Optional)"
-msgstr "工作电话"
+#: core/forms.py:242
+msgid "Your industry (optional)"
+msgstr "您的行业（可选）"
+
+#: core/forms.py:289
+msgid "Expanding to the UK"
+msgstr "登陆英国市场"
+
+#: core/forms.py:290
+msgid "Investing capital in the UK"
+msgstr "投资英国资本市场"
+
+#: core/forms.py:291
+msgid "Exporting to the UK"
+msgstr ""
+
+#: core/forms.py:292
+msgid "Buying from the UK"
+msgstr "从英国采购"
+
+#: core/forms.py:293
+msgid "The transition period (now that the UK has left the EU)"
+msgstr "过渡期（英国已脱欧）"
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
@@ -347,6 +336,7 @@ msgstr "行业"
 #: core/templates/core/about_uk/about_uk_region_listing_page.html:25
 #: core/templates/core/about_uk/about_uk_region_page.html:24
 #: core/templates/core/about_uk/why_choose_the_uk_page.html:18
+#: core/templates/core/investment_prospectus_form.html:12
 #: core/templates/core/sector_page.html:17
 msgid "About the UK"
 msgstr "关于英国"
@@ -360,6 +350,7 @@ msgid "Invest capital in the UK"
 msgstr "在英投资优势"
 
 #: core/header_config/tier_one_nav_items.py:25
+#: core/templates/core/why_buy_from_the_uk_form.html:14
 msgid "Buy from the UK"
 msgstr "购买英国产品"
 
@@ -375,6 +366,7 @@ msgid "Overview"
 msgstr "概述"
 
 #: core/header_config/tier_two_nav_items.py:14
+#: core/templates/core/investment_prospectus_form.html:13
 msgid "Why choose the UK"
 msgstr "英国的优势"
 
@@ -410,10 +402,8 @@ msgid "How to invest capital"
 msgstr ""
 
 #: core/header_config/tier_two_nav_items.py:113
-#, fuzzy
-#| msgid "I want to buy from the UK"
 msgid "How to buy from the UK"
-msgstr "我想从英国购买"
+msgstr "从英国购买商品"
 
 #: core/templates/core/article_related_content_cards.html:9
 #: core/templates/core/article_related_content_list.html:20
@@ -423,39 +413,6 @@ msgstr ""
 
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:17
-msgid "Download the UK Investment Prospectus"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:19
-msgid ""
-"The UK offers an established, business-friendly environment boasting "
-"economic stability and commercial security for investing, expanding and "
-"buying from the UK."
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:20
-msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:22
-msgid ""
-"the growth of UK sectors and which geographic regions are best suited to "
-"your business"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:23
-msgid ""
-"UK tax, incentives, talent, labour and innovation to help you draw "
-"comparisons with European and international markets"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:24
-msgid ""
-"UK industrial strategy and how government is supporting overseas businesses "
-"in driving national skills, industries and infrastructure"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
@@ -482,6 +439,18 @@ msgstr ""
 msgid "Other projects in"
 msgstr ""
 
+#: core/templates/core/contact_international_triage.html:25
+msgid "What would you like to know more about?"
+msgstr "您还想了解哪些信息？"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr "继续"
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
+msgstr "返回"
+
 #: core/templates/core/how_to_do_business_landing_page.html:61
 msgid "Need help?"
 msgstr "需要帮助？"
@@ -500,13 +469,13 @@ msgstr "联系脱欧咨询服务部门"
 
 #: core/templates/core/includes/form_consent.html:4
 msgid "How we use your information"
-msgstr ""
+msgstr "我们如何使用您的信息"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
-msgstr ""
+msgstr "国际贸易部将使用此表格中提供的信息回复您的询问。"
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -517,22 +486,102 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"  您可以在我们的<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">privacy notice</a>中了解我们如何保护您的数据。\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
-msgstr ""
-
-#: core/templates/core/includes/form_consent.html:20
-msgid ""
-"If you would like to receive additional information about investing in the "
-"UK you can opt in below. You can opt out of these additional updates at any "
-"time."
-msgstr ""
+msgstr "更多信息"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
+msgstr "国际贸易部将使用此表格中提供的信息回复您的询问。"
+
+#: core/templates/core/includes/form_consent_business_env_guide.html:11
+msgid ""
+"If you would like to receive additional information about expanding your "
+"business to the UK you can opt in below. You can opt out of these updates at "
+"any time."
+msgstr ""
+"如果您想收到更多关于登陆英国市场的信息，那么可以在下方选择加入。您可以随时选"
+"择取消接收更新。"
+
+#: core/templates/core/includes/form_consent_buy.html:7
+msgid ""
+"If you would like to receive additional information about buying goods from "
+"the UK you can opt in below. You can opt out of these updates at any time."
+msgstr ""
+"如果您想收到更多关于从英国采购的信息，那么可以在下方选择加入。您可以随时选择"
+"取消接收更新。"
+
+#: core/templates/core/includes/form_consent_capital_investment.html:7
+msgid ""
+"If you would like to receive additional information about investing capital "
+"in the UK you can opt in below. You can opt out of these updates at any time."
+msgstr ""
+"如果您想收到更多关于投资英国资本市场的信息，那么可以在下方选择加入。您可以随"
+"时选择取消接收更新。"
+
+#: core/templates/core/includes/form_consent_invest.html:7
+msgid ""
+"If you would like to receive additional information about investing in the "
+"UK you can opt in below. You can opt out of these additional updates at any "
+"time."
+msgstr ""
+"如果您想收到更多关于登陆英国市场的信息，那么可以在下方选择加入。您可以随时选"
+"择取消接收更新。"
+
+#: core/templates/core/includes/form_consent_transition.html:7
+msgid ""
+"If you would like to receive additional information the UK's transition "
+"period you can opt in below. You can opt out of these additional updates at "
+"any time."
+msgstr ""
+"如果您想获得更多信息，可以在下面选择英国过渡期。 您可以随时选择退出这些其他更"
+"新。"
+
+#: core/templates/core/investment_prospectus_form.html:9
+msgid "The UK Investment Prospectus"
+msgstr "英国投资说明书"
+
+#: core/templates/core/investment_prospectus_form.html:18
+msgid "Download the UK Investment Prospectus"
+msgstr "英国投资说明书"
+
+#: core/templates/core/investment_prospectus_form.html:20
+msgid ""
+"The UK offers an established, business-friendly environment boasting "
+"economic stability and commercial security for investing, expanding and "
+"buying from the UK."
+msgstr ""
+"英国提供商业友好的成熟市场环境，具有经济稳定、商业安全的特点，是投资、扩张和"
+"采购的理想选择。"
+
+#: core/templates/core/investment_prospectus_form.html:21
+msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
+msgstr "通过下载英国投资说明书，您将了解到："
+
+#: core/templates/core/investment_prospectus_form.html:23
+msgid ""
+"the growth of UK sectors and which geographic regions are best suited to "
+"your business"
+msgstr ""
+
+#: core/templates/core/investment_prospectus_form.html:24
+msgid ""
+"UK tax, incentives, talent, labour and innovation to help you draw "
+"comparisons with European and international markets"
+msgstr ""
+
+#: core/templates/core/investment_prospectus_form.html:25
+msgid ""
+"UK industrial strategy and how government is supporting overseas businesses "
+"in driving national skills, industries and infrastructure"
 msgstr ""
 
 #: core/templates/core/sector_page.html:169
@@ -556,90 +605,164 @@ msgstr "我想投资英国"
 msgid "I want to buy from the UK"
 msgstr "我想从英国购买"
 
+#: core/templates/core/why_buy_from_the_uk_form.html:10
+msgid "5 Reasons to Buy from the UK"
+msgstr "从英国采购的 5 大理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:16
+msgid "How we help you buy"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:21
+msgid "Download our ebook: 5 reasons to buy from the UK"
+msgstr "从英国采购的 5 大理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:22
+msgid ""
+"The UK is a global, outward-facing nation with strong international ties to "
+"160 markets around the world. Enter your details below to download our ebook "
+"5 reasons to buy from the UK, including:"
+msgstr ""
+"英国是一个对外开放的国家，与全世界保持有良好的沟通与联系，并与全球 160 个市场"
+"建立起稳固的国际关系。在下面输入您的个人信息，下载《从英国采购的 5 大理由》电"
+"子书，书中内容包括："
+
+#: core/templates/core/why_buy_from_the_uk_form.html:24
+msgid "the excitement and creativity of the UK"
+msgstr "英国的激情和创造力"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:25
+msgid "UK industries and companies pushing the boundaries"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:26
+msgid "infrastructure, export finance and collaboration"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:27
+msgid "why UK businesses are stable and professional"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:28
+msgid "commitment to the highest standards for better long-term value"
+msgstr "恪守最高标准，获得更高的长期价值"
+
+#: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
+msgid "Company"
+msgstr "公司"
+
+#: euexit/forms.py:19
+msgid "Other type of organisation"
+msgstr "其他组织类型"
+
+#: euexit/forms.py:54
+msgid "Organisation type"
+msgstr "组织类型"
+
+#: euexit/forms.py:64
+msgid "City"
+msgstr "城市"
+
+#: euexit/forms.py:66
+msgid "Your question"
+msgstr "您的问题"
+
+#: euexit/forms.py:67
+msgid "Please don't share commercially sensitive information."
+msgstr "请不要分享商业敏感信息。"
+
+#: euexit/templates/euexit/form-contents.html:7
+#: euexit/templates/euexit/international-contact-form.html:7
+#: euexit/templates/euexit/international-contact-form.html:14
+msgid "Transition period enquiries"
+msgstr "过渡期咨询"
+
+#: euexit/templates/euexit/form-contents.html:9
+#, python-format
+msgid ""
+"\n"
+"              <p>\n"
+"                See our guidance on <a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">trading with the UK during the transition period and in "
+"2021</a>. If you can’t find the information you’re looking for, complete the "
+"form below and one of our experts will try to help you.\n"
+"              </p>\n"
+"              "
+msgstr ""
+"\n"
+"              <p>\n"
+"                查看<a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">过渡期及 2021 年英国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您提供帮助。\n"
+"              </p>\n"
+"              "
+
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"
-msgstr ""
+msgstr "杂志、报纸或行业刊物"
 
 #: find_a_supplier/constants.py:11
 msgid "Posters or billboard"
-msgstr ""
+msgstr "海报或广告牌"
 
 #: find_a_supplier/constants.py:15
 msgid "Outdoor advertising digital screen"
-msgstr ""
+msgstr "户外数字广告屏"
 
 #: find_a_supplier/constants.py:19
 msgid "Website advertisement"
-msgstr ""
+msgstr "网站广告"
 
 #: find_a_supplier/constants.py:23
 msgid "Website article"
-msgstr ""
+msgstr "网站文章"
 
 #: find_a_supplier/constants.py:30
 msgid "Social media website"
-msgstr ""
+msgstr "社交媒体网站"
 
 #: find_a_supplier/constants.py:34
 msgid "At an event"
-msgstr ""
+msgstr "特定活动"
 
-#: find_a_supplier/forms.py:30
+#: find_a_supplier/forms.py:31
 msgid "All industries"
 msgstr "行业"
 
-#: find_a_supplier/forms.py:165
+#: find_a_supplier/forms.py:166
 msgid "Please select an industry"
 msgstr ""
 
-#: find_a_supplier/forms.py:167
+#: find_a_supplier/forms.py:168
 msgid "Tick the box to confirm you agree to the terms and conditions."
 msgstr ""
 
-#: find_a_supplier/forms.py:174
+#: find_a_supplier/forms.py:175
 msgid "Your name"
 msgstr ""
 
-#: find_a_supplier/forms.py:224
-#, python-brace-format
-msgid ""
-"I agree to the <a href=\"{url}\" target=\"_blank\">great.gov.uk terms and "
-"conditions</a>"
-msgstr ""
-
-#: find_a_supplier/forms.py:231
-msgid "Full name"
-msgstr ""
-
-#: find_a_supplier/forms.py:251
-msgid "Your industry"
-msgstr "行业"
-
-#: find_a_supplier/forms.py:255
+#: find_a_supplier/forms.py:253
 msgid "Your organisation name"
-msgstr ""
+msgstr "您的组织名称"
 
-#: find_a_supplier/forms.py:263
+#: find_a_supplier/forms.py:261
 msgid "Size of your organisation"
-msgstr ""
+msgstr "您的组织规模"
 
-#: find_a_supplier/forms.py:268
-msgid "Your country"
-msgstr "国家"
-
-#: find_a_supplier/forms.py:273
+#: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"
-msgstr ""
+msgstr "描述您需要哪些产品或服务"
 
-#: find_a_supplier/forms.py:274
+#: find_a_supplier/forms.py:272
 msgid "Maximum 1000 characters."
-msgstr ""
+msgstr "最多 1,000 个字符"
 
-#: find_a_supplier/forms.py:282
+#: find_a_supplier/forms.py:280
 msgid "Where did you hear about great.gov.uk?"
-msgstr ""
+msgstr "您从哪里了解到 great.gov.uk？"
 
-#: find_a_supplier/forms.py:291
+#: find_a_supplier/forms.py:289
 msgid "Other source (optional)"
 msgstr ""
 
@@ -647,13 +770,13 @@ msgstr ""
 msgid "Name"
 msgstr "全名"
 
-#: perfect_fit_prospectus/forms.py:16
-msgid "Company"
+#: perfect_fit_prospectus/forms.py:21
+msgid "Email"
 msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"
-msgstr ""
+msgstr "电话号码（可选）"
 
 #: perfect_fit_prospectus/forms.py:40
 msgid "I would like to receive further information."
@@ -697,63 +820,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#, fuzzy
-#~| msgid "Phone number"
-#~ msgid "Enter your phone number"
-#~ msgstr "工作电话"
-
-#~ msgid "Less than 10"
-#~ msgstr "少于 10"
-
-#~ msgid "10 to 50"
-#~ msgstr "11到50"
-
-#~ msgid "51 to 250"
-#~ msgstr "51到250"
-
-#~ msgid "More than 250"
-#~ msgstr "多于 250"
-
-#~ msgid ""
-#~ "We will use this information to put you in touch with your closest "
-#~ "British embassy or high commission."
-#~ msgstr ""
-#~ "我们将使用此信息来安排您联系最靠近您的英国大使馆或特派使节团。开始输入并选"
-#~ "择一个选项"
-
-#~ msgid "Current number of staff"
-#~ msgstr "当前员工总数"
-
-#~ msgid ""
-#~ "Tell us about your company and your plans for the UK in terms of size of "
-#~ "investment, operational and recruitment plans. Please also tell us what "
-#~ "help you would like from the UK government."
-#~ msgstr ""
-#~ "向我们告知您的公司和您的英国投资计划的相关信息 - 投资规模以及运营和招聘计"
-#~ "划。也请向我们告知您希望英国政府为您提供什么帮助。"
-
-#~ msgid "Your investment"
-#~ msgstr "您的投资"
-
-#, fuzzy
-#~| msgid "Current number of staff"
-#~ msgid "Current number of staff (Optional)"
-#~ msgstr "当前员工总数"
-
-#, fuzzy
-#~| msgid "I want to invest in the UK"
-#~ msgid "Investing capital in the UK"
-#~ msgstr "我想投资英国"
-
-#, fuzzy
-#~| msgid "I want to buy from the UK"
-#~ msgid "Buying goods from the UK"
-#~ msgstr "我想从英国购买"
-
-#~ msgid ""
-#~ "I confirm the information provided is true and I accept DIT's terms and "
-#~ "conditions"
-#~ msgstr ""
-#~ "向我们发送您的详细信息，即表明您确认您与我们分享的信息真实有效，且您接受我"
-#~ "们的条款和条件。"

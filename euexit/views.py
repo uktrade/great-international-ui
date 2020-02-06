@@ -1,10 +1,9 @@
-from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_components.mixins import GA360Mixin, EnableTranslationsMixin
 from directory_constants import slugs
 from directory_forms_api_client.helpers import Sender
 
 from django.conf import settings
 from django.urls import reverse_lazy
-from django.utils import translation
 from django.views.generic.edit import FormView
 
 from core.mixins import CMSPageFromSlugMixin, InternationalHeaderMixin
@@ -18,32 +17,24 @@ from euexit import forms
 SESSION_KEY_FORM_INGRESS_URL = 'FORM_INGRESS_URL'
 
 
-class InternationalContactFormView(
-    CMSPageFromSlugMixin,
-    CountryDisplayMixin,
-    GA360Mixin,
-    InternationalHeaderMixin,
-    FormView,
-):
-    slug = slugs.EUEXIT_INTERNATIONAL_FORM
-    form_class = forms.InternationalContactForm
+class TransitionContactFormView(EnableTranslationsMixin, GA360Mixin, InternationalHeaderMixin, FormView):
+    template_name = 'euexit/international-contact-form.html'
+    form_class = forms.TransitionContactForm
     success_url = reverse_lazy('brexit-international-contact-form-success')
     subject = 'Brexit international contact form'
-    page_type = 'InternationalEUExitFormPage'
     header_section = tier_one_nav_items.ABOUT_DIT
     header_sub_section = tier_two_nav_items.CONTACT_US_ABOUT_DIT
 
     def __init__(self):
         super().__init__()
         self.set_ga360_payload(
-            page_id=self.page_type,
+            page_id='InternationalEUExitFormPage',
             business_unit='GreatInternational',
             site_section='EUExit',
             site_subsection='ContactForm'
         )
 
     def get(self, *args, **kwargs):
-        translation.activate('en-gb')  # make sure header is in English
         self.request.session[SESSION_KEY_FORM_INGRESS_URL] = (
             self.request.META.get('HTTP_REFERER')
         )
@@ -51,11 +42,9 @@ class InternationalContactFormView(
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['field_attributes'] = self.page
         kwargs['ingress_url'] = (
             self.request.session.get(SESSION_KEY_FORM_INGRESS_URL)
         )
-        kwargs['disclaimer'] = self.page['disclaimer']
         return kwargs
 
     def form_valid(self, form):

@@ -11,9 +11,9 @@
 
 <section>
     <div class="container">
-        {% breadcrumbs 'Contact' %}
+      {% trans "Contact us" as contact_title %}
+        {% breadcrumbs contact_title %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-            <a href="{{ domestic_contact_home }}">Contact us</a>
         {% endbreadcrumbs %}
     </div>
 </section>
@@ -22,15 +22,15 @@
     <div class="container">
         <div class="grid-row">
             <div class="column-half">
-                <h1 class="heading-large">What would you like to know more about?</h1>
+                <h1 class="heading-large">{% trans "What would you like to know more about?" %}</h1>
                 <form method="post">
-                    {{form.choice}}
-                    <button type="submit" name="button" class="button button-blue">Continue</button>
+                    {{ form.choice }}
+                    <button type="submit" name="button" class="button button-blue">{% trans "Continue" %}</button>
                 </form>
             </div>
         </div>
         <div class="margin-top-30">
-            <a href="{{ domestic_contact_home }}" type="submit" >Back</a>
+            <a href="{{ domestic_contact_home }}" type="submit" >{% trans "Back" %}</a>
         </div>
     </div>
 </section>

@@ -727,7 +727,8 @@ def test_industry_contact_submit_with_comment_forms_api(
 
     url = reverse('find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'})
     data = {
-        'full_name': 'Jeff',
+        'given_name': 'Jeff',
+        'family_name': 'Goldblum',
         'email_address': 'jeff@example.com',
         'phone_number': '3223232',
         'sector': sectors.AEROSPACE,
@@ -862,7 +863,7 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
 @mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
 def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_data):
     mock_submit_generic.return_value = None
-    form = forms.ContactForm(data=valid_contact_data, industry_choices=choices.INDUSTRIES)
+    form = forms.BuyFromTheUKForm(data=valid_contact_data)
     data = valid_contact_data
 
     assert form.is_valid()
@@ -874,8 +875,11 @@ def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_dat
     )
 
     assert form.serialized_data == {
-        'full_name': data['full_name'],
+        'given_name': data['given_name'],
+        'family_name': data['family_name'],
         'email_address': data['email_address'],
+        'email_contact_consent': data['email_contact_consent'],
+        'telephone_contact_consent': data['telephone_contact_consent'],
         'phone_number': data['phone_number'],
         'sector': data['sector'],
         'organisation_name': data['organisation_name'],

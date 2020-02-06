@@ -11,7 +11,7 @@ from django.forms import Textarea, Select
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from core.constants import EMAIL_CONSENT_LABEL, PHONE_CONSENT_LABEL
+from core import constants
 
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
@@ -76,7 +76,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
     given_name = forms.CharField(label=_('Given name'))
     family_name = forms.CharField(label=_('Family name'))
     job_title = forms.CharField(label=_('Job title'))
-    email = forms.EmailField(label=_('Work email address'))
+    email = forms.EmailField(label=_('Email address'))
     phone_number = forms.CharField(
         label=_('Phone number'),
     )
@@ -88,12 +88,12 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
         label=_('Company HQ address'),
     )
     country = forms.ChoiceField(
-        label=_('Country'),
+        label=_('Which country are you based in?'),
         choices=COUNTRIES,
         widget=Select(attrs={'id': 'js-country-select'})
     )
     industry = forms.ChoiceField(
-        label=_('Industry'),
+        label=_('Your industry'),
         choices=INDUSTRY_CHOICES
     )
     expanding_to_uk = forms.ChoiceField(
@@ -107,25 +107,25 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
             'plans to expand to the UK, including size of the operation, '
             'why you’re considering the UK and what you’ll need to make it happen.'
             ),
-        required=False,
+        required=True,
         widget=Textarea()
     )
     arrange_callback = forms.RadioNested(
-        label=_('Would you like us to arrange a call?'),
+        label=_('Would you like to arrange a call?'),
         choices=ARRANGE_CALLBACK_CHOICES,
         nested_form_class=ContactFormNestedDetails,
         nested_form_choice='yes',
     )
     how_did_you_hear = forms.ChoiceField(
-        label=_('How did you hear about us? (Optional)'),
+        label=_('How did you hear about us?'),
         choices=HOW_DID_YOU_HEAR_CHOICES,
     )
     email_contact_consent = forms.BooleanField(
-        label=EMAIL_CONSENT_LABEL,
+        label=constants.EMAIL_CONSENT_LABEL,
         required=False
     )
     telephone_contact_consent = forms.BooleanField(
-        label=PHONE_CONSENT_LABEL,
+        label=constants.PHONE_CONSENT_LABEL,
         required=False
     )
     captcha = ReCaptchaField(
@@ -145,7 +145,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Given name'), data['given_name']),
                 (_('Family name'), data['family_name']),
                 (_('Job title'), data['job_title']),
-                (_('Work email address'), data['email']),
+                (_('Email address'), data['email']),
                 (_('Phone number'), data['phone_number']),
                 (_('Company name'), data['company_name']),
                 (_('Company website'), data.get('company_website')),
@@ -154,11 +154,11 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Industry'), data['industry']),
                 (_('Which of these best describes how you feel about expanding to the UK?'), data['expanding_to_uk']),
                 (_('Tell us about your investment'), data['description']),
-                (_('Would you like us to arrange a call?'), data['arrange_callback']),
+                (_('Would you like to arrange a call?'), data['arrange_callback']),
                 (_('When should we call you?'), data['when_to_call']),
                 (_('How did you hear about us?'), data['how_did_you_hear']),
-                (EMAIL_CONSENT_LABEL, data['email_contact_consent']),
-                (PHONE_CONSENT_LABEL, data['telephone_contact_consent']),
+                (constants.EMAIL_CONSENT_LABEL, data['email_contact_consent']),
+                (constants.PHONE_CONSENT_LABEL, data['telephone_contact_consent']),
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,

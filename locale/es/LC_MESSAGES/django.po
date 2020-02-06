@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-30 12:37+0000\n"
+"POT-Creation-Date: 2020-02-06 13:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,123 +18,129 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: contact/forms.py:20 core/forms.py:254
+#: contact/forms.py:20 core/forms.py:231
 msgid "Yes"
 msgstr ""
 
-#: contact/forms.py:21 core/forms.py:255
+#: contact/forms.py:21 core/forms.py:232
 msgid "No"
 msgstr ""
 
 #: contact/forms.py:24
 msgid "Press ad (newspaper/trade publication)"
-msgstr ""
+msgstr "Publicidad en prensa (publicación en un periódico/comercial)"
 
 #: contact/forms.py:25
 msgid "Outdoor ad/billboard"
-msgstr ""
+msgstr "Publicidad exterior/valla publicitaria"
 
 #: contact/forms.py:26
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: contact/forms.py:27
 msgid "Other social media (e.g. Twitter/Facebook)"
-msgstr ""
+msgstr "Otras redes sociales (p. ej., Twitter/Facebook)"
 
 #: contact/forms.py:28
 msgid "Internet search"
-msgstr ""
+msgstr "Búsqueda en Internet"
 
-#: contact/forms.py:29 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:294 find_a_supplier/constants.py:38
 msgid "Other"
-msgstr ""
+msgstr "Otros"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "Estoy convencido y quiero hablar con alguien sobre mis planes."
 
 #: contact/forms.py:40
 msgid ""
 "The UK is on my shortlist. How can the Department for International Trade "
 "help me?"
 msgstr ""
+"El Reino Unido está en mi lista. ¿Cómo me puede ayudar el Departamento de "
+"Comercio Internacional?"
 
 #: contact/forms.py:45
 msgid ""
 "I’m still exploring where to expand my business and would like to know more "
 "about the UK’s offer."
 msgstr ""
+"Todavía estoy explorando opciones para la expansión de mi negocio y me "
+"gustaría tener más información sobre la oferta del Reino Unido."
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "Todavía no estoy listo a expandir. Manténgame informado."
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "¿Cuándo le deberíamos llamar? "
 
 #: contact/forms.py:62
 msgid "In the morning"
-msgstr ""
+msgstr "Por la mañana"
 
 #: contact/forms.py:66
 msgid "In the afternoon"
-msgstr ""
+msgstr "Por la tarde"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:207
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
+#: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
-msgstr ""
+msgstr "Nombre"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:213
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
+#: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
 msgid "Family name"
-msgstr ""
+msgstr "Apellidos"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
 msgstr "Cargo"
 
-#: contact/forms.py:79 contact/forms.py:148
-#, fuzzy
-#| msgid "Email address"
-msgid "Work email address"
+#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
+#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
+#: find_a_supplier/forms.py:237
+msgid "Email address"
 msgstr "Dirección de correo electrónico de la empresa"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
-#: find_a_supplier/forms.py:245
+#: find_a_supplier/forms.py:243
 msgid "Phone number"
-msgstr "Número de teléfono de la empresa"
+msgstr "Número de teléfono"
 
-#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:226
-#: find_a_supplier/forms.py:183
+#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:203
+#: euexit/forms.py:58 find_a_supplier/forms.py:184
 msgid "Company name"
-msgstr "Nombre registrado de la empresa"
+msgstr "Nombre de la empresa"
 
 #: contact/forms.py:85 contact/forms.py:151
 msgid "Company website"
-msgstr "Website da empresa"
+msgstr "Sitio web de la empresa"
 
 #: contact/forms.py:88 contact/forms.py:152
 msgid "Company HQ address"
-msgstr ""
+msgstr "Dirección de la sede de la empresa"
 
-#: contact/forms.py:91 contact/forms.py:153 core/forms.py:144 core/forms.py:242
-#: perfect_fit_prospectus/forms.py:32
-msgid "Country"
-msgstr "País"
+#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:60
+msgid "Which country are you based in?"
+msgstr "¿En qué país se encuentra?"
 
-#: contact/forms.py:96 contact/forms.py:154 core/forms.py:150
-#: find_a_supplier/forms.py:177
-msgid "Industry"
-msgstr ""
+#: contact/forms.py:96 find_a_supplier/forms.py:249
+msgid "Your industry"
+msgstr "Su sector"
 
 #: contact/forms.py:100 contact/forms.py:155
 msgid "Which of these best describes how you feel about expanding to the UK?"
 msgstr ""
+"¿Cuál de las siguientes opciones describe mejor su opinión sobre la "
+"expansión en el Reino Unido?"
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr "Cuéntenos acerca de su inversión"
+msgstr "Háblenos de su inversión"
 
 #: contact/forms.py:106
 msgid ""
@@ -142,26 +148,26 @@ msgid ""
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
+"Háganos las preguntas que necesite o coméntenos sus planes de expansión al "
+"Reino Unido, sin olvidar el tamaño de las operaciones, el motivo por el que "
+"está pensando en el Reino Unido y lo que necesitará para materializar sus "
+"planes. "
 
 #: contact/forms.py:114 contact/forms.py:157
-msgid "Would you like us to arrange a call?"
-msgstr ""
+msgid "Would you like to arrange a call?"
+msgstr "¿Desea concertar una llamada?"
 
-#: contact/forms.py:120
-msgid "How did you hear about us? (Optional)"
-msgstr ""
-
-#: contact/forms.py:159
+#: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
-msgstr ""
+msgstr "¿Cómo nos ha conocido?"
 
-#: contact/forms.py:160 core/constants.py:288
-msgid "I would like to receive additional information by email"
-msgstr ""
+#: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
+msgid "Country"
+msgstr "País"
 
-#: contact/forms.py:161 core/constants.py:289
-msgid "I would like to receive additional information by telephone"
-msgstr ""
+#: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
+msgid "Industry"
+msgstr "Sector"
 
 #: contact/forms.py:194
 msgid "Contact form user email subject"
@@ -174,6 +180,7 @@ msgstr ""
 #: core/header_config/tier_two_nav_items.py:100
 #: core/header_config/tier_two_nav_items.py:125
 #: core/header_config/tier_two_nav_items.py:137
+#: core/templates/core/contact_international_triage.html:14
 msgid "Contact us"
 msgstr "Contacto"
 
@@ -182,24 +189,27 @@ msgid "Contact the investment team"
 msgstr "Contacte con el equipo de inversión"
 
 #: contact/templates/contact/contact.html:24
-msgid "Contact Information"
-msgstr "Su empresa"
+msgid "Contact information"
+msgstr "Información de contacto"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
-msgstr "Su empresa"
+msgstr "Información de la empresa"
 
 #: contact/templates/contact/contact.html:39
 msgid "Your plans"
 msgstr "Su inversión"
 
 #: contact/templates/contact/contact.html:46
+#: core/templates/core/investment_prospectus_form.html:42
+#: core/templates/core/why_buy_from_the_uk_form.html:54
+#: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
-msgstr "Contacto"
+msgstr "Enviar"
 
 #: contact/templates/contact/contact.html:63
 msgid "Type here"
-msgstr ""
+msgstr "Escriba aquí"
 
 #: contact/templates/contact/contact_form_success_page.html:14
 msgid "Your form has been submitted."
@@ -220,6 +230,14 @@ msgstr ""
 msgid "Submission url"
 msgstr ""
 
+#: core/constants.py:288
+msgid "I would like to receive additional information by email"
+msgstr "Me gustaría recibir información adicional por correo electrónico"
+
+#: core/constants.py:289
+msgid "I would like to receive additional information by telephone"
+msgstr "Me gustaría recibir información adicional por teléfono"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -232,106 +250,85 @@ msgstr "Buscar un proveedor"
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:35
-msgid "sector"
-msgstr ""
-
-#: core/forms.py:43
-msgid "scale"
-msgstr ""
-
-#: core/forms.py:51
-msgid "region"
-msgstr ""
-
-#: core/forms.py:59
-msgid "sub_sector"
-msgstr ""
-
-#: core/forms.py:67
-msgid "sort_by"
-msgstr ""
-
-#: core/forms.py:99 core/forms.py:219 find_a_supplier/forms.py:175
-#: find_a_supplier/forms.py:239
-msgid "Email address"
-msgstr "Dirección de correo electrónico de la empresa"
-
-#: core/forms.py:101 core/forms.py:236
+#: core/forms.py:101 core/forms.py:213
 msgid "Phone number (Optional)"
 msgstr "Número de teléfono de la empresa"
 
-#: core/forms.py:105
-msgid "Which country are you based in?"
-msgstr ""
-
 #: core/forms.py:110
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #: core/forms.py:114
 msgid "How can we help?"
-msgstr ""
+msgstr "¿Cómo podemos ayudarle?"
 
-#: core/forms.py:139
-msgid "First name"
-msgstr ""
-
-#: core/forms.py:140
-msgid "Last name"
-msgstr ""
-
-#: core/forms.py:141 perfect_fit_prospectus/forms.py:21
-msgid "Email"
-msgstr ""
-
-#: core/forms.py:199
+#: core/forms.py:176
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
 msgstr ""
 
-#: core/forms.py:209 core/forms.py:215
+#: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
 msgstr ""
 
-#: core/forms.py:221
+#: core/forms.py:199
 msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
-#: core/forms.py:228
-#, fuzzy
-#| msgid "Company name"
+#: core/forms.py:205
 msgid "Enter your company name"
 msgstr "Nombre registrado de la empresa"
 
-#: core/forms.py:232
+#: core/forms.py:209
 msgid "Job title (Optional)"
-msgstr ""
+msgstr "Cargo (opcional)"
 
-#: core/forms.py:239
+#: core/forms.py:216
 msgid "City (Optional)"
-msgstr ""
+msgstr "Ciudad (opcional)"
 
-#: core/forms.py:246
+#: core/forms.py:219 find_a_supplier/forms.py:266
+msgid "Your country"
+msgstr "Su país"
+
+#: core/forms.py:223
 msgid "Select a country"
 msgstr ""
 
-#: core/forms.py:251
+#: core/forms.py:228
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
 msgstr ""
 
-#: core/forms.py:260
+#: core/forms.py:237
 msgid "Select either yes or no"
 msgstr ""
 
-#: core/forms.py:265
-#, fuzzy
-#| msgid "Phone number (Optional)"
-msgid "Industry/Sector (Optional)"
-msgstr "Número de teléfono de la empresa"
+#: core/forms.py:242
+msgid "Your industry (optional)"
+msgstr "Su sector (opcional)"
+
+#: core/forms.py:289
+msgid "Expanding to the UK"
+msgstr "Expansión al Reino Unido"
+
+#: core/forms.py:290
+msgid "Investing capital in the UK"
+msgstr "Inversión de capitales en el Reino Unido"
+
+#: core/forms.py:291
+msgid "Exporting to the UK"
+msgstr ""
+
+#: core/forms.py:292
+msgid "Buying from the UK"
+msgstr "Adquisiciones en el Reino Unido"
+
+#: core/forms.py:293
+msgid "The transition period (now that the UK has left the EU)"
+msgstr "Periodo de transición (ahora que el Reino Unido ha salido de la UE)"
 
 #: core/header_config/old_nav_items.py:14
 msgid "UK setup guide"
@@ -351,6 +348,7 @@ msgstr "Sectores"
 #: core/templates/core/about_uk/about_uk_region_listing_page.html:25
 #: core/templates/core/about_uk/about_uk_region_page.html:24
 #: core/templates/core/about_uk/why_choose_the_uk_page.html:18
+#: core/templates/core/investment_prospectus_form.html:12
 #: core/templates/core/sector_page.html:17
 msgid "About the UK"
 msgstr "Trouver un fournisseur"
@@ -364,6 +362,7 @@ msgid "Invest capital in the UK"
 msgstr "Invertir capital en el Reino Unido"
 
 #: core/header_config/tier_one_nav_items.py:25
+#: core/templates/core/why_buy_from_the_uk_form.html:14
 msgid "Buy from the UK"
 msgstr "Comprar en el Reino Unido"
 
@@ -379,6 +378,7 @@ msgid "Overview"
 msgstr "Descripción general"
 
 #: core/header_config/tier_two_nav_items.py:14
+#: core/templates/core/investment_prospectus_form.html:13
 msgid "Why choose the UK"
 msgstr "Por qué hay que elegir el Reino Unido"
 
@@ -427,39 +427,6 @@ msgstr ""
 msgid "Is there anything wrong on this page?"
 msgstr ""
 
-#: core/templates/core/business_environment_guide_form.html:17
-msgid "Download the UK Investment Prospectus"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:19
-msgid ""
-"The UK offers an established, business-friendly environment boasting "
-"economic stability and commercial security for investing, expanding and "
-"buying from the UK."
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:20
-msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:22
-msgid ""
-"the growth of UK sectors and which geographic regions are best suited to "
-"your business"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:23
-msgid ""
-"UK tax, incentives, talent, labour and innovation to help you draw "
-"comparisons with European and international markets"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:24
-msgid ""
-"UK industrial strategy and how government is supporting overseas businesses "
-"in driving national skills, industries and infrastructure"
-msgstr ""
-
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
 msgid "Filter results"
 msgstr ""
@@ -484,6 +451,18 @@ msgstr ""
 msgid "Other projects in"
 msgstr ""
 
+#: core/templates/core/contact_international_triage.html:25
+msgid "What would you like to know more about?"
+msgstr "¿Sobre qué tema le gustaría obtener más información?"
+
+#: core/templates/core/contact_international_triage.html:28
+msgid "Continue"
+msgstr ""
+
+#: core/templates/core/contact_international_triage.html:33
+msgid "Back"
+msgstr ""
+
 #: core/templates/core/how_to_do_business_landing_page.html:61
 msgid "Need help?"
 msgstr "¿Necesita ayuda?"
@@ -503,13 +482,15 @@ msgstr ""
 
 #: core/templates/core/includes/form_consent.html:4
 msgid "How we use your information"
-msgstr ""
+msgstr "Cómo usamos su información"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to respond to your enquiry."
 msgstr ""
+"El Departamento de Comercio Internacional utilizará la información "
+"proporcionada en este formulario para responder a su consulta."
 
 #: core/templates/core/includes/form_consent.html:12
 #, python-format
@@ -520,23 +501,122 @@ msgid ""
 "\"%(privacy_url)s\" target=\"_blank\">our privacy notice</a>.\n"
 "</p>\n"
 msgstr ""
+"\n"
+"<p>\n"
+"Puede obtener información detallada acerca de cómo protegemos sus datos en "
+"nuestro<a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank\">Aviso de "
+"privacidad</a>.\n"
+"</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18
 msgid "Additional information"
-msgstr ""
-
-#: core/templates/core/includes/form_consent.html:20
-msgid ""
-"If you would like to receive additional information about investing in the "
-"UK you can opt in below. You can opt out of these additional updates at any "
-"time."
-msgstr ""
+msgstr "Información adicional"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
 msgstr ""
+"El Departamento de Comercio Internacional utilizará la información "
+"proporcionada en este formulario para responder a su consulta."
+
+#: core/templates/core/includes/form_consent_business_env_guide.html:11
+msgid ""
+"If you would like to receive additional information about expanding your "
+"business to the UK you can opt in below. You can opt out of these updates at "
+"any time."
+msgstr ""
+"Si desea recibir más información acerca de las inversiones de capital en el "
+"Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a "
+"estas actualizaciones en cualquier momento."
+
+#: core/templates/core/includes/form_consent_buy.html:7
+msgid ""
+"If you would like to receive additional information about buying goods from "
+"the UK you can opt in below. You can opt out of these updates at any time."
+msgstr ""
+"Si desea recibir más información acerca de la compra de productos del Reino "
+"Unido, puede suscribirse a continuación. Puede anular la suscripción a estas "
+"actualizaciones en cualquier momento."
+
+#: core/templates/core/includes/form_consent_capital_investment.html:7
+msgid ""
+"If you would like to receive additional information about investing capital "
+"in the UK you can opt in below. You can opt out of these updates at any time."
+msgstr ""
+"Si desea recibir más información acerca de las inversiones de capital en el "
+"Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a "
+"estas actualizaciones en cualquier momento."
+
+#: core/templates/core/includes/form_consent_invest.html:7
+msgid ""
+"If you would like to receive additional information about investing in the "
+"UK you can opt in below. You can opt out of these additional updates at any "
+"time."
+msgstr ""
+"Si desea recibir más información acerca de las inversiones de capital en el "
+"Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a "
+"estas actualizaciones en cualquier momento."
+
+#: core/templates/core/includes/form_consent_transition.html:7
+msgid ""
+"If you would like to receive additional information the UK's transition "
+"period you can opt in below. You can opt out of these additional updates at "
+"any time."
+msgstr ""
+"Si desea recibir más información acerca de las inversiones de capital en el "
+"Reino Unido, puede suscribirse a continuación. Puede anular la suscripción a "
+"estas actualizaciones en cualquier momento."
+
+#: core/templates/core/investment_prospectus_form.html:9
+msgid "The UK Investment Prospectus"
+msgstr "Folleto sobre inversión en el Reino Unido"
+
+#: core/templates/core/investment_prospectus_form.html:18
+msgid "Download the UK Investment Prospectus"
+msgstr "Folleto sobre inversión en el Reino Unido"
+
+#: core/templates/core/investment_prospectus_form.html:20
+msgid ""
+"The UK offers an established, business-friendly environment boasting "
+"economic stability and commercial security for investing, expanding and "
+"buying from the UK."
+msgstr ""
+"El Reino Unido ofrece un entorno consolidado propicio para los negocios, que "
+"presume de estabilidad económica y seguridad comercial para operaciones de "
+"inversión, expansión y adquisición."
+
+#: core/templates/core/investment_prospectus_form.html:21
+msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
+msgstr ""
+"Descargue el folleto sobre inversión en el Reino Unido y obtendrá "
+"información acerca de:"
+
+#: core/templates/core/investment_prospectus_form.html:23
+msgid ""
+"the growth of UK sectors and which geographic regions are best suited to "
+"your business"
+msgstr ""
+"el crecimiento de los sectores del Reino Unido y qué zonas geográficas "
+"convienen mejor a su negocio"
+
+#: core/templates/core/investment_prospectus_form.html:24
+msgid ""
+"UK tax, incentives, talent, labour and innovation to help you draw "
+"comparisons with European and international markets"
+msgstr ""
+"Los impuestos, los incentivos, el talento, el labor y la innovación del "
+"Reino Unido, para ayudarle a comparar con los mercados europeos/"
+"internacionales"
+
+#: core/templates/core/investment_prospectus_form.html:25
+msgid ""
+"UK industrial strategy and how government is supporting overseas businesses "
+"in driving national skills, industries and infrastructure"
+msgstr ""
+"la estrategia industrial del Reino Unido y cómo favorece el gobierno los "
+"negocios en el extranjero mediante el fomento de las capacidades nacionales, "
+"de la industria y de las infraestructuras"
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"
@@ -561,90 +641,168 @@ msgstr "Quiero invertir en el Reino Unido"
 msgid "I want to buy from the UK"
 msgstr "Quiero comprar desde el Reino Unido"
 
+#: core/templates/core/why_buy_from_the_uk_form.html:10
+msgid "5 Reasons to Buy from the UK"
+msgstr "5 razones para comprar en el Reino Unido"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:16
+msgid "How we help you buy"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:21
+msgid "Download our ebook: 5 reasons to buy from the UK"
+msgstr "5 razones para comprar en el Reino Unido"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:22
+msgid ""
+"The UK is a global, outward-facing nation with strong international ties to "
+"160 markets around the world. Enter your details below to download our ebook "
+"5 reasons to buy from the UK, including:"
+msgstr ""
+"El Reino Unido es una nación con vocación global y centrada en el exterior, "
+"y cuenta con fuertes vínculos internacionales con 160 mercados de todo el "
+"mundo. Introduzca sus datos a continuación para descargar nuestro ebook con "
+"las 5 razones para realizar adquisiciones en el Reino Unido:"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:24
+msgid "the excitement and creativity of the UK"
+msgstr "la emoción y la creatividad del Reino Unido"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:25
+msgid "UK industries and companies pushing the boundaries"
+msgstr ""
+"Las industrias y empresas del Reino Unido van más allá de las fronteras"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:26
+msgid "infrastructure, export finance and collaboration"
+msgstr "infraestructura, financiación de exportaciones y colaboración"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:27
+msgid "why UK businesses are stable and professional"
+msgstr ""
+"¿Por qué las empresas del Reino Unido son tan estables y profesionales?"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:28
+msgid "commitment to the highest standards for better long-term value"
+msgstr ""
+"el compromiso con los más altos estándares y un mejor valor a largo plazo"
+
+#: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
+msgid "Company"
+msgstr "Empresa"
+
+#: euexit/forms.py:19
+msgid "Other type of organisation"
+msgstr "Otro tipo de organización"
+
+#: euexit/forms.py:54
+msgid "Organisation type"
+msgstr "Tipo de organización"
+
+#: euexit/forms.py:64
+msgid "City"
+msgstr ""
+
+#: euexit/forms.py:66
+msgid "Your question"
+msgstr "Su consulta"
+
+#: euexit/forms.py:67
+msgid "Please don't share commercially sensitive information."
+msgstr "Por favor, no comparta información comercialmente sensible."
+
+#: euexit/templates/euexit/form-contents.html:7
+#: euexit/templates/euexit/international-contact-form.html:7
+#: euexit/templates/euexit/international-contact-form.html:14
+msgid "Transition period enquiries"
+msgstr "Consultas sobre el periodo de transición"
+
+#: euexit/templates/euexit/form-contents.html:9
+#, python-format
+msgid ""
+"\n"
+"              <p>\n"
+"                See our guidance on <a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">trading with the UK during the transition period and in "
+"2021</a>. If you can’t find the information you’re looking for, complete the "
+"form below and one of our experts will try to help you.\n"
+"              </p>\n"
+"              "
+msgstr ""
+"\n"
+"              <p>\n"
+"                Consulte nuestros consejos en <a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">comercio con el Reino Unido durante el periodo de transición y en 2021</a>. Si no encuentra la información que necesita, rellene el siguiente formulario para que uno de nuestros expertos pueda ayudarle.\n"
+"              </p>\n"
+"              "
+
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"
-msgstr ""
+msgstr "Revistas, periódicos o prensa profesional"
 
 #: find_a_supplier/constants.py:11
 msgid "Posters or billboard"
-msgstr ""
+msgstr "Carteles o vallas publicitarias"
 
 #: find_a_supplier/constants.py:15
 msgid "Outdoor advertising digital screen"
-msgstr ""
+msgstr "Pantalla digital de publicidad en exteriores"
 
 #: find_a_supplier/constants.py:19
 msgid "Website advertisement"
-msgstr ""
+msgstr "Publicidad en sitio web"
 
 #: find_a_supplier/constants.py:23
 msgid "Website article"
-msgstr ""
+msgstr "Artículo en sitio web"
 
 #: find_a_supplier/constants.py:30
 msgid "Social media website"
-msgstr ""
+msgstr "Sitio web en redes sociales"
 
 #: find_a_supplier/constants.py:34
 msgid "At an event"
-msgstr ""
+msgstr "En un evento"
 
-#: find_a_supplier/forms.py:30
+#: find_a_supplier/forms.py:31
 msgid "All industries"
 msgstr "Sectores"
 
-#: find_a_supplier/forms.py:165
+#: find_a_supplier/forms.py:166
 msgid "Please select an industry"
 msgstr ""
 
-#: find_a_supplier/forms.py:167
+#: find_a_supplier/forms.py:168
 msgid "Tick the box to confirm you agree to the terms and conditions."
 msgstr ""
 
-#: find_a_supplier/forms.py:174
+#: find_a_supplier/forms.py:175
 msgid "Your name"
 msgstr ""
 
-#: find_a_supplier/forms.py:224
-#, python-brace-format
-msgid ""
-"I agree to the <a href=\"{url}\" target=\"_blank\">great.gov.uk terms and "
-"conditions</a>"
-msgstr ""
-
-#: find_a_supplier/forms.py:231
-msgid "Full name"
-msgstr ""
-
-#: find_a_supplier/forms.py:251
-msgid "Your industry"
-msgstr ""
-
-#: find_a_supplier/forms.py:255
+#: find_a_supplier/forms.py:253
 msgid "Your organisation name"
-msgstr ""
+msgstr "Nombre de su organización"
 
-#: find_a_supplier/forms.py:263
+#: find_a_supplier/forms.py:261
 msgid "Size of your organisation"
-msgstr ""
+msgstr "Tamaño de la organización"
 
-#: find_a_supplier/forms.py:268
-msgid "Your country"
-msgstr "País"
-
-#: find_a_supplier/forms.py:273
+#: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"
-msgstr ""
+msgstr "Describa los productos o servicios que necesita"
 
-#: find_a_supplier/forms.py:274
+#: find_a_supplier/forms.py:272
 msgid "Maximum 1000 characters."
-msgstr ""
+msgstr "Máximo 1.000 caracteres"
 
-#: find_a_supplier/forms.py:282
+#: find_a_supplier/forms.py:280
 msgid "Where did you hear about great.gov.uk?"
-msgstr ""
+msgstr "¿Dónde se enteró great.gov.uk?"
 
-#: find_a_supplier/forms.py:291
+#: find_a_supplier/forms.py:289
 msgid "Other source (optional)"
 msgstr ""
 
@@ -652,13 +810,13 @@ msgstr ""
 msgid "Name"
 msgstr "Nombre completo"
 
-#: perfect_fit_prospectus/forms.py:16
-msgid "Company"
+#: perfect_fit_prospectus/forms.py:21
+msgid "Email"
 msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"
-msgstr ""
+msgstr "Número de teléfono (opcional)"
 
 #: perfect_fit_prospectus/forms.py:40
 msgid "I would like to receive further information."
@@ -702,59 +860,3 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
-
-#, fuzzy
-#~| msgid "Phone number"
-#~ msgid "Enter your phone number"
-#~ msgstr "Número de teléfono de la empresa"
-
-#~ msgid "Less than 10"
-#~ msgstr "Menos de 10"
-
-#~ msgid "10 to 50"
-#~ msgstr "Entre 10 y 50"
-
-#~ msgid "51 to 250"
-#~ msgstr "Entre 51 y 250"
-
-#~ msgid "More than 250"
-#~ msgstr "Más de 250"
-
-#~ msgid ""
-#~ "We will use this information to put you in touch with your closest "
-#~ "British embassy or high commission."
-#~ msgstr ""
-#~ "Utilizaremos esta información para ponerle en contacto con la Embajada o "
-#~ "el Alto Comisionado británicos más cercanos. Empiece a escribir para "
-#~ "seleccionar una opción."
-
-#~ msgid "Current number of staff"
-#~ msgstr "Número aproximado de personal en la actualidad"
-
-#~ msgid ""
-#~ "Tell us about your company and your plans for the UK in terms of size of "
-#~ "investment, operational and recruitment plans. Please also tell us what "
-#~ "help you would like from the UK government."
-#~ msgstr ""
-#~ "Cuéntenos sobre su empresa y sus planes para el Reino Unido en cuanto a "
-#~ "la magnitud de su inversión, sus planes operativos y de contratación. "
-#~ "Díganos qué ayuda le gustaría recibir del gobierno británico."
-
-#~ msgid "Your investment"
-#~ msgstr "Su inversión"
-
-#~ msgid "Current number of staff (Optional)"
-#~ msgstr "Número aproximado de personal en la actualidad"
-
-#~ msgid "Investing capital in the UK"
-#~ msgstr "Quiero invertir en el Reino Unido"
-
-#~ msgid "Buying goods from the UK"
-#~ msgstr "Quiero comprar desde el Reino Unido"
-
-#~ msgid ""
-#~ "I confirm the information provided is true and I accept DIT's terms and "
-#~ "conditions"
-#~ msgstr ""
-#~ "Al enviarnos sus datos, usted confirma que la información que nos "
-#~ "proporciona es verídica y acepta nuestros términos y condiciones."

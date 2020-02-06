@@ -21,7 +21,7 @@
     <form class="column-two-thirds-l column-half-xl" action="{% url 'invest-contact' %}" method="post">
       {% csrf_token %}
 
-      <h2 class="heading-medium">{% trans "Contact Information" %}</h2>
+      <h2 class="heading-medium">{% trans "Contact information" %}</h2>
       {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
@@ -40,7 +40,7 @@
       {% include 'directory_components/form_widgets/form_field.html' with field=form.description %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.arrange_callback %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.how_did_you_hear %}
-      {% include 'core/includes/form_consent.html' with form=form %}
+      {% include 'core/includes/form_consent_invest.html' with form=form %}
       {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
 
       <button type="submit" name="button" class="button button-blue">{% trans "Submit" %}</button>
