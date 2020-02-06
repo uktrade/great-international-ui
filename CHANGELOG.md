@@ -3,7 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
-- TT-2263 - Add japanese translations
+- TT-2263 - Add translations for all forms
 
 ### Bugs fixed
 
