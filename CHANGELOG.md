@@ -2,7 +2,25 @@
 
 ## Pre-release
 
+### Implemented enhancements
+
+### Bugs fixed
+- no ticket - Upgrade waitress
+
+## [2020.02.06](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.02.04...2020.02.06)
+
+### Implemented enhancements
 - XOT-1280 - update components for cookie banner
+
+## [2020.02.04](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.30...2020.02.04)
+
+### Hotfix
+- no ticket - Upgrade django for security fix
+
+## [2020.01.30](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.30)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.15...2020.01.30)
 
 ### Implemented enhancements
 - CI-631 - Update business environment guide form and content in form consent sections
