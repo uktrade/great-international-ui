@@ -45,7 +45,7 @@ TEMPLATE_MAPPING = {
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
-    'InternationalTradeIndustryContactPage': 'find_a_supplier/industry-contact.html',
+    'InternationalTradeIndustryContactPage': 'find_a_supplier/buy_from_the_uk_form.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {

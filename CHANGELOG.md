@@ -3,7 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
-- TT-2263 - Add japanese translations
+- TT-2263 - Add translations for all forms
 
 ### Bugs fixed
 - No ticket - CVE-2020-5236 & CVE-2020-7471: Potential SQL injection via StringAgg(delimiter)

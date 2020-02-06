@@ -12,29 +12,30 @@
 
 <div class="container">
     {% ga360_data "contact-form" target="form" %}
-        <div class="grid-row">
-            <h2 class="heading-xlarge">{{ page.heading }}</h2>
-            {% if page.intro %}
-                <div class="column-two-thirds-l">{{ page.intro|add_export_elements_classes|safe }}</div>
-            {% endif %}
-            <form class="column-two-thirds-l column-half-xl" action="{% url 'capital-invest-contact' %}" method="post">
-                {% csrf_token %}
+    <h2 class="heading-xlarge width-two-thirds-l">{{ page.heading }}</h2>
+    <div class="grid-row">
+      <div class="column-two-thirds-l column-half-xl">
+        {% if page.intro %}
+            <div>{{ page.intro|add_export_elements_classes|safe }}</div>
+        {% endif %}
+        <form action="{% url 'capital-invest-contact' %}" method="post">
+            {% csrf_token %}
 
-                {% include 'includes/form_field.html' with field=form.given_name %}
-                {% include 'includes/form_field.html' with field=form.family_name %}
-                {% include 'includes/form_field.html' with field=form.email_address %}
-                {% include 'includes/form_field.html' with field=form.phone_number %}
-                {% include 'includes/form_field.html' with field=form.country %}
+            {% include 'includes/form_field.html' with field=form.given_name %}
+            {% include 'includes/form_field.html' with field=form.family_name %}
+            {% include 'includes/form_field.html' with field=form.email_address %}
+            {% include 'includes/form_field.html' with field=form.phone_number %}
+            {% include 'includes/form_field.html' with field=form.country %}
 
-                {% include 'includes/form_field.html' with field=form.message %}
+            {% include 'includes/form_field.html' with field=form.message %}
 
-                {% include 'core/includes/form_consent.html' with form=form %}
-                {% include 'includes/form_field.html' with field=form.captcha %}
-                <p class="font-small">{{ page.comment }}</p>
-
-                <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>
-            </form>
-        </div>
+            {% include 'core/includes/form_consent_capital_investment.html' with form=form %}
+            {% include 'includes/form_field.html' with field=form.captcha %}
+            <p class="font-small">{{ page.comment }}</p>
+            <button type="submit" name="button" class="button button-blue">{{ page.cta_text }}</button>
+        </form>
+      </div>
+    </div>
     {% end_ga360_data %}
 </div>
 
