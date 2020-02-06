@@ -32,7 +32,7 @@ class TariffsCountryForm(forms.Form):
 class OpportunitySearchForm(forms.Form):
 
     sector = forms.ChoiceField(
-        label=_('sector'),
+        label='sector',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sector'},
             use_nice_ids=True,
@@ -40,7 +40,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     scale = forms.ChoiceField(
-        label=_('scale'),
+        label='scale',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-scale'},
             use_nice_ids=True,
@@ -48,7 +48,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     region = forms.ChoiceField(
-        label=_('region'),
+        label='region',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-region'},
             use_nice_ids=True,
@@ -56,7 +56,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     sub_sector = forms.ChoiceField(
-        label=_('sub_sector'),
+        label='sub_sector',
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-sub_sector'},
             use_nice_ids=True,
@@ -64,7 +64,7 @@ class OpportunitySearchForm(forms.Form):
         required=False
     )
     sort_by = forms.ChoiceField(
-        label=_('sort_by'),
+        label='sort_by',
         widget=Select(
             attrs={
                 'onchange': 'this.form.submit()'
@@ -136,9 +136,9 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
 
 
 class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
-    given_name = forms.CharField(label=_('First name'), required=True)
-    family_name = forms.CharField(label=_('Last name'), required=True)
-    email_address = forms.EmailField(label=_('Email'), required=True)
+    given_name = forms.CharField(label=_('Given name'), required=True)
+    family_name = forms.CharField(label=_('Family name'), required=True)
+    email_address = forms.EmailField(label=_('Email address'), required=True)
     phone_number = forms.CharField(label=_('Phone number'), required=True)
     country = forms.ChoiceField(
         label=_('Country'),
@@ -170,29 +170,6 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         return data
 
 
-def choice_is_enabled(value):
-    flagged_choices = {
-        constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
-        constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
-    }
-    if value not in flagged_choices:
-        return True
-
-    return settings.FEATURE_FLAGS[flagged_choices[value]]
-
-
-def international_choices():
-    all_choices = (
-        (constants.INVEST_CONTACT_URL, 'Expanding to the UK'),
-        (constants.CAPITAL_INVEST_CONTACT_URL, 'Investing capital in the UK'),
-        (constants.EXPORTING_TO_UK_CONTACT_URL, 'Exporting to the UK'),
-        (constants.BUYING_CONTACT_URL, 'Find a UK business partner'),
-        (constants.EUEXIT_CONTACT_URL, 'Brexit enquiries'),
-        (constants.OTHER_CONTACT_URL, 'Other'),
-    )
-    return ((value, label) for value, label in all_choices if choice_is_enabled(value))
-
-
 class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
@@ -218,8 +195,8 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     email_address = forms.EmailField(
         label=_('Email address'),
         error_messages={
-            'required': _('Enter an email address in the correct format,'
-                          ' like name@example.com'),
+            'required': _(
+                'Enter an email address in the correct format, like name@example.com'),
         }
     )
     company_name = forms.CharField(
@@ -239,7 +216,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
     country = forms.ChoiceField(
-        label=_('Country'),
+        label=_('Your country'),
         widget=Select(attrs={'id': 'js-country-select'}),
         choices=COUNTRIES,
         error_messages={
@@ -262,7 +239,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
 
     industry = forms.ChoiceField(
-        label=_('Industry/Sector (Optional)'),
+        label=_('Your industry (optional)'),
         choices=INDUSTRY_OPTIONS,
         required=False,
     )
@@ -289,10 +266,31 @@ class InternationalRoutingForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['choice'].choices = international_choices()
+        self.fields['choice'].choices = self.get_international_choices()
 
     choice = forms.ChoiceField(
         label='',
         widget=forms.RadioSelect(),
         choices=[],  # array overridden by constructor
     )
+
+    def choice_is_enabled(self, value):
+        flagged_choices = {
+            constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
+            constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
+        }
+        if value not in flagged_choices:
+            return True
+
+        return settings.FEATURE_FLAGS[flagged_choices[value]]
+
+    def get_international_choices(self):
+        all_choices = (
+            (constants.INVEST_CONTACT_URL, _('Expanding to the UK')),
+            (constants.CAPITAL_INVEST_CONTACT_URL, _('Investing capital in the UK')),
+            (constants.EXPORTING_TO_UK_CONTACT_URL, _('Exporting to the UK')),
+            (constants.BUYING_CONTACT_URL, _('Buying from the UK')),
+            (constants.EUEXIT_CONTACT_URL, _('The transition period (now that the UK has left the EU)')),
+            (constants.OTHER_CONTACT_URL, _('Other')),
+        )
+        return ((value, label) for value, label in all_choices if self.choice_is_enabled(value))

@@ -21,8 +21,26 @@
 
         {% ga360_data "contact-industry-form" target="form" ga-value=industry_page.breadcrumbs_label %}
         <form action="" method="post">
-            {{ form }}
-            <input class="button button-blue" type="submit" value="{{ page.submit_button_text }}">
+          {% csrf_token %}
+
+          {% include 'includes/form_field.html' with field=form.given_name %}
+          {% include 'includes/form_field.html' with field=form.family_name %}
+          {% include 'includes/form_field.html' with field=form.email_address %}
+          {% include 'includes/form_field.html' with field=form.phone_number %}
+          {% include 'includes/form_field.html' with field=form.sector %}
+          {% include 'includes/form_field.html' with field=form.organisation_name %}
+          {% include 'includes/form_field.html' with field=form.organisation_size %}
+          {% include 'includes/form_field.html' with field=form.country %}
+          {% include 'includes/form_field.html' with field=form.body %}
+          {% include 'includes/form_field.html' with field=form.source %}
+          {% include 'includes/form_field.html' with field=form.source_other %}
+
+          {% include 'core/includes/form_consent_buy.html' with form=form %}
+
+          {% include 'includes/form_field.html' with field=form.captcha %}
+          <p class="font-small">{{ page.comment }}</p>
+
+          <input class="button button-blue" type="submit" value="{{ page.submit_button_text }}">
         </form>
         {% end_ga360_data %}
       </div>

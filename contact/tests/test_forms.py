@@ -46,7 +46,7 @@ def test_contact_form_required():
     assert form.fields['country'].required is True
     assert form.fields['industry'].required is True
     assert form.fields['expanding_to_uk'].required is True
-    assert form.fields['description'].required is False
+    assert form.fields['description'].required is True
     assert form.fields['arrange_callback'].required is True
     assert form.fields['arrange_callback'].nested_form.fields['when_to_call'].required is False
     assert form.fields['captcha'].required is True
@@ -84,6 +84,7 @@ def test_contact_form_invalid_data(captcha_stub):
         'family_name': ['This field is required.'],
         'country': ['This field is required.'],
         'industry': ['This field is required.'],
+        'description': ['This field is required.'],
         'expanding_to_uk': ['This field is required.'],
         'arrange_callback': ['This field is required.']
     }
@@ -214,7 +215,7 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
                 ('Given name', data['given_name']),
                 ('Family name', data['family_name']),
                 ('Job title', data['job_title']),
-                ('Work email address', data['email']),
+                ('Email address', data['email']),
                 ('Phone number', data['phone_number']),
                 ('Company name', data['company_name']),
                 ('Company website', data['company_website']),
@@ -223,7 +224,7 @@ def test_send_email_render_email(mock_render_to_string, contact_form_data):
                 ('Industry', data['industry']),
                 ('Which of these best describes how you feel about expanding to the UK?', data['expanding_to_uk']),
                 ('Tell us about your investment', data['description']),
-                ('Would you like us to arrange a call?', data['arrange_callback']),
+                ('Would you like to arrange a call?', data['arrange_callback']),
                 ('When should we call you?', data['when_to_call']),
                 ('How did you hear about us?', data['how_did_you_hear']),
                 ('I would like to receive additional information by email', contact_form_data['email_contact_consent']),
@@ -259,7 +260,7 @@ def test_send_email_render_email_optional_fields(
                 ('Given name', contact_form_data['given_name']),
                 ('Family name', contact_form_data['family_name']),
                 ('Job title', contact_form_data['job_title']),
-                ('Work email address', contact_form_data['email']),
+                ('Email address', contact_form_data['email']),
                 ('Phone number', contact_form_data['phone_number']),
                 ('Company name', contact_form_data['company_name']),
                 ('Company website', contact_form_data['company_website']),
@@ -269,7 +270,7 @@ def test_send_email_render_email_optional_fields(
                 ('Which of these best describes how you feel about expanding to the UK?',
                     contact_form_data['expanding_to_uk']),
                 ('Tell us about your investment', contact_form_data['description']),
-                ('Would you like us to arrange a call?', contact_form_data['arrange_callback']),
+                ('Would you like to arrange a call?', contact_form_data['arrange_callback']),
                 ('When should we call you?', contact_form_data['when_to_call']),
                 ('How did you hear about us?', contact_form_data['how_did_you_hear']),
                 ('I would like to receive additional information by email', contact_form_data['email_contact_consent']),
