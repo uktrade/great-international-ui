@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 10:39+0000\n"
+"POT-Creation-Date: 2020-02-06 12:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,12 +85,12 @@ msgid "In the afternoon"
 msgstr "午後"
 
 #: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:184
-#: euexit/forms.py:51 find_a_supplier/forms.py:221
+#: euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
 msgstr "名"
 
 #: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:190
-#: euexit/forms.py:52 find_a_supplier/forms.py:229
+#: euexit/forms.py:51 find_a_supplier/forms.py:229
 msgid "Family name"
 msgstr "姓"
 
@@ -99,7 +99,7 @@ msgid "Job title"
 msgstr "役職"
 
 #: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:196
-#: euexit/forms.py:53 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
 msgid "Email address"
 msgstr "メールアドレス"
 
@@ -109,7 +109,7 @@ msgid "Phone number"
 msgstr "勤務先の電話番号"
 
 #: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:203
-#: euexit/forms.py:59 find_a_supplier/forms.py:184
+#: euexit/forms.py:58 find_a_supplier/forms.py:184
 msgid "Company name"
 msgstr "会社名"
 
@@ -121,7 +121,7 @@ msgstr "企業ウェブサイト"
 msgid "Company HQ address"
 msgstr "企業の本社所在地"
 
-#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:61
+#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:60
 msgid "Which country are you based in?"
 msgstr "拠点とされている国はどちらですか？"
 
@@ -621,19 +621,19 @@ msgstr ""
 msgid "Other type of organisation"
 msgstr "企業の人数"
 
-#: euexit/forms.py:55
+#: euexit/forms.py:54
 msgid "Organisation type"
 msgstr ""
 
-#: euexit/forms.py:65
+#: euexit/forms.py:64
 msgid "City"
 msgstr ""
 
-#: euexit/forms.py:67
+#: euexit/forms.py:66
 msgid "Your question"
 msgstr ""
 
-#: euexit/forms.py:68
+#: euexit/forms.py:67
 msgid "Please don't share commercially sensitive information."
 msgstr ""
 
@@ -668,31 +668,31 @@ msgstr ""
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"
-msgstr ""
+msgstr "雑誌、新聞、または業界紙"
 
 #: find_a_supplier/constants.py:11
 msgid "Posters or billboard"
-msgstr ""
+msgstr "ポスターまたは看板"
 
 #: find_a_supplier/constants.py:15
 msgid "Outdoor advertising digital screen"
-msgstr ""
+msgstr "屋外の広告用デジタル画面"
 
 #: find_a_supplier/constants.py:19
 msgid "Website advertisement"
-msgstr ""
+msgstr "ウェブサイトの広告"
 
 #: find_a_supplier/constants.py:23
 msgid "Website article"
-msgstr ""
+msgstr "ウェブサイトの記事"
 
 #: find_a_supplier/constants.py:30
 msgid "Social media website"
-msgstr ""
+msgstr "ソーシャルメディアのウェブサイト"
 
 #: find_a_supplier/constants.py:34
 msgid "At an event"
-msgstr ""
+msgstr "イベント"
 
 #: find_a_supplier/forms.py:31
 msgid "All industries"
@@ -712,7 +712,7 @@ msgstr ""
 
 #: find_a_supplier/forms.py:253
 msgid "Your organisation name"
-msgstr ""
+msgstr "社名"
 
 #: find_a_supplier/forms.py:261
 msgid "Size of your organisation"
@@ -724,15 +724,15 @@ msgstr "国"
 
 #: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"
-msgstr ""
+msgstr "必要な製品やサービスについて教えてください"
 
 #: find_a_supplier/forms.py:272
 msgid "Maximum 1000 characters."
-msgstr ""
+msgstr "最大 1,000 文字"
 
 #: find_a_supplier/forms.py:280
 msgid "Where did you hear about great.gov.uk?"
-msgstr ""
+msgstr "great.gov.uk についてどこでお聞きになりましたか？"
 
 #: find_a_supplier/forms.py:289
 msgid "Other source (optional)"
