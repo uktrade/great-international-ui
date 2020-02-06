@@ -107,7 +107,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
             'plans to expand to the UK, including size of the operation, '
             'why you’re considering the UK and what you’ll need to make it happen.'
             ),
-        required=False,
+        required=True,
         widget=Textarea()
     )
     arrange_callback = forms.RadioNested(
