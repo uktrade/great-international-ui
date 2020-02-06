@@ -31,14 +31,16 @@ def valid_contact_data(captcha_stub):
         'country': choices.COUNTRIES_AND_TERRITORIES[0][0],
         'body': 'a',
         'email_address': 'a@a.com',
-        'full_name': 'a',
+        'given_name': 'a',
+        'family_name': 'a',
         'organisation_name': 'a',
         'phone_number': 'a',
         'sector': choices.sectors.AEROSPACE,
-        'terms_agreed': 'a',
         'g-recaptcha-response': captcha_stub,
         'organisation_size': choices.EMPLOYEES[0][0],
         'source': '',
+        'email_contact_consent': False,
+        'telephone_contact_consent': True,
     }
 
 

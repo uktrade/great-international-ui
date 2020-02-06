@@ -16,9 +16,9 @@
 {% endblocktrans %}
 
 <h2 class="heading-medium">{% trans 'Additional information' %}</h2>
-<p>
-  {% trans "If you would like to receive additional information about investing in the UK you can opt in below. You can opt out of these additional updates at any time." %}
-</p>
+
+{% block additional_info %}
+{% endblock %}
 
 {% include 'includes/form_field.html' with field=form.email_contact_consent %}
 {% include 'includes/form_field.html' with field=form.telephone_contact_consent %}

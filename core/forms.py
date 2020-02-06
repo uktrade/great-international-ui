@@ -170,29 +170,6 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         return data
 
 
-def choice_is_enabled(value):
-    flagged_choices = {
-        constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
-        constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
-    }
-    if value not in flagged_choices:
-        return True
-
-    return settings.FEATURE_FLAGS[flagged_choices[value]]
-
-
-def international_choices():
-    all_choices = (
-        (constants.INVEST_CONTACT_URL, _('Expanding to the UK')),
-        (constants.CAPITAL_INVEST_CONTACT_URL, _('Investing capital in the UK')),
-        (constants.EXPORTING_TO_UK_CONTACT_URL, _('Exporting to the UK')),
-        (constants.BUYING_CONTACT_URL, _('Buying from the UK')),
-        (constants.EUEXIT_CONTACT_URL, _('The transition period (now that the UK has left the EU)')),
-        (constants.OTHER_CONTACT_URL, _('Other')),
-    )
-    return ((value, label) for value, label in all_choices if choice_is_enabled(value))
-
-
 class WhyBuyFromUKFormNestedDetails(forms.Form):
     provide_more_info = forms.CharField(
         widget=Textarea,
@@ -218,8 +195,8 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     email_address = forms.EmailField(
         label=_('Email address'),
         error_messages={
-            'required': _('Enter an email address in the correct format,'
-                          ' like name@example.com'),
+            'required': _(
+                'Enter an email address in the correct format, like name@example.com'),
         }
     )
     company_name = forms.CharField(
@@ -289,10 +266,31 @@ class InternationalRoutingForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['choice'].choices = international_choices()
+        self.fields['choice'].choices = self.get_international_choices()
 
     choice = forms.ChoiceField(
         label='',
         widget=forms.RadioSelect(),
         choices=[],  # array overridden by constructor
     )
+
+    def choice_is_enabled(self, value):
+        flagged_choices = {
+            constants.EXPORTING_TO_UK_CONTACT_URL: 'EXPORTING_TO_UK_ON',
+            constants.CAPITAL_INVEST_CONTACT_URL: 'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'
+        }
+        if value not in flagged_choices:
+            return True
+
+        return settings.FEATURE_FLAGS[flagged_choices[value]]
+
+    def get_international_choices(self):
+        all_choices = (
+            (constants.INVEST_CONTACT_URL, _('Expanding to the UK')),
+            (constants.CAPITAL_INVEST_CONTACT_URL, _('Investing capital in the UK')),
+            (constants.EXPORTING_TO_UK_CONTACT_URL, _('Exporting to the UK')),
+            (constants.BUYING_CONTACT_URL, _('Buying from the UK')),
+            (constants.EUEXIT_CONTACT_URL, _('The transition period (now that the UK has left the EU)')),
+            (constants.OTHER_CONTACT_URL, _('Other')),
+        )
+        return ((value, label) for value, label in all_choices if self.choice_is_enabled(value))

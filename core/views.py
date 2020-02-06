@@ -861,7 +861,7 @@ class PathRedirectView(QuerystringRedirectView):
         return f'{self.root_url}/{path}'
 
 
-class BusinessEnvironmentGuideFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+class BusinessEnvironmentGuideFormView(EnableTranslationsMixin, GA360Mixin, InternationalHeaderMixin, FormView):
     template_name = "core/business_environment_guide_form.html"
     form_class = forms.BusinessEnvironmentGuideForm
     subject = "Business Environment Guide Form"
