@@ -14,7 +14,7 @@ django-ipware==2.1.0
 django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
-Django==2.2.9
+Django==2.2.10
 djangorestframework==3.10.3
 gunicorn==19.9.0
 pir-client==1.1.0
@@ -22,5 +22,5 @@ requests[security]==2.22.0
 sentry-sdk==0.13.4
 sorl-thumbnail==12.5.0
 urllib3>=1.24.2,<2.0.0
-waitress==1.4.2
+waitress==1.4.3
 whitenoise==4.1.3
