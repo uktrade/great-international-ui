@@ -649,19 +649,19 @@ msgstr "恪守最高标准，获得更高的长期价值"
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
-msgstr ""
+msgstr "公司"
 
 #: euexit/forms.py:19
 msgid "Other type of organisation"
-msgstr ""
+msgstr "其他组织类型"
 
 #: euexit/forms.py:54
 msgid "Organisation type"
-msgstr ""
+msgstr "组织类型"
 
 #: euexit/forms.py:64
 msgid "City"
-msgstr ""
+msgstr "城市"
 
 #: euexit/forms.py:66
 msgid "Your question"
@@ -669,7 +669,7 @@ msgstr "您的问题"
 
 #: euexit/forms.py:67
 msgid "Please don't share commercially sensitive information."
-msgstr ""
+msgstr "请不要分享商业敏感信息。"
 
 #: euexit/templates/euexit/form-contents.html:7
 #: euexit/templates/euexit/international-contact-form.html:7
@@ -690,6 +690,13 @@ msgid ""
 "              </p>\n"
 "              "
 msgstr ""
+"\n"
+"              <p>\n"
+"                查看<a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">过渡期及 2021 年英国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您提供帮助。\n"
+"              </p>\n"
+"              "
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"

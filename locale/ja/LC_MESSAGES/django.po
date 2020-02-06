@@ -662,7 +662,7 @@ msgstr "長期的により良い価値を生む最高の基準への取り組み
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
-msgstr ""
+msgstr "企業"
 
 #: euexit/forms.py:19
 msgid "Other type of organisation"
@@ -670,19 +670,19 @@ msgstr "企業の人数"
 
 #: euexit/forms.py:54
 msgid "Organisation type"
-msgstr ""
+msgstr "組織の種類"
 
 #: euexit/forms.py:64
 msgid "City"
-msgstr ""
+msgstr "都市"
 
 #: euexit/forms.py:66
 msgid "Your question"
-msgstr ""
+msgstr "お問い合わせの内容"
 
 #: euexit/forms.py:67
 msgid "Please don't share commercially sensitive information."
-msgstr ""
+msgstr "商業的に重要な情報を共有しないでください。"
 
 #: euexit/templates/euexit/form-contents.html:7
 #: euexit/templates/euexit/international-contact-form.html:7

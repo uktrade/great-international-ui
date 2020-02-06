@@ -684,27 +684,27 @@ msgstr ""
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #: euexit/forms.py:19
 msgid "Other type of organisation"
-msgstr ""
+msgstr "Outro tipo de organização"
 
 #: euexit/forms.py:54
 msgid "Organisation type"
-msgstr ""
+msgstr "Tipo de organização"
 
 #: euexit/forms.py:64
 msgid "City"
-msgstr ""
+msgstr "Cidade"
 
 #: euexit/forms.py:66
 msgid "Your question"
-msgstr ""
+msgstr "A sua pergunta"
 
 #: euexit/forms.py:67
 msgid "Please don't share commercially sensitive information."
-msgstr ""
+msgstr "Não compartilhe informações comercialmente confidenciais."
 
 #: euexit/templates/euexit/form-contents.html:7
 #: euexit/templates/euexit/international-contact-form.html:7
@@ -725,6 +725,13 @@ msgid ""
 "              </p>\n"
 "              "
 msgstr ""
+"\n"
+"              <p>\n"
+"                Consulte as nossas orientações sobre a realização de <a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">negócios com o Reino Unido durante o período de transição e em 2021</a>. Se não conseguir encontrar as informações que procura, preencha o formulário abaixo e um dos nossos especialistas irá tentar ajudá-lo.\n"
+"              </p>\n"
+"              "
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"

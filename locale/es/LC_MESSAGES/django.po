@@ -715,7 +715,7 @@ msgstr "Por favor, no comparta información comercialmente sensible."
 #: euexit/templates/euexit/international-contact-form.html:7
 #: euexit/templates/euexit/international-contact-form.html:14
 msgid "Transition period enquiries"
-msgstr ""
+msgstr "Consultas sobre el periodo de transición"
 
 #: euexit/templates/euexit/form-contents.html:9
 #, python-format
@@ -730,6 +730,13 @@ msgid ""
 "              </p>\n"
 "              "
 msgstr ""
+"\n"
+"              <p>\n"
+"                Consulte nuestros consejos en <a class=\"link\" href="
+"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+"transition-period/\">comercio con el Reino Unido durante el periodo de transición y en 2021</a>. Si no encuentra la información que necesita, rellene el siguiente formulario para que uno de nuestros expertos pueda ayudarle.\n"
+"              </p>\n"
+"              "
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"
