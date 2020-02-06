@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 12:09+0000\n"
+"POT-Creation-Date: 2020-02-06 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,13 +82,13 @@ msgstr "Am Morgen"
 msgid "In the afternoon"
 msgstr "Am Nachmittag"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:184
-#: euexit/forms.py:50 find_a_supplier/forms.py:221
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
+#: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
 msgstr "Vorname"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:190
-#: euexit/forms.py:51 find_a_supplier/forms.py:229
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
+#: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
 msgid "Family name"
 msgstr "Familienname"
 
@@ -96,8 +96,9 @@ msgstr "Familienname"
 msgid "Job title"
 msgstr "Position"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:196
-#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
+#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
+#: find_a_supplier/forms.py:237
 msgid "Email address"
 msgstr "Adresse e-mail"
 
@@ -197,6 +198,7 @@ msgid "Your plans"
 msgstr "Ihre Investition"
 
 #: contact/templates/contact/contact.html:46
+#: core/templates/core/investment_prospectus_form.html:42
 #: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
 msgstr "Absenden"
@@ -257,18 +259,6 @@ msgstr "Nachricht"
 #: core/forms.py:114
 msgid "How can we help?"
 msgstr "Wie können wir helfen?"
-
-#: core/forms.py:139
-msgid "First name"
-msgstr ""
-
-#: core/forms.py:140
-msgid "Last name"
-msgstr ""
-
-#: core/forms.py:141 perfect_fit_prospectus/forms.py:21
-msgid "Email"
-msgstr ""
 
 #: core/forms.py:176
 msgid ""
@@ -353,6 +343,7 @@ msgstr "Branchen"
 #: core/templates/core/about_uk/about_uk_region_listing_page.html:25
 #: core/templates/core/about_uk/about_uk_region_page.html:24
 #: core/templates/core/about_uk/why_choose_the_uk_page.html:18
+#: core/templates/core/investment_prospectus_form.html:12
 #: core/templates/core/sector_page.html:17
 msgid "About the UK"
 msgstr "Über Großbritannien"
@@ -381,6 +372,7 @@ msgid "Overview"
 msgstr "Übersicht"
 
 #: core/header_config/tier_two_nav_items.py:14
+#: core/templates/core/investment_prospectus_form.html:13
 msgid "Why choose the UK"
 msgstr "Darum Großbritannien"
 
@@ -427,44 +419,6 @@ msgstr ""
 
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:17
-msgid "Download the UK Investment Prospectus"
-msgstr "Investitionsprospekt für Großbritannien"
-
-#: core/templates/core/business_environment_guide_form.html:19
-msgid ""
-"The UK offers an established, business-friendly environment boasting "
-"economic stability and commercial security for investing, expanding and "
-"buying from the UK."
-msgstr ""
-"Großbritannien bietet ein etabliertes, unternehmensfreundliches Umfeld mit "
-"wirtschaftlicher Stabilität und kommerzieller Sicherheit für Investitionen, "
-"Expansionen und Handel."
-
-#: core/templates/core/business_environment_guide_form.html:20
-msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
-msgstr ""
-"Im zum Herunterladen bereitstehenden Investitionsprospekt für Großbritannien "
-"erhalten Sie Einblicke in folgende Themen:"
-
-#: core/templates/core/business_environment_guide_form.html:22
-msgid ""
-"the growth of UK sectors and which geographic regions are best suited to "
-"your business"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:23
-msgid ""
-"UK tax, incentives, talent, labour and innovation to help you draw "
-"comparisons with European and international markets"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:24
-msgid ""
-"UK industrial strategy and how government is supporting overseas businesses "
-"in driving national skills, industries and infrastructure"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
@@ -557,6 +511,8 @@ msgid ""
 "The Department for International Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
 msgstr ""
+"Das Department for International Trade verwendet die in diesem Formular "
+"angegebenen Informationen, um auf Ihre Anfrage zu antworten. "
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:11
 msgid ""
@@ -605,6 +561,48 @@ msgstr ""
 "Wenn Sie weitere Informationen zur britischen Übergangszeit erhalten "
 "möchten, können Sie sich unten anmelden. Sie können sich von diesen "
 "Aktualisierungen jederzeit wieder abmelden."
+
+#: core/templates/core/investment_prospectus_form.html:9
+msgid "The UK Investment Prospectus"
+msgstr "Investitionsprospekt für Großbritannien"
+
+#: core/templates/core/investment_prospectus_form.html:18
+msgid "Download the UK Investment Prospectus"
+msgstr "Investitionsprospekt für Großbritannien"
+
+#: core/templates/core/investment_prospectus_form.html:20
+msgid ""
+"The UK offers an established, business-friendly environment boasting "
+"economic stability and commercial security for investing, expanding and "
+"buying from the UK."
+msgstr ""
+"Großbritannien bietet ein etabliertes, unternehmensfreundliches Umfeld mit "
+"wirtschaftlicher Stabilität und kommerzieller Sicherheit für Investitionen, "
+"Expansionen und Handel."
+
+#: core/templates/core/investment_prospectus_form.html:21
+msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
+msgstr ""
+"Im zum Herunterladen bereitstehenden Investitionsprospekt für Großbritannien "
+"erhalten Sie Einblicke in folgende Themen:"
+
+#: core/templates/core/investment_prospectus_form.html:23
+msgid ""
+"the growth of UK sectors and which geographic regions are best suited to "
+"your business"
+msgstr ""
+
+#: core/templates/core/investment_prospectus_form.html:24
+msgid ""
+"UK tax, incentives, talent, labour and innovation to help you draw "
+"comparisons with European and international markets"
+msgstr ""
+
+#: core/templates/core/investment_prospectus_form.html:25
+msgid ""
+"UK industrial strategy and how government is supporting overseas businesses "
+"in driving national skills, industries and infrastructure"
+msgstr ""
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"
@@ -758,6 +756,10 @@ msgstr ""
 #: perfect_fit_prospectus/forms.py:12
 msgid "Name"
 msgstr "Vollständiger Name"
+
+#: perfect_fit_prospectus/forms.py:21
+msgid "Email"
+msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"

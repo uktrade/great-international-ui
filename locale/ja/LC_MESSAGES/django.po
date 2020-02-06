@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 12:09+0000\n"
+"POT-Creation-Date: 2020-02-06 13:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,13 +84,13 @@ msgstr "午前"
 msgid "In the afternoon"
 msgstr "午後"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:184
-#: euexit/forms.py:50 find_a_supplier/forms.py:221
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
+#: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
 msgstr "名"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:190
-#: euexit/forms.py:51 find_a_supplier/forms.py:229
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
+#: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
 msgid "Family name"
 msgstr "姓"
 
@@ -98,8 +98,9 @@ msgstr "姓"
 msgid "Job title"
 msgstr "役職"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:196
-#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
+#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
+#: find_a_supplier/forms.py:237
 msgid "Email address"
 msgstr "メールアドレス"
 
@@ -199,6 +200,7 @@ msgid "Your plans"
 msgstr "貴社の投資について"
 
 #: contact/templates/contact/contact.html:46
+#: core/templates/core/investment_prospectus_form.html:42
 #: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
 msgstr "送信"
@@ -255,18 +257,6 @@ msgstr ""
 
 #: core/forms.py:114
 msgid "How can we help?"
-msgstr ""
-
-#: core/forms.py:139
-msgid "First name"
-msgstr ""
-
-#: core/forms.py:140
-msgid "Last name"
-msgstr ""
-
-#: core/forms.py:141 perfect_fit_prospectus/forms.py:21
-msgid "Email"
 msgstr ""
 
 #: core/forms.py:176
@@ -351,6 +341,7 @@ msgstr "産業"
 #: core/templates/core/about_uk/about_uk_region_listing_page.html:25
 #: core/templates/core/about_uk/about_uk_region_page.html:24
 #: core/templates/core/about_uk/why_choose_the_uk_page.html:18
+#: core/templates/core/investment_prospectus_form.html:12
 #: core/templates/core/sector_page.html:17
 msgid "About the UK"
 msgstr "英国について"
@@ -379,6 +370,7 @@ msgid "Overview"
 msgstr "概要"
 
 #: core/header_config/tier_two_nav_items.py:14
+#: core/templates/core/investment_prospectus_form.html:13
 msgid "Why choose the UK"
 msgstr "英国を選ぶ理由"
 
@@ -426,39 +418,6 @@ msgstr "関連情報"
 #: core/templates/core/base.html:43
 msgid "Is there anything wrong on this page?"
 msgstr "このページに関するお問い合わせはこちら"
-
-#: core/templates/core/business_environment_guide_form.html:17
-msgid "Download the UK Investment Prospectus"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:19
-msgid ""
-"The UK offers an established, business-friendly environment boasting "
-"economic stability and commercial security for investing, expanding and "
-"buying from the UK."
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:20
-msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:22
-msgid ""
-"the growth of UK sectors and which geographic regions are best suited to "
-"your business"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:23
-msgid ""
-"UK tax, incentives, talent, labour and innovation to help you draw "
-"comparisons with European and international markets"
-msgstr ""
-
-#: core/templates/core/business_environment_guide_form.html:24
-msgid ""
-"UK industrial strategy and how government is supporting overseas businesses "
-"in driving national skills, industries and infrastructure"
-msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:42
 msgid "Filter results"
@@ -591,6 +550,51 @@ msgid ""
 msgstr ""
 "英国への展開に関する追加情報をご希望の場合は、以下でご希望の方法をお選びくだ"
 "さい。このお知らせはいつでもオプトアウトできます。"
+
+#: core/templates/core/investment_prospectus_form.html:9
+msgid "The UK Investment Prospectus"
+msgstr "UK Investment Prospectus（英国の投資要項）"
+
+#: core/templates/core/investment_prospectus_form.html:18
+msgid "Download the UK Investment Prospectus"
+msgstr "UK Investment Prospectus（英国の投資要項）"
+
+#: core/templates/core/investment_prospectus_form.html:20
+msgid ""
+"The UK offers an established, business-friendly environment boasting "
+"economic stability and commercial security for investing, expanding and "
+"buying from the UK."
+msgstr ""
+"英国には企業を優遇する環境が根付いており、投資や展開、貿易に必要な経済的な安"
+"定性と商業的な安全性が確立されています。"
+
+#: core/templates/core/investment_prospectus_form.html:21
+msgid "By downloading the UK Investment Prospectus, you’ll get insights into:"
+msgstr ""
+"次のような点を説明したUK Investment Prospectusをダウンロードしていただけま"
+"す。"
+
+#: core/templates/core/investment_prospectus_form.html:23
+msgid ""
+"the growth of UK sectors and which geographic regions are best suited to "
+"your business"
+msgstr "英国のセクターの成長と展開予定の事業に最適な英国の地域"
+
+#: core/templates/core/investment_prospectus_form.html:24
+msgid ""
+"UK tax, incentives, talent, labour and innovation to help you draw "
+"comparisons with European and international markets"
+msgstr ""
+"欧州市場および国際市場との比較に役立つ英国の税制、報奨金、人材、労働力、イノ"
+"ベーションの情報"
+
+#: core/templates/core/investment_prospectus_form.html:25
+msgid ""
+"UK industrial strategy and how government is supporting overseas businesses "
+"in driving national skills, industries and infrastructure"
+msgstr ""
+"英国の産業の方針と、海外企業に向けたスキル、産業、インフラストラクチャに関す"
+"る政府の支援"
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"
@@ -741,6 +745,10 @@ msgstr "その他"
 #: perfect_fit_prospectus/forms.py:12
 msgid "Name"
 msgstr "氏名"
+
+#: perfect_fit_prospectus/forms.py:21
+msgid "Email"
+msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"

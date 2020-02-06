@@ -862,7 +862,7 @@ class PathRedirectView(QuerystringRedirectView):
 
 
 class BusinessEnvironmentGuideFormView(EnableTranslationsMixin, GA360Mixin, InternationalHeaderMixin, FormView):
-    template_name = "core/business_environment_guide_form.html"
+    template_name = "core/investment_prospectus_form.html"
     form_class = forms.BusinessEnvironmentGuideForm
     subject = "Business Environment Guide Form"
     success_url = '/international/about-uk/why-choose-uk/business-environment-guide/success/'
@@ -912,7 +912,7 @@ class BusinessEnvironmentGuideFormView(EnableTranslationsMixin, GA360Mixin, Inte
 
 
 class BusinessEnvironmentGuideFormSuccessView(InternationalView):
-    template_name = 'core/business_environment_guide_form_success.html'
+    template_name = 'core/investment_prospectus_form_success.html'
     page_type = 'BusinessEnvironmentGuideFormSuccessPage'
     header_section = tier_one_nav_items.ABOUT_UK
     header_sub_section = tier_two_nav_items.WHY_CHOOSE_THE_UK

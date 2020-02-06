@@ -136,9 +136,9 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
 
 
 class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
-    given_name = forms.CharField(label=_('First name'), required=True)
-    family_name = forms.CharField(label=_('Last name'), required=True)
-    email_address = forms.EmailField(label=_('Email'), required=True)
+    given_name = forms.CharField(label=_('Given name'), required=True)
+    family_name = forms.CharField(label=_('Family name'), required=True)
+    email_address = forms.EmailField(label=_('Email address'), required=True)
     phone_number = forms.CharField(label=_('Phone number'), required=True)
     country = forms.ChoiceField(
         label=_('Country'),
