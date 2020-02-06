@@ -8,7 +8,7 @@ from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
 from directory_components.mixins import CountryDisplayMixin, GA360Mixin, CMSLanguageSwitcherMixin
-from directory_constants import slugs, choices
+from directory_constants import slugs
 
 import directory_forms_api_client.helpers
 from directory_api_client.client import api_client
@@ -371,16 +371,10 @@ class BaseIndustryContactView(
 
 
 class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
-    form_class = forms.ContactForm
+    form_class = forms.BuyFromTheUKForm
     success_url = reverse_lazy('find-a-supplier:industry-contact-success')
     header_section = tier_one_nav_items.BUY_FROM_THE_UK
     header_sub_section = tier_two_nav_items.CONTACT_US_TRADE
-
-    def get_form_kwargs(self, *args, **kwargs):
-        return {
-            **super().get_form_kwargs(*args, **kwargs),
-            'industry_choices': choices.INDUSTRIES,
-        }
 
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(
@@ -431,7 +425,7 @@ class SpecificRefererRequiredMixin:
 
 
 class IndustryLandingPageContactCMSSuccessView(SpecificRefererRequiredMixin, BaseIndustryContactView):
-    template_name = 'find_a_supplier/industry-contact-success.html'
+    template_name = 'find_a_supplier/buy_from_the_uk_form_success.html'
 
     def __init__(self):
         super().__init__()

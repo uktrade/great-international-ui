@@ -6,33 +6,25 @@ from directory_validators.url import not_contains_url_or_email
 from directory_validators.string import no_html
 
 from django.forms import Select, Textarea
+from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
+
+from core import constants
 
 
 COMPANY = 'COMPANY'
 
 COMPANY_CHOICES = (
-    (COMPANY, 'Company'),
-    ('OTHER', 'Other type of organisation'),
+    (COMPANY, _('Company')),
+    ('OTHER', _('Other type of organisation')),
 )
 
 
-TERMS_LABEL = mark_safe(
+TERMS_LABEL = _(mark_safe(
     'Tick this box to accept the '
     f'<a class="link" href="{urls.domestic.TERMS_AND_CONDITIONS}" target="_blank">'
     'terms and conditions</a> of the great.gov.uk service.'
-)
-
-
-class FieldsMutationMixin:
-    def __init__(self, field_attributes, disclaimer, *args, **kwargs):
-        for field_name, field in self.base_fields.items():
-            attributes = field_attributes.get(field_name)
-            if attributes:
-                field.__dict__.update(attributes)
-        super().__init__(*args, **kwargs)
-        widget = self.fields['terms_agreed'].widget
-        widget.label = mark_safe(f'{widget.label}  {disclaimer}')
+))
 
 
 class SerializeMixin:
@@ -45,7 +37,6 @@ class SerializeMixin:
         data = self.cleaned_data.copy()
         data['ingress_url'] = self.ingress_url
         del data['captcha']
-        del data['terms_agreed']
         return data
 
     @property
@@ -55,31 +46,37 @@ class SerializeMixin:
         return f'{data["first_name"]} {data["last_name"]}'
 
 
-class InternationalContactForm(
-    FieldsMutationMixin, SerializeMixin, ZendeskActionMixin, forms.Form
-):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
+class TransitionContactForm(SerializeMixin, ZendeskActionMixin, forms.Form):
+    first_name = forms.CharField(label=_('Given name'))
+    last_name = forms.CharField(label=_('Family name'))
+    email = forms.EmailField(label=_('Email address'))
     organisation_type = forms.ChoiceField(
-        label_suffix='',
+        label=_('Organisation type'),
         widget=forms.RadioSelect(),
         choices=COMPANY_CHOICES,
     )
-    company_name = forms.CharField()
+    company_name = forms.CharField(label=_('Company name'))
     country = forms.ChoiceField(
+        label=_('Which country are you based in?'),
         choices=[('', 'Please select')] + choices.COUNTRIES_AND_TERRITORIES,
         widget=Select(attrs={'id': 'js-country-select'}),
     )
-    city = forms.CharField()
+    city = forms.CharField(label=_('City'))
     comment = forms.CharField(
+        label=_('Your question'),
+        help_text=_("Please don't share commercially sensitive information."),
         widget=Textarea,
         validators=[no_html, not_contains_url_or_email]
+    )
+    email_contact_consent = forms.BooleanField(
+        label=constants.EMAIL_CONSENT_LABEL,
+        required=False
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=constants.PHONE_CONSENT_LABEL,
+        required=False
     )
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
-    )
-    terms_agreed = forms.BooleanField(
-        label=TERMS_LABEL
     )

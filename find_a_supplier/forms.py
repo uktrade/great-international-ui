@@ -1,5 +1,5 @@
 from django.forms import HiddenInput, Select, Textarea, TextInput, ValidationError
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 
 import captcha.fields
@@ -9,7 +9,8 @@ from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.url import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
 
-from . import constants
+from core import constants
+from .constants import MARKETING_SOURCES
 
 
 ReCaptchaField = forms.field_factory(captcha.fields.ReCaptchaField)
@@ -214,21 +215,18 @@ def serialize_anonymous_subscriber_forms(cleaned_data):
     }
 
 
-class ContactForm(GovNotifyEmailActionMixin, forms.Form):
+class BuyFromTheUKForm(GovNotifyEmailActionMixin, forms.Form):
 
-    def __init__(self, industry_choices, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.fields['terms_agreed'].widget.label = mark_safe(
-            _(
-                'I agree to the <a href="{url}" target="_blank">'
-                'great.gov.uk terms and conditions</a>'
-            ).format(url=urls.domestic.TERMS_AND_CONDITIONS)
-        )
-        self.fields['sector'].choices = industry_choices
-
-    full_name = forms.CharField(
-        label=_('Full name'),
+    given_name = forms.CharField(
+        label=_('Given name'),
+        max_length=255,
+        validators=[not_contains_url_or_email],
+        widget=TextInput(
+            attrs={'dir': 'auto'}
+        ),
+    )
+    family_name = forms.CharField(
+        label=_('Family name'),
         max_length=255,
         validators=[not_contains_url_or_email],
         widget=TextInput(
@@ -249,7 +247,7 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
     )
     sector = forms.ChoiceField(
         label=_('Your industry'),
-        choices=[],  # set in __init__
+        choices=choices.INDUSTRIES,
     )
     organisation_name = forms.CharField(
         label=_('Your organisation name'),
@@ -280,7 +278,7 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
     )
     source = forms.ChoiceField(
         label=_('Where did you hear about great.gov.uk?'),
-        choices=(('', ''),) + constants.MARKETING_SOURCES,
+        choices=(('', ''),) + MARKETING_SOURCES,
         required=False,
         initial=' ',  # prevent "other" being selected by default
         widget=Select(
@@ -298,7 +296,14 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         ),
         validators=[not_contains_url_or_email],
     )
-    terms_agreed = forms.BooleanField()
+    email_contact_consent = forms.BooleanField(
+        label=constants.EMAIL_CONSENT_LABEL,
+        required=False
+    )
+    telephone_contact_consent = forms.BooleanField(
+        label=constants.PHONE_CONSENT_LABEL,
+        required=False
+    )
     captcha = captcha.fields.ReCaptchaField()
 
     @property
@@ -308,7 +313,6 @@ class ContactForm(GovNotifyEmailActionMixin, forms.Form):
         # for the form to be submitted.
         data = self.cleaned_data.copy()
         del data['captcha']
-        del data['terms_agreed']
         data['country_name'] = dict(choices.COUNTRIES_AND_TERRITORIES)[data['country']]
         return data
 
