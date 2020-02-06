@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:23+0000\n"
+"POT-Creation-Date: 2020-02-06 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,8 +155,7 @@ msgstr ""
 msgid "How did you hear about us?"
 msgstr "国際通商省についてどこでお聞きになりましたか？"
 
-#: contact/forms.py:153 core/forms.py:144 core/forms.py:219
-#: perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国"
 
@@ -201,6 +200,7 @@ msgstr "貴社の投資について"
 
 #: contact/templates/contact/contact.html:46
 #: core/templates/core/investment_prospectus_form.html:42
+#: core/templates/core/why_buy_from_the_uk_form.html:54
 #: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
 msgstr "送信"
@@ -279,11 +279,15 @@ msgstr "企業名"
 
 #: core/forms.py:209
 msgid "Job title (Optional)"
-msgstr ""
+msgstr "役職（任意）"
 
 #: core/forms.py:216
 msgid "City (Optional)"
-msgstr ""
+msgstr "都市（任意）"
+
+#: core/forms.py:219 find_a_supplier/forms.py:266
+msgid "Your country"
+msgstr "国名"
 
 #: core/forms.py:223
 msgid "Select a country"
@@ -300,8 +304,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:242
-msgid "Industry/Sector (Optional)"
-msgstr "産業"
+msgid "Your industry (optional)"
+msgstr "業種（任意）"
 
 #: core/forms.py:289
 msgid "Expanding to the UK"
@@ -355,6 +359,7 @@ msgid "Invest capital in the UK"
 msgstr "英国への投資"
 
 #: core/header_config/tier_one_nav_items.py:25
+#: core/templates/core/why_buy_from_the_uk_form.html:14
 msgid "Buy from the UK"
 msgstr "英国からの輸入"
 
@@ -617,6 +622,46 @@ msgstr "英国への事業投資を検討"
 msgid "I want to buy from the UK"
 msgstr "英国との取引を検討"
 
+#: core/templates/core/why_buy_from_the_uk_form.html:10
+msgid "5 Reasons to Buy from the UK"
+msgstr "英国から輸入する 5 つの理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:16
+msgid "How we help you buy"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:21
+msgid "Download our ebook: 5 reasons to buy from the UK"
+msgstr "英国から輸入する 5 つの理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:22
+msgid ""
+"The UK is a global, outward-facing nation with strong international ties to "
+"160 markets around the world. Enter your details below to download our ebook "
+"5 reasons to buy from the UK, including:"
+msgstr ""
+"英国は、世界の 160 の市場と国際的な強いつながりを持つ、グローバルで外交的な国です。eBook『5 reasons to buy from the UK』をダウンロードするには、以下の情報を入力してください。内容は次のとおりです。"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:24
+msgid "the excitement and creativity of the UK"
+msgstr "英国の魅力とクリエイティビティ"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:25
+msgid "UK industries and companies pushing the boundaries"
+msgstr "成長著しい英国の産業と企業"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:26
+msgid "infrastructure, export finance and collaboration"
+msgstr "インフラストラクチャ、輸出の資金調達、コラボレーション"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:27
+msgid "why UK businesses are stable and professional"
+msgstr "英国のビジネスの安定性と専門性の理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:28
+msgid "commitment to the highest standards for better long-term value"
+msgstr "長期的により良い価値を生む最高の基準への取り組み"
+
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
 msgstr ""
@@ -722,10 +767,6 @@ msgstr "社名"
 msgid "Size of your organisation"
 msgstr "企業の人数"
 
-#: find_a_supplier/forms.py:266
-msgid "Your country"
-msgstr "国"
-
 #: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"
 msgstr "必要な製品やサービスについて教えてください"
@@ -752,7 +793,7 @@ msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"
-msgstr ""
+msgstr "電話番号（任意）"
 
 #: perfect_fit_prospectus/forms.py:40
 msgid "I would like to receive further information."
@@ -796,6 +837,9 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
+
+#~ msgid "Industry/Sector (Optional)"
+#~ msgstr "産業"
 
 #~ msgid "How did you hear about us? (Optional)"
 #~ msgstr "国際通商省についてどこでお聞きになりましたか？"

@@ -216,7 +216,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
     country = forms.ChoiceField(
-        label=_('Country'),
+        label=_('Your country'),
         widget=Select(attrs={'id': 'js-country-select'}),
         choices=COUNTRIES,
         error_messages={
@@ -239,7 +239,7 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
 
     industry = forms.ChoiceField(
-        label=_('Industry/Sector (Optional)'),
+        label=_('Your industry (optional)'),
         choices=INDUSTRY_OPTIONS,
         required=False,
     )

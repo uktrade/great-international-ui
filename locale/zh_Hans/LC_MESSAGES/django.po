@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:23+0000\n"
+"POT-Creation-Date: 2020-02-06 13:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,7 @@ msgstr "姓"
 
 #: contact/forms.py:78 contact/forms.py:147
 msgid "Job title"
-msgstr "职务"
+msgstr "职务（可选）"
 
 #: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
 #: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
@@ -152,8 +152,7 @@ msgstr ""
 msgid "How did you hear about us?"
 msgstr ""
 
-#: contact/forms.py:153 core/forms.py:144 core/forms.py:219
-#: perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国家"
 
@@ -198,6 +197,7 @@ msgstr "您的投资"
 
 #: contact/templates/contact/contact.html:46
 #: core/templates/core/investment_prospectus_form.html:42
+#: core/templates/core/why_buy_from_the_uk_form.html:54
 #: euexit/templates/euexit/form-contents.html:32
 msgid "Submit"
 msgstr "提交"
@@ -280,6 +280,10 @@ msgstr "职务姓"
 msgid "City (Optional)"
 msgstr "城市（可选）"
 
+#: core/forms.py:219 find_a_supplier/forms.py:266
+msgid "Your country"
+msgstr "您所在的国家/地区"
+
 #: core/forms.py:223
 msgid "Select a country"
 msgstr ""
@@ -295,8 +299,8 @@ msgid "Select either yes or no"
 msgstr ""
 
 #: core/forms.py:242
-msgid "Industry/Sector (Optional)"
-msgstr ""
+msgid "Your industry (optional)"
+msgstr "您的行业（可选）"
 
 #: core/forms.py:289
 msgid "Expanding to the UK"
@@ -350,6 +354,7 @@ msgid "Invest capital in the UK"
 msgstr "在英投资优势"
 
 #: core/header_config/tier_one_nav_items.py:25
+#: core/templates/core/why_buy_from_the_uk_form.html:14
 msgid "Buy from the UK"
 msgstr "购买英国产品"
 
@@ -604,6 +609,45 @@ msgstr "我想投资英国"
 msgid "I want to buy from the UK"
 msgstr "我想从英国购买"
 
+#: core/templates/core/why_buy_from_the_uk_form.html:10
+msgid "5 Reasons to Buy from the UK"
+msgstr "从英国采购的 5 大理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:16
+msgid "How we help you buy"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:21
+msgid "Download our ebook: 5 reasons to buy from the UK"
+msgstr "从英国采购的 5 大理由"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:22
+msgid ""
+"The UK is a global, outward-facing nation with strong international ties to "
+"160 markets around the world. Enter your details below to download our ebook "
+"5 reasons to buy from the UK, including:"
+msgstr "英国是一个对外开放的国家，与全世界保持有良好的沟通与联系，并与全球 160 个市场建立起稳固的国际关系。在下面输入您的个人信息，下载《从英国采购的 5 大理由》电子书，书中内容包括："
+
+#: core/templates/core/why_buy_from_the_uk_form.html:24
+msgid "the excitement and creativity of the UK"
+msgstr "英国的激情和创造力"
+
+#: core/templates/core/why_buy_from_the_uk_form.html:25
+msgid "UK industries and companies pushing the boundaries"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:26
+msgid "infrastructure, export finance and collaboration"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:27
+msgid "why UK businesses are stable and professional"
+msgstr ""
+
+#: core/templates/core/why_buy_from_the_uk_form.html:28
+msgid "commitment to the highest standards for better long-term value"
+msgstr "恪守最高标准，获得更高的长期价值"
+
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
 msgstr ""
@@ -700,10 +744,6 @@ msgstr "您的组织名称"
 msgid "Size of your organisation"
 msgstr "您的组织规模"
 
-#: find_a_supplier/forms.py:266
-msgid "Your country"
-msgstr "您所在的国家/地区"
-
 #: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"
 msgstr "描述您需要哪些产品或服务"
@@ -730,7 +770,7 @@ msgstr ""
 
 #: perfect_fit_prospectus/forms.py:26
 msgid "Phone number (optional)"
-msgstr ""
+msgstr "电话号码（可选）"
 
 #: perfect_fit_prospectus/forms.py:40
 msgid "I would like to receive further information."

@@ -927,7 +927,7 @@ class BusinessEnvironmentGuideFormSuccessView(InternationalView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class WhyBuyFromUKFormView(GA360Mixin, InternationalHeaderMixin, FormView):
+class WhyBuyFromUKFormView(GA360Mixin, EnableTranslationsMixin, InternationalHeaderMixin, FormView):
     template_name = "core/why_buy_from_the_uk_form.html"
     form_class = forms.WhyBuyFromUKForm
     subject = "How we help Guide Form"
