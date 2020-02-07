@@ -143,7 +143,7 @@
         <div class="flex-grid">
             <h1 class="heading-large padding-bottom-30">
             {% trans 'More' %}
-            {{ page.related_sectors.0.related_sector.title }}
+            {{ current_sector_title }}
             {% trans 'projects' %}</h1>
             {% for opportunity in page.related_opportunities|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
