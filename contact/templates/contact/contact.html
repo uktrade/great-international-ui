@@ -53,6 +53,7 @@
 
 
 {% block body_js %}
+    {{ block.super }}
     <script src="{% static 'core/js/vendor/accessible-autocomplete.min.js' %}"></script>
     <script>
         accessibleAutocomplete.enhanceSelectElement({
