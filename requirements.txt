@@ -63,4 +63,4 @@ waitress==1.4.3
 whitenoise==4.1.3
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==45.1.0        # via jsonschema
+# setuptools
