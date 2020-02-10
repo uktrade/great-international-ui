@@ -6,6 +6,13 @@
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
 
+## [2020.02.11](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.11)
+[Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.06...2020.02.11)
+
+### Hotfix
+- No ticket - Replace cookie banner with modal
+
+
 ## [2020.02.06](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.02.04...2020.02.06)
 
