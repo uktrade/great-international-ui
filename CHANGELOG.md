@@ -1,5 +1,8 @@
 # Changelog
 
+### Bugs fixed
+- CI-614 - Fix capital invest opportunity pages to pull in sector for "More [sector] Projects" section heading.
+
 ## Pre-release
 
 ### Implemented enhancements

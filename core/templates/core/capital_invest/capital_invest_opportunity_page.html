@@ -142,9 +142,8 @@
     <div class="container">
         <div class="flex-grid">
             <h1 class="heading-large padding-bottom-30">
-            {% trans 'More' %}
-            {{ current_sector_title }}
-            {% trans 'projects' %}</h1>
+            {% blocktrans %}More {{ current_sector_title }} projects{% endblocktrans %}
+            </h1>
             {% for opportunity in page.related_opportunities|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
                     {% include 'core/includes/opportunity_card.html' with img_src=opportunity.hero_image.url img_alt="" url=opportunity.full_url title=opportunity.title scale=opportunity.scale sector=opportunity.sub_sectors|join:", " %}
