@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:57+0000\n"
+"POT-Creation-Date: 2020-02-11 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,7 +208,7 @@ msgstr "Seu investimento"
 msgid "Submit"
 msgstr "Enviar"
 
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:64
 msgid "Type here"
 msgstr "Escreva aqui"
 
@@ -448,7 +448,8 @@ msgid "Opportunity"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
-msgid "Other projects in"
+#, python-format
+msgid "More %(current_sector_title)s projects"
 msgstr ""
 
 #: core/templates/core/contact_international_triage.html:25
@@ -727,9 +728,12 @@ msgid ""
 msgstr ""
 "\n"
 "              <p>\n"
-"                Consulte as nossas orientações sobre a realização de <a class=\"link\" href="
-"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
-"transition-period/\">negócios com o Reino Unido durante o período de transição e em 2021</a>. Se não conseguir encontrar as informações que procura, preencha o formulário abaixo e um dos nossos especialistas irá tentar ajudá-lo.\n"
+"                Consulte as nossas orientações sobre a realização de <a "
+"class=\"link\" href=\"%(services_urls.international)s/content/invest/how-to-"
+"setup-in-the-uk/transition-period/\">negócios com o Reino Unido durante o "
+"período de transição e em 2021</a>. Se não conseguir encontrar as "
+"informações que procura, preencha o formulário abaixo e um dos nossos "
+"especialistas irá tentar ajudá-lo.\n"
 "              </p>\n"
 "              "
 

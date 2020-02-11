@@ -1,5 +1,9 @@
 # Changelog
 
+### Bug fix
+- CI-614-fix-related-opportunities
+- add flake8 to makefile 
+
 ## Pre-release
 
 ### Implemented enhancements
