@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:57+0000\n"
+"POT-Creation-Date: 2020-02-11 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,7 +198,7 @@ msgstr "您的投资"
 msgid "Submit"
 msgstr "提交"
 
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:64
 msgid "Type here"
 msgstr "在此处键入"
 
@@ -436,7 +436,8 @@ msgid "Opportunity"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
-msgid "Other projects in"
+#, python-format
+msgid "More %(current_sector_title)s projects"
 msgstr ""
 
 #: core/templates/core/contact_international_triage.html:25
@@ -692,9 +693,10 @@ msgid ""
 msgstr ""
 "\n"
 "              <p>\n"
-"                查看<a class=\"link\" href="
-"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
-"transition-period/\">过渡期及 2021 年英国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您提供帮助。\n"
+"                查看<a class=\"link\" href=\"%(services_urls.international)s/"
+"content/invest/how-to-setup-in-the-uk/transition-period/\">过渡期及 2021 年英"
+"国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您"
+"提供帮助。\n"
 "              </p>\n"
 "              "
 

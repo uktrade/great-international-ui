@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:57+0000\n"
+"POT-Creation-Date: 2020-02-11 16:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,7 +201,7 @@ msgstr "貴社の投資について"
 msgid "Submit"
 msgstr "送信"
 
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:64
 msgid "Type here"
 msgstr "ここに入力"
 
@@ -441,7 +441,8 @@ msgid "Opportunity"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
-msgid "Other projects in"
+#, python-format
+msgid "More %(current_sector_title)s projects"
 msgstr ""
 
 #: core/templates/core/contact_international_triage.html:25
