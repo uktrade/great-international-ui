@@ -142,7 +142,7 @@
     <div class="container">
         <div class="flex-grid">
             <h1 class="heading-large padding-bottom-30">
-            {% trans 'Other projects in' %} {{ random_related_sector_title }}
+            {% blocktrans %}More {{ current_sector_title }} projects{% endblocktrans %}
             </h1>
             {% for opportunity in page.related_opportunities|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
