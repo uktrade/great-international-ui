@@ -354,14 +354,19 @@ def about_uk_region_page_context_modifier(context, request):
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
-    related_sector_dictionary = context['page']['related_sectors'][0]['related_sector']
-    current_sector_title = related_sector_dictionary['title']
+    related_sectors = context['page']['related_sectors']
 
-    return {
-        'invest_cta_link': urls.international.EXPAND_HOME,
-        'buy_cta_link': urls.international.TRADE_HOME,
-        'current_sector_title': current_sector_title.capitalize(),
-    }
+    if related_sectors:
+        current_sector_title = related_sectors[0]['related_sector']['title']
+
+        return {
+            'invest_cta_link': urls.international.EXPAND_HOME,
+            'buy_cta_link': urls.international.TRADE_HOME,
+            'current_sector_title': current_sector_title,
+            }
+
+    else:
+        return {}
 
 
 class OpportunitySearchView(CountryDisplayMixin, InternationalView):
