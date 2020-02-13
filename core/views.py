@@ -359,14 +359,14 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     if related_sectors:
         current_sector_title = related_sectors[0]['related_sector']['title']
 
-        return {
-            'invest_cta_link': urls.international.EXPAND_HOME,
-            'buy_cta_link': urls.international.TRADE_HOME,
-            'current_sector_title': current_sector_title,
-            }
-
     else:
-        return {}
+        current_sector_title = None
+
+    return {
+        'invest_cta_link': urls.international.EXPAND_HOME,
+        'buy_cta_link': urls.international.TRADE_HOME,
+        'current_sector_title': current_sector_title,
+        }
 
 
 class OpportunitySearchView(CountryDisplayMixin, InternationalView):
