@@ -10,6 +10,9 @@
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
 
+### Fixed bugs
+- TT-2267 - Fix missing privacy link on Why buy from the UK form
+
 ## [2020.02.06](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.02.04...2020.02.06)
 
