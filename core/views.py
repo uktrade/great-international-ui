@@ -358,7 +358,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
     related_sectors = context['page']['related_sectors']
 
     if related_sectors:
-        current_sector_title = related_sectors[0]['related_sector']['title']
+        current_sector_title = related_sectors[0]['related_sector']['title'].capitalize()
 
     return {
         'invest_cta_link': urls.international.EXPAND_HOME,
