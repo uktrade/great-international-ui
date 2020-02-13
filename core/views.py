@@ -979,6 +979,7 @@ class WhyBuyFromUKFormView(GA360Mixin, EnableTranslationsMixin, InternationalHea
         return super().get_context_data(
             international_trade_home=urls.international.TRADE_HOME,
             international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'privacy-notice-5-reasons-buy-uk/',
             *args, **kwargs,
         )
 
