@@ -354,13 +354,11 @@ def about_uk_region_page_context_modifier(context, request):
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
+    current_sector_title = None
     related_sectors = context['page']['related_sectors']
 
     if related_sectors:
         current_sector_title = related_sectors[0]['related_sector']['title']
-
-    else:
-        current_sector_title = None
 
     return {
         'invest_cta_link': urls.international.EXPAND_HOME,
