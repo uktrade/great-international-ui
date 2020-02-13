@@ -585,6 +585,33 @@ def test_get_capital_invest_opportunity_page_url_constants(
     assert response.context_data['buy_cta_link'] == urls.international.TRADE_HOME
 
 
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_get_capital_invest_opportunity_page_with_no_related_sectors(
+        mock_cms_response, rf):
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'CapitalInvestOpportunityPage',
+        'related_sectors': []
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/opportunities/ashton')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/opportunities/ashton')
+
+    assert response.status_code == 200
+
+
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
     client, settings
