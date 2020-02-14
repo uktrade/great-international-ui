@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 16:24+0000\n"
+"POT-Creation-Date: 2020-02-14 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Sonstiges"
 
 #: contact/forms.py:35
 msgid "I’m convinced and want to talk to someone about my plans."
-msgstr ""
+msgstr "Ich bin überzeugt und möchte mit jemandem über meine Pläne sprechen."
 
 #: contact/forms.py:40
 msgid ""
@@ -69,10 +69,11 @@ msgstr "Ich möchte telefonisch kontaktiert werden"
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
 msgstr ""
+"Ich bin noch nicht bereit zu investieren. Halte mich auf dem Laufenden."
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "Wann sollen wir Sie anrufen?"
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -96,11 +97,9 @@ msgstr "Familienname"
 msgid "Job title"
 msgstr "Position"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
-#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
-#: find_a_supplier/forms.py:237
-msgid "Email address"
-msgstr "Adresse e-mail"
+#: contact/forms.py:79
+msgid "Work email address"
+msgstr "E-Mail-Adresse"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:243
@@ -136,7 +135,7 @@ msgstr ""
 
 #: contact/forms.py:104 contact/forms.py:156
 msgid "Tell us about your investment"
-msgstr ""
+msgstr "Erzählen Sie uns von Ihrer Investition"
 
 #: contact/forms.py:106
 msgid ""
@@ -144,6 +143,10 @@ msgid ""
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
+"Stellen Sie uns Ihre Fragen oder erzählen Sie uns von Ihren Plänen, nach "
+"Großbritannien zu expandieren, einschließlich der Größe der Operation, warum "
+"Sie über Großbritannien nachdenken und was Sie brauchen, um dorthin zu "
+"gelangen."
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
@@ -152,6 +155,11 @@ msgstr "Möchten Sie einen Anruf vereinbaren?"
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "Wie haben Sie von uns erfahren?"
+
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+msgid "Email address"
+msgstr "E-Mail-Adresse"
 
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
@@ -182,7 +190,7 @@ msgstr "Kontaktieren Sie das Investment Team"
 
 #: contact/templates/contact/contact.html:24
 msgid "Contact information"
-msgstr ""
+msgstr "Kontaktangaben"
 
 #: contact/templates/contact/contact.html:31
 msgid "Company information"
@@ -232,6 +240,34 @@ msgstr "Ich möchte weitere Informationen per E-Mail erhalten"
 msgid "I would like to receive additional information by telephone"
 msgstr "Ich möchte weitere Informationen per Telefon erhalten"
 
+#: core/constants.py:292
+msgid "1-10"
+msgstr "1 bis 10"
+
+#: core/constants.py:293
+msgid "11-50"
+msgstr "11 bis 50"
+
+#: core/constants.py:294
+msgid "51-200"
+msgstr "51 bis 200"
+
+#: core/constants.py:295
+msgid "201-500"
+msgstr "201 bis 500"
+
+#: core/constants.py:296
+msgid "501-1,000"
+msgstr "501 bis 1.000"
+
+#: core/constants.py:297
+msgid "1,001-10,000"
+msgstr "1.001 bis 10.000"
+
+#: core/constants.py:298
+msgid "10,001+"
+msgstr "Mehr als 10.000"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -260,7 +296,7 @@ msgstr "Wie können wir helfen?"
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr ""
+msgstr "Erzählen Sie uns mehr über die Art der Produkte oder Dienstleistungen, an denen Sie interessiert sind. Je mehr Sie uns mitteilen, desto schneller wird unsere Antwort sein. (Optional)"
 
 #: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
@@ -294,7 +330,7 @@ msgstr ""
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr ""
+msgstr "Möchten Sie jetzt oder in naher Zukunft Produkte oder Dienstleistungen von britischen Unternehmen kaufen?"
 
 #: core/forms.py:237
 msgid "Select either yes or no"
@@ -593,18 +629,26 @@ msgid ""
 "the growth of UK sectors and which geographic regions are best suited to "
 "your business"
 msgstr ""
+"das Wachstum der britischen Sektoren und welche geografischen Regionen für "
+"Ihr Unternehmen am besten geeignet sind"
 
 #: core/templates/core/investment_prospectus_form.html:24
 msgid ""
 "UK tax, incentives, talent, labour and innovation to help you draw "
 "comparisons with European and international markets"
 msgstr ""
+"Steuern, Anreize, Talente, Arbeitskräfte und Innovationen im Vereinigten "
+"Königreich helfen Ihnen, Vergleiche mit europäischen und internationalen "
+"Märkten anzustellen"
 
 #: core/templates/core/investment_prospectus_form.html:25
 msgid ""
 "UK industrial strategy and how government is supporting overseas businesses "
 "in driving national skills, industries and infrastructure"
 msgstr ""
+"Britische Industriestrategie und wie die Regierung ausländische Unternehmen "
+"dabei unterstützt, nationale Kompetenzen, Branchen und Infrastrukturen "
+"voranzutreiben"
 
 #: core/templates/core/sector_page.html:169
 msgid "Next steps"
@@ -658,15 +702,15 @@ msgstr "Reiz und Kreativität von Großbritannien"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:25
 msgid "UK industries and companies pushing the boundaries"
-msgstr ""
+msgstr "Britische Industrien und Unternehmen überschreiten die Grenzen"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:26
 msgid "infrastructure, export finance and collaboration"
-msgstr ""
+msgstr "Infrastruktur, Exportfinanzierung und Zusammenarbeit"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:27
 msgid "why UK businesses are stable and professional"
-msgstr ""
+msgstr "warum britische Unternehmen stabil und professionell sind"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:28
 msgid "commitment to the highest standards for better long-term value"

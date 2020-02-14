@@ -11,13 +11,12 @@ from directory_validators.string import no_html
 from captcha.fields import ReCaptchaField
 
 
-from directory_constants.choices import COUNTRY_CHOICES, EMPLOYEES, INDUSTRIES
+from directory_constants.choices import COUNTRY_CHOICES, INDUSTRIES
 
 from django.conf import settings
 from core import constants
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
-COMPANY_SIZE = BLANK_CHOICE_DASH + list(EMPLOYEES)
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
 
 

@@ -5,7 +5,7 @@ clean:
 	-find . -type d -name "__pycache__" -delete
 
 pytest:
-	flake8 && ENV_FILES='test,dev' pytest $(ARGUMENTS)
+	ENV_FILES='test,dev' pytest $(ARGUMENTS)
 
 test:
 	flake8 && make pytest
