@@ -5,7 +5,10 @@ clean:
 	-find . -type d -name "__pycache__" -delete
 
 pytest:
-	ENV_FILES='test,dev' pytest $(ARGUMENTS)
+	flake8 && ENV_FILES='test,dev' pytest $(ARGUMENTS)
+
+test:
+	flake8 && make pytest
 
 manage:
 	ENV_FILES='secrets-do-not-commit,dev' ./manage.py $(ARGUMENTS)

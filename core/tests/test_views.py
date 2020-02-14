@@ -81,7 +81,12 @@ def about_uk_region_page():
 
 @pytest.fixture
 def capital_invest_opportunity_page():
-    yield from stub_page({'page_type': 'CapitalInvestOpportunityPage'})
+    yield from stub_page({
+        'page_type': 'CapitalInvestOpportunityPage',
+        'related_sectors': [
+            {'related_sector': {'title': 'Test Sector'}}
+        ]
+    })
 
 
 @pytest.fixture
@@ -552,6 +557,8 @@ def test_get_about_uk_region_page_attaches_array_lengths_to_view(
 def test_get_capital_invest_opportunity_page_url_constants(
         mock_cms_response, rf):
 
+    current_sector_title = 'Test Sector'
+
     page = {
         'title': 'test',
         'meta': {
@@ -561,7 +568,10 @@ def test_get_capital_invest_opportunity_page_url_constants(
                 ['de', 'Deutsch'],
             ]
         },
-        'page_type': 'CapitalInvestOpportunityPage'
+        'page_type': 'CapitalInvestOpportunityPage',
+        'related_sectors': [
+            {'related_sector': {'title': current_sector_title}}
+        ]
     }
 
     mock_cms_response.return_value = create_response(page)
@@ -2790,6 +2800,7 @@ def test_why_buy_from_uk_context(rf, client):
         '/international/content/trade/how-we-help-you-buy/'
         in response.context_data['international_trade_how_we_help']
     )
+    assert 'privacy-notice-5-reasons-buy-uk' in response.context_data['privacy_url']
 
 
 def test_why_buy_from_uk_success_context(rf, client):

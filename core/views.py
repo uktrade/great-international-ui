@@ -354,9 +354,13 @@ def about_uk_region_page_context_modifier(context, request):
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
 
+    related_sector_dictionary = context['page']['related_sectors'][0]['related_sector']
+    current_sector_title = related_sector_dictionary['title']
+
     return {
         'invest_cta_link': urls.international.EXPAND_HOME,
         'buy_cta_link': urls.international.TRADE_HOME,
+        'current_sector_title': current_sector_title.capitalize(),
     }
 
 
@@ -975,6 +979,7 @@ class WhyBuyFromUKFormView(GA360Mixin, EnableTranslationsMixin, InternationalHea
         return super().get_context_data(
             international_trade_home=urls.international.TRADE_HOME,
             international_trade_how_we_help=urls.international.TRADE_HOW_WE_HELP,
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'privacy-notice-5-reasons-buy-uk/',
             *args, **kwargs,
         )
 
