@@ -5,9 +5,9 @@
 ### Fixed bugs
 - TT-2267 - Fix missing privacy link on Why buy from the UK form
 - CI-614-fix-related-opportunities
-- add flake8 to makefile 
 
 ### Implemented enhancements
+- TT-2263 - Add remaining translations for forms
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
 
