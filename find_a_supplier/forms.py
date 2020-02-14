@@ -8,10 +8,13 @@ from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.url import not_contains_url_or_email
 from django.core.validators import EMPTY_VALUES
+from django.db.models.fields import BLANK_CHOICE_DASH
 
 from core import constants
 from .constants import MARKETING_SOURCES
 
+COMPANY_SIZE = BLANK_CHOICE_DASH + constants.EMPLOYEES
+INDUSTRY_CHOICES = BLANK_CHOICE_DASH + list(choices.INDUSTRIES)
 
 ReCaptchaField = forms.field_factory(captcha.fields.ReCaptchaField)
 
@@ -247,7 +250,7 @@ class BuyFromTheUKForm(GovNotifyEmailActionMixin, forms.Form):
     )
     sector = forms.ChoiceField(
         label=_('Your industry'),
-        choices=choices.INDUSTRIES,
+        choices=INDUSTRY_CHOICES,
     )
     organisation_name = forms.CharField(
         label=_('Your organisation name'),
@@ -259,7 +262,7 @@ class BuyFromTheUKForm(GovNotifyEmailActionMixin, forms.Form):
     )
     organisation_size = forms.ChoiceField(
         label=_('Size of your organisation'),
-        choices=choices.EMPLOYEES,
+        choices=COMPANY_SIZE,
         required=False,
     )
     country = forms.ChoiceField(

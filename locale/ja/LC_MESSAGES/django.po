@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 16:24+0000\n"
+"POT-Creation-Date: 2020-02-14 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,11 +70,11 @@ msgstr ""
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "私はまだ投資する準備ができていません。 私に知らせてください。"
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "いつ電話するべきですか？"
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -98,10 +98,8 @@ msgstr "姓"
 msgid "Job title"
 msgstr "役職"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
-#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
-#: find_a_supplier/forms.py:237
-msgid "Email address"
+#: contact/forms.py:79
+msgid "Work email address"
 msgstr "メールアドレス"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
@@ -154,6 +152,11 @@ msgstr "電話でのご相談を希望されますか？ "
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "国際通商省についてどこでお聞きになりましたか？"
+
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+msgid "Email address"
+msgstr "メールアドレス"
 
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
@@ -231,6 +234,34 @@ msgstr "メールによる追加情報のお知らせを希望"
 msgid "I would like to receive additional information by telephone"
 msgstr "電話による追加情報のお知らせを希望"
 
+#: core/constants.py:292
+msgid "1-10"
+msgstr "1～10 名"
+
+#: core/constants.py:293
+msgid "11-50"
+msgstr "11～50 名"
+
+#: core/constants.py:294
+msgid "51-200"
+msgstr "51～200 名"
+
+#: core/constants.py:295
+msgid "201-500"
+msgstr "201～500 名"
+
+#: core/constants.py:296
+msgid "501-1,000"
+msgstr "501～1,000 名"
+
+#: core/constants.py:297
+msgid "1,001-10,000"
+msgstr "1,001～10,000 名"
+
+#: core/constants.py:298
+msgid "10,001+"
+msgstr "10,001名以上"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -249,17 +280,17 @@ msgstr "勤務先の電話番号"
 
 #: core/forms.py:110
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 #: core/forms.py:114
 msgid "How can we help?"
-msgstr ""
+msgstr "支援について"
 
 #: core/forms.py:176
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr ""
+msgstr "興味のある製品やサービスの種類について詳しく教えてください。教えていただくほど、迅速に対応できます。（任意）"
 
 #: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
@@ -293,7 +324,7 @@ msgstr ""
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr ""
+msgstr "現在または近い将来、英国の企業から製品やサービスを購入することに興味がありますか？"
 
 #: core/forms.py:237
 msgid "Select either yes or no"
@@ -764,7 +795,7 @@ msgstr "社名"
 
 #: find_a_supplier/forms.py:261
 msgid "Size of your organisation"
-msgstr "企業の人数"
+msgstr "会社の規模"
 
 #: find_a_supplier/forms.py:271
 msgid "Describe what products or services you need"

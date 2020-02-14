@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-11 16:24+0000\n"
+"POT-Creation-Date: 2020-02-14 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "Je ne suis pas encore prêt à investir. Tenez-moi informé."
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "Quand devrions-nous vous appeler?"
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -101,10 +101,8 @@ msgstr "Nom de famille"
 msgid "Job title"
 msgstr "Poste"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
-#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
-#: find_a_supplier/forms.py:237
-msgid "Email address"
+#: contact/forms.py:79
+msgid "Work email address"
 msgstr "E-mail de travail"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
@@ -149,6 +147,10 @@ msgid ""
 "UK, including size of the operation, why you’re considering the UK and what "
 "you’ll need to make it happen."
 msgstr ""
+"Posez-nous toutes les questions que vous pourriez avoir ou dites-nous vos "
+"projets d'expansion au Royaume-Uni, y compris la taille de l'opération, "
+"pourquoi vous envisagez le Royaume-Uni et ce dont vous aurez besoin pour y "
+"arriver."
 
 #: contact/forms.py:114 contact/forms.py:157
 msgid "Would you like to arrange a call?"
@@ -157,6 +159,11 @@ msgstr "Voulez-vous planifier un appel ?"
 #: contact/forms.py:120 contact/forms.py:159
 msgid "How did you hear about us?"
 msgstr "Où avez-vous entendu parler de nous ?"
+
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+msgid "Email address"
+msgstr "E-mail de travail"
 
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
@@ -236,6 +243,34 @@ msgstr "J'aimerais recevoir plus d'informations par e-mail"
 msgid "I would like to receive additional information by telephone"
 msgstr "J'aimerais recevoir plus d'informations par téléphone"
 
+#: core/constants.py:292
+msgid "1-10"
+msgstr ""
+
+#: core/constants.py:293
+msgid "11-50"
+msgstr ""
+
+#: core/constants.py:294
+msgid "51-200"
+msgstr ""
+
+#: core/constants.py:295
+msgid "201-500"
+msgstr ""
+
+#: core/constants.py:296
+msgid "501-1,000"
+msgstr "501-1 000"
+
+#: core/constants.py:297
+msgid "1,001-10,000"
+msgstr "1 001-10 000"
+
+#: core/constants.py:298
+msgid "10,001+"
+msgstr "+ de 10 000"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -264,7 +299,7 @@ msgstr "Comment pouvons-nous aider ?"
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr ""
+msgstr "Dites-nous en plus sur le type de produits ou services qui vous intéressent. Plus vous nous en direz, plus notre réponse sera rapide. (Optionnel)"
 
 #: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
@@ -298,7 +333,7 @@ msgstr ""
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr ""
+msgstr "Êtes-vous intéressé à acheter des produits ou des services auprès d'entreprises britanniques, maintenant ou dans un proche avenir?"
 
 #: core/forms.py:237
 msgid "Select either yes or no"
@@ -502,8 +537,8 @@ msgstr ""
 "\n"
 "<p>\n"
 " Vous pouvez vous renseigner sur la manière dont nous protégeons vos données "
-"dans notre <a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank\">our "
-"privacy notice</a>.\n"
+"dans notre <a class=\"link\" href=\"%(privacy_url)s\" target=\"_blank"
+"\">déclaration de confidentialité</a>.\n"
 "</p>\n"
 
 #: core/templates/core/includes/form_consent.html:18

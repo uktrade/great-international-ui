@@ -113,6 +113,14 @@ def test_transition_form_ingress_url(client):
     assert form.ingress_url == 'http://www.google.com'
 
 
+def test_transition_form_privacy_url(client):
+    url = reverse('brexit-international-contact-form')
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.context_data['privacy_url'] in str(response.content)
+
+
 @mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 def test_form_urls_no_referer(mock_lookup_by_slug, client):
     url = reverse('brexit-international-contact-form')
