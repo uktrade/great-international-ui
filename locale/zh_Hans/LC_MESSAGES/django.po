@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:57+0000\n"
+"POT-Creation-Date: 2020-02-14 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,11 +67,11 @@ msgstr "我仍在探索在哪里拓展我的业务，也想更多地了解英国
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "我还没有准备好投资。让我知情。"
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "我们什么时候应该打给你？"
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -84,7 +84,7 @@ msgstr "下午"
 #: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
 #: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
 msgid "Given name"
-msgstr "名"
+msgstr "名字"
 
 #: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
 #: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
@@ -95,11 +95,9 @@ msgstr "姓"
 msgid "Job title"
 msgstr "职务（可选）"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
-#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
-#: find_a_supplier/forms.py:237
-msgid "Email address"
-msgstr "工作电子邮件"
+#: contact/forms.py:79
+msgid "Work email address"
+msgstr "电子邮件地址"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
 #: find_a_supplier/forms.py:243
@@ -152,6 +150,11 @@ msgstr "您是否希望安排通话？"
 msgid "How did you hear about us?"
 msgstr "您是通过哪种渠道了解到我们的？"
 
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+msgid "Email address"
+msgstr "电子邮件地址"
+
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国家"
@@ -198,7 +201,7 @@ msgstr "您的投资"
 msgid "Submit"
 msgstr "提交"
 
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:64
 msgid "Type here"
 msgstr "在此处键入"
 
@@ -226,6 +229,34 @@ msgstr "我想通过电子邮件收到更多信息"
 msgid "I would like to receive additional information by telephone"
 msgstr "我想通过电话收到更多信息"
 
+#: core/constants.py:292
+msgid "1-10"
+msgstr "1-10 人"
+
+#: core/constants.py:293
+msgid "11-50"
+msgstr "11-50 人"
+
+#: core/constants.py:294
+msgid "51-200"
+msgstr "51-200 人"
+
+#: core/constants.py:295
+msgid "201-500"
+msgstr "201-500 人"
+
+#: core/constants.py:296
+msgid "501-1,000"
+msgstr "501-1,000 人"
+
+#: core/constants.py:297
+msgid "1,001-10,000"
+msgstr "1,001-10,000 人"
+
+#: core/constants.py:298
+msgid "10,001+"
+msgstr "10,000 人以上"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -240,21 +271,21 @@ msgstr ""
 
 #: core/forms.py:101 core/forms.py:213
 msgid "Phone number (Optional)"
-msgstr "工作电话"
+msgstr "电话号码（可选）"
 
 #: core/forms.py:110
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #: core/forms.py:114
 msgid "How can we help?"
-msgstr ""
+msgstr "我们如何提供帮助？"
 
 #: core/forms.py:176
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr ""
+msgstr "告诉我们更多有关您感兴趣的产品或服务的类型。告诉我们的信息越多，我们的响应速度就会越快。 （可选的）"
 
 #: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
@@ -270,7 +301,7 @@ msgstr ""
 
 #: core/forms.py:209
 msgid "Job title (Optional)"
-msgstr "职务姓"
+msgstr "职务（可选）"
 
 #: core/forms.py:216
 msgid "City (Optional)"
@@ -288,7 +319,7 @@ msgstr ""
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr ""
+msgstr "您是否对现在或不久的将来从英国企业购买产品或服务感兴趣？"
 
 #: core/forms.py:237
 msgid "Select either yes or no"
@@ -436,7 +467,8 @@ msgid "Opportunity"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
-msgid "Other projects in"
+#, python-format
+msgid "More %(current_sector_title)s projects"
 msgstr ""
 
 #: core/templates/core/contact_international_triage.html:25
@@ -692,9 +724,10 @@ msgid ""
 msgstr ""
 "\n"
 "              <p>\n"
-"                查看<a class=\"link\" href="
-"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
-"transition-period/\">过渡期及 2021 年英国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您提供帮助。\n"
+"                查看<a class=\"link\" href=\"%(services_urls.international)s/"
+"content/invest/how-to-setup-in-the-uk/transition-period/\">过渡期及 2021 年英"
+"国贸易往来</a>指南。如果找不到需要的信息，请填写下面的表格，我们的专家将为您"
+"提供帮助。\n"
 "              </p>\n"
 "              "
 

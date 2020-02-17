@@ -76,7 +76,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
     given_name = forms.CharField(label=_('Given name'))
     family_name = forms.CharField(label=_('Family name'))
     job_title = forms.CharField(label=_('Job title'))
-    email = forms.EmailField(label=_('Email address'))
+    email = forms.EmailField(label=_('Work email address'))
     phone_number = forms.CharField(
         label=_('Phone number'),
     )
