@@ -583,6 +583,7 @@ def test_get_capital_invest_opportunity_page_url_constants(
 
     assert response.context_data['invest_cta_link'] == urls.international.EXPAND_HOME
     assert response.context_data['buy_cta_link'] == urls.international.TRADE_HOME
+    assert response.context_data['contact_cta_link'] == urls.international.CAPITAL_INVEST_CONTACT
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
