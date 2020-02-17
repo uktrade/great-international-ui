@@ -7,6 +7,7 @@
 - CI-614-fix-related-opportunities
 
 ### Implemented enhancements
+- CI-661 - Add sticky CTA section to opportunity page
 - TT-2263 - Add remaining translations for forms
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
