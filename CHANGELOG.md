@@ -7,6 +7,7 @@
 - CI-614-fix-related-opportunities
 
 ### Implemented enhancements
+- CI-653 - Add opportunities search link to the header
 - TT-2263 - Add remaining translations for forms
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
@@ -35,7 +36,6 @@
 
 ### Implemented enhancements
 - CI-631 - Update business environment guide form and content in form consent sections
-- CI-653 - Add opportunities search link to the header
 - CI-651 - Alter text alignment and add vignettes to hero components
 - XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
 - XOT-1253 - text changes
