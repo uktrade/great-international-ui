@@ -9,17 +9,6 @@
     <script src="{% static 'core/js/dit.components.hideParagraphOnScroll.js' %}"></script>
 {% endblock %}
 
-{% block head_css %}
-    {{ block.super }}
-    {# Prevent header sub navigation from sticking only on this type of page #}
-    <style>
-      .great-sub-header {
-        position: static;
-        top: auto;
-      }
-    </style>
-{% endblock %}
-
 {% block css_layout_class %}hpo-detail-page{% endblock %}
 
 {% block head_title %}
