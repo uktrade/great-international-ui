@@ -101,6 +101,7 @@ node_modules/
 
 .env
 conf/env/secrets-do-not-commit
+ENV/
 
 # Generated files
 ui/staticfiles
