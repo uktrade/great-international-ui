@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:57+0000\n"
+"POT-Creation-Date: 2020-02-14 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,11 +73,11 @@ msgstr ""
 
 #: contact/forms.py:50
 msgid "I’m not yet ready to invest. Keep me informed."
-msgstr ""
+msgstr "Ainda não estou pronto para investir. Mantenha-me informado."
 
 #: contact/forms.py:58 contact/forms.py:158
 msgid "When should we call you?"
-msgstr ""
+msgstr "Quando devemos ligar para você?"
 
 #: contact/forms.py:62
 msgid "In the morning"
@@ -101,10 +101,8 @@ msgstr "Apelido"
 msgid "Job title"
 msgstr "Cargo"
 
-#: contact/forms.py:79 contact/forms.py:148 core/forms.py:99 core/forms.py:141
-#: core/forms.py:196 euexit/forms.py:52 find_a_supplier/forms.py:176
-#: find_a_supplier/forms.py:237
-msgid "Email address"
+#: contact/forms.py:79
+msgid "Work email address"
 msgstr "E-mail de trabalho"
 
 #: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
@@ -162,6 +160,11 @@ msgstr "Gostaria de agendar uma chamada?"
 msgid "How did you hear about us?"
 msgstr "Como teve conhecimento sobre nós?"
 
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
+#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+msgid "Email address"
+msgstr "E-mail de trabalho"
+
 #: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "País"
@@ -208,7 +211,7 @@ msgstr "Seu investimento"
 msgid "Submit"
 msgstr "Enviar"
 
-#: contact/templates/contact/contact.html:63
+#: contact/templates/contact/contact.html:64
 msgid "Type here"
 msgstr "Escreva aqui"
 
@@ -238,6 +241,34 @@ msgstr "Gostaria de receber mais informações por e-mail"
 msgid "I would like to receive additional information by telephone"
 msgstr "Gostaria de receber mais informações por telefone"
 
+#: core/constants.py:292
+msgid "1-10"
+msgstr ""
+
+#: core/constants.py:293
+msgid "11-50"
+msgstr ""
+
+#: core/constants.py:294
+msgid "51-200"
+msgstr ""
+
+#: core/constants.py:295
+msgid "201-500"
+msgstr ""
+
+#: core/constants.py:296
+msgid "501-1,000"
+msgstr "501-1.000"
+
+#: core/constants.py:297
+msgid "1,001-10,000"
+msgstr "1.001-10.000"
+
+#: core/constants.py:298
+msgid "10,001+"
+msgstr "Mais de 10 000"
+
 #: core/context_processors.py:30
 msgid "great.gov.uk international"
 msgstr ""
@@ -266,7 +297,7 @@ msgstr "Como podemos ajudar?"
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr ""
+msgstr "Conte-nos mais sobre o tipo de produtos ou serviços nos quais você está interessado. Quanto mais você nos contar, mais rápida será a nossa resposta. (Opcional)"
 
 #: core/forms.py:186 core/forms.py:192
 msgid "Enter your full name"
@@ -300,7 +331,7 @@ msgstr ""
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr ""
+msgstr "Você está interessado em comprar produtos ou serviços de empresas do Reino Unido, agora ou em um futuro próximo?"
 
 #: core/forms.py:237
 msgid "Select either yes or no"
@@ -448,7 +479,8 @@ msgid "Opportunity"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
-msgid "Other projects in"
+#, python-format
+msgid "More %(current_sector_title)s projects"
 msgstr ""
 
 #: core/templates/core/contact_international_triage.html:25
@@ -502,7 +534,7 @@ msgid ""
 msgstr ""
 "\n"
 "<p>\n"
-" Pode saber como protegemos os seus dados na nossa<a class=\"link\" href="
+" Pode saber como protegemos os seus dados na nossa <a class=\"link\" href="
 "\"%(privacy_url)s\" target=\"_blank\">declaração de privacidade</a>.\n"
 "</p>\n"
 
@@ -562,9 +594,9 @@ msgid ""
 "period you can opt in below. You can opt out of these additional updates at "
 "any time."
 msgstr ""
-"Se pretender receber mais informações sobre expandir o seu negócio para o "
-"Reino Unido, pode selecionar esta opção abaixo. Pode optar por não receber "
-"estas atualizações a qualquer momento."
+"Se você deseja receber mais informações sobre o período de transição para o "
+"Reino Unido, pode participar abaixo. Pode optar por não receber estas "
+"atualizações a qualquer momento."
 
 #: core/templates/core/investment_prospectus_form.html:9
 msgid "The UK Investment Prospectus"
@@ -662,7 +694,7 @@ msgstr ""
 
 #: core/templates/core/why_buy_from_the_uk_form.html:24
 msgid "the excitement and creativity of the UK"
-msgstr "A emoção e a criatividade do Reino Unido"
+msgstr "a emoção e a criatividade do Reino Unido"
 
 #: core/templates/core/why_buy_from_the_uk_form.html:25
 msgid "UK industries and companies pushing the boundaries"
@@ -680,7 +712,7 @@ msgstr ""
 #: core/templates/core/why_buy_from_the_uk_form.html:28
 msgid "commitment to the highest standards for better long-term value"
 msgstr ""
-"O compromisso com os padrões mais elevados para um melhor valor a longo prazo"
+"o compromisso com os padrões mais elevados para um melhor valor a longo prazo"
 
 #: euexit/forms.py:18 perfect_fit_prospectus/forms.py:16
 msgid "Company"
@@ -727,9 +759,12 @@ msgid ""
 msgstr ""
 "\n"
 "              <p>\n"
-"                Consulte as nossas orientações sobre a realização de <a class=\"link\" href="
-"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
-"transition-period/\">negócios com o Reino Unido durante o período de transição e em 2021</a>. Se não conseguir encontrar as informações que procura, preencha o formulário abaixo e um dos nossos especialistas irá tentar ajudá-lo.\n"
+"                Consulte as nossas orientações sobre a realização de <a "
+"class=\"link\" href=\"%(services_urls.international)s/content/invest/how-to-"
+"setup-in-the-uk/transition-period/\">negócios com o Reino Unido durante o "
+"período de transição e em 2021</a>. Se não conseguir encontrar as "
+"informações que procura, preencha o formulário abaixo e um dos nossos "
+"especialistas irá tentar ajudá-lo.\n"
 "              </p>\n"
 "              "
 

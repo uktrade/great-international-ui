@@ -287,3 +287,13 @@ OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'
 
 EMAIL_CONSENT_LABEL = _('I would like to receive additional information by email')
 PHONE_CONSENT_LABEL = _('I would like to receive additional information by telephone')
+
+EMPLOYEES = [
+    ('1-10', _('1-10')),
+    ('11-50', _('11-50')),
+    ('51-200', _('51-200')),
+    ('201-500', _('201-500')),
+    ('501-1000', _('501-1,000')),
+    ('1001-10000', _('1,001-10,000')),
+    ('10001+', _('10,001+')),
+]

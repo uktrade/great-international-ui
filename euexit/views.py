@@ -1,5 +1,5 @@
 from directory_components.mixins import GA360Mixin, EnableTranslationsMixin
-from directory_constants import slugs
+from directory_constants import slugs, urls
 from directory_forms_api_client.helpers import Sender
 
 from django.conf import settings
@@ -32,6 +32,12 @@ class TransitionContactFormView(EnableTranslationsMixin, GA360Mixin, Internation
             business_unit='GreatInternational',
             site_section='EUExit',
             site_subsection='ContactForm'
+        )
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'privacy-notice-contact-us-about-uk-transition-period/',
+            *args, **kwargs
         )
 
     def get(self, *args, **kwargs):

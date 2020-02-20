@@ -7,6 +7,35 @@
 
 .capital-invest-opportunity-page {
 
+  .contact-section {
+    display: none;
+  }
+
+  .contact-section.sticky {
+    display: block;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    background-color: $stone;
+    padding: 16px 0;
+    border-bottom: 4px solid $active-blue;
+
+    p,
+    h3 {
+      margin: 0
+    }
+
+    .contact-box {
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-box-content h2 {
+      margin: 0;
+    }
+  }
+
   .page-section{
     @include page-section-padding
   }

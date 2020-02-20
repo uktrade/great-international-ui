@@ -2,11 +2,22 @@
 {% load i18n %}
 {% load static from staticfiles %}
 {% load filter_by_active_language cms_hero from cms_tags %}
-{% load card add_export_elements_classes case_study breadcrumbs from directory_components %}
+{% load directory_components %}
 
 {% block css_layout_class %}capital-invest-opportunity-page{% endblock %}
 
+{% block head_js %}
+    {{ block.super }}
+    <script src="{% static 'core/js/dit.components.showCTAOnScroll.js' %}"></script>
+{% endblock %}
+
 {% block content %}
+
+<section id="contact-section" class="contact-section background-stone">
+  <div class="container">
+      {% cta_box box_id='contact-box' box_class='contact-box background-stone' heading='Contact the Capital Investment team for more details about this opportunity' button_text='Get in touch' button_url=contact_cta_link button_class='button-arrow-large button-blue' %}
+  </div>
+</section>
 
 {% trans 'Opportunity' as hero_subtitle %}
 {% cms_hero hero_text=page.hero_title hero_subheading=hero_subtitle %}
@@ -142,7 +153,7 @@
     <div class="container">
         <div class="flex-grid">
             <h1 class="heading-large padding-bottom-30">
-            {% trans 'Other projects in' %} {{ random_related_sector_title }}
+            {% blocktrans %}More {{ current_sector_title }} projects{% endblocktrans %}
             </h1>
             {% for opportunity in page.related_opportunities|filter_by_active_language %}
                 <div class="column-third-xl column-half-m">
