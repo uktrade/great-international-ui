@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+## [2020.02.20](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.20)
+[Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.11...2020.02.20)
+
 ### Fixed bugs
 - TT-2267 - Fix missing privacy link on Why buy from the UK form
 - CI-614-fix-related-opportunities
@@ -10,11 +13,13 @@
 - CI-661 - Add sticky CTA section to opportunity page
 - CI-653 - Add opportunities search link to the header
 - TT-2263 - Add remaining translations for forms
-- XOT-1296 - replace cookie banner with cookie modal
-- no ticket - Upgrade waitress
 
 ## [2020.02.11](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.11)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.06...2020.02.11)
+
+### Implemented enhancements
+- XOT-1296 - replace cookie banner with cookie modal
+- no ticket - Upgrade waitress
 
 ### Hotfix
 - No ticket - Replace cookie banner with modal
