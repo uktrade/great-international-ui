@@ -459,7 +459,7 @@ msgid "Sort by"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:94
-msgid "No results"
+msgid "We couldn’t find any opportunities - please try some different filters."
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
