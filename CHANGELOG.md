@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Implemented enhancements
+- CI-618 - Change working on opportunity listing page
+
 ## [2020.02.20](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.20)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.11...2020.02.20)
 
