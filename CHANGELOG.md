@@ -8,8 +8,6 @@
 - CI-676 - Change label on filter to ‘Scale (GDV or Capex)’
 
 ### Bug fix
-- CI-614-fix-related-opportunities
-- add flake8 to makefile
 
 ## [2020.02.20](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.20)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.11...2020.02.20)
