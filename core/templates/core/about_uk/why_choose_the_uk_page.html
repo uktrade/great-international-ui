@@ -74,6 +74,29 @@
 </section>
 {% endif %}
 
+{% if page.ebook_section_title and page.ebook_section_body %}
+<section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
+    <div class="container">
+        <div class="grid-row">
+            {% if page.ebook_section_image %}
+                <div class="column-quarter-l">
+                    <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
+                </div>
+            {% endif %}
+            <div class="column-three-quarters-l padding-left-60-l">
+                <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
+                {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
+                {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
+                    <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
+                        {{ page.ebook_section_cta_text }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
 {% if page.about_uk_articles_fields %}
 {% for article in page.about_uk_articles_fields %}
 <section id="{{ article.title|slugify }}-article-section" class="article-section padding-vertical-60 padding-vertical-90-l">
@@ -97,29 +120,6 @@
     </div>
 </section>
 {% endfor %}
-{% endif %}
-
-{% if page.ebook_section_title and page.ebook_section_body %}
-<section id="ebook-section" class="background-great-blue white-text padding-vertical-60 padding-vertical-90-l">
-    <div class="container">
-        <div class="grid-row">
-            {% if page.ebook_section_image %}
-                <div class="column-quarter-l">
-                    <img src="{{ page.ebook_section_image.url }}" alt="{{ page.ebook_section_image_alt_text }}" />
-                </div>
-            {% endif %}
-            <div class="column-three-quarters-l padding-left-60-l">
-                <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
-                {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
-                {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
-                    <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
-                        {{ page.ebook_section_cta_text }}
-                    </a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
 {% endif %}
 
 {% if page.how_dit_help_title and page.related_pages %}

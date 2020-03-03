@@ -6,6 +6,7 @@
 - CI-658 - Use featured link content from cms on homepage
 - CI-618 - Change working on opportunity listing page
 - CI-676 - Change label on filter to ‘Scale (GDV or Capex)’
+- CI-665 - Move UK Investment Prospectus banner up the page
 
 ### Bug fix
 
