@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-14 12:58+0000\n"
+"POT-Creation-Date: 2020-02-20 15:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: contact/forms.py:20 core/forms.py:231
+#: contact/forms.py:20 core/forms.py:230
 msgid "Yes"
 msgstr "Sim"
 
-#: contact/forms.py:21 core/forms.py:232
+#: contact/forms.py:21 core/forms.py:231
 msgid "No"
 msgstr "Não"
 
@@ -46,7 +46,7 @@ msgstr "Outras redes sociais (por exemplo Twitter/Facebook) "
 msgid "Internet search"
 msgstr "Pesquisa na Internet "
 
-#: contact/forms.py:29 core/forms.py:294 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:293 find_a_supplier/constants.py:38
 msgid "Other"
 msgstr "Outros"
 
@@ -87,13 +87,13 @@ msgstr "De manhã"
 msgid "In the afternoon"
 msgstr "À tarde"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
-#: core/forms.py:184 euexit/forms.py:50 find_a_supplier/forms.py:221
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:96 core/forms.py:138
+#: core/forms.py:183 euexit/forms.py:50 find_a_supplier/forms.py:224
 msgid "Given name"
 msgstr "Nome"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
-#: core/forms.py:190 euexit/forms.py:51 find_a_supplier/forms.py:229
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:97 core/forms.py:139
+#: core/forms.py:189 euexit/forms.py:51 find_a_supplier/forms.py:232
 msgid "Family name"
 msgstr "Apelido"
 
@@ -105,13 +105,13 @@ msgstr "Cargo"
 msgid "Work email address"
 msgstr "E-mail de trabalho"
 
-#: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
-#: find_a_supplier/forms.py:243
+#: contact/forms.py:81 contact/forms.py:149 core/forms.py:141
+#: find_a_supplier/forms.py:246
 msgid "Phone number"
 msgstr "Número de telefone"
 
-#: contact/forms.py:83 contact/forms.py:150 core/forms.py:148 core/forms.py:203
-#: euexit/forms.py:58 find_a_supplier/forms.py:184
+#: contact/forms.py:83 contact/forms.py:150 core/forms.py:147 core/forms.py:202
+#: euexit/forms.py:58 find_a_supplier/forms.py:187
 msgid "Company name"
 msgstr "Nome da empresa"
 
@@ -123,11 +123,11 @@ msgstr "Website da empresa"
 msgid "Company HQ address"
 msgstr "Endereço da sede da empresa"
 
-#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:60
+#: contact/forms.py:91 core/forms.py:104 euexit/forms.py:60
 msgid "Which country are you based in?"
 msgstr "Em que país se encontra?"
 
-#: contact/forms.py:96 find_a_supplier/forms.py:249
+#: contact/forms.py:96 find_a_supplier/forms.py:252
 msgid "Your industry"
 msgstr "A sua indústria"
 
@@ -160,16 +160,16 @@ msgstr "Gostaria de agendar uma chamada?"
 msgid "How did you hear about us?"
 msgstr "Como teve conhecimento sobre nós?"
 
-#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:196
-#: euexit/forms.py:52 find_a_supplier/forms.py:176 find_a_supplier/forms.py:237
+#: contact/forms.py:148 core/forms.py:98 core/forms.py:140 core/forms.py:195
+#: euexit/forms.py:52 find_a_supplier/forms.py:179 find_a_supplier/forms.py:240
 msgid "Email address"
 msgstr "E-mail de trabalho"
 
-#: contact/forms.py:153 core/forms.py:144 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:153 core/forms.py:143 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "País"
 
-#: contact/forms.py:154 core/forms.py:150 find_a_supplier/forms.py:178
+#: contact/forms.py:154 core/forms.py:149 find_a_supplier/forms.py:181
 msgid "Industry"
 msgstr "Indústria"
 
@@ -281,83 +281,88 @@ msgstr "Encontre um fornecedor"
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:101 core/forms.py:213
+#: core/forms.py:100 core/forms.py:212
 msgid "Phone number (Optional)"
 msgstr "Telefone comercial"
 
-#: core/forms.py:110
+#: core/forms.py:109
 msgid "Message"
 msgstr "Mensagem"
 
-#: core/forms.py:114
+#: core/forms.py:113
 msgid "How can we help?"
 msgstr "Como podemos ajudar?"
 
-#: core/forms.py:176
+#: core/forms.py:175
 msgid ""
 "Tell us more about the type of products or services you’re interested in. "
 "The more you tell us, the quicker our response will be. (Optional)"
-msgstr "Conte-nos mais sobre o tipo de produtos ou serviços nos quais você está interessado. Quanto mais você nos contar, mais rápida será a nossa resposta. (Opcional)"
+msgstr ""
+"Conte-nos mais sobre o tipo de produtos ou serviços nos quais você está "
+"interessado. Quanto mais você nos contar, mais rápida será a nossa resposta. "
+"(Opcional)"
 
-#: core/forms.py:186 core/forms.py:192
+#: core/forms.py:185 core/forms.py:191
 msgid "Enter your full name"
 msgstr ""
 
-#: core/forms.py:199
+#: core/forms.py:198
 msgid "Enter an email address in the correct format, like name@example.com"
 msgstr ""
 
-#: core/forms.py:205
+#: core/forms.py:204
 msgid "Enter your company name"
 msgstr "Nome da empresa registado"
 
-#: core/forms.py:209
+#: core/forms.py:208
 msgid "Job title (Optional)"
 msgstr "Cargo (opcional)"
 
-#: core/forms.py:216
+#: core/forms.py:215
 msgid "City (Optional)"
 msgstr "Cidade (opcional)"
 
-#: core/forms.py:219 find_a_supplier/forms.py:266
+#: core/forms.py:218 find_a_supplier/forms.py:269
 msgid "Your country"
 msgstr "O seu país"
 
-#: core/forms.py:223
+#: core/forms.py:222
 msgid "Select a country"
 msgstr ""
 
-#: core/forms.py:228
+#: core/forms.py:227
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
-msgstr "Você está interessado em comprar produtos ou serviços de empresas do Reino Unido, agora ou em um futuro próximo?"
+msgstr ""
+"Você está interessado em comprar produtos ou serviços de empresas do Reino "
+"Unido, agora ou em um futuro próximo?"
 
-#: core/forms.py:237
+#: core/forms.py:236
 msgid "Select either yes or no"
 msgstr ""
 
-#: core/forms.py:242
+#: core/forms.py:241
 msgid "Your industry (optional)"
 msgstr "A sua indústria (opcional)"
 
-#: core/forms.py:289
+#: core/forms.py:288
 msgid "Expanding to the UK"
 msgstr "Expandir o negócio para o Reino Unido"
 
-#: core/forms.py:290
+#: core/forms.py:289
 msgid "Investing capital in the UK"
 msgstr "Investir capital no Reino Unido"
 
-#: core/forms.py:291
+#: core/forms.py:290
 msgid "Exporting to the UK"
 msgstr ""
 
-#: core/forms.py:292
+#: core/forms.py:291
 msgid "Buying from the UK"
 msgstr "Comprar produtos/serviços do Reino Unido"
 
-#: core/forms.py:293
+#: core/forms.py:292
 msgid "The transition period (now that the UK has left the EU)"
 msgstr "Período de transição (agora que o Reino Unido saiu da UE)"
 
@@ -471,14 +476,14 @@ msgid "Sort by"
 msgstr ""
 
 #: core/templates/core/capital_invest/capital_invest_opportunity_listing_page.html:94
-msgid "No results"
+msgid "We couldn’t find any opportunities - please try some different filters."
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:11
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:22
 msgid "Opportunity"
 msgstr ""
 
-#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:145
+#: core/templates/core/capital_invest/capital_invest_opportunity_page.html:156
 #, python-format
 msgid "More %(current_sector_title)s projects"
 msgstr ""
@@ -796,43 +801,43 @@ msgstr "Website de redes sociais"
 msgid "At an event"
 msgstr "Num evento"
 
-#: find_a_supplier/forms.py:31
+#: find_a_supplier/forms.py:34
 msgid "All industries"
 msgstr "Indústrias"
 
-#: find_a_supplier/forms.py:166
+#: find_a_supplier/forms.py:169
 msgid "Please select an industry"
 msgstr ""
 
-#: find_a_supplier/forms.py:168
+#: find_a_supplier/forms.py:171
 msgid "Tick the box to confirm you agree to the terms and conditions."
 msgstr ""
 
-#: find_a_supplier/forms.py:175
+#: find_a_supplier/forms.py:178
 msgid "Your name"
 msgstr ""
 
-#: find_a_supplier/forms.py:253
+#: find_a_supplier/forms.py:256
 msgid "Your organisation name"
 msgstr "Nome da sua organização"
 
-#: find_a_supplier/forms.py:261
+#: find_a_supplier/forms.py:264
 msgid "Size of your organisation"
 msgstr "Tamanho da sua organização"
 
-#: find_a_supplier/forms.py:271
+#: find_a_supplier/forms.py:274
 msgid "Describe what products or services you need"
 msgstr "Descreva os produtos ou serviços de que necessita"
 
-#: find_a_supplier/forms.py:272
+#: find_a_supplier/forms.py:275
 msgid "Maximum 1000 characters."
 msgstr "Máximo de 1000 carateres"
 
-#: find_a_supplier/forms.py:280
+#: find_a_supplier/forms.py:283
 msgid "Where did you hear about great.gov.uk?"
 msgstr "Onde teve conhecimento do great.gov.uk?"
 
-#: find_a_supplier/forms.py:289
+#: find_a_supplier/forms.py:292
 msgid "Other source (optional)"
 msgstr ""
 

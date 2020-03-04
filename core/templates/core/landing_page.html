@@ -101,15 +101,11 @@
       </div>
     </div>
     <div class="flex-grid">
+      {% for link in page.featured_links %}
       <div class="column-third-xl column-half-m">
-          {% cta_card with_arrow=True url=header_footer_urls.industries image_url=page.featured_links.0.image.url text=page.featured_links.0.heading %}
+          {% cta_card with_arrow=True url=link.url image_url=link.image.url text=link.heading %}
       </div>
-      <div class="column-third-xl column-half-m">
-          {% cta_card with_arrow=True url=services_urls.uk_setup_guide image_url=page.featured_links.1.image.url text=page.featured_links.1.heading %}
-      </div>
-      <div class="column-third-xl column-half-m">
-          {% cta_card with_arrow=True url=services_urls.contact_us image_url=page.featured_links.2.image.url text=page.featured_links.2.heading %}
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
