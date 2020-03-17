@@ -2,12 +2,14 @@
 
 ## Pre-release
 
+## [2020.03.04](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.03.04)
+[Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.20...2020.03.04)
+
 ### Implemented enhancements
 - CI-658 - Use featured link content from cms on homepage
 - CI-618 - Change working on opportunity listing page
 - CI-676 - Change label on filter to ‘Scale (GDV or Capex)’
-
-### Bug fix
+- CI-665 - Move UK Investment Prospectus banner up the page
 
 ## [2020.02.20](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.20)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.11...2020.02.20)
