@@ -8,7 +8,8 @@
 
 {% block content %}
 
-{% cms_hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle cta_text=page.hero_cta_text cta_link=page.hero_cta_link %}
+{% url 'how-to-do-business-with-the-uk' as doing_business_url %}
+{% cms_hero_with_cta heading=page.hero_title subheading=page.hero_subheading subtitle=page.hero_subtitle cta_text=page.hero_cta_text cta_link=page.hero_cta_link|default:doing_business_url %}
 
 {% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
 <div class="container">
