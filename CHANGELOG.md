@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Implemented enhancements
+- CI-677 - Display a CTA link on Capital Investment homepage hero
+
 ## Hotfix
 - No ticket - v3 ci pipeline manifest.yml file fix
 
