@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 - CI-677 - Display a CTA link on Capital Investment homepage hero
+- no ticked - Add APM support
 
 ## Hotfix
 - No ticket - v3 ci pipeline manifest.yml file fix
