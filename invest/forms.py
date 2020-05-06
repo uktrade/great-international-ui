@@ -4,35 +4,35 @@ from directory_constants import choices
 from directory_forms_api_client.actions import GovNotifyEmailAction
 from directory_forms_api_client.helpers import Sender
 
-from django.db.models.fields import BLANK_CHOICE_DASH
 from django.conf import settings
 from django.forms import Select, Textarea, SelectMultiple
 from django.utils.translation import ugettext_lazy as _
 
 from core import constants
 
-HOW_DID_YOU_HEAR_CHOICES = BLANK_CHOICE_DASH + list((
+HOW_DID_YOU_HEAR_CHOICES = [
     ('Advert in a publication', _('Advert in a publication')),
     ('Billboard or other outdoor advert', _('Billboard or other outdoor advert')),
     ('LinkedIn', _('LinkedIn')),
     ('Other social media', _('Other social media')),
     ('Internet search', _('Internet search')),
     ('Other', _('Other'))
-))
+]
+
+HOW_CAN_WE_HELP_CHOICES = [
+    (
+        "I'm ready to invest and I'd like an adviser to call me.",
+        _("I'm ready to invest and I'd like an adviser to call me."),
+    ),
+    (
+        "I'm not quite ready to invest but I'd like to get updates on opportunities.",
+        _("I'm not quite ready to invest but I'd like to get updates on opportunities."),
+    ),
+]
 
 
 class HighPotentialOpportunityForm(forms.Form):
     action_class = GovNotifyEmailAction
-    HOW_CAN_WE_HELP_CHOICES = [
-        (
-            "I'm ready to invest and I'd like an adviser to call me.",
-            _("I'm ready to invest and I'd like an adviser to call me."),
-        ),
-        (
-            "I'm not quite ready to invest but I'd like to get updates on opportunities.",
-            _("I'm not quite ready to invest but I'd like to get updates on opportunities."),
-        ),
-    ]
     REQUIRED_USER_UTM_DATA_FIELD_NAMES = (
         'utm_source',
         'utm_medium',
@@ -55,7 +55,7 @@ class HighPotentialOpportunityForm(forms.Form):
     family_name = forms.CharField(
         label=_('Family name')
     )
-    role_in_company = forms.CharField(
+    job_title = forms.CharField(
         label=_('Job title')
     )
     email_address = forms.EmailField(
@@ -71,7 +71,8 @@ class HighPotentialOpportunityForm(forms.Form):
         label=_('Company website')
     )
     company_address = forms.CharField(
-        label=_('Company HQ address')
+        label=_('Company HQ address'),
+        widget=Textarea()
     )
     country = forms.ChoiceField(
         label=_('Which country are you based in?'),
