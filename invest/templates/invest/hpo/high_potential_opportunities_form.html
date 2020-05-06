@@ -1,5 +1,6 @@
 {% extends 'core/base_with_invest_header.html' %}
 {% load static from staticfiles %}
+{% load i18n %}
 
 {% load add_export_elements_classes from directory_components %}
 {% block head_css %}
@@ -23,14 +24,32 @@
 
 <section class="padding-bottom-60">
   <div class="container">
-      <div id="heading-container" class="margin-bottom-30">
-        <h2 class="heading-large">{{ page.heading }}</h2>
-        <span class="font-xsmall">{{ page.sub_heading }}</span>
+      <div id="heading-container" class="width-two-thirds-l width-half-xl margin-bottom-30">
+        <h2 class="heading-large">Contact us about high potential opportunities</h2>
+        <p>Got a question about one of our high potential opportunities? Get in touch and give as much information as you can.</p>
       </div>
       <div id="form-container" class="grid-row">
-        <form method="post" class="column-two-thirds-m column-half-l">
-            {{ form }}
-            <button type="submit" id="submit-button" class="button">Submit</button>
+        <form class="column-two-thirds-l column-half-xl" action="{% url 'invest-contact' %}" method="post">
+          {% csrf_token %}
+
+          <h2 class="heading-medium">{% trans "Contact information" %}</h2>
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.company_name %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.website_url %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.company_address %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.how_can_we_help %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.your_plans %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.how_did_you_hear %}
+          {% include 'core/includes/form_consent_hpo.html' with form=form %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %}
+
+          <button type="submit" name="button" class="button button-blue">{% trans "Submit" %}</button>
         </form>
       </div>
    </div>

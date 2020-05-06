@@ -1,21 +1,37 @@
 from captcha.fields import ReCaptchaField
 from directory_components import forms
-from directory_constants import choices, urls
+from directory_constants import choices
 from directory_forms_api_client.actions import GovNotifyEmailAction
 from directory_forms_api_client.helpers import Sender
 
+from django.db.models.fields import BLANK_CHOICE_DASH
 from django.conf import settings
-from django.forms import Select, Textarea
-from django.utils.safestring import mark_safe
+from django.forms import Select, Textarea, SelectMultiple
+from django.utils.translation import ugettext_lazy as _
+
+from core import constants
+
+HOW_DID_YOU_HEAR_CHOICES = BLANK_CHOICE_DASH + list((
+    ('Advert in a publication', _('Advert in a publication')),
+    ('Billboard or other outdoor advert', _('Billboard or other outdoor advert')),
+    ('LinkedIn', _('LinkedIn')),
+    ('Other social media', _('Other social media')),
+    ('Internet search', _('Internet search')),
+    ('Other', _('Other'))
+))
 
 
 class HighPotentialOpportunityForm(forms.Form):
     action_class = GovNotifyEmailAction
-    COMPANY_SIZE_CHOICES = [
-        ('1 - 10', '1 - 10'),
-        ('11 - 50', '11 - 50'),
-        ('51 - 250', '51 - 250'),
-        ('250+', '250+'),
+    HOW_CAN_WE_HELP_CHOICES = [
+        (
+            "I'm ready to invest and I'd like an adviser to call me.",
+            _("I'm ready to invest and I'd like an adviser to call me."),
+        ),
+        (
+            "I'm not quite ready to invest but I'd like to get updates on opportunities.",
+            _("I'm not quite ready to invest but I'd like to get updates on opportunities."),
+        ),
     ]
     REQUIRED_USER_UTM_DATA_FIELD_NAMES = (
         'utm_source',
@@ -25,11 +41,7 @@ class HighPotentialOpportunityForm(forms.Form):
         'utm_content',
     )
 
-    def __init__(self, field_attributes, opportunity_choices, utm_data=None, *args, **kwargs):
-        for field_name, field in self.base_fields.items():
-            attributes = field_attributes.get(field_name)
-            if attributes:
-                field.__dict__.update(attributes)
+    def __init__(self, opportunity_choices, utm_data=None, *args, **kwargs):
         self.base_fields['opportunities'].choices = opportunity_choices
         self.utm_data = utm_data or {}
         # set empty string by default not exists data fields
@@ -37,36 +49,68 @@ class HighPotentialOpportunityForm(forms.Form):
             self.utm_data.setdefault(field_name, '')
         return super().__init__(*args, **kwargs)
 
-    full_name = forms.CharField()
-    role_in_company = forms.CharField()
-    email_address = forms.EmailField()
-    phone_number = forms.CharField()
-    company_name = forms.CharField()
-    website_url = forms.CharField(required=False)
+    given_name = forms.CharField(
+        label=_('Given name')
+    )
+    family_name = forms.CharField(
+        label=_('Family name')
+    )
+    role_in_company = forms.CharField(
+        label=_('Job title')
+    )
+    email_address = forms.EmailField(
+        label=_('Work email address')
+    )
+    phone_number = forms.CharField(
+        label=_('Phone number')
+    )
+    company_name = forms.CharField(
+        label=_('Company name')
+    )
+    website_url = forms.CharField(
+        label=_('Company website')
+    )
+    company_address = forms.CharField(
+        label=_('Company HQ address')
+    )
     country = forms.ChoiceField(
+        label=_('Which country are you based in?'),
         choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
         widget=Select(attrs={'id': 'js-country-select'}),
     )
-    company_size = forms.ChoiceField(
-        choices=COMPANY_SIZE_CHOICES
+    industry = forms.MultipleChoiceField(
+        label=_('Your industry'),
+        choices=choices.INDUSTRIES,
+        widget=SelectMultiple()
     )
     opportunities = forms.MultipleChoiceField(
+        label=_('Which opportunities are you interested in?'),
         widget=forms.CheckboxSelectInlineLabelMultiple(
             attrs={'id': 'checkbox-multiple'},
             use_nice_ids=True,
         ),
         choices=[]  # set in __init__
     )
-    comment = forms.CharField(
-        widget=Textarea,
+    how_can_we_help = forms.ChoiceField(
+        label=_('How can we help?'),
+        choices=HOW_CAN_WE_HELP_CHOICES,
+        widget=forms.RadioSelect(),
+    )
+    your_plans = forms.CharField(
+        label=_('Tell us about your plans'),
+        widget=Textarea()
+    )
+    how_did_you_hear = forms.ChoiceField(
+        label=_('How did you hear about us?'),
+        choices=HOW_DID_YOU_HEAR_CHOICES,
+    )
+    email_contact_consent = forms.BooleanField(
+        label=constants.EMAIL_CONSENT_LABEL,
         required=False
     )
-    terms_agreed = forms.BooleanField(
-        label=mark_safe(
-            'Tick this box to accept the '
-            f'<a href="{urls.domestic.TERMS_AND_CONDITIONS}" target="_blank">terms and '
-            'conditions</a> of the great.gov.uk service.'
-        )
+    telephone_contact_consent = forms.BooleanField(
+        label=constants.PHONE_CONSENT_LABEL,
+        required=False
     )
     captcha = ReCaptchaField(
         label='',
