@@ -29,10 +29,9 @@
         <p>Got a question about one of our high potential opportunities? Get in touch and give as much information as you can.</p>
       </div>
       <div id="form-container" class="grid-row">
-        <form class="column-two-thirds-l column-half-xl" action="{% url 'invest-contact' %}" method="post">
+        <form class="column-two-thirds-l column-half-xl" method="post">
           {% csrf_token %}
 
-          <h2 class="heading-medium">{% trans "Contact information" %}</h2>
           {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.job_title %}
