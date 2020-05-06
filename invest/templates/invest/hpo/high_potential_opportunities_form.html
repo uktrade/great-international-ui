@@ -29,7 +29,7 @@
         <p>Got a question about one of our high potential opportunities? Get in touch and give as much information as you can.</p>
       </div>
       <div id="form-container" class="grid-row">
-        <form class="column-two-thirds-l column-half-xl" method="post">
+        <form class="column-two-thirds-l column-half-xl" action="{% url 'high-potential-opportunity-request-form' %}" method="post">
           {% csrf_token %}
 
           {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
@@ -42,6 +42,7 @@
           {% include 'directory_components/form_widgets/form_field.html' with field=form.company_address %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.country %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.industry %}
+          {% include 'directory_components/form_widgets/form_field.html' with field=form.opportunities %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.how_can_we_help %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.your_plans %}
           {% include 'directory_components/form_widgets/form_field.html' with field=form.how_did_you_hear %}
