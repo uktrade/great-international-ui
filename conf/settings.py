@@ -123,7 +123,7 @@ if REDIS_URL:
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': REDIS_URL,
         'OPTIONS': {
-            'CLIENT_CLASS': "django_redis.client.DefaultClient",
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
 else:
@@ -399,8 +399,8 @@ FEATURE_FLAGS = {
 
 # Invest High Potential Opportunities
 HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',)
-HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', '064e2801-18f4-4342-a9e3-5eecddfa7d04')
-HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'a9285cb0-6acf-428f-94f7-2da7248d9ef0')
+HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', 'dc467956-f05f-4af9-8713-6c1dc7b7e87a')
+HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', '8db76bef-70ec-4d14-97f1-9d087abc4ce2')
 
 # Directory healthcheck
 DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')

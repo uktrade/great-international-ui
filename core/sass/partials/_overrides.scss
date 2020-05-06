@@ -7,6 +7,10 @@
 
 // overrides
 
+select[multiple] {
+  min-height: 300px;
+}
+
 section {
   padding-bottom: 0;
 }

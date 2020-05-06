@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Hotfix
+- CI-692 - Update HPO form with new fields and consent section
+
 ### Implemented enhancements
 - CI-658 - Use featured link content from cms on homepage
 - CI-618 - Change working on opportunity listing page

@@ -9,6 +9,7 @@ from directory_constants import choices
 from conf.tests.test_urls import reload_urlconf
 from core.tests.helpers import create_response
 from invest import views
+from invest.forms import HOW_CAN_WE_HELP_CHOICES, HOW_DID_YOU_HEAR_CHOICES
 from . import helpers
 
 
@@ -133,12 +134,6 @@ def test_high_potential_opportunity_form_not_found(mock_lookup_by_path, settings
 def test_high_potential_opportunity_form_cms_retrieval_ok(mock_lookup_by_path, settings, client):
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
-            'full_name': {
-                'help_text': 'full name help text'
-            },
-            'role_in_company': {
-                'help_text': 'role help text'
-            },
             'opportunity_list': [
                 {
                     'pdf_document': 'http://www.example.com/a',
@@ -156,8 +151,6 @@ def test_high_potential_opportunity_form_cms_retrieval_ok(mock_lookup_by_path, s
 
     assert response.status_code == 200
     form = response.context_data['form']
-    assert form.fields['full_name'].help_text == 'full name help text'
-    assert form.fields['role_in_company'].help_text == 'role help text'
     assert form.fields['opportunities'].choices == [
         ('http://www.example.com/a', 'some great opportunity'),
     ]
@@ -200,19 +193,24 @@ def test_high_potential_opportunity_form_submmit_cms_retrieval_ok(
     url = reverse('high-potential-opportunity-request-form')
 
     request = rf.post(url, data={
-        'full_name': 'Jim Example',
-        'role_in_company': 'Chief chief',
+        'given_name': 'Jim',
+        'family_name': 'Example',
+        'job_title': 'Chief chief',
         'email_address': 'test@example.com',
         'phone_number': '555',
         'company_name': 'Example corp',
         'website_url': 'example.com',
+        'company_address': '123 Some Street, \nSome town, \nSomewhere, \nNarnia',
         'country': choices.COUNTRY_CHOICES[1][0],
-        'company_size': '1 - 10',
+        'industry': [choices.INDUSTRIES[0][0]],
         'opportunities': [
             'http://www.example.com/a',
         ],
-        'comment': 'hello',
-        'terms_agreed': True,
+        'how_can_we_help': HOW_CAN_WE_HELP_CHOICES[0][0],
+        'your_plans': 'Lorem ipsum dolor sit amet',
+        'how_did_you_hear': HOW_DID_YOU_HEAR_CHOICES[0][0],
+        'email_contact_consent': True,
+        'telephone_contact_consent': True,
         'g-recaptcha-response': captcha_stub,
     })
 
