@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### Hotfix
+- CI-692 - Update HPO form with new fields and consent section
+
 ### Implemented enhancements
 - CI-677 - Display a CTA link on Capital Investment homepage hero
 - no ticked - Add APM support
