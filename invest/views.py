@@ -1,5 +1,5 @@
 from directory_components.mixins import GA360Mixin
-from directory_constants import slugs
+from directory_constants import slugs, urls
 
 from django.conf import settings
 from django.shortcuts import redirect
@@ -20,7 +20,6 @@ class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixi
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['field_attributes'] = self.page
         kwargs['opportunity_choices'] = [
             (opportunity['pdf_document'], opportunity['heading'])
             for opportunity in self.page['opportunity_list']
@@ -37,6 +36,12 @@ class HighPotentialOpportunityFormView(MonolingualCMSPageFromPathView, GA360Mixi
             form.cleaned_data['opportunities']
         )
         return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'high-potential-opportunities/',
+            *args, **kwargs
+        )
 
 
 class HighPotentialOpportunitySuccessView(MonolingualCMSPageFromPathView):

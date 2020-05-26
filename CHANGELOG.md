@@ -2,6 +2,16 @@
 
 ## Pre-release
 
+### Hotfix
+- CI-692 - Update HPO form with new fields and consent section
+
+### Implemented enhancements
+- CI-677 - Display a CTA link on Capital Investment homepage hero
+- no ticked - Add APM support
+
+## Hotfix
+- No ticket - v3 ci pipeline manifest.yml file fix
+
 ## [2020.03.04](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.03.04)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.20...2020.03.04)
 
