@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'investment_support_directory',
     'find_a_supplier',
     'contact',
+    'elasticapm.contrib.django',
 ]
 
 MIDDLEWARE = [
@@ -485,3 +486,13 @@ HOW_WE_HELP_GUIDE_REPLY_TO_ID = env.str('HOW_WE_HELP_GUIDE_REPLY_TO_ID', 'd55f55
 GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL = env.str('GUIDE_TO_UK_BUSINESS_ENVIRONMENT_AGENT_EMAIL')
 HOW_WE_HELP_GUIDE_AGENT_EMAIL = env.str('HOW_WE_HELP_GUIDE_AGENT_EMAIL')
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+# Application Performance Monitoring
+if env.str('ELASTIC_APM_SERVER_URL', ''):
+    ELASTIC_APM = {
+        'SERVICE_NAME': env.str('ELASTIC_APM_SERVICE_NAME', 'directory-cms'),
+        'SECRET_TOKEN': env.str('ELASTIC_APM_SECRET_TOKEN'),
+        'SERVER_URL': env.str('ELASTIC_APM_SERVER_URL'),
+        'ENVIRONMENT': env.str('SENTRY_ENVIRONMENT'),
+        'DEBUG': DEBUG,
+    }

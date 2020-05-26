@@ -106,3 +106,6 @@ ENV/
 # Generated files
 ui/staticfiles
 *.css.map
+
+VScode settings
+.vscode/
