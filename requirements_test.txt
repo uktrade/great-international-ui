@@ -25,7 +25,7 @@ directory-components==35.17.1  # via -r requirements.in
 directory-constants==20.11.0  # via -r requirements.in, directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
-directory-validators==6.0.0  # via -r requirements.in
+directory-validators==6.0.2  # via -r requirements.in
 django-countries==5.5     # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
 django-formtools==2.1     # via -r requirements.in
@@ -53,7 +53,7 @@ monotonic==1.5            # via directory-client-core
 more-itertools==7.2.0     # via pytest, zipp
 olefile==0.44             # via directory-validators
 packaging==19.2           # via pytest, pytest-sugar
-pillow==6.2.1             # via directory-validators
+pillow==6.2.2             # via directory-validators
 pip-tools==4.1.0          # via -r requirements_test.in
 pir-client==1.1.0         # via -r requirements.in
 pluggy==0.13.0            # via pytest
