@@ -166,7 +166,6 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     )
 
 
-
     @property
     def serialized_data(self):
         data = super().serialized_data
