@@ -196,6 +196,10 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     TERMS_CONDITIONS_MESSAGE = (
         'Tick the box to confirm you agree to the terms and conditions.'
     )
+    MARKETING_CONSENT_LABEL = (
+        'Tick this box if you are happy to receive future marketing'
+        ' communications from the great.gov.uk service.'
+    )
     given_name = fields.CharField(
         label='Given name',
         max_length=255,
@@ -250,4 +254,5 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
         label=mark_safe(TERMS_CONDITIONS_LABEL),
         error_messages={'required': TERMS_CONDITIONS_MESSAGE},
     )
+    marketing_consent = fields.BooleanField(label=MARKETING_CONSENT_LABEL)
     captcha = ReCaptchaField(label='')
