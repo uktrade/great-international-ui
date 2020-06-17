@@ -254,5 +254,8 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
         label=mark_safe(TERMS_CONDITIONS_LABEL),
         error_messages={'required': TERMS_CONDITIONS_MESSAGE},
     )
-    marketing_consent = fields.BooleanField(label=MARKETING_CONSENT_LABEL)
+    marketing_consent = fields.BooleanField(
+        label=MARKETING_CONSENT_LABEL,
+        required=False
+    )
     captcha = ReCaptchaField(label='')
