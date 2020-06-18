@@ -8,6 +8,7 @@ from directory_components.forms import fields, widgets
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.url import not_contains_url_or_email
 
+from core.constants import MARKETING_CONSENT_LABEL
 
 SEARCH_PLACEHOLDER = 'Enter the skills or service you need'
 
@@ -195,10 +196,6 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     )
     TERMS_CONDITIONS_MESSAGE = (
         'Tick the box to confirm you agree to the terms and conditions.'
-    )
-    MARKETING_CONSENT_LABEL = (
-        'Tick this box if you are happy to receive future marketing'
-        ' communications from the great.gov.uk service.'
     )
     given_name = fields.CharField(
         label='Given name',
