@@ -106,7 +106,6 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
         'service</li>'
         '</ul>'
     )
-
     given_name = forms.CharField(
         label='Given name',
         max_length=255,
@@ -156,6 +155,10 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     terms = forms.BooleanField(
         label=mark_safe(TERMS_CONDITIONS_LABEL),
         error_messages={'required': TERMS_CONDITIONS_MESSAGE},
+    )
+    marketing_consent = forms.BooleanField(
+        label=constants.MARKETING_CONSENT_LABEL,
+        required=False,
     )
 
     @property

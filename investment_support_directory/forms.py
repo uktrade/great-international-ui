@@ -8,6 +8,7 @@ from directory_components.forms import fields, widgets
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from directory_validators.url import not_contains_url_or_email
 
+from core.constants import MARKETING_CONSENT_LABEL
 
 SEARCH_PLACEHOLDER = 'Enter the skills or service you need'
 
@@ -249,5 +250,9 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
     terms = fields.BooleanField(
         label=mark_safe(TERMS_CONDITIONS_LABEL),
         error_messages={'required': TERMS_CONDITIONS_MESSAGE},
+    )
+    marketing_consent = fields.BooleanField(
+        label=MARKETING_CONSENT_LABEL,
+        required=False
     )
     captcha = ReCaptchaField(label='')
