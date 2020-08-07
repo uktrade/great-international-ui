@@ -3,6 +3,9 @@
 ## Pre-release
 
 ### Hotfix
+- No ticket - Vunerability update
+
+### Hotfix
 - CI-692 - Update HPO form with new fields and consent section
 
 ### Implemented enhancements
