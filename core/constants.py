@@ -287,6 +287,10 @@ OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'
 
 EMAIL_CONSENT_LABEL = _('I would like to receive additional information by email')
 PHONE_CONSENT_LABEL = _('I would like to receive additional information by telephone')
+MARKETING_CONSENT_LABEL = (
+    'Tick this box if you are happy to receive future marketing'
+    ' communications from the great.gov.uk service.'
+)
 
 EMPLOYEES = [
     ('1-10', _('1-10')),

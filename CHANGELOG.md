@@ -1,19 +1,37 @@
 # Changelog
 
+- TT-2236 Spanish Translation on great international
+- chore/python-gevent adding gevent asyncio for performance
+
 ## Pre-release
+
+### Implemented enhancements
+- TT-2330 - Add consent request for feedback form
+
+### Fixed bugs
+
+## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
+[Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.05.06_1...2020.05.26)
 
 ### Hotfix
 - No ticket - Vunerability update
-
-### Hotfix
 - CI-692 - Update HPO form with new fields and consent section
 
 ### Implemented enhancements
 - CI-677 - Display a CTA link on Capital Investment homepage hero
 - no ticked - Add APM support
 
-## Hotfix
+## Fixed bugs
 - No ticket - v3 ci pipeline manifest.yml file fix
+- No ticket - Upgraded directory-validators to fix security vulnerability
+
+
+## [2020.05.06_1](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.06_1)
+[Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.03.04...2020.05.06_1)
+
+### Hotfix
+- CI-692 - Update HPO form with new fields and consent section
+
 
 ## [2020.03.04](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.03.04)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.20...2020.03.04)

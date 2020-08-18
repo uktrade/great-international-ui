@@ -140,6 +140,7 @@ def test_contact_supplier_body_text(
         'given_name': valid_contact_company_data['given_name'],
         'family_name': valid_contact_company_data['family_name'],
         'terms': True,
+        'marketing_consent': False,
         'sector': valid_contact_company_data['sector'],
         'sector_label': 'Aerospace',
         'country': valid_contact_company_data['country'],
