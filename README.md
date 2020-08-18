@@ -67,7 +67,10 @@ If you're doing front-end development work you will need to be able to compile t
 
 [GNU gettext](https://www.gnu.org/software/gettext/)
 
-After adding new translatable strings, either with `{% trans 'Phrase to translate' %}` in templates or `_('Phrase to translate')` in python, add them to locale files with `make manage makemessages`. Once translations are added to `.po` files run `make manage compiletranslations` to compile to them `.mo`. For more info see [Django documentation on translation](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/).
+- brew install gettext
+- which msgfmt should be able to find it
+
+After adding new translatable strings, either with `{% trans 'Phrase to translate' %}` in templates or `_('Phrase to translate')` in python, add them to locale files with `django-admin makemessages`. Once translations are added to `.po` files run `django-admin compilemessages` to compile to them `.mo`. For more info see [Django documentation on translation](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/).
 
 ## Session
 

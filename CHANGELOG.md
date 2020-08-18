@@ -1,5 +1,8 @@
 # Changelog
 
+- TT-2236 Spanish Translation on great international
+- chore/python-gevent adding gevent asyncio for performance
+
 ## Pre-release
 
 ### Implemented enhancements

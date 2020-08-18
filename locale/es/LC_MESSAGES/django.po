@@ -386,7 +386,7 @@ msgstr "Sectores"
 #: core/templates/core/investment_prospectus_form.html:12
 #: core/templates/core/sector_page.html:17
 msgid "About the UK"
-msgstr "Trouver un fournisseur"
+msgstr "Acerca del Rieno Unido"
 
 #: core/header_config/tier_one_nav_items.py:13
 msgid "Expand to the UK"
