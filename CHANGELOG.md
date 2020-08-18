@@ -13,6 +13,10 @@
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.05.06_1...2020.05.26)
 
+### Hotfix
+- No ticket - Vunerability update
+- CI-692 - Update HPO form with new fields and consent section
+
 ### Implemented enhancements
 - CI-677 - Display a CTA link on Capital Investment homepage hero
 - no ticked - Add APM support

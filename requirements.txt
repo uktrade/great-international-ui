@@ -20,7 +20,7 @@ directory-components==35.17.1  # via -r requirements.in
 directory-constants==20.11.0  # via -r requirements.in, directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
-directory-validators==6.0.2  # via -r requirements.in
+directory-validators==6.0.3  # via -r requirements.in
 django-countries==5.5     # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
 django-formtools==2.1     # via -r requirements.in
@@ -40,7 +40,7 @@ jsonschema==3.0.2         # via directory-components
 mohawk==0.3.4             # via sigauth
 monotonic==1.5            # via directory-client-core
 olefile==0.44             # via directory-validators
-pillow==6.2.2             # via directory-validators
+pillow==7.2.0             # via directory-validators
 pir-client==1.1.0         # via -r requirements.in
 pycparser==2.19           # via cffi
 pyopenssl==19.1.0         # via requests
