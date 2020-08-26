@@ -889,7 +889,7 @@ class BusinessEnvironmentGuideFormView(EnableTranslationsMixin, GA360Mixin, Inte
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
-            country_code=form.cleaned_data['country'],
+            country_code=form.cleaned_data['market'],
         )
         response = form.save(
             form_url=self.request.path,

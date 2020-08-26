@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-20 15:48+0000\n"
+"POT-Creation-Date: 2020-08-26 12:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: contact/forms.py:20 core/forms.py:230
+#: contact/forms.py:20 core/forms.py:229
 msgid "Yes"
 msgstr "はい"
 
-#: contact/forms.py:21 core/forms.py:231
+#: contact/forms.py:21 core/forms.py:230
 msgid "No"
 msgstr "いいえ"
 
@@ -33,7 +33,7 @@ msgstr "出版物の広告（新聞、業界誌）"
 msgid "Outdoor ad/billboard"
 msgstr "屋外広告、看板"
 
-#: contact/forms.py:26
+#: contact/forms.py:26 invest/forms.py:16
 msgid "LinkedIn"
 msgstr ""
 
@@ -41,11 +41,12 @@ msgstr ""
 msgid "Other social media (e.g. Twitter/Facebook)"
 msgstr "その他のソーシャルメディア（例：Twitter、Facebook）"
 
-#: contact/forms.py:28
+#: contact/forms.py:28 invest/forms.py:18
 msgid "Internet search"
 msgstr "インターネット検索"
 
-#: contact/forms.py:29 core/forms.py:293 find_a_supplier/constants.py:38
+#: contact/forms.py:29 core/forms.py:292 find_a_supplier/constants.py:38
+#: invest/forms.py:19
 msgid "Other"
 msgstr "その他"
 
@@ -84,47 +85,49 @@ msgstr "午前"
 msgid "In the afternoon"
 msgstr "午後"
 
-#: contact/forms.py:76 contact/forms.py:145 core/forms.py:96 core/forms.py:138
-#: core/forms.py:183 euexit/forms.py:50 find_a_supplier/forms.py:224
+#: contact/forms.py:76 contact/forms.py:145 core/forms.py:97 core/forms.py:139
+#: core/forms.py:183 euexit/forms.py:50 find_a_supplier/forms.py:227
+#: invest/forms.py:53
 msgid "Given name"
 msgstr "名"
 
-#: contact/forms.py:77 contact/forms.py:146 core/forms.py:97 core/forms.py:139
-#: core/forms.py:189 euexit/forms.py:51 find_a_supplier/forms.py:232
+#: contact/forms.py:77 contact/forms.py:146 core/forms.py:98 core/forms.py:140
+#: core/forms.py:189 euexit/forms.py:51 find_a_supplier/forms.py:235
+#: invest/forms.py:56
 msgid "Family name"
 msgstr "姓"
 
-#: contact/forms.py:78 contact/forms.py:147
+#: contact/forms.py:78 contact/forms.py:147 invest/forms.py:59
 msgid "Job title"
 msgstr "役職"
 
-#: contact/forms.py:79
+#: contact/forms.py:79 invest/forms.py:62
 msgid "Work email address"
 msgstr "メールアドレス"
 
-#: contact/forms.py:81 contact/forms.py:149 core/forms.py:141
-#: find_a_supplier/forms.py:246
+#: contact/forms.py:81 contact/forms.py:149 core/forms.py:142
+#: find_a_supplier/forms.py:249 invest/forms.py:65
 msgid "Phone number"
 msgstr "勤務先の電話番号"
 
 #: contact/forms.py:83 contact/forms.py:150 core/forms.py:147 core/forms.py:202
-#: euexit/forms.py:58 find_a_supplier/forms.py:187
+#: euexit/forms.py:58 find_a_supplier/forms.py:190 invest/forms.py:68
 msgid "Company name"
 msgstr "会社名"
 
-#: contact/forms.py:85 contact/forms.py:151
+#: contact/forms.py:85 contact/forms.py:151 invest/forms.py:71
 msgid "Company website"
 msgstr "企業ウェブサイト"
 
-#: contact/forms.py:88 contact/forms.py:152
+#: contact/forms.py:88 contact/forms.py:152 invest/forms.py:74
 msgid "Company HQ address"
 msgstr "企業の本社所在地"
 
-#: contact/forms.py:91 core/forms.py:104 euexit/forms.py:60
+#: contact/forms.py:91 core/forms.py:105 euexit/forms.py:60 invest/forms.py:78
 msgid "Which country are you based in?"
 msgstr "拠点とされている国はどちらですか？"
 
-#: contact/forms.py:96 find_a_supplier/forms.py:252
+#: contact/forms.py:96 find_a_supplier/forms.py:255 invest/forms.py:83
 msgid "Your industry"
 msgstr "業種"
 
@@ -149,20 +152,20 @@ msgstr ""
 msgid "Would you like to arrange a call?"
 msgstr "電話でのご相談を希望されますか？ "
 
-#: contact/forms.py:120 contact/forms.py:159
+#: contact/forms.py:120 contact/forms.py:159 invest/forms.py:105
 msgid "How did you hear about us?"
 msgstr "国際通商省についてどこでお聞きになりましたか？"
 
-#: contact/forms.py:148 core/forms.py:98 core/forms.py:140 core/forms.py:195
-#: euexit/forms.py:52 find_a_supplier/forms.py:179 find_a_supplier/forms.py:240
+#: contact/forms.py:148 core/forms.py:99 core/forms.py:141 core/forms.py:195
+#: euexit/forms.py:52 find_a_supplier/forms.py:182 find_a_supplier/forms.py:243
 msgid "Email address"
 msgstr "メールアドレス"
 
-#: contact/forms.py:153 core/forms.py:143 perfect_fit_prospectus/forms.py:32
+#: contact/forms.py:153 perfect_fit_prospectus/forms.py:32
 msgid "Country"
 msgstr "国"
 
-#: contact/forms.py:154 core/forms.py:149 find_a_supplier/forms.py:181
+#: contact/forms.py:154 core/forms.py:149 find_a_supplier/forms.py:184
 msgid "Industry"
 msgstr "産業"
 
@@ -201,6 +204,7 @@ msgstr "貴社の投資について"
 #: core/templates/core/investment_prospectus_form.html:42
 #: core/templates/core/why_buy_from_the_uk_form.html:54
 #: euexit/templates/euexit/form-contents.html:32
+#: invest/templates/invest/hpo/high_potential_opportunities_form.html:52
 msgid "Submit"
 msgstr "送信"
 
@@ -234,31 +238,31 @@ msgstr "メールによる追加情報のお知らせを希望"
 msgid "I would like to receive additional information by telephone"
 msgstr "電話による追加情報のお知らせを希望"
 
-#: core/constants.py:292
+#: core/constants.py:296
 msgid "1-10"
 msgstr "1～10 名"
 
-#: core/constants.py:293
+#: core/constants.py:297
 msgid "11-50"
 msgstr "11～50 名"
 
-#: core/constants.py:294
+#: core/constants.py:298
 msgid "51-200"
 msgstr "51～200 名"
 
-#: core/constants.py:295
+#: core/constants.py:299
 msgid "201-500"
 msgstr "201～500 名"
 
-#: core/constants.py:296
+#: core/constants.py:300
 msgid "501-1,000"
 msgstr "501～1,000 名"
 
-#: core/constants.py:297
+#: core/constants.py:301
 msgid "1,001-10,000"
 msgstr "1,001～10,000 名"
 
-#: core/constants.py:298
+#: core/constants.py:302
 msgid "10,001+"
 msgstr "10,001名以上"
 
@@ -274,17 +278,21 @@ msgstr "サプライヤー検索"
 msgid "Invest"
 msgstr ""
 
-#: core/forms.py:100 core/forms.py:212
+#: core/forms.py:101 core/forms.py:212
 msgid "Phone number (Optional)"
 msgstr "勤務先の電話番号"
 
-#: core/forms.py:109
+#: core/forms.py:110
 msgid "Message"
 msgstr "メッセージ"
 
-#: core/forms.py:113
+#: core/forms.py:114 invest/forms.py:96
 msgid "How can we help?"
 msgstr "支援について"
+
+#: core/forms.py:144 core/forms.py:218
+msgid "What market are you in?"
+msgstr ""
 
 #: core/forms.py:175
 msgid ""
@@ -314,15 +322,11 @@ msgstr "役職（任意）"
 msgid "City (Optional)"
 msgstr "都市（任意）"
 
-#: core/forms.py:218 find_a_supplier/forms.py:269
-msgid "Your country"
-msgstr "国名"
-
-#: core/forms.py:222
-msgid "Select a country"
+#: core/forms.py:221
+msgid "Select a market"
 msgstr ""
 
-#: core/forms.py:227
+#: core/forms.py:226
 msgid ""
 "Are you interested in buying products or services from UK businesses, either "
 "now or in the near future?"
@@ -330,31 +334,31 @@ msgstr ""
 "現在または近い将来、英国の企業から製品やサービスを購入することに興味がありま"
 "すか？"
 
-#: core/forms.py:236
+#: core/forms.py:235
 msgid "Select either yes or no"
 msgstr ""
 
-#: core/forms.py:241
+#: core/forms.py:240
 msgid "Your industry (optional)"
 msgstr "業種（任意）"
 
-#: core/forms.py:288
+#: core/forms.py:287
 msgid "Expanding to the UK"
 msgstr "英国への展開"
 
-#: core/forms.py:289
+#: core/forms.py:288
 msgid "Investing capital in the UK"
 msgstr "英国への投資"
 
-#: core/forms.py:290
+#: core/forms.py:289
 msgid "Exporting to the UK"
 msgstr ""
 
-#: core/forms.py:291
+#: core/forms.py:290
 msgid "Buying from the UK"
 msgstr "英国からの輸入"
 
-#: core/forms.py:292
+#: core/forms.py:291
 msgid "The transition period (now that the UK has left the EU)"
 msgstr "移行期間（英国の EU 離脱後）"
 
@@ -570,6 +574,12 @@ msgstr ""
 "英国への展開に関する追加情報をご希望の場合は、以下でご希望の方法をお選びくだ"
 "さい。このお知らせはいつでもオプトアウトできます。"
 
+#: core/templates/core/includes/form_consent_hpo.html:7
+msgid ""
+"If you would like to receive additional information about expanding to the "
+"UK you can opt in below. You can opt out of these updates at any time."
+msgstr ""
+
 #: core/templates/core/includes/form_consent_invest.html:7
 msgid ""
 "If you would like to receive additional information about investing in the "
@@ -732,22 +742,13 @@ msgid ""
 "\n"
 "              <p>\n"
 "                See our guidance on <a class=\"link\" href="
-"\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
-"transition-period/\">trading with the UK during the transition period and in "
-"2021</a>. If you can’t find the information you’re looking for, complete the "
-"form below and one of our experts will try to help you.\n"
+"\"%(services_urls.international)s/international/content/invest/how-to-setup-"
+"in-the-uk/transition-period/\">trading with the UK during the transition "
+"period and in 2021</a>. If you can’t find the information you’re looking "
+"for, complete the form below and one of our experts will try to help you.\n"
 "              </p>\n"
 "              "
 msgstr ""
-"\n"
-"              <p>\n"
-"                <a class=\"link\" href=\"%(services_urls.international)s/"
-"content/invest/how-to-setup-in-the-uk/transition-period/\">移行期間および "
-"2021 年における英国との取引</a>のガイダンスをご参照ください。お探しの情報が見"
-"つからない場合は、次のフォームよりお問い合わせください。国際通商省の専門家が"
-"お手伝いします。\n"
-"              </p>\n"
-"              "
 
 #: find_a_supplier/constants.py:7
 msgid "Magazines, newspaper or trade press"
@@ -781,41 +782,74 @@ msgstr "イベント"
 msgid "All industries"
 msgstr ""
 
-#: find_a_supplier/forms.py:169
+#: find_a_supplier/forms.py:172
 msgid "Please select an industry"
 msgstr ""
 
-#: find_a_supplier/forms.py:171
+#: find_a_supplier/forms.py:174
 msgid "Tick the box to confirm you agree to the terms and conditions."
 msgstr ""
 
-#: find_a_supplier/forms.py:178
+#: find_a_supplier/forms.py:181
 msgid "Your name"
 msgstr ""
 
-#: find_a_supplier/forms.py:256
+#: find_a_supplier/forms.py:259
 msgid "Your organisation name"
 msgstr "社名"
 
-#: find_a_supplier/forms.py:264
+#: find_a_supplier/forms.py:267
 msgid "Size of your organisation"
 msgstr "会社の規模"
 
-#: find_a_supplier/forms.py:274
+#: find_a_supplier/forms.py:272
+msgid "Your country"
+msgstr "国名"
+
+#: find_a_supplier/forms.py:277
 msgid "Describe what products or services you need"
 msgstr "必要な製品やサービスについて教えてください"
 
-#: find_a_supplier/forms.py:275
+#: find_a_supplier/forms.py:278
 msgid "Maximum 1000 characters."
 msgstr "最大 1,000 文字"
 
-#: find_a_supplier/forms.py:283
+#: find_a_supplier/forms.py:286
 msgid "Where did you hear about great.gov.uk?"
 msgstr "great.gov.uk についてどこでお聞きになりましたか？"
 
-#: find_a_supplier/forms.py:292
+#: find_a_supplier/forms.py:295
 msgid "Other source (optional)"
 msgstr "その他"
+
+#: invest/forms.py:14
+msgid "Advert in a publication"
+msgstr ""
+
+#: invest/forms.py:15
+msgid "Billboard or other outdoor advert"
+msgstr ""
+
+#: invest/forms.py:17
+msgid "Other social media"
+msgstr ""
+
+#: invest/forms.py:25
+msgid "I'm ready to invest and I'd like an adviser to call me."
+msgstr ""
+
+#: invest/forms.py:29
+msgid ""
+"I'm not quite ready to invest but I'd like to get updates on opportunities."
+msgstr ""
+
+#: invest/forms.py:88
+msgid "Which opportunities are you interested in?"
+msgstr ""
+
+#: invest/forms.py:101
+msgid "Tell us about your plans"
+msgstr ""
 
 #: perfect_fit_prospectus/forms.py:12
 msgid "Name"
@@ -871,3 +905,24 @@ msgstr ""
 #, python-format
 msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "              <p>\n"
+#~ "                See our guidance on <a class=\"link\" href="
+#~ "\"%(services_urls.international)s/content/invest/how-to-setup-in-the-uk/"
+#~ "transition-period/\">trading with the UK during the transition period and "
+#~ "in 2021</a>. If you can’t find the information you’re looking for, "
+#~ "complete the form below and one of our experts will try to help you.\n"
+#~ "              </p>\n"
+#~ "              "
+#~ msgstr ""
+#~ "\n"
+#~ "              <p>\n"
+#~ "                <a class=\"link\" href=\"%(services_urls.international)s/"
+#~ "content/invest/how-to-setup-in-the-uk/transition-period/\">移行期間および "
+#~ "2021 年における英国との取引</a>のガイダンスをご参照ください。お探しの情報"
+#~ "が見つからない場合は、次のフォームよりお問い合わせください。国際通商省の専"
+#~ "門家がお手伝いします。\n"
+#~ "              </p>\n"
+#~ "              "
