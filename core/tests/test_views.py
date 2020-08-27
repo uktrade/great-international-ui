@@ -2787,7 +2787,7 @@ def why_buy_from_uk_form_data(captcha_stub):
         'company_name': 'Company LTD',
         'job_title': 'Director',
         'phone_number': '07777777777',
-        'country': 'FR',
+        'market': 'FR',
         'industry': 'ADVANCED_MANUFACTURING',
         'procuring_products': 'yes',
         'contact_email': False,

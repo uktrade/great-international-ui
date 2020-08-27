@@ -2,6 +2,9 @@
 
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
+- Replace the country field with a new "countries and territories" field for two forms:
+  - Why buy from the uk
+  - Business environment guide
 
 ## Pre-release
 
