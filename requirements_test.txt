@@ -42,7 +42,9 @@ entrypoints==0.3          # via flake8
 execnet==1.7.1            # via pytest-xdist
 flake8==3.7.8             # via -r requirements_test.in
 freezegun==0.3.12         # via -r requirements_test.in
-gunicorn==19.9.0          # via -r requirements.in
+gevent==1.5a3             # via -r requirements.in
+greenlet==0.4.16          # via gevent
+gunicorn==20.0.4          # via -r requirements.in
 idna==2.8                 # via requests
 importlib-metadata==0.23  # via pluggy, pytest
 jmespath==0.9.4           # via boto3, botocore
@@ -57,6 +59,8 @@ pillow==7.2.0             # via directory-validators
 pip-tools==5.3.0          # via -r requirements_test.in
 pir-client==1.1.0         # via -r requirements.in
 pluggy==0.13.0            # via pytest
+psycogreen==1.0.2         # via -r requirements.in
+psycopg2==2.8.5           # via -r requirements.in
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via flake8
 pycparser==2.19           # via cffi
