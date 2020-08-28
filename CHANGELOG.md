@@ -1,15 +1,16 @@
 # Changelog
 
+
+## Pre-release
+
+### Implemented enhancements
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
 - Replace the country field with a new "countries and territories" field for two forms:
   - Why buy from the uk
   - Business environment guide
-
-## Pre-release
-
-### Implemented enhancements
 - TT-2330 - Add consent request for feedback form
+- GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
 

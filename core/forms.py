@@ -9,6 +9,7 @@ from django.utils.html import mark_safe
 from directory_validators.url import not_contains_url_or_email
 from directory_validators.string import no_html
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 
 
 from directory_constants.choices import COUNTRIES_AND_TERRITORIES, COUNTRY_CHOICES, INDUSTRIES
@@ -116,7 +117,7 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
-        required=True
+        widget=ReCaptchaV3()
     )
     email_contact_consent = forms.BooleanField(
         label=constants.EMAIL_CONSENT_LABEL,
@@ -159,7 +160,11 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         required=False
     )
 
-    captcha = ReCaptchaField(label='', label_suffix='')
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
 
     @property
     def serialized_data(self):
@@ -250,7 +255,11 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         label=constants.PHONE_CONSENT_LABEL,
         required=False,
     )
-    captcha = ReCaptchaField(label='', label_suffix='')
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
 
     @property
     def serialized_data(self):
