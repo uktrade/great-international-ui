@@ -22,11 +22,15 @@
     <div class="container">
         <div class="grid-row">
             <div class="column-half">
-                <h1 class="heading-large">{% trans "What would you like to know more about?" %}</h1>
-                <form method="post">
-                    {{ form.choice }}
-                    <button type="submit" name="button" class="button button-blue">{% trans "Continue" %}</button>
-                </form>
+                <fieldset>
+                    <legend>
+                        <h1 class="heading-large">{% trans "What would you like to know more about?" %}</h1>
+                    </legend>
+                    <form method="post">
+                        {{ form.choice }}
+                        <button type="submit" name="button" class="button button-blue">{% trans "Continue" %}</button>
+                    </form>
+                </fieldset>
             </div>
         </div>
         <div class="margin-top-30">

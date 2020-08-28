@@ -372,6 +372,7 @@ def test_contact_company(mock_save, client, settings, captcha_stub, retrieve_pro
         'body': 'foo bar bax',
         'has_contact': True,
         'terms': True,
+        'marketing_consent': False,
         'g-recaptcha-response': captcha_stub,
     }
     response = client.post(f'{url}?q=123', data)

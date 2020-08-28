@@ -11,6 +11,13 @@ from core import context_processors
 from core.tests.helpers import create_response, stub_page
 
 
+@pytest.fixture(autouse=True)
+def mock_captcha_clean():
+    patch = mock.patch('captcha.fields.ReCaptchaField.clean', return_value='PASSED')
+    yield patch.start()
+    patch.stop()
+
+
 @pytest.fixture()
 def captcha_stub():
     stub = mock.patch('captcha.fields.client.submit')

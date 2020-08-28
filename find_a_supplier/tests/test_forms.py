@@ -110,13 +110,6 @@ def test_contact_company_form_capcha_valid(captcha_stub):
     assert 'captcha' not in form.errors
 
 
-def test_contact_company_form_captcha_invalid():
-    form = forms.ContactCompanyForm({})
-
-    assert form.is_valid() is False
-    assert 'captcha' in form.errors
-
-
 @mock.patch(
     'directory_forms_api_client.client.forms_api_client.submit_generic'
 )
@@ -140,6 +133,7 @@ def test_contact_supplier_body_text(
         'given_name': valid_contact_company_data['given_name'],
         'family_name': valid_contact_company_data['family_name'],
         'terms': True,
+        'marketing_consent': False,
         'sector': valid_contact_company_data['sector'],
         'sector_label': 'Aerospace',
         'country': valid_contact_company_data['country'],
@@ -194,7 +188,6 @@ def test_contact_required_fields():
     assert form.is_valid() is False
     assert form.errors == {
         'body': ['This field is required.'],
-        'captcha': ['This field is required.'],
         'country': ['This field is required.'],
         'email_address': ['This field is required.'],
         'given_name': ['This field is required.'],

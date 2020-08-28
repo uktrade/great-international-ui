@@ -9,15 +9,17 @@ from django.utils.html import mark_safe
 from directory_validators.url import not_contains_url_or_email
 from directory_validators.string import no_html
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 
 
-from directory_constants.choices import COUNTRY_CHOICES, INDUSTRIES
+from directory_constants.choices import COUNTRIES_AND_TERRITORIES, COUNTRY_CHOICES, INDUSTRIES
 
 from django.conf import settings
 from core import constants
 
 COUNTRIES = BLANK_CHOICE_DASH + COUNTRY_CHOICES
 INDUSTRY_OPTIONS = BLANK_CHOICE_DASH + list(INDUSTRIES)
+COUNTRIES_AND_TERRITORIES = BLANK_CHOICE_DASH + COUNTRIES_AND_TERRITORIES
 
 
 class TariffsCountryForm(forms.Form):
@@ -115,7 +117,7 @@ class CapitalInvestContactForm(GovNotifyEmailActionMixin, forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
-        required=True
+        widget=ReCaptchaV3()
     )
     email_contact_consent = forms.BooleanField(
         label=constants.EMAIL_CONSENT_LABEL,
@@ -139,10 +141,9 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
     family_name = forms.CharField(label=_('Family name'), required=True)
     email_address = forms.EmailField(label=_('Email address'), required=True)
     phone_number = forms.CharField(label=_('Phone number'), required=True)
-    country = forms.ChoiceField(
-        label=_('Country'),
-        widget=Select(attrs={'id': 'js-country-select'}),
-        choices=COUNTRIES
+    market = forms.ChoiceField(
+        label=_('What market are you in?'),
+        choices=COUNTRIES_AND_TERRITORIES,
     )
     company_name = forms.CharField(label=_('Company name'), required=True)
     industry = forms.ChoiceField(
@@ -159,7 +160,11 @@ class BusinessEnvironmentGuideForm(GovNotifyEmailActionMixin, forms.Form):
         required=False
     )
 
-    captcha = ReCaptchaField(label='', label_suffix='')
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
 
     @property
     def serialized_data(self):
@@ -214,12 +219,11 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
     )
     city = forms.CharField(label=_('City (Optional)'), required=False,)
 
-    country = forms.ChoiceField(
-        label=_('Your country'),
-        widget=Select(attrs={'id': 'js-country-select'}),
-        choices=COUNTRIES,
+    market = forms.ChoiceField(
+        label=_('What market are you in?'),
+        choices=COUNTRIES_AND_TERRITORIES,
         error_messages={
-            'required': _('Select a country'),
+            'required': _('Select a market'),
         }
     )
 
@@ -251,7 +255,11 @@ class WhyBuyFromUKForm(GovNotifyEmailActionMixin, forms.BindNestedFormMixin, for
         label=constants.PHONE_CONSENT_LABEL,
         required=False,
     )
-    captcha = ReCaptchaField(label='', label_suffix='')
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
 
     @property
     def serialized_data(self):
