@@ -4,7 +4,7 @@
 - chore/python-gevent adding gevent asyncio for performance
 - Replace the country field with a new "countries and territories" field for two forms:
   - Why buy from the uk
-  - Business environment guide
+  - Business environment guide 
 
 ## Pre-release
 
@@ -13,6 +13,9 @@
 
 ### Fixed bugs
 - GAA-4 Fieldset and legend on triage page
+- GAA-6 - Find a UK supplier incorrect markup fix
+- GAA-29 - Accessibility - expander link to use GDS pattern
+
 
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.05.06_1...2020.05.26)

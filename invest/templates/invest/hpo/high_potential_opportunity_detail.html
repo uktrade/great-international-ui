@@ -51,9 +51,15 @@
             </div>
         </div>
         {% if page.proposition_one_video %}
-          <details closed class="width-two-thirds-l">
-            <summary>View video transcript</summary>
-            {{ page.proposition_one_video_transcript|add_export_elements_classes }}
+          <details class="govuk-details width-two-thirds-l" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View video transcript
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              {{ page.proposition_one_video_transcript|add_export_elements_classes }}
+            </div>
           </details>
         {% endif %}
     </div>
