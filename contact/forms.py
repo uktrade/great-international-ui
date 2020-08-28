@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from directory_constants.choices import COUNTRY_CHOICES, INDUSTRIES
 from directory_components import forms
 from directory_forms_api_client.actions import EmailAction
@@ -131,6 +132,7 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
+        widget=ReCaptchaV3()
     )
 
     def __init__(self, utm_data, submission_url, *args, **kwargs):

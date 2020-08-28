@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from django.utils.translation import ugettext_lazy as _
 from django.forms import TextInput
 
@@ -45,6 +46,7 @@ class PerfectFitProspectusForm(forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
+        widget=ReCaptchaV3()
     )
 
     def __init__(self, sector_choices, country_choices, *args, **kwargs):

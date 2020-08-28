@@ -72,13 +72,6 @@ def test_capital_invest_contact_form_capcha_valid(captcha_stub):
     assert 'captcha' not in form.errors
 
 
-def test_capital_invest_contact_form_captcha_invalid():
-    form = CapitalInvestContactForm({})
-
-    assert form.is_valid() is False
-    assert 'captcha' in form.errors
-
-
 def test_capital_invest_contact_form_invalid_data(captcha_stub):
     form = CapitalInvestContactForm(
         data={

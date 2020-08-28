@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from directory_components import forms
 from directory_constants import choices, urls
 from directory_forms_api_client.forms import ZendeskActionMixin
@@ -79,4 +80,5 @@ class TransitionContactForm(SerializeMixin, ZendeskActionMixin, forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
+        widget=ReCaptchaV3()
     )

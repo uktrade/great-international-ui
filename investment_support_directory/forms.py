@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from django.forms.widgets import HiddenInput, TextInput, Textarea
 from django.utils.html import mark_safe
 
@@ -255,4 +256,8 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
         label=MARKETING_CONSENT_LABEL,
         required=False
     )
-    captcha = ReCaptchaField(label='')
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
