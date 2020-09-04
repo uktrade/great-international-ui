@@ -2,6 +2,7 @@
 
 
 ## Pre-release
+- no ticket - alt tag added to invest template
 
 ### Implemented enhancements
 - TT-2236 Spanish Translation on great international
@@ -17,7 +18,9 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
-- GAA-4 Fieldset and legend on triage page
+- GAA-1 - Fieldsets and legends on radios and checkbox groups
+- GAA-12 - Alert role on form errors
+- GAA-4 - Fieldset and legend on triage page
 - GAA-6 - Find a UK supplier incorrect markup fix
 - GAA-29 - Accessibility - expander link to use GDS pattern
 

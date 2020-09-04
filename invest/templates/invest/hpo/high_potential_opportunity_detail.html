@@ -137,7 +137,7 @@
         <ul class="flex-grid" aria-labelledby="advantages-heading">
             <li class="advantages-item column-third-xl column-half-m">
               <div class="icon-container">
-                <img class="icon" src="{{ page.competitive_advantages_list_item_one_icon.url }}" alt="" />
+                <img class="icon" src="{{ page.competitive_advantages_list_item_one_icon.url }}" alt="{{ page.competitive_advantages_list_item_one_icon.alt }}" />
               </div>
                 <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_one|add_export_elements_classes }}
@@ -145,7 +145,7 @@
             </li>
             <li class="advantages-item column-third-xl column-half-m">
               <div class="icon-container">
-                <img class="icon" src="{{ page.competitive_advantages_list_item_two_icon.url }}" alt="" />
+                <img class="icon" src="{{ page.competitive_advantages_list_item_two_icon.url }}" alt="{{ page.competitive_advantages_list_item_two_icon.alt }}" />
               </div>
                 <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_two|add_export_elements_classes }}
@@ -153,7 +153,7 @@
             </li>
             <li class="advantages-item column-third-xl column-half-m">
               <div class="icon-container">
-                <img class="icon" src="{{ page.competitive_advantages_list_item_three_icon.url }}" alt="" />
+                <img class="icon" src="{{ page.competitive_advantages_list_item_three_icon.url }}" alt="{{ page.competitive_advantages_list_item_three_icon.alt }}" />
               </div>
                 <div class="advantages-container wrap-tight">
                     {{ page.competitive_advantages_list_item_three|add_export_elements_classes }}
@@ -185,29 +185,29 @@
         </div>
         <ul class="grid-row company-logo-list">
             <li class="column-quarter">
-                <img src="{{ page.companies_list_item_image_one.url }}" alt="{{ page.companies_list_item_image_alt_one }}"/>
+                <img src="{{ page.companies_list_item_image_one.url }}" alt="{{ page.companies_list_item_image_one.alt }}"/>
             </li>
             <li class="column-quarter">
-                <img src="{{ page.companies_list_item_image_two.url }}" alt="{{ page.companies_list_item_image_alt_two }}"/>
+                <img src="{{ page.companies_list_item_image_two.url }}" alt="{{ page.companies_list_item_image_two.alt }}"/>
             </li>
             <li class="column-quarter">
-                <img src="{{ page.companies_list_item_image_three.url }}" alt="{{ page.companies_list_item_image_alt_three }}"/>
+                <img src="{{ page.companies_list_item_image_three.url }}" alt="{{ page.companies_list_item_image_three.alt }}"/>
             </li>
             <li class="column-quarter">
-                <img src="{{ page.companies_list_item_image_four.url }}" alt="{{ page.companies_list_item_image_alt_four }}"/>
+                <img src="{{ page.companies_list_item_image_four.url }}" alt="{{ page.companies_list_item_image_four.alt }}"/>
             </li>
             {% if page.companies_list_item_image_five %}
                 <li class="column-quarter">
-                    <img src="{{ page.companies_list_item_image_five.url }}" alt="{{ page.companies_list_item_image_alt_five }}"/>
+                    <img src="{{ page.companies_list_item_image_five.url }}" alt="{{ page.companies_list_item_image_five.alt }}"/>
                 </li>
                 <li class="column-quarter">
-                    <img src="{{ page.companies_list_item_image_six.url }}" alt="{{ page.companies_list_item_image_alt_six }}"/>
+                    <img src="{{ page.companies_list_item_image_six.url }}" alt="{{ page.companies_list_item_image_six.alt }}"/>
                 </li>
                 <li class="column-quarter">
-                    <img src="{{ page.companies_list_item_image_seven.url }}" alt="{{ page.companies_list_item_image_alt_seven }}"/>
+                    <img src="{{ page.companies_list_item_image_seven.url }}" alt="{{ page.companies_list_item_image_seven.alt }}"/>
                 </li>
                 <li class="column-quarter">
-                    <img src="{{ page.companies_list_item_image_eight.url }}" alt="{{ page.companies_list_item_image_alt_eight }}"/>
+                    <img src="{{ page.companies_list_item_image_eight.url }}" alt="{{ page.companies_list_item_image_eight.alt }}"/>
                 </li>
             {% endif %}
         </ul>
@@ -228,7 +228,7 @@
                     {{ page.case_study_one_text|add_export_elements_classes }}
                   </div>
                   <div class="column-two-thirds-m">
-                    <img src="{{ page.case_study_one_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                    <img src="{{ page.case_study_one_image.url }}" class="width-full" alt="{{ page.case_study_one_image.alt }}" />
                   </div>
                 </div>
               </div>
@@ -245,7 +245,7 @@
                     {{ page.case_study_two_text|add_export_elements_classes }}
                   </div>
                   <div class="column-two-thirds-m">
-                    <img src="{{ page.case_study_two_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                    <img src="{{ page.case_study_two_image.url }}" class="width-full" alt="{{ page.case_study_two_image.alt }}" />
                   </div>
                 </div>
               </div>
@@ -262,7 +262,7 @@
                     {{ page.case_study_three_text|add_export_elements_classes }}
                   </div>
                   <div class="column-two-thirds-m">
-                    <img src="{{ page.case_study_three_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                    <img src="{{ page.case_study_three_image.url }}" class="width-full" alt="{{ page.case_study_three_image.alt }}" />
                   </div>
                 </div>
               </div>
@@ -279,7 +279,7 @@
                     {{ page.case_study_four_text|add_export_elements_classes }}
                   </div>
                   <div class="column-two-thirds-m">
-                    <img src="{{ page.case_study_four_image.url }}" class="width-full" alt="{{ page.case_study_four_image_alt }}" />
+                    <img src="{{ page.case_study_four_image.url }}" class="width-full" alt="{{ page.case_study_four_image.alt }}" />
                   </div>
                 </div>
               </div>
