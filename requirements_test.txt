@@ -14,7 +14,7 @@ certifi==2019.9.11        # via elastic-apm, requests, sentry-sdk
 cffi==1.13.2              # via cryptography
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
-codecov==2.0.15           # via -r requirements_test.in
+codecov==2.1.9            # via -r requirements_test.in
 coverage==4.5.4           # via codecov, pytest-cov
 cryptography==2.8         # via pyopenssl, requests
 dateparser==0.7.0         # via -r requirements.in
@@ -83,7 +83,7 @@ requests[security]==2.22.0  # via -r requirements.in, codecov, directory-api-cli
 s3transfer==0.2.1         # via boto3
 sentry-sdk==0.13.4        # via -r requirements.in
 sigauth==4.1.1            # via directory-client-core
-six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, mohawk, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
+six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
 sorl-thumbnail==12.5.0    # via -r requirements.in
 soupsieve==1.9.3          # via beautifulsoup4
 sqlparse==0.3.0           # via django

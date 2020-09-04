@@ -2,6 +2,7 @@
 
 
 ## Pre-release
+- no ticket - alt tag added to invest template
 
 ### Implemented enhancements
 - TT-2236 Spanish Translation on great international
