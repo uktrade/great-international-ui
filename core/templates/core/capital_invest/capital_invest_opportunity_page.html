@@ -47,7 +47,7 @@
             <div class="column-half-l center-vertical flex-shrink-0 max-width-100">
                 {% if page.opportunity_summary_image.url %}
                     <figure class="landing-page-image flex-shrink-0">
-                        <img class="width-full" src="{{page.opportunity_summary_image.url}}" alt="">
+                        <img class="width-full" src="{{page.opportunity_summary_image.url}}" alt="{{page.opportunity_summary_image.alt}}">
                     </figure>
                 {%  endif %}
             </div>
@@ -60,42 +60,42 @@
         <div class="flex-grid margin-top-60 margin-bottom-30">
             <div class="column-third-xl column-half-m">
                 {% if page.location_heading and page.location and page.location_icon.url %}
-                    <img class="icon" src="{{page.location_icon.url}}" alt="">
+                    <img class="icon" src="{{page.location_icon.url}}" alt="{{page.location_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.location_heading }}</p>
                     <p class="icon-text">{{ page.location }}</p>
                 {% endif %}
             </div>
             <div class="column-third-xl column-half-m">
                 {% if page.project_promoter_heading and page.project_promoter and page.project_promoter_icon.url %}
-                    <img src="{{page.project_promoter_icon.url}}" class="icon" alt="">
+                    <img src="{{page.project_promoter_icon.url}}" class="icon" alt="{{page.project_promoter_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.project_promoter_heading }}</p>
                     <p class="icon-text">{{ page.project_promoter }}</p>
                 {% endif %}
             </div>
             <div class="column-third-xl column-half-m">
                 {% if page.scale_heading and page.scale and page.scale_icon.url %}
-                    <img src="{{page.scale_icon.url}}" class="icon" alt="">
+                    <img src="{{page.scale_icon.url}}" class="icon" alt="{{page.scale_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.scale_heading }}</p>
                     <p class="icon-text">{{ page.scale }}</p>
                 {% endif %}
             </div>
             <div class="column-third-xl column-half-m">
                 {% if page.sector_heading and page.sub_sectors and page.sector_icon.url %}
-                    <img src="{{page.sector_icon.url}}" class="icon" alt="">
+                    <img src="{{page.sector_icon.url}}" class="icon" alt="{{page.sector_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.sector_heading }}</p>
                     <p class="icon-text">{{ page.sub_sectors|join:", " }}</p>
                 {% endif %}
             </div>
             <div class="column-third-xl column-half-m">
                 {% if page.investment_type_heading and page.investment_type and page.investment_type_icon.url %}
-                    <img src="{{page.investment_type_icon.url}}" class="icon" alt="">
+                    <img src="{{page.investment_type_icon.url}}" class="icon" alt="{{page.investment_type_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.investment_type_heading }}</p>
                     <p class="icon-text">{{ page.investment_type }}</p>
                 {% endif %}
             </div>
             <div class="column-third-xl column-half-m">
                 {% if page.planning_status_heading and page.planning_status and page.planning_status_icon.url %}
-                    <img src="{{page.planning_status_icon.url}}" class="icon" alt="">
+                    <img src="{{page.planning_status_icon.url}}" class="icon" alt="{{page.planning_status_icon.alt}}">
                     <p class="bold-medium icon-heading">{{ page.planning_status_heading }}</p>
                     <p class="icon-text">{{ page.planning_status }}</p>
                 {% endif %}
@@ -110,7 +110,7 @@
             {% if page.project_image.url %}
                 <div class="column-half-l padding-bottom-30">
                     <figure class="flex-shrink-0 padding-top-45">
-                        <img class="width-100 center-vertical" src="{{page.project_image.url}}" alt="">
+                        <img class="width-100 center-vertical" src="{{page.project_image.url}}" alt="{{page.project_image.alt}}">
                     </figure>
                 </div>
             {%  endif %}
