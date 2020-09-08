@@ -34,7 +34,7 @@ def business_environment_form_data(captcha_stub):
         'family_name': 'Odinson',
         'email_address': 'most_powerful_avenger@avengers.com',
         'phone_number': '01234567899',
-        'country': 'FR',
+        'market': 'FR',
         'company_name': 'Guardian of the Galaxy',
         'industry': 'ADVANCED_MANUFACTURING',
         'email_contact_consent': True,
@@ -72,13 +72,6 @@ def test_capital_invest_contact_form_capcha_valid(captcha_stub):
     assert 'captcha' not in form.errors
 
 
-def test_capital_invest_contact_form_captcha_invalid():
-    form = CapitalInvestContactForm({})
-
-    assert form.is_valid() is False
-    assert 'captcha' in form.errors
-
-
 def test_capital_invest_contact_form_invalid_data(captcha_stub):
     form = CapitalInvestContactForm(
         data={
@@ -101,7 +94,7 @@ def test_business_environment_form_required():
     assert form.fields['family_name'].required is True
     assert form.fields['email_address'].required is True
     assert form.fields['phone_number'].required is True
-    assert form.fields['country'].required is True
+    assert form.fields['market'].required is True
     assert form.fields['company_name'].required is True
     assert form.fields['industry'].required is True
     assert form.fields['email_contact_consent'].required is False
@@ -119,7 +112,7 @@ def test_business_environment_serialized_data(business_environment_form_data):
     assert 'family_name' in data
     assert 'email_address' in data
     assert 'phone_number' in data
-    assert 'country' in data
+    assert 'market' in data
     assert 'company_name' in data
     assert 'industry' in data
     assert 'email_contact_consent' in data
@@ -152,7 +145,7 @@ def why_buy_from_the_uk_form_data(captcha_stub):
         'company_name': 'Company LTD',
         'job_title': 'Director',
         'phone_number': '07777777777',
-        'country': 'FR',
+        'market': 'FR',
         'industry': 'ADVANCED_MANUFACTURING',
         'procuring_products': 'yes',
         'contact_email': False,
@@ -172,7 +165,7 @@ def test_why_buy_from_the_uk_form_required():
     assert form.fields['phone_number'].required is False
     assert form.fields['city'].required is False
     assert form.fields['industry'].required is False
-    assert form.fields['country'].required is True
+    assert form.fields['market'].required is True
     assert form.fields['procuring_products'].required is True
     assert form.fields['contact_email'].required is False
     assert form.fields['contact_phone'].required is False
@@ -197,7 +190,7 @@ def test_why_buy_from_the_uk_form_serialized_data(why_buy_from_the_uk_form_data)
     assert 'provide_more_info' in data
     assert 'contact_phone' in data
     assert 'contact_email' in data
-    assert 'country' in data
+    assert 'market' in data
     assert 'city' in data
 
 

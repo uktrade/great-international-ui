@@ -14,14 +14,14 @@ certifi==2019.9.11        # via elastic-apm, requests, sentry-sdk
 cffi==1.13.2              # via cryptography
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
-codecov==2.0.15           # via -r requirements_test.in
+codecov==2.1.9            # via -r requirements_test.in
 coverage==4.5.4           # via codecov, pytest-cov
 cryptography==2.8         # via pyopenssl, requests
 dateparser==0.7.0         # via -r requirements.in
 directory-api-client==20.0.0  # via -r requirements.in
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.2.0  # via -r requirements.in
-directory-components==35.17.1  # via -r requirements.in
+directory-components==35.20.0  # via -r requirements.in
 directory-constants==20.11.0  # via -r requirements.in, directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
@@ -42,7 +42,9 @@ entrypoints==0.3          # via flake8
 execnet==1.7.1            # via pytest-xdist
 flake8==3.7.8             # via -r requirements_test.in
 freezegun==0.3.12         # via -r requirements_test.in
-gunicorn==19.9.0          # via -r requirements.in
+gevent==1.5a3             # via -r requirements.in
+greenlet==0.4.16          # via gevent
+gunicorn==20.0.4          # via -r requirements.in
 idna==2.8                 # via requests
 importlib-metadata==0.23  # via pluggy, pytest
 jmespath==0.9.4           # via boto3, botocore
@@ -57,6 +59,8 @@ pillow==7.2.0             # via directory-validators
 pip-tools==5.3.0          # via -r requirements_test.in
 pir-client==1.1.0         # via -r requirements.in
 pluggy==0.13.0            # via pytest
+psycogreen==1.0.2         # via -r requirements.in
+psycopg2==2.8.5           # via -r requirements.in
 py==1.8.0                 # via pytest
 pycodestyle==2.5.0        # via flake8
 pycparser==2.19           # via cffi
@@ -79,7 +83,7 @@ requests[security]==2.22.0  # via -r requirements.in, codecov, directory-api-cli
 s3transfer==0.2.1         # via boto3
 sentry-sdk==0.13.4        # via -r requirements.in
 sigauth==4.1.1            # via directory-client-core
-six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, mohawk, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
+six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
 sorl-thumbnail==12.5.0    # via -r requirements.in
 soupsieve==1.9.3          # via beautifulsoup4
 sqlparse==0.3.0           # via django

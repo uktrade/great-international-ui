@@ -77,52 +77,52 @@
                     </div>
                 </div>
                 <div class="column-two-thirds-l" id="companies-column">
-                    <ul>
-                        {% if show_search_guide %}
-                            <h2 class="heading-medium">Enter a search term or use the filters</h2>
-                        {% else %}
-                            {% for company in results %}
-                                <li>
-                                    {% ga360_data "company-detail-link" ga-value=company.name %}
-                                    <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
-                                        <div class="logo-container padding-15 padding-30-m">
-                                            {% thumbnail company.logo "x135" as logo %}
-                                                <img src="{{ logo.url }}" alt="{{ company.name }}" />
-                                            {% empty %}
-                                                <img class="placeholder" src="{% static 'core/images/placeholder.png' %}" alt="" />
-                                            {% endthumbnail %}
+                    {% if show_search_guide %}
+                        <h2 class="heading-medium">Enter a search term or use the filters</h2>
+                    {% else %}
+                        <ul>
+                        {% for company in results %}
+                            <li>
+                                {% ga360_data "company-detail-link" ga-value=company.name %}
+                                <a href="{% url request.resolver_match.namespace|add:':profile' company_number=company.number slug=company.slug %}?{{ search_querystring }}">
+                                    <div class="logo-container padding-15 padding-30-m">
+                                        {% thumbnail company.logo "x135" as logo %}
+                                            <img src="{{ logo.url }}" alt="{{ company.name }}" />
+                                        {% empty %}
+                                            <img class="placeholder" src="{% static 'core/images/placeholder.png' %}" alt="" />
+                                        {% endthumbnail %}
+                                    </div>
+                                    <div class="width-full details-container">
+                                        <div class="result-header">
+                                            <h3 class="heading-medium margin-0 link">{{ company.name }}</h3>
                                         </div>
-                                        <div class="width-full details-container">
-                                            <div class="result-header">
-                                                <h3 class="heading-medium margin-0 link">{{ company.name }}</h3>
-                                            </div>
-                                            {% if company.description or company.summary %}
-                                                {% if company.highlight %}
-                                                    {{ company.highlight|truncatechars_html:125 }}
-                                                {% else %}
-                                                    {{ company.summary|default:company.description|truncatechars:135 }}
-                                                {% endif %}
+                                        {% if company.description or company.summary %}
+                                            {% if company.highlight %}
+                                                {{ company.highlight|truncatechars_html:125 }}
+                                            {% else %}
+                                                {{ company.summary|default:company.description|truncatechars:135 }}
                                             {% endif %}
-                                            <div class="grid-row result-footer width-full">
-                                                {% if company.expertise_regions %}
-                                                    <div class="mid-grey-text font-xsmall column-one-half ellipsis">
-                                                        Regional expertise: <strong class="bold">{{ company.expertise_regions }}</strong>
-                                                    </div>
-                                                {% endif %}
-                                                {% if company.employees %}
-                                                    <div class="employees mid-grey-text font-xsmall column-one-half ellipsis">Number of employees: <strong class="bold">{{ company.employees }} Employees</strong></div>
-                                                {% endif %}
-                                            </div>
+                                        {% endif %}
+                                        <div class="grid-row result-footer width-full">
+                                            {% if company.expertise_regions %}
+                                                <div class="mid-grey-text font-xsmall column-one-half ellipsis">
+                                                    Regional expertise: <strong class="bold">{{ company.expertise_regions }}</strong>
+                                                </div>
+                                            {% endif %}
+                                            {% if company.employees %}
+                                                <div class="employees mid-grey-text font-xsmall column-one-half ellipsis">Number of employees: <strong class="bold">{{ company.employees }} Employees</strong></div>
+                                            {% endif %}
                                         </div>
-                                    </a>
-                                    {% end_ga360_data %}
-                                </li>
-                            {% empty %}
-                                <h2 class="heading-medium">No UK businesses match your search</h2>
-                                <p class="form-hint">Try different filters or a new search term.</p>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
+                                    </div>
+                                </a>
+                                {% end_ga360_data %}
+                            </li>
+                        </ul>
+                        {% empty %}
+                            <h2 class="heading-medium">No UK businesses match your search</h2>
+                            <p class="form-hint">Try different filters or a new search term.</p>
+                        {% endfor %}
+                    {% endif %}
                     {% if pagination.paginator.num_pages > 1 %}
                         {% ga360_data "pagination" %}
                         <div id="paginator" class="{{ pagination.has_previous|yesno:',one-paginator-button' }} {{ pagination.has_next|yesno:',one-paginator-button' }}">

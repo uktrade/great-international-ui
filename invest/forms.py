@@ -1,4 +1,5 @@
 from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV3
 from directory_components import forms
 from directory_constants import choices
 from directory_forms_api_client.actions import GovNotifyEmailAction
@@ -116,6 +117,7 @@ class HighPotentialOpportunityForm(forms.Form):
     captcha = ReCaptchaField(
         label='',
         label_suffix='',
+        widget=ReCaptchaV3()
     )
 
     @property

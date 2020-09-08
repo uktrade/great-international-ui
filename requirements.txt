@@ -16,7 +16,7 @@ dateparser==0.7.0         # via -r requirements.in
 directory-api-client==20.0.0  # via -r requirements.in
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.2.0  # via -r requirements.in
-directory-components==35.17.1  # via -r requirements.in
+directory-components==35.20.0  # via -r requirements.in
 directory-constants==20.11.0  # via -r requirements.in, directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
@@ -33,6 +33,8 @@ django==2.2.13            # via -r requirements.in, directory-api-client, direct
 djangorestframework==3.10.3  # via -r requirements.in, sigauth
 docutils==0.15.2          # via botocore
 elastic-apm==5.5.2        # via -r requirements.in
+gevent==1.5a3             # via -r requirements.in
+greenlet==0.4.16          # via gevent
 gunicorn==20.0.4          # via -r requirements.in
 idna==2.8                 # via requests
 jmespath==0.9.4           # via boto3, botocore
@@ -42,6 +44,8 @@ monotonic==1.5            # via directory-client-core
 olefile==0.44             # via directory-validators
 pillow==7.2.0             # via directory-validators
 pir-client==1.1.0         # via -r requirements.in
+psycogreen==1.0.2         # via -r requirements.in
+psycopg2==2.8.5           # via -r requirements.in
 pycparser==2.19           # via cffi
 pyopenssl==19.1.0         # via requests
 pyrsistent==0.15.4        # via jsonschema
@@ -62,9 +66,6 @@ urllib3==1.24.3           # via -r requirements.in, botocore, directory-validato
 w3lib==1.21.0             # via directory-client-core
 waitress==1.4.3           # via -r requirements.in
 whitenoise==4.1.3         # via -r requirements.in
-psycogreen==1.0.2         # via -r requirements.in
-psycopg2==2.8.5           # via -r requirements.in
-gevent==1.5a3             # via -r requirements.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

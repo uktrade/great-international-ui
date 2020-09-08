@@ -1,14 +1,30 @@
 # Changelog
 
+
+## Pre-release
+- no ticket - alt tag added to invest template
+
+### Implemented enhancements
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
+- Replace the country field with a new "countries and territories" field for two forms:
+  - Why buy from the uk
+  - Business environment guide
 
 ## Pre-release
 
 ### Implemented enhancements
 - TT-2330 - Add consent request for feedback form
+- GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+- GAA-13 - Add missing alt tags
+- GAA-1 - Fieldsets and legends on radios and checkbox groups
+- GAA-12 - Alert role on form errors
+- GAA-4 - Fieldset and legend on triage page
+- GAA-6 - Find a UK supplier incorrect markup fix
+- GAA-29 - Accessibility - expander link to use GDS pattern
+
 
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.05.06_1...2020.05.26)
