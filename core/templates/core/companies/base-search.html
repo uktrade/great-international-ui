@@ -117,11 +117,11 @@
                                 </a>
                                 {% end_ga360_data %}
                             </li>
-                        </ul>
                         {% empty %}
                             <h2 class="heading-medium">No UK businesses match your search</h2>
                             <p class="form-hint">Try different filters or a new search term.</p>
                         {% endfor %}
+                        </ul>
                     {% endif %}
                     {% if pagination.paginator.num_pages > 1 %}
                         {% ga360_data "pagination" %}

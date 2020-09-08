@@ -18,6 +18,7 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+- TT-2373 - Fix search results rendering
 - GAA-13 - Add missing alt tags
 - GAA-1 - Fieldsets and legends on radios and checkbox groups
 - GAA-12 - Alert role on form errors
