@@ -2,6 +2,7 @@
 
 
 ## Pre-release
+- no ticket - directory-components version bump
 - GAA-26 - case study color contrast
 - GAA-24 - Added missing H1
 - GAA-32 - Fixed alt text on various template 
