@@ -78,7 +78,7 @@
   {% endif %}
 
   {% if page.case_study_image and page.case_study_title %}
-    {% case_study id="case-study" background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% case_study id="case-study" background_tint=True background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
   {% endif %}
 
   {% if page.contact_us_section_title and page.contact_us_section_summary %}

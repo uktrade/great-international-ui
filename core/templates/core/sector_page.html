@@ -85,7 +85,7 @@
 
 {% if page.case_study_title and page.case_study_image.url %}
     <section>
-        {% case_study background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_description|add_export_elements_classes|safe  cta_link=page.case_study_cta_page.full_path cta_text=page.case_study_cta_text %}
+        {% case_study background_tint=True background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_description|add_export_elements_classes|safe  cta_link=page.case_study_cta_page.full_path cta_text=page.case_study_cta_text %}
     </section>
 {% endif %}
 
