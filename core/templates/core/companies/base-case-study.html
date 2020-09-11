@@ -51,11 +51,6 @@
               </div>
             {% endif %}
           </div>
-
-          <p class="margin-top-45">
-            {% url request.resolver_match.namespace|add:':profile' company_number=case_study.company.number slug=case_study.company.slug as company_url %}
-            <a href="{{ company_url }}" class="button">View company profile</a>
-          </p>
         </div>
 
       </div>
@@ -95,6 +90,14 @@
             </blockquote>
           </div>
         {% endif %}
+      </div>
+    </div>
+    <div class="grid-row padding-bottom-30">
+      <div class="column-one-third">
+        <p class="margin-top-45">
+          {% url request.resolver_match.namespace|add:':profile' company_number=case_study.company.number slug=case_study.company.slug as company_url %}
+          <a href="{{ company_url }}" class="button">View company profile</a>
+        </p>
       </div>
     </div>
 
