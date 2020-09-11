@@ -43,7 +43,7 @@
       </div>
       {% if page.section_one_image.url %}
           <div class="column-full column-half-l">
-            {% image_with_caption image_url=page.section_one_image.url main_caption=page.section_one_image_caption sub_caption=page.section_one_image_caption_company %}
+            {% image_with_caption image_url=page.section_one_image.url image_alt=page.section_one_image.alt main_caption=page.section_one_image_caption sub_caption=page.section_one_image_caption_company %}
           </div>
       {% endif %}
     </div>
@@ -192,9 +192,9 @@
       {% for related_page in related_pages %}
         <div class="column-third-xl column-half-m">
           {% if related_page.page_type == 'InternationalArticlePage' %}
-            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Article' title=related_page.title description=related_page.teaser %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url img_alt=related_page.thumbnail.alt sub_heading='Article' title=related_page.title description=related_page.teaser %}
           {% else %}
-            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url sub_heading='Campaign' title=related_page.title description=related_page.teaser %}
+            {% card card_id=related_page.meta.slug url=related_page.full_path img_src=related_page.thumbnail.url img_alt=related_page.thumbnail.alt sub_heading='Campaign' title=related_page.title description=related_page.teaser %}
           {% endif %}
         </div>
       {% endfor %}
