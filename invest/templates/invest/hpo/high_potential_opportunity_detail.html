@@ -297,7 +297,6 @@
             <div class="flex-grid">
                 {% for opportunity in page.other_opportunities %}
                      <div class="column-half">
-                     {{ opportunity.hero_image_thumbnail.alt  }}
                         {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.full_path title=opportunity.heading img_alt=opportunity.hero_image_thumbnail.alt %}
                      </div>
                 {% endfor %}
