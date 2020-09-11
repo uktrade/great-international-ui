@@ -51,7 +51,7 @@
             {% endif %}
             {% if page.section_one_image %}
                 <div class="column-half-xl center-vertical">
-                    <img src="{{ page.section_one_image.url }}" alt="" />
+                    <img src="{{ page.section_one_image.url }}" alt="{{ page.section_one_image.alt }}" />
                 </div>
             {% elif page.section_one_video %}
                 <div class="column-half-xl padding-right-60-xl center-vertical">
@@ -84,7 +84,9 @@
                 </div>
             {% endif %}
             <div class="column-three-quarters-l padding-left-60-l">
+                {% if page.ebook_section_title %}
                 <h2 class="heading-large margin-top-0-l">{{ page.ebook_section_title }}</h2>
+                {% endif %}
                 {{ page.ebook_section_body|convert_headings_to:'h3'|add_export_elements_classes|override_elements_css_class:'h3,heading-medium'|override_elements_css_class:'p,font-small'|safe }}
                 {% if page.ebook_section_cta_text and page.ebook_section_cta_link %}
                     <a class="button button-ghost-white button-arrow-small margin-top-15 margin-top-45-l margin-bottom-0" href="{{ page.ebook_section_cta_link }}">
@@ -104,11 +106,13 @@
         <div class="grid-row">
             <div class="column-half-l">
                 {% if article.image %}
-                    <img src="{{ article.image.url }}" alt="" />
+                    <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" />
                 {% endif %}
             </div>
             <div class="column-half-l {% if forloop.counter|divisibleby:2 %}padding-right-60-l{% else %}padding-left-60-l{% endif %}">
+                {% if article.title %}
                 <h2 class="heading-large margin-top-0-l">{{ article.title }}</h2>
+                {% endif %}
                 {{ article.summary|add_export_elements_classes|safe }}
                 {% if article.link_text and article.link_url %}
                     <a class="button button-ghost-blue button-arrow-small margin-bottom-0 margin-top-30" href="{{ article.link_url }}">
@@ -142,7 +146,9 @@
 {% if page.contact_us_section_title and page.contact_us_section_summary %}
 <section class="padding-vertical-60">
     <div class="container">
+        {% if page.contact_us_section_title %}
         <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
+        {% endif %}
         {% if page.contact_us_section_summary %}
             <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
                 <div class="column-two-thirds">
