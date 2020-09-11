@@ -19,6 +19,7 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+- GAA-7 - Move aria expanded to button
 - GAA-23 - Blank headings
 - GAA-8 - Hidden label on search
 - TT-2373 - Fix search results rendering
