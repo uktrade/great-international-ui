@@ -860,6 +860,32 @@ def test_industry_contact_sent_correct_referer(mock_cms_page, client):
     ]
 
 
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industry_contact_has_privacy_url(mock_cms_page, client):
+
+    dummy_page = {
+        'title': 'test',
+        'display_title': 'Title',
+        'breadcrumbs_label': 'Title',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ]
+        },
+        'page_type': 'InternationalTradeIndustryContactPage',
+    }
+    mock_cms_page.return_value = create_response(dummy_page)
+
+    url = reverse(
+        'find-a-supplier:industry-contact', kwargs={'path': 'trade/contact'}
+    )
+    response = client.get(url, {})
+    assert response.status_code == 200
+    assert response.context_data['privacy_url']
+
+
 @mock.patch('directory_forms_api_client.client.forms_api_client.submit_generic')
 def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_data):
     mock_submit_generic.return_value = None

@@ -30,6 +30,7 @@
 - GAA-4 - Fieldset and legend on triage page
 - GAA-6 - Find a UK supplier incorrect markup fix
 - GAA-29 - Accessibility - expander link to use GDS pattern
+- GAA-19 - Accessibility missing privacy link
 
 
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
