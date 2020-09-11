@@ -84,7 +84,9 @@
   {% if page.contact_us_section_title and page.contact_us_section_summary %}
     <section id="contact-us-section" class="page-section">
       <div class="container">
+        {% if page.contact_us_section_title %}
         <h2 class="heading-large margin-top-0">{{ page.contact_us_section_title }}</h2>
+        {% endif %}
         {% if page.contact_us_section_summary %}
         <div class="grid-row {% if page.contact_us_section_cta_text and page.contact_us_section_cta_link %}margin-bottom-45{% endif %}">
           <div class="column-two-thirds">
