@@ -20,7 +20,8 @@ class CompanyHomeSearchForm(forms.Form):
         label='',
         max_length=255,
         required=False,
-        widget=TextInput(
+        widget=widgets.SearchWidget(
+            hidden_label=SEARCH_PLACEHOLDER,
             attrs={
                 'autofocus': 'autofocus',
                 'dir': 'auto',
