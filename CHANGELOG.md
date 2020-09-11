@@ -2,6 +2,7 @@
 
 
 ## Pre-release
+- GAA-32 - Fixed alt text on various template 
 - no ticket - alt tag added to invest template
 
 ### Implemented enhancements
