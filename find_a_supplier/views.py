@@ -8,7 +8,7 @@ from django.views.generic import RedirectView, TemplateView
 from django.views.generic.edit import FormView
 
 from directory_components.mixins import CountryDisplayMixin, GA360Mixin, CMSLanguageSwitcherMixin
-from directory_constants import slugs
+from directory_constants import slugs, urls
 
 import directory_forms_api_client.helpers
 from directory_api_client.client import api_client
@@ -407,6 +407,12 @@ class BaseIndustryContactFormView(BaseIndustryContactView, FormView):
         self.send_agent_email(form)
         self.send_user_email(form)
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES,
+            **kwargs,
+        )
 
 
 class IndustryLandingPageContactCMSView(BaseIndustryContactFormView):
