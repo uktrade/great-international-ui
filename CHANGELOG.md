@@ -1,23 +1,27 @@
 # Changelog
 
-
 ## Pre-release
+
+### Implemented enhancements
+
+### Fixed bugs
+
+
+## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.08...2020.09.16)
+
+
+### Implemented enhancements
 - no ticket - directory-components version bump
 - GAA-26 - case study color contrast
 - GAA-24 - Added missing H1
 - GAA-32 - Fixed alt text on various template 
 - no ticket - alt tag added to invest template
-
-### Implemented enhancements
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
 - Replace the country field with a new "countries and territories" field for two forms:
   - Why buy from the uk
   - Business environment guide
-
-## Pre-release
-
-### Implemented enhancements
 - TT-2330 - Add consent request for feedback form
 - GAA-5 upgrade captcha-v3
 
