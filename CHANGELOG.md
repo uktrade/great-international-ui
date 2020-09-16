@@ -2,6 +2,10 @@
 
 
 ## Pre-release
+- no ticket - directory-components version bump
+- GAA-26 - case study color contrast
+- GAA-24 - Added missing H1
+- GAA-32 - Fixed alt text on various template 
 - no ticket - alt tag added to invest template
 
 ### Implemented enhancements
@@ -18,6 +22,10 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+- GAA-18 - Fix column structure in case study to correct tab order
+- GAA-7 - Move aria expanded to button
+- GAA-23 - Blank headings
+- GAA-8 - Hidden label on search
 - TT-2373 - Fix search results rendering
 - GAA-13 - Add missing alt tags
 - GAA-1 - Fieldsets and legends on radios and checkbox groups
@@ -25,6 +33,7 @@
 - GAA-4 - Fieldset and legend on triage page
 - GAA-6 - Find a UK supplier incorrect markup fix
 - GAA-29 - Accessibility - expander link to use GDS pattern
+- GAA-19 - Accessibility missing privacy link
 
 
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)

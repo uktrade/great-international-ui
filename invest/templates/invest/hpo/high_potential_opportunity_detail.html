@@ -117,7 +117,7 @@
                       <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.proposition_two_video.url }}">link to the video</a> instead.</p>
                     </video>
                   {% else %}
-                      <img src="{{ page.proposition_two_image.url }}" alt="{{ page.proposition_two_image_alt }}" class="proposition-two-image width-full"/>
+                      <img src="{{ page.proposition_two_image.url }}" alt="{{ page.proposition_two_image.alt }}" class="proposition-two-image width-full"/>
                   {% endif %}
               </div>
             </div>
@@ -293,11 +293,11 @@
 {% if page.other_opportunities %}
     <section id="other-opportunities" class="hpo-page-section padding-vertical-60">
         <div class="container wrap-tight">
-            <h2 class="heading-large">{{ page.other_opportunities_title }}</h2>
+            <h1 class="heading-large">{{ page.other_opportunities_title }}</h1>
             <div class="flex-grid">
                 {% for opportunity in page.other_opportunities %}
                      <div class="column-half">
-                        {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.full_path title=opportunity.heading %}
+                        {% card img_src=opportunity.hero_image_thumbnail.url url=opportunity.full_path title=opportunity.heading img_alt=opportunity.hero_image_thumbnail.alt %}
                      </div>
                 {% endfor %}
             </div>

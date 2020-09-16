@@ -194,7 +194,7 @@
     var element = event.target;
     element.classList.toggle('checked');
     var formGroup = document.getElementById(element.getAttribute('aria-controls'));
-    formGroup.setAttribute('aria-expanded', !(formGroup.getAttribute('aria-expanded') == 'true'));
+    element.setAttribute('aria-expanded', !(element.getAttribute('aria-expanded') == 'true'));
   }
   var elements = document.getElementsByClassName('filter-collapse');
   for (var i = 0; i < elements.length; i++) {

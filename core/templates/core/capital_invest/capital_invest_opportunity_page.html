@@ -145,7 +145,7 @@
 </section>
 
 {% if page.case_study_title and page.case_study_image.url %}
-    {% case_study background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
+    {% case_study background_tint=True background_image=page.case_study_image.url heading=page.case_study_title subtitle=page.case_study_text|add_export_elements_classes|safe  cta_link=page.case_study_cta_link cta_text=page.case_study_cta_text %}
 {% endif %}
 
 {% if page.related_opportunities|filter_by_active_language %}

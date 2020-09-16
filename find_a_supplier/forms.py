@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 
 import captcha.fields
+from captcha.widgets import ReCaptchaV3
+
 from directory_constants import choices, urls
 from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
@@ -151,7 +153,11 @@ class ContactCompanyForm(GovNotifyEmailActionMixin, forms.Form):
         widget=Textarea,
         validators=[not_contains_url_or_email],
     )
-    captcha = ReCaptchaField()
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
     terms = forms.BooleanField(
         label=mark_safe(TERMS_CONDITIONS_LABEL),
         error_messages={'required': TERMS_CONDITIONS_MESSAGE},
@@ -192,7 +198,11 @@ class SubscribeForm(forms.Form):
         choices=[('', 'Please select')] + choices.COUNTRY_CHOICES,
         widget=Select(attrs={'data-ga-id': 'country-input'})
     )
-    captcha = captcha.fields.ReCaptchaField()
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
     terms = forms.BooleanField(
         widget=forms.CheckboxWithInlineLabel(
             attrs={'class': 'visually-hidden-label'}
@@ -310,7 +320,11 @@ class BuyFromTheUKForm(GovNotifyEmailActionMixin, forms.Form):
         label=constants.PHONE_CONSENT_LABEL,
         required=False
     )
-    captcha = captcha.fields.ReCaptchaField()
+    captcha = ReCaptchaField(
+        label='',
+        label_suffix='',
+        widget=ReCaptchaV3()
+    )
 
     @property
     def serialized_data(self):
