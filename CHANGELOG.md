@@ -26,6 +26,7 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+- GAA-9 - Modal focus - directory-components version bump
 - GAA-18 - Fix column structure in case study to correct tab order
 - GAA-7 - Move aria expanded to button
 - GAA-23 - Blank headings
