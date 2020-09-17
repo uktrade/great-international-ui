@@ -6,6 +6,7 @@
 
 ### Fixed bugs
 - GAA -13 - Added empty alt tag (tbh reverted)
+- no ticket - directory-components version bump
 
 ## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.08...2020.09.16)
