@@ -5,8 +5,12 @@
 ### Implemented enhancements
 
 ### Fixed bugs
+
+## [2020.09.21](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.21)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...2020.09.21)
+
+### Fixed bugs
 - GAA -13 - Added empty alt tag (tbh reverted)
-- GAA-27 - directory-components version bump
 
 ## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.08...2020.09.16)
@@ -27,7 +31,6 @@
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
-- GAA-9 - Modal focus - directory-components version bump
 - GAA-18 - Fix column structure in case study to correct tab order
 - GAA-7 - Move aria expanded to button
 - GAA-23 - Blank headings
