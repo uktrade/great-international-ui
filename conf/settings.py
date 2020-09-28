@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'investment_support_directory',
     'find_a_supplier',
     'contact',
-    'elasticapm.contrib.django',
+    'second_qualification',
+
 ]
 
 MIDDLEWARE = [
@@ -490,6 +491,7 @@ SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 # Application Performance Monitoring
 if env.str('ELASTIC_APM_SERVER_URL', ''):
+    INSTALLED_APPS.append('elasticapm.contrib.django')
     ELASTIC_APM = {
         'SERVICE_NAME': env.str('ELASTIC_APM_SERVICE_NAME', 'directory-cms'),
         'SECRET_TOKEN': env.str('ELASTIC_APM_SECRET_TOKEN'),
