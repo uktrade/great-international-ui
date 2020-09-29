@@ -19,7 +19,7 @@ def form_data():
 
 @patch.object(views.SecondQualificationFormView.form_class, 'save')
 def test_second_qualification_form_success(mock_save, form_data, rf):
-    url = reverse('invest-contact')
+    url = reverse('second-qualification')
 
     request = rf.post(url, data=form_data)
     request.LANGUAGE_CODE = 'en-gb'
