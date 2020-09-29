@@ -32,6 +32,19 @@ def test_second_qualification_form_success(mock_save, form_data, rf):
     assert mock_save.call_count == 1
 
 
+def test_second_qualification_success(rf):
+    url = reverse('second-qualification')
+
+    request = rf.get(url)
+    request.LANGUAGE_CODE = 'en-gb'
+    request.utm = {}
+    response = views.SecondQualificationSuccessView.as_view()(request)
+    context_data = response.context_data
+
+    assert response.status_code == 200
+    assert context_data.get('ga360', {}).get('page_id') == 'SecondQualificationFormSuccess'
+
+
 @patch.object(views.SecondQualificationFormView.form_class, 'save')
 def test_second_qualification_invalid(mock_save, rf):
     url = reverse('second-qualification')
