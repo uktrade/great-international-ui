@@ -3,13 +3,11 @@ import logging
 from directory_components import forms
 from directory_forms_api_client.actions import EmailAction
 from directory_forms_api_client.helpers import Sender
-from django.db.models.fields import BLANK_CHOICE_DASH
 
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from core import constants
 
 logger = logging.getLogger(__name__)
 
@@ -20,38 +18,19 @@ ARRANGE_CALLBACK_CHOICES = list((
 ))
 
 
-class SecondQualificationFormNestedDetails(forms.Form):
-    when_to_call = forms.ChoiceField(
-        label=_('When should we call you?'),
-        choices=BLANK_CHOICE_DASH+list((
-            (
-                'in the morning',
-                _('In the morning')
-            ),
-            (
-                'in the afternoon',
-                _('In the afternoon')
-            ),
-        )),
-        required=False
-    )
-
-
 class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
     action_class = EmailAction
 
     phone_number = forms.CharField(
         label=_('Phone number'),
     )
-    arrange_callback = forms.RadioNested(
+    arrange_callback = forms.ChoiceField(
         label=_('Would you like to arrange a call?'),
         choices=ARRANGE_CALLBACK_CHOICES,
-        nested_form_class=SecondQualificationFormNestedDetails,
-        nested_form_choice='yes',
-    )
-    telephone_contact_consent = forms.BooleanField(
-        label=constants.PHONE_CONSENT_LABEL,
-        required=False
+        widget=forms.widgets.RadioSelect(
+            use_nice_ids=True,
+            attrs={'id': 'radio-one'}
+        ),
     )
     emt_id = forms.CharField(
         label='emtid',
@@ -68,12 +47,9 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
         data = self.cleaned_data.copy()
         return {
             'form_data': (
-                # (_('Email address'), data['email']),
                 (_('Phone number'), data['phone_number']),
                 (_('Would you like to arrange a call?'), data['arrange_callback']),
-                (_('When should we call you?'), data['when_to_call']),
                 (_('Enquiry ID'), data['emt_id']),
-                (constants.PHONE_CONSENT_LABEL, data['telephone_contact_consent']),
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,
@@ -99,6 +75,7 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
         response = action.save({
             'text_body': self.render_email('email/email_agent.txt'),
             'html_body': self.render_email('email/email_agent.html'),
+            'data': self.cleaned_data,
         })
         response.raise_for_status()
 

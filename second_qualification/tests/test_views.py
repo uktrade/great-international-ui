@@ -12,8 +12,6 @@ def form_data():
         'emt_id': 42,
         'phone_number': '0000000000',
         'arrange_callback': forms.ARRANGE_CALLBACK_CHOICES[0][0],
-        'when_to_call': 'in the morning',
-        'telephone_contact_consent': False,
     }
 
 
