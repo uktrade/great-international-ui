@@ -7,3 +7,4 @@ omit =
     manage.py
     **/tests/*
     *__init__*
+    apps.py
