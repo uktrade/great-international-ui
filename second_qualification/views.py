@@ -1,5 +1,3 @@
-import logging
-
 from directory_components.mixins import CountryDisplayMixin, EnableTranslationsMixin, GA360Mixin
 from directory_constants import urls
 
@@ -12,9 +10,6 @@ from second_qualification import forms
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 from core.helpers import get_sender_ip_address
 from core.mixins import InternationalHeaderMixin
-
-
-logger = logging.getLogger(__name__)
 
 
 class SecondQualificationFormView(
@@ -44,8 +39,6 @@ class SecondQualificationFormView(
         kwargs['utm_data'] = self.request.utm
         kwargs['submission_url'] = self.request.path
         kwargs['emt_id'] = self.request.GET.get('emt_id')
-
-        logger.warning("%s", kwargs)
         return kwargs
 
     def form_valid(self, form):
