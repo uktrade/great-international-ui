@@ -37,6 +37,11 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
         label_suffix=''
     )
 
+    telephone_contact_consent = forms.BooleanField(
+        label='',
+        required=False
+    )
+
     def __init__(self, utm_data, submission_url, emt_id=None, *args, **kwargs):
         self.utm_data = utm_data
         self.submission_url = submission_url
@@ -50,10 +55,12 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
                 (_('Phone number'), data['phone_number']),
                 (_('Would you like to arrange a call?'), data['arrange_callback']),
                 (_('Enquiry ID'), data['emt_id']),
+                (_('Telephone Consent'), data['telephone_contact_consent'])
             ),
             'utm': self.utm_data,
             'submission_url': self.submission_url,
             'emt_id': self.enquiry_id,
+            'telephone_contact_consent': data['arrange_callback'] == 'yes'
         }
 
     def render_email(self, template_name):
@@ -72,10 +79,13 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
             form_url=self.submission_url,
             sender=sender,
         )
+        data = self.cleaned_data
+        if data.get('arrange_callback') == 'yes':
+            data['telephone_contact_consent'] = True
         response = action.save({
             'text_body': self.render_email('email/email_agent.txt'),
             'html_body': self.render_email('email/email_agent.html'),
-            'data': self.cleaned_data,
+            'data': data,
         })
         response.raise_for_status()
 
