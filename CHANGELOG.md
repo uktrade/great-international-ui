@@ -1,5 +1,8 @@
 # Changelog
 
+## Hot-Fix
+GBAU-77 hotffix captch form for contact/trade
+
 ## Pre-release
 
 ### Implemented enhancements
