@@ -2,7 +2,7 @@ from django.forms import HiddenInput, Select, Textarea, TextInput, ValidationErr
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 
-import captcha.fields
+from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
 
 from directory_constants import choices, urls
@@ -17,8 +17,6 @@ from .constants import MARKETING_SOURCES
 
 COMPANY_SIZE = BLANK_CHOICE_DASH + constants.EMPLOYEES
 INDUSTRY_CHOICES = BLANK_CHOICE_DASH + list(choices.INDUSTRIES)
-
-ReCaptchaField = forms.field_factory(captcha.fields.ReCaptchaField)
 
 
 SELECT_LABEL = 'Please select your industry'
