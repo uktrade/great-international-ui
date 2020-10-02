@@ -2,6 +2,9 @@
 
 ## Pre-release
 
+### HotFix
+- GBAU-77 hotfix - Captcha
+
 ### Implemented enhancements
 
 - no ticket - added second qualification form for invest email campaign
