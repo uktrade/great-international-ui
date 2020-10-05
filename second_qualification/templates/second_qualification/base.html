@@ -1,0 +1,8 @@
+{% extends 'core/base_with_invest_header.html' %}
+{% load static from staticfiles %}
+
+{% block head_other %}
+  {% for url, language_code in localised_urls %}
+    <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+  {% endfor %}
+{% endblock %}

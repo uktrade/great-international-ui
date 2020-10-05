@@ -2,7 +2,12 @@
 
 ## Pre-release
 
+### HotFix
+- GBAU-77 hotfix - Captcha
+
 ### Implemented enhancements
+
+- no ticket - added second qualification form for invest email campaign
 
 ### Fixed bugs
 - GAA -13 - Added empty alt tag (tbh reverted)
@@ -16,7 +21,7 @@
 - no ticket - directory-components version bump
 - GAA-26 - case study color contrast
 - GAA-24 - Added missing H1
-- GAA-32 - Fixed alt text on various template 
+- GAA-32 - Fixed alt text on various template
 - no ticket - alt tag added to invest template
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
