@@ -1,0 +1,36 @@
+{% extends 'contact/base.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% load ga360_data hero from directory_components %}
+
+{% block title %}Invest In Great Britain - {% trans "Contact us" %}{% endblock %}
+
+{% block head_css %}
+  {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+
+{% trans "Request a call back" as page_title %}
+
+<div class="container">
+  {% ga360_data "contact-form" target="form" %}
+  <div class="grid-row">
+    <form class="column-two-thirds-l column-half-xl" action="{% url 'second-qualification' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="emt_id" value="{{form.enquiry_id}}"/>
+      <h2 class="heading-medium">{% trans "Contact information" %}</h2>
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.phone_number %}
+
+      {% include 'directory_components/form_widgets/form_field.html' with field=form.arrange_callback %}
+
+      <!-- {% include 'directory_components/form_widgets/form_field.html' with field=form.captcha %} -->
+
+      <button type="submit" name="button" class="button button-blue">{% trans "Submit" %}</button>
+    </form>
+  </div>
+  {% end_ga360_data %}
+</div>
+
+{% endblock %}

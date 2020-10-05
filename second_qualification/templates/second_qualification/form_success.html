@@ -1,0 +1,21 @@
+{% extends 'contact/base.html' %}
+{% load i18n %}
+{% load hero from directory_components %}
+
+{% block content %}
+
+  {% trans "Contact us" as page_title %}
+
+
+  <section class="contact-success">
+    <div class="container">
+      <div class="grid-row">
+        <div class="column-two-thirds">
+          <h2 class="heading-large">{% trans "Your form has been submitted." %}</h2>
+          <p>{% trans "Thank you for getting in touch with the Department for International Trade (DIT), one of our advisors will be in touch soon." %}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
