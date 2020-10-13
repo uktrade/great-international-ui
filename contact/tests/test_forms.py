@@ -144,7 +144,15 @@ def test_send_agent_email(
 
     assert mock_email_action().save.call_count == 1
     assert mock_email_action().save.call_args == call(
-        {'text_body':  'something', 'html_body': 'something'}
+        {'text_body': 'something', 'html_body': 'something', 'given_name': 'Scrooge',
+        'family_name': 'McDuck', 'job_title': 'President', 'email': 'sm@example.com',
+        'phone_number': '0000000000', 'company_name': 'Acme', 'company_website': 'www.test.com',
+        'company_hq_address': 'London', 'country': 'AF', 'industry': 'AEROSPACE',
+        'expanding_to_uk': 'I’m convinced and want to talk to someone about my plans.',
+        'description': 'lorum ipsum', 'arrange_callback': 'yes',
+        'how_did_you_hear': 'Press ad (newspaper/trade publication)',
+        'email_contact_consent': False, 'telephone_contact_consent': False,
+        'captcha': 'PASSED', 'when_to_call': 'in the morning'}
     )
 
 
