@@ -87,12 +87,10 @@ def test_send_agent_email(
         {
             'text_body':  'something',
             'html_body': 'something',
-            'data': {
-                'phone_number': '0000000000',
-                'arrange_callback': 'yes',
-                'emt_id': '42',
-                'telephone_contact_consent': True
-            }
+            'phone_number': '0000000000',
+            'arrange_callback': 'yes',
+            'emt_id': '42',
+            'telephone_contact_consent': True
         }
     )
 
