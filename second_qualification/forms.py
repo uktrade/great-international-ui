@@ -82,11 +82,12 @@ class SecondQualificationForm(forms.BindNestedFormMixin, forms.Form):
         data = self.cleaned_data
         if data.get('arrange_callback') == 'yes':
             data['telephone_contact_consent'] = True
-        response = action.save({
+        action_data = {
             'text_body': self.render_email('email/email_agent.txt'),
             'html_body': self.render_email('email/email_agent.html'),
-            'data': data,
-        })
+        }
+        action_data.update(data)
+        response = action.save(action_data)
         response.raise_for_status()
 
     def save(self, sender_ip_address):
