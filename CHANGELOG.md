@@ -1,7 +1,7 @@
 # Changelog
 
 ## Hot-Fix
-GBAU-77 hotffix captch form for contact/trade
+GBAU-77 hotfix captcha form for contact/trade
 
 ## Pre-release
 
