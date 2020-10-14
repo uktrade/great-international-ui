@@ -109,3 +109,5 @@ ui/staticfiles
 
 VScode settings
 .vscode/
+
+postgres_data
