@@ -11,7 +11,7 @@ botocore==1.12.232        # via boto3, s3transfer
 certifi==2019.9.11        # via elastic-apm, requests, sentry-sdk
 cffi==1.13.2              # via cryptography
 chardet==3.0.4            # via requests
-cryptography==2.8         # via pyopenssl, requests
+cryptography==3.2         # via pyopenssl, requests
 dateparser==0.7.0         # via -r requirements.in
 directory-api-client==20.0.0  # via -r requirements.in
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
