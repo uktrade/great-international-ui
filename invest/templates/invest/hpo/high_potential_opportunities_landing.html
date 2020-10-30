@@ -1,0 +1,30 @@
+{% extends 'core/base_cms_with_invest_header.html' %}
+
+{% load directory_components %}
+
+{% block css_layout_class %}hpo-landing-page{% endblock %}
+
+{% block content %}
+    {% block hero %}
+        {% static 'images/placeholder.jpg' as hero_medium %}
+
+        {% hero image=hero_medium hero_text='High-potential opportunities' %}
+    {% endblock %}
+
+    {% block child_pages %}
+    <section id="hpo-list-section">
+        <div class="container">
+            <div class="grid-row padding-bottom-45">
+                <p class="font-small column-half">Major scientific and technological breakthroughs are creating high-potential opportunities supported by local and central government.</p>
+            </div>
+            <div class="flex-grid">
+                {% for hpo in page.high_potential_opportunities|filter_by_active_language %}
+                    <div class="column-third-xl column-half-m">
+                        {% card ga_tag='hpo-card' title=hpo.heading description=hpo.description|add_export_elements_classes|safe img_src=hpo.hero_image_thumbnail.url url=hpo.full_url %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+{% endblock content %}
