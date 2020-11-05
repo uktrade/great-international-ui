@@ -13,6 +13,7 @@ GBAU-77 hotfix captcha form for contact/trade
 - no ticket - added second qualification form for invest email campaign
 
 ### Fixed bugs
+- GBAU-858 - Padding on industries list
 - GBAU-64 - Fix button text layout
 - GAA -13 - Added empty alt tag (tbh reverted)
 - GAA-27 - directory-components version bump
