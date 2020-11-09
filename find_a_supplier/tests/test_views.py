@@ -569,7 +569,7 @@ def test_company_search_api_success(mock_get_results_from_search_response, mock_
     mock_search.return_value = api_response = create_response(search_results)
     mock_get_results_from_search_response.return_value = {
         'results': [],
-        'hits': {'total': 2}
+        'hits': {'total': {'value': 2}}
     }
     response = client.get(reverse('find-a-supplier:search'), {'q': '123'})
 
