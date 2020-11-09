@@ -139,7 +139,7 @@ class CompanySearchView(
         )
         response.raise_for_status()
         formatted = get_results_from_search_response(response)
-        return formatted['results'], formatted['hits']['total']
+        return formatted['results'], formatted['hits']['total']['value']
 
     @staticmethod
     def handle_empty_page(form):
