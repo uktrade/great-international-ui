@@ -1,12 +1,20 @@
 # Changelog
 
+## Pre-release
+
 ## Hot-Fix
 GBAU-896 transition-period-routing
 GBAU-77 hotfix captcha form for contact/trade
 
-## Pre-release
+### Implemented enhancements
 
-### HotFix
+### Fixed bugs
+## [1.0.0](https://github.com/uktrade/great-international-ui/releases/tag/1.0.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...1.0.0)
+
+
+## Hot-Fix
+GBAU-77 hotfix captcha form for contact/trade
 - GBAU-77 hotfix - Captcha
 
 ### Implemented enhancements
