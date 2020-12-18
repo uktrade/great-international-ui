@@ -29,7 +29,7 @@
                     </ol>
                 </div>
                 <div class="column-two-thirds-m column-half-xl">
-                    <form method="post">
+                    <form method="post" autocomplete="on">
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.family_name %}
                         {% include 'directory_components/form_widgets/form_field.html' with field=form.email_address %}
