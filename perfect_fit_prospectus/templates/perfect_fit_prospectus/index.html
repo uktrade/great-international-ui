@@ -25,7 +25,7 @@
           <p>Simply enter your details below to access a wealth of insight into the UK's business environment tailored to your business together with help and advice.</p>
         {% endblocktrans %}
       </div>
-      <form method="post">
+      <form method="post" autocomplete="on">
         {% csrf_token %}
         <div class="width-two-thirds">
           {% include 'core/includes/form_field.html' with field=form.name %}
