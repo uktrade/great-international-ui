@@ -1,6 +1,7 @@
 # Changelog
 
 ## Hot-Fix
+GBAU-896 transition-period-routing
 GBAU-77 hotfix captcha form for contact/trade
 
 ## Pre-release
