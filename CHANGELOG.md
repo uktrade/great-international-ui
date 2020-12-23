@@ -1,13 +1,15 @@
 # Changelog
 
 ## Pre-release
+### Fixed bugs
 
+## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
 ## Hot-Fix
 GBAU-896 transition-period-routing
 GBAU-77 hotfix captcha form for contact/trade
 
 ### Implemented enhancements
-
 - GBAU-75 - Added autocomplete attributes to forms
 
 ### Fixed bugs
