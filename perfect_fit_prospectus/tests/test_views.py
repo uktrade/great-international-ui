@@ -122,7 +122,8 @@ def test_perfect_fit_main_view_post_valid_data(
         'country': 'AF',
         'sector': 'tech',
         'g-recaptcha-response': captcha_stub,
-        'gdpr_optin': 'on'
+        'gdpr_optin': 'on',
+        'accessible': False,
     }
 
     url = reverse('perfect_fit_prospectus:main')
