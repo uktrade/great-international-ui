@@ -144,7 +144,7 @@ def test_perfect_fit_main_view_post_valid_data(
         {
             'name': 'Ted', 'company': 'Corp', 'email': 'ted@example.com',
             'phone_number': '', 'country': 'AF', 'gdpr_optin': True,
-            'captcha': 'PASSED', 'sector': 'tech'
+            'captcha': 'PASSED', 'sector': 'tech', 'accessible': False,
         }
     )
 
