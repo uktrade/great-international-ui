@@ -41,6 +41,7 @@
         <p>If you would like to receive further information about setting up your business in the UK, you can subscribe to our mailing list.</p>
         {% endblocktrans %}
 
+        {% include 'core/includes/form_field.html' with field=form.accessible %}
         {% include 'core/includes/form_field.html' with field=form.gdpr_optin %}
         {% include 'core/includes/form_field.html' with field=form.captcha %}
         <input class="button button-blue" type="submit" name="" value="Submit">

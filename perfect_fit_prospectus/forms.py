@@ -37,6 +37,12 @@ class PerfectFitProspectusForm(forms.Form):
         )
     )
 
+    accessible = forms.BooleanField(
+        label=_('Accessible plain text format.'),
+        initial=False,
+        required=False
+    )
+
     gdpr_optin = forms.BooleanField(
         label=_('I would like to receive further information.'),
         initial=False,
