@@ -3,6 +3,12 @@
 ## Pre-release
 ### Fixed bugs
 
+## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
+
+### Implemented enhancements
+- no ticket - added an accessible option to the perfect fit prospectus request form
+
 ## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
 ## Hot-Fix
