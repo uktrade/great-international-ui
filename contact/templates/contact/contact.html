@@ -18,7 +18,7 @@
 <div class="container">
   {% ga360_data "contact-form" target="form" %}
   <div class="grid-row">
-    <form class="column-two-thirds-l column-half-xl" action="{% url 'invest-contact' %}" method="post">
+    <form class="column-two-thirds-l column-half-xl" action="{% url 'invest-contact' %}" method="post" autocomplete="on">
       {% csrf_token %}
 
       <h2 class="heading-medium">{% trans "Contact information" %}</h2>
