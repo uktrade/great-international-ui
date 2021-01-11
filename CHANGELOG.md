@@ -1,12 +1,30 @@
 # Changelog
 
+## Pre-release
+### Fixed bugs
+
+## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
+
+### Implemented enhancements
+- no ticket - added an accessible option to the perfect fit prospectus request form
+
+## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
 ## Hot-Fix
 GBAU-896 transition-period-routing
 GBAU-77 hotfix captcha form for contact/trade
 
-## Pre-release
+### Implemented enhancements
+- GBAU-75 - Added autocomplete attributes to forms
 
-### HotFix
+### Fixed bugs
+## [1.0.0](https://github.com/uktrade/great-international-ui/releases/tag/1.0.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...1.0.0)
+
+
+## Hot-Fix
+- GBAU-77 hotfix captcha form for contact/trade
 - GBAU-77 hotfix - Captcha
 
 ### Implemented enhancements

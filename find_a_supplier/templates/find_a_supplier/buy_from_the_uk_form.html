@@ -20,7 +20,7 @@
         {{ page.introduction_text|add_export_elements_classes|add_href_target:request|safe }}
 
         {% ga360_data "contact-industry-form" target="form" ga-value=industry_page.breadcrumbs_label %}
-        <form action="" method="post">
+        <form action="" method="post" autocomplete="on">
           {% csrf_token %}
 
           {% include 'includes/form_field.html' with field=form.given_name %}

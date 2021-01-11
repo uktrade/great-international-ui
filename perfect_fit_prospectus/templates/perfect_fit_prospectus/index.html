@@ -25,7 +25,7 @@
           <p>Simply enter your details below to access a wealth of insight into the UK's business environment tailored to your business together with help and advice.</p>
         {% endblocktrans %}
       </div>
-      <form method="post">
+      <form method="post" autocomplete="on">
         {% csrf_token %}
         <div class="width-two-thirds">
           {% include 'core/includes/form_field.html' with field=form.name %}
@@ -41,6 +41,7 @@
         <p>If you would like to receive further information about setting up your business in the UK, you can subscribe to our mailing list.</p>
         {% endblocktrans %}
 
+        {% include 'core/includes/form_field.html' with field=form.accessible %}
         {% include 'core/includes/form_field.html' with field=form.gdpr_optin %}
         {% include 'core/includes/form_field.html' with field=form.captcha %}
         <input class="button button-blue" type="submit" name="" value="Submit">
