@@ -2741,7 +2741,7 @@ def test_about_uk_breadcrumbs_article_page_feature_off(
 @pytest.mark.parametrize(
     'choice_contact_url',
     [constants.INVEST_CONTACT_URL, constants.CAPITAL_INVEST_CONTACT_URL, constants.EXPORTING_TO_UK_CONTACT_URL,
-     constants.BUYING_CONTACT_URL, constants.OTHER_CONTACT_URL]
+     constants.BUYING_CONTACT_URL, constants.EUEXIT_CONTACT_URL, constants.OTHER_CONTACT_URL]
 )
 def test_international_contact_triage_redirects(
         choice_contact_url, client, feature_flags

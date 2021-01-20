@@ -297,6 +297,7 @@ class InternationalRoutingForm(forms.Form):
             (constants.CAPITAL_INVEST_CONTACT_URL, _('Investing capital in the UK')),
             (constants.EXPORTING_TO_UK_CONTACT_URL, _('Exporting to the UK')),
             (constants.BUYING_CONTACT_URL, _('Buying from the UK')),
+            (constants.EUEXIT_CONTACT_URL, _('The transition period (now that the UK has left the EU)')),
             (constants.OTHER_CONTACT_URL, _('Other')),
         )
         return ((value, label) for value, label in all_choices if self.choice_is_enabled(value))

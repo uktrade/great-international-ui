@@ -1,9 +1,6 @@
 # Changelog
 
 ## Pre-release
-
-- GBAU - 906 Removed EU transition option from contact form
-
 ### Fixed bugs
 
 ## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
