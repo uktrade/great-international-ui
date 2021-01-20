@@ -10,8 +10,6 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
-from conf.url_redirects import redirects
-import euexit.views
 import invest.views
 import contact.views
 import find_a_supplier.views
@@ -308,16 +306,6 @@ urlpatterns += [
         name='high-potential-opportunity-request-expand-form-success'
     ),
     url(
-        r'^international/transition-period/contact/$',
-        euexit.views.TransitionContactFormView.as_view(),
-        name='brexit-international-contact-form'
-    ),
-    url(
-        r'^international/transition-period/contact/success/$',
-        euexit.views.InternationalContactSuccessView.as_view(),
-        name='brexit-international-contact-form-success'
-    ),
-    url(
         r'^international/content/capital-invest/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         {'path': 'capital-invest/contact'},
@@ -405,7 +393,6 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     ]
 
 urlpatterns += perfectfit
-urlpatterns += redirects
 
 handler404 = core.views.handler404
 handler500 = core.views.handler500
