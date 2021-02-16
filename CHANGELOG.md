@@ -2,6 +2,7 @@
 
 ## Pre-release
 ### Fixed bugs
+- GBAU-918 Fix reCaptcha token timeout
 
 ## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
