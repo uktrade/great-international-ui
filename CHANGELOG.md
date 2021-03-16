@@ -1,18 +1,37 @@
 # Changelog
 
-## Hot-Fix
-GBAU-77 hotfix captcha form for contact/trade
-
 ## Pre-release
+### Fixed bugs
+- GBAU-918 Fix reCaptcha token timeout
 
-### HotFix
+## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
+
+### Implemented enhancements
+- no ticket - added an accessible option to the perfect fit prospectus request form
+
+## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
+## Hot-Fix
+GBAU-896 transition-period-routing
+### Implemented enhancements
+- GBAU-75 - Added autocomplete attributes to forms
+
+### Fixed bugs
+## [1.0.0](https://github.com/uktrade/great-international-ui/releases/tag/1.0.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...1.0.0)
+
+
+## Hot-Fix
+- GBAU-77 hotfix captcha form for contact/trade
 - GBAU-77 hotfix - Captcha
 
 ### Implemented enhancements
-
 - no ticket - added second qualification form for invest email campaign
-
+- Noticket - upgrade-es-7 (update fas * invest search)
 ### Fixed bugs
+- GBAU-858 - Padding on industries list
+- GBAU-64 - Fix button text layout
 - GAA -13 - Added empty alt tag (tbh reverted)
 - GAA-27 - directory-components version bump
 
