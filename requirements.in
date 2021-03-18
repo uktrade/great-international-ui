@@ -14,7 +14,7 @@ django-ipware==2.1.0
 django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
-Django==2.2.13
+Django==2.2.18
 djangorestframework==3.10.3
 elastic-apm>=5.5.2,<6.0.0
 pir-client==1.1.0

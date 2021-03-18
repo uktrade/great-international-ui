@@ -81,7 +81,7 @@ django-redis==4.10.0
     # via -r requirements.in
 django-storages==1.7.2
     # via -r requirements.in
-django==2.2.13
+django==2.2.18
     # via
     #   -r requirements.in
     #   directory-api-client
