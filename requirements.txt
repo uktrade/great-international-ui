@@ -109,7 +109,7 @@ monotonic==1.5
     # via directory-client-core
 olefile==0.44
     # via directory-validators
-pillow==7.2.0
+pillow==8.1.1
     # via directory-validators
 pir-client==1.1.0
     # via -r requirements.in

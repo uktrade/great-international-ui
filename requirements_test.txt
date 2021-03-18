@@ -145,7 +145,7 @@ packaging==19.2
     # via
     #   pytest
     #   pytest-sugar
-pillow==7.2.0
+pillow==8.1.1
     # via directory-validators
 pip-tools==5.3.0
     # via -r requirements_test.in
