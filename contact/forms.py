@@ -183,10 +183,13 @@ class ContactForm(forms.BindNestedFormMixin, forms.Form):
             form_url=self.submission_url,
             sender=sender,
         )
-        response = action.save({
+
+        action_data = {
             'text_body': self.render_email('email/email_agent.txt'),
             'html_body': self.render_email('email/email_agent.html'),
-        })
+        }
+        action_data.update(self.cleaned_data)
+        response = action.save(action_data)
         response.raise_for_status()
 
     def send_user_email(self):

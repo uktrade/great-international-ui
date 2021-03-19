@@ -12,7 +12,7 @@
               </p>
               {% endblocktrans %}
             </div>
-            <form class="" action="{% url 'capital-invest-contact' %}" method="post">
+            <form class="" action="{% url 'brexit-international-contact-form' %}" method="post" autocomplete="on">
                 {% csrf_token %}
 
                 {% include 'includes/form_field.html' with field=form.first_name %}

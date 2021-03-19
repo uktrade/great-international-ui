@@ -15,7 +15,7 @@ import euexit.views
 import invest.views
 import contact.views
 import find_a_supplier.views
-
+import second_qualification.views
 
 sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
@@ -149,6 +149,19 @@ else:
             name='contact-page-international'
         ),
     ]
+
+urlpatterns += [
+    url(
+        r'international/invest/request-call/$',
+        second_qualification.views.SecondQualificationFormView.as_view(),
+        name="second-qualification"
+    ),
+    url(
+        r'international/invest/request-call/success/$',
+        second_qualification.views.SecondQualificationSuccessView.as_view(),
+        name="second-qualification-success"
+    ),
+]
 
 
 urlpatterns += [

@@ -1,15 +1,44 @@
 # Changelog
 
 ## Pre-release
+### Fixed bugs
+- GBAU-918 Fix reCaptcha token timeout
+
+## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
 
 ### Implemented enhancements
+- no ticket - added an accessible option to the perfect fit prospectus request form
+
+## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
+## Hot-Fix
+GBAU-896 transition-period-routing
+### Implemented enhancements
+- GBAU-75 - Added autocomplete attributes to forms
 
 ### Fixed bugs
+## [1.0.0](https://github.com/uktrade/great-international-ui/releases/tag/1.0.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...1.0.0)
+
+
+## Hot-Fix
+- GBAU-77 hotfix captcha form for contact/trade
+- GBAU-77 hotfix - Captcha
+
+### Implemented enhancements
+- no ticket - added second qualification form for invest email campaign
+- Noticket - upgrade-es-7 (update fas * invest search)
+### Fixed bugs
+
 
 ## [2020.09.21](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.21)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...2020.09.21)
 
 ### Fixed bugs
+
+- GBAU-858 - Padding on industries list
+- GBAU-64 - Fix button text layout
 - GAA -13 - Added empty alt tag (tbh reverted)
 
 ## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
@@ -20,7 +49,7 @@
 - no ticket - directory-components version bump
 - GAA-26 - case study color contrast
 - GAA-24 - Added missing H1
-- GAA-32 - Fixed alt text on various template 
+- GAA-32 - Fixed alt text on various template
 - no ticket - alt tag added to invest template
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance

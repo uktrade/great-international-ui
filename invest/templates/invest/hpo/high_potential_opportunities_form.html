@@ -29,7 +29,7 @@
         <p>Got a question about one of our high potential opportunities? Get in touch and give as much information as you can.</p>
       </div>
       <div id="form-container" class="grid-row">
-        <form class="column-two-thirds-l column-half-xl" action="{% url 'high-potential-opportunity-request-form' %}" method="post">
+        <form class="column-two-thirds-l column-half-xl" action="{% url 'high-potential-opportunity-request-form' %}" method="post" autocomplete="on">
           {% csrf_token %}
 
           {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}

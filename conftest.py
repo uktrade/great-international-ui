@@ -137,7 +137,7 @@ def retrieve_supplier_case_study(supplier_case_study_data):
 def search_results(retrieve_profile_data):
     return {
         'hits': {
-            'total': 1,
+            'total': {'value': 1},
             'hits': [
                 {
                     '_source': retrieve_profile_data
