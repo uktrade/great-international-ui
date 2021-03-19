@@ -63,7 +63,7 @@ directory-forms-api-client==5.1.0
     # via -r requirements.in
 directory-healthcheck==2.0.0
     # via -r requirements.in
-directory-validators==6.0.3
+directory-validators==6.0.5
     # via -r requirements.in
 django-countries==5.5
     # via -r requirements.in
@@ -81,7 +81,7 @@ django-redis==4.10.0
     # via -r requirements.in
 django-storages==1.7.2
     # via -r requirements.in
-django==2.2.13
+django==2.2.19
     # via
     #   -r requirements.in
     #   directory-api-client
@@ -146,7 +146,7 @@ packaging==19.2
     # via
     #   pytest
     #   pytest-sugar
-pillow==7.2.0
+pillow==8.1.2
     # via directory-validators
 pip-tools==5.3.0
     # via -r requirements_test.in
