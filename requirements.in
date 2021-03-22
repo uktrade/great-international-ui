@@ -15,7 +15,7 @@ django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
 Django==2.2.13
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 elastic-apm>=5.5.2,<6.0.0
 pir-client==1.1.0
 requests[security]==2.22.0
