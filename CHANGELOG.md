@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- No ticket - django upgrade 
 ### Fixed bugs
 - GBAU-918 Fix reCaptcha token timeout
 
@@ -32,10 +33,16 @@ GBAU-77 hotfix captcha form for contact/trade
 - no ticket - added second qualification form for invest email campaign
 - Noticket - upgrade-es-7 (update fas * invest search)
 ### Fixed bugs
+
+
+## [2020.09.21](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.21)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...2020.09.21)
+
+### Fixed bugs
+
 - GBAU-858 - Padding on industries list
 - GBAU-64 - Fix button text layout
 - GAA -13 - Added empty alt tag (tbh reverted)
-- GAA-27 - directory-components version bump
 
 ## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.08...2020.09.16)
@@ -56,7 +63,6 @@ GBAU-77 hotfix captcha form for contact/trade
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
-- GAA-9 - Modal focus - directory-components version bump
 - GAA-18 - Fix column structure in case study to correct tab order
 - GAA-7 - Move aria expanded to button
 - GAA-23 - Blank headings
