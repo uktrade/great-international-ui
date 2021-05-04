@@ -4,7 +4,8 @@
 
 ### Implemented enhancements
  
- - GBAU-950 - update content on  Investment Support Directory home page
+ - NOTICKET - django upgrade
+ - GBAU-950 - update content on Investment Support Directory home page
 ### Fixed bugs
 
 ## [2.0.0](https://github.com/uktrade/great-international-ui/releases/tag/2.0.0)

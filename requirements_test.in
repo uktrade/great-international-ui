@@ -10,4 +10,4 @@ flake8
 requests_mock
 freezegun
 codecov==2.1.9
-
+py>=1.10.0
