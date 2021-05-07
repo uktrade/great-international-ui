@@ -34,7 +34,7 @@ django-ipware==2.1.0      # via -r requirements.in
 django-recaptcha==2.0.5   # via -r requirements.in
 django-redis==4.10.0      # via -r requirements.in
 django-storages==1.7.2    # via -r requirements.in
-django==2.2.21            # via -r requirements.in, directory-api-client, directory-client-core, directory-components, directory-constants, directory-healthcheck, directory-validators, django-formtools, django-recaptcha, django-redis, django-storages, djangorestframework, sigauth
+django==2.2.22            # via -r requirements.in, directory-api-client, directory-client-core, directory-components, directory-constants, directory-healthcheck, directory-validators, django-formtools, django-recaptcha, django-redis, django-storages, djangorestframework, sigauth
 djangorestframework==3.11.2  # via -r requirements.in, sigauth
 docutils==0.15.2          # via botocore
 elastic-apm==5.5.2        # via -r requirements.in
