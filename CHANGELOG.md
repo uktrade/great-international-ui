@@ -1,6 +1,11 @@
 # Changelog
 
 ## Pre-release
+### Implemented enhancements
+### Fixed bugs
+
+## [2.1.0](https://github.com/uktrade/great-international-ui/releases/tag/2.1.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.0.0...2.1.0)
 
 ### Implemented enhancements
  
