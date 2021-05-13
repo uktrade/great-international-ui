@@ -1,6 +1,12 @@
 # Changelog
 
 ## Pre-release
+### Implemented enhancements
+### Fixed bugs
+ - NOTICKET - roll back python to 3.6.6
+
+## [2.2.0](https://github.com/uktrade/great-international-ui/releases/tag/2.2.0)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.1.0...2.2.0)
 
 ### Implemented enhancements
  
