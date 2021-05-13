@@ -44,7 +44,7 @@ flake8==3.7.8             # via -r requirements_test.in
 freezegun==0.3.12         # via -r requirements_test.in
 gevent==1.5a3             # via -r requirements.in
 greenlet==0.4.16          # via gevent
-gunicorn==19.5.0          # via -r requirements.in
+gunicorn==20.0.4          # via -r requirements.in
 idna==2.8                 # via requests
 jmespath==0.9.4           # via boto3, botocore
 jsonschema==3.0.2         # via directory-components
