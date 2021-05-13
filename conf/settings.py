@@ -499,3 +499,5 @@ if env.str('ELASTIC_APM_SERVER_URL', ''):
         'ENVIRONMENT': env.str('SENTRY_ENVIRONMENT'),
         'DEBUG': DEBUG,
     }
+
+MAGNA_HEADER = env.bool('MAGNA_HEADER', False)
