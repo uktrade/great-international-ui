@@ -2,6 +2,8 @@
 
 ## Pre-release
 ### Implemented enhancements
+- GP2-2711 - update great branding
+
 ### Fixed bugs
  - NOTICKET - roll back python to 3.6.6
 
