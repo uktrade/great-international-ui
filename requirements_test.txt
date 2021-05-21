@@ -21,7 +21,7 @@ dateparser==0.7.0         # via -r requirements.in
 directory-api-client==20.0.0  # via -r requirements.in
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.2.0  # via -r requirements.in
-directory-components==37.0.0  # via -r requirements.in
+directory-components==37.1.0  # via -r requirements.in
 directory-constants==20.28.0  # via directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
@@ -82,7 +82,7 @@ requests[security]==2.22.0  # via -r requirements.in, codecov, directory-api-cli
 s3transfer==0.2.1         # via boto3
 sentry-sdk==0.13.4        # via -r requirements.in
 sigauth==4.1.1            # via directory-client-core
-six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
+six==1.12.0               # via cryptography, django-countries, freezegun, jsonschema, mohawk, packaging, pip-tools, pyopenssl, pyrsistent, pytest-xdist, python-dateutil, requests-mock, w3lib
 sorl-thumbnail==12.5.0    # via -r requirements.in
 soupsieve==1.9.3          # via beautifulsoup4
 sqlparse==0.3.0           # via django
