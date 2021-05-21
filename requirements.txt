@@ -16,7 +16,7 @@ dateparser==0.7.0         # via -r requirements.in
 directory-api-client==20.0.0  # via -r requirements.in
 directory-client-core==6.1.0  # via directory-api-client, directory-cms-client, directory-forms-api-client, pir-client
 directory-cms-client==10.2.0  # via -r requirements.in
-directory-components==37.1.0  # via -r requirements.in
+directory-components==37.2.0  # via -r requirements.in
 directory-constants==20.28.0  # via directory-components
 directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
