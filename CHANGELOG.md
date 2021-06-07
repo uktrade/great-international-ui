@@ -2,6 +2,8 @@
 
 ## Pre-release
 ### Implemented enhancements
+- GP2-2711 - update great branding
+
 ### Fixed bugs
  - GP2-2873 - XSS defence - force escape search query
  - NOTICKET - roll back python to 3.6.6
