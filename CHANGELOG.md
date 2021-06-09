@@ -3,6 +3,7 @@
 ## Pre-release
 ### Implemented enhancements
 - GP2-2711 - update great branding
+- NOTICKET - dependencies upgrade
 
 ### Fixed bugs
  - GP2-2873 - XSS defence - force escape search query
