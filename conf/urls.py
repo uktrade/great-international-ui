@@ -215,6 +215,17 @@ urlpatterns += [
         name='expand-home'
     ),
     url(
+        r'^international/atlas/(?P<path>[\w\-/]*)/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        name='atlas-opportunity'
+    ),
+    url(
+        r'^international/atlas/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {'path': 'atlas'},
+        name='atlas-home'
+    ),
+    url(
         r"^international/invest/contact/$",
         contact.views.ContactFormView.as_view(),
         name="invest-contact"
