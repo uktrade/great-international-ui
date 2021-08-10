@@ -1,7 +1,9 @@
-FROM python:3.8
+FROM python:3.9.2
+ENV PYTHONUNBUFFERED 1
 
-WORKDIR /opt/great-international-ui
-ADD . /opt/great-international-ui/
+RUN mkdir -p /app
+WORKDIR /app
+ADD . /app/
 
 RUN pip install -U pip
 RUN make install_requirements
