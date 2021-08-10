@@ -48,11 +48,16 @@ Then start the docker containers -- it may take a while the first time, as the d
 $ docker-compose -f development.yml up
 ```
 
-Once all containers have started, the site will be accessible at <http://international.trade.great:8012>. You may need the following entries in your hosts file:
+Once all containers have started, the site will be accessible at <http://international.trade.great:8012/international/>. You may need the following entries in your hosts file:
 
 ```
 127.0.0.1   international.trade.great
 127.0.0.1   cms.trade.great
+```
+
+You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild teh cache in the directory-cms container:
+```shell
+$ make manage rebuild_all_cache
 ```
 
 ## Development
