@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - ./dockerise/postgres/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
-      - ./dockerise/postgres/directory_cms.sql:/directory_cms.sql
+      - ./dockerise/postgres/data/:/data/
     ports:
       - '5432:5432'
     networks:

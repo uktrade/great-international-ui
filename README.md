@@ -35,7 +35,7 @@ $ make secrets
 $ cd ../great-international-ui
 ```
 
-You will also need a dump of the directory-cms database, which should be saved as `dockerise/postgres/directory_cms.sql`.
+You will also need a dump of the directory-cms database, which should be saved as `dockerise/postgres/data/directory_cms.sql`.
 
 Create a secrets file for great-international-ui if you haven't already:
 ```shell
