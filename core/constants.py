@@ -46,6 +46,9 @@ TEMPLATE_MAPPING = {
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
     'InternationalTradeIndustryContactPage': 'find_a_supplier/buy_from_the_uk_form.html',
+
+    # Investment Atlas
+    'InvestmentOpportunityPage': 'investment_atlas/opportunity.html'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -235,6 +238,13 @@ GA_DATA_MAPPING = {
         'site_section': 'Industries',
         'site_subsection': 'LandingPageContact'
     },
+
+    # Investment Atlas
+    'InvestmentOpportunityPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentOpportunity',
+        'site_subsection': 'InvestmentAtlas',
+    }
 }
 
 HeaderConfig = namedtuple('HeaderConfig', 'section sub_section')
