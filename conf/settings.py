@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'directory_healthcheck',
     'euexit',
     'perfect_fit_prospectus',
+    'investment_atlas',
     'invest',
     'investment_support_directory',
     'find_a_supplier',

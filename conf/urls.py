@@ -355,6 +355,9 @@ urlpatterns += [
         name='invest-capital-home'
     ),
     url(
+        # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
+        # Also see core.constants.TEMPLATE_MAPPING for how a paritcular CMS page model in directory-cms
+        # is mapped to HTML template in great-international-ui
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'

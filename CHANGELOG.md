@@ -1,6 +1,13 @@
 # Changelog
 
 ## Pre-release
+
+### Implemented enhancements
+- GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
+### Fixed bugs
+
+## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
+
 ### Implemented enhancements
 - GP2-2711 - update great branding
 - NOTICKET - dependencies upgrade
