@@ -5,6 +5,7 @@
 - GP2-2711 - update great branding
 
 ### Fixed bugs
+ - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
  - GP2-2873 - XSS defence - force escape search query
  - NOTICKET - roll back python to 3.6.6
 
