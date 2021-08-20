@@ -366,7 +366,7 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {
             'path': 'investment'
-        # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
+            # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
         },
         name='atlas-home'
     ),
