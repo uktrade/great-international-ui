@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- GP2-3226 - Added InvestmentAtlas Landing page
 
 ### Implemented enhancements
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)

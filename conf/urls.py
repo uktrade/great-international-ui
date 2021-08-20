@@ -354,6 +354,22 @@ urlpatterns += [
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
+    # The Investment Atlas section tries to stick with the standard
+    # tree-based routing, apart from the investment root page
+    # and the [TO COME] filterable listing view
+    #
+    # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
+    # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
+    #
+    url(
+        r'^international/investment/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {
+            'path': 'investment'
+            # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
+        },
+        name='atlas-home'
+    ),
     url(
         # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
         # Also see core.constants.TEMPLATE_MAPPING for how a paritcular CMS page model in directory-cms
