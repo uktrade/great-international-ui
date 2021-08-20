@@ -111,3 +111,4 @@ VScode settings
 .vscode/
 
 postgres_data
+dockerise/postgres/data/*.sql

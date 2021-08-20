@@ -22,6 +22,44 @@
     $ [create and activate virutal environment]
     $ make install_requirements
 
+### Docker setup
+
+To start the Great International UI in Docker instead, including the supporting 'directory-cms' service, you will first need to clone [directory-cms](https://github.com/uktrade/directory-cms) in the parent directory, and initialise and populate its secrets file:
+
+```shell
+$ cd ..
+$ git clone git@github.com:uktrade/directory-cms.git
+$ cd directory-cms
+$ make secrets
+# populate directory-cms/conf/env/secrets-do-not-commit with relevant environment variables
+$ cd ../great-international-ui
+```
+
+You will also need a dump of the directory-cms database, which should be saved as `dockerise/postgres/data/directory_cms.sql`.
+
+Create a secrets file for great-international-ui if you haven't already:
+```shell
+$ make secrets
+```
+
+Then start the docker containers -- it may take a while the first time, as the data is being seeded into the database and migrations are run:
+
+```shell
+$ docker-compose -f development.yml up
+```
+
+Once all containers have started, the site will be accessible at <http://international.trade.great:8012/international/>. You may need the following entries in your hosts file:
+
+```
+127.0.0.1   international.trade.great
+127.0.0.1   cms.trade.great
+```
+
+You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild teh cache in the directory-cms container:
+```shell
+$ make manage rebuild_all_cache
+```
+
 ## Development
 
 ### Configuration
