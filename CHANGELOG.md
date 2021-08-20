@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- GP2-3226 - Added InvestmentAtlas Landing page
 
 ### Implemented enhancements
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
@@ -13,6 +14,7 @@
 - NOTICKET - dependencies upgrade
 
 ### Fixed bugs
+ - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
  - GP2-2873 - XSS defence - force escape search query
  - NOTICKET - roll back python to 3.6.6
 
