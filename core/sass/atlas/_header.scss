@@ -1,0 +1,18 @@
+@import 'tokens';
+
+// export_elements/header-footer/common
+.great-global-header-footer.international .great-global-header-footer-logo {
+  margin: 11px 0;
+}
+
+@media (min-width: 640px) {
+  .great-global-header-footer.international .great-global-header-footer-logo {
+    margin: 15px 0 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .great-global-header-footer.international .great-global-header-footer-logo + .great-domestic-international-links {
+    margin-top: -11px;
+  }
+}
