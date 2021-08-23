@@ -9,14 +9,14 @@
   <div class="menu">
     <div class="container">
       {% block header_logo %}
-        {% static 'directory_components/images/great.png' as logo_image_url %}
+        {% static 'core/images/atlas/great.png' as logo_image_url %}
         {% include 'directory_components/header_footer/header_logo.html' with url=services_urls.great_international image_source=logo_image_url image_alt_text='Great Britain and Northern Ireland' isInternational=True %}
       {% endblock %}
 
-      <div class="extra-links">
-        {% include 'directory_components/header_footer/country_switcher.html' %}
-        {% include 'directory_components/header_footer/language_switcher.html' %}
-      </div>
+{#      <div class="extra-links">#}
+{#        {% include 'directory_components/header_footer/country_switcher.html' %}#}
+{#        {% include 'directory_components/header_footer/language_switcher.html' %}#}
+{#      </div>#}
 
       {% include 'directory_components/header_footer/international_header_desktop_nav.html' %}
       {% include 'directory_components/header_footer/mobile_menu_button.html' %}
