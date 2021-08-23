@@ -34,7 +34,7 @@ class GoogleCampaignMiddleware(MiddlewareMixin):
 class MicrosoftDefenderSafeLinksMiddleware(MiddlewareMixin):
     """PII in the form of email addresses is injected into links by a
     MS 365 email client as values to a 'data' parameter.
-    
+
     These 'safe links' don't appear to have a consistent pattern, the small sample
     data available looks like:
 
