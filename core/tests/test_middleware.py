@@ -39,3 +39,59 @@ def test_google_campaign_middleware(mock_lookup_by_path, client):
 
     assert 'utm' in client.session
     assert client.session['utm'] == correct_utm
+
+
+def test_microsoft_defender_safe_links_middleware_trims_pii(client):
+    calls = [
+        (
+            '/international/'
+            + '?lang=zh-hans'
+            + '<https://eur02.safelinks.protection.outlook.com/'
+            + '?url=https://www.great.gov.uk/international/'
+            + '?lang=zh-hans'
+            + '&data=04|01|someone@example.com|52e1fcc870ff4ef072|8fa217ec|0|0|63748103|Unknown|TWFpbGZsb3d8eyJWI=|1000'
+            + '&sdata=6pfgjx6NF3ZWP2TQQjdI1XuB5xx/HGm2sgaokntWjvk='
+            + '&reserved=0',
+            'lang=zh-hans<https://eur02.safelinks.protection.outlook.com/?url=https://www.great.gov.uk/international/?lang=zh-hans&sdata=6pfgjx6NF3ZWP2TQQjdI1XuB5xx/HGm2sgaokntWjvk=&reserved=0',
+        ),
+        (
+            '/international/invest/'
+            + '<https://eur02.safelinks.protection.outlook.com/'
+            + '?url=https://www.great.gov.uk/international/invest/'
+            + '&data=04|01|someone@example.com|f852c1f4a2814bf1d0|8fa217ec|0|0|63749854|Unknown|TWFpbGZsb3d8eyJWI=|1000'
+            + '&sdata=LISO/lFPrI++ZLbztFWfWhyQuTTdJDrgX5OYX+dR4Fo='
+            + '&reserved=0>.',
+            'url=https://www.great.gov.uk/international/invest/&sdata=LISO/lFPrI++ZLbztFWfWhyQuTTdJDrgX5OYX+dR4Fo=&reserved=0>.',
+        ),
+        (
+            '/international/trade/<https://eur02.safelinks.protection.outlook.com/'
+            + '?url=https://www.great.gov.uk/international/trade/'
+            + '&data=04|01|someone@example.com|717be13dae814422c8|30a43325|1|0|63749997|Unknown|TWFpbGZsb3d8eyJWI=|1000'
+            + '&sdata=VwFyrskaWXwX9WY/GHHNh9Tqc6471gLjT+jfwkB2vag='
+            + '&reserved=0',
+            'url=https://www.great.gov.uk/international/trade/&sdata=VwFyrskaWXwX9WY/GHHNh9Tqc6471gLjT+jfwkB2vag=&reserved=0',
+        ),
+        (
+            '/international/content/opportunities/<https://eur02..safelinks.protection.outlook.com/'
+            + '?url=https://www.great.gov.uk/international/content/opportunities/'
+            + '&data=04|01|someone@example.com|cd323113628a419d7b|8fa217ec|0|0|63748721|Unknown|TWFpbGZsb3d8eyJWI=|1000'
+            + '&sdata=RMR1sDN435f61sERPSfe8vtgTwluVrzePnSN8YehsnE='
+            + '&reserved=0',
+            'url=https://www.great.gov.uk/international/content/opportunities/&sdata=RMR1sDN435f61sERPSfe8vtgTwluVrzePnSN8YehsnE=&reserved=0',
+        ),
+    ]
+
+    for path, expected_query_string in calls:
+        response = client.get(path)
+        request = response.wsgi_request
+
+        assert request.META['QUERY_STRING'] == expected_query_string
+
+def test_microsoft_defender_safe_links_middleware_respects_legitimate_data_param(client):
+    path = '/international/content/opportunities/?data=my_data'
+    expected_query_string = 'data=my_data'
+
+    response = client.get(path)
+    request = response.wsgi_request
+
+    assert request.META['QUERY_STRING'] == expected_query_string
