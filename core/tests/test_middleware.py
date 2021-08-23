@@ -41,7 +41,8 @@ def test_google_campaign_middleware(mock_lookup_by_path, client):
     assert client.session['utm'] == correct_utm
 
 
-def test_microsoft_defender_safe_links_middleware_trims_pii(client):
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_microsoft_defender_safe_links_middleware_trims_pii(mock_get_page, client):
     calls = [
         (
             '/international/'
@@ -91,18 +92,18 @@ def test_microsoft_defender_safe_links_middleware_trims_pii(client):
         ),
     ]
 
+    mock_get_page.return_value = create_response(
+        json_payload={
+            'meta': {
+                'slug': 'page',
+                'languages': [['en-gb', 'English']],
+            },
+            'page_type': 'InvestInternationalHomePage',
+        }
+    )
+
     for path, expected_query_string in calls:
         response = client.get(path)
         request = response.wsgi_request
 
         assert request.META['QUERY_STRING'] == expected_query_string
-
-
-def test_microsoft_defender_safe_links_middleware_respects_legitimate_data_param(client):
-    path = '/international/content/opportunities/?data=my_data'
-    expected_query_string = 'data=my_data'
-
-    response = client.get(path)
-    request = response.wsgi_request
-
-    assert request.META['QUERY_STRING'] == expected_query_string
