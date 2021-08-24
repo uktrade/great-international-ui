@@ -79,7 +79,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-medium) {
     li {
       display: inline-block;
     }

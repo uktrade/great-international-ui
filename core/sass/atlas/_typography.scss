@@ -12,16 +12,16 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Euclid Flex B';
-  src: local('Euclid Flex B Medium'), local('EuclidFlexB-Medium'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff2') format('woff2'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+//@font-face {
+//  font-family: 'Euclid Flex B';
+//  src: local('Euclid Flex B Medium'), local('EuclidFlexB-Medium'),
+//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff2') format('woff2'),
+//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff') format('woff'),
+//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.ttf') format('truetype');
+//  font-weight: 500;
+//  font-style: normal;
+//  font-display: swap;
+//}
 
 @font-face {
   font-family: 'Euclid Flex B';
@@ -34,49 +34,28 @@
   font-display: swap;
 }
 
-
-// FIXME: this is awful, but given the existing govuk_elements and export_elements
-//  are both precompiled, and/or don't accept configuration (i.e. `$font-family: 'Euclid'`),
-//  there's no sane way of resetting or overriding those, short of binning export_elements
-//  and restyling _everything_.
-body,
-main,
-.cookie-notice,
-#skip-link,
-.quote,
-details.great-accordion summary:after,
-.great-hero-heading,
-.great-hero-subheading,
-.card .card-inner h3,
-.card .card-inner h4,
-.card .card-inner h5,
-.card .card-inner h6,
-a.labelled-card .card-header h3,
-.cta-link,
-.heading-xlarge,
-.heading-large,
-.heading-medium,
-.heading-small,
-.image-with-caption .caption,
-.great-global-header-footer,
-.great-sub-header,
-.great-header,
-.country-selector-dialog h2,
-.great-domestic-international-links,
-.great-global-header-footer,
-.great-sub-header,
-.great-header,
-.country-selector-dialog .button-container .button,
-.great-footer,
-.great-footer-copyright,
-.great-header-search-wrapper form input,
-.great-hero-description,
-.statistics-card-grid .statistic-number,
-.button,
-.button-arrow-small,
-.button-arrow-large,
-.button-ghost-blue,
-.button-ghost-white
-{
+@mixin atlas-regular {
   font-family: 'Euclid Flex B', Arial, sans-serif;
+}
+
+@mixin atlas-medium {
+  font-family: 'Euclid Flex B', Arial, sans-serif;
+  font-weight: 600;
+}
+
+@mixin atlas-bold {
+  font-family: 'Euclid Flex B', Arial, sans-serif;
+  font-weight: 900;
+}
+
+.atlas-regular {
+  @include atlas-regular;
+}
+
+//.atlas-medium {
+//  @include atlas-medium;
+//}
+
+.atlas-bold {
+  @include atlas-bold;
 }

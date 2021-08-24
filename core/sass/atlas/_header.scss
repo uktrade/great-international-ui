@@ -1,4 +1,9 @@
 @import 'tokens';
+@import 'typography';
+
+.atlas-header {
+  @include atlas-regular;
+}
 
 .atlas-header__global {
   background: $atlas-white;
@@ -33,8 +38,11 @@
 }
 
 .atlas-menu-button {
+  @include atlas-bold;
   display: none;
   padding: 8px 12px 8px 14px;
+  width: auto;
+  margin: 0;
   background-color: transparent;
   border: 2px solid $atlas-white;
   color: $atlas-white;
@@ -48,7 +56,7 @@
     display: block;
   }
 
-  @media (min-width:768px) {
+  @media (min-width:$breakpoint-medium) {
     .js-enabled & {
       display: none;
     }
@@ -104,7 +112,7 @@
   align-self: center;
   margin-left: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-medium) {
     flex: 1 0 100%;
     margin-top: 10px;
 
@@ -119,7 +127,7 @@
   margin: 0 -20px -10px;
   padding: 10px 20px;
 
-  @media (min-width:768px) {
+  @media (min-width:$breakpoint-medium) {
     background-color: transparent;
     margin: 0 -17px 0 0;
     padding: 0;
@@ -147,7 +155,7 @@
   font-weight: bold;
   font-size: 20px;
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-medium) {
     padding: 10px 17px;
   }
 }
@@ -157,7 +165,7 @@
 }
 
 .atlas-nav__section {
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-medium) {
     display: none;
   }
 }
@@ -167,7 +175,7 @@
   background-color: $atlas-black;
   text-align: right;
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-medium) {
     display: block;
   }
 
