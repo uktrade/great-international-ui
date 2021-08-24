@@ -1,8 +1,15 @@
+@import 'tokens';
+
 .atlas-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: $page-gutter;
+  padding-right: $page-gutter;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-left: $page-gutter-medium;
+    padding-right: $page-gutter-medium;
+  }
 }
 
 .atlas-container--header {
