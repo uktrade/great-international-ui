@@ -9,17 +9,6 @@
   font-display: swap;
 }
 
-//@font-face {
-//  font-family: 'Euclid Flex B';
-//  src: local('Euclid Flex B Medium'), local('EuclidFlexB-Medium'),
-//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff2') format('woff2'),
-//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.woff') format('woff'),
-//  url('/static/core/fonts/atlas/EuclidFlexB-Medium.ttf') format('truetype');
-//  font-weight: 500;
-//  font-style: normal;
-//  font-display: swap;
-//}
-
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
@@ -34,11 +23,6 @@
 @mixin atlas-regular {
   font-family: 'Euclid Flex B', Arial, sans-serif;
 }
-
-//@mixin atlas-medium {
-//  font-family: 'Euclid Flex B', Arial, sans-serif;
-//  font-weight: 600;
-//}
 
 @mixin atlas-bold {
   font-family: 'Euclid Flex B', Arial, sans-serif;
