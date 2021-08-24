@@ -3,6 +3,8 @@
 ## Pre-release
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
 - GP2-3226 - Added InvestmentAtlas Landing page
+- GP2-3231 - New Investment Atlas header
+- GP2-3232 - New Investment Atlas footer
 
 ### Implemented enhancements
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
