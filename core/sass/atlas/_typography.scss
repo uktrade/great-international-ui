@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'Euclid Flex B';
+  src: local('Euclid Flex B Bold'), local('EuclidFlexB-Bold'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Euclid Flex B';
+  src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin atlas-regular {
+  font-family: 'Euclid Flex B', Arial, sans-serif;
+}
+
+@mixin atlas-bold {
+  font-family: 'Euclid Flex B', Arial, sans-serif;
+  font-weight: 900;
+}
+
+.atlas-regular {
+  @include atlas-regular;
+}
+
+//.atlas-medium {
+//  @include atlas-medium;
+//}
+
+.atlas-bold {
+  @include atlas-bold;
+}

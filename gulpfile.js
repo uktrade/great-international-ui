@@ -10,6 +10,8 @@ const SASS_FILES = `${PROJECT_DIR}/core/sass/**/*.scss`;
 const CSS_DIR = `${PROJECT_DIR}/core/static/core/styles`;
 const CSS_FILES = `${PROJECT_DIR}/core/static/core/styles/**/*.css`;
 const CSS_MAPS = `${PROJECT_DIR}/core/static/core/styles/**/*.css.map`;
+const ASSETS_SRC = `${PROJECT_DIR}/core/assets/**/*`;
+const ASSETS_DEST = `${PROJECT_DIR}/core/static/core`
 
 gulp.task('clean', function() {
   return del([CSS_FILES, CSS_MAPS])
@@ -29,12 +31,16 @@ gulp.task('sass:compile', function () {
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch(
+  return gulp.watch(
     [SASS_FILES],
     gulp.series('sass:compile')
   );
 });
 
+gulp.task('assets:copy', function () {
+  return gulp.src(ASSETS_SRC).pipe(gulp.dest(ASSETS_DEST))
+})
+
 gulp.task('sass', gulp.series('clean', 'sass:compile'));
 
-gulp.task('default', gulp.series('sass'));
+gulp.task('default', gulp.series('sass', 'assets:copy'));
