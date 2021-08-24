@@ -81,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'core.middleware.GoogleCampaignMiddleware',
+    'core.middleware.MicrosoftDefenderSafeLinksMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]

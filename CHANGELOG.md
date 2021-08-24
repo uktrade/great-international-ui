@@ -1,6 +1,7 @@
 # Changelog
 
 ## Pre-release
+- GP2-3282 - Middleware to remove PII from MS Safe Links in request path
 - GP2-3226 - Added InvestmentAtlas Landing page
 
 ### Implemented enhancements
