@@ -38,14 +38,7 @@ DEBUG = env.bool('DEBUG', False)
 # PaaS, we can open ALLOWED_HOSTS
 ALLOWED_HOSTS = ['*']
 
-# This is used by the debug toolbar, which will only show
-# if DEBUG=True and the request IP is considered internal
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
@@ -70,13 +63,7 @@ INSTALLED_APPS = [
     'second_qualification',
 ]
 
-if DEBUG:
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'directory_components.middleware.MaintenanceModeMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -91,9 +78,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'core.middleware.GoogleCampaignMiddleware',
     'core.middleware.MicrosoftDefenderSafeLinksMiddleware',
-    'core.middleware.DebugToolbarSkipGAMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
-    'directory_components.middleware.CheckGATags'
+    'directory_components.middleware.CheckGATags',
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -508,3 +494,9 @@ if env.str('ELASTIC_APM_SERVER_URL', ''):
     }
 
 MAGNA_HEADER = env.bool('MAGNA_HEADER', False)
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+    INTERNAL_IPS = ['127.0.0.1', '10.0.2.2']
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware',
+                  'core.middleware.DebugToolbarSkipGAMiddleware'] + MIDDLEWARE

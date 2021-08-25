@@ -1,3 +1,4 @@
+from django.test import modify_settings
 from django.urls import reverse
 from unittest.mock import patch
 
@@ -109,7 +110,10 @@ def test_microsoft_defender_safe_links_middleware_trims_pii(mock_get_page, clien
         assert request.META['QUERY_STRING'] == expected_query_string
 
 
-def test_debug_toolbar_skip_ga_middleware(client):
+@modify_settings(MIDDLEWARE={
+    'append': 'core.middleware.DebugToolbarSkipGAMiddleware'
+})
+def test_debug_toolbar_skip_ga_middleware(settings, client):
     response = client.get("/__debug__/render_panel/")
     request = response.wsgi_request
 
