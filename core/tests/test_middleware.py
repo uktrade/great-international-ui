@@ -107,3 +107,10 @@ def test_microsoft_defender_safe_links_middleware_trims_pii(mock_get_page, clien
         request = response.wsgi_request
 
         assert request.META['QUERY_STRING'] == expected_query_string
+
+
+def test_debug_toolbar_skip_ga_middleware(client):
+    response = client.get("/__debug__/render_panel/")
+    request = response.wsgi_request
+
+    assert request.skip_ga360 is True

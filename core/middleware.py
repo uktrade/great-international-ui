@@ -1,3 +1,4 @@
+from django.urls import resolve
 from django.utils.deprecation import MiddlewareMixin
 import re
 
@@ -61,3 +62,15 @@ class MicrosoftDefenderSafeLinksMiddleware(MiddlewareMixin):
         clean_query_string = re.sub(self.SAFE_LINKS_REGEX, '', request.META['QUERY_STRING'])
 
         request.META['QUERY_STRING'] = clean_query_string
+
+
+class DebugToolbarSkipGAMiddleware(MiddlewareMixin):
+    """
+    Skip CheckGATags directory-components middleware for Django Debug
+    Toolbar to prevent GADataMissingException being thrown
+    """
+
+    @staticmethod
+    def process_request(request):
+        if 'djdt' in resolve(request.path_info).namespaces:
+            request.skip_ga360 = True

@@ -1,3 +1,4 @@
+import debug_toolbar
 import directory_components.views
 from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
@@ -5,6 +6,7 @@ import directory_healthcheck.views
 from django.conf import settings
 from django.conf.urls import url, include
 from django.views.static import serve
+from django.urls import path
 from django.contrib.sitemaps.views import sitemap
 
 import core.views
@@ -20,7 +22,6 @@ import second_qualification.views
 sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
 }
-
 
 urlpatterns = [
     url(
@@ -162,7 +163,6 @@ urlpatterns += [
         name="second-qualification-success"
     ),
 ]
-
 
 urlpatterns += [
     url(
@@ -428,3 +428,7 @@ urlpatterns += redirects
 
 handler404 = core.views.handler404
 handler500 = core.views.handler500
+
+urlpatterns += [
+    path('__debug__/', include(debug_toolbar.urls)),
+]
