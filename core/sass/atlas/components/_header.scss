@@ -1,5 +1,5 @@
-@import 'tokens';
-@import 'typography';
+@import '../tokens';
+@import '../typography';
 
 .atlas-header {
   @include atlas-regular;
@@ -56,7 +56,7 @@
     display: block;
   }
 
-  @media (min-width:$breakpoint-medium) {
+  @media (min-width: $breakpoint-medium) {
     .js-enabled & {
       display: none;
     }
@@ -96,10 +96,12 @@
     &:after {
       width: 25px;
     }
+
     &:before {
       top: 9px;
       transform: rotate(45deg);
     }
+
     &:after {
       bottom: 9px;
       transform: rotate(-45deg);
@@ -127,7 +129,7 @@
   margin: 0 -20px -10px;
   padding: 10px 20px;
 
-  @media (min-width:$breakpoint-medium) {
+  @media (min-width: $breakpoint-medium) {
     background-color: transparent;
     margin: 0 -17px 0 0;
     padding: 0;

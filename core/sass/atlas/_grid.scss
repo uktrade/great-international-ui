@@ -1,0 +1,47 @@
+@use "sass:math";
+@import 'tokens';
+
+$half-gutter: $grid-gutter / 2;
+$half-gutter-medium: $grid-gutter-medium / 2;
+
+.atlas-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$half-gutter;
+  margin-right: -$half-gutter;
+
+  @media (min-width: $breakpoint-medium) {
+    margin-left: -$half-gutter-medium;
+    margin-right: -$half-gutter-medium;
+  }
+}
+
+.atlas-grid__column {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+
+  padding-left: $half-gutter;
+  padding-right: $half-gutter;
+
+  @media (min-width: $breakpoint-medium) {
+    padding-left: $half-gutter-medium;
+    padding-right: $half-gutter-medium;
+  }
+}
+
+@for $i from 1 through 11 {
+  $width: 100% * ($i / 12);
+
+  .atlas-grid__column--#{$i}-12 {
+    width: $width;
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    .atlas-grid__column--#{$i}-12-m {
+      width: $width;
+    }
+  }
+}
+
+

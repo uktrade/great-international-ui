@@ -40,3 +40,9 @@
 .atlas-bold {
   @include atlas-bold;
 }
+
+.atlas-h1,
+.atlas-h2 {
+  @include atlas-bold;
+  font-size: 60px;
+}

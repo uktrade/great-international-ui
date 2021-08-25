@@ -1,0 +1,32 @@
+@import '../tokens';
+
+.atlas-hero {
+  position: relative;
+  min-height: 568px; // TODO: should be mobile first...
+  overflow: hidden;
+  padding: 108px 0 190px;
+  color: $atlas-white;
+
+  .atlas-container {
+    position: relative;
+  }
+}
+
+.atlas-hero__image {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  max-height: none;
+  max-width: none;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.atlas-hero__strapline {
+  font-size: 30px;
+  line-height: 1.6;
+}
