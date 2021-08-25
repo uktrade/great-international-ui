@@ -72,5 +72,5 @@ class DebugToolbarSkipGAMiddleware(MiddlewareMixin):
 
     @staticmethod
     def process_request(request):
-        if 'djdt' in resolve(request.path_info).namespaces:
+        if resolve(request.path_info).namespace == 'djdt':
             request.skip_ga360 = True

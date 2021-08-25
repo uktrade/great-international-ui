@@ -1,4 +1,3 @@
-import debug_toolbar
 import directory_components.views
 from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
@@ -429,6 +428,9 @@ urlpatterns += redirects
 handler404 = core.views.handler404
 handler500 = core.views.handler500
 
-urlpatterns += [
-    path('__debug__/', include(debug_toolbar.urls)),
-]
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
