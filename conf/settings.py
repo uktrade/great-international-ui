@@ -68,8 +68,12 @@ INSTALLED_APPS = [
     'find_a_supplier',
     'contact',
     'second_qualification',
-    'debug_toolbar',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
