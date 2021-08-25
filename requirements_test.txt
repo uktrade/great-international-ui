@@ -27,7 +27,7 @@ directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
 directory-validators==6.0.6  # via -r requirements.in
 django-countries==5.5     # via -r requirements.in
-django-debug-toolbar==3.2.2  # via -r requirements.in
+django-debug-toolbar==3.2.2  # via -r requirements_test.in
 django-environ==0.4.5     # via -r requirements.in
 django-formtools==2.1     # via -r requirements.in
 django-health-check==3.8.0  # via directory-healthcheck

@@ -22,7 +22,6 @@ directory-forms-api-client==5.1.0  # via -r requirements.in
 directory-healthcheck==2.0.0  # via -r requirements.in
 directory-validators==6.0.6  # via -r requirements.in
 django-countries==5.5     # via -r requirements.in
-django-debug-toolbar==3.2.2  # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
 django-formtools==2.1     # via -r requirements.in
 django-health-check==3.8.0  # via directory-healthcheck
@@ -30,7 +29,7 @@ django-ipware==2.1.0      # via -r requirements.in
 django-recaptcha==2.0.5   # via -r requirements.in
 django-redis==4.10.0      # via -r requirements.in
 django-storages==1.7.2    # via -r requirements.in
-django==2.2.24            # via -r requirements.in, directory-api-client, directory-client-core, directory-components, directory-constants, directory-healthcheck, directory-validators, django-debug-toolbar, django-formtools, django-recaptcha, django-redis, django-storages, djangorestframework, sigauth
+django==2.2.24            # via -r requirements.in, directory-api-client, directory-client-core, directory-components, directory-constants, directory-healthcheck, directory-validators, django-formtools, django-recaptcha, django-redis, django-storages, djangorestframework, sigauth
 djangorestframework==3.11.2  # via -r requirements.in, sigauth
 elastic-apm==5.5.2        # via -r requirements.in
 gevent==1.5a3             # via -r requirements.in
@@ -60,7 +59,7 @@ sigauth==4.1.1            # via directory-client-core
 six==1.12.0               # via cryptography, django-countries, jsonschema, pyopenssl, pyrsistent, python-dateutil, w3lib
 sorl-thumbnail==12.5.0    # via -r requirements.in
 soupsieve==1.9.3          # via beautifulsoup4
-sqlparse==0.3.0           # via django, django-debug-toolbar
+sqlparse==0.3.0           # via django
 tzlocal==2.0.0            # via dateparser
 urllib3==1.26.5           # via -r requirements.in, botocore, directory-validators, elastic-apm, requests, sentry-sdk
 w3lib==1.21.0             # via directory-client-core
