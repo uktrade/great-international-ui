@@ -49,7 +49,7 @@ TEMPLATE_MAPPING = {
 
     # Investment Atlas
     'InvestmentOpportunityPage': 'investment_atlas/opportunity.html',
-    'InvestmentAtlasLandingPage': 'investment_atlas/index.html'
+    'InvestmentAtlasLandingPage': 'investment_atlas/investment.html'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -161,7 +161,7 @@ GA_DATA_MAPPING = {
     'InvestInternationalHomePage': {
         'business_unit': 'Invest',
         'site_section': 'HomePage',
-        'site_subsection': ''
+        'site_subsection': 'ListingPage'
     },
     'InvestHighPotentialOpportunityDetailPage': {
         'business_unit': 'Invest',
@@ -248,7 +248,7 @@ GA_DATA_MAPPING = {
     },
     'InvestmentAtlasLandingPage': {
         'business_unit': 'GreatInternational',
-        'site_section': 'InvestmentAtlas',
+        'site_section': 'InvestmentHomePage',
         'site_subsection': 'LandingPage',
     }
 }
@@ -266,6 +266,10 @@ HEADER_SECTION_MAPPING = {
     r'^about-uk$': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.OVERVIEW_ABOUT),
     r'^about-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=None),
 
+    r'^investment.*': HeaderConfig(section=tier_one.INVEST_IN_UK, sub_section=None),
+    # noqa
+
+
     # Expand to the UK
     r'^how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
     r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),  # noqa
@@ -280,6 +284,7 @@ HEADER_SECTION_MAPPING = {
     r'^capital-invest$': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.OVERVIEW_INVEST_CAPITAL),
     r'^capital-invest/how-we-help-you-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.HOW_WE_HELP_CAPITAL_INVEST),  # noqa
     r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
+
 
     # Buy from the UK
     r'^trade/contact.*': HeaderConfig(section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.CONTACT_US_TRADE),

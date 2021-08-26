@@ -3,6 +3,9 @@ from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
 
 
+WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'why-invest-in-the-uk'
+REGIONS_URL = urls.international.HOME / 'regions'
+
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
     title=_('Overview'),
@@ -136,4 +139,16 @@ CONTACT_US_ABOUT_DIT = NavItem(
     name='contact-us-about-dit',
     title=_('Contact us'),
     url=urls.international.ABOUT_DIT_CONTACT
+)
+
+WHY_INVEST_IN_UK = NavItem(
+    name='why-invest-in-the-uk',
+    title=_('Why invest in the UK?'),
+    url=WHY_INVEST_IN_THE_UK_URL
+)
+
+REGIONS = NavItem(
+    name='regions',
+    title=_('Regions'),
+    url=REGIONS_URL
 )

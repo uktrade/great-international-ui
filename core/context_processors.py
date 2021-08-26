@@ -41,7 +41,7 @@ def services_home_links(request):
 
 
 def header_navigation(request):
-    nav_tree = header_config.nav_tree.HEADER_TREE \
+    nav_tree = header_config.nav_tree.ATLAS_HEADER_TREE \
         if settings.FEATURE_FLAGS['NEW_IA_ON'] \
         else header_config.nav_tree.OLD_HEADER_TREE
 
