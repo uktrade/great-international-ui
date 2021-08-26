@@ -1,3 +1,8 @@
+{% extends 'core/base_cms.html' %}
 <!-- this template is awaiting markup, but the {{page}} context variable contains the available data -->
-{{page}}
 
+{% block content %}
+{{ page.section }}
+    {{page}}
+
+{% endblock %}

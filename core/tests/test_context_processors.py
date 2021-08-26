@@ -69,7 +69,7 @@ def test_header_navigation_uses_new_ia_when_flag_is_on(settings):
 
     context = context_processors.header_navigation(None)
 
-    assert context['navigation_tree'] == header_config.nav_tree.HEADER_TREE
+    assert context['navigation_tree'] == header_config.nav_tree.ATLAS_HEADER_TREE
 
 
 def test_header_navigation_uses_new_ia_when_flag_is_off(settings):
