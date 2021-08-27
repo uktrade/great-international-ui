@@ -31,6 +31,7 @@ class TariffsCountryForm(forms.Form):
 
 
 class OpportunitySearchForm(forms.Form):
+    # NB: there is a specific version of this form for investment_atlas, which replaces this one
 
     sector = forms.ChoiceField(
         label='sector',

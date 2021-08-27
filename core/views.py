@@ -369,6 +369,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
 
 
 class OpportunitySearchView(CountryDisplayMixin, InternationalView):
+    # NB: The investment_atlas app has its own version of this view, which ultimately replaces it 
     template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'
     page_size = 10
     header_section = tier_one_nav_items.INVEST_CAPITAL

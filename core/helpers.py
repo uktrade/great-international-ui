@@ -101,6 +101,7 @@ class ScaleFilter:
 
 
 class RegionFilter:
+    # Used in CapInvest, where there is just one region option
     def __init__(self, regions):
         self.regions = regions
 
@@ -109,6 +110,18 @@ class RegionFilter:
                 and opportunity['related_region']['title'] \
                 and opportunity['related_region']['title'] in self.regions:
             return True
+
+
+class MultipleRegionsFilter:
+    # Used in Atlas, where there are multiple regions possible for an opportunity
+    # so we need to iterate through possible matching regions
+    def __init__(self, regions):
+        self.regions = regions
+
+    def matches(self, opportunity):
+        for related_region in opportunity.get('related_regions', []):
+            if related_region['title'] and related_region['title'] in self.regions:
+                return True
 
 
 class SubSectorFilter:

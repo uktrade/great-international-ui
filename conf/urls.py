@@ -13,6 +13,7 @@ import conf.sitemaps
 from conf.url_redirects import redirects
 import euexit.views
 import invest.views
+import investment_atlas.views
 import contact.views
 import find_a_supplier.views
 import second_qualification.views
@@ -343,6 +344,7 @@ urlpatterns += [
         name='how-to-do-business-with-the-uk'
     ),
     url(
+        # Being replaced by international/investment/opportunities/
         r'^international/content/opportunities/$',
         core.views.OpportunitySearchView.as_view(),
         {'path': 'opportunities'},
@@ -355,8 +357,8 @@ urlpatterns += [
         name='invest-capital-home'
     ),
     # The Investment Atlas section tries to stick with the standard
-    # tree-based routing, apart from the investment root page
-    # and the [TO COME] filterable listing view
+    # tree-based routing, apart from the investment root page at /international/investment/
+    # and the filterable listing view at /international/investment/opportunities/
     #
     # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
     # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
@@ -369,6 +371,14 @@ urlpatterns += [
             # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
         },
         name='atlas-home'
+    ),
+    url(
+        r'^international/investment/opportunities/$', 
+        investment_atlas.views.InvestmentOpportunitySearchView.as_view(),
+        {
+            'path': 'investment/opportunities/'
+        },
+        name='atlas-opportunities-list'
     ),
     url(
         # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
