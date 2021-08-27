@@ -21,7 +21,7 @@ from investment_atlas import forms
 class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     template_name = 'investment_atlas/opportunity_listing_page.html'
     page_size = 10
-    header_section = tier_one_nav_items.INVEST_CAPITAL
+    header_section = tier_one_nav_items.INVEST_IN_UK
     header_sub_section = tier_two_nav_items.INVESTMENT_OPPORTUNITIES
 
     def __init__(self):
