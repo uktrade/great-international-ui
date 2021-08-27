@@ -38,6 +38,22 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False
     )
+    planning_status = forms.ChoiceField(
+        label='planning_status',
+        widget=forms.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-planning_status'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
+    investment_type = forms.ChoiceField(
+        label='investment_type',
+        widget=forms.CheckboxSelectInlineLabelMultiple(
+            attrs={'id': 'checkbox-investment_type'},
+            use_nice_ids=True,
+        ),
+        required=False
+    )
     sort_by = forms.ChoiceField(
         label='sort_by',
         widget=Select(
@@ -49,8 +65,16 @@ class InvestmentOpportunitySearchForm(forms.Form):
     )
 
     def __init__(
-            self, sectors, scales, regions,
-            sort_by_options, sub_sectors, *args, **kwargs
+            self, 
+            sectors, 
+            scales, 
+            regions,
+            sort_by_options, 
+            sub_sectors,
+            planning_statuses, 
+            investment_types, 
+            *args, 
+            **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.fields['sector'].choices = sectors
@@ -58,3 +82,5 @@ class InvestmentOpportunitySearchForm(forms.Form):
         self.fields['region'].choices = regions
         self.fields['sort_by'].choices = sort_by_options
         self.fields['sub_sector'].choices = sub_sectors
+        self.fields['planning_status'].choices = planning_statuses
+        self.fields['investment_type'].choices = investment_types

@@ -136,6 +136,29 @@ class SubSectorFilter:
         return False
 
 
+
+class InvestmentTypeFilter:
+    def __init__(self, investment_types):
+        self.investment_types = investment_types
+
+    def matches(self, opportunity):
+        if 'investment_type' in opportunity and opportunity['investment_type']:
+            if opportunity['investment_type'] in self.investment_types:
+                return True
+        return False
+
+
+class PlanningStatusFilter:
+    def __init__(self, planning_statuses):
+        self.planning_statuses = planning_statuses
+
+    def matches(self, opportunity):
+        if 'planning_status' in opportunity and opportunity['planning_status']:
+            if opportunity['planning_status'] in self.planning_statuses:
+                return True
+        return False
+
+
 def filter_opportunities(opportunities, filter_chosen):
     return [opp for opp in opportunities if filter_chosen.matches(opp)]
 

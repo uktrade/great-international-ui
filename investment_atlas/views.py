@@ -55,6 +55,14 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
 
     @property
+    def investment_type(self):
+        return core_helpers.InvestmentTypeFilter(self.request.GET.getlist('investment_type', []))
+
+    @property
+    def planning_status(self):
+        return core_helpers.PlanningStatusFilter(self.request.GET.getlist('planning_status', []))
+
+    @property
     def region(self):
         return core_helpers.MultipleRegionsFilter(self.request.GET.getlist('region', ''))
 
@@ -103,6 +111,25 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             (scale.title, scale.title)
             for scale in core_helpers.ScaleFilter.scales_with_values
         ]
+
+    def all_investment_types(self):
+        investment_types = set(
+            [opp['investment_type'] for opp in self.opportunities if opp.get('investment_type')]
+        )
+        investment_types = sorted(list(investment_types))
+        return [
+            (investment_type, investment_type) for investment_type in investment_types
+        ]
+    
+    def all_planning_statuses(self):
+        planning_statuses = set(
+            [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
+        )
+        planning_statuses = sorted(list(planning_statuses))
+        return [
+            (planning_status, planning_status) for planning_status in planning_statuses
+        ]
+
 
     @property
     def all_regions(self):
@@ -177,6 +204,18 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                 self.sub_sector
             )
 
+        if self.planning_status.planning_statuses:
+            filtered_opportunities = core_helpers.filter_opportunities(
+                filtered_opportunities,
+                self.planning_status
+            )
+
+        if self.investment_type.investment_types:
+            filtered_opportunities = core_helpers.filter_opportunities(
+                filtered_opportunities,
+                self.investment_type
+            )
+
         if self.sort_filter.sort_by_filter_chosen:
             filtered_opportunities = core_helpers.sort_opportunities(
                 filtered_opportunities,
@@ -205,6 +244,11 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             filters.append(region)
         for sub_sector in self.sub_sector.sub_sectors:
             filters.append(sub_sector)
+        for investment_type in self.investment_type.investment_types:
+            filters.append(investment_type)
+        for planning_status in self.planning_status.planning_statuses:
+            filters.append(planning_status)
+
         return filters
 
     @property
@@ -219,12 +263,16 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
             sub_sectors=self.all_sub_sectors_for_sectors_chosen,
+            investment_types=self.all_investment_types,
+            planning_statuses=self.all_planning_statuses,
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,
                 'region': self.filters_chosen,
                 'sort_by': self.sorting_chosen,
-                'sub_sector': self.filters_chosen
+                'sub_sector': self.filters_chosen,
+                'planning_status': self.filters_chosen,
+                'investment_type': self.filters_chosen,
             },
         )
 
@@ -237,6 +285,8 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             scales=self.all_scales,
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
+            investment_types=self.all_investment_types,
+            planning_statuses=self.all_planning_statuses,
             sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,

@@ -68,6 +68,16 @@
                                 {% search_page_expandable_options label='Region' field=form.region %}
                             </fieldset>
                         {% endif %}
+                        {% if investment_types %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Investment type' field=form.investment_type %}
+                            </fieldset>
+                        {% endif %}
+                        {% if planning_statuses %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Planning status' field=form.planning_status %}
+                            </fieldset>
+                        {% endif %}
                         <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
                     </section>
                 </div>
