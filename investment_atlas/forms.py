@@ -3,8 +3,8 @@ from django.forms import Select
 
 
 class InvestmentOpportunitySearchForm(forms.Form):
-    # NB: There is an earlier version of this form in core.forms,
-    # but this one has is specific to Investment Atlas 
+    # NB: There was an earlier version of this form in core.forms,
+    # but this one is specific to Investment Atlas
 
     sector = forms.ChoiceField(
         label='sector',
@@ -65,15 +65,15 @@ class InvestmentOpportunitySearchForm(forms.Form):
     )
 
     def __init__(
-            self, 
-            sectors, 
-            scales, 
+            self,
+            sectors,
+            scales,
             regions,
-            sort_by_options, 
+            sort_by_options,
             sub_sectors,
-            planning_statuses, 
-            investment_types, 
-            *args, 
+            planning_statuses,
+            investment_types,
+            *args,
             **kwargs
     ):
         super().__init__(*args, **kwargs)

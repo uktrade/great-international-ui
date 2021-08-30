@@ -61,6 +61,10 @@ def test_services_home_links():
             'url': reverse_lazy('invest-home'),
             'label': 'Invest',
         },
+        'investment_atlas_home_link': {
+            'url': reverse_lazy('atlas-home'),
+            'label': 'Invest in the UK'
+        },
     }
 
 

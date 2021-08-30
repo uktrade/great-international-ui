@@ -9,7 +9,6 @@ from django.utils import translation
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 from directory_components.mixins import CountryDisplayMixin
-from directory_constants import urls
 
 from core import helpers as core_helpers
 from core.header_config import tier_one_nav_items, tier_two_nav_items
@@ -28,8 +27,8 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         super().__init__()
 
         self.set_ga360_payload(
-            page_id='GreatInternationalCapitalInvestmentOpportunitySearch',
-            business_unit='CapitalInvestment',
+            page_id='GreatInternationalInvestmentAtlasOpportunitySearch',
+            business_unit='InvestmentAtlas',
             site_section='Opportunities',
             site_subsection='Search'
         )
@@ -39,7 +38,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             context = self.get_context_data(**kwargs)
             return self.render_to_response(context)
         except (EmptyPage, PageNotAnInteger):
-            url = core_helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"
+            url = core_helpers.get_paginator_url(self.request.GET, 'atlas-opportunities') + "&page=1"
             return redirect(url)
 
     @property
@@ -120,7 +119,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return [
             (investment_type, investment_type) for investment_type in investment_types
         ]
-    
+
     def all_planning_statuses(self):
         planning_statuses = set(
             [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
@@ -130,12 +129,11 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             (planning_status, planning_status) for planning_status in planning_statuses
         ]
 
-
     @property
     def all_regions(self):
         regions = set()
         for opp in self.opportunities:
-            for related_region in opp.get('related_regions', () ): 
+            for related_region in opp.get('related_regions', []):
                 if related_region and related_region['title']:
                     regions.add(related_region['title'])
         regions = list(regions)
@@ -279,7 +277,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     def get_context_data(self, *args, **kwargs):
         return super().get_context_data(
             page=self.page,
-            invest_url=urls.international.EXPAND_HOME,  # TODO DEPRECATE USE
             num_of_opportunities=self.num_of_opportunities,
             sectors=self.all_sectors,
             scales=self.all_scales,

@@ -46,7 +46,7 @@
                         <span>{% trans 'Filter results' %}</span>
                     </section>
                     <section class="margin-bottom-15">
-                        {% url 'atlas-opportunities-list' as opportunities_url %}
+                        {% url 'atlas-opportunities' as opportunities_url %}
                         {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
                         {% if sectors %}
                             <fieldset>

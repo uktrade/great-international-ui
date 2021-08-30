@@ -343,13 +343,8 @@ urlpatterns += [
         {'path': 'how-to-do-business-with-the-uk'},
         name='how-to-do-business-with-the-uk'
     ),
-    url(
-        # Being replaced by international/investment/opportunities/
-        r'^international/content/opportunities/$',
-        core.views.OpportunitySearchView.as_view(),
-        {'path': 'opportunities'},
-        name='opportunities'
-    ),
+    # r'^international/content/opportunities/$', has been replaced by international/investment/opportunities/
+    # and once the new investment atlas pages are live, we can remove all capinvest pages
     url(
         r'^international/invest-capital/$',
         QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
@@ -378,7 +373,7 @@ urlpatterns += [
         {
             'path': 'investment/opportunities/'
         },
-        name='atlas-opportunities-list'
+        name='atlas-opportunities'
     ),
     url(
         # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.

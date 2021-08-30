@@ -43,24 +43,24 @@ def test_unslugify(slug, exp):
 def test_get_paginator_url():
     filters = QueryDict('')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?'
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+        reverse('atlas-opportunities') + '?'
     )
 
 
 def test_get_paginator_url_with_filters():
     filters = QueryDict('sector=Energy&sector=Aerospace&scale=Value+unknown')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+        reverse('atlas-opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
     )
 
 
 def test_get_paginator_url_with_spaces_filters():
     filters = QueryDict('sector=A+value+with+spaces+')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?sector=A+value+with+spaces+'
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+        reverse('atlas-opportunities') + '?sector=A+value+with+spaces+'
     )
 
 
@@ -203,40 +203,40 @@ def test_filter_opportunities_scale_greater_than_1000():
 
 def test_filter_opportunities_region__single():
     opportunities = [
-        {'slug':'one', 'related_regions': [{'title': 'Midlands'}]},
-        {'slug':'two', 'related_regions': []},
-        {'slug':'three', 'related_regions': [{'title': 'Midlands'}]},
-        {'slug':'four', 'related_regions': [{'title': ''}]},
+        {'slug': 'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'two', 'related_regions': []},
+        {'slug': 'three', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'four', 'related_regions': [{'title': ''}]},
     ]
 
     filter_chosen = helpers.MultipleRegionsFilter('Midlands')
 
     filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
-    assert sorted([x['slug'] for x in filtered_opps]) == ['one', 'three',]
+    assert sorted([x['slug'] for x in filtered_opps]) == ['one', 'three']
 
 
 def test_filter_opportunities_region__multiple():
     opportunities = [
-        {'slug':'one', 'related_regions': [{'title': 'Midlands'}]},
-        {'slug':'two', 'related_regions': []},
-        {'slug':'three', 'related_regions': [{'title': 'Midlands'}, {'title': 'Wales'}]},
-        {'slug':'four', 'related_regions': [{'title': 'Midlands'}]},
-        {'slug':'five', 'related_regions': [{'title': 'Wales'}]},
-        {'slug':'six', 'related_regions': [{'title': 'Midlands'}]},
-        {'slug':'seven', 'related_regions': [{'title': ''}]},
+        {'slug': 'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'two', 'related_regions': []},
+        {'slug': 'three', 'related_regions': [{'title': 'Midlands'}, {'title': 'Wales'}]},
+        {'slug': 'four', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'five', 'related_regions': [{'title': 'Wales'}]},
+        {'slug': 'six', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'seven', 'related_regions': [{'title': ''}]},
     ]
 
     filter_chosen = helpers.MultipleRegionsFilter('Midlands')
     filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 4
 
-    assert sorted([x['slug'] for x in filtered_opps]) == ['four', 'one', 'six', 'three',]
+    assert sorted([x['slug'] for x in filtered_opps]) == ['four', 'one', 'six', 'three']
 
     filter_chosen = helpers.MultipleRegionsFilter('Wales')
     filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
-    assert sorted([x['slug'] for x in filtered_opps]) == ['five', 'three',]
+    assert sorted([x['slug'] for x in filtered_opps]) == ['five', 'three']
 
 
 def test_filter_opportunities_sector():
@@ -270,7 +270,7 @@ def test_filter_opportunities_multiple_filters():
                 {'related_sector': {'heading': ''}},
             ],
             'scale_value': 0,
-            'related_region': {'title': 'Midlands'},
+            'related_regions': [{'title': 'Midlands'}],
 
         },
         {
@@ -279,14 +279,14 @@ def test_filter_opportunities_multiple_filters():
                 {'related_sector': {'heading': 'Aston Green'}},
             ],
             'scale_value': 3000,
-            'related_region': {'title': ''},
+            'related_regions': [{'title': ''}],
         },
     ]
 
     filtered_opps = helpers.filter_opportunities(opportunities, helpers.SectorFilter(
         'Birmingham Curzon'
     ))
-    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.RegionFilter(
+    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.MultipleRegionsFilter(
         'Midlands'
     ))
     filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.ScaleFilter(
@@ -590,5 +590,6 @@ def test_get_header_config(path, expected_section_name, expected_sub_section_nam
 
     section = header_config.section.name if header_config.section else ''
     sub_section = header_config.sub_section.name if header_config.sub_section else ''
+
     assert section == expected_section_name
     assert sub_section == expected_sub_section_name

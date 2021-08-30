@@ -85,7 +85,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = InvestmentOpportunitySearchView.as_view()(
-        request, 
+        request,
         path='/international/investment/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands'
     )
 
@@ -250,7 +250,7 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = InvestmentOpportunitySearchView.as_view()(
-        request, 
+        request,
         path='/international/investment/opportunities/?sort_by=Scale%3A+Low+to+High&regionMidlands'
     )
 
@@ -299,7 +299,7 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
     request = rf.get('/international/investment/opportunities/?sub_sector=housing')
     request.LANGUAGE_CODE = 'en-gb'
     response = InvestmentOpportunitySearchView.as_view()(
-        request, 
+        request,
         path='/international/investment/opportunities/?sub_sector=housing'
     )
 
@@ -472,7 +472,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
                 'title': 'Some Opp 1',
                 'sub_sectors': ['Housing', 'Commercial', 'Mixed use'],
                 'scale_value': '1000.00',
-                'related_regions': 
+                'related_regions':
                 [
                     {
                         'title': 'Midlands'
@@ -505,7 +505,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
     request_one_sector_chosen = rf.get('/international/investment/opportunities/?sector=Aerospace')
     request_one_sector_chosen.LANGUAGE_CODE = 'en-gb'
     response_one_sector_chosen = InvestmentOpportunitySearchView.as_view()(
-        request_one_sector_chosen, 
+        request_one_sector_chosen,
         path='/international/investment/opportunities/?sector=Aerospace'
     )
 
@@ -518,7 +518,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
     )
     request_two_sectors_chosen.LANGUAGE_CODE = 'en-gb'
     response_two_sectors_chosen = InvestmentOpportunitySearchView.as_view()(
-        request_two_sectors_chosen, 
+        request_two_sectors_chosen,
         path='/international/investment/opportunities/?sector=Real+Estate&sector=Aerospace'
     )
 
@@ -529,7 +529,7 @@ def test_sub_sectors_being_shown_for_opportunity_search(
     )
     request_sectors_and_sub_sectors_chosen.LANGUAGE_CODE = 'en-gb'
     response_sectors_and_sub_sectors_chosen = InvestmentOpportunitySearchView.as_view()(
-        request_sectors_and_sub_sectors_chosen, 
+        request_sectors_and_sub_sectors_chosen,
         path='/international/investment/opportunities/?sector=Aerospace&sub_sector=Housing'
     )
 
