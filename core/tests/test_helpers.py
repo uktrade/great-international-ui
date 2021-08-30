@@ -201,18 +201,42 @@ def test_filter_opportunities_scale_greater_than_1000():
     assert len(filtered_opps) == 1
 
 
-def test_filter_opportunities_region():
+def test_filter_opportunities_region__single():
     opportunities = [
-        {'related_region': {'title': 'Midlands'}},
-        {'related_region': ''},
-        {'related_region': {'title': 'Midlands'}},
-        {'related_region': {'title': ''}},
+        {'slug':'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug':'two', 'related_regions': []},
+        {'slug':'three', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug':'four', 'related_regions': [{'title': ''}]},
     ]
 
-    filter_chosen = helpers.RegionFilter('Midlands')
+    filter_chosen = helpers.MultipleRegionsFilter('Midlands')
 
     filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
+    assert sorted([x['slug'] for x in filtered_opps]) == ['one', 'three',]
+
+
+def test_filter_opportunities_region__multiple():
+    opportunities = [
+        {'slug':'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug':'two', 'related_regions': []},
+        {'slug':'three', 'related_regions': [{'title': 'Midlands'}, {'title': 'Wales'}]},
+        {'slug':'four', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug':'five', 'related_regions': [{'title': 'Wales'}]},
+        {'slug':'six', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug':'seven', 'related_regions': [{'title': ''}]},
+    ]
+
+    filter_chosen = helpers.MultipleRegionsFilter('Midlands')
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 4
+
+    assert sorted([x['slug'] for x in filtered_opps]) == ['four', 'one', 'six', 'three',]
+
+    filter_chosen = helpers.MultipleRegionsFilter('Wales')
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 2
+    assert sorted([x['slug'] for x in filtered_opps]) == ['five', 'three',]
 
 
 def test_filter_opportunities_sector():
