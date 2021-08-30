@@ -10,7 +10,10 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
-from conf.url_redirects import redirects
+from conf.url_redirects import (
+    redirects,
+    redirects_before_tree_based_routing_lookup
+)
 import euexit.views
 import invest.views
 import investment_atlas.views
@@ -164,6 +167,8 @@ urlpatterns += [
     ),
 ]
 
+
+urlpatterns += redirects_before_tree_based_routing_lookup
 
 urlpatterns += [
     url(
@@ -368,7 +373,7 @@ urlpatterns += [
         name='atlas-home'
     ),
     url(
-        r'^international/investment/opportunities/$', 
+        r'^international/investment/opportunities/$',
         investment_atlas.views.InvestmentOpportunitySearchView.as_view(),
         {
             'path': 'investment/opportunities/'
