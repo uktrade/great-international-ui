@@ -7,8 +7,9 @@ from investment_atlas.views import InvestmentOpportunitySearchView
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_region_sector_scale_filter_for_opportunity_search(
-        mock_cms_response, rf):
-
+    mock_cms_response,
+    rf,
+):
     page = {
         'title': 'test',
         'meta': {
@@ -95,7 +96,9 @@ def test_region_sector_scale_filter_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_num_of_opportunities_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -160,7 +163,9 @@ def test_get_num_of_opportunities_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -208,7 +213,9 @@ def test_get_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sorting_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -259,7 +266,9 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sub_sector_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -309,7 +318,9 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -361,7 +372,9 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -412,7 +425,9 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_sub_sectors_being_shown_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -533,13 +548,14 @@ def test_sub_sectors_being_shown_for_opportunity_search(
         path='/international/investment/opportunities/?sector=Aerospace&sub_sector=Housing'
     )
 
-    assert len(response_sectors_and_sub_sectors_chosen
-               .context_data['sub_sectors']) == 2
+    assert len(response_sectors_and_sub_sectors_chosen.context_data['sub_sectors']) == 2
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_when_no_opportunity_list_in_page_for_opportunity_search(
-        mock_cms_response, rf):
+    mock_cms_response,
+    rf,
+):
 
     page = {
         'title': 'test',
@@ -562,3 +578,208 @@ def test_when_no_opportunity_list_in_page_for_opportunity_search(
         request, path='/international/investment/opportunities/')
 
     assert response.context_data['num_of_opportunities'] == 0
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_investment_type_filter_for_opportunity_search(
+    mock_cms_response,
+    rf,
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '',
+                'investment_type': 'Investment Type One',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'investment_type': 'Investment Type Two',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '0.00',
+                'investment_type': 'Investment Type One',
+                'related_regions': [
+                    {
+                        'title': 'South of Engalnd'
+                    },
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?investment_type=Investment+Type+One'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?investment_type=Investment+Type+One'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 2
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
+    assert response.context_data['pagination'].object_list[1]['title'] == 'Some Opp 3'
+
+    # Extra test coverage of all_investment_types
+    view = InvestmentOpportunitySearchView()
+    view.page = page
+    assert view.all_investment_types() == [
+        ('Investment Type One', 'Investment Type One'),
+        ('Investment Type Two', 'Investment Type Two'),
+    ]
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_planning_status_filter_for_opportunity_search(
+    mock_cms_response,
+    rf,
+):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '',
+                'investment_type': 'Investment Type One',
+                'planning_status': 'Planning Status Two',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'investment_type': 'Investment Type Two',
+                'planning_status': 'Planning Status Five',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Automotive'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 3',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '0.00',
+                'investment_type': 'Investment Type One',
+                'planning_status': 'Planning Status Five',
+                'related_regions': [
+                    {
+                        'title': 'South of Engalnd'
+                    },
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Automotive'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?planning_status=Planning+Status+Five'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?planning_status=Planning+Status+Five'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 2
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 2'
+    assert response.context_data['pagination'].object_list[1]['title'] == 'Some Opp 3'
+
+    # Extra test coverage of all_planning_statuses
+    view = InvestmentOpportunitySearchView()
+    view.page = page
+    assert view.all_planning_statuses() == [
+        ('Planning Status Five', 'Planning Status Five'),
+        ('Planning Status Two', 'Planning Status Two'),
+    ]
