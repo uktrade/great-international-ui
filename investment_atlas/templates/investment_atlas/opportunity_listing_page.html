@@ -9,14 +9,18 @@
     <script src="{% static 'directory_components/js/dit.components.searchPageExpandableOptions.js' %}"></script>
 {% endblock %}
 
-{% block css_layout_class %}capital-invest-opportunity-listing-page{% endblock %}
+{% block css_layout_class %}
+    {% comment %} TO COME DURING FE TICKET {% endcomment %}
+{% endblock %}
 
 {% block content %}
+
+
 <section id="breadcrumb-section">
   <div class="container">
     {% breadcrumbs page.breadcrumbs_label %}
         <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-        <a href="{% url 'cms-page-from-path' 'capital-invest' %}">Capital invest</a>
+        <a href="{{ investment_atlas_home_link.url }}">{{investment_atlas_home_link.label}}</a>
     {% endbreadcrumbs %}
   </div>
 </section>
@@ -42,7 +46,7 @@
                         <span>{% trans 'Filter results' %}</span>
                     </section>
                     <section class="margin-bottom-15">
-                        {% url 'opportunities' as opportunities_url %}
+                        {% url 'atlas-opportunities' as opportunities_url %}
                         {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
                         {% if sectors %}
                             <fieldset>
@@ -64,6 +68,16 @@
                                 {% search_page_expandable_options label='Region' field=form.region %}
                             </fieldset>
                         {% endif %}
+                        {% if investment_types %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Investment type' field=form.investment_type %}
+                            </fieldset>
+                        {% endif %}
+                        {% if planning_statuses %}
+                            <fieldset>
+                                {% search_page_expandable_options label='Planning status' field=form.planning_status %}
+                            </fieldset>
+                        {% endif %}
                         <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
                     </section>
                 </div>
@@ -72,7 +86,7 @@
                     <div class="font-small sort-by-container">
                         <label>
                             <span>{% trans 'Sort by' %}:</span>
-                            {{ form.sort_by}}
+                            {{ form.sort_by }}
                         </label>
                     </div>
                     <ul>
