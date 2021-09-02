@@ -1,5 +1,5 @@
 @import '../tokens';
-@import '../typography';
+@import '../mixins';
 
 .atlas-header {
   @include atlas-regular;
@@ -110,6 +110,7 @@
 }
 
 .atlas-nav {
+  @include atlas-bold;
   color: $atlas-white;
   align-self: center;
   margin-left: auto;
@@ -173,6 +174,7 @@
 }
 
 .atlas-subnav {
+  @include atlas-regular;
   display: none;
   background-color: $atlas-black;
   text-align: right;

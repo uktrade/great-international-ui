@@ -1,12 +1,16 @@
+@import 'tokens';
+@import 'mixins';
+
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B Bold'), local('EuclidFlexB-Bold'),
   url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
   url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype');
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
+  font-display: auto;
 }
 
 @font-face {
@@ -14,35 +18,28 @@
   src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
   url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
   url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype');
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
-}
-
-@mixin atlas-regular {
-  font-family: 'Euclid Flex B', Arial, sans-serif;
-}
-
-@mixin atlas-bold {
-  font-family: 'Euclid Flex B', Arial, sans-serif;
-  font-weight: 900;
+  font-display: auto;
 }
 
 .atlas-regular {
   @include atlas-regular;
+  line-height: 1.5;
+  color: $atlas-body;
 }
-
-//.atlas-medium {
-//  @include atlas-medium;
-//}
 
 .atlas-bold {
   @include atlas-bold;
+  color: $atlas-body;
 }
 
 .atlas-h1,
 .atlas-h2 {
   @include atlas-bold;
+  margin-bottom: .5em;
   font-size: 60px;
+  line-height: 1;
 }
