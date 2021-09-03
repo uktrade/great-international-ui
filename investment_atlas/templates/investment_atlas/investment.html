@@ -40,6 +40,13 @@
                                  class="atlas-landing-page__image atlas-image"/>
                         </div>
                     {% endif %}
+                    {% if section.value.block_slug == 'atlas-homepage-map-image' %}
+                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                            <div class="atlas-svg-map">
+                                {% include 'investment_atlas/includes/regions-map.svg' %}
+                            </div>
+                        </div>
+                    {% endif %}
                     {% if section.value.call_to_action %}
                         <div class="atlas-grid__column atlas-grid__column--6-12-m">
                             <a href="{{ section.value.call_to_action.external_link }}"
