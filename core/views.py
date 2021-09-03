@@ -14,9 +14,8 @@ from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 import directory_forms_api_client.helpers
 
-from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
-from directory_components.helpers import get_user_country, SocialLinkBuilder
+from directory_components.helpers import SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin, EnableTranslationsMixin)
 
@@ -152,53 +151,8 @@ def article_page_context_modifier(context, request):
 class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
     @property
-    def is_new_page_ready(self):
-        if 'is_new_page_ready' in self.page:
-            if self.page['is_new_page_ready']:
-                return True
-        return False
-
-    @property
     def template_name(self):
-        if self.is_new_page_ready:
-            return 'core/new_international_landing_page.html'
-
         return 'core/landing_page.html'
-
-    def get_context_data(self, *args, **kwargs):
-        page = self.page
-
-        country_code = get_user_country(self.request)
-        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
-        tariffs_country = {'code': country_code.lower(), 'name': country_name}
-        tariffs_country_selector_form = forms.TariffsCountryForm(
-            initial={'tariffs_country': country_code}
-        ),
-
-        random_sector = []
-        if 'all_sectors' in page:
-            all_sectors = filter_by_active_language(page['all_sectors'])
-            random.shuffle(all_sectors)
-            if all_sectors:
-                random_sector = all_sectors[0]
-
-        related_cards = []
-        if 'related_page_expand' in page and page['related_page_expand']:
-            related_cards.append(page['related_page_expand'])
-
-        if 'related_page_invest_capital' in page and page['related_page_invest_capital']:
-            related_cards.append(page['related_page_invest_capital'])
-
-        if 'related_page_buy' in page and page['related_page_buy']:
-            related_cards.append(page['related_page_buy'])
-
-        return super().get_context_data(
-            tariffs_country=tariffs_country,
-            tariffs_country_selector_form=tariffs_country_selector_form,
-            random_sector=random_sector,
-            related_cards=related_cards,
-            *args, **kwargs,
-        )
 
 
 @register_context_modifier('InternationalTopicLandingPage')
