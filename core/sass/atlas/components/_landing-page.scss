@@ -1,7 +1,7 @@
 @import '../tokens';
 
 .atlas-landing-page__section {
-  padding: 108px 0 180px;
+  padding: 33px 0 75px;
   background: $atlas-white;
 
   &:nth-of-type(2n + 1) {
@@ -10,6 +10,46 @@
 
   &:nth-of-type(4n + 1) {
     background: $atlas-green-light;
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    padding-top: 48px;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    padding: 108px 0 180px;
+  }
+}
+
+.atlas-landing-page__text {
+  margin: 0 0 40px;
+}
+
+.atlas-landing-page__image {
+  margin-bottom: 40px;
+}
+
+.atlas-landing-page__quote {
+  position: relative;
+  margin-bottom: 50px;
+  margin-left: 40px;
+
+  @media (min-width: $breakpoint-large) {
+    margin-left: 0;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    display: block;
+    width: 10px;
+    height: 100%;
+    background: $atlas-red;
+  }
+
+  p {
+    margin-top: 0;
   }
 }
 

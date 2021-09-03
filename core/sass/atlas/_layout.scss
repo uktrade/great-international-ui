@@ -10,6 +10,11 @@
     padding-left: $page-gutter-medium;
     padding-right: $page-gutter-medium;
   }
+
+  @media (min-width: $breakpoint-large) {
+    padding-left: $page-gutter-large;
+    padding-right: $page-gutter-large;
+  }
 }
 
 .atlas-container--header {

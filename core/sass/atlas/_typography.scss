@@ -36,10 +36,91 @@
   color: $atlas-body;
 }
 
-.atlas-h1,
-.atlas-h2 {
+.atlas-h--xl,
+.atlas-h--l,
+.atlas-h--m,
+.atlas-h--s,
+.atlas-h--xs {
   @include atlas-bold;
   margin-bottom: .5em;
-  font-size: 60px;
+}
+
+.atlas-h--xl {
+  font-size: 48px;
   line-height: 1;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 60px;
+  }
+}
+
+.atlas-h--l {
+  font-size: 36px;
+  line-height: 1.1111;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 48px;
+    line-height: 1;
+  }
+}
+
+.atlas-h--m {
+  font-size: 28px;
+  line-height: 1.1428;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 36px;
+    line-height: 1.1111;
+  }
+}
+
+.atlas-h--s {
+  font-size: 24px;
+  line-height: 1.25;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 28px;
+    line-height: 1.1428;
+  }
+}
+
+.atlas-h--xs {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.atlas-body--l,
+.atlas-body--m,
+.atlas-body--s {
+  @include atlas-regular;
+}
+
+.atlas-body--l {
+  font-size: 24px;
+  line-height: 1.6666;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 30px;
+    line-height: 1.6;
+  }
+}
+
+.atlas-body--m {
+  font-size: 20px;
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 24px;
+    line-height: 1.6666;
+  }
+}
+
+.atlas-body--s {
+  font-size: 18px;
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
 }

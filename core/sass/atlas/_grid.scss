@@ -3,6 +3,7 @@
 
 $half-gutter: $grid-gutter / 2;
 $half-gutter-medium: $grid-gutter-medium / 2;
+$half-gutter-large: $grid-gutter-large / 2;
 
 .atlas-grid {
   display: flex;
@@ -13,6 +14,11 @@ $half-gutter-medium: $grid-gutter-medium / 2;
   @media (min-width: $breakpoint-medium) {
     margin-left: -$half-gutter-medium;
     margin-right: -$half-gutter-medium;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    margin-left: -$half-gutter-large;
+    margin-right: -$half-gutter-large;
   }
 }
 
@@ -28,20 +34,56 @@ $half-gutter-medium: $grid-gutter-medium / 2;
     padding-left: $half-gutter-medium;
     padding-right: $half-gutter-medium;
   }
+
+  @media (min-width: $breakpoint-large) {
+    padding-left: $half-gutter-large;
+    padding-right: $half-gutter-large;
+  }
 }
 
-@for $i from 1 through 11 {
-  $width: 100% * ($i / 12);
+.atlas-grid--masonry {
+  display: block;
 
-  .atlas-grid__column--#{$i}-12 {
-    width: $width;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
   }
+}
 
-  @media (min-width: $breakpoint-medium) {
-    .atlas-grid__column--#{$i}-12-m {
+.atlas-grid--masonry .atlas-grid__column {
+  flex: none;
+}
+
+.atlas-grid--masonry .atlas-grid__column--left {
+  float: left;
+  clear: left;
+}
+
+.atlas-grid--masonry .atlas-grid__column--right {
+  float: right;
+  clear: right;
+}
+
+@mixin columns($suffix) {
+  @for $i from 1 through 11 {
+    $width: 100% * ($i / 12);
+
+    .atlas-grid__column--#{$i}-12#{$suffix} {
       width: $width;
+    }
+
+    .atlas-grid__column--offset-#{$i}#{$suffix} {
+      margin-left: $width;
     }
   }
 }
 
+@include columns('');
 
+$screen-sizes: ("-m": $breakpoint-medium, "-l": $breakpoint-large);
+@each $suffix, $breakpoint in $screen-sizes {
+  @media (min-width: $breakpoint) {
+    @include columns($suffix);
+  }
+}
