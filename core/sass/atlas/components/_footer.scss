@@ -1,6 +1,8 @@
-@import 'tokens';
+@import '../tokens';
+@import '../mixins';
 
 .atlas-footer {
+  @include atlas-regular;
   overflow: hidden;
 }
 

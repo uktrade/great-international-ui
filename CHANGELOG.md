@@ -8,6 +8,8 @@
 - GP2-3231 - New Investment Atlas header
 - GP2-3232 - New Investment Atlas footer
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
+- GP2-3298 - Styled Atlas homepage
+
 ### Fixed bugs
 
 ## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
