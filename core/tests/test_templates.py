@@ -157,44 +157,6 @@ def test_homepage_no_related_pages(default_context):
     assert 'News title' not in html
 
 
-def test_homepage_related_pages(default_context):
-    context = {
-        'page': {
-            'page_type': 'InternationalHomePage',
-            'news_title': 'News title',
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            'related_pages': [
-                {
-                    'title': 'Related article title',
-                    'page_type': 'InternationalArticlePage',
-                    'teaser': 'Related article teaser',
-                    'meta': {
-                        'slug': 'article',
-                        'languages': [('en-gb', 'English')],
-                        'url': (
-                            'https://great.gov.uk/international/'
-                            'topic/list/article'),
-                    },
-                    'full_path': '/topic/list/article',
-                    'full_url':
-                    'https://great.gov.uk/international/topic/list/article',
-                },
-            ]
-        },
-        **default_context
-    }
-
-    html = render_to_string('core/landing_page.html', context)
-
-    assert 'News title' in html
-    assert 'Related article title' in html
-    assert 'Related article teaser' in html
-    assert '/topic/list/article' in html
-
-
 @patch('django.utils.translation.get_language')
 def test_guide_child_articles_less_than_nine(mock_language):
     mock_language.return_value = 'fr'
