@@ -43,7 +43,7 @@
                     {% if section.value.block_slug == 'atlas-homepage-map-image' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
                             <div class="atlas-svg-map">
-                                {% include 'investment_atlas/includes/regions-map.svg' %}
+                                {% include 'investment_atlas/includes/svg/regions-map.svg' %}
                             </div>
                         </div>
                     {% endif %}
@@ -53,7 +53,7 @@
                                class="atlas-button">
                                 {{ section.value.call_to_action.label }}
                                 <span class="atlas-button__icon">
-                                    {% include 'investment_atlas/includes/icon-arrow.svg' %}
+                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                 </span>
                             </a>
                         </div>
