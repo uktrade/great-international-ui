@@ -62,7 +62,7 @@
                 {% endif %}
 
                 {% if page.planning_status %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Planning status' value=page.planning_status %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Planning status' value=page.planning_status.name %}
                 {% endif %}
 
                 {% if page.time_to_investment_decision %}
