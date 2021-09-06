@@ -106,19 +106,18 @@
         {% for section in page.main_content %}
             <section{% if section.value.block_slug == 'with-key-links' %} class="atlas-bg--grey-light"{% endif %}>
                 <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+
                     {% for block in section.value.content %}
-                        {% if block.type == 'text' %}
-                            <div class="atlas-grid">
+                        <div class="atlas-grid">
+                            {% if block.type == 'text' %}
                                 <div class="atlas-grid__column atlas-grid__column--8-12-m">
                                     <div class="atlas-cms-text atlas-p-b-m">
                                         {{ block.value|safe }}
                                     </div>
                                 </div>
-                            </div>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if block.type == 'columns' %}
-                            <div class="atlas-grid">
+                            {% if block.type == 'columns' %}
                                 {% for column in block.value %}
                                     <div class="atlas-grid__column atlas-grid__column--4-12-m">
                                         <div class="atlas-cms-text atlas-p-b-m">
@@ -126,19 +125,28 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-                            </div>
-                        {% endif %}
+                            {% endif %}
 
-                        {% if block.type == 'image' %}
-                            <div class="atlas-grid">
+                            {% if block.type == 'image' %}
                                 <div class="atlas-grid__column atlas-grid__column--8-12-m">
                                     <div class="atlas-cms-text atlas-p-b-m">
                                         <img class="atlas-image" src="{{ block.value.image }}"
                                              alt="{{ block.value.image_alt }}">
                                     </div>
                                 </div>
-                            </div>
-                        {% endif %}
+                            {% endif %}
+
+                            {% if section.value.block_slug == 'with-key-links' and page.important_links %}
+                                <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                    <div class="atlas-opportunity__key-links atlas-bg--white atlas-p-s atlas-m-b-m">
+                                        <h3 class="atlas-h--m">Key links</h3>
+                                        <div class="atlas-cms-text">
+                                            {{ page.important_links|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
                     {% endfor %}
                 </div>
             </section>
