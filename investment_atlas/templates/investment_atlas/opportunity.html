@@ -4,10 +4,8 @@
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
-    <details>
-        <summary>data</summary>
-        <pre>{{ page | pprint }}</pre>
-    </details>
+    {{ page|json_script:"page-data" }}
+    <script>console.log(JSON.parse(document.getElementById('page-data').textContent))</script>
 
     {% if page.featured_images|length > 0 %}
         <div class="atlas-hero">
@@ -95,7 +93,7 @@
                 <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
                     <div class="atlas-opportunity__contact-cta">
                         <h3 class="atlas-bold">Contact the opportunity lead</h3>
-                        <a href="#" class="atlas-button atlas-button--white">Get in touch</a>
+                        <a href="{{ page.contact_link }}" class="atlas-button atlas-button--white">Get in touch</a>
                     </div>
                 </div>
             </div>
