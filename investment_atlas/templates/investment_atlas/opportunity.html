@@ -146,6 +146,28 @@
                                     </div>
                                 </div>
                             {% endif %}
+
+                            {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length > 0 %}
+                                <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                    <div class="atlas-opportunity__region-spotlight atlas-bg--grey-light atlas-m-b-m">
+                                        {% with region=page.related_regions.0 %}
+                                            <h3 class="atlas-h--m atlas-p-s atlas-m-0">
+                                                <div class="atlas-body--s atlas-p-b-xs">Region Spotlight</div>
+                                                {{ region.title }}
+                                            </h3>
+                                            {% if region.hero_image_thumbnail %}
+                                                <img class="atlas-image" src="{{ region.hero_image_thumbnail.url }}"
+                                                     alt="{{ region.hero_image_thumbnail.alt }}">
+                                            {% endif %}
+                                            <div class="atlas-cms-text atlas-p-s">
+                                                <p>{{ region.region_summary_section_intro }}</p>
+                                                <p><a href="#">View all investment opportunities
+                                                    in {{ region.title }}</a></p>
+                                            </div>
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>

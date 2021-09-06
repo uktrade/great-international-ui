@@ -1,5 +1,5 @@
 @import '../tokens';
-@import '../typography';
+@import '../mixins';
 
 .atlas-button {
   @include atlas-bold;
