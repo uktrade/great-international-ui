@@ -3,6 +3,7 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
+  min-height: 454px;
 
   .atlas-container {
     position: relative;
@@ -53,5 +54,21 @@
   @media (min-width: $breakpoint-medium) {
     font-size: 30px;
     line-height: 1.6;
+  }
+}
+
+.atlas-hero__heading {
+  position: relative;
+  max-width: 1300px;
+  margin: 0 auto;
+  background: $atlas-white;
+  padding: 45px 0;
+
+  .atlas-hero + & {
+    margin-top: -140px;
+  }
+
+  & h1 {
+    margin: 0;
   }
 }
