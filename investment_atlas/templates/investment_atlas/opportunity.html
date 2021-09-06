@@ -4,9 +4,6 @@
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
-    {{ page|json_script:"page-data" }}
-    <script>console.log(JSON.parse(document.getElementById('page-data').textContent))</script>
-
     {% if page.featured_images|length > 0 %}
         <div class="atlas-hero">
             <img class="atlas-hero__image" src="{{ page.featured_images.0.value.image }}"
