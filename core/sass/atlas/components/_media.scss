@@ -1,0 +1,14 @@
+@import '../tokens';
+
+.atlas-media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.atlas-media__img {
+  margin-right: map-get($spacings, "m");
+
+  @media (min-width: $breakpoint-medium) {
+    margin-right: map-get($spacings-medium, "m");
+  }
+}

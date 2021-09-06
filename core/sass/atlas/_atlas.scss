@@ -1,3 +1,4 @@
+@import 'overrides';
 @import 'typography';
 @import 'layout';
 @import 'grid';
@@ -9,5 +10,6 @@
 @import 'components/hero';
 @import 'components/buttons';
 @import 'components/images';
+@import 'components/media';
 
 @import 'components/landing-page';

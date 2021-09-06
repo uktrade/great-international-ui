@@ -1,0 +1,15 @@
+<div class="atlas-grid__column atlas-grid__column--6-12-m">
+    <div class="atlas-media">
+        {% if svg %}
+            <div class="atlas-media__img">
+                {% with "investment_atlas/includes/svg/"|add:svg|add:".svg" as svg_image %}
+                    {% include svg_image %}
+                {% endwith %}
+            </div>
+        {% endif %}
+        <div class="atlas-media__body atlas-body--m">
+            <h3>{{ label }}:</h3>
+            <p>{{ value }}</p>
+        </div>
+    </div>
+</div>
