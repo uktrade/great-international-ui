@@ -24,39 +24,6 @@
   transform: translate(-50%, -50%);
 }
 
-.atlas-hero__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 488px;
-  max-width: 445px;
-  padding: 23px 0 40px;
-  margin: 0 auto;
-  color: $atlas-white;
-  text-align: center;
-
-  @media (min-width: $breakpoint-medium) {
-    justify-content: center;
-    margin-left: 40px;
-    text-align: left;
-  }
-
-  @media (min-width: $breakpoint-large) {
-    margin-left: 0;
-  }
-}
-
-.atlas-hero__strapline {
-  font-size: 20px;
-  line-height: 1.5;
-  margin: 0;
-
-  @media (min-width: $breakpoint-medium) {
-    font-size: 30px;
-    line-height: 1.6;
-  }
-}
-
 .atlas-hero__heading {
   position: relative;
   max-width: 1300px;
