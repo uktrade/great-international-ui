@@ -5,10 +5,10 @@
   align-items: flex-start;
 }
 
-.atlas-media__img {
-  margin-right: map-get($spacings, "m");
+.atlas-media--centred {
+  align-items: center;
+}
 
-  @media (min-width: $breakpoint-medium) {
-    margin-right: map-get($spacings-medium, "m");
-  }
+.atlas-media__img {
+  margin-right: map-get($spacings, "s");
 }

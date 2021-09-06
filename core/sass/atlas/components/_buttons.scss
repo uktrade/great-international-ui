@@ -11,6 +11,7 @@
   border: 0;
   font-size: 20px;
   text-decoration: none;
+  text-align: center;
   color: $atlas-white;
   background-color: $atlas-black;
 
@@ -21,6 +22,11 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.atlas-button--white {
+  color: $atlas-body;
+  background-color: $atlas-white;
 }
 
 .atlas-button__icon {

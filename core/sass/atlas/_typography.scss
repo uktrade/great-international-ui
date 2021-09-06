@@ -25,15 +25,17 @@
   font-display: auto;
 }
 
+.atlas {
+  color: $atlas-body;
+}
+
 .atlas-regular {
   @include atlas-regular;
   line-height: 1.5;
-  color: $atlas-body;
 }
 
 .atlas-bold {
   @include atlas-bold;
-  color: $atlas-body;
 }
 
 .atlas-h--xl,

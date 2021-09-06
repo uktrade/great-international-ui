@@ -39,7 +39,7 @@
             {% endif %}
         </div>
 
-        <div class="atlas-bg--grey-lighter atlas-p-h-m atlas-p-v-s">
+        <div class="atlas-bg--grey-lighter atlas-p-h-m atlas-p-v-s atlas-m-b-m">
             <div class="atlas-grid">
                 {% if page.location %}
                     {% include 'investment_atlas/includes/opportunity_detail.html' with label='Location' value=page.location %}
@@ -72,9 +72,33 @@
         </div>
     </div>
 
-    <div class="atlas-bg--grey-darker">
+    <div class="atlas-bg--grey-darker atlas-colour--white">
         <div class="atlas-container">
+            <div class="atlas-opportunity__contact atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
+                    <div class="atlas-media atlas-media--centred">
+                        {% if page.contact_avatar %}
+                            <div class="atlas-media__img">
+                                <div class="atlas-opportunity__contact-image">
+                                    <img src="{{ page.contact_avatar.url }}"
+                                         alt="{{ page.contact_avatar.alt }}">
+                                </div>
 
+                            </div>
+                        {% endif %}
+                        <div class="atlas-media__body">
+                            <h3 class="atlas-bold">{{ page.contact_name }}</h3>
+                            <p class="atlas-m-0">{{ page.contact_job_title }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
+                    <div class="atlas-opportunity__contact-cta">
+                        <h3 class="atlas-bold">Contact the opportunity lead</h3>
+                        <a href="#" class="atlas-button atlas-button--white">Get in touch</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
