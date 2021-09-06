@@ -105,12 +105,12 @@
     <div class="atlas-alternate-bg">
         {% for section in page.main_content %}
             <section{% if section.value.block_slug == 'with-key-links' %} class="atlas-bg--grey-light"{% endif %}>
-                <div class="atlas-container atlas-p-v-l">
+                <div class="atlas-container atlas-p-t-l atlas-p-b-s">
                     {% for block in section.value.content %}
                         {% if block.type == 'text' %}
                             <div class="atlas-grid">
                                 <div class="atlas-grid__column atlas-grid__column--8-12-m">
-                                    <div class="atlas-cms-text">
+                                    <div class="atlas-cms-text atlas-p-b-m">
                                         {{ block.value|safe }}
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                             <div class="atlas-grid">
                                 {% for column in block.value %}
                                     <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                                        <div class="atlas-cms-text">
+                                        <div class="atlas-cms-text atlas-p-b-m">
                                             {{ column.value|safe }}
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                         {% if block.type == 'image' %}
                             <div class="atlas-grid">
                                 <div class="atlas-grid__column atlas-grid__column--8-12-m">
-                                    <div class="atlas-cms-text">
+                                    <div class="atlas-cms-text atlas-p-b-m">
                                         <img class="atlas-image" src="{{ block.value.image }}"
                                              alt="{{ block.value.image_alt }}">
                                     </div>
