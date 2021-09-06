@@ -1,0 +1,11 @@
+@import '../_tokens.scss';
+
+a.atlas-card {
+  display: block;
+  text-decoration: none;
+  color: $atlas-body;
+
+  &:hover .atlas-card__heading {
+    text-decoration: underline;
+  }
+}

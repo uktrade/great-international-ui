@@ -102,77 +102,99 @@
         </div>
     </div>
 
-    <div class="atlas-alternate-bg">
-        {% for section in page.main_content %}
-            <section{% if section.value.block_slug == 'with-key-links' %} class="atlas-bg--grey-light"{% endif %}>
-                <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+    {% for section in page.main_content %}
+        <section
+                class="atlas-alternate-bg{% if section.value.block_slug == 'with-key-links' %}  atlas-bg--grey-light{% endif %}">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-s">
 
-                    {% for block in section.value.content %}
-                        <div class="atlas-grid">
-                            {% if block.type == 'text' %}
-                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
-                                    <div class="atlas-cms-text atlas-p-b-m">
-                                        {{ block.value|safe }}
-                                    </div>
+                {% for block in section.value.content %}
+                    <div class="atlas-grid">
+                        {% if block.type == 'text' %}
+                            <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                <div class="atlas-cms-text atlas-p-b-m">
+                                    {{ block.value|safe }}
                                 </div>
-                            {% endif %}
+                            </div>
+                        {% endif %}
 
-                            {% if block.type == 'columns' %}
-                                {% for column in block.value %}
-                                    <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                                        <div class="atlas-cms-text atlas-p-b-m">
-                                            {{ column.value|safe }}
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-
-                            {% if block.type == 'image' %}
-                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
-                                    <div class="atlas-cms-text atlas-p-b-m">
-                                        <img class="atlas-image" src="{{ block.value.image }}"
-                                             alt="{{ block.value.image_alt }}">
-                                    </div>
-                                </div>
-                            {% endif %}
-
-                            {% if section.value.block_slug == 'with-key-links' and page.important_links %}
+                        {% if block.type == 'columns' %}
+                            {% for column in block.value %}
                                 <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                                    <div class="atlas-opportunity__key-links atlas-bg--white atlas-p-s atlas-m-b-m">
-                                        <h3 class="atlas-h--m">Key links</h3>
-                                        <div class="atlas-cms-text">
-                                            {{ page.important_links|safe }}
-                                        </div>
+                                    <div class="atlas-cms-text atlas-p-b-m">
+                                        {{ column.value|safe }}
                                     </div>
                                 </div>
-                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
-                            {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length > 0 %}
-                                <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                                    <div class="atlas-opportunity__region-spotlight atlas-bg--grey-light atlas-m-b-m">
-                                        {% with region=page.related_regions.0 %}
-                                            <h3 class="atlas-h--m atlas-p-s atlas-m-0">
-                                                <div class="atlas-body--s atlas-p-b-xs">Region Spotlight</div>
-                                                {{ region.title }}
-                                            </h3>
-                                            {% if region.hero_image_thumbnail %}
-                                                <img class="atlas-image" src="{{ region.hero_image_thumbnail.url }}"
-                                                     alt="{{ region.hero_image_thumbnail.alt }}">
-                                            {% endif %}
-                                            <div class="atlas-cms-text atlas-p-s">
-                                                <p>{{ region.region_summary_section_intro }}</p>
-                                                <p><a href="#">View all investment opportunities
-                                                    in {{ region.title }}</a></p>
-                                            </div>
-                                        {% endwith %}
+                        {% if block.type == 'image' %}
+                            <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                <div class="atlas-cms-text atlas-p-b-m">
+                                    <img class="atlas-image" src="{{ block.value.image }}"
+                                         alt="{{ block.value.image_alt }}">
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if section.value.block_slug == 'with-key-links' and page.important_links %}
+                            <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                <div class="atlas-opportunity__key-links atlas-bg--white atlas-p-s atlas-m-b-m">
+                                    <h3 class="atlas-h--m">Key links</h3>
+                                    <div class="atlas-cms-text">
+                                        {{ page.important_links|safe }}
                                     </div>
                                 </div>
-                            {% endif %}
+                            </div>
+                        {% endif %}
+
+                        {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length > 0 %}
+                            <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                <div class="atlas-opportunity__region-spotlight atlas-bg--grey-light atlas-m-b-m">
+                                    {% with region=page.related_regions.0 %}
+                                        <h3 class="atlas-h--m atlas-p-s atlas-m-0">
+                                            <div class="atlas-body--s atlas-p-b-xs">Region Spotlight</div>
+                                            {{ region.title }}
+                                        </h3>
+                                        {% if region.hero_image_thumbnail %}
+                                            <img class="atlas-image" src="{{ region.hero_image_thumbnail.url }}"
+                                                 alt="{{ region.hero_image_thumbnail.alt }}">
+                                        {% endif %}
+                                        <div class="atlas-cms-text atlas-p-s">
+                                            <p>{{ region.region_summary_section_intro }}</p>
+                                            <p><a href="{{ region.full_path }}">View all investment opportunities
+                                                in {{ region.title }}</a></p>
+                                        </div>
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+
+    {% if page.related_opportunities|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">Related opportunities</h2>
+
+                <div class="atlas-grid">
+                    {% for opportunity in page.related_opportunities %}
+                        <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                            <a href="{{ opportunity.full_path }}" class="atlas-card atlas-bg--white atlas-m-t-m">
+                                <img class="atlas-image" src="{{ opportunity.thumbnail_image.image }}"
+                                     alt="{{ opportunity.thumbnail_image.image_alt }}">
+                                <div class="atlas-cms-text atlas-p-s">
+                                    <h3 class="atlas-card__heading atlas-h--s">{{ opportunity.title }}</h3>
+                                    <p>{{ opportunity.opportunity_summary }}</p>
+                                </div>
+                            </a>
                         </div>
                     {% endfor %}
                 </div>
-            </section>
-        {% endfor %}
-    </div>
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}
