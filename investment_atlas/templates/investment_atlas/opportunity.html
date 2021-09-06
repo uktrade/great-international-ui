@@ -102,5 +102,47 @@
         </div>
     </div>
 
+    <div class="atlas-alternate-bg">
+        {% for section in page.main_content %}
+            <section{% if section.value.block_slug == 'with-key-links' %} class="atlas-bg--grey-light"{% endif %}>
+                <div class="atlas-container atlas-p-v-l">
+                    {% for block in section.value.content %}
+                        {% if block.type == 'text' %}
+                            <div class="atlas-grid">
+                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                    <div class="atlas-cms-text">
+                                        {{ block.value|safe }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% if block.type == 'columns' %}
+                            <div class="atlas-grid">
+                                {% for column in block.value %}
+                                    <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                        <div class="atlas-cms-text">
+                                            {{ column.value|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if block.type == 'image' %}
+                            <div class="atlas-grid">
+                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                    <div class="atlas-cms-text">
+                                        <img class="atlas-image" src="{{ block.value.image }}"
+                                             alt="{{ block.value.image_alt }}">
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </div>
 
 {% endblock %}
