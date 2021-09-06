@@ -100,15 +100,14 @@ class ScaleFilter:
                     return True
 
 
-class RegionFilter:
+class MultipleRegionsFilter:
     def __init__(self, regions):
         self.regions = regions
 
     def matches(self, opportunity):
-        if opportunity['related_region'] \
-                and opportunity['related_region']['title'] \
-                and opportunity['related_region']['title'] in self.regions:
-            return True
+        for related_region in opportunity.get('related_regions', []):
+            if related_region['title'] and related_region['title'] in self.regions:
+                return True
 
 
 class SubSectorFilter:
@@ -120,6 +119,28 @@ class SubSectorFilter:
             for sub_sector in opportunity['sub_sectors']:
                 if sub_sector in self.sub_sectors:
                     return True
+        return False
+
+
+class InvestmentTypeFilter:
+    def __init__(self, investment_types):
+        self.investment_types = investment_types
+
+    def matches(self, opportunity):
+        if 'investment_type' in opportunity and opportunity['investment_type']:
+            if opportunity['investment_type'] in self.investment_types:
+                return True
+        return False
+
+
+class PlanningStatusFilter:
+    def __init__(self, planning_statuses):
+        self.planning_statuses = planning_statuses
+
+    def matches(self, opportunity):
+        if 'planning_status' in opportunity and opportunity['planning_status']:
+            if opportunity['planning_status'] in self.planning_statuses:
+                return True
         return False
 
 

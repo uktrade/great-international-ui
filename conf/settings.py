@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'directory_healthcheck',
     'euexit',
     'perfect_fit_prospectus',
+    'investment_atlas',
     'invest',
     'investment_support_directory',
     'find_a_supplier',
@@ -80,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'core.middleware.GoogleCampaignMiddleware',
+    'core.middleware.MicrosoftDefenderSafeLinksMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]

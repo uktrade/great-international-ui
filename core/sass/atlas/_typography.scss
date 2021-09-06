@@ -1,0 +1,126 @@
+@import 'tokens';
+@import 'mixins';
+
+@font-face {
+  font-family: 'Euclid Flex B';
+  src: local('Euclid Flex B Bold'), local('EuclidFlexB-Bold'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: 'Euclid Flex B';
+  src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
+  url('/static/core/fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: auto;
+}
+
+.atlas-regular {
+  @include atlas-regular;
+  line-height: 1.5;
+  color: $atlas-body;
+}
+
+.atlas-bold {
+  @include atlas-bold;
+  color: $atlas-body;
+}
+
+.atlas-h--xl,
+.atlas-h--l,
+.atlas-h--m,
+.atlas-h--s,
+.atlas-h--xs {
+  @include atlas-bold;
+  margin-bottom: .5em;
+}
+
+.atlas-h--xl {
+  font-size: 48px;
+  line-height: 1;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 60px;
+  }
+}
+
+.atlas-h--l {
+  font-size: 36px;
+  line-height: 1.1111;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 48px;
+    line-height: 1;
+  }
+}
+
+.atlas-h--m {
+  font-size: 28px;
+  line-height: 1.1428;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 36px;
+    line-height: 1.1111;
+  }
+}
+
+.atlas-h--s {
+  font-size: 24px;
+  line-height: 1.25;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 28px;
+    line-height: 1.1428;
+  }
+}
+
+.atlas-h--xs {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.atlas-body--l,
+.atlas-body--m,
+.atlas-body--s {
+  @include atlas-regular;
+}
+
+.atlas-body--l {
+  font-size: 24px;
+  line-height: 1.6666;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 30px;
+    line-height: 1.6;
+  }
+}
+
+.atlas-body--m {
+  font-size: 20px;
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 24px;
+    line-height: 1.6666;
+  }
+}
+
+.atlas-body--s {
+  font-size: 18px;
+  line-height: 1.5;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}

@@ -10,9 +10,13 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
-from conf.url_redirects import redirects
+from conf.url_redirects import (
+    redirects,
+    redirects_before_tree_based_routing_lookup
+)
 import euexit.views
 import invest.views
+import investment_atlas.views
 import contact.views
 import find_a_supplier.views
 import second_qualification.views
@@ -163,6 +167,8 @@ urlpatterns += [
     ),
 ]
 
+
+urlpatterns += redirects_before_tree_based_routing_lookup
 
 urlpatterns += [
     url(
@@ -342,19 +348,42 @@ urlpatterns += [
         {'path': 'how-to-do-business-with-the-uk'},
         name='how-to-do-business-with-the-uk'
     ),
-    url(
-        r'^international/content/opportunities/$',
-        core.views.OpportunitySearchView.as_view(),
-        {'path': 'opportunities'},
-        name='opportunities'
-    ),
+    # r'^international/content/opportunities/$', has been replaced by international/investment/opportunities/
+    # and once the new investment atlas pages are live, we can remove all capinvest pages
     url(
         r'^international/invest-capital/$',
         QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
+    # The Investment Atlas section tries to stick with the standard
+    # tree-based routing, apart from the investment root page at /international/investment/
+    # and the filterable listing view at /international/investment/opportunities/
+    #
+    # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
+    # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
+    #
     url(
+        r'^international/investment/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {
+            'path': 'investment'
+            # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
+        },
+        name='atlas-home'
+    ),
+    url(
+        r'^international/investment/opportunities/$',
+        investment_atlas.views.InvestmentOpportunitySearchView.as_view(),
+        {
+            'path': 'investment/opportunities/'
+        },
+        name='atlas-opportunities'
+    ),
+    url(
+        # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
+        # Also see core.constants.TEMPLATE_MAPPING for how a paritcular CMS page model in directory-cms
+        # is mapped to HTML template in great-international-ui
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'

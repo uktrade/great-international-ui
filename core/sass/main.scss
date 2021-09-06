@@ -1,4 +1,3 @@
-
 // PARTIALS
 // =========
 // Global styling
@@ -6,6 +5,11 @@
 @import 'partials/language';
 @import 'partials/utils';
 @import 'partials/overrides';
+
+// ATLAS
+// ===========
+// Atlas-specific styles
+@import 'atlas/atlas';
 
 // COMPONENTS
 // ===========

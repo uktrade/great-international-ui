@@ -2,7 +2,22 @@
 
 ## Pre-release
 ### Implemented enhancements
+- GP2-3282 - Middleware to remove PII from MS Safe Links in request path
+- GP2-3221 - Strip back Great International homepage and drop in raw data, ready for styling
+- GP2-3227 - Add Atlas Opportunity Listing page, incl filtering -- still needs styling
+- GP2-3226 - Added InvestmentAtlas Landing page
+- GP2-3231 - New Investment Atlas header
+- GP2-3232 - New Investment Atlas footer
+- GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
+- GP2-3298 - Styled Atlas homepage
+
+### Fixed bugs
+
+## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
+
+### Implemented enhancements
 - GP2-2711 - update great branding
+- NOTICKET - dependencies upgrade
 
 ### Fixed bugs
  - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
