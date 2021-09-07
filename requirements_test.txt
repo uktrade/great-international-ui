@@ -35,8 +35,9 @@ coverage==5.5
     # via
     #   codecov
     #   pytest-cov
-cryptography==3.4.8
+cryptography==3.3.2
     # via
+    #   -r requirements.in
     #   pyopenssl
     #   requests
 dateparser==0.7.0
@@ -224,6 +225,7 @@ sigauth==4.3.0
     # via directory-client-core
 six==1.16.0
     # via
+    #   cryptography
     #   django-countries
     #   jsonschema
     #   mohawk
