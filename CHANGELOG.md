@@ -5,6 +5,7 @@
 ### Implemented enhancements
 
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
+- GP2-3221 - Strip back Great International homepage and drop in raw data, ready for styling
 - GP2-3227 - Add Atlas Opportunity Listing page, incl filtering -- still needs styling
 - GP2-3226 - Added InvestmentAtlas Landing page
 - GP2-3231 - New Investment Atlas header
