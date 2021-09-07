@@ -29,13 +29,13 @@
   max-width: 1300px;
   margin: 0 auto;
   background: $atlas-white;
-  padding: 45px 0;
+  padding: map-get($spacings, 'm') 0;
+
+  @media (min-width: $breakpoint-medium) {
+    padding: map-get($spacings-medium, 'm') 0;
+  }
 
   .atlas-hero + & {
     margin-top: -140px;
-  }
-
-  & h1 {
-    margin: 0;
   }
 }
