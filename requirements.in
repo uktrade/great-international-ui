@@ -28,3 +28,4 @@ psycogreen==1.0.2
 psycopg2==2.8.5
 gevent==1.5a3
 urllib3>=1.26.5
+cryptography==3.3.2

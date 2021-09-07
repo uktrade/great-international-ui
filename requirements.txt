@@ -25,8 +25,9 @@ cffi==1.14.6
     # via cryptography
 chardet==4.0.0
     # via requests
-cryptography==3.4.8
+cryptography==3.3.2
     # via
+    #   -r requirements.in
     #   pyopenssl
     #   requests
 dateparser==0.7.0
@@ -152,6 +153,7 @@ sigauth==4.3.0
     # via directory-client-core
 six==1.16.0
     # via
+    #   cryptography
     #   django-countries
     #   jsonschema
     #   mohawk
