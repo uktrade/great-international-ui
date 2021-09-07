@@ -3,10 +3,12 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
-  min-height: 454px;
+  padding-bottom: 34%;
+  height: 0;
 
-  .atlas-container {
-    position: relative;
+  @media (min-width: 1300px) {
+    height: 454px;
+    padding-bottom: 0;
   }
 }
 
@@ -35,7 +37,9 @@
     padding: map-get($spacings-medium, 'm') 0;
   }
 
-  .atlas-hero + & {
-    margin-top: -140px;
+  @media (min-width: 1300px) {
+    .atlas-hero + & {
+      margin-top: -140px;
+    }
   }
 }

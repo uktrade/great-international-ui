@@ -1,6 +1,15 @@
 @import '../tokens';
 
 .atlas-landing__hero {
+  position: relative;
+  overflow: hidden;
+
+  & .atlas-container {
+    position: relative;
+  }
+}
+
+.atlas-landing__heading {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
