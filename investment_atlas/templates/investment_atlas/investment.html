@@ -27,7 +27,13 @@
                     <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--6-12-m">
                         <p class="atlas-landing-page__text atlas-body--m">{{ section.value.main_text }}</p>
                     </div>
-                    {% if section.value.second_column.0.type == 'text' %}
+                    {% if section.value.block_slug == 'atlas-homepage-map-image' %}
+                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                            <div class="atlas-svg-map atlas-landing__map">
+                                {% include 'investment_atlas/includes/svg/regions-map.svg.html' with highlight='all' %}
+                            </div>
+                        </div>
+                    {% elif section.value.second_column.0.type == 'text' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-grid__column--5-12-l atlas-grid__column--offset-1-l">
                             <blockquote class="atlas-landing-page__quote atlas-body--l">
                                 <p>{{ section.value.second_column.0.value }}</p>
@@ -38,13 +44,6 @@
                             <img src="{{ section.value.second_column.0.value.image }}"
                                  alt="{{ section.value.second_column.0.value.image_alt }}"
                                  class="atlas-landing-page__image atlas-image"/>
-                        </div>
-                    {% endif %}
-                    {% if section.value.block_slug == 'atlas-homepage-map-image' %}
-                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
-                            <div class="atlas-svg-map atlas-landing__map">
-                                {% include 'investment_atlas/includes/svg/regions-map.svg.html' with highlight='all' %}
-                            </div>
                         </div>
                     {% endif %}
                     {% if section.value.call_to_action %}
