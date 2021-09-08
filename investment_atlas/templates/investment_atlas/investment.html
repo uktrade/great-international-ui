@@ -1,15 +1,15 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 
-{% block css_layout_class %}atlas-regular{% endblock css_layout_class %}
+{% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
     <div class="atlas-hero">
         <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
         <div class="atlas-container">
-            <div class="atlas-hero__text">
-                <h1 class="atlas-h--xl atlas-hero__heading">{{ page.title }}</h1>
-                <p class="atlas-hero__strapline">{{ page.hero_strapline }}</p>
+            <div class="atlas-landing__hero">
+                <h1 class="atlas-h--xl">{{ page.title }}</h1>
+                <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
             </div>
         </div>
     </div>

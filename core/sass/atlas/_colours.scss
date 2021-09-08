@@ -1,0 +1,29 @@
+@import 'tokens';
+
+.atlas-colour--white {
+  color: $atlas-white;
+}
+
+.atlas-bg--white {
+  background-color: $atlas-white;
+}
+
+.atlas-bg--dark-blue {
+  background-color: $atlas-dark-blue;
+}
+
+.atlas-bg--grey-darker {
+  background-color: $atlas-grey-darker;
+}
+
+.atlas-bg--grey-light {
+  background-color: $atlas-grey-light;
+}
+
+.atlas-bg--grey-lighter {
+  background-color: $atlas-grey-lighter;
+}
+
+.atlas-alternate-bg:nth-of-type(2n + 1):not([class*="atlas-bg"]) {
+  background-color: $atlas-grey-lighter;
+}

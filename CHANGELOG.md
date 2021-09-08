@@ -1,7 +1,9 @@
 # Changelog
 
 ## Pre-release
+
 ### Implemented enhancements
+
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
 - GP2-3221 - Strip back Great International homepage and drop in raw data, ready for styling
 - GP2-3227 - Add Atlas Opportunity Listing page, incl filtering -- still needs styling
@@ -10,67 +12,87 @@
 - GP2-3232 - New Investment Atlas footer
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
 - GP2-3298 - Styled Atlas homepage
+- GP2-3156 - Styled Atlas opportunity page
 
 ### Fixed bugs
 
 ## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
 
 ### Implemented enhancements
+
 - GP2-2711 - update great branding
 - NOTICKET - dependencies upgrade
 
 ### Fixed bugs
- - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
- - GP2-2873 - XSS defence - force escape search query
- - NOTICKET - roll back python to 3.6.6
+
+- GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
+- GP2-2873 - XSS defence - force escape search query
+- NOTICKET - roll back python to 3.6.6
 
 ## [2.2.0](https://github.com/uktrade/great-international-ui/releases/tag/2.2.0)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.1.0...2.2.0)
 
 ### Implemented enhancements
- 
- - NOTICKET - django upgrade
- - GBAU-950 - update content on Investment Support Directory home page
- - NOTICKET - upgrade - Python, components, django
+
+- NOTICKET - django upgrade
+- GBAU-950 - update content on Investment Support Directory home page
+- NOTICKET - upgrade - Python, components, django
+
 ### Fixed bugs
 
 ## [2.0.0](https://github.com/uktrade/great-international-ui/releases/tag/2.0.0)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.2...2.0.0)
 
 ### Implemented enhancements
-- No ticket - django upgrade 
+
+- No ticket - django upgrade
+
 ### Fixed bugs
+
 - GBAU-918 Fix reCaptcha token timeout
 
 ## [1.0.2](https://github.com/uktrade/great-international-ui/releases/tag/1.0.2)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.1...1.0.2)
 
 ### Implemented enhancements
+
 - no ticket - added an accessible option to the perfect fit prospectus request form
 
 ## [1.0.1](https://github.com/uktrade/great-international-ui/releases/tag/1.0.1)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/1.0.0...1.0.1)
+
 ## Hot-Fix
+
 GBAU-896 transition-period-routing
+
 ### Implemented enhancements
+
 - GBAU-75 - Added autocomplete attributes to forms
 
 ### Fixed bugs
+
 ## [1.0.0](https://github.com/uktrade/great-international-ui/releases/tag/1.0.0)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...1.0.0)
 
-
 ## Hot-Fix
+
 - GBAU-77 hotfix captcha form for contact/trade
 - GBAU-77 hotfix - Captcha
 
 ### Implemented enhancements
+
 - no ticket - added second qualification form for invest email campaign
 - Noticket - upgrade-es-7 (update fas * invest search)
+
 ### Fixed bugs
 
-
 ## [2020.09.21](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.21)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.16...2020.09.21)
 
 ### Fixed bugs
@@ -80,10 +102,11 @@ GBAU-896 transition-period-routing
 - GAA -13 - Added empty alt tag (tbh reverted)
 
 ## [2020.09.16](https://github.com/uktrade/great-international-ui/releases/tag/2020.09.16)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.09.08...2020.09.16)
 
-
 ### Implemented enhancements
+
 - no ticket - directory-components version bump
 - GAA-26 - case study color contrast
 - GAA-24 - Added missing H1
@@ -92,12 +115,13 @@ GBAU-896 transition-period-routing
 - TT-2236 Spanish Translation on great international
 - chore/python-gevent adding gevent asyncio for performance
 - Replace the country field with a new "countries and territories" field for two forms:
-  - Why buy from the uk
-  - Business environment guide
+    - Why buy from the uk
+    - Business environment guide
 - TT-2330 - Add consent request for feedback form
 - GAA-5 upgrade captcha-v3
 
 ### Fixed bugs
+
 - GAA-18 - Fix column structure in case study to correct tab order
 - GAA-7 - Move aria expanded to button
 - GAA-23 - Blank headings
@@ -111,78 +135,95 @@ GBAU-896 transition-period-routing
 - GAA-29 - Accessibility - expander link to use GDS pattern
 - GAA-19 - Accessibility missing privacy link
 
-
 ## [2020.05.26](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.26)
+
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.05.06_1...2020.05.26)
 
 ### Hotfix
+
 - No ticket - Vunerability update
 - CI-692 - Update HPO form with new fields and consent section
 
 ### Implemented enhancements
+
 - CI-677 - Display a CTA link on Capital Investment homepage hero
 - no ticked - Add APM support
 
 ## Fixed bugs
+
 - No ticket - v3 ci pipeline manifest.yml file fix
 - No ticket - Upgraded directory-validators to fix security vulnerability
 
-
 ## [2020.05.06_1](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.05.06_1)
+
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.03.04...2020.05.06_1)
 
 ### Hotfix
+
 - CI-692 - Update HPO form with new fields and consent section
 
-
 ## [2020.03.04](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.03.04)
+
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.20...2020.03.04)
 
 ### Implemented enhancements
+
 - CI-658 - Use featured link content from cms on homepage
 - CI-618 - Change working on opportunity listing page
 - CI-676 - Change label on filter to ‘Scale (GDV or Capex)’
 - CI-665 - Move UK Investment Prospectus banner up the page
 
 ## [2020.02.20](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.20)
+
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.11...2020.02.20)
 
 ### Fixed bugs
+
 - TT-2267 - Fix missing privacy link on Why buy from the UK form
 - CI-614-fix-related-opportunities
 
 ### Implemented enhancements
+
 - CI-661 - Add sticky CTA section to opportunity page
 - CI-653 - Add opportunities search link to the header
 - TT-2263 - Add remaining translations for forms
 
 ## [2020.02.11](https://github.com/uktrade/great-domestic-ui/releases/tag/2020.02.11)
+
 [Full Changelog](https://github.com/uktrade/great-domestic-ui/compare/2020.02.06...2020.02.11)
 
 ### Implemented enhancements
+
 - XOT-1296 - replace cookie banner with cookie modal
 - no ticket - Upgrade waitress
 
 ### Hotfix
+
 - No ticket - Replace cookie banner with modal
 
 ## [2020.02.06](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.02.04...2020.02.06)
 
 ### Implemented enhancements
+
 - XOT-1280 - update components for cookie banner
 - TT-2263 - Add translations for all forms
 
 ## [2020.02.04](https://github.com/uktrade/great-international-ui/releases/tag/2020.02.04)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.30...2020.02.04)
 
 ### Hotfix
+
 - no ticket - Upgrade django for security fix
 
 ## [2020.01.30](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.30)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2020.01.15...2020.01.30)
 
 ### Implemented enhancements
+
 - CI-631 - Update business environment guide form and content in form consent sections
 - CI-651 - Alter text alignment and add vignettes to hero components
 - XOT-1262 - Update to new field name on opportunity page. Remove logic that is now in the cms
@@ -195,12 +236,15 @@ GBAU-896 transition-period-routing
 - XOT-1280 - update components for cookie banner
 
 ### Bugs fixed
+
 - TT-2254 - Remove obsolete settings and code
 
 ## [2020.01.15](https://github.com/uktrade/great-international-ui/releases/tag/2020.01.15)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.19...2020.01.15)
 
 ### Implemented enhancements
+
 - CI-631 - Update business environment form required fields. Update consent section to match invest contact form
 - XOT-1266 - add specific error messsages to the campaign form
 - XOT-1253 - add missing optional fields
@@ -209,6 +253,7 @@ GBAU-896 transition-period-routing
 - No ticket - Provide sender ip address when submitting forms
 
 ### Bugs fixed
+
 - TT-2177 - Add search icon to ISD and FAS search boxes
 - XOT-1268 - Upgrade waitress to fix security vulnerability
 - TT-2230 - Fix location of ISD homepage in breadcrumbs
@@ -216,6 +261,7 @@ GBAU-896 transition-period-routing
 - TT-2249 - Add missing unsubscribe form
 
 ## [2019.12.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.19)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.12.02...2019.12.19)
 
 ### Implemented enhancements
@@ -247,6 +293,7 @@ GBAU-896 transition-period-routing
 - TT-1304 - Upgrade sentry client
 
 ### Fixed bugs
+
 - No ticket - Fix bad translation string in fr
 - No ticket - Add template logic for optional CMS fields to prevent empty elements
 - No ticket - Fixed missing href in breadcrumb causing 500 on sub sector pages
@@ -259,25 +306,31 @@ GBAU-896 transition-period-routing
 - no ticket - upgrade directory-components for accessibility fix
 
 ## [2019.12.20](https://github.com/uktrade/directory-api/releases/tag/2019.12.20)
+
 [Full Changelog](https://github.com/uktrade/directory-api/compare/2019.12.02...2019.12.20)
 
 ### Hotfix
+
 - No ticket - Fix thumbnail upload in s3
 
-
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.11.25...2019.12.02)
 
 ## Hotfix
+
 - TT-2186 - Fix captcha on contact form
 
 ## [2019.11.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.11.25)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03_3...2019.11.25)
 
 ## Hotfix
+
 - TT-2186 - Fix captcha on industry subscribe form
 
 ## [2019.10.03_3](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03_3)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.03...2019.10.03_3)
 
 ## Hotfix
@@ -286,9 +339,11 @@ GBAU-896 transition-period-routing
 - TT-1867 - Broken isd links hotfix
 
 ## [2019.10.03](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.03)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.10.01...2019.10.03)
 
 ### Implemented enhancements
+
 - CMS-1848 - Make landing page hero text full width in Japanese
 - CI-529 - Add hardcoded Japanese translations for content on industry pages
 - CI-528 - Updated capital invest label on form triage
@@ -296,30 +351,38 @@ GBAU-896 transition-period-routing
 - no ticket - Update navbar to link from `about-dit` to `about-us`
 
 ## [2019.10.01](https://github.com/uktrade/great-international-ui/releases/tag/2019.10.01)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.26...2019.10.01)
 
 ### Fixed bugs
+
 - no ticket - Add how we help section back into International home page
 
 ## [2019.09.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.26)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.09.23...2019.09.26)
 
 ### Implemented enhancements
+
 - CI-506 - Added feature flag for `AboutUKLandingPage` also hiding any `About UK` breadcrumbs when feature flag is off
 - CI-508 - Added how dit help sections back into the new nav
 - CI-510 - Removed intro image being required for section on DIT services page
 - CI-518 - Replace how we help on International home page with How DIT help cards section
 - CI-501 - Added international triage contact form from great-domestic-ui
 - CI-493 - Added how we help ctas to Invest, Expand and Trade home pages
+
 ### Fixed bugs
+
 - no ticket - Fixed button on Capital invest landing page going to two lines at desktop
 - no ticket - Fixed spacing on DIT services page when no case study
 - no ticket - Fixed `advanced-engineering` redirects taking users to 404 page.
 
 ## [2019.09.23](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.23)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.29...2019.09.23)
 
 ### Implemented enhancements
+
 - No ticket - Fix HPO contact box cut off by sticky header, fix wrong margin on guide landing page breadcrumbs
 - No ticket(?) - Fix missing ISD hero
 - CMS-1732 - Add image alt and video transcripts to HPO detail page
@@ -327,7 +390,8 @@ GBAU-896 transition-period-routing
 - CMS-1754 - Change /eu-exit-news to /brexit and add redirects
 - CI-400 - Added clickable maps to About Uk landing pages
 - CI-366 - Added cta to invest home page
-- CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url will try
+- CI-439 - Added redirects from invest to expand if `EXPAND_REDIRECT_ON` and if invest url 404s look up with expand url
+  will try
 - CI-460 - Updated capital invest contact and success pages and confirmation email and goes through GOV.UK Notify
 - CI-405 - Added new IA candidate to nav header (behind a feature flag)
 - CI-475 - About DIT services page uses featured description on featured cards instead so separate to teaser
@@ -346,6 +410,7 @@ GBAU-896 transition-period-routing
 - No ticket - Upgrade to Django 2.2.5
 
 ### Fixed bugs
+
 - XOT-1115 - Fix IE hero bug
 - No ticket - Fix HPO page sticky width
 - No ticket - Fix invest hero cut off text at certain screen sizes
@@ -357,17 +422,19 @@ GBAU-896 transition-period-routing
 - no ticket - Fixed `About UK` breadcrumb showing before industry pages moved
 - no ticket - Fix broken invest hero image text.
 
-
 ## [2019.08.29](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.29)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20...2019.08.29)
 
 ### Implemented enhancements
-- GTRANSFORM-353-resize-searchform-select  - change FAS search to match soo and exops - needs design review
+
+- GTRANSFORM-353-resize-searchform-select - change FAS search to match soo and exops - needs design review
 - CI-437 - Protect against clickjacking, XSS and content type sniffing attacks.
 - CI-437 - Ensure that all cookies are secure and httponly.
 - CI-431 - Added `AboutUkRegionListingPage` and `AboutUkRegionPage` which will replace `CapitalInvestRegionPage`
 
 ### Fixed bugs
+
 - CMS-1826 - Fix engineering industry redirect
 - CMS-1826 - Fix healthcare and life-sciences redirects.
 - No ticket - Fix unloaded tag in template
@@ -375,16 +442,19 @@ GBAU-896 transition-period-routing
 - CMS-1827 - Fix FAS search term
 
 ## [2019.09.19](https://github.com/uktrade/great-international-ui/releases/tag/2019.09.19)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.20..2019.09.19)
 
 ### Fixed bugs
+
 - CI-505 - Article tag hot fix
 
-
 ## [2019.08.20](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.20)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.08...2019.08.20)
 
 ### Implemented enhancements
+
 - CMS-1815 - Update FAS contact redirect
 - CMS-1816 - Add FAS industry contact pages
 - CMS-1812 (Follow-up) - Fix homepage hero missing image
@@ -399,23 +469,27 @@ GBAU-896 transition-period-routing
 - CI-428 - Updated content for confirmation email from Capital Invest Contact form
 
 ### Fixed bugs
+
 - CMS-1803, CMS-1804, CMS-1805, CMS-1806, CMS-1807, CMS-1808 - Various ISD and FAS bug fixes
 - CMS-1800 - Try to fix ISD images not displaying, fix homepage hero styling
 - CI-426 - Uses pdf document link for why choose uk page in ebook section
 - CMS-1799 - ISD search form missing filters
 - CMS-424 - Update version of directory-components to turn off lazyloading of images.
 
-
 ## [2019.08.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.08)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.08.07...2019.08.08)
 
 ### Fixed bugs
+
 - No ticket - Update HPO contact form invest redirect
 
 ## [2019.08.07](https://github.com/uktrade/great-international-ui/releases/tag/2019.08.07)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.25...2019.08.07)
 
 ### Fixed bugs:
+
 - CMS-1772 - Add invest contact form pages
 - No ticket - Fix duplication of constants in code
 - CI-376 - Fixes About DIT How we help section issue on Internet Explorer
@@ -426,8 +500,8 @@ GBAU-896 transition-period-routing
 - CI-419 - Commonised responsive behaviour for column-third
 - CI-422 - Update Django to 1.2.23
 
-
 ### Implemented enhancements
+
 - CMS-1596 - Add FAS homepage
 - CMS-1774 - Add Invest region page, organise sass files
 - No ticket - Namespace ISD contact page styling to fix pollution on other pages
@@ -437,14 +511,16 @@ GBAU-896 transition-period-routing
 - CI-383 - Create About DIT landing page
 - CI-353 - Invest International Home page uses directory components card and wagtails focal area on images
 - CMS-1745 - Implement invest redirects
-- CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (/international/content/capital-invest')
+- CI-420 - Added redirect from Capital Invest url ('/international/invest-capital') to one using tree based routing (
+  /international/content/capital-invest')
 - CI-321 - About UK landing page
 
-
 ## [2019.07.25](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.25)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.07.08...2019.07.25)
 
 ### Fixed bugs:
+
 - No ticket - Upgrade vulnerable django version to django 1.11.22
 - No ticket - Updated `directory_components` to `20.3.1` and `directory_constants` to `18.1.2`
 - CI-313 - Update JS dev dependencies to cover security vulnerabilities
@@ -458,6 +534,7 @@ GBAU-896 transition-period-routing
 - No ticket - Fix hero images on topic and guide landing pages.
 
 ### Implemented enhancements
+
 - CMS-1692 - Added HPO form pages from Invest
 - CMS-1692 - Added HPO detail page from Invest and updated styling
 - TT-1678 - Rename EU exit to Brexit
@@ -475,17 +552,18 @@ GBAU-896 transition-period-routing
 - CI-372 - Updated trade CTA on sector pages to go to trade contact form
 - CI-367 - Updated `CapitalInvestRegionPage` and added accordions js file
 
-
-
 ## [2019.07.08](https://github.com/uktrade/great-international-ui/releases/tag/2019.07.08)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.06.13...2019.07.08)
 
 ### Fixed bugs:
+
 - No ticket - Changed `card-grid` to `flex-grid` on CI landing page, region and opp pages
 - No ticket - Opportunity card changes to reflect new card component changes
 - No ticket - Card with publish date (industry cards) updated to use image same as directory component
 
 ### Implemented enhancements
+
 - CMS-1664 - Added invest homepage and upgraded directory-components
 - CMS-1594 - Add perfect fit prospectus views to International UI
 - CI-250 - Added an opportunity listing page template and put it behind a feature flag
@@ -494,13 +572,12 @@ GBAU-896 transition-period-routing
 - CI-271 - Add new URL for 'Invest Capital Homepage'
 - CMS-1677 - Perfect fit prospectus cosmetic changes
 
-
-
-
 ## [2019.06.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.06.13)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.16...2019.06.13)
 
 ### Fixed bugs
+
 - No ticket - Fix healthchecks
 - Upgrade cms client to prevent uncached pages being treated as cached
 - no ticket - Fix typo on sector pages.
@@ -508,17 +585,20 @@ GBAU-896 transition-period-routing
 - Fix breadcrumbs displaying 'great.gov' instead of 'Great.gov' on some pages.
 - CI-217: Update Django Version to fix security vulnerability.
 
-
 ### Implemented enhancements
-- CMS-1677 - Refactored and tidied up Perfect Fit Prospectus. Upgraded directory-components to use new style breadcrumbs.
+
+- CMS-1677 - Refactored and tidied up Perfect Fit Prospectus. Upgraded directory-components to use new style
+  breadcrumbs.
 - TT-1432 - Added link to Investment Support Directory on UK setup guide page
 - CI-108 - Added back in sending data to GA 360, and updated the format to the new spec.
-- CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to return 404 until ready to release.
+- CI-104 - Added capital invest landing, region, sector and opportunity pages. All new pages behind feature flag to
+  return 404 until ready to release.
 - CI-144 - Updated capital invest landing page to match more recent invision designs
 - CI-148 - Updated capital invest region, sector and opportunity pages to match more recent invision designs
 - CI-151 - Added blank alt text to images on capital invest pages for accessibility
 - CI-152 - Changed `next steps` sections to be `contact` section on capital invest pages
-- CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with markdown text
+- CI-153 - Removed the card with pdf button on Capital Invest Landing page, region cards are now only displayed with
+  markdown text
 - CI-154 - Changed hard coded text in guide landing page to come from cms
 - CI-146 - Changed English copy that was hard coded text in sector page
 - CMS-1465 - Tidied context modifier implementation and improved test (tree-based-routing related)
@@ -526,12 +606,13 @@ GBAU-896 transition-period-routing
 - CMS-1577 - Update content on Brexit CTA buttons
 - no-ticket - Make the 'home' breadcrumb label translatable.
 - CI-165 - Redesign of capital invest pages - removed regional sector pages, uses normal industry page
-- CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released separately
+- CI-200 - Decoupled capital invest feature flags so landing page, region and opportunity pages can all be released
+  separately
 - CI-196 - Similar opportunity cards on opportunity page use same card as on sector page
 - CI-250 - Gave opportunity listing page a template and put it behind a feature flag
 
-
 ## [2019.05.16](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.16)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_2...2019.05.16)
 
 ### Implemented enhancements:
@@ -549,23 +630,25 @@ GBAU-896 transition-period-routing
 - No ticket - Fix invest contact link on industry pages
 
 ## [2019.05.13_2](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_2)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13_1...2019.05.13_2)
 
 ## Fixed bugs
 
-- CMS-1472 - Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages, fix incorrect page title
+- CMS-1472 - Follow-up to contact form ticket: fixed incorrect margin on breadcrumbs on form pages, fix incorrect page
+  title
 
 ## [2019.05.13_1](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13_1)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.05.13...2019.05.13_1)
 
 ### Fixed bugs
 
 - CMS-1472 - Follow-up to contact form ticket: fixed 500 error on contact page due to wrong url in template
 
-
 ## [2019.05.13](https://github.com/uktrade/great-international-ui/releases/tag/2019.05.13)
-[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.26...2019.05.13)
 
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.26...2019.05.13)
 
 ### Implemented enhancements:
 
@@ -580,6 +663,7 @@ GBAU-896 transition-period-routing
 - CMS-1465 - Follow-up to tree-based routing ticket: fixed breadcrumbs home link not displaying
 
 ## [2019.04.26](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.26)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.24...2019.04.26)
 
 ### Implemented enhancements:
@@ -591,23 +675,29 @@ GBAU-896 transition-period-routing
 - CMS-1384 - Fix the invest CTA on sector pages to link directly to invest's contact form
 
 ## [2019.04.24](https://github.com/uktrade/great-international-ui/releases/tag/2019.04.24)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2019.04.11...2019.04.24)
 
 ### Implemented enhancements:
 
 - Upgraded [CMS client][directory-cms-client] to allow `lookup_by_path`, to facilitate CMS tree based routing.
 - Upgraded [CMS client][directory-cms-client] reduces noisy fallback cache logging.
-- Upgraded [API client][directory-api-client], [Forms client][directory-forms-api-client] and because [CMS client][directory-cms-client] upgrade results in [Client core][directory-client-core] being upgraded.
+- Upgraded [API client][directory-api-client], [Forms client][directory-forms-api-client] and
+  because [CMS client][directory-cms-client] upgrade results in [Client core][directory-client-core] being upgraded.
 - Added `DIRECTORY_CLIENT_CORE_CACHE_EXPIRE_SECONDS` env var.
 
 ### Fixed bugs:
 
 - Upgraded urllib3 to fix [vulnerability](https://nvd.nist.gov/vuln/detail/CVE-2019-11324)
 
-
 [directory-api-client]: https://github.com/uktrade/directory-api-client
+
 [directory-client-core]: https://github.com/uktrade/directory-client-core
+
 [directory-cms-client]: https://github.com/uktrade/directory-cms-client
+
 [directory-forms-api-client]: https://github.com/uktrade/directory-forms-api-client
+
 [directory-components]: https://github.com/uktrade/directory-components
+
 [directory-constants]: https://github.com/uktrade/directory-constants

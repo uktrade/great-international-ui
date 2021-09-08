@@ -1,0 +1,12 @@
+{% comment %}
+
+Outputs the given data in the console.
+
+Usage:
+
+{% include 'investment_atlas/includes/debug_data.html' with data=data_to_log %}
+
+{% endcomment %}
+
+{{ data|json_script:"debug-data" }}
+<script>console.log(JSON.parse(document.getElementById('debug-data').textContent))</script>

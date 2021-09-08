@@ -3,6 +3,7 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
+  min-height: 454px;
 
   .atlas-container {
     position: relative;
@@ -23,35 +24,18 @@
   transform: translate(-50%, -50%);
 }
 
-.atlas-hero__text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 488px;
-  max-width: 445px;
-  padding: 23px 0 40px;
+.atlas-hero__heading {
+  position: relative;
+  max-width: 1300px;
   margin: 0 auto;
-  color: $atlas-white;
-  text-align: center;
+  background: $atlas-white;
+  padding: 45px 0;
 
-  @media (min-width: $breakpoint-medium) {
-    justify-content: center;
-    margin-left: 40px;
-    text-align: left;
+  .atlas-hero + & {
+    margin-top: -140px;
   }
 
-  @media (min-width: $breakpoint-large) {
-    margin-left: 0;
-  }
-}
-
-.atlas-hero__strapline {
-  font-size: 20px;
-  line-height: 1.5;
-  margin: 0;
-
-  @media (min-width: $breakpoint-medium) {
-    font-size: 30px;
-    line-height: 1.6;
+  & h1 {
+    margin: 0;
   }
 }
