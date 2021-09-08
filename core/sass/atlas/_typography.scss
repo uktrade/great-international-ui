@@ -1,13 +1,14 @@
 @import 'tokens';
 @import 'mixins';
 
+// Font urls are relative to the compiled main.css file
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B Bold'), local('EuclidFlexB-Bold'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
+  url('../fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
+  url('../fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
+  url('../fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
+  url('../fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
   font-display: auto;
@@ -16,10 +17,10 @@
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
+  url('../fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
+  url('../fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
+  url('../fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
+  url('../fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: auto;
