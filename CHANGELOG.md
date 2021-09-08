@@ -13,6 +13,7 @@
 - GP2-3228 - Suppport pulling in data for new InvestmentOpportunity page (no styling - plain HTML for now)
 - GP2-3298 - Styled Atlas homepage
 - GP2-3156 - Styled Atlas opportunity page
+- GP2-3155 - Styled Atlas region listing page
 
 ### Fixed bugs
 
