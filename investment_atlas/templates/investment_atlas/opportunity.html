@@ -37,31 +37,31 @@
         <div class="atlas-bg--grey-lighter atlas-p-h-m atlas-p-v-s atlas-m-b-m">
             <div class="atlas-grid">
                 {% if page.location %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Location' value=page.location %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Location' value=page.location icon='location' %}
                 {% endif %}
 
                 {% if page.investment_type %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Investment type' value=page.investment_type %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Investment type' value=page.investment_type icon='investment-type' %}
                 {% endif %}
 
                 {% if page.related_sectors|length > 0 %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Sector' value=page.related_sectors.0.related_sector.heading %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Sector' value=page.related_sectors.0.related_sector.heading icon='sector' %}
                 {% endif %}
 
                 {% if page.promoter %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Project promoter' value=page.promoter %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Project promoter' value=page.promoter icon='promoter' %}
                 {% endif %}
 
                 {% if page.scale %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Scale' value=page.scale %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Scale' value=page.scale icon='scale' %}
                 {% endif %}
 
                 {% if page.planning_status %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Planning status' value=page.planning_status.name %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Planning status' value=page.planning_status.name icon='planning' %}
                 {% endif %}
 
                 {% if page.time_to_investment_decision %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Time to Final Investment Decision (FID)' value=page.time_to_investment_decision %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Time to Final Investment Decision (FID)' value=page.time_to_investment_decision icon='time-to-invest' %}
                 {% endif %}
             </div>
         </div>
