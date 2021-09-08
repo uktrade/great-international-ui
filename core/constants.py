@@ -11,8 +11,10 @@ TEMPLATE_MAPPING = {
     'InternationalTopicLandingPage': 'core/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/article_detail.html',
-    'InternationalSectorPage': 'core/sector_page.html',
-    'InternationalSubSectorPage': 'core/sector_page.html',
+
+    # InternationalSectorPage and InternationalSubSectorPage used to use
+    # 'core/sector_page.html' but they have been deprecated in favour of
+    # InternationalInvestmentSectorPage and InternationalInvestmentSubSectorPage
     'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',
     'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
 
@@ -49,7 +51,9 @@ TEMPLATE_MAPPING = {
 
     # Investment Atlas
     'InvestmentOpportunityPage': 'investment_atlas/opportunity.html',
-    'InvestmentAtlasLandingPage': 'investment_atlas/investment.html'
+    'InvestmentAtlasLandingPage': 'investment_atlas/investment.html',
+    'InternationalInvestmentSectorPage': 'core/sector_page.html',
+    'InternationalInvestmentSubSectorPage': 'core/sector_page.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -92,12 +96,14 @@ GA_DATA_MAPPING = {
         'site_section': 'Article',
         'site_subsection': 'DetailPage'
     },
-    'InternationalSectorPage': {
+    # InternationalSectorPage is deprecated
+    'InternationalInvestmentSectorPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Sector',
         'site_subsection': 'DetailPage'
     },
-    'InternationalSubSectorPage': {
+    # InternationalSubSectorPage
+    'InternationalInvestmentSubSectorPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'SubSector',
         'site_subsection': 'DetailPage'
