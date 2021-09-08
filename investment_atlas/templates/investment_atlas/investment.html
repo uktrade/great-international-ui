@@ -4,10 +4,10 @@
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
-    <div class="atlas-hero">
+    <div class="atlas-landing__hero">
         <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
         <div class="atlas-container">
-            <div class="atlas-landing__hero">
+            <div class="atlas-landing__heading">
                 <h1 class="atlas-h--xl">{{ page.title }}</h1>
                 <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
             </div>
@@ -42,8 +42,8 @@
                     {% endif %}
                     {% if section.value.block_slug == 'atlas-homepage-map-image' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
-                            <div class="atlas-svg-map">
-                                {% include 'investment_atlas/includes/svg/regions-map.svg' %}
+                            <div class="atlas-svg-map atlas-landing__map">
+                                {% include 'investment_atlas/includes/svg/regions-map.svg.html' with highlight='all' %}
                             </div>
                         </div>
                     {% endif %}

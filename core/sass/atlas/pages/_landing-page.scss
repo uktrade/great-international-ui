@@ -1,6 +1,15 @@
 @import '../tokens';
 
 .atlas-landing__hero {
+  position: relative;
+  overflow: hidden;
+
+  & .atlas-container {
+    position: relative;
+  }
+}
+
+.atlas-landing__heading {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,14 +96,7 @@
   }
 }
 
-
-/* Block-specific styles */
-
-.atlas-svg-map {
-  display: block;
-  margin: 0 auto 40px;
-  max-width: 420px;
-
+.atlas-landing__map {
   @media (min-width: $breakpoint-medium) {
     max-width: none;
     margin-top: -138px;
@@ -103,11 +105,5 @@
   @media (min-width: $breakpoint-large) {
     margin-top: -198px;
     margin-bottom: -180px;
-  }
-
-  & svg {
-    display: block;
-    width: 100%;
-    height: 100%;
   }
 }

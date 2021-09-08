@@ -3,10 +3,12 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
-  min-height: 454px;
+  padding-bottom: 34%;
+  height: 0;
 
-  .atlas-container {
-    position: relative;
+  @media (min-width: 1300px) {
+    height: 454px;
+    padding-bottom: 0;
   }
 }
 
@@ -29,13 +31,15 @@
   max-width: 1300px;
   margin: 0 auto;
   background: $atlas-white;
-  padding: 45px 0;
+  padding: map-get($spacings, 'm') 0;
 
-  .atlas-hero + & {
-    margin-top: -140px;
+  @media (min-width: $breakpoint-medium) {
+    padding: map-get($spacings-medium, 'm') 0;
   }
 
-  & h1 {
-    margin: 0;
+  @media (min-width: 1300px) {
+    .atlas-hero + & {
+      margin-top: -140px;
+    }
   }
 }

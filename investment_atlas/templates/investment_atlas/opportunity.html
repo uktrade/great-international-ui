@@ -13,7 +13,7 @@
 
     <div class="atlas-hero__heading">
         <div class="atlas-container">
-            <h1 class="atlas-h--xl">{{ page.title }}</h1>
+            <h1 class="atlas-h--xl atlas-m-b-0">{{ page.title }}</h1>
         </div>
     </div>
 
@@ -192,17 +192,7 @@
         </section>
     {% endif %}
 
-    <section class="atlas-bg atlas-bg--dark-blue atlas-colour--white">
-        <div class="atlas-container atlas-p-t-l atlas-p-b-xl">
-            <h2 class="atlas-h atlas-h--xl">Speak to us</h2>
-            <p class="atlas-body atlas-body--l">
-                The government is identifying new projects across the whole of the UK,
-                including in London. Investors who are interested in our projects can find out more by contacting
-                us.
-            </p>
-            <a href="/international/contact/" class="atlas-button atlas-button--white">Get in touch</a>
-        </div>
-    </section>
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
 
 {% endblock %}
 
