@@ -1,0 +1,48 @@
+@import '../tokens';
+
+.atlas-home {
+  background: $atlas-dark-blue;
+}
+
+.atlas-home__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 385px;
+
+  @media (min-width: $breakpoint-medium) {
+    justify-content: center;
+    padding-left: 84px;
+  }
+
+  @media (min-width: $breakpoint-xlarge) {
+    padding-left: 0;
+  }
+
+  & h1 {
+    max-width: 250px;
+  }
+}
+
+.atlas-home .atlas-card {
+  position: relative;
+}
+
+.atlas-home__card-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  color: $atlas-grey-light;
+
+  & .atlas-svg {
+    display: block;
+    width: 20px;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

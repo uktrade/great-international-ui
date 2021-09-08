@@ -1,4 +1,3 @@
-@import 'overrides';
 @import 'typography';
 @import 'layout';
 @import 'grid';
@@ -14,6 +13,7 @@
 @import 'components/media';
 @import 'components/svg-map';
 
+@import 'pages/home';
 @import 'pages/landing-page';
 @import 'pages/opportunity';
 @import 'pages/region-listing';
