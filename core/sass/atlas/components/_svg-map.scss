@@ -12,6 +12,10 @@
   }
 }
 
+.atlas-map__link:focus {
+  outline: none;
+}
+
 .atlas-map__link:hover,
 .atlas-map__region--highlight {
   & .atlas-map__shape {
