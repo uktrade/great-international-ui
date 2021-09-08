@@ -470,7 +470,7 @@ def about_uk_region_listing_page_context_modifier(context, request):
     regions = {}
     if 'mapped_regions' in context['page']:
         regions = {
-            # variable names can only contain underscores and letters/numbers:
+            # variable names in templates can only contain underscores and letters/numbers:
             x['region']['meta']['slug'].replace('-', '_'): {
                 'full_path': x['region']['full_path']
             }
