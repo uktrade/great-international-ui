@@ -113,7 +113,6 @@ def about_uk_landing_page():
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -157,9 +156,8 @@ def test_get_cms_page(rf, home_page):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_article_detail_page_social_share_links(
-    mock_get_page, client, settings
+        mock_get_page, client, settings
 ):
-
     test_article_page = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -215,9 +213,8 @@ def test_article_detail_page_social_share_links(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_article_detail_page_social_share_links_no_title(
-    mock_get_page, client, settings
+        mock_get_page, client, settings
 ):
-
     test_article_page = {
         'title': 'Test article admin title',
         'display_title': 'Test article',
@@ -343,7 +340,6 @@ test_list_page = {
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -387,10 +383,9 @@ def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
-    mock_cms_response,
-    rf
+        mock_cms_response,
+        rf
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -470,7 +465,6 @@ def test_how_to_do_business_feature_on(client, settings):
 
 
 def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
-
     response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
@@ -486,7 +480,6 @@ def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -522,7 +515,6 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_about_uk_region_page_attaches_array_lengths_to_view(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -558,7 +550,6 @@ def test_get_about_uk_region_page_attaches_array_lengths_to_view(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_opportunity_page_url_constants(
         mock_cms_response, rf):
-
     current_sector_title = 'Test Sector'
 
     page = {
@@ -591,7 +582,6 @@ def test_get_capital_invest_opportunity_page_url_constants(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_opportunity_page_with_no_related_sectors(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -617,7 +607,7 @@ def test_get_capital_invest_opportunity_page_with_no_related_sectors(
 
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = False
 
@@ -628,7 +618,7 @@ def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
 
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = True
 
@@ -639,7 +629,7 @@ def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
 
@@ -650,7 +640,7 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
 
 @pytest.mark.usefixtures('about_uk_region_page')
 def test_about_uk_region_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = False
 
@@ -661,7 +651,7 @@ def test_about_uk_region_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_about_uk_region_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = True
 
@@ -694,7 +684,7 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
 
@@ -705,7 +695,7 @@ def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
 
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = True
 
@@ -716,7 +706,7 @@ def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('international_sub_sector_page')
 def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = False
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
@@ -730,7 +720,7 @@ def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = True
 
@@ -764,7 +754,7 @@ def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_sub_sector_page_about_uk_link(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = True
 
@@ -799,7 +789,7 @@ def test_capital_invest_sub_sector_page_about_uk_link(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
 
@@ -835,7 +825,7 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('capital_invest_contact_form_page')
 def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
@@ -847,7 +837,7 @@ def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
 
@@ -881,7 +871,7 @@ def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_
 
 @pytest.mark.usefixtures('capital_invest_contact_form_success_page')
 def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
@@ -893,7 +883,7 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_about_uk_landing_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = True
 
@@ -927,7 +917,7 @@ def test_about_uk_landing_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('about_uk_landing_page')
 def test_about_uk_landing_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = False
 
@@ -939,7 +929,6 @@ def test_about_uk_landing_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_international_contact_form(mock_cms_response, client, settings):
-
     settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
     reload_urlconf(settings)
 
@@ -954,7 +943,6 @@ def test_international_contact_form(mock_cms_response, client, settings):
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_opportunities_for_sector_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1007,7 +995,6 @@ def test_get_random_three_opportunities_for_sector_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_opportunities_for_sector_page_null_case(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1034,7 +1021,6 @@ def test_get_random_three_opportunities_for_sector_page_null_case(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_opportunities_for_sub_sector_page_null_case(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1061,7 +1047,6 @@ def test_get_random_three_opportunities_for_sub_sector_page_null_case(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_for_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1092,7 +1077,6 @@ def test_showing_accordions_for_region_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_null_case_for_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1120,7 +1104,6 @@ def test_showing_accordions_null_case_for_region_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_for_about_uk_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1151,7 +1134,6 @@ def test_showing_accordions_for_about_uk_region_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_null_case_for_about_uk_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1314,7 +1296,6 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_for_about_uk_landing_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1344,7 +1325,6 @@ def test_get_random_three_sectors_for_about_uk_landing_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1385,9 +1365,8 @@ def capital_invest_contact_form_data(captcha_stub):
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success(
-    mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
+        mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
 ):
-
     mock_lookup_by_path.return_value = create_response(
         status_code=200,
         json_payload={
@@ -1423,12 +1402,18 @@ def test_show_regions_section_true_on_about_uk_landing_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]},
+                        'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -1475,94 +1460,6 @@ def test_show_regions_section_false_on_about_uk_landing_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_true_on_region_listing_page(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-        'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is True
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_false_on_region_listing_page(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-        'mapped_regions': [
-            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': [], 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Northern Ireland'}, 'text': ''},
-            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': [], 'text': 'Lorem ipsum'},
-            {'region': {'title': 'South England'}, 'text': ''},
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is False
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_false_on_region_listing_page_if_not_there(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is False
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_getting_region_labels_with_coordinates_on_about_uk_page(
         mock_cms_response, rf
 ):
@@ -1575,12 +1472,18 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]},
+                        'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -1641,10 +1544,10 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page_when_null(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_region_labels_with_coordinates_on_region_listing_page(
+def test_getting_keyed_region_data_on_region_listing_page(
         mock_cms_response, rf
 ):
-    page = {
+    page = {  # NOQA
         'title': 'Regions',
         'meta': {
             'languages': [
@@ -1653,45 +1556,56 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page(
         },
         'page_type': 'AboutUkRegionListingPage',
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'scotland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'Scotland',
+                    'full_path': '/international/content/about-uk/regions/scotland/',
+                },
+                'text': 'Lorem ipsum'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'northern-ireland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'The Northern Ireland',
+                    'full_path': '/international/content/about-uk/regions/northern-ireland/',
+                },
+                'text': 'Lorem ipsum'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'north-of-england',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'North England',
+                    'full_path': '/international/content/about-uk/regions/north-england/',
+                },
+                'text': 'Lorem ipsum'
+            },
         ],
     }
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/about-uk/')
+    request = rf.get('/international/content/about-uk/regions/')
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/')
+        request, path='/international/content/about-uk/regions/')
 
-    assert response.context_data['scotland'][0]['x'] == '164'
-    assert response.context_data['scotland'][0]['y'] == '206.0'
-
-    assert response.context_data['north_england'][0]['x'] == '440'
-    assert response.context_data['north_england'][0]['y'] == '415.0'
-    assert response.context_data['north_england'][1]['x'] == '440'
-    assert response.context_data['north_england'][1]['y'] == '440.0'
-
-    assert response.context_data['northern_ireland'][0]['x'] == '195'
-    assert response.context_data['northern_ireland'][0]['y'] == '347.5'
-    assert response.context_data['northern_ireland'][1]['x'] == '195'
-    assert response.context_data['northern_ireland'][1]['y'] == '372.5'
-    assert response.context_data['northern_ireland'][2]['x'] == '195'
-    assert response.context_data['northern_ireland'][2]['y'] == '397.5'
-
-    assert response.context_data['south_england'][0]['x'] == '485'
-    assert response.context_data['south_england'][0]['y'] == '651.0'
-    assert response.context_data['south_england'][1]['x'] == '485'
-    assert response.context_data['south_england'][1]['y'] == '676.0'
-    assert response.context_data['south_england'][2]['x'] == '485'
-    assert response.context_data['south_england'][2]['y'] == '701.0'
-    assert response.context_data['south_england'][3]['x'] == '485'
-    assert response.context_data['south_england'][3]['y'] == '726.0'
+    assert len(response.context_data['regions']) == 3
+    assert response.context_data['regions']['scotland'][
+               'full_path'] == '/international/content/about-uk/regions/scotland/'
+    assert response.context_data['regions']['north_of_england'][
+               'full_path'] == '/international/content/about-uk/regions/north-england/'
+    assert response.context_data['regions']['northern_ireland'][
+               'full_path'] == '/international/content/about-uk/regions/northern-ireland/'
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -1720,7 +1634,6 @@ def test_getting_region_labels_with_coordinates_on_region_listing_page_when_null
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_expand_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -1749,11 +1662,11 @@ def test_expand_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='expand',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='expand',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
@@ -1781,7 +1694,6 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -1823,17 +1735,16 @@ def test_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 3
     assert mock_get_page.mock_calls[2] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='expand/how-to-setup-in-the-uk',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='expand/how-to-setup-in-the-uk',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -1873,17 +1784,16 @@ def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='invest/how-to-setup-in-the-uk',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='invest/how-to-setup-in-the-uk',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_industries_about_uk_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -1922,11 +1832,11 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='about-uk/industries',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='about-uk/industries',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
@@ -1954,12 +1864,18 @@ def test_getting_regions_on_region_page(
         },
         'page_type': 'AboutUkRegionPage',
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]},
+                        'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
         'economics_stats': [],
         'location_stats': [],
@@ -1989,10 +1905,14 @@ def test_getting_regions_on_region_page_null(
         },
         'page_type': 'AboutUkRegionPage',
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
         'economics_stats': [],
         'location_stats': [],
@@ -2169,8 +2089,8 @@ def test_why_buy_from_uk_context(rf, client):
         request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
-        '/international/content/trade/how-we-help-you-buy/'
-        in response.context_data['international_trade_how_we_help']
+            '/international/content/trade/how-we-help-you-buy/'
+            in response.context_data['international_trade_how_we_help']
     )
     assert 'privacy-notice-5-reasons-buy-uk' in response.context_data['privacy_url']
 
@@ -2181,6 +2101,6 @@ def test_why_buy_from_uk_success_context(rf, client):
         request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/success/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
-        '/international/content/trade/how-we-help-you-buy/'
-        in response.context_data['international_trade_how_we_help']
+            '/international/content/trade/how-we-help-you-buy/'
+            in response.context_data['international_trade_how_we_help']
     )
