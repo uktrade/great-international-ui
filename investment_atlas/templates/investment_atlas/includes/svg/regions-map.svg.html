@@ -2,7 +2,7 @@
      xmlns="http://www.w3.org/2000/svg"
      xmlns:xlink="http://www.w3.org/1999/xlink">
     <g transform="translate(-160.038)" fill="none" fill-rule="evenodd">
-        <a {% if links %}href="{{ regions.south_england.full_path }}" class="atlas-map__link"
+        <a class="atlas-map__link" {% if links %}href="{{ regions.south_england.full_path }}"
            {% else %}name="south-england"{% endif %}
            tabindex="-1">
             <g id="atlas-map-south-england"
@@ -21,7 +21,7 @@
             </g>
         </a>
 
-        <a {% if links %}href="{{ regions.north_england.full_path }}" class="atlas-map__link"
+        <a class="atlas-map__link" {% if links %}href="{{ regions.north_england.full_path }}"
            {% else %}name="north-england"{% endif %} tabindex="-1">
             <g id="atlas-map-north-england"
                class="atlas-map__region{% if highlight == 'all' or highlight == 'north-england' %} atlas-map__region--highlight{% endif %}">
@@ -38,7 +38,7 @@
             </g>
         </a>
 
-        <a {% if links %}href="{{ regions.midlands.full_path }}" class="atlas-map__link"
+        <a class="atlas-map__link" {% if links %}href="{{ regions.midlands.full_path }}"
            {% else %}name="midlands"{% endif %} tabindex="-1">
             <g id="atlas-map-midlands"
                class="atlas-map__region{% if highlight == 'all' or highlight == 'midlands' %} atlas-map__region--highlight{% endif %}">
@@ -55,7 +55,7 @@
             </g>
         </a>
 
-        <a {% if links %}href="{{ regions.wales.full_path }}" class="atlas-map__link"{% else %}name="wales"{% endif %}
+        <a class="atlas-map__link" {% if links %}href="{{ regions.wales.full_path }}"{% else %}name="wales"{% endif %}
            tabindex="-1">
             <g id="atlas-map-wales"
                class="atlas-map__region{% if highlight == 'all' or highlight == 'wales' %} atlas-map__region--highlight{% endif %}">
@@ -72,7 +72,7 @@
             </g>
         </a>
 
-        <a {% if links %}href="{{ regions.scotland.full_path }}" class="atlas-map__link"
+        <a class="atlas-map__link" {% if links %}href="{{ regions.scotland.full_path }}"
            {% else %}name="scotland"{% endif %} tabindex="-1">
             <g id="atlas-map-scotland"
                class="atlas-map__region{% if highlight == 'all' or highlight == 'scotland' %} atlas-map__region--highlight{% endif %}">
@@ -96,7 +96,7 @@
             </g>
         </a>
 
-        <a {% if links %}href="{{ regions.northern_ireland.full_path }}" class="atlas-map__link"
+        <a class="atlas-map__link" {% if links %}href="{{ regions.northern_ireland.full_path }}"
            {% else %}name="northern_ireland"{% endif %} tabindex="-1">
             <g id="atlas-map-northern-ireland"
                class="atlas-map__region{% if highlight == 'all' or highlight == 'northern_ireland' %} atlas-map__region--highlight{% endif %}">

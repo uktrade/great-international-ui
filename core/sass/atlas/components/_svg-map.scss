@@ -16,13 +16,13 @@
   outline: none;
 }
 
-.atlas-map__link:hover,
+.atlas-map__link[href]:hover,
 .atlas-map__region--highlight {
   & .atlas-map__shape {
     fill: $atlas-green-light;
   }
 }
 
-.atlas-map__link:hover .atlas-map__label {
+.atlas-map__link[href]:hover .atlas-map__label {
   transform: translateY(-1%);
 }
