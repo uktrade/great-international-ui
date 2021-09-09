@@ -9,11 +9,16 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  min-height: 385px;
+  height: 400px;
 
   @media (min-width: $breakpoint-medium) {
     justify-content: center;
+    height: 505px;
     padding-left: 84px;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    height: 710px;
   }
 
   @media (min-width: $breakpoint-xlarge) {
@@ -21,7 +26,17 @@
   }
 
   & h1 {
-    max-width: 250px;
+    font-size: 52px;
+    line-height: 1.1;
+    max-width: 5em;
+
+    @media (min-width: $breakpoint-medium) {
+      font-size: 85px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      font-size: 108px;
+    }
   }
 }
 
