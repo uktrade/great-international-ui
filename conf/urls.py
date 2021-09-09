@@ -25,7 +25,6 @@ sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
 }
 
-
 urlpatterns = [
     url(
         r'^international/investment-support-directory/',
@@ -167,7 +166,6 @@ urlpatterns += [
     ),
 ]
 
-
 urlpatterns += redirects_before_tree_based_routing_lookup
 
 urlpatterns += [
@@ -187,6 +185,9 @@ urlpatterns += [
         skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
+    # Could we remove the need for InternationalHomePageView by using MultilingualCMSPageFromPathView instead?
+    # It seems InternationalHomePageView only sets the template, but this can be done in constants as for all
+    # other pages...
     url(
         r'^international/$',
         core.views.InternationalHomePageView.as_view(),
