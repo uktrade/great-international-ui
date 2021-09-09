@@ -151,7 +151,7 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
     @property
     def template_name(self):
-        return 'core/landing_page.html'
+        return 'investment_atlas/homepage.html'
 
 
 @register_context_modifier('InternationalTopicLandingPage')

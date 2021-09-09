@@ -15,6 +15,7 @@
 - GP2-3298 - Styled Atlas homepage
 - GP2-3156 - Styled Atlas opportunity page
 - GP2-3155 - Styled Atlas region listing page
+- GP2-3235 - Styled International homepage
 
 ### Fixed bugs
 

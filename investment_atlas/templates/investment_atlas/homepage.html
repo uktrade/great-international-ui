@@ -1,0 +1,37 @@
+{% extends 'core/base_cms.html' %}
+{% load static %}
+
+{% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
+    <div class="atlas-home">
+        <div class="atlas-home__image"></div>
+        <div class="atlas-container atlas-p-b-xl">
+            <div class="atlas-home__header atlas-colour--white atlas-p-v-s">
+                <h1 class="atlas-bold atlas-m-v-s">{{ page.hero_title }}</h1>
+
+                <a href="#" class="atlas-button atlas-button--white">Get Started</a>
+            </div>
+
+            <nav>
+                {% for panel in page.homepage_link_panels %}
+                    <a href="{{ panel.value.link }}" class="atlas-card atlas-bg atlas-bg--white atlas-p-s atlas-m-t-s">
+                        <h2 class="atlas-h--m atlas-card__heading atlas-p-r-m atlas-m-0">{{ panel.value.title }}</h2>
+                        {% if panel.value.supporting_text %}
+                            <p class="atlas-body--s atlas-m-t-s atlas-m-b-0">{{ panel.value.supporting_text }}</p>
+                        {% endif %}
+                        <span class="atlas-home__card-icon atlas-p-r-s atlas-p-t-s">
+                            <span class="atlas-svg">
+                                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                            </span>
+                        </span>
+                    </a>
+                {% endfor %}
+
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block feedback_reporter %}{% endblock %}
