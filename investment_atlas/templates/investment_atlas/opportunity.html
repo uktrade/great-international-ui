@@ -99,7 +99,7 @@
 
     {% for section in page.main_content %}
         <section
-                class="atlas-alternate-bg{% if section.value.block_slug == 'with-key-links' %}  atlas-bg--grey-light{% endif %}">
+                class="atlas-alternate-bg{% if section.value.block_slug == 'with-key-links' %} atlas-bg--grey-light{% endif %}">
             <div class="atlas-container atlas-p-t-l atlas-p-b-s">
 
                 {% for block in section.value.content %}
@@ -142,7 +142,7 @@
                             </div>
                         {% endif %}
 
-                        {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length > 0 %}
+                        {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length == 1 %}
                             <div class="atlas-grid__column atlas-grid__column--4-12-m">
                                 <div class="atlas-opportunity__region-spotlight atlas-bg--grey-light atlas-m-b-m">
                                     {% with region=page.related_regions.0 %}
