@@ -168,28 +168,6 @@ def sector_landing_page_context_modifier(context, request):
     return context
 
 
-@register_context_modifier('InternationalSectorPage')
-def sector_page_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
-
-    return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-    }
-
-
 @register_context_modifier('AboutUkWhyChooseTheUkPage')
 def about_uk_why_choose_the_uk_page_context_modifier(context, request):
     def count_data_with_field(list_of_data, field):
@@ -203,28 +181,6 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
             page['statistics'],
             'number'
         ),
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-    }
-
-
-@register_context_modifier('InternationalSubSectorPage')
-def sub_sector_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
-
-    return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
         'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
