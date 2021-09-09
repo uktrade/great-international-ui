@@ -438,6 +438,21 @@ def about_uk_region_listing_page_context_modifier(context, request):
     }
 
 
+@register_context_modifier('InvestmentOpportunityPage')
+def atlas_opportunity_page_context_modifier(context, request):
+    sectors_label = ''
+
+    if 'related_sectors' in context['page']:
+        sectors_label = context['page']['related_sectors'][0]['related_sector']['title']
+
+    if 'sub_sectors' in context['page']:
+        sectors_label += ' ({})'.format(', '.join(context['page']['sub_sectors']))
+
+    return {
+        'sectors_label': sectors_label
+    }
+
+
 class LegacyRedirectCoreView(View):
     http_method_names = ['get']
     redirects_mapping = {}

@@ -4,6 +4,7 @@
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
     {% if page.featured_images|length > 0 %}
         <div class="atlas-hero">
             <img class="atlas-hero__image" src="{{ page.featured_images.0.value.image }}"
@@ -44,8 +45,8 @@
                     {% include 'investment_atlas/includes/opportunity_detail.html' with label='Investment type' value=page.investment_type icon='investment-type' %}
                 {% endif %}
 
-                {% if page.related_sectors|length > 0 %}
-                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Sector' value=page.related_sectors.0.related_sector.heading icon='sector' %}
+                {% if sectors_label %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Sector' value=sectors_label icon='sector' %}
                 {% endif %}
 
                 {% if page.promoter %}
@@ -78,7 +79,6 @@
                                     <img src="{{ page.contact_avatar.url }}"
                                          alt="{{ page.contact_avatar.alt }}">
                                 </div>
-
                             </div>
                         {% endif %}
                         <div class="atlas-media__body">

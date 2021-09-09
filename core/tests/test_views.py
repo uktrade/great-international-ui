@@ -1393,6 +1393,29 @@ def test_getting_keyed_region_data_on_region_listing_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunity_page_sectors_label(mock_cms_response, rf):
+    page = {  # NOQA
+        'title': 'Test',
+        'meta': {'languages': [['en-gb', 'English']]},
+        'page_type': 'InvestmentOpportunityPage',
+        'related_sectors': [
+            {'related_sector': {'title': 'Housing'}},
+            {'related_sector': {'title': 'Aerospace'}}
+        ],
+        'sub_sectors': ['Green housing', 'Urban', 'Renting']
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/investment/opportunities/test/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/investment/opportunities/test/')
+
+    assert response.context_data['sectors_label'] == 'Housing (Green housing, Urban, Renting)'
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_expand_path_exists(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     reload_urlconf(settings)
