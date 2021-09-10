@@ -228,36 +228,6 @@ def capital_invest_region_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('AboutUkRegionPage')
-def about_uk_region_page_context_modifier(context, request):
-    page = context['page']
-
-    show_mapped_regions = False
-    regions = []
-    if 'mapped_regions' in page:
-        regions = page['mapped_regions']
-        show_mapped_regions = True if len(regions) == 6 else False
-
-    show_accordions = False
-
-    if 'subsections' in page:
-        accordions = {accordion['title']: accordion['content']
-                      for accordion in page['subsections']
-                      if accordion['title'] and accordion['content']}
-        if accordions:
-            show_accordions = True
-
-    return {
-        'num_of_economics_statistics': helpers.count_data_with_field(
-            page['economics_stats'], 'number'),
-        'num_of_location_statistics': helpers.count_data_with_field(
-            page['location_stats'], 'number'),
-        'show_accordions': show_accordions,
-        'show_mapped_regions': show_mapped_regions,
-        'regions': regions
-    }
-
-
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
     current_sector_title = None
@@ -423,6 +393,7 @@ def about_uk_landing_page_context_modifier(context, request):
 
 
 @register_context_modifier('AboutUkRegionListingPage')
+@register_context_modifier('AboutUkRegionPage')
 def about_uk_region_listing_page_context_modifier(context, request):
     regions = {}
     if 'mapped_regions' in context['page']:

@@ -1,7 +1,5 @@
-{% extends 'core/base_cms.html' %}
+{% extends 'investment_atlas/base_cms.html' %}
 {% load static %}
-
-{% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
     {% if page.featured_images|length > 0 %}
@@ -173,20 +171,7 @@
             <div class="atlas-container atlas-p-t-l atlas-p-b-m">
                 <h2 class="atlas-h--l">Related opportunities</h2>
 
-                <div class="atlas-grid">
-                    {% for opportunity in page.related_opportunities %}
-                        <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                            <a href="{{ opportunity.full_path }}" class="atlas-card atlas-bg--white atlas-m-t-m">
-                                <img class="atlas-image" src="{{ opportunity.thumbnail_image.image }}"
-                                     alt="{{ opportunity.thumbnail_image.image_alt }}">
-                                <div class="atlas-cms-text atlas-p-s">
-                                    <h3 class="atlas-card__heading atlas-h--s">{{ opportunity.title }}</h3>
-                                    <p>{{ opportunity.opportunity_summary }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+                {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
             </div>
         </section>
     {% endif %}
@@ -194,5 +179,3 @@
     {% include 'investment_atlas/includes/speak_to_us.html' %}
 
 {% endblock %}
-
-{% block feedback_reporter %}{% endblock %}
