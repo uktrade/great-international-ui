@@ -1,12 +1,12 @@
-<a href="{{ url }}" class="atlas-card atlas-m-b-m">
-    {% if image %}
-        <img class="atlas-image" src="{{ image }}" alt="{{ image_alt }}" width="{{ image_width }}"
-             height="{{ image_height }}">
+<a href="{{ data.url }}" class="atlas-card atlas-m-b-m">
+    {% if data.image %}
+        <img class="atlas-image" src="{{ data.image }}" alt="{{ data.image_alt }}" width="{{ data.image_width }}"
+             height="{{ data.image_height }}">
     {% endif %}
     <div class="atlas-cms-text atlas-p-s">
-        <h3 class="atlas-card__heading atlas-h--s">{{ heading }}</h3>
-        {% if summary %}
-            <p>{{ summary }}</p>
+        <h3 class="atlas-card__heading atlas-h--s">{{ data.title }}</h3>
+        {% if data.summary %}
+            <p>{{ data.summary }}</p>
         {% endif %}
     </div>
 </a>

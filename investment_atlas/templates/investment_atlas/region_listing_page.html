@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
     <div class="atlas-hero">
         <img class="atlas-hero__image" src="{{ page.hero_large.url }}" alt="{{ page.hero_large.alt }}">
     </div>
@@ -25,12 +26,11 @@
 
     <section class="atlas-container">
         <div class="atlas-grid">
-            {% for region in page.mapped_regions %}
+            {% for card in cards_list %}
                 <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
-                    {% include 'investment_atlas/includes/card.html' with url=region.region.full_path image=region.region.thumbnail_image.image image_alt=region.region.thumbnail_image.image_alt image_width=region.region.thumbnail_image.width image_height=region.region.thumbnail_image.height heading=region.region.title summary=region.text %}
+                    {% include 'investment_atlas/includes/card.html' with data=card %}
                 </div>
             {% endfor %}
-
         </div>
     </section>
 

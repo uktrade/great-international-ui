@@ -5,6 +5,7 @@ from directory_constants import urls
 import pytest
 
 from django.urls import reverse
+from django.utils import translation
 
 from conf.tests.test_urls import reload_urlconf
 from core import constants
@@ -371,24 +372,41 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_industry_page_context_modifier_renames_heading(mock_get_page, client, settings):
-    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
+def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page, rf):
     page = {
         'title': 'test',
         'landing_page_title': 'Industries',
         'page_type': 'InternationalTopicLandingPage',
         'child_pages': [
             {
-                'heading': 'heading',
                 'meta': {
-                    'languages': [('en-gb', 'English')],
+                    'languages': [
+                        ['en-gb', 'English'],
+                        ['fr-fr', 'Français']
+                    ],
                 },
+                'full_path': '/international/content/investment/sectors/clean-growth/',
+                'title': 'Clean growth',
+                'hero_image_thumbnail': {
+                    'url': 'clean-growth.jpg',
+                    'width': 640,
+                    'height': 360,
+                    'alt': 'Clean growth alt'
+                },
+                'sub_heading': 'The UK is leading',
+            },
+            {
+                'meta': {
+                    'languages': [
+                        ['fr-fr', 'Français']
+                    ],
+                },
+                'full_path': '/international/content/investment/sectors/some-other/',
+                'title': 'Some other',
+                'hero_image_thumbnail': None,
+                'sub_heading': '',
             }
         ],
-        'statistics': [],
-        'section_three_subsections': [],
         'meta': {
             'slug': 'slug',
             'languages': [('en-gb', 'English')],
@@ -396,11 +414,20 @@ def test_industry_page_context_modifier_renames_heading(mock_get_page, client, s
     }
     mock_get_page.return_value = create_response(page)
 
-    url = reverse('industries')
-    response = client.get(url)
+    request = rf.get('/international/content/investment/sectors/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/investment/sectors/')
 
-    child_page = response.context_data['page']['child_pages'][0]
-    assert child_page['landing_page_title'] == 'heading'
+    assert len(response.context_data['cards_list']) == 1
+    card_data = response.context_data['cards_list'][0]
+    assert card_data['url'] == '/international/content/investment/sectors/clean-growth/'
+    assert card_data['title'] == "Clean growth"
+    assert card_data['image'] == "clean-growth.jpg"
+    assert card_data['image_width'] == 640
+    assert card_data['image_height'] == 360
+    assert card_data['image_alt'] == "Clean growth alt"
+    assert card_data['summary'] == "The UK is leading"
 
 
 @pytest.mark.usefixtures('how_to_do_business_uk_page')
@@ -1235,8 +1262,12 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page_when_null(
     assert response.context_data['scotland'] == []
 
 
+@pytest.mark.parametrize('page_type,url', [
+    ('AboutUkRegionPage', '/international/content/about-uk/regions/scotland'),
+    ('AboutUkRegionListingPage', '/international/content/about-uk/regions/')
+])
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf):
+def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf, page_type, url):
     page = {  # NOQA
         'title': 'Regions',
         'meta': {
@@ -1244,7 +1275,7 @@ def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf)
                 ['en-gb', 'English'],
             ]
         },
-        'page_type': 'AboutUkRegionListingPage',
+        'page_type': page_type,
         'mapped_regions': [
             {
                 'region': {
@@ -1284,10 +1315,9 @@ def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf)
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/about-uk/regions/')
+    request = rf.get(url)
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path=url)
 
     assert len(response.context_data['regions']) == 3
     assert response.context_data['regions']['scotland'][
@@ -1298,10 +1328,12 @@ def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf)
                'full_path'] == '/international/content/about-uk/regions/northern-ireland/'
 
 
+@pytest.mark.parametrize('page_type,url', [
+    ('AboutUkRegionPage', '/international/content/about-uk/regions/scotland'),
+    ('AboutUkRegionListingPage', '/international/content/about-uk/regions/')
+])
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_keyed_region_data_on_region_page(
-        mock_cms_response, rf
-):
+def test_region_page_context_decorator_adds_cards_list(mock_cms_response, rf, page_type, url):
     page = {  # NOQA
         'title': 'Regions',
         'meta': {
@@ -1309,7 +1341,7 @@ def test_getting_keyed_region_data_on_region_page(
                 ['en-gb', 'English'],
             ]
         },
-        'page_type': 'AboutUkRegionPage',
+        'page_type': page_type,
         'mapped_regions': [
             {
                 'region': {
@@ -1319,8 +1351,14 @@ def test_getting_keyed_region_data_on_region_page(
                     },
                     'title': 'Scotland',
                     'full_path': '/international/content/about-uk/regions/scotland/',
+                    'hero_image_thumbnail': {
+                        'url': 'scotland.jpg',
+                        'width': 640,
+                        'height': 360,
+                        'alt': 'Scotland scene'
+                    }
                 },
-                'text': 'Lorem ipsum'
+                'text': 'Lorem ipsum Scotland'
             },
             {
                 'region': {
@@ -1330,6 +1368,12 @@ def test_getting_keyed_region_data_on_region_page(
                     },
                     'title': 'The Northern Ireland',
                     'full_path': '/international/content/about-uk/regions/northern-ireland/',
+                    'hero_image_thumbnail': {
+                        'url': 'northern-ireland.jpg',
+                        'width': 640,
+                        'height': 360,
+                        'alt': 'Northern Ireland scene'
+                    }
                 },
                 'text': 'Lorem ipsum'
             },
@@ -1341,6 +1385,12 @@ def test_getting_keyed_region_data_on_region_page(
                     },
                     'title': 'North England',
                     'full_path': '/international/content/about-uk/regions/north-england/',
+                    'hero_image_thumbnail': {
+                        'url': 'north-england.jpg',
+                        'width': 640,
+                        'height': 360,
+                        'alt': 'North of England scene'
+                    }
                 },
                 'text': 'Lorem ipsum'
             },
@@ -1349,18 +1399,18 @@ def test_getting_keyed_region_data_on_region_page(
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/about-uk/regions/scotland/')
+    request = rf.get(url)
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/scotland/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path=url)
 
-    assert len(response.context_data['regions']) == 3
-    assert response.context_data['regions']['scotland'][
-               'full_path'] == '/international/content/about-uk/regions/scotland/'
-    assert response.context_data['regions']['north_of_england'][
-               'full_path'] == '/international/content/about-uk/regions/north-england/'
-    assert response.context_data['regions']['northern_ireland'][
-               'full_path'] == '/international/content/about-uk/regions/northern-ireland/'
+    assert len(response.context_data['cards_list']) == 3
+    card = response.context_data['cards_list'][0]
+    assert card['title'] == 'Scotland'
+    assert card['summary'] == 'Lorem ipsum Scotland'
+    assert card['image'] == 'scotland.jpg'
+    assert card['image_alt'] == 'Scotland scene'
+    assert card['image_width'] == 640
+    assert card['image_height'] == 360
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -1541,54 +1591,6 @@ def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
         draft_token=None,
         language_code='en-gb',
         path='invest/how-to-setup-in-the-uk',
-        site_id=2
-    )
-    assert response.status_code == 200
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_industries_about_uk_path_exists(mock_get_page, client, settings):
-    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
-    page = {
-        'title': 'Industries',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'industries'
-        },
-        'page_type': 'InternationalTopicLandingPage',
-        'landing_page_title': 'title',
-        'child_pages': [
-            {
-                'meta': {
-                    'slug': 'page',
-                    'languages': [['en-gb', 'English']],
-                },
-                'landing_page_title': 'title',
-                'heading': 'heading'
-            }
-        ]
-    }
-
-    def side_effect(*args, **kwargs):
-        if kwargs['path'] == 'industries':
-            return create_response(status_code=404)
-        if kwargs['path'] == 'about-uk/industries':
-            return create_response(json_payload=page, status_code=200)
-        return create_response(status_code=500)
-
-    mock_get_page.side_effect = side_effect
-
-    response = client.get('/international/content/industries/')
-
-    assert mock_get_page.call_count == 2
-    assert mock_get_page.mock_calls[1] == call(
-        draft_token=None,
-        language_code='en-gb',
-        path='about-uk/industries',
         site_id=2
     )
     assert response.status_code == 200

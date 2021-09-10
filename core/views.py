@@ -157,16 +157,21 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
-    def rename_heading_field(page):
-        page['landing_page_title'] = page['heading']
-        return page
+    child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
 
-    context['page']['child_pages'] = [
-        rename_heading_field(child_page)
-        for child_page in context['page']['child_pages']]
+    cards_list = [{
+        'url': x['full_path'],
+        'title': x['title'],
+        'image': x.get('hero_image_thumbnail', {}).get('url'),
+        'image_alt': x.get('hero_image_thumbnail', {}).get('alt'),
+        'image_width': x.get('hero_image_thumbnail', {}).get('width'),
+        'image_height': x.get('hero_image_thumbnail', {}).get('height'),
+        'summary': x['sub_heading']
+    } for x in child_pages_for_language]
 
-    context['about_uk_link'] = urls.international.ABOUT_UK_HOME
-    return context
+    return {
+        "cards_list": cards_list
+    }
 
 
 @register_context_modifier('AboutUkWhyChooseTheUkPage')
@@ -396,6 +401,7 @@ def about_uk_landing_page_context_modifier(context, request):
 @register_context_modifier('AboutUkRegionPage')
 def about_uk_region_listing_page_context_modifier(context, request):
     regions = {}
+    cards_list = []
     if 'mapped_regions' in context['page']:
         regions = {
             # variable names in templates can only contain underscores and letters/numbers:
@@ -404,9 +410,19 @@ def about_uk_region_listing_page_context_modifier(context, request):
             }
             for x in context['page']['mapped_regions']
         }
+        cards_list = [{
+            'url': x['region']['full_path'],
+            'title': x['region']['title'],
+            'image': x['region'].get('hero_image_thumbnail', {}).get('url'),
+            'image_alt': x['region'].get('hero_image_thumbnail', {}).get('alt'),
+            'image_width': x['region'].get('hero_image_thumbnail', {}).get('width'),
+            'image_height': x['region'].get('hero_image_thumbnail', {}).get('height'),
+            'summary': x['text']
+        } for x in context['page']['mapped_regions']]
 
     return {
-        'regions': regions
+        'regions': regions,
+        'cards_list': cards_list
     }
 
 

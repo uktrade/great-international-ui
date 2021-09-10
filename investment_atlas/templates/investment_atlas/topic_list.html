@@ -3,8 +3,6 @@
 {% load filter_by_active_language cms_hero from cms_tags %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
-
     {% if page.hero_large %}
         <div class="atlas-hero">
             <img class="atlas-hero__image" src="{{ page.hero_large.url }}" alt="{{ page.hero_large.alt }}">
@@ -26,9 +24,9 @@
 
     <section class="atlas-container">
         <div class="atlas-grid">
-            {% for child_page in page.child_pages|filter_by_active_language %}
+            {% for card in cards_list %}
                 <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
-                    {% include 'investment_atlas/includes/card.html' with url=child_page.full_path image=child_page.hero_image_thumbnail.url image_alt=child_page.hero_image_thumbnail.alt image_width=child_page.hero_image_thumbnail.width image_height=child_page.hero_image_thumbnail.height heading=child_page.title summary=child_page.sub_heading %}
+                    {% include 'investment_atlas/includes/card.html' with data=card %}
                 </div>
             {% endfor %}
         </div>
