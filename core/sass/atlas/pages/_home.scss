@@ -10,26 +10,17 @@
 .atlas-home__image {
   position: absolute;
   width: 580px;
-  height: 552px;
   max-height: 100%;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  background-image: url('../images/atlas/homepage-mobile.jpg');
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 100% auto;
-  box-shadow: inset 0 -100px 50px 50px $atlas-dark-blue, inset 0 -100px 50px $atlas-dark-blue;
-  
+
   @media (min-width: $breakpoint-medium) {
     width: 1024px;
-    height: 974px;
-    background-image: url('../images/atlas/homepage.jpg');
   }
 
   @media (min-width: $breakpoint-large) {
     width: 1420px;
-    height: 1350px;
   }
 
   & img {
@@ -38,8 +29,15 @@
     height: auto;
   }
 
-  & .atlas-home__image--large {
-    display: none;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: inset 0 -100px 50px 50px $atlas-dark-blue, inset 0 -100px 50px $atlas-dark-blue;
   }
 }
 
