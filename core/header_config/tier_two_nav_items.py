@@ -4,7 +4,8 @@ from directory_constants import urls
 
 
 WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'why-invest-in-the-uk'
-REGIONS_URL = urls.international.HOME / 'regions'
+REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
+INDUSTRIES = urls.international.HOME / 'content/investment/industries/'
 
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
@@ -21,13 +22,7 @@ WHY_CHOOSE_THE_UK = NavItem(
 INDUSTRIES = NavItem(
     name='industries',
     title=_('Industries'),
-    url=urls.international.ABOUT_UK_INDUSTRIES
-)
-
-REGIONS = NavItem(
-    name='regions',
-    title=_('Regions'),
-    url=urls.international.ABOUT_UK_REGIONS
+    url=INDUSTRIES
 )
 
 CONTACT_US_ABOUT_UK = NavItem(
