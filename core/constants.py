@@ -35,7 +35,7 @@ TEMPLATE_MAPPING = {
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
-    'AboutUkRegionPage': 'core/about_uk/about_uk_region_page.html',
+    'AboutUkRegionPage': 'investment_atlas/region.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
