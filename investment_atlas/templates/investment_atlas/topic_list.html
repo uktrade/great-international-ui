@@ -28,16 +28,7 @@
         <div class="atlas-grid">
             {% for child_page in page.child_pages|filter_by_active_language %}
                 <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
-                    <a href="{{ child_page.full_path }}" class="atlas-card atlas-m-b-m">
-                        {% if child_page.hero_image_thumbnail %}
-                            <img class="atlas-image" src="{{ child_page.hero_image_thumbnail.url }}"
-                                 alt="{{ child_page.hero_image_thumbnail.alt }}">
-                        {% endif %}
-                        <div class="atlas-cms-text atlas-p-s">
-                            <h3 class="atlas-card__heading atlas-h--s">{{ child_page.title }}</h3>
-                            <p>{{ child_page.sub_heading }}</p>
-                        </div>
-                    </a>
+                    {% include 'investment_atlas/includes/card.html' with url=child_page.full_path image=child_page.hero_image_thumbnail.url image_alt=child_page.hero_image_thumbnail.alt image_width=child_page.hero_image_thumbnail.width image_height=child_page.hero_image_thumbnail.height heading=child_page.title summary=child_page.sub_heading %}
                 </div>
             {% endfor %}
         </div>

@@ -27,16 +27,7 @@
         <div class="atlas-grid">
             {% for region in page.mapped_regions %}
                 <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
-                    <a href="{{ region.region.full_path }}" class="atlas-card atlas-m-b-m">
-                        {% if region.region.thumbnail_image %}
-                            <img class="atlas-image" src="{{ region.region.thumbnail_image.image }}"
-                                 alt="{{ region.region.thumbnail_image.image_alt }}">
-                        {% endif %}
-                        <div class="atlas-cms-text atlas-p-s">
-                            <h3 class="atlas-card__heading atlas-h--s">{{ region.region.title }}</h3>
-                            <p>{{ region.text }}</p>
-                        </div>
-                    </a>
+                    {% include 'investment_atlas/includes/card.html' with url=region.region.full_path image=region.region.thumbnail_image.image image_alt=region.region.thumbnail_image.image_alt image_width=region.region.thumbnail_image.width image_height=region.region.thumbnail_image.height heading=region.region.title summary=region.text %}
                 </div>
             {% endfor %}
 
