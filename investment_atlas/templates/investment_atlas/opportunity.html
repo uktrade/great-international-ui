@@ -4,7 +4,6 @@
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
     {% if page.featured_images|length > 0 %}
         <div class="atlas-hero">
             <img class="atlas-hero__image" src="{{ page.featured_images.0.value.image }}"
