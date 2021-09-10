@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+
 - NO_TICKET - fixed nav item urls
 - GP2-3223 - Update codebase for new sector modelling in CMS
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
@@ -17,6 +18,7 @@
 - GP2-3155 - Styled Atlas region listing page
 - GP2-3235 - Styled International homepage
 - GP2-3155 - Styled Atlas region details page
+- GP2-3236 - Styled Sector listing page
 
 ### Fixed bugs
 
@@ -71,8 +73,8 @@
 
 ## Hot-Fix
 
-GBAU-896 transition-period-routing
-GBAU-77 hotfix captcha form for contact/trade
+- GBAU-896 transition-period-routing
+- GBAU-77 hotfix captcha form for contact/trade
 
 ### Implemented enhancements
 
@@ -317,7 +319,6 @@ GBAU-77 hotfix captcha form for contact/trade
 ### Hotfix
 
 - No ticket - Fix thumbnail upload in s3
-
 
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
 
