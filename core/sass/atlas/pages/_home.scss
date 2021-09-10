@@ -47,16 +47,16 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 408px;
+  min-height: 408px;
 
   @media (min-width: $breakpoint-medium) {
     justify-content: center;
-    height: 505px;
+    min-height: 505px;
     padding-left: 84px;
   }
 
   @media (min-width: $breakpoint-large) {
-    height: 710px;
+    min-height: 710px;
   }
 
   @media (min-width: $breakpoint-xlarge) {
