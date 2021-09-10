@@ -27,6 +27,7 @@ from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 
 import find_a_supplier.forms
+from investment_atlas.helpers import get_sectors_label
 
 
 class QuerystringRedirectView(RedirectView):
@@ -78,11 +79,11 @@ class MonolingualCMSPageFromPathView(
 
     def get_cms_data(self, path):
         return cms_api_client.lookup_by_path(
-                    site_id=self.cms_site_id,
-                    path=path,
-                    language_code=translation.get_language(),
-                    draft_token=self.request.GET.get('draft_token'),
-                )
+            site_id=self.cms_site_id,
+            path=path,
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
 
     @cached_property
     def page(self):
@@ -116,7 +117,7 @@ class MonolingualCMSPageFromPathView(
             raise Http404
 
         for modifier in context_modifier_registry.get_for_page_type(
-            self.page['page_type']
+                self.page['page_type']
         ):
             context.update(modifier(context, request=self.request))
 
@@ -135,7 +136,6 @@ class MultilingualCMSPageFromPathView(
 
 @register_context_modifier('InternationalArticlePage')
 def article_page_context_modifier(context, request):
-
     page_title = context['page'].get('article_title', '')
 
     social_links_builder = SocialLinkBuilder(
@@ -152,12 +152,11 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
     @property
     def template_name(self):
-        return 'core/landing_page.html'
+        return 'investment_atlas/homepage.html'
 
 
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
-
     def rename_heading_field(page):
         page['landing_page_title'] = page['heading']
         return page
@@ -170,31 +169,8 @@ def sector_landing_page_context_modifier(context, request):
     return context
 
 
-@register_context_modifier('InternationalSectorPage')
-def sector_page_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
-
-    return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-        }
-
-
 @register_context_modifier('AboutUkWhyChooseTheUkPage')
 def about_uk_why_choose_the_uk_page_context_modifier(context, request):
-
     def count_data_with_field(list_of_data, field):
         filtered_list = [item for item in list_of_data if item[field]]
         return len(filtered_list)
@@ -206,28 +182,6 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
             page['statistics'],
             'number'
         ),
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-    }
-
-
-@register_context_modifier('InternationalSubSectorPage')
-def sub_sector_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
-
-    return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
         'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
@@ -274,39 +228,8 @@ def capital_invest_region_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('AboutUkRegionPage')
-def about_uk_region_page_context_modifier(context, request):
-    page = context['page']
-
-    show_mapped_regions = False
-    regions = []
-    if 'mapped_regions' in page:
-        regions = page['mapped_regions']
-        show_mapped_regions = True if len(regions) == 6 else False
-
-    show_accordions = False
-
-    if 'subsections' in page:
-        accordions = {accordion['title']: accordion['content']
-                      for accordion in page['subsections']
-                      if accordion['title'] and accordion['content']}
-        if accordions:
-            show_accordions = True
-
-    return {
-        'num_of_economics_statistics': helpers.count_data_with_field(
-            page['economics_stats'], 'number'),
-        'num_of_location_statistics': helpers.count_data_with_field(
-            page['location_stats'], 'number'),
-        'show_accordions': show_accordions,
-        'show_mapped_regions': show_mapped_regions,
-        'regions': regions
-    }
-
-
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
-
     current_sector_title = None
     related_sectors = context['page']['related_sectors']
 
@@ -318,7 +241,7 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         'buy_cta_link': urls.international.TRADE_HOME,
         'current_sector_title': current_sector_title,
         'contact_cta_link': urls.international.CAPITAL_INVEST_CONTACT,
-        }
+    }
 
 
 class SendContactNotifyMessagesMixin:
@@ -396,7 +319,6 @@ def invest_homepage_context_modifier(context, request):
 
 @register_context_modifier('InternationalTradeHomePage')
 def international_trade_homepage_context_modifier(context, request):
-
     return {
         'search_form': find_a_supplier.forms.SearchForm,
     }
@@ -428,7 +350,6 @@ def get_regions_with_coordinates(regions):
 
 @register_context_modifier('AboutUkLandingPage')
 def about_uk_landing_page_context_modifier(context, request):
-
     regions = []
     if 'regions' in context['page']:
         regions = context['page']['regions']
@@ -472,40 +393,27 @@ def about_uk_landing_page_context_modifier(context, request):
 
 
 @register_context_modifier('AboutUkRegionListingPage')
+@register_context_modifier('AboutUkRegionPage')
 def about_uk_region_listing_page_context_modifier(context, request):
-
-    regions = []
+    regions = {}
     if 'mapped_regions' in context['page']:
-        regions = context['page']['mapped_regions']
-
-    regions_with_coordinates = {
-        'scotland': [],
-        'northern-ireland': [],
-        'north-england': [],
-        'wales': [],
-        'midlands': [],
-        'south-england': []
-    }
-
-    show_mapped_regions = False
-    if regions:
-        region_pages = [field['region'] for field in regions if field['region']]
-        regions_with_text = [field for field in regions
-                             if field['region'] and field['text']]
-        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
-            show_mapped_regions = True
-            regions_with_coordinates = get_regions_with_coordinates(regions)
+        regions = {
+            # variable names in templates can only contain underscores and letters/numbers:
+            x['region']['meta']['slug'].replace('-', '_'): {
+                'full_path': x['region']['full_path']
+            }
+            for x in context['page']['mapped_regions']
+        }
 
     return {
-        'show_mapped_regions': show_mapped_regions,
-        'scotland': regions_with_coordinates['scotland'],
-        'northern_ireland': regions_with_coordinates['northern-ireland'],
-        'north_england': regions_with_coordinates['north-england'],
-        'wales': regions_with_coordinates['wales'],
-        'midlands': regions_with_coordinates['midlands'],
-        'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates,
         'regions': regions
+    }
+
+
+@register_context_modifier('InvestmentOpportunityPage')
+def atlas_opportunity_page_context_modifier(context, request):
+    return {
+        'sectors_label': get_sectors_label(context['page'])
     }
 
 
@@ -584,7 +492,6 @@ class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, 
 
 
 class PathRedirectView(QuerystringRedirectView):
-
     root_url = None
 
     @property

@@ -1,0 +1,48 @@
+{% extends 'investment_atlas/base_cms.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="atlas-hero">
+        <img class="atlas-hero__image" src="{{ page.hero_large.url }}" alt="{{ page.hero_large.alt }}">
+    </div>
+
+    <div class="atlas-hero__heading">
+        <div class="atlas-container">
+            <div class="atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--6-12-m">
+                    <h1 class="atlas-h--xl atlas-m-b-m">{{ page.title }}</h1>
+                    <div class="atlas-body--l">{{ page.intro|safe }}</div>
+                </div>
+                <div class="atlas-grid__column atlas-grid__column--5-12-m atlas-grid__column--offset-1-m">
+                    <div class="atlas-svg-map atlas-regions__map">
+                        {% include 'investment_atlas/includes/svg/regions-map.svg.html' with links=True regions=regions %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="atlas-container">
+        <div class="atlas-grid">
+            {% for region in page.mapped_regions %}
+                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
+                    <a href="{{ region.region.full_path }}" class="atlas-card atlas-m-b-m">
+                        {% if region.region.thumbnail_image %}
+                            <img class="atlas-image" src="{{ region.region.thumbnail_image.image }}"
+                                 alt="{{ region.region.thumbnail_image.image_alt }}">
+                        {% endif %}
+                        <div class="atlas-cms-text atlas-p-s">
+                            <h3 class="atlas-card__heading atlas-h--s">{{ region.region.title }}</h3>
+                            <p>{{ region.text }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+
+{% endblock %}

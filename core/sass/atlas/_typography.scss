@@ -1,13 +1,14 @@
 @import 'tokens';
 @import 'mixins';
 
+// Font urls are relative to the compiled main.css file
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B Bold'), local('EuclidFlexB-Bold'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
+    //url('../fonts/atlas/EuclidFlexB-Bold.woff2') format('woff2'),
+    //url('../fonts/atlas/EuclidFlexB-Bold.woff') format('woff'),
+    //url('../fonts/atlas/EuclidFlexB-Bold.ttf') format('truetype'),
+  url('../fonts/atlas/EuclidFlexB-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
   font-display: auto;
@@ -16,24 +17,26 @@
 @font-face {
   font-family: 'Euclid Flex B';
   src: local('Euclid Flex B'), local('EuclidFlexB-Regular'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
-  url('/static/core/fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
+    //url('../fonts/atlas/EuclidFlexB-Regular.woff2') format('woff2'),
+    //url('../fonts/atlas/EuclidFlexB-Regular.woff') format('woff'),
+    //url('../fonts/atlas/EuclidFlexB-Regular.ttf') format('truetype'),
+  url('../fonts/atlas/EuclidFlexB-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: auto;
 }
 
+.atlas {
+  color: $atlas-body;
+}
+
 .atlas-regular {
   @include atlas-regular;
   line-height: 1.5;
-  color: $atlas-body;
 }
 
 .atlas-bold {
   @include atlas-bold;
-  color: $atlas-body;
 }
 
 .atlas-h--xl,
@@ -122,5 +125,65 @@
   @media (min-width: $breakpoint-medium) {
     font-size: 20px;
     line-height: 1.5;
+  }
+}
+
+.atlas-cms-text {
+  & h2 {
+    @extend .atlas-h--l;
+  }
+
+  & h3 {
+    @extend .atlas-h--m;
+  }
+
+  & h4 {
+    @extend .atlas-h--s;
+  }
+
+  & h4,
+  & h6 {
+    @extend .atlas-h--xs;
+  }
+
+  & * + h2,
+  & * + h3,
+  & * + h4,
+  & * + h5,
+  & * + h6 {
+    margin-top: map-get($spacings, "s");
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    & * + h2,
+    & * + h3,
+    & * + h4,
+    & * + h5,
+    & * + h6 {
+      margin-top: map-get($spacings-medium, "m");
+    }
+  }
+
+  & p,
+  & ul {
+    @extend .atlas-body--s;
+    margin: 1em 0 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  & ul {
+    list-style: disc;
+    padding-left: 2em;
+  }
+
+  & a {
+    color: $atlas-body;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
