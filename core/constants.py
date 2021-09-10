@@ -8,7 +8,7 @@ from directory_constants import urls
 TEMPLATE_MAPPING = {
     # Great international core
     'InternationalHomePage': 'core/landing_page.html',
-    'InternationalTopicLandingPage': 'core/topic_list.html',
+    'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'core/article_detail.html',
 
