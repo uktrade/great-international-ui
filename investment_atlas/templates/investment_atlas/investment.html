@@ -25,7 +25,7 @@
                     <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--6-12-m">
                         <p class="atlas-landing-page__text atlas-body--m">{{ section.value.main_text }}</p>
                     </div>
-                    {% if section.value.block_slug == 'atlas-homepage-map-image' %}
+                    {% if section.value.block_slug == 'with-regions-map' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
                             <div class="atlas-svg-map atlas-landing__map">
                                 {% include 'investment_atlas/includes/svg/regions-map.svg.html' with highlight='all' %}

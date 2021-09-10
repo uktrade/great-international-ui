@@ -11,15 +11,15 @@ from core.tests.helpers import create_response
 
 
 @pytest.mark.parametrize('path,expect_code', (
-    ('/', None),
-    ('?language=pt', 'pt'),
-    ('/industries?language=es', 'es'),
-    ('/industries/?language=zh-hans', 'zh-hans'),
-    ('/industries/aerospace?language=de', 'de'),
-    ('/industries/automotive/?language=fr', 'fr'),
-    ('?lang=fr', 'fr'),
-    ('?language=de&lang=de', 'de'),
-    ('?lang=pt&language=es', 'es')
+        ('/', None),
+        ('?language=pt', 'pt'),
+        ('/industries?language=es', 'es'),
+        ('/industries/?language=zh-hans', 'zh-hans'),
+        ('/industries/aerospace?language=de', 'de'),
+        ('/industries/automotive/?language=fr', 'fr'),
+        ('?lang=fr', 'fr'),
+        ('?language=de&lang=de', 'de'),
+        ('?lang=pt&language=es', 'es')
 ))
 def test_get_language_from_querystring(path, expect_code, rf):
     url = reverse('index')
@@ -44,7 +44,7 @@ def test_get_paginator_url():
     filters = QueryDict('')
 
     assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
-        reverse('atlas-opportunities') + '?'
+            reverse('atlas-opportunities') + '?'
     )
 
 
@@ -52,7 +52,7 @@ def test_get_paginator_url_with_filters():
     filters = QueryDict('sector=Energy&sector=Aerospace&scale=Value+unknown')
 
     assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
-        reverse('atlas-opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
+            reverse('atlas-opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
     )
 
 
@@ -60,12 +60,11 @@ def test_get_paginator_url_with_spaces_filters():
     filters = QueryDict('sector=A+value+with+spaces+')
 
     assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
-        reverse('atlas-opportunities') + '?sector=A+value+with+spaces+'
+            reverse('atlas-opportunities') + '?sector=A+value+with+spaces+'
     )
 
 
 def test_sort_opportunities_scale():
-
     opportunities = [
         {
             'scale_value': 100
@@ -88,7 +87,6 @@ def test_sort_opportunities_scale():
 
 
 def test_sort_opportunities_name():
-
     opportunities = [
         {
             'title': 'Ashton Green'
@@ -496,7 +494,6 @@ def test_get_case_study_details_from_response(supplier_case_study_data):
 
 
 def test_get_map_labels_with_vertical_positions_one_word():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['midlands'], 100, 100)
 
     assert len(words_with_coordinates) == 1
@@ -505,7 +502,6 @@ def test_get_map_labels_with_vertical_positions_one_word():
 
 
 def test_get_map_labels_with_vertical_positions_two_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 2
@@ -519,7 +515,6 @@ def test_get_map_labels_with_vertical_positions_two_words():
 
 
 def test_get_map_labels_with_vertical_positions_three_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'of', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 3
@@ -537,7 +532,6 @@ def test_get_map_labels_with_vertical_positions_three_words():
 
 
 def test_get_map_labels_with_vertical_positions_four_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['the', 'south', 'of', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 4

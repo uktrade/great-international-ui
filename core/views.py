@@ -27,6 +27,7 @@ from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 
 import find_a_supplier.forms
+from investment_atlas.helpers import get_sectors_label
 
 
 class QuerystringRedirectView(RedirectView):
@@ -406,6 +407,13 @@ def about_uk_region_listing_page_context_modifier(context, request):
 
     return {
         'regions': regions
+    }
+
+
+@register_context_modifier('InvestmentOpportunityPage')
+def atlas_opportunity_page_context_modifier(context, request):
+    return {
+        'sectors_label': get_sectors_label(context['page'])
     }
 
 
