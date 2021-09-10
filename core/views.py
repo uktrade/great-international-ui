@@ -159,15 +159,12 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
 def sector_landing_page_context_modifier(context, request):
     child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
 
-    cards_list = [{
-        'url': x['full_path'],
-        'title': x['title'],
-        'image': x.get('hero_image_thumbnail', {}).get('url'),
-        'image_alt': x.get('hero_image_thumbnail', {}).get('alt'),
-        'image_width': x.get('hero_image_thumbnail', {}).get('width'),
-        'image_height': x.get('hero_image_thumbnail', {}).get('height'),
-        'summary': x['sub_heading']
-    } for x in child_pages_for_language]
+    cards_list = [create_cards_list_item(
+        x['full_path'],
+        x['title'],
+        x['sub_heading'],
+        x['hero_image_thumbnail']
+    ) for x in child_pages_for_language]
 
     return {
         "cards_list": cards_list
@@ -397,6 +394,24 @@ def about_uk_landing_page_context_modifier(context, request):
     }
 
 
+def create_cards_list_item(url, title, summary, image):
+    base_item = {
+        'url': url,
+        'title': title,
+        'summary': summary,
+    }
+
+    if image:
+        base_item.update({
+            'image': image.get('url'),
+            'image_alt': image.get('alt'),
+            'image_width': image.get('width'),
+            'image_height': image.get('height'),
+        })
+
+    return base_item
+
+
 @register_context_modifier('AboutUkRegionListingPage')
 @register_context_modifier('AboutUkRegionPage')
 def about_uk_region_listing_page_context_modifier(context, request):
@@ -410,15 +425,12 @@ def about_uk_region_listing_page_context_modifier(context, request):
             }
             for x in context['page']['mapped_regions']
         }
-        cards_list = [{
-            'url': x['region']['full_path'],
-            'title': x['region']['title'],
-            'image': x['region'].get('hero_image_thumbnail', {}).get('url'),
-            'image_alt': x['region'].get('hero_image_thumbnail', {}).get('alt'),
-            'image_width': x['region'].get('hero_image_thumbnail', {}).get('width'),
-            'image_height': x['region'].get('hero_image_thumbnail', {}).get('height'),
-            'summary': x['text']
-        } for x in context['page']['mapped_regions']]
+        cards_list = [create_cards_list_item(
+            x['region']['full_path'],
+            x['region']['title'],
+            x['text'],
+            x['region'].get('hero_image_thumbnail')
+        ) for x in context['page']['mapped_regions']]
 
     return {
         'regions': regions,

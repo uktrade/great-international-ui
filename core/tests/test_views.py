@@ -1367,12 +1367,7 @@ def test_region_page_context_decorator_adds_cards_list(mock_cms_response, rf, pa
                     },
                     'title': 'The Northern Ireland',
                     'full_path': '/international/content/about-uk/regions/northern-ireland/',
-                    'hero_image_thumbnail': {
-                        'url': 'northern-ireland.jpg',
-                        'width': 640,
-                        'height': 360,
-                        'alt': 'Northern Ireland scene'
-                    }
+                    'hero_image_thumbnail': None
                 },
                 'text': 'Lorem ipsum'
             },
@@ -1410,6 +1405,8 @@ def test_region_page_context_decorator_adds_cards_list(mock_cms_response, rf, pa
     assert card['image_alt'] == 'Scotland scene'
     assert card['image_width'] == 640
     assert card['image_height'] == 360
+
+    assert 'image' not in response.context_data['cards_list'][1]
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
