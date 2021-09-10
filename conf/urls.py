@@ -38,6 +38,8 @@ urlpatterns = [
         QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
     ),
     url(
+        # Note that some of these URLS from find-a-supplier are superceded by later
+        # entries in the URLConf
         r'^international/trade/',
         include(
             'find_a_supplier.urls',
@@ -255,6 +257,7 @@ urlpatterns += [
         r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
     ),
+    # These override at least one route from the find-a-supplier namespace, included far above
     url(
         r'^international/trade/incoming/$',  # Homepage
         QuerystringRedirectView.as_view(pattern_name='trade-home'),
