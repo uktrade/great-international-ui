@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-    {% if page.featured_images|length > 0 %}
+    {% if page.hero_image %}
         <div class="atlas-hero">
-            <img class="atlas-hero__image" src="{{ page.featured_images.0.value.image }}"
-                 alt="{{ page.featured_images.0.value.image_alt }}">
+            <img class="atlas-hero__image" src="{{ page.hero_image.url }}"
+                 alt="{{ page.hero_image.alt }}">
         </div>
     {% endif %}
 
@@ -23,10 +23,10 @@
                     {{ page.introduction|safe }}
                 </div>
             </div>
-            {% if page.featured_images|length > 1 %}
+            {% if page.intro_image %}
                 <div class="atlas-grid__column atlas-grid__column--6-12-m">
-                    <img src="{{ page.featured_images.1.value.image }}"
-                         alt="{{ page.featured_images.1.value.image_alt }}"
+                    <img src="{{ page.intro_image.url }}"
+                         alt="{{ page.intro_image.alt }}"
                          class="atlas-image atlas-m-b-m">
                 </div>
             {% endif %}
@@ -170,7 +170,6 @@
         <section class="atlas-bg atlas-bg--grey-light">
             <div class="atlas-container atlas-p-t-l atlas-p-b-m">
                 <h2 class="atlas-h--l">Related opportunities</h2>
-
                 {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
             </div>
         </section>

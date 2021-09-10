@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GP2-3392 - Use specific hero and intro images for InvestmentOpportunityPage, following CMS changes
 - NO_TICKET - fixed nav item urls
 - GP2-3223 - Update codebase for new sector modelling in CMS
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
