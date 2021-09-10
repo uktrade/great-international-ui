@@ -5,7 +5,6 @@ from directory_constants import urls
 import pytest
 
 from django.urls import reverse
-from django.utils import translation
 
 from conf.tests.test_urls import reload_urlconf
 from core import constants
