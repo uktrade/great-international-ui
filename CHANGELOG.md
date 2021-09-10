@@ -72,6 +72,7 @@
 ## Hot-Fix
 
 GBAU-896 transition-period-routing
+GBAU-77 hotfix captcha form for contact/trade
 
 ### Implemented enhancements
 
@@ -316,6 +317,7 @@ GBAU-896 transition-period-routing
 ### Hotfix
 
 - No ticket - Fix thumbnail upload in s3
+
 
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
 
