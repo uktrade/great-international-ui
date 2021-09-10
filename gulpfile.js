@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('node-sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
 const imagemin = require('gulp-imagemin');

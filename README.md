@@ -1,4 +1,5 @@
 # great-international-ui
+
 [Great International UI](https://www.directory.exportingisgreat.gov.uk/)
 
 [![code-climate-image]][code-climate]
@@ -24,7 +25,9 @@
 
 ### Docker setup
 
-To start the Great International UI in Docker instead, including the supporting 'directory-cms' service, you will first need to clone [directory-cms](https://github.com/uktrade/directory-cms) in the parent directory, and initialise and populate its secrets file:
+To start the Great International UI in Docker instead, including the supporting 'directory-cms' service, you will first
+need to clone [directory-cms](https://github.com/uktrade/directory-cms) in the parent directory, and initialise and
+populate its secrets file:
 
 ```shell
 $ cd ..
@@ -35,27 +38,33 @@ $ make secrets
 $ cd ../great-international-ui
 ```
 
-You will also need a dump of the directory-cms database, which should be saved as `dockerise/postgres/data/directory_cms.sql`.
+You will also need a dump of the directory-cms database, which should be saved
+as `dockerise/postgres/data/directory_cms.sql`.
 
 Create a secrets file for great-international-ui if you haven't already:
+
 ```shell
 $ make secrets
 ```
 
-Then start the docker containers -- it may take a while the first time, as the data is being seeded into the database and migrations are run:
+Then start the docker containers -- it may take a while the first time, as the data is being seeded into the database
+and migrations are run:
 
 ```shell
 $ docker-compose -f development.yml up
 ```
 
-Once all containers have started, the site will be accessible at <http://international.trade.great:8012/international/>. You may need the following entries in your hosts file:
+Once all containers have started, the site will be accessible at <http://international.trade.great:8012/international/>.
+You may need the following entries in your hosts file:
 
 ```
 127.0.0.1   international.trade.great
 127.0.0.1   cms.trade.great
 ```
 
-You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild teh cache in the directory-cms container:
+You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild teh cache in the
+directory-cms container:
+
 ```shell
 $ make manage rebuild_all_cache
 ```
@@ -64,7 +73,8 @@ $ make manage rebuild_all_cache
 
 ### Configuration
 
-Secrets such as API keys and environment specific configurations are placed in `conf/env/secrets-do-not-commit` - a file that is not added to version control. To create a template secrets file with dummy values run `make secrets`.
+Secrets such as API keys and environment specific configurations are placed in `conf/env/secrets-do-not-commit` - a file
+that is not added to version control. To create a template secrets file with dummy values run `make secrets`.
 
 ### Commands
 
@@ -85,19 +95,25 @@ Secrets such as API keys and environment specific configurations are placed in `
 
 ## CSS development
 
-If you're doing front-end development work you will need to be able to compile the SASS to CSS. For this you need:
+The CSS for Great International UI is compiled using `gulp`.
 
-### Requirements
+First, install dependencies:
 
-[node](https://nodejs.org/en/download/)
+```shell
+$ npm install
+```
 
-[SASS](http://sass-lang.com/)
+Then build and copy all the relevant assets:
 
-[gulp](https://gulpjs.com/)
+```shell
+$ npm run build
+```
 
+Rebuild CSS on file changes:
 
-    $ npm install yarn
-    $ yarn install --production=false
+```shell
+$ npm run watch
+```
 
 ## Translations
 
@@ -108,11 +124,15 @@ If you're doing front-end development work you will need to be able to compile t
 - brew install gettext
 - which msgfmt should be able to find it
 
-After adding new translatable strings, either with `{% trans 'Phrase to translate' %}` in templates or `_('Phrase to translate')` in python, add them to locale files with `django-admin makemessages`. Once translations are added to `.po` files run `django-admin compilemessages` to compile to them `.mo`. For more info see [Django documentation on translation](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/).
+After adding new translatable strings, either with `{% trans 'Phrase to translate' %}` in templates
+or `_('Phrase to translate')` in python, add them to locale files with `django-admin makemessages`. Once translations
+are added to `.po` files run `django-admin compilemessages` to compile to them `.mo`. For more info
+see [Django documentation on translation](https://docs.djangoproject.com/en/2.2/topics/i18n/translation/).
 
 ## Session
 
-Signed cookies are used as the session backend to avoid using a database. We therefore must avoid storing non-trivial data in the session, because the browser will be exposed to the data.
+Signed cookies are used as the session backend to avoid using a database. We therefore must avoid storing non-trivial
+data in the session, because the browser will be exposed to the data.
 
 ## Cookies
 
@@ -126,16 +146,21 @@ Then run the server and visit `international.trade.great:8012`
 
 
 [code-climate-image]: https://codeclimate.com/github/uktrade/great-international-ui/badges/issue_count.svg
+
 [code-climate]: https://codeclimate.com/github/uktrade/great-international-ui
 
 [circle-ci-image]: https://circleci.com/gh/uktrade/great-international-ui/tree/develop.svg?style=shield
+
 [circle-ci]: https://circleci.com/gh/uktrade/great-international/tree/develop
 
 [codecov-image]: https://codecov.io/gh/uktrade/great-international-ui/branch/develop/graph/badge.svg
+
 [codecov]: https://codecov.io/gh/uktrade/great-international-ui
 
 [gitflow-image]: https://img.shields.io/badge/Branching%20strategy-gitflow-5FBB1C.svg
+
 [gitflow]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
 [calver-image]: https://img.shields.io/badge/Versioning%20strategy-CalVer-5FBB1C.svg
+
 [calver]: https://calver.org
