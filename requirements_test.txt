@@ -238,7 +238,7 @@ sorl-thumbnail==12.5.0
     # via -r requirements.in
 soupsieve==2.2.1
     # via beautifulsoup4
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via django
 termcolor==1.1.0
     # via pytest-sugar
