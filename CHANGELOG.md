@@ -3,7 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
-
+- NO_TICKET - fixed nav item urls
 - GP2-3223 - Update codebase for new sector modelling in CMS
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
 - GP2-3221 - Strip back Great International homepage and drop in raw data, ready for styling
