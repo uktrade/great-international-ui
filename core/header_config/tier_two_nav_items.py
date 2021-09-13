@@ -4,7 +4,7 @@ from directory_constants import urls
 
 
 # Until we can update directory-constants, define this just here
-WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'why-invest-in-the-uk'
+WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'content/investment/why-invest-in-the-uk'
 REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
 SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
 
