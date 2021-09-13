@@ -53,8 +53,8 @@ TEMPLATE_MAPPING = {
     # Investment Atlas
     'InvestmentOpportunityPage': 'investment_atlas/opportunity.html',
     'InvestmentAtlasLandingPage': 'investment_atlas/investment.html',
-    'InternationalInvestmentSectorPage': 'core/sector_page.html',
-    'InternationalInvestmentSubSectorPage': 'core/sector_page.html',
+    'InternationalInvestmentSectorPage': 'investment_atlas/sector.html',
+    'InternationalInvestmentSubSectorPage': 'investment_atlas/sector.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {

@@ -65,34 +65,7 @@
         </div>
     </div>
 
-    <div class="atlas-bg--grey-darker atlas-colour--white">
-        <div class="atlas-container">
-            <div class="atlas-opportunity__contact atlas-grid">
-                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
-                    <div class="atlas-media atlas-media--centred">
-                        {% if page.contact_avatar %}
-                            <div class="atlas-media__img">
-                                <div class="atlas-opportunity__contact-image">
-                                    <img src="{{ page.contact_avatar.url }}"
-                                         alt="{{ page.contact_avatar.alt }}">
-                                </div>
-                            </div>
-                        {% endif %}
-                        <div class="atlas-media__body">
-                            <h3 class="atlas-bold">{{ page.contact_name }}</h3>
-                            <p class="atlas-m-0">{{ page.contact_job_title }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
-                    <div class="atlas-opportunity__contact-cta">
-                        <h3 class="atlas-bold">Contact the opportunity lead</h3>
-                        <a href="{{ page.contact_link }}" class="atlas-button atlas-button--white">Get in touch</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include 'investment_atlas/includes/contact.html' with contact=page button_preamble="Contact the opportunity lead" %}
 
     {% for section in page.main_content %}
         <section
@@ -109,6 +82,15 @@
                             </div>
                         {% endif %}
 
+                        {% if block.type == 'image' %}
+                            <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                <div class="atlas-cms-text atlas-p-b-m">
+                                    <img class="atlas-image" src="{{ block.value.image }}"
+                                         alt="{{ block.value.image_alt }}">
+                                </div>
+                            </div>
+                        {% endif %}
+
                         {% if block.type == 'columns' %}
                             {% for column in block.value %}
                                 <div class="atlas-grid__column atlas-grid__column--4-12-m">
@@ -117,15 +99,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                        {% endif %}
-
-                        {% if block.type == 'image' %}
-                            <div class="atlas-grid__column atlas-grid__column--8-12-m">
-                                <div class="atlas-cms-text atlas-p-b-m">
-                                    <img class="atlas-image" src="{{ block.value.image }}"
-                                         alt="{{ block.value.image_alt }}">
-                                </div>
-                            </div>
                         {% endif %}
 
                         {% if section.value.block_slug == 'with-key-links' and page.important_links %}
