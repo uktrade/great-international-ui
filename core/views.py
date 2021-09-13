@@ -429,7 +429,7 @@ def about_uk_region_listing_page_context_modifier(context, request):
             x['region']['full_path'],
             x['region']['title'],
             x['text'],
-            x['region'].get('hero_image_thumbnail')
+            x['region'].get('hero_image')
         ) for x in context['page']['mapped_regions']]
 
     return {
