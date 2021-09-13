@@ -51,7 +51,8 @@
 
                 {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
 
-                <p class="atlas-m-t-l atlas-m-b-s"><a href="#" class="atlas-link">View all investment opportunities</a>
+                <p class="atlas-m-t-l atlas-m-b-s"><a href="/international/investment/opportunities/"
+                                                      class="atlas-link">View all investment opportunities</a>
                 </p>
             </div>
         </section>
@@ -86,7 +87,7 @@
                 <div class="atlas-grid">
                     {% for opportunity in page.early_opportunities %}
                         <div class="atlas-grid__column atlas-grid__column--4-12-m">
-                            <img class="atlas-image atlas-m-b-xs" src="{{ opportunity.value.image.image }}"
+                            <img class="atlas-image" src="{{ opportunity.value.image.image }}"
                                  alt="{{ opportunity.value.image.image_alt }}">
                             <div class="atlas-cms-text atlas-p-s">
                                 {{ opportunity.value.text|safe }}
