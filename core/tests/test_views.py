@@ -269,7 +269,7 @@ test_child_pages = [
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
@@ -279,7 +279,7 @@ test_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-two',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
@@ -292,7 +292,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
@@ -302,7 +302,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-two',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
@@ -312,7 +312,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-three',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article three teaser',
@@ -333,7 +333,7 @@ test_list_page = {
     'page_type': 'InternationalArticleListingPage',
     'meta': {
         'slug': 'article-list',
-        'languages': [('en-gb', 'English')],
+        'languages': [['en-gb', 'English']],
     },
 }
 
@@ -408,7 +408,7 @@ def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page,
         ],
         'meta': {
             'slug': 'slug',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
     }
     mock_get_page.return_value = create_response(page)
