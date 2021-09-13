@@ -385,7 +385,7 @@ def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page,
                     ],
                 },
                 'full_path': '/international/content/investment/sectors/clean-growth/',
-                'title': 'Clean growth',
+                'heading': 'Clean growth',
                 'hero_image_thumbnail': {
                     'url': 'clean-growth.jpg',
                     'width': 640,
@@ -1613,7 +1613,7 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
                     'slug': 'page',
                     'languages': [['en-gb', 'English']],
                 },
-                'title': 'title',
+                'heading': 'title',
                 'sub_heading': 'heading',
                 'full_path': '/some-url/',
                 'hero_image_thumbnail': None

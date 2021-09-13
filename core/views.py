@@ -161,7 +161,7 @@ def sector_landing_page_context_modifier(context, request):
 
     cards_list = [create_cards_list_item(
         x['full_path'],
-        x['title'],
+        x['heading'],
         x['sub_heading'],
         x['hero_image_thumbnail']
     ) for x in child_pages_for_language]
