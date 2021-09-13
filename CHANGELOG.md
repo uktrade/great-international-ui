@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - change Investment sub-menu to feature sectors not industries
 - GP2-3374 - Add new why invest in the uk page
 - GP2-3375 - Remove auto-included sectors from Find a Supplier page + update menu for 'Buy from the UK'
 - GP2-3392 - Use specific hero and intro images for InvestmentOpportunityPage, following CMS changes

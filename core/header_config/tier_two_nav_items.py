@@ -3,9 +3,10 @@ from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
 
 
+# Until we can update directory-constants, define this just here
 WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'why-invest-in-the-uk'
 REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
-INDUSTRIES = urls.international.HOME / 'content/investment/industries/'
+SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
 
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
@@ -22,7 +23,7 @@ WHY_CHOOSE_THE_UK = NavItem(
 INDUSTRIES = NavItem(
     name='industries',
     title=_('Industries'),
-    url=INDUSTRIES
+    url=urls.international.ABOUT_UK_INDUSTRIES
 )
 
 CONTACT_US_ABOUT_UK = NavItem(
@@ -146,4 +147,10 @@ REGIONS = NavItem(
     name='regions',
     title=_('Regions'),
     url=REGIONS_URL
+)
+
+SECTORS = NavItem(
+    name='sectors',
+    title=_('Sectors'),
+    url=SECTORS_URL
 )
