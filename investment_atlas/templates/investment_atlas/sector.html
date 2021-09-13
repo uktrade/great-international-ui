@@ -69,13 +69,40 @@
 
                     {% if block.type == 'nested_content' %}
                         {% for sub_block in block.value %}
-                            <div class="atlas-grid">
-                                {% include 'investment_atlas/includes/downpage_block_content.html' with block=sub_block %}
-                            </div>
+
+                            {% if sub_block.type == 'text' %}
+                                <div class="atlas-grid{% if sub_block.value.image.image %} atlas-grid--masonry{% endif %}">
+                                    {% if sub_block.value.image.image %}
+                                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                                            <div class="atlas-cms-text atlas-p-b-m">
+                                                <img class="atlas-image" src="{{ sub_block.value.image.image }}"
+                                                     alt="{{ sub_block.value.image.image_alt }}">
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="atlas-grid__column{% if sub_block.value.image.image %} atlas-grid__column--left atlas-grid__column--6-12-m{% else %} atlas-grid__column--8-12-m{% endif %}">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ sub_block.value.text|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if sub_block.type == 'columns' %}
+                                <div class="atlas-grid">
+                                {% for column in sub_block.value %}
+                                    <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ column.value|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="atlas-grid">
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
-            </div>
+                </div>
         </section>
     {% endfor %}
 
