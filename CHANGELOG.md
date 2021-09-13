@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 - NOTICKET - Fixed why invest in UK url on navigation
+- NOTICKET - Amend phrasing in Speak To Us panel
 - NOTICKET - change Investment sub-menu to feature sectors not industries
 - GP2-3374 - Add new why invest in the uk page
 - GP2-3375 - Remove auto-included sectors from Find a Supplier page + update menu for 'Buy from the UK'
