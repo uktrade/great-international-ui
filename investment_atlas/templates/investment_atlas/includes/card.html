@@ -1,0 +1,12 @@
+<a href="{{ data.url }}" class="atlas-card atlas-m-b-m">
+    {% if data.image %}
+        <img class="atlas-image" src="{{ data.image }}" alt="{{ data.image_alt }}" width="{{ data.image_width }}"
+             height="{{ data.image_height }}">
+    {% endif %}
+    <div class="atlas-p-s">
+        <h3 class="atlas-h--s atlas-m-b-0">{{ data.title }}</h3>
+        {% if data.summary %}
+            <p class="atlas-m-t-xs">{{ data.summary }}</p>
+        {% endif %}
+    </div>
+</a>

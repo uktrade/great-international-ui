@@ -1,0 +1,37 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% load filter_by_active_language cms_hero from cms_tags %}
+
+{% block content %}
+    {% if page.hero_large %}
+        <div class="atlas-hero">
+            <img class="atlas-hero__image" src="{{ page.hero_large.url }}" alt="{{ page.hero_large.alt }}">
+        </div>
+    {% endif %}
+
+    <div class="atlas-hero__heading">
+        <div class="atlas-container">
+            <h1 class="atlas-h--xl atlas-m-b-m">{{ page.landing_page_title }}</h1>
+            {% if page.hero_teaser %}
+                <div class="atlas-grid">
+                    <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                        <p class="atlas-body--l atlas-m-t-0">{{ page.hero_teaser }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <section class="atlas-container">
+        <div class="atlas-grid">
+            {% for card in cards_list %}
+                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
+                    {% include 'investment_atlas/includes/card.html' with data=card %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+
+{% endblock %}
