@@ -2,8 +2,17 @@
 {% load static %}
 
 {% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
     <div class="atlas-landing__hero">
-        <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
+        <picture>
+            <source srcset="{{ page.mobile_hero_image.url }}" media="(max-width: 767px)"
+                    width="{{ page.mobile_hero_image.width }}"
+                    height="{{ page.mobile_hero_image.height }}">
+            <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}"
+                 width="{{ page.hero_image.width }}"
+                 height="{{ page.hero_image.height }}">
+        </picture>
+
         <div class="atlas-container">
             <div class="atlas-landing__heading">
                 <h1 class="atlas-h--xl">{{ page.title }}</h1>
