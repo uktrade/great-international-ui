@@ -1,0 +1,26 @@
+{% if block.type == 'text' %}
+    <div class="atlas-grid__column atlas-grid__column--8-12-m">
+        <div class="atlas-cms-text atlas-p-b-m">
+            {{ block.value|safe }}
+        </div>
+    </div>
+{% endif %}
+
+{% if block.type == 'image' %}
+    <div class="atlas-grid__column atlas-grid__column--8-12-m">
+        <div class="atlas-cms-text atlas-p-b-m">
+            <img class="atlas-image" src="{{ block.value.image }}"
+                 alt="{{ block.value.image_alt }}">
+        </div>
+    </div>
+{% endif %}
+
+{% if block.type == 'columns' %}
+    {% for column in block.value %}
+        <div class="atlas-grid__column atlas-grid__column--4-12-m">
+            <div class="atlas-cms-text atlas-p-b-m">
+                {{ column.value|safe }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

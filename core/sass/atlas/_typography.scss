@@ -41,11 +41,20 @@
 
 .atlas-h--xl,
 .atlas-h--l,
-.atlas-h--m,
+.atlas-h--m {
+  @include atlas-bold;
+  margin-bottom: .5em;
+}
+
 .atlas-h--s,
 .atlas-h--xs {
   @include atlas-bold;
-  margin-bottom: .5em;
+  margin-bottom: 0;
+
+  & + p,
+  & + ul {
+    margin-top: .125em;
+  }
 }
 
 .atlas-h--xl {
@@ -128,6 +137,14 @@
   }
 }
 
+.atlas-link {
+  color: $atlas-body;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .atlas-cms-text {
   & h2 {
     @extend .atlas-h--l;
@@ -147,21 +164,21 @@
   }
 
   & * + h2,
-  & * + h3,
-  & * + h4,
-  & * + h5,
-  & * + h6 {
+  & * + h3 {
     margin-top: map-get($spacings, "s");
   }
 
   @media (min-width: $breakpoint-medium) {
     & * + h2,
-    & * + h3,
-    & * + h4,
-    & * + h5,
-    & * + h6 {
+    & * + h3 {
       margin-top: map-get($spacings-medium, "m");
     }
+  }
+  
+  & * + h4,
+  & * + h5,
+  & * + h6 {
+    margin-top: 1em;
   }
 
   & p,

@@ -1,0 +1,31 @@
+<div class="atlas-bg--grey-darker atlas-colour--white">
+    <div class="atlas-container">
+        <div class="atlas-opportunity__contact atlas-grid">
+            <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
+                <div class="atlas-media atlas-media--centred">
+                    {% if page.contact_avatar %}
+                        <div class="atlas-media__img">
+                            <div class="atlas-opportunity__contact-image">
+                                <img src="{{ page.contact_avatar.url }}"
+                                     alt="{{ page.contact_avatar.alt }}">
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="atlas-media__body">
+                        <h3 class="atlas-bold">{{ page.contact_name }}</h3>
+                        <p class="atlas-m-0">{{ page.contact_job_title }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-p-v-xs">
+                <div class="atlas-opportunity__contact-cta">
+                    {% if button_preamble %}
+                        <h3 class="atlas-bold">{{ button_preamble }}</h3>
+                    {% endif %}
+                    <a href="{{ page.contact_link }}"
+                       class="atlas-button atlas-button--white">{{ button_label|default:"Get in touch" }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
