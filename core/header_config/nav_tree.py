@@ -63,7 +63,7 @@ ATLAS_HEADER_TREE = [
         tier_two_items=[
             tier_two_nav_items.WHY_INVEST_IN_UK,
             tier_two_nav_items.REGIONS,
-            tier_two_nav_items.INDUSTRIES,
+            tier_two_nav_items.SECTORS,
             tier_two_nav_items.INVESTMENT_OPPORTUNITIES
         ]
     ),
