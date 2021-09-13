@@ -44,6 +44,7 @@ TEMPLATE_MAPPING = {
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage': 'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
+    'WhyInvestInTheUKPage': 'invest/why_invest_in_the_uk_page.html',
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
@@ -187,6 +188,11 @@ GA_DATA_MAPPING = {
     'InvestRegionPage': {
         'business_unit': 'Invest',
         'site_section': 'Regions',
+        'site_subsection': 'DetailPage',
+    },
+    'WhyInvestInTheUKPage': {
+        'business_unit': 'Invest',
+        'site_section': 'WhyInvestInTheUKPage',
         'site_subsection': 'DetailPage',
     },
 

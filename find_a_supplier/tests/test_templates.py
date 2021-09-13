@@ -4,6 +4,10 @@ from django.utils import translation
 from django.template.loader import render_to_string
 
 
+@pytest.mark.skip(
+    'Skipped while the sector/industries panel is hidden '
+    'in find_a_supplier/templates/find_a_supplier/landing_page.html'
+)
 @pytest.mark.parametrize('lang,exp_industries', [
     ('en-gb', 3),
     ('de', 2),
