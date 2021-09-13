@@ -1592,6 +1592,56 @@ def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
     assert response.status_code == 200
 
 
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_industries_about_uk_path_exists(mock_get_page, client, settings):
+    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
+    reload_urlconf(settings)
+
+    page = {
+        'title': 'Industries',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+            ],
+            'slug': 'industries'
+        },
+        'page_type': 'InternationalTopicLandingPage',
+        'landing_page_title': 'title',
+        'child_pages': [
+            {
+                'meta': {
+                    'slug': 'page',
+                    'languages': [['en-gb', 'English']],
+                },
+                'title': 'title',
+                'sub_heading': 'heading',
+                'full_path': '/some-url/',
+                'hero_image_thumbnail': None
+            }
+        ]
+    }
+
+    def side_effect(*args, **kwargs):
+        if kwargs['path'] == 'industries':
+            return create_response(status_code=404)
+        if kwargs['path'] == 'about-uk/industries':
+            return create_response(json_payload=page, status_code=200)
+        return create_response(status_code=500)
+
+    mock_get_page.side_effect = side_effect
+
+    response = client.get('/international/content/industries/')
+
+    assert mock_get_page.call_count == 2
+    assert mock_get_page.mock_calls[1] == call(
+        draft_token=None,
+        language_code='en-gb',
+        path='about-uk/industries',
+        site_id=2
+    )
+    assert response.status_code == 200
+
+
 def test_business_environment_form_view(client):
     response = client.get(reverse('business-environment-guide-form'))
     assert 'privacy-notice-uk-investment-prospectus' in response.context_data['privacy_url']
