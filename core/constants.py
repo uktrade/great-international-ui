@@ -55,6 +55,7 @@ TEMPLATE_MAPPING = {
     'InvestmentAtlasLandingPage': 'investment_atlas/investment.html',
     'InternationalInvestmentSectorPage': 'investment_atlas/sector.html',
     'InternationalInvestmentSubSectorPage': 'investment_atlas/sector.html',
+    'InvestmentGeneralContentPage': 'investment_atlas/general_content_page.html'
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -260,8 +261,13 @@ GA_DATA_MAPPING = {
     },
     'InvestmentAtlasLandingPage': {
         'business_unit': 'GreatInternational',
-        'site_section': 'InvestmentHomePage',
+        'site_section': 'InvestmentAtlas',
         'site_subsection': 'LandingPage',
+    },
+    'InvestmentGeneralContentPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentAtlas',
+        'site_subsection': 'ContentPage',
     }
 }
 
@@ -286,6 +292,10 @@ HEADER_SECTION_MAPPING = {
     r'^investment/opportunities.*': HeaderConfig(
         section=tier_one.INVEST_IN_UK,
         sub_section=tier_two.INVESTMENT_OPPORTUNITIES,
+    ),
+    r'^investment/how-we-can-help.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.HOW_WE_CAN_HELP_INVESTMENT_ATLAS,
     ),
     r'^investment.*': HeaderConfig(
         section=tier_one.INVEST_IN_UK,
