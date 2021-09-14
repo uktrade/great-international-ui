@@ -157,16 +157,18 @@ class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
-    def rename_heading_field(page):
-        page['landing_page_title'] = page['heading']
-        return page
+    child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
 
-    context['page']['child_pages'] = [
-        rename_heading_field(child_page)
-        for child_page in context['page']['child_pages']]
+    cards_list = [create_cards_list_item(
+        x['full_path'],
+        x['heading'],
+        x['sub_heading'],
+        x['hero_image_thumbnail']
+    ) for x in child_pages_for_language]
 
-    context['about_uk_link'] = urls.international.ABOUT_UK_HOME
-    return context
+    return {
+        "cards_list": cards_list
+    }
 
 
 @register_context_modifier('AboutUkWhyChooseTheUkPage')
@@ -188,6 +190,7 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 
 class InternationalContactPageView(CountryDisplayMixin, InternationalView):
     template_name = 'core/contact_page.html'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
@@ -392,10 +395,29 @@ def about_uk_landing_page_context_modifier(context, request):
     }
 
 
+def create_cards_list_item(url, title, summary, image):
+    base_item = {
+        'url': url,
+        'title': title,
+        'summary': summary,
+    }
+
+    if image:
+        base_item.update({
+            'image': image.get('url'),
+            'image_alt': image.get('alt'),
+            'image_width': image.get('width'),
+            'image_height': image.get('height'),
+        })
+
+    return base_item
+
+
 @register_context_modifier('AboutUkRegionListingPage')
 @register_context_modifier('AboutUkRegionPage')
 def about_uk_region_listing_page_context_modifier(context, request):
     regions = {}
+    cards_list = []
     if 'mapped_regions' in context['page']:
         regions = {
             # variable names in templates can only contain underscores and letters/numbers:
@@ -404,9 +426,16 @@ def about_uk_region_listing_page_context_modifier(context, request):
             }
             for x in context['page']['mapped_regions']
         }
+        cards_list = [create_cards_list_item(
+            x['region']['full_path'],
+            x['region']['title'],
+            x['text'],
+            x['region'].get('hero_image_thumbnail')
+        ) for x in context['page']['mapped_regions']]
 
     return {
-        'regions': regions
+        'regions': regions,
+        'cards_list': cards_list
     }
 
 
@@ -451,8 +480,7 @@ class LegacyRedirectCoreView(View):
 class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, FormView):
     form_class = forms.CapitalInvestContactForm
     success_url = '/international/content/capital-invest/contact/success'
-    header_section = tier_one_nav_items.INVEST_CAPITAL
-    header_sub_section = tier_two_nav_items.CONTACT_US_INVEST_CAPITAL
+    header_section = tier_one_nav_items.CONTACT
 
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(
@@ -650,10 +678,16 @@ def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
 
 
-class InternationalContactTriageView(GA360Mixin, EnableTranslationsMixin, InternationalHeaderMixin, FormView):
+class InternationalContactTriageView(
+    GA360Mixin,
+    EnableTranslationsMixin,
+    InternationalHeaderMixin,
+    FormView,
+):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
     success_url = urls.domestic.CONTACT_US + 'international/'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()

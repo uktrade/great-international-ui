@@ -3,9 +3,12 @@ from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
 
 
-WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'why-invest-in-the-uk'
+# Until we can update directory-constants, define this just here
+WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'content/investment/why-invest-in-the-uk'
 REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
-INDUSTRIES = urls.international.HOME / 'content/investment/industries/'
+SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
+INVESTMENT_OPPORTUNITIES_URL = urls.international.HOME / 'investment/opportunities/'
+
 
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
@@ -22,7 +25,7 @@ WHY_CHOOSE_THE_UK = NavItem(
 INDUSTRIES = NavItem(
     name='industries',
     title=_('Industries'),
-    url=INDUSTRIES
+    url=urls.international.ABOUT_UK_INDUSTRIES
 )
 
 CONTACT_US_ABOUT_UK = NavItem(
@@ -72,12 +75,6 @@ INVESTMENT_TYPES = NavItem(
     name='investment-types',
     title=_('Investment types'),
     url=urls.international.CAPITAL_INVEST_HOME / 'investment-types'
-)
-
-INVESTMENT_OPPORTUNITIES = NavItem(
-    name='investment-opportunities',
-    title=_('Investment Opportunities'),
-    url=urls.international.CAPITAL_INVEST_OPPORTUNITIES
 )
 
 # This page does not yet exist - will 404 for now.
@@ -146,4 +143,16 @@ REGIONS = NavItem(
     name='regions',
     title=_('Regions'),
     url=REGIONS_URL
+)
+
+SECTORS = NavItem(
+    name='sectors',
+    title=_('Sectors'),
+    url=SECTORS_URL
+)
+
+INVESTMENT_OPPORTUNITIES = NavItem(
+    name='investment-opportunities',
+    title=_('Investment Opportunities'),
+    url=INVESTMENT_OPPORTUNITIES_URL
 )

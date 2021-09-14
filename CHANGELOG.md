@@ -3,6 +3,13 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GP2-3399+GP2-3401 - Nav fixups
+- NOTICKET - Fixed why invest in UK url on navigation
+- NOTICKET - Amend phrasing in Speak To Us panel
+- NOTICKET - change Investment sub-menu to feature sectors not industries
+- GP2-3374 - Add new why invest in the uk page
+- GP2-3375 - Remove auto-included sectors from Find a Supplier page + update menu for 'Buy from the UK'
+- GP2-3392 - Use specific hero and intro images for InvestmentOpportunityPage, following CMS changes
 - NO_TICKET - fixed nav item urls
 - GP2-3223 - Update codebase for new sector modelling in CMS
 - GP2-3282 - Middleware to remove PII from MS Safe Links in request path
@@ -17,6 +24,7 @@
 - GP2-3155 - Styled Atlas region listing page
 - GP2-3235 - Styled International homepage
 - GP2-3155 - Styled Atlas region details page
+- GP2-3236 - Styled Sector listing page
 
 ### Fixed bugs
 
@@ -71,8 +79,8 @@
 
 ## Hot-Fix
 
-GBAU-896 transition-period-routing
-GBAU-77 hotfix captcha form for contact/trade
+- GBAU-896 transition-period-routing
+- GBAU-77 hotfix captcha form for contact/trade
 
 ### Implemented enhancements
 
@@ -317,7 +325,6 @@ GBAU-77 hotfix captcha form for contact/trade
 ### Hotfix
 
 - No ticket - Fix thumbnail upload in s3
-
 
 ## [2019.12.02](https://github.com/uktrade/great-international-ui/releases/tag/2019.12.02)
 

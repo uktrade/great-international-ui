@@ -1,0 +1,128 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
+
+    {% if page.hero_image %}
+        <div class="atlas-hero">
+            <img class="atlas-hero__image" src="{{ page.hero_image.url }}"
+                 alt="{{ page.hero_image.alt }}">
+        </div>
+    {% endif %}
+
+    <div class="atlas-hero__heading">
+        <div class="atlas-container">
+            <h1 class="atlas-h--xl atlas-m-b-0">{{ page.title }}</h1>
+        </div>
+    </div>
+
+    <div class="atlas-container">
+        <div class="atlas-grid">
+            <div class="atlas-grid__column atlas-grid__column--6-12-m">
+                <p class="atlas-body--l atlas-m-t-0">{{ page.sub_heading }}</p>
+            </div>
+        </div>
+
+        <div class="atlas-grid atlas-grid--masonry">
+            {% if page.intro_image %}
+                <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                    <img src="{{ page.intro_image.url }}"
+                         alt="{{ page.intro_image.alt }}"
+                         class="atlas-image atlas-m-b-m">
+                </div>
+            {% endif %}
+
+            <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--{% if page.intro_image %}6{% else %}8{% endif %}-12-m">
+                <div class="atlas-cms-text atlas-m-b-m">
+                    {{ page.intro_text|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if page.contact_name %}
+        {% include 'investment_atlas/includes/contact.html' with contact=page button_preamble=page.contact_link_button_preamble button_label=page.contact_link_button_label %}
+    {% endif %}
+
+    {% if page.related_opportunities|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">{{ page.related_opportunities_header }}</h2>
+
+                {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
+
+                <p class="atlas-m-t-l atlas-m-b-s"><a href="/international/investment/opportunities/"
+                                                      class="atlas-link">View all investment opportunities</a>
+                </p>
+            </div>
+        </section>
+    {% endif %}
+
+    {% for section in page.downpage_content %}
+        <section class="atlas-alternate-bg">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+                {% for block in section.value.content %}
+
+                    {% if block.type == 'header' %}
+                        <h2 class="atlas-h--l atlas-m-b-m">{{ block.value }}</h2>
+                    {% endif %}
+
+                    {% if block.type == 'nested_content' %}
+                        {% for sub_block in block.value %}
+
+                            {% if sub_block.type == 'text' %}
+                                <div class="atlas-grid{% if sub_block.value.image.image %} atlas-grid--masonry{% endif %}">
+                                    {% if sub_block.value.image.image %}
+                                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                                            <div class="atlas-cms-text atlas-p-b-m">
+                                                <img class="atlas-image" src="{{ sub_block.value.image.image }}"
+                                                     alt="{{ sub_block.value.image.image_alt }}">
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="atlas-grid__column{% if sub_block.value.image.image %} atlas-grid__column--left atlas-grid__column--6-12-m{% else %} atlas-grid__column--8-12-m{% endif %}">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ sub_block.value.text|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if sub_block.type == 'columns' %}
+                                <div class="atlas-grid">
+                                {% for column in sub_block.value %}
+                                    <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ column.value|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="atlas-grid">
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                </div>
+        </section>
+    {% endfor %}
+
+    {% if page.early_opportunities|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">{{ page.early_opportunities_header|default:"Early investment opportunities" }}</h2>
+
+                <div class="atlas-grid">
+                    {% for opportunity in page.early_opportunities %}
+                        <div class="atlas-grid__column atlas-grid__column--4-12-m atlas-m-t-m">
+                            <img class="atlas-image" src="{{ opportunity.value.image.image }}"
+                                 alt="{{ opportunity.value.image.image_alt }}">
+                            <div class="atlas-cms-text atlas-p-s">
+                                {{ opportunity.value.text|safe }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
