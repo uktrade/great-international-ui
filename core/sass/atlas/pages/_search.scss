@@ -1,0 +1,32 @@
+@import '../tokens';
+@import '../mixins';
+
+.atlas-search-filter__toggle {
+  .atlas-button__icon {
+    transform: rotate(90deg);
+    transition: transform ease-in-out .25s;
+  }
+
+  &[aria-expanded=true] .atlas-button__icon {
+    transform: rotate(-90deg);
+  }
+}
+
+.atlas-search__submit {
+  background: white;
+  position: sticky;
+  bottom: 0;
+}
+
+.atlas-search-sort {
+  display: flex;
+  width: auto;
+  margin-left: auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.atlas-search-sort__label {
+  @include atlas-bold;
+  margin-right: 1em;
+}

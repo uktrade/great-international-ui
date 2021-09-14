@@ -9,6 +9,9 @@ $atlas-grey-lighter: #f5f5f7;
 $atlas-green-light: #8ce2d0;
 $atlas-body: #1e1348;
 
+$magna-blue-deep-20: #d2d0da;
+$magna-blue-deep-60: #787191;
+
 $page-gutter: 15px;
 $page-gutter-medium: 16px;
 $page-gutter-large: 30px;
@@ -20,6 +23,8 @@ $breakpoint-small: 640px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1300px;
+
+$breakpoint-suffixes: ("-s": $breakpoint-small, "-m": $breakpoint-medium, "-l": $breakpoint-large, "-xl": $breakpoint-xlarge);
 
 $spacings: ("xs": 10px, "s": 15px, "m": 30px, "l": 45px, "xl": 75px);
 $spacings-medium: ("xs": 15px, "s": 25px, "m": 40px, "l": 60px, "xl": 100px);

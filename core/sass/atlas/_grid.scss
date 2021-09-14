@@ -120,8 +120,7 @@ $half-gutter-large: $grid-gutter-large / 2;
 
 @include columns('');
 
-$screen-sizes: ("-m": $breakpoint-medium, "-l": $breakpoint-large);
-@each $suffix, $breakpoint in $screen-sizes {
+@each $suffix, $breakpoint in $breakpoint-suffixes {
   @media (min-width: $breakpoint) {
     @include columns($suffix);
   }

@@ -1,0 +1,72 @@
+@import '../tokens';
+@import '../mixins';
+
+// Radios and checkboxes
+.atlas .multiple-choice {
+  padding-left: 2.5em;
+
+  & label {
+    padding-right: 0;
+    padding-left: 0;
+
+    &:before {
+      top: 3px;
+      width: 28px;
+      height: 28px;
+      color: $magna-blue-deep-20;
+      border-color: inherit;
+    }
+
+    &:after {
+      color: $magna-blue-deep-60;
+    }
+  }
+}
+
+.atlas .multiple-choice input:focus + label:before,
+.atlas .multiple-choice label:hover:before {
+  color: $magna-blue-deep-60;
+}
+
+.atlas .multiple-choice [type=checkbox] + label {
+  &:before {
+    border-radius: 4px;
+  }
+
+  &:after {
+    width: 15px;
+    height: 6px;
+    left: 6px;
+    top: 11px;
+  }
+}
+
+.atlas .multiple-choice [type=radio] + label {
+  &:before {
+    color: $magna-blue-deep-20;
+  }
+
+  &:after {
+    left: 6px;
+  }
+}
+
+// Select dropdowns
+.atlas select.form-control {
+  @include atlas-regular;
+  position: relative;
+  padding-right: 2em;
+  background-color: $atlas-white;
+  background-image: url('../images/atlas/svg/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 32px 16px;
+  border-color: $magna-blue-deep-20;
+  border-radius: 10px;
+
+  &:focus {
+    border-width: 2px;
+    border-color: $magna-blue-deep-60;
+    margin: 0;
+  }
+}

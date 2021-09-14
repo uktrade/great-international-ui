@@ -14,6 +14,7 @@
   text-align: center;
   color: $atlas-white;
   background-color: $atlas-black;
+  cursor: pointer;
 
   @media (min-width: $breakpoint-small) {
     width: auto;
@@ -29,12 +30,26 @@
   background-color: $atlas-white;
 }
 
+.atlas-button--link {
+  @include atlas-regular;
+  padding: 0;
+  color: $atlas-body;
+  background: transparent;
+  width: auto;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .atlas-button__icon {
   width: 1em;
   height: 1em;
+  pointer-events: none;
 
   &:last-child {
-    margin: 0 -.5em 0 .5em;
+    margin-left: .5em;
   }
 
   & svg {

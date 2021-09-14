@@ -1,106 +1,113 @@
-{% extends 'core/base_cms.html' %}
+{% extends 'investment_atlas/base_cms.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
 
-{% load breadcrumbs search_page_selected_filters search_page_expandable_options pagination from directory_components %}
+{% load pagination from directory_components %}
 
-{% block header_js %}
-    {{ block.super }}
-    <script src="{% static 'directory_components/js/dit.components.searchPageExpandableOptions.js' %}"></script>
-{% endblock %}
-
-{% block css_layout_class %}
-    {% comment %} TO COME DURING FE TICKET {% endcomment %}
-{% endblock %}
+{#{% block header_js %}#}
+{#    {{ block.super }}#}
+{#    <script src="{% static 'directory_components/js/dit.components.searchPageExpandableOptions.js' %}"></script>#}
+{#{% endblock %}#}
 
 {% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=pagination.object_list %}
 
+    <form id="opportunities-search-form" action="{{ paginator_url }}" class="atlas-bg--grey-lighter">
+        <div class="atlas-container atlas-container--wide atlas-p-v-m">
+            <div class="atlas-grid">
+                <section class="atlas-grid__column atlas-grid__column--4-12-l atlas-grid__column--3-12-xl atlas-m-b-s">
+                    <div class="atlas-bg--white atlas-p-s">
+                        <h1 class="atlas-h--s atlas-m-b-s">Investment opportunities</h1>
 
-<section id="breadcrumb-section">
-  <div class="container">
-    {% breadcrumbs page.breadcrumbs_label %}
-        <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
-        <a href="{{ investment_atlas_home_link.url }}">{{investment_atlas_home_link.label}}</a>
-    {% endbreadcrumbs %}
-  </div>
-</section>
+                        {#                        {% if filters %}#}
+                        {#                            <div>#}
+                        {#                                <label>{% trans 'Selected filters' %}</label>#}
+                        {#                                {% for value in filters %}#}
+                        {#                                    <mark>{{ value }}</mark>#}
+                        {#                                {% endfor %}#}
+                        {#                                <a href="{% url 'atlas-opportunities' %}">{% trans 'Clear all' %}</a>#}
+                        {#                            </div>#}
+                        {#                        {% endif %}#}
 
-<section>
-    <div class="page-title">
-        <div class="container">
-            <div class="grid-row">
-                <div class="column-two-thirds">
-                    <h2 class="heading-medium"> {{num_of_opportunities}} {{page.search_results_title}}  </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="down-arrow"></div>
-
-    <form action="{{ paginator_url }}">
-        <div class="container" >
-            <div class="flex-grid">
-                <div class="column-quarter-xl filter-column" id="filter-column">
-                    <section class="filter-title font-small">
-                        <span>{% trans 'Filter results' %}</span>
-                    </section>
-                    <section class="margin-bottom-15">
-                        {% url 'atlas-opportunities' as opportunities_url %}
-                        {% search_page_selected_filters filters=filters clear_all_link=opportunities_url %}
-                        {% if sectors %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Sectors' field=form.sector %}
-                            </fieldset>
-                        {% endif %}
-                        {% if sub_sectors %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Sub-sectors' field=form.sub_sector %}
-                            </fieldset>
-                        {% endif %}
-                        {% if scales %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Scale (GDV or Capex)' field=form.scale %}
-                            </fieldset>
-                        {% endif %}
-                        {% if regions|length > 1 %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Region' field=form.region %}
-                            </fieldset>
-                        {% endif %}
-                        {% if investment_types %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Investment type' field=form.investment_type %}
-                            </fieldset>
-                        {% endif %}
-                        {% if planning_statuses %}
-                            <fieldset>
-                                {% search_page_expandable_options label='Planning status' field=form.planning_status %}
-                            </fieldset>
-                        {% endif %}
-                        <button class="button update-button" type="submit">{% trans 'Update results' %}</button>
-                    </section>
-                </div>
-
-                <div class="column-three-quarters-xl">
-                    <div class="font-small sort-by-container">
-                        <label>
-                            <span>{% trans 'Sort by' %}:</span>
-                            {{ form.sort_by }}
-                        </label>
+                        <button class="atlas-search-filter__toggle atlas-button atlas-button--link atlas-visually-hidden-l atlas-hidden-nojs"
+                                type="button"
+                                aria-controls="atlas-search-filters" data-reveal-button>
+                            Filter results
+                            <span class="atlas-button__icon">
+                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
+                        </button>
                     </div>
+
+                    <div id="atlas-search-filters"
+                         class="atlas-reveal__contents atlas-reveal__contents--show-l">
+                        <div class="atlas-bg atlas-bg--white atlas-p-s">
+                            {% if sectors %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
+                            {% endif %}
+
+                            {% if sub_sectors %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Sub-sectors' field=form.sub_sector %}
+                            {% endif %}
+
+                            {% if regions|length > 1 %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Region' field=form.region %}
+                            {% endif %}
+
+                            {% if investment_types %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Investment type' field=form.investment_type %}
+                            {% endif %}
+
+                            {% if scales %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
+                            {% endif %}
+
+                            {% if planning_statuses %}
+                                {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
+                            {% endif %}
+                        </div>
+
+                        <div class="atlas-search__submit atlas-bg--white atlas-p-s">
+                            <button class="atlas-button atlas-search__button" type="submit">
+                                {% trans 'Update results' %}
+                            </button>
+
+                            <p class="atlas-m-t-s atlas-m-b-0">
+                                <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                    {% trans 'Clear all filters' %}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="atlas-grid__column atlas-grid__column--8-12-l atlas-grid__column--9-12-xl">
+                    <div class="atlas-search-sort atlas-m-b-s">
+                        <label for="{{ form.sort_by.id_for_label }}" class="atlas-search-sort__label">
+                            {% trans 'Sort by' %}:
+                        </label>
+                        <div>
+                            {{ form.sort_by }}
+                        </div>
+                    </div>
+
                     <ul>
                         {% for opportunity in pagination.object_list %}
-                            <li class="opportunity-card">
-                                <a class="card-link" href="{{ opportunity.full_path }}">
-                                    <div class="card-image-left column-third-l margin-bottom-30"
-                                        role="img"
-                                        style="background-image: url({{ opportunity.hero_image.url }});">
-                                    </div>
-                                    <div class="card-inner padding-horizontal-45 column-two-thirds-l margin-bottom-30">
-                                        <span class="heading-small margin-top-30">{{ opportunity.title }}</span>
-                                        <p class="bold-xsmall margin-top-15">{{ opportunity.scale }}</p>
-                                        <p class="font-xsmall margin-bottom-30">{{ opportunity.sub_sectors|join:", " }}</p>
+                            <li>
+                                <a class="atlas-card atlas-bg--white atlas-search__result atlas-p-h-s atlas-p-t-s atlas-m-b-s"
+                                   href="{{ opportunity.full_path }}">
+                                    <div class="atlas-grid">
+                                        <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--4-12-l atlas-p-b-s">
+                                            <img class="atlas-image" src="{{ opportunity.hero_image.url }}"
+                                                 alt="{{ opportunity.title }}">
+                                        </div>
+
+                                        <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--8-12-l atlas-p-b-s">
+                                            <h4 class="atlas-card__heading atlas-h--m atlas-m-0">{{ opportunity.title }}</h4>
+                                            {% if opportunity.search_description %}
+                                                <p class="atlas-m-t-s atlas-m-b-0">{{ opportunity.search_description }}</p>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </a>
                             </li>
@@ -108,12 +115,10 @@
                             <h2 class="heading-medium">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</h2>
                         {% endfor %}
                     </ul>
-                    {% pagination pagination_page=pagination %}
-                </div>
 
+                    {% pagination pagination_page=pagination %}
+                </section>
             </div>
         </div>
     </form>
-</section>
-
 {% endblock content %}

@@ -1,20 +1,30 @@
+// Base styles
 @import 'typography';
 @import 'layout';
 @import 'grid';
 @import 'spacing';
 @import 'colours';
 @import 'helpers';
+@import 'visibility';
 
+// govuk-elements and directory-components overrides
+@import 'overrides/forms';
+
+// Atlas-specific components
 @import 'components/header';
 @import 'components/footer';
 @import 'components/hero';
 @import 'components/buttons';
+@import 'components/icons';
 @import 'components/images';
 @import 'components/card';
 @import 'components/media';
 @import 'components/svg-map';
+@import 'components/reveal';
 
+// Atlas-specific page styles
 @import 'pages/home';
 @import 'pages/landing-page';
 @import 'pages/opportunity';
 @import 'pages/region-listing';
+@import 'pages/search';
