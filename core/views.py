@@ -190,6 +190,7 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
 
 class InternationalContactPageView(CountryDisplayMixin, InternationalView):
     template_name = 'core/contact_page.html'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
@@ -479,8 +480,7 @@ class LegacyRedirectCoreView(View):
 class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, FormView):
     form_class = forms.CapitalInvestContactForm
     success_url = '/international/content/capital-invest/contact/success'
-    header_section = tier_one_nav_items.INVEST_CAPITAL
-    header_sub_section = tier_two_nav_items.CONTACT_US_INVEST_CAPITAL
+    header_section = tier_one_nav_items.CONTACT
 
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(
@@ -678,10 +678,16 @@ def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
 
 
-class InternationalContactTriageView(GA360Mixin, EnableTranslationsMixin, InternationalHeaderMixin, FormView):
+class InternationalContactTriageView(
+    GA360Mixin,
+    EnableTranslationsMixin,
+    InternationalHeaderMixin,
+    FormView,
+):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
     success_url = urls.domestic.CONTACT_US + 'international/'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()

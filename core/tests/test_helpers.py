@@ -554,30 +554,20 @@ def test_get_map_labels_with_vertical_positions_four_words():
 
 @pytest.mark.parametrize('path,expected_section_name,expected_sub_section_name', [
     ('', '', ''),
-    ('about-uk', 'about-uk', 'overview-about-uk'),
-    ('about-uk/regions', 'about-uk', 'regions'),
-    ('about-uk/regions/wales', 'about-uk', 'regions'),
-    ('about-uk/why-choose-uk', 'about-uk', 'why-choose-the-uk'),
-    ('about-uk/some-other-page', 'about-uk', ''),
-    ('industries', 'about-uk', 'industries'),
-    ('industries/energy', 'about-uk', 'industries'),
-    ('how-to-setup-in-the-uk', 'expand', 'how-to-expand'),
-    ('how-to-setup-in-the-uk/article-name', 'expand', 'how-to-expand'),
-    ('expand/contact', 'expand', 'contact-us-expand'),
-    ('expand', 'expand', 'overview-expand'),
-    ('expand/some-other-page', 'expand', ''),
-    ('opportunities', 'invest-capital', 'investment-opportunities'),
-    ('opportunities/an-opportunity', 'invest-capital', 'investment-opportunities'),
-    ('capital-invest/contact', 'invest-capital', 'contact-us-invest-capital'),
-    ('capital-invest/contact/success', 'invest-capital', 'contact-us-invest-capital'),
-    ('capital-invest', 'invest-capital', 'overview-invest-capital'),
-    ('capital-invest/some-other-page', 'invest-capital', ''),
+    ('investment/why-invest-in-the-uk', 'invest-in-the-uk', 'why-invest-in-the-uk'),
+    ('investment/regions', 'invest-in-the-uk', 'regions'),
+    ('investment/sectors', 'invest-in-the-uk', 'sectors'),
+    ('investment/why-invest-in-the-uk', 'invest-in-the-uk', 'why-invest-in-the-uk'),
+    ('investment/opportunities', 'invest-in-the-uk', 'investment-opportunities'),
+
     ('trade', 'trade', 'find-a-supplier'),
     ('trade/search', 'trade', 'find-a-supplier'),
     ('trade/contact', 'trade', 'contact-us-trade'),
-    ('about-us', 'about-us', 'overview-about-dit'),
-    ('about-us/some-other-page', 'about-us', ''),
-    ('about-us/contact', 'about-us', 'contact-us-about-dit'),
+    ('trade/how-we-help-you-buy', 'trade', 'how-we-help-buy'),
+
+    ('contact/triage', 'contact', ''),
+    ('invest/contact', 'contact', ''),
+
 ])
 def test_get_header_config(path, expected_section_name, expected_sub_section_name):
     header_config = get_header_config(path)
