@@ -46,10 +46,13 @@
 .atlas-button__icon {
   width: 1em;
   height: 1em;
+  margin-left: .5em;
+  margin-right: -.5em;
   pointer-events: none;
 
-  &:last-child {
-    margin-left: .5em;
+  &.atlas-button__icon--first {
+    margin-left: -.5em;
+    margin-right: .5em;
   }
 
   & svg {

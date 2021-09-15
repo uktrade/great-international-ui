@@ -1,16 +1,12 @@
 {% extends 'investment_atlas/base_cms.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
+{% load update_query_params from atlas_tags %}
 
 {% load pagination from directory_components %}
 
-{#{% block header_js %}#}
-{#    {{ block.super }}#}
-{#    <script src="{% static 'directory_components/js/dit.components.searchPageExpandableOptions.js' %}"></script>#}
-{#{% endblock %}#}
-
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=pagination.object_list %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=pagination.num_pages %}
 
     <form id="opportunities-search-form" action="{{ paginator_url }}" class="atlas-bg--grey-lighter">
         <div class="atlas-container atlas-container--wide atlas-p-v-m">
@@ -34,8 +30,8 @@
                                 aria-controls="atlas-search-filters" data-reveal-button>
                             Filter results
                             <span class="atlas-button__icon">
-                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                </span>
+                                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                            </span>
                         </button>
                     </div>
 
@@ -116,7 +112,33 @@
                         {% endfor %}
                     </ul>
 
-                    {% pagination pagination_page=pagination %}
+                    {#                    {% if pagination.num_pages > 1 %}#}
+                    <div class="atlas-pagination">
+                        {% if pagination.has_previous %}
+                            <a href="?{% update_query_params page=pagination.previous_page_number %}"
+                               class="atlas-button atlas-pagination__previous">
+                                <span class="atlas-button__icon atlas-button__icon--first">
+                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
+                                Previous
+                            </a>
+                        {% endif %}
+
+                        <p class="atlas-pagination__number">Page {{ pagination.page }}
+                            of {{ pagination.num_pages }}</p>
+
+                        {% if pagination.has_next %}
+                            <a href="?{% update_query_params page=pagination.next_page_number %}"
+                               class="atlas-button atlas-pagination__next">
+                                Next
+                                <span class="atlas-button__icon">
+                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
+                            </a>
+                        {% endif %}
+                    </div>
+                    {#                    {% endif %}#}
+
                 </section>
             </div>
         </div>
