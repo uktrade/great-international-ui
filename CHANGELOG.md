@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 
+- GP2-3400 - Atlas general content page
 - GP2-3403 - Atlas opportunities listing page
 - GP2-3400: Template for generic atlas content page, which can be used for new How We Can Help page
 - GP2-3399+GP2-3401 - Nav fixups
