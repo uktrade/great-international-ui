@@ -12,10 +12,30 @@
   }
 }
 
+.atlas-search__filters {
+  fieldset {
+    break-inside: avoid;
+  }
+
+  @media (min-width: $breakpoint-xsmall) and (max-width: ($breakpoint-large - 1px)) {
+    columns: 2;
+  }
+}
+
 .atlas-search__submit {
   background: white;
   position: sticky;
   bottom: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 0;
+    height: 20px;
+    box-shadow: 0 -10px 10px 0px white;
+  }
 }
 
 .atlas-search-sort {
@@ -29,4 +49,10 @@
 .atlas-search-sort__label {
   @include atlas-bold;
   margin-right: 1em;
+}
+
+.atlas-search__button {
+  @media (min-width: $breakpoint-large) {
+    width: 100%;
+  }
 }
