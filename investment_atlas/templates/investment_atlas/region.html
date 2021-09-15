@@ -8,7 +8,14 @@
             <div class="atlas-grid">
                 <div class="atlas-grid__column atlas-grid__column--6-12-m">
                     <h1 class="atlas-h--xl atlas-m-b-m">{{ page.title }}</h1>
-                    <p class="atlas-body--l">{{ page.region_summary_section_intro }}</p>
+
+                    {% if page.region_summary_section_strapline %}
+                        <p class="atlas-body--l">{{ page.region_summary_section_strapline }}</p>
+                    {% endif %}
+
+                    {% if page.region_summary_section_intro %}
+                        <p class="atlas-body--m">{{ page.region_summary_section_intro }}</p>
+                    {% endif %}
                 </div>
                 <div class="atlas-grid__column atlas-grid__column--5-12-m atlas-grid__column--offset-1-m">
                     <div class="atlas-svg-map atlas-regions__map">
