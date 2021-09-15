@@ -50,6 +50,15 @@
                                             <div class="atlas-cms-text atlas-p-b-m">
                                                 {{ sub_block.value.text|safe }}
                                             </div>
+
+                                            {% if sub_block.value.cta_link %}
+                                                <a href="{{ sub_block.value.cta_link }}" class="atlas-button">
+                                                    {{ sub_block.value.cta_label|default:"Find out more" }}
+                                                    <span class="atlas-button__icon">
+                                                        {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                                    </span>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 {% endif %}
@@ -66,15 +75,6 @@
                                             {% endfor %}
                                         </div>
                                     {% endwith %}
-                                {% endif %}
-
-                                {% if sub_block.type == 'cta' %}
-                                    <a href="{{ sub_block.value.link }}" class="atlas-button">
-                                        {{ sub_block.value.label }}
-                                        <span class="atlas-button__icon">
-                                        {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                    </span>
-                                    </a>
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
