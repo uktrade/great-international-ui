@@ -64,12 +64,9 @@ ATLAS_HEADER_TREE = [
             tier_two_nav_items.WHY_INVEST_IN_UK,
             tier_two_nav_items.REGIONS,
             tier_two_nav_items.SECTORS,
-            tier_two_nav_items.INVESTMENT_OPPORTUNITIES
+            tier_two_nav_items.INVESTMENT_OPPORTUNITIES,
+            tier_two_nav_items.HOW_WE_CAN_HELP_INVESTMENT_ATLAS,
         ]
-    ),
-    NavNode(
-        tier_one_item=tier_one_nav_items.FIND_UK_SPECIALIST,
-        tier_two_items=[]
     ),
     NavNode(
             tier_one_item=tier_one_nav_items.BUY_FROM_THE_UK,

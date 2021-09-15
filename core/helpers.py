@@ -341,7 +341,6 @@ def get_header_config(path):
         compiled_pattern = re.compile(pattern)
         if compiled_pattern.match(path):
             return config
-
     # If no matching URL is found, just return a default config.
     return HeaderConfig(section=None, sub_section=None)
 

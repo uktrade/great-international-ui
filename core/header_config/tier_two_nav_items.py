@@ -7,6 +7,9 @@ from directory_constants import urls
 WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'content/investment/why-invest-in-the-uk'
 REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
 SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
+INVESTMENT_OPPORTUNITIES_URL = urls.international.HOME / 'investment/opportunities/'
+ATLAS_HOW_WE_CAN_HELP_URL = urls.international.HOME / 'content/investment/how-we-can-help-you/'
+
 
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
@@ -73,12 +76,6 @@ INVESTMENT_TYPES = NavItem(
     name='investment-types',
     title=_('Investment types'),
     url=urls.international.CAPITAL_INVEST_HOME / 'investment-types'
-)
-
-INVESTMENT_OPPORTUNITIES = NavItem(
-    name='investment-opportunities',
-    title=_('Investment Opportunities'),
-    url=urls.international.CAPITAL_INVEST_OPPORTUNITIES
 )
 
 # This page does not yet exist - will 404 for now.
@@ -153,4 +150,16 @@ SECTORS = NavItem(
     name='sectors',
     title=_('Sectors'),
     url=SECTORS_URL
+)
+
+INVESTMENT_OPPORTUNITIES = NavItem(
+    name='investment-opportunities',
+    title=_('Investment Opportunities'),
+    url=INVESTMENT_OPPORTUNITIES_URL
+)
+
+HOW_WE_CAN_HELP_INVESTMENT_ATLAS = NavItem(
+    name='how-we-can-help',
+    title=_('How we can help'),
+    url=ATLAS_HOW_WE_CAN_HELP_URL
 )

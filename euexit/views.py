@@ -8,7 +8,7 @@ from django.views.generic.edit import FormView
 
 from core.mixins import CMSPageFromSlugMixin, InternationalHeaderMixin
 from core.views import InternationalView
-from core.header_config import tier_one_nav_items, tier_two_nav_items
+from core.header_config import tier_one_nav_items
 from core.helpers import get_sender_ip_address
 
 from euexit import forms
@@ -22,8 +22,7 @@ class TransitionContactFormView(EnableTranslationsMixin, GA360Mixin, Internation
     form_class = forms.TransitionContactForm
     success_url = reverse_lazy('brexit-international-contact-form-success')
     subject = 'Brexit international contact form'
-    header_section = tier_one_nav_items.ABOUT_DIT
-    header_sub_section = tier_two_nav_items.CONTACT_US_ABOUT_DIT
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
@@ -77,8 +76,7 @@ class InternationalContactSuccessView(
 ):
     slug = slugs.EUEXIT_FORM_SUCCESS
     page_type = 'InternationalEUExitFormSuccessPage'
-    header_section = tier_one_nav_items.ABOUT_DIT
-    header_sub_section = tier_two_nav_items.CONTACT_US_ABOUT_DIT
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
