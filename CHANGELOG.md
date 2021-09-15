@@ -3,6 +3,8 @@
 ## Pre-release
 
 ### Implemented enhancements
+
+- GP2-3403 - Atlas opportunities listing page
 - NOTICKET - Fixed why invest in UK url on navigation
 - NOTICKET - Amend phrasing in Speak To Us panel
 - NOTICKET - change Investment sub-menu to feature sectors not industries
