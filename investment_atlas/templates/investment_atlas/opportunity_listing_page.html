@@ -6,8 +6,6 @@
 {% load pagination from directory_components %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=pagination.num_pages %}
-
     <form id="opportunities-search-form" action="{{ paginator_url }}" class="atlas-bg--grey-lighter">
         <div class="atlas-container atlas-container--wide atlas-p-v-m">
             <div class="atlas-grid">
