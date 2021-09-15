@@ -224,9 +224,7 @@ def get_results_from_search_response(response):
             )
             # escape all html tags other than <em> and </em>
             highlighted_escaped = (
-                escape(highlighted)
-                    .replace('&lt;em&gt;', '<em>')
-                    .replace('&lt;/em&gt;', '</em>')
+                escape(highlighted).replace('&lt;em&gt;', '<em>').replace('&lt;/em&gt;', '</em>')
             )
             formatted['highlight'] = mark_safe(highlighted_escaped)
         formatted_results.append(formatted)
