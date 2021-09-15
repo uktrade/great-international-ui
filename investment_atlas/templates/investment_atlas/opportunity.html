@@ -4,11 +4,7 @@
 {% block content %}
     {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_image %}
 
-    <div class="atlas-hero__heading">
-        <div class="atlas-container">
-            <h1 class="atlas-h--xl atlas-m-b-0">{{ page.title }}</h1>
-        </div>
-    </div>
+    {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
 
     <div class="atlas-container">
         <div class="atlas-grid">
