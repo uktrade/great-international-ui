@@ -3,11 +3,7 @@
 {% load filter_by_active_language cms_hero from cms_tags %}
 
 {% block content %}
-    {% if page.hero_large %}
-        <div class="atlas-hero">
-            <img class="atlas-hero__image" src="{{ page.hero_large.url }}" alt="{{ page.hero_large.alt }}">
-        </div>
-    {% endif %}
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_large %}
 
     <div class="atlas-hero__heading">
         <div class="atlas-container">
