@@ -8,7 +8,7 @@
 
 .atlas-footer__main {
   padding: 20px 0;
-  background-color: $atlas-dark-blue;
+  background-color: $atlas-brand-blue;
   color: $atlas-white;
 }
 
@@ -19,7 +19,7 @@
   display: block;
   height: 88px;
   padding: 20px;
-  background: $atlas-red;
+  background: $atlas-brand-red;
 
   &:before {
     content: '';
@@ -29,7 +29,7 @@
     position: absolute;
     left: 100%;
     top: 0;
-    background-color: $atlas-red;
+    background-color: $atlas-brand-red;
   }
 
   img {

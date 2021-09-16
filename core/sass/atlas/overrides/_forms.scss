@@ -13,19 +13,19 @@
       top: 3px;
       width: 28px;
       height: 28px;
-      color: $magna-blue-deep-20;
+      color: $atlas-blue-lighter;
       border-color: inherit;
     }
 
     &:after {
-      color: $magna-blue-deep-60;
+      color: $atlas-blue-light;
     }
   }
 }
 
 .atlas .multiple-choice input:focus + label:before,
 .atlas .multiple-choice label:hover:before {
-  color: $magna-blue-deep-60;
+  color: $atlas-blue-light;
 }
 
 .atlas .multiple-choice [type=checkbox] + label {
@@ -43,7 +43,7 @@
 
 .atlas .multiple-choice [type=radio] + label {
   &:before {
-    color: $magna-blue-deep-20;
+    color: $atlas-blue-lighter;
   }
 
   &:after {
@@ -61,12 +61,12 @@
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 32px 16px;
-  border-color: $magna-blue-deep-20;
+  border-color: $atlas-blue-lighter;
   border-radius: 10px;
 
   &:focus {
     border-width: 2px;
-    border-color: $magna-blue-deep-60;
+    border-color: $atlas-blue-light;
     margin: 0;
   }
 }
