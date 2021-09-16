@@ -30,7 +30,7 @@
 
 .atlas-alternate-bg {
   & > :nth-child(odd):not([class*="atlas-bg"]) {
-    background-color: $atlas-grey-light;
+    background-color: $atlas-grey-lighter;
   }
 }
 
