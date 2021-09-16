@@ -1,10 +1,6 @@
 @import '../tokens';
 @import '../mixins';
 
-.atlas-header {
-  @include atlas-regular;
-}
-
 .atlas-header__global {
   background: $atlas-white;
   padding: 14px 0;
@@ -16,7 +12,7 @@
 
 .atlas-header__main {
   padding: 10px 0;
-  background: $atlas-red;
+  background: $atlas-brand-red;
 }
 
 .atlas-header__main-inner {
@@ -175,6 +171,8 @@
 
 .atlas-subnav {
   @include atlas-regular;
+  position: relative;
+  z-index: 1;
   display: none;
   background-color: $atlas-black;
   text-align: right;

@@ -153,8 +153,8 @@ Sort_by = collections.namedtuple("Sort_by", "title value reverse")
 
 class SortFilter:
     sort_by_with_values = [
-        Sort_by(title='Project name: A to Z', value='title', reverse=False),
-        Sort_by(title='Project name: Z to A', value='title', reverse=True),
+        Sort_by(title='Opportunity name: A to Z', value='title', reverse=False),
+        Sort_by(title='Opportunity name: Z to A', value='title', reverse=True),
         Sort_by(
             title='Scale: Low to High', value='scale_value', reverse=False
         ),
@@ -224,9 +224,7 @@ def get_results_from_search_response(response):
             )
             # escape all html tags other than <em> and </em>
             highlighted_escaped = (
-                escape(highlighted)
-                .replace('&lt;em&gt;', '<em>')
-                .replace('&lt;/em&gt;', '</em>')
+                escape(highlighted).replace('&lt;em&gt;', '<em>').replace('&lt;/em&gt;', '</em>')
             )
             formatted['highlight'] = mark_safe(highlighted_escaped)
         formatted_results.append(formatted)
@@ -326,11 +324,10 @@ def get_case_study(case_study_id):
 
 
 def get_map_labels_with_vertical_positions(list_of_title_words, middle_x, middle_y):
-
     lowest_y = middle_y - ((len(list_of_title_words) - 1) / 2) * 25
 
     labels_with_coordinates = [
-        {'title': list_of_title_words[i], 'x': str(middle_x), 'y': str((lowest_y + (i*25)))}
+        {'title': list_of_title_words[i], 'x': str(middle_x), 'y': str((lowest_y + (i * 25)))}
         for i in range(len(list_of_title_words))
     ]
 

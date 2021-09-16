@@ -1,0 +1,25 @@
+.atlas-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.atlas-pagination__previous {
+  margin-bottom: .5em;
+
+  .atlas-button__icon svg {
+    transform: rotate(180deg);
+  }
+}
+
+.atlas-pagination__next {
+  margin-bottom: .5em;
+}
+
+.atlas-pagination__number {
+  justify-self: center;
+  margin: 0 auto .5em;
+  padding: .5em 3em;
+  white-space: nowrap;
+}
