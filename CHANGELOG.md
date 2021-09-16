@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - d-comp version bump for cookie modal fix
 - GP2-3400: Template for generic atlas content page, which can be used for new How We Can Help page
 - GP2-3399+GP2-3401 - Nav fixups
 - NOTICKET - Fixed why invest in UK url on navigation
