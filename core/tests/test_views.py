@@ -1,6 +1,5 @@
 from unittest.mock import patch, call
 
-from bs4 import BeautifulSoup
 from directory_constants import urls
 import pytest
 
