@@ -5,14 +5,21 @@
   .atlas-button__icon {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;
+    margin-right: 0;
   }
 
-  &[aria-expanded=true] .atlas-button__icon {
+  .atlas-reveal__state:checked + & .atlas-button__icon {
     transform: rotate(-90deg);
   }
 }
 
-.atlas-search__filters {
+.atlas-search-filters {
+  @media (min-width: $breakpoint-large) {
+    display: block !important;
+  }
+}
+
+.atlas-search-filters__content {
   fieldset {
     break-inside: avoid;
   }
@@ -30,11 +37,13 @@
   &:before {
     content: '';
     position: absolute;
-    left: 10px;
-    right: 10px;
+    z-index: -1;
+    left: -5px;
+    right: -5px;
     top: 0;
     height: 20px;
-    box-shadow: 0 -10px 10px 0px white;
+    background: $atlas-white;
+    box-shadow: 0 -15px 5px 0px white;
   }
 }
 

@@ -35,7 +35,6 @@
 
 .atlas-menu-button {
   @include atlas-bold;
-  display: none;
   padding: 8px 12px 8px 14px;
   width: auto;
   margin: 0;
@@ -47,16 +46,6 @@
   line-height: normal;
   align-self: center;
   cursor: pointer;
-
-  .js-enabled & {
-    display: block;
-  }
-
-  @media (min-width: $breakpoint-medium) {
-    .js-enabled & {
-      display: none;
-    }
-  }
 }
 
 .atlas-menu-button__icon {
@@ -87,7 +76,7 @@
     bottom: 3px;
   }
 
-  [aria-expanded="true"] & {
+  .atlas-reveal__state:checked + .atlas-menu-button & {
     &:before,
     &:after {
       width: 25px;
@@ -114,10 +103,6 @@
   @media (max-width: $breakpoint-medium) {
     flex: 1 0 100%;
     margin-top: 10px;
-
-    .js-enabled &:not([aria-expanded="true"]) {
-      display: none;
-    }
   }
 }
 

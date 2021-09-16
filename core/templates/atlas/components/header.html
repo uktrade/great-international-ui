@@ -18,12 +18,13 @@
                 </a>
             {% end_ga360_data %}
 
-            <button id="atlas-nav-toggle" class="button atlas-menu-button" aria-controls="atlas-nav" data-reveal-button>
+            <input id="atlas-nav-state" class="atlas-reveal__state" type="checkbox" aria-controls="atlas-nav">
+            <label class="button atlas-menu-button atlas-reveal__button" for="atlas-nav-state">
                 {% trans 'Menu' %}
                 <span class="atlas-menu-button__icon"></span>
-            </button>
+            </label>
 
-            <nav id="atlas-nav" class="atlas-nav" aria-label="{% trans 'Main menu' %}">
+            <nav id="atlas-nav" class="atlas-reveal__content atlas-nav" aria-label="{% trans 'Main menu' %}">
                 <ul class="atlas-nav__list">
                     {% for node in navigation_tree %}
                         <li>

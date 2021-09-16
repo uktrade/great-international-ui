@@ -1,12 +1,22 @@
 @import '../tokens';
+@import '../mixins';
 
-.atlas-reveal__contents[aria-expanded="false"] {
+.atlas-reveal__state {
+  @include visually-hidden;
+  outline: none;
+
+  &:focus ~ .atlas-reveal__button {
+    outline: 4px solid #ffbf47;
+  }
+}
+
+.atlas-reveal__state:not(:checked) ~ .atlas-reveal__content {
   display: none;
 }
 
 @each $suffix, $breakpoint in $breakpoint-suffixes {
   @media (min-width: $breakpoint) {
-    .atlas-reveal__contents--show#{$suffix}[aria-expanded="false"] {
+    .atlas-reveal__contents--show#{$suffix} {
       display: inherit;
     }
   }
