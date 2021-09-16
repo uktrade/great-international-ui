@@ -106,7 +106,9 @@
                                 </a>
                             </li>
                         {% empty %}
-                            <h2 class="heading-medium">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</h2>
+                            <li>
+                                <p class="atlas-body--m atlas-p-v-l">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</p>
+                            </li>
                         {% endfor %}
                     </ul>
 
