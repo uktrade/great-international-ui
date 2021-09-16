@@ -10,7 +10,7 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/article_detail.html',
+    'InternationalArticlePage': 'investment_atlas/article_detail.html',
 
     # InternationalSectorPage and InternationalSubSectorPage used to use
     # 'core/sector_page.html' but they have been deprecated in favour of
