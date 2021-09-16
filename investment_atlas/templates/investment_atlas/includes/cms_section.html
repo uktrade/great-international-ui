@@ -24,9 +24,9 @@
                                     {{ sub_content.value.text|safe }}
                                 </div>
 
-                                {% if sub_content.value.cta_link %}
-                                    <a href="{{ sub_content.value.cta_link }}" class="atlas-button">
-                                        {{ sub_content.value.cta_label|default:"Find out more" }}
+                                {% if sub_content.value.cta.link %}
+                                    <a href="{{ sub_content.value.cta.link }}" class="atlas-button atlas-m-b-m">
+                                        {{ sub_content.value.cta.label|default:"Find out more" }}
                                         <span class="atlas-button__icon">
                                                         {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                                     </span>
