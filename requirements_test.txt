@@ -10,7 +10,7 @@ attrs==21.2.0
     #   pytest
 backports.zoneinfo==0.2.1
     # via tzlocal
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
     # via directory-components
 boto3==1.17.90
     # via -r requirements.in
@@ -52,7 +52,7 @@ directory-client-core==6.3.0
     #   pir-client
 directory-cms-client==10.2.0
     # via -r requirements.in
-directory-components==37.2.1
+directory-components==37.2.2
     # via -r requirements.in
 directory-constants==21.0.2
     # via directory-components
