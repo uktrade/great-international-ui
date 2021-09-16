@@ -465,17 +465,24 @@ class UnsubscribeView(CountryDisplayMixin, GA360Mixin, FormView):
         )
 
     def get_initial(self):
-        if self.request.method == 'GET' and self.request.GET.get('email'):
-            return {'email': self.request.GET['email']}
+        uidb64 = self.request.GET.get('uidb64')
+        token = self.request.GET.get('token')
+
+        if self.request.method == 'GET' and uidb64 and token:
+            return {'uidb64': uidb64, 'token': token}
         return {}
 
     def get(self, *args, **kwargs):
-        if not self.request.GET.get('email'):
+        if not self.request.GET.get('uidb64') and not self.request.GET.get('token'):
             return redirect('find-a-supplier:trade-home')
         return super().get(*args, **kwargs)
 
     def form_valid(self, form):
-        response = api_client.notifications.anonymous_unsubscribe(form.cleaned_data['email'])
+        uidb64 = form.cleaned_data['uidb64']
+        token = form.cleaned_data['token']
+
+        response = api_client.notifications.anonymous_unsubscribe(uidb64, token)
+
         if response.ok:
             return TemplateResponse(
                 self.request,

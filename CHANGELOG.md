@@ -3,6 +3,7 @@
 ## Pre-release
 ### Implemented enhancements
 - GP2-2711 - update great branding
+- GP2-3343 - Making unsubscribe token based
 
 ### Fixed bugs
  - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
