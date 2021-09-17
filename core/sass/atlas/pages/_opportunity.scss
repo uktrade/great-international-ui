@@ -11,11 +11,9 @@
 
 .atlas-opportunity__contact .atlas-media {
   margin: 0 auto;
-}
 
-.atlas-opportunity__contact .atlas-media__body {
-  @media (min-width: $breakpoint-medium) {
-    min-width: 300px;
+  & .atlas-media__body:first-child {
+    text-align: center;
   }
 }
 
@@ -32,28 +30,11 @@
 
 .atlas-opportunity__contact-cta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
-
-  & .atlas-button {
-    margin-top: map-get($spacings, "xs");
-  }
-
-  @media (min-width: $breakpoint-small) {
-    flex-direction: row;
-
-    & .atlas-button {
-      flex: 1 0 auto;
-      margin: 0 0 0 map-get($spacings, "m");
-    }
-  }
-
-  @media (min-width: $breakpoint-medium) {
-    margin: 0 0 0 auto;
-  }
-
-
 }
 
 .atlas-opportunity__key-links {
