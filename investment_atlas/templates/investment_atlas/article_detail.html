@@ -1,0 +1,23 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% block content %}
+    <div class="atlas-bg-grey atlas-bg--grey-light">
+        <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+            <div class="atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--8-12-l">
+                    <h1 class="atlas-h--l">{{ page.title }}</h1>
+                    {% if page.article_subheading %}
+                        <p class="atlas-body--l">{{ page.article_subheading }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="atlas-container atlas-p-v-l">
+        <div class="atlas-cms-text atlas-cms-text--regular-headings atlas-p-b-m">
+            {{ page.article_body_text|safe }}
+        </div>
+    </div>
+{% endblock %}

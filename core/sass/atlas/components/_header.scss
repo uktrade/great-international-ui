@@ -44,12 +44,13 @@
   color: $atlas-white;
   font-size: 20px;
   font-weight: bold;
-  line-height: normal;
+  line-height: initial;
   align-self: center;
+  align-items: center;
   cursor: pointer;
 
   .js-enabled & {
-    display: block;
+    display: flex;
   }
 
   @media (min-width: $breakpoint-medium) {
@@ -64,8 +65,8 @@
   position: relative;
   width: 20px;
   height: 20px;
-  margin-left: 6px;
-  vertical-align: text-bottom;
+  margin-left: 10px;
+  pointer-events: none;
 
   &:before,
   &:after {

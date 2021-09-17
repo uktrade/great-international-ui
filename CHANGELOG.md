@@ -5,6 +5,7 @@
 ### Implemented enhancements
 
 - GP2-3233 - Atlas collapsible text component
+- GP2-3233 - Atlas WHy invest in uk page and sub-pages
 - NOTICKET - d-comp version bump for cookie modal fix
 - GP2-3400 - Atlas general content page
 - GP2-3403 - Atlas opportunities listing page
