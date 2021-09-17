@@ -1,0 +1,18 @@
+<div class="atlas-collapsible__initial">
+    {{ initial|safe }}
+</div>
+
+{% if collapsed %}
+    <div id="atlas-collapsible-{{ id }}" class="atlas-collapsible__content atlas-reveal__contents">
+        {{ collapsed|safe }}
+    </div>
+
+    <button class="atlas-button atlas-button--link atlas-collapsible__button" aria-controls="atlas-collapsible-{{ id }}"
+            data-reveal-button>
+        <span class="atlas-collapsible__more">More</span>
+        <span class="atlas-collapsible__less">Less</span>
+        <span class="atlas-button__icon">
+            {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+        </span>
+    </button>
+{% endif %}
