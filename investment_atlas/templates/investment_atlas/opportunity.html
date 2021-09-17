@@ -42,14 +42,13 @@
         </div>
     </div>
 
-    {% include 'investment_atlas/includes/contact.html' with contact=page button_preamble="Contact the opportunity lead" %}
+    {% include 'investment_atlas/includes/contact.html' with button_preamble="Contact the opportunity lead" %}
 
     <div class="atlas-alternate-bg">
         {% for section in page.main_content %}
             <section{% if section.value.block_slug == 'with-key-links' %}
                 class="atlas-bg--grey-light"{% endif %}>
                 <div class="atlas-container atlas-p-t-l atlas-p-b-s">
-
                     {% for content in section.value.content %}
                         <div class="atlas-grid">
                             {% if content.type == 'text' %}

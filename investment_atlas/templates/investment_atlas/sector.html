@@ -29,9 +29,7 @@
         </div>
     </div>
 
-    {% if page.contact_name %}
-        {% include 'investment_atlas/includes/contact.html' with contact=page button_preamble=page.contact_link_button_preamble button_label=page.contact_link_button_label %}
-    {% endif %}
+    {% include 'investment_atlas/includes/contact.html' with button_preamble=page.contact_link_button_preamble|default:"Contact the sector lead" button_label=page.contact_link_button_label %}
 
     <div class="atlas-alternate-bg">
         {% if page.related_opportunities|length > 0 %}
