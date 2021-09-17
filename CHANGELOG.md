@@ -4,6 +4,7 @@
 
 ### Implemented enhancements
 
+- GP2-3233 - Atlas collapsible text component
 - NOTICKET - d-comp version bump for cookie modal fix
 - GP2-3400 - Atlas general content page
 - GP2-3403 - Atlas opportunities listing page
