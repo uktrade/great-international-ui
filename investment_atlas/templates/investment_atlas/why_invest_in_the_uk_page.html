@@ -1,0 +1,47 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
+
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_image %}
+
+    {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
+
+    {% include 'investment_atlas/includes/hero_intro.html' with page=page %}
+
+    <section class="atlas-bg--grey-light">
+        <div class="atlas-container atlas-p-v-l">
+            <h2 class="atlas-h--l atlas-m-b-m">{{ page.uk_strength_title }}</h2>
+
+            <p class="atlas-body atlas-body--m">{{ page.uk_strength_intro }}</p>
+
+            <div class="atlas-grid">
+                {% for panel in page.uk_strength_panels %}
+                    <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-flex--column atlas-p-b-m">
+                        <h3 class="atlas-h--m">
+                            {% if panel.value.link %}
+                                <a href="{{ panel.value.link }}" class="atlas-link">
+                                    {{ panel.value.title }}
+                                </a>
+                            {% else %}
+                                {{ panel.value.title }}
+                            {% endif %}
+                        </h3>
+
+                        {% if panel.value.supporting_text %}
+                            <p>{{ panel.value.supporting_text }}</p>
+                        {% endif %}
+
+                        {% if panel.value.image.image %}
+                            <img class="atlas-image" src="{{ panel.value.image.image }}"
+                                 alt="{{ panel.value.image.image_alt }}" style="margin-top: auto;">
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+{% endblock %}

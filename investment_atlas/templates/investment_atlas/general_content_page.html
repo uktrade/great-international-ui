@@ -1,0 +1,18 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_image %}
+
+    {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
+
+    {% include 'investment_atlas/includes/hero_intro.html' with page=page %}
+
+    <div class="atlas-alternate-bg--3-tone">
+        {% for section in page.main_content %}
+            {% include 'investment_atlas/includes/cms_section.html' with section=section %}
+        {% endfor %}
+    </div>
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+
+{% endblock content %}

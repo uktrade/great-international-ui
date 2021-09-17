@@ -1,6 +1,5 @@
 from unittest.mock import patch, call
 
-from bs4 import BeautifulSoup
 from directory_constants import urls
 import pytest
 
@@ -152,116 +151,6 @@ def test_get_cms_page(rf, home_page):
     response = MultilingualCMSPageFromPathView.as_view()(request, path='/')
 
     assert response.context_data['page'] == home_page.return_value.json()
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_article_detail_page_social_share_links(
-        mock_get_page, client, settings
-):
-    test_article_page = {
-        'title': 'Test article',
-        'display_title': 'Test article',
-        'article_title': 'Test article',
-        'article_image': {'url': 'foobar.png'},
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [],
-        'full_path': (
-            '/international/content/topic/bar/foo/'),
-        'last_published_at': '2018-10-09T16:25:13.142357Z',
-        'meta': {
-            'slug': 'foo',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = '/international/content/topic/bar/foo/'
-
-    mock_get_page.return_value = create_response(test_article_page)
-
-    response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert response.status_code == 200
-    assert response.template_name == [
-        'core/article_detail.html'
-    ]
-
-    twitter_link = (
-        'https://twitter.com/intent/tweet?text=great.gov.uk'
-        '%20-%20Test%20article%20'
-        'http://testserver/international/content/topic/bar/foo/')
-    facebook_link = (
-        'https://www.facebook.com/share.php?u='
-        'http://testserver/international/content/topic/bar/foo/')
-    linkedin_link = (
-        'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/content/topic/bar/foo/'
-        '&title=great.gov.uk'
-        '%20-%20Test%20article%20&source=LinkedIn'
-    )
-    email_link = (
-        'mailto:?body=http://testserver/international/content/topic/bar/'
-        'foo/&subject=great.gov.uk%20-%20Test%20article%20'
-    )
-
-    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
-    assert soup.find(id='share-facebook').attrs['href'] == facebook_link
-    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
-    assert soup.find(id='share-email').attrs['href'] == email_link
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_article_detail_page_social_share_links_no_title(
-        mock_get_page, client, settings
-):
-    test_article_page = {
-        'title': 'Test article admin title',
-        'display_title': 'Test article',
-        'article_image': {'url': 'foobar.png'},
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [],
-        'full_path': (
-            '/international/content/topic/bar/foo/'),
-        'last_published_at': '2018-10-09T16:25:13.142357Z',
-        'meta': {
-            'slug': 'foo',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = '/international/content/topic/bar/foo/'
-
-    mock_get_page.return_value = create_response(test_article_page)
-
-    response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert response.status_code == 200
-    assert response.template_name == [
-        'core/article_detail.html'
-    ]
-
-    twitter_link = (
-        'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/content/topic/bar/foo/'
-        '')
-    linkedin_link = (
-        'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/content/topic/bar/foo/'
-        '&title=great.gov.uk'
-        '%20-%20%20&source=LinkedIn'
-    )
-    email_link = (
-        'mailto:?body=http://testserver/international/content/topic/bar/'
-        'foo/&subject='
-        'great.gov.uk%20-%20%20'
-    )
-
-    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
-    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
-    assert soup.find(id='share-email').attrs['href'] == email_link
 
 
 test_child_pages = [

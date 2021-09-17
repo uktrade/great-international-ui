@@ -1,0 +1,14 @@
+@import '../tokens';
+
+.atlas-reveal__contents[aria-expanded="false"] {
+  display: none;
+}
+
+@each $suffix, $breakpoint in $breakpoint-suffixes {
+  @media (min-width: $breakpoint) {
+    .atlas-reveal__contents--show#{$suffix}[aria-expanded="false"] {
+      display: inherit;
+    }
+  }
+}
+

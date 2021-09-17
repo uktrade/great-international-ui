@@ -10,7 +10,7 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'core/landing_page.html',
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/article_detail.html',
+    'InternationalArticlePage': 'investment_atlas/article_detail.html',
 
     # InternationalSectorPage and InternationalSubSectorPage used to use
     # 'core/sector_page.html' but they have been deprecated in favour of
@@ -44,7 +44,6 @@ TEMPLATE_MAPPING = {
     'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
     'InvestHighPotentialOpportunityFormSuccessPage': 'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
-    'WhyInvestInTheUKPage': 'invest/why_invest_in_the_uk_page.html',
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
@@ -55,6 +54,8 @@ TEMPLATE_MAPPING = {
     'InvestmentAtlasLandingPage': 'investment_atlas/investment.html',
     'InternationalInvestmentSectorPage': 'investment_atlas/sector.html',
     'InternationalInvestmentSubSectorPage': 'investment_atlas/sector.html',
+    'InvestmentGeneralContentPage': 'investment_atlas/general_content_page.html',
+    'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -260,8 +261,13 @@ GA_DATA_MAPPING = {
     },
     'InvestmentAtlasLandingPage': {
         'business_unit': 'GreatInternational',
-        'site_section': 'InvestmentHomePage',
+        'site_section': 'InvestmentAtlas',
         'site_subsection': 'LandingPage',
+    },
+    'InvestmentGeneralContentPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentAtlas',
+        'site_subsection': 'ContentPage',
     }
 }
 
@@ -286,6 +292,10 @@ HEADER_SECTION_MAPPING = {
     r'^investment/opportunities.*': HeaderConfig(
         section=tier_one.INVEST_IN_UK,
         sub_section=tier_two.INVESTMENT_OPPORTUNITIES,
+    ),
+    r'^investment/how-we-can-help.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.HOW_WE_CAN_HELP_INVESTMENT_ATLAS,
     ),
     r'^investment.*': HeaderConfig(
         section=tier_one.INVEST_IN_UK,

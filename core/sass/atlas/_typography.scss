@@ -207,6 +207,12 @@
   }
 }
 
-.atlas-cms-text--collapse-small-headings {
-
+.atlas-cms-text--regular-headings {
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    @include atlas-regular;
+  }
 }

@@ -1,10 +1,6 @@
 @import '../tokens';
 @import '../mixins';
 
-.atlas-header {
-  @include atlas-regular;
-}
-
 .atlas-header__global {
   background: $atlas-white;
   padding: 14px 0;
@@ -16,7 +12,7 @@
 
 .atlas-header__main {
   padding: 10px 0;
-  background: $atlas-red;
+  background: $atlas-brand-red;
 }
 
 .atlas-header__main-inner {
@@ -48,12 +44,13 @@
   color: $atlas-white;
   font-size: 20px;
   font-weight: bold;
-  line-height: normal;
+  line-height: initial;
   align-self: center;
+  align-items: center;
   cursor: pointer;
 
   .js-enabled & {
-    display: block;
+    display: flex;
   }
 
   @media (min-width: $breakpoint-medium) {
@@ -68,8 +65,8 @@
   position: relative;
   width: 20px;
   height: 20px;
-  margin-left: 6px;
-  vertical-align: text-bottom;
+  margin-left: 10px;
+  pointer-events: none;
 
   &:before,
   &:after {
@@ -175,6 +172,8 @@
 
 .atlas-subnav {
   @include atlas-regular;
+  position: relative;
+  z-index: 1;
   display: none;
   background-color: $atlas-black;
   text-align: right;
