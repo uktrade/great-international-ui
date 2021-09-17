@@ -6,23 +6,9 @@
 
     {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
 
-    <div class="atlas-container">
-        <div class="atlas-grid">
-            <div class="atlas-grid__column atlas-grid__column--6-12-m">
-                <p class="atlas-body--l atlas-m-t-0">{{ page.strapline }}</p>
-                <div class="atlas-body--s">
-                    {{ page.introduction|safe }}
-                </div>
-            </div>
-            {% if page.intro_image %}
-                <div class="atlas-grid__column atlas-grid__column--6-12-m">
-                    <img src="{{ page.intro_image.url }}"
-                         alt="{{ page.intro_image.alt }}"
-                         class="atlas-image atlas-m-b-m">
-                </div>
-            {% endif %}
-        </div>
+    {% include 'investment_atlas/includes/hero_intro.html' with page=page %}
 
+    <div class="atlas-container">
         <div class="atlas-bg--grey-lighter atlas-p-h-m atlas-p-v-s atlas-m-b-m">
             <div class="atlas-grid">
                 {% if page.location %}
