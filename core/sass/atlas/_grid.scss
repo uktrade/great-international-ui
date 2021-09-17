@@ -80,6 +80,11 @@ $half-gutter-large: $grid-gutter-large / 2;
   }
 }
 
+.atlas-grid__column--centred {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .atlas-grid--masonry {
   display: block;
 
