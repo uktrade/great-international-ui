@@ -25,6 +25,15 @@
         </div>
     </section>
 
+    {% if page.related_pages|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">Explore more of the Investment Atlas</h2>
+                {% include 'investment_atlas/includes/related_pages.html' with related_pages=page.related_pages %}
+            </div>
+        </section>
+    {% endif %}
+
     {% include 'investment_atlas/includes/speak_to_us.html' %}
 
 {% endblock %}
