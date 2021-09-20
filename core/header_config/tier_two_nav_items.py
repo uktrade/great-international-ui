@@ -142,7 +142,7 @@ WHY_INVEST_IN_UK = NavItem(
 
 REGIONS = NavItem(
     name='regions',
-    title=_('Regions'),
+    title=_('UK Nations and Regions'),
     url=REGIONS_URL
 )
 

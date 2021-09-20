@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GP2-3408 - Regions name changes to UK Nations and Regions
 - GP2-3302+3301 - Added related pages for regions and sectors listing page
 - GP2-3233 - Atlas collapsible text component
 - GP2-3233 - Atlas WHy invest in uk page and sub-pages
