@@ -2,8 +2,10 @@
     {% for related_page in page.related_pages %}
         <div class="atlas-grid__column atlas-grid__column--4-12-m">
             <a href="{{ related_page.full_path }}" class="atlas-card atlas-bg--white atlas-m-t-m">
+                {% if related_page.hero_image %}
                 <img class="atlas-image" src="{{ related_page.hero_image.url }}"
                      alt="{{ related_page.hero_image.alt }}">
+                {% endif %}
                 <div class="atlas-cms-text atlas-p-s">
                     <h3 class="atlas-card__heading atlas-h--s">{{ related_page.title }}</h3>
                     <p>{{ related_page.featured_description }}</p>
