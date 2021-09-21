@@ -1,3 +1,5 @@
+import re
+
 from django import template
 
 register = template.Library()
@@ -9,3 +11,13 @@ def update_query_params(context, **kwargs):
     for key, value in kwargs.items():
         query.__setitem__(key, value)
     return query.urlencode()
+
+
+@register.inclusion_tag('investment_atlas/includes/collapsible_text.html')
+def collapse_text(html, text_id):
+    parts = re.split("<hr/?>", html, 1)
+    return {
+        'id': text_id,
+        'initial': parts[0],
+        'collapsed': parts[1] if len(parts) > 1 else None
+    }

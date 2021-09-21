@@ -8,7 +8,7 @@ WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'content/investment/why-inv
 REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
 SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
 INVESTMENT_OPPORTUNITIES_URL = urls.international.HOME / 'investment/opportunities/'
-ATLAS_HOW_WE_CAN_HELP_URL = urls.international.HOME / 'content/investment/how-we-can-help-you/'
+ATLAS_HOW_WE_CAN_HELP_URL = urls.international.HOME / 'content/investment/how-we-can-help/'
 
 
 OVERVIEW_ABOUT = NavItem(
@@ -142,7 +142,7 @@ WHY_INVEST_IN_UK = NavItem(
 
 REGIONS = NavItem(
     name='regions',
-    title=_('Regions'),
+    title=_('UK Nations and Regions'),
     url=REGIONS_URL
 )
 

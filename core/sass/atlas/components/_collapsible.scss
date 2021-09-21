@@ -1,0 +1,33 @@
+@import '../mixins';
+
+.atlas-collapsible__button {
+  @include atlas-bold;
+  margin-top: 1em;
+
+  & .atlas-collapsible__less {
+    display: none;
+  }
+
+  & .atlas-button__icon {
+    transform: rotate(90deg);
+    transition: transform ease-in-out .25s;
+  }
+
+  &[aria-expanded=true] {
+    & .atlas-collapsible__more {
+      display: none
+    }
+
+    & .atlas-collapsible__less {
+      display: inline-block;
+    }
+
+    .atlas-button__icon {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.atlas-collapsible__content p:first-child {
+  margin-top: 1em;
+}
