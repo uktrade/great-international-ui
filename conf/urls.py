@@ -138,6 +138,7 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
     ]
 
+# This route remains in use after the Atlas refactor
 if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
     urlpatterns += [
         url(
@@ -224,6 +225,7 @@ urlpatterns += [
         name='expand-home'
     ),
     url(
+        # Remains in use after the Atlas refactor
         r"^international/invest/contact/$",
         contact.views.ContactFormView.as_view(),
         name="invest-contact"
@@ -287,18 +289,7 @@ urlpatterns += [
             url=('/international/content/invest/#high-potential-opportunities')),
         name='hpo-landing-page-redirect'
     ),
-    url(
-        r'^international/content/invest/high-potential-opportunities/contact/$',
-        invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': 'invest/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-form'
-    ),
-    url(
-        r'^international/content/invest/high-potential-opportunities/contact/success/$',
-        invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': 'invest/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-form-success'
-    ),
+
     url(
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(
@@ -306,28 +297,19 @@ urlpatterns += [
         name='hpo-landing-page-expand-redirect'
     ),
     url(
-        r'^international/content/expand/high-potential-opportunities/contact/$',
-        invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': 'expand/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-expand-form'
-    ),
-    url(
-        r'^international/content/expand/high-potential-opportunities/contact/success/$',
-        invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': 'expand/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-expand-form-success'
-    ),
-    url(
+        # Remains in use after the Atlas refactor
         r'^international/transition-period/contact/$',
         euexit.views.TransitionContactFormView.as_view(),
         name='brexit-international-contact-form'
     ),
     url(
+        # Remains in use after the Atlas refactor
         r'^international/transition-period/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
         name='brexit-international-contact-form-success'
     ),
     url(
+        # Remains in use after the Atlas refactor - but will be moved into atlas
         r'^international/content/capital-invest/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         {'path': 'capital-invest/contact'},
@@ -361,8 +343,10 @@ urlpatterns += [
         name='invest-capital-home'
     ),
     # The Investment Atlas section tries to stick with the standard
-    # tree-based routing, apart from the investment root page at /international/investment/
-    # and the filterable listing view at /international/investment/opportunities/
+    # tree-based routing, apart from:
+    #   * the investment root page at /international/investment/
+    #   * the filterable listing view at /international/investment/opportunities/
+    #   * a special FDI contact form
     #
     # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
     # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
@@ -383,6 +367,18 @@ urlpatterns += [
             'path': 'investment/opportunities/'
         },
         name='atlas-opportunities'
+    ),
+    url(
+        r'^international/content/investment/foreign-direct-investment-contact-form/$',
+        investment_atlas.views.ForeignDirectInvestmentOpportunityFormView.as_view(),
+        {'path': 'investment/foreign-direct-investment-contact'},
+        name='fdi-opportunity-request-form'
+    ),
+    url(
+        r'^international/content/investment/foreign-direct-investment-contact-form/success/$',
+        investment_atlas.views.ForeignDirectInvestmentOpportunitySuccessView.as_view(),
+        {'path': 'investment/foreign-direct-investment-contact/success'},
+        name='fdi-opportunity-request-form-success'
     ),
     url(
         # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.

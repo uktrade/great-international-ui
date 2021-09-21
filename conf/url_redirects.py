@@ -10,6 +10,30 @@ redirects_before_tree_based_routing_lookup = [
         r'^international/content/opportunities/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
+    url(
+        r'^international/content/invest/high-potential-opportunities/contact/$',
+        QuerystringRedirectView.as_view(
+            pattern_name='fdi-opportunity-request-form'
+        )
+    ),
+    url(
+        r'^international/content/invest/high-potential-opportunities/contact/success/$',
+        QuerystringRedirectView.as_view(
+            pattern_name='fdi-opportunity-request-form-success'
+        )
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/$',
+        QuerystringRedirectView.as_view(
+            pattern_name='fdi-opportunity-request-form'
+        )
+    ),
+    url(
+        r'^international/content/expand/high-potential-opportunities/contact/success/$',
+        QuerystringRedirectView.as_view(
+            pattern_name='fdi-opportunity-request-form-success'
+        )
+    ),
 ]
 
 redirects = [
@@ -21,7 +45,6 @@ redirects = [
         r'^international/eu-exit-news/contact/success/$',
         QuerystringRedirectView.as_view(pattern_name='brexit-international-contact-form-success'),
     ),
-
     url(
         r'^international/brexit/contact/$',
         QuerystringRedirectView.as_view(pattern_name='brexit-international-contact-form'),

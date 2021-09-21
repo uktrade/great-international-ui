@@ -28,7 +28,23 @@ redirects = [
     (
         '/international/content/opportunities/?Region=Wales&Sector=Test',
         '/international/investment/opportunities/?Region=Wales&Sector=Test'
-    )
+    ),
+    (
+        '/international/content/invest/high-potential-opportunities/contact/',
+        '/international/content/investment/foreign-direct-investment-contact-form/'
+    ),
+    (
+        '/international/content/invest/high-potential-opportunities/contact/success/',
+        '/international/content/investment/foreign-direct-investment-contact-form/success/'
+    ),
+    (
+        '/international/content/expand/high-potential-opportunities/contact/',
+        '/international/content/investment/foreign-direct-investment-contact-form/'
+    ),
+    (
+        '/international/content/expand/high-potential-opportunities/contact/success/',
+        '/international/content/investment/foreign-direct-investment-contact-form/success/',
+    ),
 ]
 
 
