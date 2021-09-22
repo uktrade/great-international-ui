@@ -369,13 +369,13 @@ urlpatterns += [
         name='atlas-opportunities'
     ),
     url(
-        r'^international/content/investment/foreign-direct-investment-contact-form/$',
+        r'^international/content/investment/foreign-direct-investment-contact/$',
         investment_atlas.views.ForeignDirectInvestmentOpportunityFormView.as_view(),
         {'path': 'investment/foreign-direct-investment-contact'},
         name='fdi-opportunity-request-form'
     ),
     url(
-        r'^international/content/investment/foreign-direct-investment-contact-form/success/$',
+        r'^international/content/investment/foreign-direct-investment-contact/success/$',
         investment_atlas.views.ForeignDirectInvestmentOpportunitySuccessView.as_view(),
         {'path': 'investment/foreign-direct-investment-contact/success'},
         name='fdi-opportunity-request-form-success'
