@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - Fix FE securities vulnerabilities 
 - NOTICKET - For related pages, rendering hero image if exists
 - GP2-3408 - Regions name changes to UK Nations and Regions
 - GP2-3302+3301 - Added related pages for regions and sectors listing page
