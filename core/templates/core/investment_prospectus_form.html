@@ -6,12 +6,15 @@
 {% block content %}
     <section id="form-content">
         <div class="container">
-          {% trans "The UK Investment Prospectus" as uk_investment %}
+            {% trans "The UK Investment Prospectus" as uk_investment %}
+    
+            {% comment "DISABLED FOR ATLAS MVP" %}
             {% breadcrumbs uk_investment %}
                 <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
                 <a href="{% url 'cms-page-from-path' 'about-uk' %}">{% trans "About the UK" %}</a>
                 <a href="{% url 'cms-page-from-path' 'about-uk/why-choose-uk' %}">{% trans "Why choose the UK" %}</a>
             {% endbreadcrumbs %}
+            {% endcomment %}
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">

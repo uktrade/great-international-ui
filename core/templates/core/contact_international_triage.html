@@ -12,9 +12,11 @@
 <section>
     <div class="container">
       {% trans "Contact us" as contact_title %}
+        {% comment "DISABLED FOR ATLAS MVP" %}
         {% breadcrumbs contact_title %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
         {% endbreadcrumbs %}
+        {% endcomment %}
     </div>
 </section>
 
