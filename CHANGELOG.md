@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - Fix FE securities vulnerabilities 
 - NOTICKET - Remove now-redundant back link from contact triage page
 - GP2-3407 - Rename HPO contact page as FDI and move into Atlas
 - NOTICKET - For related pages, rendering hero image if exists
