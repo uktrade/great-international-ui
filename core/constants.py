@@ -54,8 +54,6 @@ TEMPLATE_MAPPING = {
     'InternationalInvestmentSubSectorPage': 'investment_atlas/sector.html',
     'InvestmentGeneralContentPage': 'investment_atlas/general_content_page.html',
     'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
-    'ForeignDirectInvestmentFormPage': 'investment_atlas/fdi_opportunities_form.html',
-    'ForeignDirectInvestmentFormSuccessPage': 'investment_atlas/fdi_opportunities_form_success.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
