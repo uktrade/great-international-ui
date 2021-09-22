@@ -1,20 +1,25 @@
-from django.shortcuts import redirect
 
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
-
 from django.utils import translation
+from django.views.generic.edit import FormView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 
 from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
-from directory_components.mixins import CountryDisplayMixin
+from directory_components.mixins import CountryDisplayMixin, GA360Mixin
+from directory_constants import urls
+from core.helpers import get_sender_ip_address
 
 from core import helpers as core_helpers
 from core.header_config import tier_one_nav_items, tier_two_nav_items
-from core.views import InternationalView
+from core.views import InternationalView, MonolingualCMSPageFromPathView
 
 from investment_atlas import forms
+
+SESSION_KEY_SELECTED_OPPORTUNITIES = 'SELECTED_OPPORTUNITIES'
 
 
 class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
@@ -292,3 +297,78 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             form=self.opportunity_search_form,
             *args, **kwargs,
         )
+
+
+class ForeignDirectInvestmentOpportunityFormView(
+    MonolingualCMSPageFromPathView,
+    GA360Mixin,
+    FormView,
+):
+    template_name = 'investment_atlas/fdi_opportunities_form.html'
+    form_class = forms.ForeignDirectInvestmentOpportunityForm
+    success_url = reverse_lazy('fdi-opportunity-request-form-success')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['opportunity_choices'] = [
+            (opportunity['meta']['url'], opportunity['heading'])
+            for opportunity in self.page['opportunity_list']
+        ]
+        # NB this was previously using opportunity['pdf_document'] as the
+        # value for the selection, which was then used to add download links
+        # to the email sent by the form in this view, and in the success page.
+        # We will possibly go back to that in the future, so retaining this.
+        # [
+        #     (opportunity['pdf_document'], opportunity['heading'])
+        #     for opportunity in self.page['opportunity_list'
+        # ]
+        kwargs['utm_data'] = self.request.utm
+        return kwargs
+
+    def form_valid(self, form):
+        form.save(
+            form_url=self.request.path,
+            sender_ip_address=get_sender_ip_address(self.request),
+        )
+        # DISABLED because we have no need to get the opportunities into
+        # the success page, because there are no PDF documents to download:
+        #
+        # self.request.session[SESSION_KEY_SELECTED_OPPORTUNITIES] = (
+        #     form.cleaned_data['opportunities']
+        # )
+        return super().form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        return super().get_context_data(
+            privacy_url=urls.domestic.PRIVACY_AND_COOKIES / 'foreign-direct-investment-opportunities/',
+            *args, **kwargs
+        )
+
+
+class ForeignDirectInvestmentOpportunitySuccessView(
+    MonolingualCMSPageFromPathView,
+):
+    template_name = 'investment_atlas/fdi_opportunities_form_success.html'
+
+    # DISABLED because we have no need to get the opportunities into
+    # the success page, because there are no PDF documents to download
+
+    # def dispatch(self, *args, **kwargs):
+    #     if SESSION_KEY_SELECTED_OPPORTUNITIES not in self.request.session:
+    #         return redirect(
+    #             reverse('fdi-opportunity-request-form'))
+    #     return super().dispatch(*args, **kwargs)
+
+    # def get_context_data(self, **kwargs):
+    #     selected_opportunites = self.request.session.pop(
+    #         SESSION_KEY_SELECTED_OPPORTUNITIES
+    #     )
+    #     opportunities = [
+    #         item for item in self.page['opportunity_list']
+    #         if item['pdf_document'] in selected_opportunites
+    #     ]
+
+    #     return super().get_context_data(
+    #         opportunities=opportunities,
+    #         **kwargs
+    #     )

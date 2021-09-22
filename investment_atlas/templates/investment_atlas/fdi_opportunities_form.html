@@ -8,8 +8,8 @@
     <link href="{% static 'core/js/vendor/accessible-autocomplete.min.css' %}" rel="stylesheet" type="text/css" />
 {% endblock %}
 
-{% block title %}
-    {{ page.seo_title|default:"High Potential Opportunities - great.gov.uk" }}
+{% block head_title %}
+    {{ page.seo_title|default:"Foreign Direct Investment Opportunities - great.gov.uk" }}
 {% endblock %}
 
 {% block head_sharing_metadata %}
@@ -20,16 +20,14 @@
 
 {% block content %}
 
-{% include 'invest/includes/invest_cms_breadcrumbs.html' %}
-
 <section class="padding-bottom-60">
   <div class="container">
       <div id="heading-container" class="width-two-thirds-l width-half-xl margin-bottom-30">
-        <h1 class="heading-large">Contact us about high potential opportunities</h1>
-        <p>Got a question about one of our high potential opportunities? Get in touch and give as much information as you can.</p>
+        <h1 class="heading-large">Contact us about foreign direct investment opportunities</h1>
+        <p>Got a question about one of our foreign direct investment opportunities? Get in touch and give as much information as you can.</p>
       </div>
       <div id="form-container" class="grid-row">
-        <form class="column-two-thirds-l column-half-xl" action="{% url 'high-potential-opportunity-request-form' %}" method="post" autocomplete="on">
+        <form class="column-two-thirds-l column-half-xl" action="{% url 'fdi-opportunity-request-form' %}" method="post" autocomplete="on">
           {% csrf_token %}
 
           {% include 'directory_components/form_widgets/form_field.html' with field=form.given_name %}

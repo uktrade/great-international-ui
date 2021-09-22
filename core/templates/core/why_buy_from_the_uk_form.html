@@ -8,13 +8,16 @@
     <section id="form-content">
         <div class="container">
           {% trans "5 Reasons to Buy from the UK" as why_buy %}
-            {% breadcrumbs why_buy %}
+          {% comment "DISABLED FOR ATLAS MVP" %}
+
+          {% breadcrumbs why_buy %}
                 <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
 
                 <a href="{{ international_trade_home }}">{% trans "Buy from the UK" %}</a>
 
                 <a href="{{international_trade_how_we_help}}">{% trans "How we help you buy" %}</a>
             {% endbreadcrumbs %}
+            {% endcomment %}
 
             <div class="grid-row">
                 <div class="column-two-thirds-xl">

@@ -5,11 +5,13 @@
 {% block content %}
     <section>
       <div class="container">
+          {% comment "DISABLED FOR ATLAS MVP" %}
           {% breadcrumbs 'Why buy from the UK' %}
                 <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
                 <a href="{{ international_trade_home }}">Buy from the UK</a>
                 <a href="{{international_trade_how_we_help}}">How we help you buy</a>
             {% endbreadcrumbs %}
+            {% endcomment %}
 
         <div class="width-two-thirds">
             {% success_box heading_level='h1' heading='Thank you' description="A link to download '5 reasons to buy from the UK' has been emailed to you." %}
