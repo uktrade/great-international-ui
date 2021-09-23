@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - Add support for case studies to Region detail page
 - GP2-3407 - Make FDI form path match that of page in CMS
 - NOTICKET - Fix FE securities vulnerabilities 
 - NOTICKET - Remove now-redundant back link from contact triage page
