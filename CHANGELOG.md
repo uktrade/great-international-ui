@@ -3,6 +3,10 @@
 ## Pre-release
 
 ### Implemented enhancements
+- GP2-3407 - Make FDI form path match that of page in CMS
+- NOTICKET - Fix FE securities vulnerabilities 
+- NOTICKET - Remove now-redundant back link from contact triage page
+- GP2-3407 - Rename HPO contact page as FDI and move into Atlas
 - NOTICKET - For related pages, rendering hero image if exists
 - GP2-3408 - Regions name changes to UK Nations and Regions
 - GP2-3302+3301 - Added related pages for regions and sectors listing page

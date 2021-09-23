@@ -12,9 +12,11 @@
 <section>
     <div class="container">
       {% trans "Contact us" as contact_title %}
+        {% comment "DISABLED FOR ATLAS MVP" %}
         {% breadcrumbs contact_title %}
             <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
         {% endbreadcrumbs %}
+        {% endcomment %}
     </div>
 </section>
 
@@ -33,9 +35,11 @@
                 </fieldset>
             </div>
         </div>
+        {% comment "Disabled because we no longer treat great.gov.uk/contact/ as the root of the contact triage flow" %}
         <div class="margin-top-30">
             <a href="{{ domestic_contact_home }}" type="submit" >{% trans "Back" %}</a>
         </div>
+        {% endcomment %}
     </div>
 </section>
 

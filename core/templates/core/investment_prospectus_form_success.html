@@ -5,12 +5,15 @@
 {% block content %}
     <section>
       <div class="container">
+        {% comment "DISABLED FOR ATLAS MVP" %}
+
         {% breadcrumbs 'Success' %}
           <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
           <a href="{% url 'cms-page-from-path' 'about-uk' %}">About the UK</a>
           <a href="{% url 'cms-page-from-path' 'about-uk/why-choose-uk' %}">Why choose the UK</a>
           <a href="{% url 'business-environment-guide-form' %}">UK business environment</a>
         {% endbreadcrumbs %}
+        {% endcomment %}
 
         <div class="width-two-thirds">
             {% success_box heading_level='h1' heading='Thank you' description='Your guide to investing in the UK has been emailed to you' %}

@@ -9,6 +9,8 @@
 {% block css_layout_class %}eu-exit-form{% endblock %}
 
 {% block content %}
+
+  {% comment "DISABLED FOR ATLAS MVP" %}
   {% block breadcrumbs %}
   <div class="container">
     {% trans "Transition period enquiries" as breadcrumbs_label %}
@@ -17,6 +19,7 @@
     {% endbreadcrumbs %}
   </div>
   {% endblock %}
+  {% endcomment %}
 
   {% block form_content %}
     {% include 'euexit/form-contents.html'%}

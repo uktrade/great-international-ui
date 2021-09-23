@@ -3,8 +3,11 @@
 
 {% block breadcrumbs %}
     {% url 'investment-support-directory:profile' company_number=company.number slug=company.slug as company_url %}
+
+    {% comment "DISABLED FOR ATLAS MVP" %}
     {% breadcrumbs 'Contact company' %}
         <a href="{{ services_urls.great_international }}">{{ international_home_link.label }}</a>
         <a href="{{ company_url|add:'?'|add:search_querystring}}">{{ company.name }}</a>
     {% endbreadcrumbs %}
+    {% endcomment %}
 {% endblock %}

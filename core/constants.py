@@ -41,8 +41,6 @@ TEMPLATE_MAPPING = {
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
     'InvestHighPotentialOpportunityDetailPage': 'invest/hpo/high_potential_opportunity_detail.html',
-    'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
-    'InvestHighPotentialOpportunityFormSuccessPage': 'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
 
     # Find a supplier
@@ -176,14 +174,14 @@ GA_DATA_MAPPING = {
         'site_section': 'HighPotentialOpportunities',
         'site_subsection': 'DetailPage',
     },
-    'InvestHighPotentialOpportunityFormPage': {
+    'ForeignDirectInvestmentFormPage': {
         'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
+        'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormPage',
     },
-    'InvestHighPotentialOpportunityFormSuccessPage': {
+    'ForeignDirectInvestmentFormSuccessPage': {
         'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
+        'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormSuccessPage',
     },
     'InvestRegionPage': {

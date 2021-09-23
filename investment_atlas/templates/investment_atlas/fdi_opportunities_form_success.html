@@ -4,7 +4,7 @@
 {% load add_export_elements_classes from directory_components %}
 
 {% block title %}
-    {{ page.seo_title|default:"High Potential Opportunities - great.gov.uk" }}
+    {{ page.seo_title|default:"Foreign Direct Investment Opportunities - great.gov.uk" }}
 {% endblock %}
 
 {% block head_sharing_metadata %}
@@ -13,8 +13,6 @@
 {% endblock %}
 
 {% block content %}
-
-{% include 'invest/includes/invest_cms_breadcrumbs.html' %}
 
 <section id="confirmation-section">
     <div class="container">
@@ -31,6 +29,7 @@
     </div>
 </section>
 
+{% comment "Disabled for now, because we don't have any documents associated with InvestmentOpportunityPage, unlike the HPO page before it" %}
 <section id="documents-section" class="padding-bottom-60">
     <div class="container">
         <h2 class="heading-large">{{ page.documents_title }}</h2>
@@ -51,4 +50,6 @@
         </div>
     </div>
 </section>
+{% endcomment %}
+
 {% endblock %}

@@ -1,11 +1,11 @@
 from directory_constants import choices
 
-from invest import forms
-from invest.forms import HOW_CAN_WE_HELP_CHOICES, HOW_DID_YOU_HEAR_CHOICES
+from investment_atlas import forms
+from investment_atlas.forms import HOW_CAN_WE_HELP_CHOICES, HOW_DID_YOU_HEAR_CHOICES
 
 
 def test_high_potential_opportunity_form_serialize_data(captcha_stub):
-    form = forms.HighPotentialOpportunityForm(
+    form = forms.ForeignDirectInvestmentOpportunityForm(
         data={
             'given_name': 'Jim',
             'family_name': 'Example',
@@ -76,7 +76,7 @@ def test_high_potential_opportunity_form_serialize_data(captcha_stub):
 
 
 def test_hpo_form_serialize_data_without_utm_data(captcha_stub):
-    form = forms.HighPotentialOpportunityForm(
+    form = forms.ForeignDirectInvestmentOpportunityForm(
         data={
             'given_name': 'Jim',
             'family_name': 'Example',
