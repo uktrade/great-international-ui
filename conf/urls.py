@@ -22,11 +22,11 @@ import find_a_supplier.views
 import second_qualification.views
 
 
-# IMPORTANT: a lot of these views are no longer active - they are 
+# IMPORTANT: a lot of these views are no longer active - they are
 # avoided by entries in redirects_before_tree_based_routing_lookup
 # because they have been retired during the Investment Atlas refactor.
 # Look at redirects_before_tree_based_routing_lookup in url_redirects.py
-# to see which URL configs (and therefore views, and forms, and templates) 
+# to see which URL configs (and therefore views, and forms, and templates)
 # we can actively drop from the codebase.
 
 sitemaps = {
