@@ -100,7 +100,35 @@ redirects = [
     (
         '/international/content/about-uk/industries/',
         '/international/content/investment/sectors/',
-    )
+    ),
+    (
+        '/international/content/about-uk/regions/',
+        '/international/content/investment/regions/',
+    ),
+    (
+        '/international/content/about-uk/regions/scotland/',
+        '/international/content/investment/regions/scotland/',
+    ),
+    (
+        '/international/content/about-uk/regions/northern-ireland/',
+        '/international/content/investment/regions/northern-ireland/',
+    ),
+    (
+        '/international/content/about-uk/regions/north-england/',
+        '/international/content/investment/regions/north-england/',
+    ),
+    (
+        '/international/content/about-uk/regions/wales/',
+        '/international/content/investment/regions/wales/',
+    ),
+    (
+        '/international/content/about-uk/regions/midlands/',
+        '/international/content/investment/regions/midlands/',
+    ),
+    (
+        '/international/content/about-uk/regions/south-england/',
+        '/international/content/investment/regions/south-england/',
+    ),
 ]
 
 
@@ -113,17 +141,27 @@ def test_redirects(url, expected, client):
 not_redirected = (
     '/international/invest/perfectfit/',  # needs PIR API call mocked
 
-    # This form is kept in place during atlas refactor - can be moved later
+    # just a light check of SOME but not all views
+    '/international/contact/',
     '/international/invest/contact/',
     '/international/invest/contact/success/',
     '/international/expand/contact/',
     '/international/expand/contact/success/',
+    '/international/transition-period/contact/',
 )
 
 
+@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
 @mock.patch('pir_client.client.pir_api_client.get_options')
 @pytest.mark.parametrize('url', not_redirected)
-def test_does_NOT_redirect(mock_get_options, url, client):
+def test_does_NOT_redirect(
+    mock_lookup_by_path, 
+    mock_lookup_by_slug, 
+    mock_get_options, 
+    url, 
+    client,
+):
     response = client.get(url)
     assert response.status_code == 200  # not 30x
     assert not hasattr(response, 'url')

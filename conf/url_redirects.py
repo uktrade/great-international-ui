@@ -23,7 +23,7 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
     # [SPECIAL redirects for specific pages within /international/content/invest/ go here]
 
     url(
-        # Redirect the rest of the 'invest' CMS page and all its tree-based children 
+        # Redirect the rest of the 'invest' CMS page and all its tree-based children
         r'^international/content/invest/',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
     ),
@@ -66,9 +66,56 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         ),
     ),
     url(
-        r'^international/content/about-uk/industries/',
+        r'^international/content/about-uk/industries/',  # NB: wildcard
         QuerystringRedirectView.as_view(
             url='/international/content/investment/sectors/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/regions/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/regions/scotland/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/scotland/'
+        ),
+    ),
+
+    url(
+        r'^international/content/about-uk/regions/northern-ireland/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/northern-ireland/'
+        ),
+    ),
+
+    url(
+        r'^international/content/about-uk/regions/north-england/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/north-england/'
+        ),
+    ),
+
+    url(
+        r'^international/content/about-uk/regions/wales/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/wales/'
+        ),
+    ),
+
+    url(
+        r'^international/content/about-uk/regions/midlands/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/midlands/'
+        ),
+    ),
+
+    url(
+        r'^international/content/about-uk/regions/south-england/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/regions/south-england/'
         ),
     ),
 ]
