@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Implemented enhancements
+- NOTICKET - Disabling translation for site
 - NOTICKET - Switch UK Nations and Regions to sentence case in nav; Make opp filter 'UK nation or region' 
 - NOTICKET - Add support for case studies to Region detail page
 - GP2-3407 - Make FDI form path match that of page in CMS
