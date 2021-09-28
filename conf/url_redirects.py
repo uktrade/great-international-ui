@@ -3,6 +3,77 @@ from django.conf.urls import url
 from core.views import QuerystringRedirectView
 
 
+redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
+    url(
+        # Redirect the old invest homepage to atlas
+        r'^international/invest/$',
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
+    ),
+    url(
+        # Old CIOs
+        r'^international/content/opportunities/',
+        QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
+    ),
+    url(
+        # Old HPOs
+        r'^international/content/invest/high-potential-opportunities',
+        QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
+    ),
+
+    # [SPECIAL redirects for specific pages within /international/content/invest/ go here]
+
+    url(
+        # Redirect the rest of the 'invest' CMS page and all its tree-based children 
+        r'^international/content/invest/',
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
+    ),
+
+    # About the UK was moved over to Why Invest in the UK
+    url(
+        r'^international/content/about-uk/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/why-choose-uk/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/why-choose-uk/tax-incentives/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/tax-incentives/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/why-choose-uk/uk-talent-and-labour/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/uk-talent-and-labour/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/why-choose-uk/uk-innovation/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/uk-innovation/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/why-choose-uk/uk-infrastructure/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/why-invest-in-the-uk/uk-infrastructure/'
+        ),
+    ),
+    url(
+        r'^international/content/about-uk/industries/',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/sectors/'
+        ),
+    ),
+]
+
+
 redirects_before_tree_based_routing_lookup = [
     # These ones are inserted into the urlconf before the 'cms-page-from-path' route is tried
     # so we can redirect pages that otherwise came from tree-based routing
@@ -34,7 +105,7 @@ redirects_before_tree_based_routing_lookup = [
             pattern_name='fdi-opportunity-request-form-success'
         )
     ),
-]
+] + redirects_for_retired_pages_that_must_come_before_tree_based_routing
 
 redirects = [
     url(
