@@ -129,6 +129,43 @@ redirects = [
         '/international/content/about-uk/regions/south-england/',
         '/international/content/investment/regions/south-england/',
     ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/establish-a-base-for-business-in-the-uk/',
+        '/international/content/investment/how-we-can-help/establish-a-base-for-business-in-the-uk/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/research-and-development-rd-support-in-the-uk/',
+        '/international/content/investment/how-we-can-help/research-and-development-rd-support-in-the-uk/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/global-entrepreneur-program/',
+        '/international/content/investment/how-we-can-help/global-entrepreneur-program/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/uk-visas-and-migration/',
+        '/international/content/investment/how-we-can-help/uk-visas-and-migration/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/register-a-company-in-the-uk/',
+        '/international/content/investment/how-we-can-help/register-a-company-in-the-uk/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/hire-skilled-workers-for-your-uk-operations/',
+        '/international/content/investment/how-we-can-help/hire-skilled-workers-for-your-uk-operations/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/open-a-uk-business-bank-account/',
+        '/international/content/investment/how-we-can-help/open-a-uk-business-bank-account/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/uk-tax-and-incentives/',
+        '/international/content/investment/how-we-can-help/uk-tax-and-incentives/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/access-finance-in-the-uk/',
+        '/international/content/investment/how-we-can-help/access-finance-in-the-uk/',
+    ),
+
 ]
 
 

@@ -15,64 +15,65 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
     url(
-        # Old HPOs
+        #Old HPOs
         r'^international/content/invest/high-potential-opportunities',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
+
 
     # [SPECIAL redirects for specific pages within /international/content/invest/ go here]
 
     # How to expand UK setup
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/establish-a-base-for-business-in-the-uk/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/establish-a-base-for-business-in-the-uk/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/establish-a-base-for-business-in-the-uk/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/research-and-development-rd-support-in-the-uk/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/research-and-development-rd-support-in-the-uk/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/research-and-development-rd-support-in-the-uk/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/global-entrepreneur-program/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/global-entrepreneur-program/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/global-entrepreneur-program/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/uk-visas-and-migration/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/uk-visas-and-migration/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/uk-visas-and-migration/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/register-a-company-in-the-uk/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/register-a-company-in-the-uk/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/register-a-company-in-the-uk/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/hire-skilled-workers-for-your-uk-operations/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/hire-skilled-workers-for-your-uk-operations/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/hire-skilled-workers-for-your-uk-operations/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/open-a-uk-business-bank-account/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/open-a-uk-business-bank-account/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/open-a-uk-business-bank-account/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/uk-tax-and-incentives/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/uk-tax-and-incentives/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/uk-tax-and-incentives/'
         ),
     ),
     url(
-        r'^/international/content/invest/how-to-setup-in-the-uk/access-finance-in-the-uk/$',
+        r'^international/content/invest/how-to-setup-in-the-uk/access-finance-in-the-uk/',
         QuerystringRedirectView.as_view(
             url='/international/content/investment/how-we-can-help/access-finance-in-the-uk/'
         ),
