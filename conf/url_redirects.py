@@ -10,7 +10,6 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         r'^international/invest/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
     ),
-
     url(
         # Redirect the old capital invest homepage to atlas
         r'^international/content/capital-invest/$',
@@ -26,9 +25,12 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         r'^international/content/invest/high-potential-opportunities',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
-
-
-    # [SPECIAL redirects for specific pages within /international/content/invest/ go here]
+    url(
+        r'^international/content/about-us/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/how-we-can-help/'
+        ),
+    ),
 
     # How to expand UK setup
     url(
@@ -85,7 +87,6 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
             url='/international/content/investment/how-we-can-help/access-finance-in-the-uk/'
         ),
     ),
-
 
     url(
         # Redirect the rest of the 'invest' CMS page and all its tree-based children

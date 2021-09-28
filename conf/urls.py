@@ -22,9 +22,12 @@ import find_a_supplier.views
 import second_qualification.views
 
 
-# Legacy view code - and the CMS behaviour that powers it - that has been
-# replaced with redirects is marked as "# TODO: RETIRE THIS PATH".
-# The redirects were step 1 of 2 in actually retiring the legacy paths
+# IMPORTANT: a lot of these views are no longer active - they are 
+# avoided by entries in redirects_before_tree_based_routing_lookup
+# because they have been retired during the Investment Atlas refactor.
+# Look at redirects_before_tree_based_routing_lookup in url_redirects.py
+# to see which URL configs (and therefore views, and forms, and templates) 
+# we can actively drop from the codebase.
 
 sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
