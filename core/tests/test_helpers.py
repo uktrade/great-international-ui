@@ -10,6 +10,7 @@ from core.helpers import get_map_labels_with_vertical_positions, get_header_conf
 from core.tests.helpers import create_response
 
 
+@pytest.mark.skip("Skipping this test as disabled translation")
 @pytest.mark.parametrize('path,expect_code', (
         ('/', None),
         ('?language=pt', 'pt'),

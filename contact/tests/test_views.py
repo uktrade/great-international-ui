@@ -69,6 +69,7 @@ def test_contact_invalid(mock_save, rf):
     assert response.context_data['form'].utm_data == utm_data
 
 
+@pytest.mark.skip("Skipping this test as disabled translation")
 @pytest.mark.parametrize('url', (
     'invest-contact',
     'invest-contact-success'
