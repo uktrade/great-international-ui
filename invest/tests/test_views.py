@@ -81,6 +81,7 @@ def test_invest_redirect_homepage_english(client, settings):
     assert response.url == '/international/invest/?foo=bar'
 
 
+@pytest.mark.skip("No longer relevant - users are redirected before they get here")
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_uk_region_page_cms_view(mock_get_page, client):
     mock_get_page.return_value = create_response(

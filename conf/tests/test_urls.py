@@ -70,6 +70,8 @@ def test_url_redirect_expand_page_on(mock_get_page, client, settings):
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_url_redirect_expand_page_off(mock_get_page, client, settings):
 
+    # NB: EXPAND_REDIRECT_ON looks like a setting that isn't set to True in real use
+
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -91,11 +93,12 @@ def test_url_redirect_expand_page_off(mock_get_page, client, settings):
     assert response.status_code == 200
 
     response = client.get('/international/invest/')
-    assert response.status_code == 200
+    assert response.status_code == 302
+    assert response.url == '/international/investment/'
 
     response = client.get('/international/content/invest/')
     assert response.status_code == 302
-    assert response.url == '/international/invest/'
+    assert response.url == '/international/investment/'
 
     response = client.get('/international/content/expand/')
     assert response.status_code == 302
@@ -103,7 +106,7 @@ def test_url_redirect_expand_page_off(mock_get_page, client, settings):
 
     response = client.get('/international/content/invest/high-potential-opportunities/')
     assert response.status_code == 302
-    assert response.url == '/international/content/invest/#high-potential-opportunities'
+    assert response.url == '/international/investment/opportunities/'
 
     response = client.get('/international/invest/incoming/')
     assert response.status_code == 302
