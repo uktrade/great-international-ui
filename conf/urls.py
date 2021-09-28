@@ -22,9 +22,9 @@ import find_a_supplier.views
 import second_qualification.views
 
 
-# Legacy view code - and the CMS behaviour that powers it - that has been 
-# replaced with redirects is marked as "# TODO: RETIRE THIS PATH". 
-# The redirects were step 1 of 2 in actually retiring the legacy paths 
+# Legacy view code - and the CMS behaviour that powers it - that has been
+# replaced with redirects is marked as "# TODO: RETIRE THIS PATH".
+# The redirects were step 1 of 2 in actually retiring the legacy paths
 
 sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,

@@ -56,7 +56,7 @@ redirects = [
     ),
     (
         '/international/content/invest/test/',
-        '/international/investment/',  # just all sent to the atlas root
+        '/international/investment/',  # just all sent to the atlas root
     ),
     (
         '/international/content/opportunities/',
@@ -180,9 +180,9 @@ def test_redirects(url, expected, client):
 
 
 not_redirected = (
-    '/international/invest/perfectfit/',  # needs PIR API call mocked
+    '/international/invest/perfectfit/',  # needs PIR API call mocked
 
-    # just a light check of SOME but not all views
+    # just a light check of SOME but not all views
     '/international/contact/',
     '/international/invest/contact/',
     '/international/invest/contact/success/',
@@ -197,11 +197,11 @@ not_redirected = (
 @mock.patch('pir_client.client.pir_api_client.get_options')
 @pytest.mark.parametrize('url', not_redirected)
 def test_does_NOT_redirect(
-    mock_lookup_by_path, 
-    mock_lookup_by_slug, 
-    mock_get_options, 
-    url, 
-    client,
+        mock_lookup_by_path,
+        mock_lookup_by_slug,
+        mock_get_options,
+        url,
+        client,
 ):
     response = client.get(url)
     assert response.status_code == 200  # not 30x
