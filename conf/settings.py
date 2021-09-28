@@ -161,12 +161,13 @@ LANGUAGE_COOKIE_DOMAIN = env.str('LANGUAGE_COOKIE_DOMAIN', None)
 # https://github.com/django/django/blob/master/django/conf/locale/__init__.py
 LANGUAGES = [
     ('en-gb', 'English'),               # English
-    ('de', 'Deutsch'),                  # German
-    ('ja', '日本語'),                    # Japanese
-    ('zh-hans', '简体中文'),             # Simplified Chinese
-    ('fr', 'Français'),                 # French
-    ('es', 'español'),                  # Spanish
-    ('pt', 'Português'),                # Portuguese
+    # Turning off translation for site, avoid risking serving empty page or 404
+    # ('de', 'Deutsch'),                  # German
+    # ('ja', '日本語'),                    # Japanese
+    # ('zh-hans', '简体中文'),             # Simplified Chinese
+    # ('fr', 'Français'),                 # French
+    # ('es', 'español'),                  # Spanish
+    # ('pt', 'Português'),                # Portuguese
 ]
 
 LOCALE_PATHS = (

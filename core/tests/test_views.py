@@ -442,6 +442,7 @@ def test_get_capital_invest_opportunity_page_with_no_related_sectors(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
         client, settings
@@ -453,6 +454,7 @@ def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
         client, settings
@@ -519,6 +521,7 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
         client, settings
@@ -530,6 +533,7 @@ def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
         client, settings
@@ -683,6 +687,7 @@ def test_about_uk_landing_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('about_uk_landing_page')
 def test_about_uk_landing_page_returns_404_when_feature_flag_off(
         client, settings
@@ -1321,6 +1326,7 @@ def test_atlas_opportunity_page_sectors_label(mock_cms_response, rf):
     assert response.context_data['sectors_label'] == 'Housing (Green housing, Urban, Renting)'
 
 
+@pytest.mark.skip("No longer relevant - redirects stop this being accessed. Retaining test for awareness")
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_expand_path_exists(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
