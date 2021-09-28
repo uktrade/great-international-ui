@@ -4,18 +4,25 @@ from core.views import QuerystringRedirectView
 
 
 redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
+    # All of these can be used to discover which view code we need to delete
     url(
         # Redirect the old invest homepage to atlas
         r'^international/invest/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
     ),
+
     url(
-        # Old CIOs
+        # Redirect the old capital invest homepage to atlas
+        r'^international/content/capital-invest/$',
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
+    ),
+    url(
+        # Old CIOs
         r'^international/content/opportunities/',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
     url(
-        #Old HPOs
+        # Old HPOs
         r'^international/content/invest/high-potential-opportunities',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
     ),
@@ -124,7 +131,7 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         ),
     ),
     url(
-        r'^international/content/about-uk/industries/',  # NB: wildcard
+        r'^international/content/about-uk/industries/',  # NB: wildcard
         QuerystringRedirectView.as_view(
             url='/international/content/investment/sectors/'
         ),
