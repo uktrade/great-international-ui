@@ -424,14 +424,14 @@ def about_uk_region_listing_page_context_modifier(context, request):
             x['region']['meta']['slug'].replace('-', '_'): {
                 'full_path': x['region']['full_path']
             }
-            for x in context['page']['mapped_regions']
+            for x in context['page']['mapped_regions'] if x['region']
         }
         cards_list = [create_cards_list_item(
             x['region']['full_path'],
             x['region']['title'],
             x['text'],
             x['region'].get('hero_image_thumbnail')
-        ) for x in context['page']['mapped_regions']]
+        ) for x in context['page']['mapped_regions'] if x['region']]
 
     return {
         'regions': regions,
