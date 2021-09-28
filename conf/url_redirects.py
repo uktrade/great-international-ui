@@ -16,6 +16,12 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
     ),
     url(
+        r'^international/content/capital-invest/how-we-help-you-invest-capital/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/how-we-can-help/'
+        ),
+    ),
+    url(
         # Old CIOs
         r'^international/content/opportunities/',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),

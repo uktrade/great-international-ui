@@ -55,6 +55,10 @@ redirects = [
         '/international/investment/',
     ),
     (
+        '/international/content/capital-invest/how-we-help-you-invest-capital/',
+        '/international/content/investment/how-we-can-help/',
+    ),
+    (
         '/international/content/invest/test/',
         '/international/investment/',  # just all sent to the atlas root
     ),
