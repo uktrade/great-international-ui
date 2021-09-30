@@ -6,6 +6,7 @@
 {% load pagination from directory_components %}
 
 {% block content %}
+    {{ page }}
     <form id="opportunities-search-form" action="{{ paginator_url }}" class="atlas-bg--grey-lighter">
         <div class="atlas-container atlas-container--wide atlas-p-v-m">
             <div class="atlas-grid">
