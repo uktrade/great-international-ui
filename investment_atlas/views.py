@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
@@ -45,6 +44,10 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         except (EmptyPage, PageNotAnInteger):
             url = core_helpers.get_paginator_url(self.request.GET, 'atlas-opportunities') + "&page=1"
             return redirect(url)
+
+    @property
+    def view(self):
+        return self.request.GET.get('view', 'list')
 
     @property
     def page_number(self):
@@ -233,7 +236,8 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def pagination(self):
-        paginator = Paginator(self.filtered_opportunities, self.page_size)
+        page_size = self.page_size if self.view == 'list' else len(self.filtered_opportunities)
+        paginator = Paginator(self.filtered_opportunities, page_size)
         return paginator.page(self.page_number or 1)
 
     @property

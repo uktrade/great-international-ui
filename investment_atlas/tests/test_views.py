@@ -1,4 +1,3 @@
-
 import pytest
 from unittest.mock import call, patch
 from importlib import import_module
@@ -15,8 +14,8 @@ from investment_atlas.views import InvestmentOpportunitySearchView
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_region_sector_scale_filter_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
     page = {
         'title': 'test',
@@ -104,10 +103,9 @@ def test_region_sector_scale_filter_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_num_of_opportunities_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -171,10 +169,9 @@ def test_get_num_of_opportunities_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_filters_chosen_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -221,10 +218,9 @@ def test_get_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sorting_filters_chosen_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -274,10 +270,9 @@ def test_get_sorting_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sub_sector_filters_chosen_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -326,10 +321,9 @@ def test_get_sub_sector_filters_chosen_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -380,10 +374,9 @@ def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -433,10 +426,9 @@ def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_sub_sectors_being_shown_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -496,11 +488,11 @@ def test_sub_sectors_being_shown_for_opportunity_search(
                 'sub_sectors': ['Housing', 'Commercial', 'Mixed use'],
                 'scale_value': '1000.00',
                 'related_regions':
-                [
-                    {
-                        'title': 'Midlands'
-                    },
-                ],
+                    [
+                        {
+                            'title': 'Midlands'
+                        },
+                    ],
                 'related_sectors': [
                     {
                         'related_sector': {
@@ -561,10 +553,9 @@ def test_sub_sectors_being_shown_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_when_no_opportunity_list_in_page_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -590,8 +581,8 @@ def test_when_no_opportunity_list_in_page_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_investment_type_filter_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
     page = {
         'title': 'test',
@@ -691,8 +682,8 @@ def test_investment_type_filter_for_opportunity_search(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_planning_status_filter_for_opportunity_search(
-    mock_cms_response,
-    rf,
+        mock_cms_response,
+        rf,
 ):
     page = {
         'title': 'test',
@@ -794,8 +785,60 @@ def test_planning_status_filter_for_opportunity_search(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_map_view_filter_shows_all_opportunities(mock_cms_response, rf):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': []
+    }
+
+    for index in range(15):
+        page['opportunity_list'].append({
+            'id': index,
+            'title': 'Some Opp {}'.format(index),
+            'sub_sectors': ['energy'],
+            'scale_value': '0.00',
+            'investment_type': 'Investment Type One',
+            'planning_status': 'Planning Status Five',
+            'related_regions': [
+                {
+                    'title': 'South of England'
+                },
+            ],
+            'related_sectors': [
+                {
+                    'related_sector': {
+                        'heading': 'Automotive'
+                    }
+                },
+            ],
+        })
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?view=map'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?view=map'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 15
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_opportunity_detail(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
@@ -816,9 +859,8 @@ def test_opportunity_detail(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_opportunity_detail_not_found(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
-
     mock_lookup_by_path.return_value = create_response(status_code=404)
 
     url = '/international/content/investment/opportunities/rail/'
@@ -830,9 +872,8 @@ def test_opportunity_detail_not_found(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_opportunity_detail_cms_retrieval_ok(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
-
     mock_lookup_by_path.return_value = create_response(
         status_code=200, json_payload={
             'title': '1234',
@@ -854,9 +895,8 @@ def test_opportunity_detail_cms_retrieval_ok(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_opportunity_detail_cms_retrieval_not_ok(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
-
     mock_lookup_by_path.return_value = create_response(status_code=400)
 
     url = '/international/content/investment/opportunities/rail/'
@@ -926,7 +966,7 @@ def test_foreign_direct_investment_form_cms_retrieval_ok(mock_lookup_by_path, se
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_foreign_direct_investment_form_cms_retrieval_not_ok(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
     mock_lookup_by_path.return_value = create_response(status_code=400)
 
@@ -940,8 +980,8 @@ def test_foreign_direct_investment_form_cms_retrieval_not_ok(
 @patch('investment_atlas.forms.ForeignDirectInvestmentOpportunityForm.action_class.save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_foreign_direct_investment_form_submmit_cms_retrieval_ok(
-    mock_lookup_by_path, mock_save, mock_action_class, settings, rf,
-    captcha_stub
+        mock_lookup_by_path, mock_save, mock_action_class, settings, rf,
+        captcha_stub
 ):
     mock_lookup_by_path.return_value = create_response(
         json_payload={
@@ -1018,7 +1058,6 @@ def test_foreign_direct_investment_form_submmit_cms_retrieval_ok(
     "because we don't need that data until we start passing around PDF download URLs again"
 )
 def test_foreign_direct_investment_form_get_success_page_no_session(client, settings):
-
     url = reverse('fdi-opportunity-request-form-success')
 
     response = client.get(url)
@@ -1033,9 +1072,8 @@ def test_foreign_direct_investment_form_get_success_page_no_session(client, sett
 )
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_foreign_direct_investment_form_get_success_page_with_session(
-    mock_lookup_by_path, settings, client
+        mock_lookup_by_path, settings, client
 ):
-
     settings.SESSION_ENGINE = 'django.contrib.sessions.backends.file'
     engine = import_module(settings.SESSION_ENGINE)
     store = engine.SessionStore()
