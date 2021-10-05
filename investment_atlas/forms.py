@@ -73,12 +73,17 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False,
     )
+    view = forms.ChoiceField(
+        label='view',
+        widget=forms.RadioSelect(),
+    )
 
     def __init__(
             self,
             sectors,
             scales,
             regions,
+            view_options,
             sort_by_options,
             sub_sectors,
             planning_statuses,
@@ -91,6 +96,7 @@ class InvestmentOpportunitySearchForm(forms.Form):
         self.fields['scale'].choices = scales
         self.fields['region'].choices = regions
         self.fields['sort_by'].choices = sort_by_options
+        self.fields['view'].choices = view_options
         self.fields['sub_sector'].choices = sub_sectors
         self.fields['planning_status'].choices = planning_statuses
         self.fields['investment_type'].choices = investment_types

@@ -236,7 +236,11 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def pagination(self):
-        page_size = self.page_size if self.view == 'list' else len(self.filtered_opportunities)
+        page_size = self.page_size
+
+        if self.view == 'map':
+            page_size = len(self.filtered_opportunities)
+
         paginator = Paginator(self.filtered_opportunities, page_size)
         return paginator.page(self.page_number or 1)
 
@@ -269,6 +273,10 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
+            view_options=(
+                ('list', 'List'),
+                ('map', 'Map')
+            ),
             sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             investment_types=self.all_investment_types,
             planning_statuses=self.all_planning_statuses,
@@ -277,6 +285,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                 'scale': self.filters_chosen,
                 'region': self.filters_chosen,
                 'sort_by': self.sorting_chosen,
+                'view': self.view,
                 'sub_sector': self.filters_chosen,
                 'planning_status': self.filters_chosen,
                 'investment_type': self.filters_chosen,
