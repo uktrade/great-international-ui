@@ -17,6 +17,24 @@
                     <div class="atlas-bg--white atlas-p-s">
                         <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
+                        <div class="atlas-p-t-s">
+                            {% if form.view.value == 'list' %}
+                                <button name="view" value="map" class="atlas-button atlas-search__button">
+                                    <span class="atlas-button__icon atlas-button__icon--first">
+                                       {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
+                                    </span>
+                                    View on map
+                                </button>
+                            {% else %}
+                                <button name="view" value="list" class="atlas-button atlas-search__button">
+                                    <span class="atlas-button__icon atlas-button__icon--first">
+                                       {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
+                                    </span>
+                                    View as list
+                                </button>
+                            {% endif %}
+                        </div>
+
                         <button class="atlas-search-filter__toggle atlas-button atlas-button--link atlas-visually-hidden-l atlas-hidden-nojs atlas-m-t-s"
                                 type="button"
                                 aria-controls="atlas-search-filters" data-reveal-button>
@@ -30,7 +48,6 @@
                     <div id="atlas-search-filters"
                          class="atlas-reveal__contents atlas-reveal__contents--show-l">
                         <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                            {% include 'investment_atlas/includes/search_filter.html' with label='View as' field=form.view %}
                             {% if sectors %}
                                 {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
                             {% endif %}
@@ -143,8 +160,7 @@
         {% if form.view.value == 'map' %}
             {{ pagination.object_list|json_script:"atlas-opportunities" }}
             <link href="https://unpkg.com/maplibre-gl@1/dist/maplibre-gl.css" rel="stylesheet"/>
-            <div id="map"
-                 style="position: absolute; left: 0; top: 0; z-index: 0; width: 100%; height: 100%; background: rgb(181, 225, 251);"></div>
+            <div id="map" style="position: absolute; left: 0; top: 0; z-index: 0; width: 100%; height: 100%;"></div>
             <script src="https://unpkg.com/maplibre-gl@1"></script>
             <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
             <script>

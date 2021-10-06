@@ -73,10 +73,7 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False,
     )
-    view = forms.ChoiceField(
-        label='view',
-        widget=forms.RadioSelect(),
-    )
+    view = forms.ChoiceField()
 
     def __init__(
             self,
