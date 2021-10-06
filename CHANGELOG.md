@@ -53,10 +53,9 @@
 - NOTICKET - dependencies upgrade
 
 ### Fixed bugs
-
-- GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
-- GP2-2873 - XSS defence - force escape search query
-- NOTICKET - roll back python to 3.6.6
+ - GP2-3282 - Skip GA on unsubscribe to avoid capturing PII
+ - GP2-2873 - XSS defence - force escape search query
+ - NOTICKET - roll back python to 3.6.6
 
 ## [2.2.0](https://github.com/uktrade/great-international-ui/releases/tag/2.2.0)
 
