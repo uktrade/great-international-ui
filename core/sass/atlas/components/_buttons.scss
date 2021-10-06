@@ -38,6 +38,16 @@
   background-color: $atlas-white;
 }
 
+.atlas-button--wire {
+  color: $atlas-body;
+  background-color: $atlas-white;
+  border: 2px solid $atlas-body;
+
+  &:hover {
+    background-color: $atlas-grey-lighter;
+  }
+}
+
 .atlas-button--link {
   @include atlas-regular;
   padding: 0;

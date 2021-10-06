@@ -19,14 +19,16 @@
 
                         <div class="atlas-p-t-s">
                             {% if form.view.value == 'list' %}
-                                <button name="view" value="map" class="atlas-button atlas-search__button">
+                                <button name="view" value="map"
+                                        class="atlas-button atlas-button--wire atlas-search__button">
                                     <span class="atlas-button__icon atlas-button__icon--first">
                                        {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
                                     </span>
                                     View on map
                                 </button>
                             {% else %}
-                                <button name="view" value="list" class="atlas-button atlas-search__button">
+                                <button name="view" value="list"
+                                        class="atlas-button atlas-button--wire atlas-search__button">
                                     <span class="atlas-button__icon atlas-button__icon--first">
                                        {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
                                     </span>
