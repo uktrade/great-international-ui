@@ -850,6 +850,7 @@ def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, settings):
     settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = True
+    settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID = 'FOO-BAR-POOL-ID'
 
     page = {
         'title': 'test',
@@ -876,6 +877,7 @@ def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, s
         path='/international/investment/opportunities/?view=map'
     )
 
+    assert response.context_data['aws_cognito_pool_id'] == 'FOO-BAR-POOL-ID'
     assert 'id="id_view"' in response.rendered_content
     assert "View as list" in response.rendered_content
     assert 'id="atlas-opportunities-map"' in response.rendered_content

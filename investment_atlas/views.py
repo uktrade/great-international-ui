@@ -310,6 +310,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             filters=self.filters_chosen,
             current_page_num=self.page_number,
             form=self.opportunity_search_form,
+            aws_cognito_pool_id=settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID,
             *args, **kwargs,
         )
 

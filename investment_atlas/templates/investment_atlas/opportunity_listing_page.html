@@ -177,7 +177,7 @@
                     const map = await AmazonLocation.createMap(
                         {
                             // Cognito Identity Pool ID
-                            identityPoolId: "eu-west-1:a03a7525-10e6-4c1f-a05d-f5c346ad777d",
+                            identityPoolId: "{{ aws_cognito_pool_id }}",
                         },
                         {
                             container: "atlas-opportunities-map",
