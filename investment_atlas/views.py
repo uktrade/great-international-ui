@@ -47,6 +47,8 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def view(self):
+        if settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] is not True:
+            return 'list'
         return self.request.GET.get('view', 'list')
 
     @property

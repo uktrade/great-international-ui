@@ -784,24 +784,11 @@ def test_planning_status_filter_for_opportunity_search(
     ]
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_map_view_filter_shows_all_opportunities(mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'InvestmentOpportunityListingPage',
-        'opportunity_list': []
-    }
+def create_mock_opportunities(count):
+    opportunities = []
 
-    for index in range(15):
-        page['opportunity_list'].append({
+    for index in range(count):
+        opportunities.append({
             'id': index,
             'title': 'Some Opp {}'.format(index),
             'sub_sectors': ['energy'],
@@ -822,6 +809,27 @@ def test_map_view_filter_shows_all_opportunities(mock_cms_response, rf):
             ],
         })
 
+    return opportunities
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response, rf, settings):
+    settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = False
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': create_mock_opportunities(15)
+    }
+
     mock_cms_response.return_value = create_response(page)
 
     request = rf.get(
@@ -833,6 +841,44 @@ def test_map_view_filter_shows_all_opportunities(mock_cms_response, rf):
         path='/international/investment/opportunities/?view=map'
     )
 
+    assert response.context_data['form']['view'].value() == 'list'
+    assert 'id="atlas-opportunities-map"' not in response.rendered_content
+    assert 'id="id_view"' not in response.rendered_content
+    assert 'View on map' not in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, settings):
+    settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = True
+
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': create_mock_opportunities(15)
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?view=map'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?view=map'
+    )
+
+    assert 'id="id_view"' in response.rendered_content
+    assert "View as list" in response.rendered_content
+    assert 'id="atlas-opportunities-map"' in response.rendered_content
     assert len(response.context_data['pagination'].object_list) == 15
 
 
