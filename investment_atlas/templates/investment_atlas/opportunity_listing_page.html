@@ -17,18 +17,19 @@
                     <div class="atlas-bg--white atlas-p-s">
                         <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
-                        <div class="atlas-p-t-s">
+                        <div class="atlas-p-t-s atlas-hidden-nojs">
+                            {{ form.view.as_hidden }}
                             {% if form.view.value == 'list' %}
-                                <button name="view" value="map"
-                                        class="atlas-button atlas-button--wire atlas-search__button">
+                                <button class="atlas-button atlas-button--wire atlas-search__button" type="button"
+                                        onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
                                     <span class="atlas-button__icon atlas-button__icon--first">
                                        {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
                                     </span>
                                     View on map
                                 </button>
                             {% else %}
-                                <button name="view" value="list"
-                                        class="atlas-button atlas-button--wire atlas-search__button">
+                                <button class="atlas-button atlas-button--wire atlas-search__button" type="button"
+                                        onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
                                     <span class="atlas-button__icon atlas-button__icon--first">
                                        {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
                                     </span>
