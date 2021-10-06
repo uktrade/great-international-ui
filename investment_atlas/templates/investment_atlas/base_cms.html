@@ -18,27 +18,4 @@ These are prime candidates for removal but unfortunately the cookie notice won't
 {% endblock %}
 {% endcomment %}
 
-{% block body_js %}
-    <script>
-        function atlasToggleReveal(buttonEl, state) {
-            const openState = typeof state !== 'undefined'
-                ? state
-                : buttonEl.getAttribute('aria-expanded') !== 'true'
-            const expandedAttr = openState ? 'true' : 'false'
-            const targetEl = document.querySelector('#' + buttonEl.getAttribute('aria-controls'));
-            buttonEl.setAttribute('aria-expanded', expandedAttr);
-            targetEl.setAttribute('aria-expanded', expandedAttr);
-        }
-
-        document.querySelectorAll('[data-reveal-button]').forEach(function (el) {
-            atlasToggleReveal(el, false)
-            el.addEventListener('click', function (event) {
-                atlasToggleReveal(event.target);
-            })
-        })
-    </script>
-
-    {{ block.super }}
-{% endblock %}
-
 {% block feedback_reporter %}{% endblock %}
