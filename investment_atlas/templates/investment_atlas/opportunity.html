@@ -1,0 +1,131 @@
+{% extends 'investment_atlas/base_cms.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_image %}
+
+    {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
+
+    {% include 'investment_atlas/includes/hero_intro.html' with page=page %}
+
+    <div class="atlas-container">
+        <div class="atlas-bg--grey-lighter atlas-p-h-m atlas-p-v-s atlas-m-b-m">
+            <div class="atlas-grid">
+                {% if page.location %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Location' value=page.location icon='location' %}
+                {% endif %}
+
+                {% if page.investment_type %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Investment type' value=page.investment_type icon='investment-type' %}
+                {% endif %}
+
+                {% if sectors_label %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Sector' value=sectors_label icon='sector' %}
+                {% endif %}
+
+                {% if page.promoter %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Project promoter' value=page.promoter icon='promoter' %}
+                {% endif %}
+
+                {% if page.scale %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Scale' value=page.scale icon='scale' %}
+                {% endif %}
+
+                {% if page.planning_status %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Planning status' value=page.planning_status.name icon='planning' %}
+                {% endif %}
+
+                {% if page.time_to_investment_decision %}
+                    {% include 'investment_atlas/includes/opportunity_detail.html' with label='Time to Final Investment Decision (FID)' value=page.time_to_investment_decision icon='time-to-invest' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% include 'investment_atlas/includes/contact.html' with button_preamble="Contact the opportunity lead" %}
+
+    <div class="atlas-alternate-bg">
+        {% for section in page.main_content %}
+            <section{% if section.value.block_slug == 'with-key-links' %}
+                class="atlas-bg--grey-light"{% endif %}>
+                <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+                    {% for content in section.value.content %}
+                        <div class="atlas-grid">
+                            {% if content.type == 'text' %}
+                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                    <div class="atlas-cms-text atlas-p-b-m">
+                                        {{ content.value|safe }}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if content.type == 'image' %}
+                                <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                                    <div class="atlas-cms-text atlas-p-b-m">
+                                        <img class="atlas-image" src="{{ content.value.image }}"
+                                             alt="{{ content.value.image_alt }}">
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if content.type == 'columns' %}
+                                {% for column in content.value %}
+                                    <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ column.value|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if section.value.block_slug == 'with-key-links' and page.important_links %}
+                                <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                    <div class="atlas-opportunity__key-links atlas-bg--white atlas-p-s atlas-m-b-m">
+                                        <h3 class="atlas-h--m">Key links</h3>
+                                        <div class="atlas-cms-text">
+                                            {{ page.important_links|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            {% if section.value.block_slug == 'with-region-spotlight' and page.related_regions|length == 1 %}
+                                <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                    <div class="atlas-opportunity__region-spotlight atlas-bg--grey-light atlas-m-b-m">
+                                        {% with region=page.related_regions.0 %}
+                                            <h3 class="atlas-h--m atlas-p-s atlas-m-0">
+                                                <div class="atlas-body--s atlas-p-b-xs">Region Spotlight</div>
+                                                {{ region.title }}
+                                            </h3>
+                                            {% if region.hero_image_thumbnail %}
+                                                <img class="atlas-image" src="{{ region.hero_image_thumbnail.url }}"
+                                                     alt="{{ region.hero_image_thumbnail.alt }}">
+                                            {% endif %}
+                                            <div class="atlas-cms-text atlas-p-s">
+                                                <p>{{ region.region_summary_section_intro }}</p>
+                                                <p><a href="{{ region.full_path }}">View all investment opportunities
+                                                    in {{ region.title }}</a></p>
+                                            </div>
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+
+    {% if page.related_opportunities|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">Related opportunities</h2>
+                {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
+            </div>
+        </section>
+    {% endif %}
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+
+{% endblock %}

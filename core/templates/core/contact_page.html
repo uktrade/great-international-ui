@@ -5,11 +5,13 @@
 
 {% block content %}
 <section class="background-white">
+  {% comment "DISABLED for Atlas MVP" %}
   <div class="container">
       {% breadcrumbs 'Contact us' %}
         <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
       {% endbreadcrumbs %}
   </div>
+  {% endcomment %}
 
   <div class="container">
     <div class="grid-row">

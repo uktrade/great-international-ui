@@ -1,0 +1,58 @@
+{% load collapse_text from atlas_tags %}
+
+<section>
+    <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+        {% for content in section.value.content %}
+
+            {% if content.type == 'header' %}
+                <h2 class="atlas-h--l atlas-m-b-m">{{ content.value }}</h2>
+            {% endif %}
+
+            {% if content.type == 'nested_content' %}
+                {% for sub_content in content.value %}
+
+                    {% if sub_content.type == 'text' %}
+                        <div class="atlas-grid{% if sub_content.value.image.image %} atlas-grid--masonry{% endif %}">
+                            {% if sub_content.value.image.image %}
+                                <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                                    <div class="atlas-cms-text atlas-p-b-m">
+                                        <img class="atlas-image" src="{{ sub_content.value.image.image }}"
+                                             alt="{{ sub_content.value.image.image_alt }}">
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="atlas-grid__column{% if sub_content.value.image.image %} atlas-grid__column--left atlas-grid__column--6-12-m{% else %} atlas-grid__column--8-12-m{% endif %}">
+                                <div class="atlas-cms-text atlas-p-b-m">
+                                    {% collapse_text sub_content.value.text|safe sub_content.id %}
+                                </div>
+
+                                {% if sub_content.value.cta.link %}
+                                    <a href="{{ sub_content.value.cta.link }}" class="atlas-button atlas-m-b-m">
+                                        {{ sub_content.value.cta.label|default:"Find out more" }}
+                                        <span class="atlas-button__icon">
+                                            {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                        </span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if sub_content.type == 'columns' %}
+                        {% with sub_content.value|length as cols %}
+                            <div class="atlas-grid">
+                                {% for column in sub_content.value %}
+                                    <div class="atlas-grid__column atlas-grid__column--{% if cols == 1 %}8{% elif cols|divisibleby:3 %}4{% elif cols|divisibleby:2 %}6{% else %}4{% endif %}-12-m">
+                                        <div class="atlas-cms-text atlas-p-b-m">
+                                            {{ column.value|safe }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>

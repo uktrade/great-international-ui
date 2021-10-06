@@ -1,0 +1,134 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_large %}
+
+    <div class="atlas-hero__heading">
+        <div class="atlas-container">
+            <div class="atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--6-12-m">
+                    <h1 class="atlas-h--xl atlas-m-b-m">{{ page.title }}</h1>
+
+                    {% if page.region_summary_section_strapline %}
+                        <p class="atlas-body--l">{{ page.region_summary_section_strapline }}</p>
+                    {% endif %}
+
+                    {% if page.region_summary_section_intro %}
+                        <p class="atlas-body--m">{{ page.region_summary_section_intro }}</p>
+                    {% endif %}
+                </div>
+                <div class="atlas-grid__column atlas-grid__column--5-12-m atlas-grid__column--offset-1-m">
+                    <div class="atlas-svg-map atlas-regions__map">
+                        {% include 'investment_atlas/includes/svg/regions-map.svg.html' with links=True regions=regions highlight=page.meta.slug %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="atlas-bg--green-light">
+        <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+            <div class="atlas-cms-text atlas-p-b-m">
+                {{ page.region_summary_section_content|safe }}
+            </div>
+        </div>
+    </section>
+
+    {% if page.related_opportunities %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">Related opportunities</h2>
+
+                {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
+
+                <p class="atlas-m-t-l atlas-m-b-s"><a
+                        href="/international/investment/opportunities/?region={{ page.title|urlencode }}"
+                        class="atlas-link">View all
+                    investment opportunities
+                    in {{ page.title }}</a></p>
+            </div>
+        </section>
+    {% endif %}
+
+    {% if page.location_stats|length > 0 or page.economics_stats|length > 0 %}
+        <section class="atlas-bg--grey-lighter">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <dl class="atlas-grid">
+                    {% for stat in page.location_stats %}
+                        {% if stat.number %}
+                            <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                {% include 'investment_atlas/includes/stat.html' with stat=stat %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% for stat in page.economics_stats %}
+                        {% if stat.number %}
+                            <div class="atlas-grid__column atlas-grid__column--4-12-m">
+                                {% include 'investment_atlas/includes/stat.html' with stat=stat %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </dl>
+            </div>
+        </section>
+    {% endif %}
+
+    <section>
+        <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+            <h2 class="atlas-h--l">{{ page.property_and_infrastructure_section_title }}</h2>
+
+            <div class="atlas-grid atlas-grid--masonry atlas-p-t-s">
+                {% if page.property_and_infrastructure_section_image %}
+                    <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
+                        <img class="atlas-image"
+                             src="{{ page.property_and_infrastructure_section_image.url }}"
+                             alt="{{ page.property_and_infrastructure_section_image.alt }}">
+                    </div>
+                {% endif %}
+
+                <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--{% if page.property_and_infrastructure_section_image %}6{% else %}8{% endif %}-12-m atlas-m-b-m">
+                    <div class="atlas-cms-text">
+                        {{ page.property_and_infrastructure_section_content|safe }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    {% if page.case_study_title and page.case_study_text %}
+    <section>
+        <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+            <h2 class="atlas-h--l">{{ page.case_study_title }}</h2>
+
+            <div class="atlas-grid atlas-grid--masonry atlas-p-t-s">
+                {% if page.case_study_image %}
+                    <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
+                        <img class="atlas-image"
+                             src="{{ page.case_study_image.url }}"
+                             alt="{{ page.case_study_image.alt }}">
+                    </div>
+                {% endif %}
+                <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--{% if page.case_study_image %}6{% else %}8{% endif %}-12-m atlas-m-b-m">
+                    <div class="atlas-cms-text atlas-p-b-m">
+                        {{ page.case_study_text|safe }}
+                    </div>
+
+                    {% if page.case_study_cta_link and page.case_study_cta_text %}
+                    <a href="{{ page.case_study_cta_link }}" class="atlas-button atlas-m-b-m">
+                        {{ page.case_study_cta_text }}
+                        <span class="atlas-button__icon">
+                            {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                        </span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+{% endblock %}

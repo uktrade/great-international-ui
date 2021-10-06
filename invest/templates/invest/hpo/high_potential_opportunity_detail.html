@@ -1,4 +1,4 @@
-{% extends 'core/base_with_invest_header.html' %}
+{% extends 'core/base.html' %}
 {% load static from staticfiles %}
 {% load directory_components %}
 {% load cms_hero from cms_tags %}
@@ -28,7 +28,7 @@
 
 <section id="contact-section" class="contact-section">
     <div class="container">
-        {% url 'high-potential-opportunity-request-form' as hpo_contact_url %}
+        {% url 'fdi-opportunity-request-form' as hpo_contact_url %}
         {% include 'invest/includes/cta_box.html' with box_id='contact-box' box_class='contact-box background-stone' box_content=page.contact_proposition|add_export_elements_classes|convert_headings_to:'h2'|override_elements_css_class:'h2,heading-medium'|safe button_text=page.contact_button button_url=hpo_contact_url button_class='button-arrow-large button-blue' %}
     </div>
 </section>

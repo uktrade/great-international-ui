@@ -1,0 +1,101 @@
+@import '../tokens';
+
+.atlas-home {
+  position: relative;
+  overflow: hidden;
+  background: $atlas-brand-blue;
+}
+
+
+.atlas-home__image {
+  position: absolute;
+  width: 580px;
+  max-height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+
+  @media (min-width: $breakpoint-medium) {
+    width: 1024px;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    width: 1420px;
+  }
+
+  & img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: inset 0 -100px 50px 50px $atlas-brand-blue, inset 0 -100px 50px $atlas-brand-blue;
+  }
+}
+
+.atlas-home__header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 408px;
+
+  @media (min-width: $breakpoint-medium) {
+    justify-content: center;
+    min-height: 505px;
+    padding-left: 84px;
+  }
+
+  @media (min-width: $breakpoint-large) {
+    min-height: 710px;
+  }
+
+  @media (min-width: $breakpoint-xlarge) {
+    padding-left: 0;
+  }
+
+  & h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    max-width: 5em;
+
+    @media (min-width: $breakpoint-medium) {
+      font-size: 85px;
+    }
+
+    @media (min-width: $breakpoint-large) {
+      font-size: 108px;
+    }
+  }
+}
+
+.atlas-home .atlas-card {
+  position: relative;
+}
+
+.atlas-home__card-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  color: $atlas-grey-light;
+
+  & .atlas-svg {
+    display: block;
+    width: 20px;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

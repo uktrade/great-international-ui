@@ -10,16 +10,17 @@ from core.helpers import get_map_labels_with_vertical_positions, get_header_conf
 from core.tests.helpers import create_response
 
 
+@pytest.mark.skip("Skipping this test as disabled translation")
 @pytest.mark.parametrize('path,expect_code', (
-    ('/', None),
-    ('?language=pt', 'pt'),
-    ('/industries?language=es', 'es'),
-    ('/industries/?language=zh-hans', 'zh-hans'),
-    ('/industries/aerospace?language=de', 'de'),
-    ('/industries/automotive/?language=fr', 'fr'),
-    ('?lang=fr', 'fr'),
-    ('?language=de&lang=de', 'de'),
-    ('?lang=pt&language=es', 'es')
+        ('/', None),
+        ('?language=pt', 'pt'),
+        ('/industries?language=es', 'es'),
+        ('/industries/?language=zh-hans', 'zh-hans'),
+        ('/industries/aerospace?language=de', 'de'),
+        ('/industries/automotive/?language=fr', 'fr'),
+        ('?lang=fr', 'fr'),
+        ('?language=de&lang=de', 'de'),
+        ('?lang=pt&language=es', 'es')
 ))
 def test_get_language_from_querystring(path, expect_code, rf):
     url = reverse('index')
@@ -43,29 +44,28 @@ def test_unslugify(slug, exp):
 def test_get_paginator_url():
     filters = QueryDict('')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?'
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+            reverse('atlas-opportunities') + '?'
     )
 
 
 def test_get_paginator_url_with_filters():
     filters = QueryDict('sector=Energy&sector=Aerospace&scale=Value+unknown')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+            reverse('atlas-opportunities') + '?sector=Energy&sector=Aerospace&scale=Value+unknown'  # NOQA
     )
 
 
 def test_get_paginator_url_with_spaces_filters():
     filters = QueryDict('sector=A+value+with+spaces+')
 
-    assert helpers.get_paginator_url(filters, 'opportunities') == (
-        reverse('opportunities') + '?sector=A+value+with+spaces+'
+    assert helpers.get_paginator_url(filters, 'atlas-opportunities') == (
+            reverse('atlas-opportunities') + '?sector=A+value+with+spaces+'
     )
 
 
 def test_sort_opportunities_scale():
-
     opportunities = [
         {
             'scale_value': 100
@@ -88,7 +88,6 @@ def test_sort_opportunities_scale():
 
 
 def test_sort_opportunities_name():
-
     opportunities = [
         {
             'title': 'Ashton Green'
@@ -201,18 +200,42 @@ def test_filter_opportunities_scale_greater_than_1000():
     assert len(filtered_opps) == 1
 
 
-def test_filter_opportunities_region():
+def test_filter_opportunities_region__single():
     opportunities = [
-        {'related_region': {'title': 'Midlands'}},
-        {'related_region': ''},
-        {'related_region': {'title': 'Midlands'}},
-        {'related_region': {'title': ''}},
+        {'slug': 'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'two', 'related_regions': []},
+        {'slug': 'three', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'four', 'related_regions': [{'title': ''}]},
     ]
 
-    filter_chosen = helpers.RegionFilter('Midlands')
+    filter_chosen = helpers.MultipleRegionsFilter('Midlands')
 
     filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
     assert len(filtered_opps) == 2
+    assert sorted([x['slug'] for x in filtered_opps]) == ['one', 'three']
+
+
+def test_filter_opportunities_region__multiple():
+    opportunities = [
+        {'slug': 'one', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'two', 'related_regions': []},
+        {'slug': 'three', 'related_regions': [{'title': 'Midlands'}, {'title': 'Wales'}]},
+        {'slug': 'four', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'five', 'related_regions': [{'title': 'Wales'}]},
+        {'slug': 'six', 'related_regions': [{'title': 'Midlands'}]},
+        {'slug': 'seven', 'related_regions': [{'title': ''}]},
+    ]
+
+    filter_chosen = helpers.MultipleRegionsFilter('Midlands')
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 4
+
+    assert sorted([x['slug'] for x in filtered_opps]) == ['four', 'one', 'six', 'three']
+
+    filter_chosen = helpers.MultipleRegionsFilter('Wales')
+    filtered_opps = helpers.filter_opportunities(opportunities, filter_chosen)
+    assert len(filtered_opps) == 2
+    assert sorted([x['slug'] for x in filtered_opps]) == ['five', 'three']
 
 
 def test_filter_opportunities_sector():
@@ -246,7 +269,7 @@ def test_filter_opportunities_multiple_filters():
                 {'related_sector': {'heading': ''}},
             ],
             'scale_value': 0,
-            'related_region': {'title': 'Midlands'},
+            'related_regions': [{'title': 'Midlands'}],
 
         },
         {
@@ -255,14 +278,14 @@ def test_filter_opportunities_multiple_filters():
                 {'related_sector': {'heading': 'Aston Green'}},
             ],
             'scale_value': 3000,
-            'related_region': {'title': ''},
+            'related_regions': [{'title': ''}],
         },
     ]
 
     filtered_opps = helpers.filter_opportunities(opportunities, helpers.SectorFilter(
         'Birmingham Curzon'
     ))
-    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.RegionFilter(
+    filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.MultipleRegionsFilter(
         'Midlands'
     ))
     filtered_opps = helpers.filter_opportunities(filtered_opps, helpers.ScaleFilter(
@@ -472,7 +495,6 @@ def test_get_case_study_details_from_response(supplier_case_study_data):
 
 
 def test_get_map_labels_with_vertical_positions_one_word():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['midlands'], 100, 100)
 
     assert len(words_with_coordinates) == 1
@@ -481,7 +503,6 @@ def test_get_map_labels_with_vertical_positions_one_word():
 
 
 def test_get_map_labels_with_vertical_positions_two_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 2
@@ -495,7 +516,6 @@ def test_get_map_labels_with_vertical_positions_two_words():
 
 
 def test_get_map_labels_with_vertical_positions_three_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['south', 'of', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 3
@@ -513,7 +533,6 @@ def test_get_map_labels_with_vertical_positions_three_words():
 
 
 def test_get_map_labels_with_vertical_positions_four_words():
-
     words_with_coordinates = get_map_labels_with_vertical_positions(['the', 'south', 'of', 'england'], 100, 100)
 
     assert len(words_with_coordinates) == 4
@@ -536,35 +555,26 @@ def test_get_map_labels_with_vertical_positions_four_words():
 
 @pytest.mark.parametrize('path,expected_section_name,expected_sub_section_name', [
     ('', '', ''),
-    ('about-uk', 'about-uk', 'overview-about-uk'),
-    ('about-uk/regions', 'about-uk', 'regions'),
-    ('about-uk/regions/wales', 'about-uk', 'regions'),
-    ('about-uk/why-choose-uk', 'about-uk', 'why-choose-the-uk'),
-    ('about-uk/some-other-page', 'about-uk', ''),
-    ('industries', 'about-uk', 'industries'),
-    ('industries/energy', 'about-uk', 'industries'),
-    ('how-to-setup-in-the-uk', 'expand', 'how-to-expand'),
-    ('how-to-setup-in-the-uk/article-name', 'expand', 'how-to-expand'),
-    ('expand/contact', 'expand', 'contact-us-expand'),
-    ('expand', 'expand', 'overview-expand'),
-    ('expand/some-other-page', 'expand', ''),
-    ('opportunities', 'invest-capital', 'investment-opportunities'),
-    ('opportunities/an-opportunity', 'invest-capital', 'investment-opportunities'),
-    ('capital-invest/contact', 'invest-capital', 'contact-us-invest-capital'),
-    ('capital-invest/contact/success', 'invest-capital', 'contact-us-invest-capital'),
-    ('capital-invest', 'invest-capital', 'overview-invest-capital'),
-    ('capital-invest/some-other-page', 'invest-capital', ''),
+    ('investment/why-invest-in-the-uk', 'invest-in-the-uk', 'why-invest-in-the-uk'),
+    ('investment/regions', 'invest-in-the-uk', 'regions'),
+    ('investment/sectors', 'invest-in-the-uk', 'sectors'),
+    ('investment/why-invest-in-the-uk', 'invest-in-the-uk', 'why-invest-in-the-uk'),
+    ('investment/opportunities', 'invest-in-the-uk', 'investment-opportunities'),
+
     ('trade', 'trade', 'find-a-supplier'),
     ('trade/search', 'trade', 'find-a-supplier'),
     ('trade/contact', 'trade', 'contact-us-trade'),
-    ('about-us', 'about-us', 'overview-about-dit'),
-    ('about-us/some-other-page', 'about-us', ''),
-    ('about-us/contact', 'about-us', 'contact-us-about-dit'),
+    ('trade/how-we-help-you-buy', 'trade', 'how-we-help-buy'),
+
+    ('contact/triage', 'contact', ''),
+    ('invest/contact', 'contact', ''),
+
 ])
 def test_get_header_config(path, expected_section_name, expected_sub_section_name):
     header_config = get_header_config(path)
 
     section = header_config.section.name if header_config.section else ''
     sub_section = header_config.sub_section.name if header_config.sub_section else ''
+
     assert section == expected_section_name
     assert sub_section == expected_sub_section_name

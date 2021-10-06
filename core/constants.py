@@ -8,11 +8,13 @@ from directory_constants import urls
 TEMPLATE_MAPPING = {
     # Great international core
     'InternationalHomePage': 'core/landing_page.html',
-    'InternationalTopicLandingPage': 'core/topic_list.html',
+    'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticleListingPage': 'core/article_list.html',
-    'InternationalArticlePage': 'core/article_detail.html',
-    'InternationalSectorPage': 'core/sector_page.html',
-    'InternationalSubSectorPage': 'core/sector_page.html',
+    'InternationalArticlePage': 'investment_atlas/article_detail.html',
+
+    # InternationalSectorPage and InternationalSubSectorPage used to use
+    # 'core/sector_page.html' but they have been deprecated in favour of
+    # InternationalInvestmentSectorPage and InternationalInvestmentSubSectorPage
     'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',
     'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
 
@@ -32,20 +34,26 @@ TEMPLATE_MAPPING = {
     'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
-    'AboutUkRegionListingPage': 'core/about_uk/about_uk_region_listing_page.html',
-    'AboutUkRegionPage': 'core/about_uk/about_uk_region_page.html',
+    'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
+    'AboutUkRegionPage': 'investment_atlas/region.html',
     'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
     'InvestHighPotentialOpportunityDetailPage': 'invest/hpo/high_potential_opportunity_detail.html',
-    'InvestHighPotentialOpportunityFormPage': 'invest/hpo/high_potential_opportunities_form.html',
-    'InvestHighPotentialOpportunityFormSuccessPage': 'invest/hpo/high_potential_opportunities_form_success.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
     'InternationalTradeIndustryContactPage': 'find_a_supplier/buy_from_the_uk_form.html',
+
+    # Investment Atlas
+    'InvestmentOpportunityPage': 'investment_atlas/opportunity.html',
+    'InvestmentAtlasLandingPage': 'investment_atlas/investment.html',
+    'InternationalInvestmentSectorPage': 'investment_atlas/sector.html',
+    'InternationalInvestmentSubSectorPage': 'investment_atlas/sector.html',
+    'InvestmentGeneralContentPage': 'investment_atlas/general_content_page.html',
+    'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
 }
 
 FEATURE_FLAGGED_URLS_MAPPING = {
@@ -88,12 +96,14 @@ GA_DATA_MAPPING = {
         'site_section': 'Article',
         'site_subsection': 'DetailPage'
     },
-    'InternationalSectorPage': {
+    # InternationalSectorPage is deprecated
+    'InternationalInvestmentSectorPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Sector',
         'site_subsection': 'DetailPage'
     },
-    'InternationalSubSectorPage': {
+    # InternationalSubSectorPage
+    'InternationalInvestmentSubSectorPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'SubSector',
         'site_subsection': 'DetailPage'
@@ -157,26 +167,31 @@ GA_DATA_MAPPING = {
     'InvestInternationalHomePage': {
         'business_unit': 'Invest',
         'site_section': 'HomePage',
-        'site_subsection': ''
+        'site_subsection': 'ListingPage'
     },
     'InvestHighPotentialOpportunityDetailPage': {
         'business_unit': 'Invest',
         'site_section': 'HighPotentialOpportunities',
         'site_subsection': 'DetailPage',
     },
-    'InvestHighPotentialOpportunityFormPage': {
+    'ForeignDirectInvestmentFormPage': {
         'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
+        'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormPage',
     },
-    'InvestHighPotentialOpportunityFormSuccessPage': {
+    'ForeignDirectInvestmentFormSuccessPage': {
         'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
+        'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormSuccessPage',
     },
     'InvestRegionPage': {
         'business_unit': 'Invest',
         'site_section': 'Regions',
+        'site_subsection': 'DetailPage',
+    },
+    'WhyInvestInTheUKPage': {
+        'business_unit': 'Invest',
+        'site_section': 'WhyInvestInTheUKPage',
         'site_subsection': 'DetailPage',
     },
 
@@ -235,6 +250,23 @@ GA_DATA_MAPPING = {
         'site_section': 'Industries',
         'site_subsection': 'LandingPageContact'
     },
+
+    # Investment Atlas
+    'InvestmentOpportunityPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentOpportunity',
+        'site_subsection': 'InvestmentAtlas',
+    },
+    'InvestmentAtlasLandingPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentAtlas',
+        'site_subsection': 'LandingPage',
+    },
+    'InvestmentGeneralContentPage': {
+        'business_unit': 'GreatInternational',
+        'site_section': 'InvestmentAtlas',
+        'site_subsection': 'ContentPage',
+    }
 }
 
 HeaderConfig = namedtuple('HeaderConfig', 'section sub_section')
@@ -242,40 +274,46 @@ HEADER_SECTION_MAPPING = {
     # Home page
     r'^$': HeaderConfig(section=None, sub_section=None),
 
-    # About the UK pages
-    r'^about-uk/why-choose-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.WHY_CHOOSE_THE_UK),  # noqa
-    r'^industries.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.INDUSTRIES),
-    r'^about-uk/industries.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.INDUSTRIES),
-    r'^about-uk/regions.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.REGIONS),
-    r'^about-uk$': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=tier_two.OVERVIEW_ABOUT),
-    r'^about-uk.*': HeaderConfig(section=tier_one.ABOUT_UK, sub_section=None),
-
-    # Expand to the UK
-    r'^how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),
-    r'^(expand|invest)/how-to-setup-in-the-uk.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_TO_EXPAND),  # noqa
-    r'^(expand|invest)/contact.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.CONTACT_US_EXPAND),
-    r'^(expand|invest)$': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.OVERVIEW_EXPAND),
-    r'^(expand|invest)/how-we-help-you-expand.*': HeaderConfig(section=tier_one.EXPAND, sub_section=tier_two.HOW_WE_HELP_EXPAND),  # noqa
-    r'^(expand|invest).*': HeaderConfig(section=tier_one.EXPAND, sub_section=None),
-
-    # Invest Capital in the UK
-    r'^opportunities.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.INVESTMENT_OPPORTUNITIES),  # noqa
-    r'^capital-invest/contact.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.CONTACT_US_INVEST_CAPITAL),  # noqa
-    r'^capital-invest$': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.OVERVIEW_INVEST_CAPITAL),
-    r'^capital-invest/how-we-help-you-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=tier_two.HOW_WE_HELP_CAPITAL_INVEST),  # noqa
-    r'^capital-invest.*': HeaderConfig(section=tier_one.INVEST_CAPITAL, sub_section=None),
+    # Invest in the UK pages
+    r'^investment/why-invest-in-the-uk.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.WHY_INVEST_IN_UK
+    ),
+    r'^investment/regions.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.REGIONS,
+    ),
+    r'^investment/sectors.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.SECTORS,
+    ),
+    r'^investment/opportunities.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.INVESTMENT_OPPORTUNITIES,
+    ),
+    r'^investment/how-we-can-help.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=tier_two.HOW_WE_CAN_HELP_INVESTMENT_ATLAS,
+    ),
+    r'^investment.*': HeaderConfig(
+        section=tier_one.INVEST_IN_UK,
+        sub_section=None
+    ),
 
     # Buy from the UK
-    r'^trade/contact.*': HeaderConfig(section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.CONTACT_US_TRADE),
+    r'^trade/contact.*': HeaderConfig(
+        section=tier_one.BUY_FROM_THE_UK,
+        sub_section=tier_two.CONTACT_US_TRADE
+    ),
     r'^trade/how-we-help-you-buy.*': HeaderConfig(
-        section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.HOW_WE_HELP_BUY),
+        section=tier_one.BUY_FROM_THE_UK,
+        sub_section=tier_two.HOW_WE_HELP_BUY
+    ),
     r'^trade.*': HeaderConfig(section=tier_one.BUY_FROM_THE_UK, sub_section=tier_two.FIND_A_SUPPLIER),
 
-    # About DIT
-    r'^contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
-    r'^about-us/contact.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.CONTACT_US_ABOUT_DIT),
-    r'^about-us$': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=tier_two.OVERVIEW_ABOUT_DIT),
-    r'^about-us.*': HeaderConfig(section=tier_one.ABOUT_DIT, sub_section=None),
+    # Contact
+    r'^contact.*': HeaderConfig(section=tier_one.CONTACT, sub_section=None),
+    r'^invest/contact.*': HeaderConfig(section=tier_one.CONTACT, sub_section=None),
 }
 
 INVEST_CONTACT_URL = urls.international.EXPAND_CONTACT

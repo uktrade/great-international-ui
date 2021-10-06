@@ -3,6 +3,14 @@ from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
 
 
+# Until we can update directory-constants, define this just here
+WHY_INVEST_IN_THE_UK_URL = urls.international.HOME / 'content/investment/why-invest-in-the-uk'
+REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
+SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
+INVESTMENT_OPPORTUNITIES_URL = urls.international.HOME / 'investment/opportunities/'
+ATLAS_HOW_WE_CAN_HELP_URL = urls.international.HOME / 'content/investment/how-we-can-help/'
+
+
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
     title=_('Overview'),
@@ -19,12 +27,6 @@ INDUSTRIES = NavItem(
     name='industries',
     title=_('Industries'),
     url=urls.international.ABOUT_UK_INDUSTRIES
-)
-
-REGIONS = NavItem(
-    name='regions',
-    title=_('Regions'),
-    url=urls.international.ABOUT_UK_REGIONS
 )
 
 CONTACT_US_ABOUT_UK = NavItem(
@@ -74,12 +76,6 @@ INVESTMENT_TYPES = NavItem(
     name='investment-types',
     title=_('Investment types'),
     url=urls.international.CAPITAL_INVEST_HOME / 'investment-types'
-)
-
-INVESTMENT_OPPORTUNITIES = NavItem(
-    name='investment-opportunities',
-    title=_('Investment Opportunities'),
-    url=urls.international.CAPITAL_INVEST_OPPORTUNITIES
 )
 
 # This page does not yet exist - will 404 for now.
@@ -136,4 +132,34 @@ CONTACT_US_ABOUT_DIT = NavItem(
     name='contact-us-about-dit',
     title=_('Contact us'),
     url=urls.international.ABOUT_DIT_CONTACT
+)
+
+WHY_INVEST_IN_UK = NavItem(
+    name='why-invest-in-the-uk',
+    title=_('Why invest in the UK?'),
+    url=WHY_INVEST_IN_THE_UK_URL
+)
+
+REGIONS = NavItem(
+    name='regions',
+    title=_('UK nations and regions'),
+    url=REGIONS_URL
+)
+
+SECTORS = NavItem(
+    name='sectors',
+    title=_('Sectors'),
+    url=SECTORS_URL
+)
+
+INVESTMENT_OPPORTUNITIES = NavItem(
+    name='investment-opportunities',
+    title=_('Investment opportunities'),
+    url=INVESTMENT_OPPORTUNITIES_URL
+)
+
+HOW_WE_CAN_HELP_INVESTMENT_ATLAS = NavItem(
+    name='how-we-can-help',
+    title=_('How we can help'),
+    url=ATLAS_HOW_WE_CAN_HELP_URL
 )

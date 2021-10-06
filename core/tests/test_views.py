@@ -1,6 +1,5 @@
 from unittest.mock import patch, call
 
-from bs4 import BeautifulSoup
 from directory_constants import urls
 import pytest
 
@@ -11,9 +10,11 @@ from core import constants
 from core.forms import CapitalInvestContactForm
 from core.tests.helpers import create_response, stub_page, dummy_page
 from core.views import (
-    MultilingualCMSPageFromPathView, OpportunitySearchView, CapitalInvestContactFormView,
-    InternationalHomePageView,
-    InternationalContactTriageView, WhyBuyFromUKFormView, WhyBuyFromUKFormViewSuccess
+    MultilingualCMSPageFromPathView,
+    CapitalInvestContactFormView,
+    InternationalContactTriageView,
+    WhyBuyFromUKFormView,
+    WhyBuyFromUKFormViewSuccess
 )
 
 test_sectors = [
@@ -111,7 +112,6 @@ def about_uk_landing_page():
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_cms_language_switcher_one_language(mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -153,124 +153,12 @@ def test_get_cms_page(rf, home_page):
     assert response.context_data['page'] == home_page.return_value.json()
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_article_detail_page_social_share_links(
-    mock_get_page, client, settings
-):
-
-    test_article_page = {
-        'title': 'Test article',
-        'display_title': 'Test article',
-        'article_title': 'Test article',
-        'article_image': {'url': 'foobar.png'},
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [],
-        'full_path': (
-            '/international/content/topic/bar/foo/'),
-        'last_published_at': '2018-10-09T16:25:13.142357Z',
-        'meta': {
-            'slug': 'foo',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = '/international/content/topic/bar/foo/'
-
-    mock_get_page.return_value = create_response(test_article_page)
-
-    response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert response.status_code == 200
-    assert response.template_name == [
-        'core/article_detail.html'
-    ]
-
-    twitter_link = (
-        'https://twitter.com/intent/tweet?text=great.gov.uk'
-        '%20-%20Test%20article%20'
-        'http://testserver/international/content/topic/bar/foo/')
-    facebook_link = (
-        'https://www.facebook.com/share.php?u='
-        'http://testserver/international/content/topic/bar/foo/')
-    linkedin_link = (
-        'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/content/topic/bar/foo/'
-        '&title=great.gov.uk'
-        '%20-%20Test%20article%20&source=LinkedIn'
-    )
-    email_link = (
-        'mailto:?body=http://testserver/international/content/topic/bar/'
-        'foo/&subject=great.gov.uk%20-%20Test%20article%20'
-    )
-
-    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
-    assert soup.find(id='share-facebook').attrs['href'] == facebook_link
-    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
-    assert soup.find(id='share-email').attrs['href'] == email_link
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_article_detail_page_social_share_links_no_title(
-    mock_get_page, client, settings
-):
-
-    test_article_page = {
-        'title': 'Test article admin title',
-        'display_title': 'Test article',
-        'article_image': {'url': 'foobar.png'},
-        'article_body_text': '<p>Lorem ipsum</p>',
-        'related_pages': [],
-        'full_path': (
-            '/international/content/topic/bar/foo/'),
-        'last_published_at': '2018-10-09T16:25:13.142357Z',
-        'meta': {
-            'slug': 'foo',
-            'languages': [('en-gb', 'English')],
-        },
-        'page_type': 'InternationalArticlePage',
-    }
-
-    url = '/international/content/topic/bar/foo/'
-
-    mock_get_page.return_value = create_response(test_article_page)
-
-    response = client.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    assert response.status_code == 200
-    assert response.template_name == [
-        'core/article_detail.html'
-    ]
-
-    twitter_link = (
-        'https://twitter.com/intent/tweet?text=great.gov.uk%20-%20%20'
-        'http://testserver/international/content/topic/bar/foo/'
-        '')
-    linkedin_link = (
-        'https://www.linkedin.com/shareArticle?mini=true&url='
-        'http://testserver/international/content/topic/bar/foo/'
-        '&title=great.gov.uk'
-        '%20-%20%20&source=LinkedIn'
-    )
-    email_link = (
-        'mailto:?body=http://testserver/international/content/topic/bar/'
-        'foo/&subject='
-        'great.gov.uk%20-%20%20'
-    )
-
-    assert soup.find(id='share-twitter').attrs['href'] == twitter_link
-    assert soup.find(id='share-linkedin').attrs['href'] == linkedin_link
-    assert soup.find(id='share-email').attrs['href'] == email_link
-
-
 test_child_pages = [
     {
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
@@ -280,7 +168,7 @@ test_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-two',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
@@ -293,7 +181,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:31.455848Z',
         'meta': {
             'slug': 'article-one',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article one teaser',
@@ -303,7 +191,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-two',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article two teaser',
@@ -313,7 +201,7 @@ test_localised_child_pages = [
         'last_published_at': '2019-02-28T10:56:32.455848Z',
         'meta': {
             'slug': 'article-three',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
         'page_type': 'InternationalArticlePage',
         'teaser': 'Article three teaser',
@@ -334,61 +222,16 @@ test_list_page = {
     'page_type': 'InternationalArticleListingPage',
     'meta': {
         'slug': 'article-list',
-        'languages': [('en-gb', 'English')],
+        'languages': [['en-gb', 'English']],
     },
 }
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_sector_page_attaches_array_lengths_to_view(mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'InternationalSectorPage',
-        'related_opportunities': [
-            {
-                'title': 'Sector',
-                'hero_image': {'url': 'article_list.png'},
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale': 'scale',
-            },
-        ],
-        'statistics': [
-            {'number': '1'},
-            {'number': '2', 'heading': 'heading'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-        'section_three_subsections': [
-            {'heading': 'heading'},
-            {'heading': 'heading-with-teaser', 'teaser': 'teaser'},
-            {'heading': None, 'teaser': 'teaser-without-heading'}
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/industries/sector-page/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/industries/sector-page/')
-
-    assert response.context_data['num_of_statistics'] == 2
-    assert response.context_data['section_three_num_of_subsections'] == 2
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
-    mock_cms_response,
-    rf
+        mock_cms_response,
+        rf
 ):
-
     page = {
         'title': 'test',
         'meta': {
@@ -417,36 +260,62 @@ def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_industry_page_context_modifier_renames_heading(mock_get_page, client, settings):
-    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
+def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page, rf):
     page = {
         'title': 'test',
         'landing_page_title': 'Industries',
         'page_type': 'InternationalTopicLandingPage',
         'child_pages': [
             {
-                'heading': 'heading',
                 'meta': {
-                    'languages': [('en-gb', 'English')],
+                    'languages': [
+                        ['en-gb', 'English'],
+                        ['fr-fr', 'Français']
+                    ],
                 },
+                'full_path': '/international/content/investment/sectors/clean-growth/',
+                'heading': 'Clean growth',
+                'hero_image_thumbnail': {
+                    'url': 'clean-growth.jpg',
+                    'width': 640,
+                    'height': 360,
+                    'alt': 'Clean growth alt'
+                },
+                'sub_heading': 'The UK is leading',
+            },
+            {
+                'meta': {
+                    'languages': [
+                        ['fr-fr', 'Français']
+                    ],
+                },
+                'full_path': '/international/content/investment/sectors/some-other/',
+                'title': 'Some other',
+                'hero_image_thumbnail': None,
+                'sub_heading': '',
             }
         ],
-        'statistics': [],
-        'section_three_subsections': [],
         'meta': {
             'slug': 'slug',
-            'languages': [('en-gb', 'English')],
+            'languages': [['en-gb', 'English']],
         },
     }
     mock_get_page.return_value = create_response(page)
 
-    url = reverse('industries')
-    response = client.get(url)
+    request = rf.get('/international/content/investment/sectors/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/investment/sectors/')
 
-    child_page = response.context_data['page']['child_pages'][0]
-    assert child_page['landing_page_title'] == 'heading'
+    assert len(response.context_data['cards_list']) == 1
+    card_data = response.context_data['cards_list'][0]
+    assert card_data['url'] == '/international/content/investment/sectors/clean-growth/'
+    assert card_data['title'] == "Clean growth"
+    assert card_data['image'] == "clean-growth.jpg"
+    assert card_data['image_width'] == 640
+    assert card_data['image_height'] == 360
+    assert card_data['image_alt'] == "Clean growth alt"
+    assert card_data['summary'] == "The UK is leading"
 
 
 @pytest.mark.usefixtures('how_to_do_business_uk_page')
@@ -468,7 +337,6 @@ def test_how_to_do_business_feature_on(client, settings):
 
 
 def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
-
     response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
@@ -484,7 +352,6 @@ def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -518,45 +385,8 @@ def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_about_uk_region_page_attaches_array_lengths_to_view(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'AboutUkRegionPage',
-        'economics_stats': [
-            {'number': '1'},
-            {'number': '2', 'heading': 'heading'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-        'location_stats': [
-            {'number': '1'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/midlands')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/midlands/')
-
-    assert response.context_data['num_of_economics_statistics'] == 2
-    assert response.context_data['num_of_location_statistics'] == 1
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_opportunity_page_url_constants(
         mock_cms_response, rf):
-
     current_sector_title = 'Test Sector'
 
     page = {
@@ -589,7 +419,6 @@ def test_get_capital_invest_opportunity_page_url_constants(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_opportunity_page_with_no_related_sectors(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -613,9 +442,10 @@ def test_get_capital_invest_opportunity_page_with_no_related_sectors(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = False
 
@@ -624,9 +454,10 @@ def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
 @pytest.mark.usefixtures('international_capital_invest_page')
 def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = True
 
@@ -637,7 +468,7 @@ def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
 
@@ -648,7 +479,7 @@ def test_capital_invest_region_page_returns_404_when_feature_flag_off(
 
 @pytest.mark.usefixtures('about_uk_region_page')
 def test_about_uk_region_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = False
 
@@ -659,7 +490,7 @@ def test_about_uk_region_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_about_uk_region_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_REGION_PAGE_ON'] = True
 
@@ -690,9 +521,10 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
 
@@ -701,9 +533,10 @@ def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
     assert response.status_code == 404
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('capital_invest_opportunity_page')
 def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = True
 
@@ -714,7 +547,7 @@ def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('international_sub_sector_page')
 def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = False
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
@@ -727,77 +560,8 @@ def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_capital_invest_sub_sector_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = True
-
-    page = {
-        'title': 'Housing',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'housing'
-        },
-        'page_type': 'InternationalSubSectorPage',
-        'statistics': [],
-        'section_three_subsections': [],
-        'related_opportunities': []
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get(
-        '/international/content/industries/energy/housing'
-    )
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request,
-        path='/international/content/industries/energy/housing'
-    )
-
-    assert response.status_code == 200
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_capital_invest_sub_sector_page_about_uk_link(
-    mock_cms_response, rf, settings
-):
-    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = True
-
-    page = {
-        'title': 'Housing',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'housing'
-        },
-        'page_type': 'InternationalSubSectorPage',
-        'statistics': [],
-        'section_three_subsections': [],
-        'related_opportunities': [],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get(
-        '/international/content/industries/energy/housing'
-    )
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request,
-        path='/international/content/industries/energy/housing'
-    )
-
-    assert response.status_code == 200
-    assert 'about_uk_link' in response.context_data
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
 
@@ -833,7 +597,7 @@ def test_capital_invest_contact_form_page_returns_200_when_feature_flag_on(
 
 @pytest.mark.usefixtures('capital_invest_contact_form_page')
 def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
@@ -845,7 +609,7 @@ def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = True
 
@@ -879,7 +643,7 @@ def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_
 
 @pytest.mark.usefixtures('capital_invest_contact_form_success_page')
 def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
@@ -891,7 +655,7 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_about_uk_landing_page_returns_200_when_feature_flag_on(
-    mock_cms_response, rf, settings
+        mock_cms_response, rf, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = True
 
@@ -923,9 +687,10 @@ def test_about_uk_landing_page_returns_200_when_feature_flag_on(
     assert response.status_code == 200
 
 
+@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
 @pytest.mark.usefixtures('about_uk_landing_page')
 def test_about_uk_landing_page_returns_404_when_feature_flag_off(
-    client, settings
+        client, settings
 ):
     settings.FEATURE_FLAGS['ABOUT_UK_LANDING_PAGE_ON'] = False
 
@@ -937,7 +702,6 @@ def test_about_uk_landing_page_returns_404_when_feature_flag_off(
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_international_contact_form(mock_cms_response, client, settings):
-
     settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
     reload_urlconf(settings)
 
@@ -950,626 +714,8 @@ def test_international_contact_form(mock_cms_response, client, settings):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_region_sector_scale_filter_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '',
-                'related_region': {
-                    'title': 'Midlands'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-            {
-                'id': 4,
-                'title': 'Some Opp 2',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'Midlands'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Automotive'
-                        }
-                    },
-                ],
-            },
-            {
-                'id': 4,
-                'title': 'Some Opp 3',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '0.00',
-                'related_region': {
-                    'title': 'South of Engalnd'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Automotive'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')   # NOQA
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands')  # NOQA
-
-    assert len(response.context_data['pagination'].object_list) == 1
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'  # NOQA
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_num_of_opportunities_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-            {
-                'id': 4,
-                'title': 'Some Opp 2',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'Midlands'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/?sector=Aerospace')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities?sector=Aerospace')
-
-    assert response.context_data['num_of_opportunities'] == 2
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/?scale=<+£100m')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?scale=<+£100m')
-
-    assert len(response.context_data['filters']) == 1
-    assert '< £100m' in response.context_data['filters']
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_sorting_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&region=Midlands')  # NOQA
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sort_by=Scale%3A+Low+to+High&regionMidlands')  # NOQA
-
-    assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_sub_sector_filters_chosen_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/?sub_sector=housing')  # NOQA
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/?sub_sector=housing')  # NOQA
-
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'  # NOQA
-    assert len(response.context_data['pagination'].object_list) == 1
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get(
-        '/international/content/opportunities/?page=10'
-    )
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request,
-        path='/international/content/opportunities/'
-             '?page=10'
-    )
-
-    assert response.url == '/international/content/opportunities/?&page=1'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_goes_to_page_one_if_page_num_not_a_num_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get(
-        '/international/content/opportunities/?page=qq'
-    )
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request,
-        path='/international/content/opportunities/?page=qq'
-    )
-
-    assert response.url == '/international/content/opportunities/?&page=1'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_sub_sectors_being_shown_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-        'sector_with_sub_sectors': {
-            'Aerospace': ['Commercial'],
-            'Automotive': [],
-            'Real Estate': ['Housing', 'Commercial', 'Mixed use']
-        },
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['Commercial', 'Housing'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'South of England'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': [],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'Midlands'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Automotive'
-                        }
-                    },
-                ],
-            },
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['Housing', 'Commercial', 'Mixed use'],
-                'scale_value': '1000.00',
-                'related_region': {
-                    'title': 'Midlands'
-                },
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Real Estate'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request_no_sector_chosen = rf.get(
-        '/international/content/opportunities/?')  # NOQA
-    request_no_sector_chosen.LANGUAGE_CODE = 'en-gb'
-    response_no_sector_chosen = OpportunitySearchView.as_view()(
-        request_no_sector_chosen,
-        path='/international/content/opportunities/?')  # NOQA
-
-    assert len(response_no_sector_chosen.context_data['sub_sectors']) == 3
-
-    request_one_sector_chosen = rf.get('/international/content/opportunities/?sector=Aerospace')  # NOQA
-    request_one_sector_chosen.LANGUAGE_CODE = 'en-gb'
-    response_one_sector_chosen = OpportunitySearchView.as_view()(
-        request_one_sector_chosen, path='/international/content/opportunities/?sector=Aerospace')  # NOQA
-
-    assert len(response_one_sector_chosen.context_data['sub_sectors']) == 1
-    for sub_sector in response_one_sector_chosen.context_data['sub_sectors']:
-        assert 'Commercial' in sub_sector
-
-    request_two_sectors_chosen = rf.get('/international/content/opportunities/?sector=Real+Estate&sector=Aerospace')  # NOQA
-    request_two_sectors_chosen.LANGUAGE_CODE = 'en-gb'
-    response_two_sectors_chosen = OpportunitySearchView.as_view()(
-        request_two_sectors_chosen, path='/international/content/opportunities/?sector=Real+Estate&sector=Aerospace')  # NOQA
-
-    assert len(response_two_sectors_chosen.context_data['sub_sectors']) == 3
-
-    request_sectors_and_sub_sectors_chosen = rf.get('/international/content/opportunities/?sector=Aerospace&sub_sector=Housing')  # NOQA
-    request_sectors_and_sub_sectors_chosen.LANGUAGE_CODE = 'en-gb'
-    response_sectors_and_sub_sectors_chosen = OpportunitySearchView.as_view()(
-        request_sectors_and_sub_sectors_chosen, path='/international/content/opportunities/?sector=Aerospace&sub_sector=Housing')  # NOQA
-
-    assert len(response_sectors_and_sub_sectors_chosen
-               .context_data['sub_sectors']) == 2
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_random_three_opportunities_for_sector_page(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'sector'
-        },
-        'page_type': 'InternationalSectorPage',
-        'related_opportunities': [
-            {
-                'title': 'Aerospace',
-                'hero_image': {'url': 'article_list.png'},
-                'sector': 'Sector1',
-                'scale': 'scale',
-            },
-            {
-                'title': 'Aerospace',
-                'hero_image': {'url': 'article_list.png'},
-                'sector': 'Sector2',
-                'scale': 'scale',
-            },
-            {
-                'title': 'Aerospace',
-                'hero_image': {'url': 'article_list.png'},
-                'sector': 'Sector3',
-                'scale': 'scale',
-            },
-            {
-                'title': 'Aerospace',
-                'hero_image': {'url': 'article_list.png'},
-                'sector': 'Sector4',
-                'scale': 'scale',
-            },
-        ],
-        'statistics': [],
-        'section_three_subsections': []
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/industries/sector')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/industries/sector')
-
-    assert len(response.context_data['random_opportunities']) == 3
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_random_three_opportunities_for_sector_page_null_case(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'sector'
-        },
-        'page_type': 'InternationalSectorPage',
-        'statistics': [],
-        'section_three_subsections': []
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/industries/sector')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/industries/sector')
-
-    assert len(response.context_data['random_opportunities']) == 0
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_random_three_opportunities_for_sub_sector_page_null_case(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'sector'
-        },
-        'page_type': 'InternationalSubSectorPage',
-        'statistics': [],
-        'section_three_subsections': []
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/industries/sector/sub_sector')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/industries/sector/sub_sector')
-
-    assert len(response.context_data['random_opportunities']) == 0
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_when_no_opportunity_list_in_page_for_opportunity_search(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'CapitalInvestOpportunityListingPage',
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/')  # NOQA
-    request.LANGUAGE_CODE = 'en-gb'
-    response = OpportunitySearchView.as_view()(
-        request, path='/international/content/opportunities/')  # NOQA
-
-    assert response.context_data['num_of_opportunities'] == 0
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_for_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1600,7 +746,6 @@ def test_showing_accordions_for_region_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_showing_accordions_null_case_for_region_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1621,65 +766,6 @@ def test_showing_accordions_null_case_for_region_page(
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/midlands/')
-
-    assert response.context_data['show_accordions'] is False
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_showing_accordions_for_about_uk_region_page(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'AboutUkRegionPage',
-        'economics_stats': [],
-        'location_stats': [],
-        'subsections': [
-            {'title': 'section', 'content': 'Some content', 'icon': []},
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/midlands/')
-
-    assert response.context_data['show_accordions'] is True
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_showing_accordions_null_case_for_about_uk_region_page(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'AboutUkRegionPage',
-        'economics_stats': [],
-        'location_stats': [],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/midlands/')
 
     assert response.context_data['show_accordions'] is False
 
@@ -1822,7 +908,6 @@ def test_show_featured_cards_section_doesnt_show_when_missing_on_invest_home_pag
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_for_about_uk_landing_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1852,7 +937,6 @@ def test_get_random_three_sectors_for_about_uk_landing_page(
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_random_three_sectors_null_case_for_about_uk_landing_page(
         mock_cms_response, rf):
-
     page = {
         'title': 'test',
         'meta': {
@@ -1893,9 +977,8 @@ def capital_invest_contact_form_data(captcha_stub):
 @patch.object(CapitalInvestContactFormView.form_class, 'save')
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_capital_invest_contact_form_success(
-    mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
+        mock_lookup_by_path, mock_save, client, capital_invest_contact_form_data
 ):
-
     mock_lookup_by_path.return_value = create_response(
         status_code=200,
         json_payload={
@@ -1931,12 +1014,18 @@ def test_show_regions_section_true_on_about_uk_landing_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]},
+                        'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -1983,94 +1072,6 @@ def test_show_regions_section_false_on_about_uk_landing_page(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_true_on_region_listing_page(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-        'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'South England'}, 'text': 'Lorem ipsum'},  # NOQA
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is True
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_false_on_region_listing_page(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-        'mapped_regions': [
-            {'region': {'title': 'Scotland'}, 'text': 'Lorem ipsum'},
-            {'region': [], 'text': 'Lorem ipsum'},
-            {'region': {'title': 'Northern Ireland'}, 'text': ''},
-            {'region': {'title': 'Wales'}, 'text': 'Lorem ipsum'},
-            {'region': [], 'text': 'Lorem ipsum'},
-            {'region': {'title': 'South England'}, 'text': ''},
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is False
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_show_regions_section_false_on_region_listing_page_if_not_there(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Regions',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionListingPage',
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/')
-
-    assert response.context_data['show_mapped_regions'] is False
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_getting_region_labels_with_coordinates_on_about_uk_page(
         mock_cms_response, rf
 ):
@@ -2083,12 +1084,18 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page(
         },
         'page_type': 'AboutUkLandingPage',
         'regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]},
+                        'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'},
+             'text': 'Lorem ipsum'},  # NOQA
+            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]},
+                        'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
         ],
     }
 
@@ -2148,87 +1155,180 @@ def test_getting_region_labels_with_coordinates_on_about_uk_page_when_null(
     assert response.context_data['scotland'] == []
 
 
+@pytest.mark.parametrize('page_type,url', [
+    ('AboutUkRegionPage', '/international/content/about-uk/regions/scotland'),
+    ('AboutUkRegionListingPage', '/international/content/about-uk/regions/')
+])
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_region_labels_with_coordinates_on_region_listing_page(
-        mock_cms_response, rf
-):
-    page = {
+def test_getting_keyed_region_data_on_region_listing_page(mock_cms_response, rf, page_type, url):
+    page = {  # NOQA
         'title': 'Regions',
         'meta': {
             'languages': [
                 ['en-gb', 'English'],
             ]
         },
-        'page_type': 'AboutUkRegionListingPage',
+        'page_type': page_type,
         'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'scotland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'Scotland',
+                    'full_path': '/international/content/about-uk/regions/scotland/',
+                },
+                'text': 'Lorem ipsum'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'northern-ireland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'The Northern Ireland',
+                    'full_path': '/international/content/about-uk/regions/northern-ireland/',
+                },
+                'text': 'Lorem ipsum'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'north-of-england',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'North England',
+                    'full_path': '/international/content/about-uk/regions/north-england/',
+                },
+                'text': 'Lorem ipsum'
+            },
         ],
     }
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/about-uk/')
+    request = rf.get(url)
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path=url)
 
-    assert response.context_data['scotland'][0]['x'] == '164'
-    assert response.context_data['scotland'][0]['y'] == '206.0'
-
-    assert response.context_data['north_england'][0]['x'] == '440'
-    assert response.context_data['north_england'][0]['y'] == '415.0'
-    assert response.context_data['north_england'][1]['x'] == '440'
-    assert response.context_data['north_england'][1]['y'] == '440.0'
-
-    assert response.context_data['northern_ireland'][0]['x'] == '195'
-    assert response.context_data['northern_ireland'][0]['y'] == '347.5'
-    assert response.context_data['northern_ireland'][1]['x'] == '195'
-    assert response.context_data['northern_ireland'][1]['y'] == '372.5'
-    assert response.context_data['northern_ireland'][2]['x'] == '195'
-    assert response.context_data['northern_ireland'][2]['y'] == '397.5'
-
-    assert response.context_data['south_england'][0]['x'] == '485'
-    assert response.context_data['south_england'][0]['y'] == '651.0'
-    assert response.context_data['south_england'][1]['x'] == '485'
-    assert response.context_data['south_england'][1]['y'] == '676.0'
-    assert response.context_data['south_england'][2]['x'] == '485'
-    assert response.context_data['south_england'][2]['y'] == '701.0'
-    assert response.context_data['south_england'][3]['x'] == '485'
-    assert response.context_data['south_england'][3]['y'] == '726.0'
+    assert len(response.context_data['regions']) == 3
+    assert response.context_data['regions']['scotland'][
+               'full_path'] == '/international/content/about-uk/regions/scotland/'
+    assert response.context_data['regions']['north_of_england'][
+               'full_path'] == '/international/content/about-uk/regions/north-england/'
+    assert response.context_data['regions']['northern_ireland'][
+               'full_path'] == '/international/content/about-uk/regions/northern-ireland/'
 
 
+@pytest.mark.parametrize('page_type,url', [
+    ('AboutUkRegionPage', '/international/content/about-uk/regions/scotland'),
+    ('AboutUkRegionListingPage', '/international/content/about-uk/regions/')
+])
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_region_labels_with_coordinates_on_region_listing_page_when_null(
-        mock_cms_response, rf
-):
-    page = {
+def test_region_page_context_decorator_adds_cards_list(mock_cms_response, rf, page_type, url):
+    page = {  # NOQA
         'title': 'Regions',
         'meta': {
             'languages': [
                 ['en-gb', 'English'],
             ]
         },
-        'page_type': 'AboutUkRegionListingPage',
+        'page_type': page_type,
+        'mapped_regions': [
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'scotland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'Scotland',
+                    'full_path': '/international/content/about-uk/regions/scotland/',
+                    'hero_image_thumbnail': {
+                        'url': 'scotland.jpg',
+                        'width': 640,
+                        'height': 360,
+                        'alt': 'Scotland scene'
+                    }
+                },
+                'text': 'Lorem ipsum Scotland'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'northern-ireland',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'The Northern Ireland',
+                    'full_path': '/international/content/about-uk/regions/northern-ireland/',
+                    'hero_image_thumbnail': None
+                },
+                'text': 'Lorem ipsum'
+            },
+            {
+                'region': {
+                    'meta': {
+                        'slug': 'north-of-england',
+                        'languages': [['en-gb', 'English']]
+                    },
+                    'title': 'North England',
+                    'full_path': '/international/content/about-uk/regions/north-england/',
+                    'hero_image_thumbnail': {
+                        'url': 'north-england.jpg',
+                        'width': 640,
+                        'height': 360,
+                        'alt': 'North of England scene'
+                    }
+                },
+                'text': 'Lorem ipsum'
+            },
+        ],
     }
 
     mock_cms_response.return_value = create_response(page)
 
-    request = rf.get('/international/content/about-uk/')
+    request = rf.get(url)
     request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/')
+    response = MultilingualCMSPageFromPathView.as_view()(request, path=url)
 
-    assert response.context_data['scotland'] == []
+    assert len(response.context_data['cards_list']) == 3
+    card = response.context_data['cards_list'][0]
+    assert card['title'] == 'Scotland'
+    assert card['summary'] == 'Lorem ipsum Scotland'
+    assert card['image'] == 'scotland.jpg'
+    assert card['image_alt'] == 'Scotland scene'
+    assert card['image_width'] == 640
+    assert card['image_height'] == 360
+
+    assert 'image' not in response.context_data['cards_list'][1]
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_expand_path_exists(mock_get_page, client, settings):
+def test_atlas_opportunity_page_sectors_label(mock_cms_response, rf):
+    page = {  # NOQA
+        'title': 'Test',
+        'meta': {'languages': [['en-gb', 'English']]},
+        'page_type': 'InvestmentOpportunityPage',
+        'related_sectors': [
+            {'related_sector': {'title': 'Housing'}},
+            {'related_sector': {'title': 'Aerospace'}}
+        ],
+        'sub_sectors': ['Green housing', 'Urban', 'Renting']
+    }
 
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/content/investment/opportunities/test/')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = MultilingualCMSPageFromPathView.as_view()(
+        request, path='/international/content/investment/opportunities/test/')
+
+    assert response.context_data['sectors_label'] == 'Housing (Green housing, Urban, Renting)'
+
+
+@pytest.mark.skip("No longer relevant - redirects stop this being accessed. Retaining test for awareness")
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_expand_path_exists(mock_get_page, client, settings):
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -2257,11 +1357,11 @@ def test_expand_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='expand',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='expand',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
@@ -2288,156 +1388,7 @@ def test_capital_invest_contact_serialized_data(mock_save, capital_invest_contac
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_new_international_landing_page_gets_random_sector(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'International',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'international'
-        },
-        'is_new_page_ready': True,
-        'page_type': 'InternationalHomePage',
-        'all_sectors': [
-            {
-                'title': 'automotive',
-                'featured_description': 'some description',
-                'meta': {
-                    'languages': [['en-gb', 'English']],
-                }
-            },
-            {
-                'title': 'aerospace',
-                'featured_description': '',
-                'meta': {
-                    'languages': [['en-gb', 'English']],
-                }
-            },
-            {
-                'title': 'energy',
-                'featured_description': '',
-                'meta': {
-                    'languages': [['en-gb', 'English']],
-                }
-            },
-        ],
-        'ready_to_trade_stories': [
-            {'story': 'some text'},
-            {'story': ''},
-            {'story': 'some other text'}
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InternationalHomePageView.as_view()(
-        request, path='/international')
-
-    assert 'random_sector' in response.context_data
-    assert 'title' in response.context_data['random_sector']
-    assert 'featured_description' in response.context_data['random_sector']
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_new_international_landing_page_gets_random_sector_null(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'International',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'international'
-        },
-        'page_type': 'InternationalHomePage',
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InternationalHomePageView.as_view()(
-        request, path='/international')
-
-    assert 'random_sector' in response.context_data
-    assert response.context_data['random_sector'] == []
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_new_international_landing_page_gets_related_cards(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'International',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'international'
-        },
-        'page_type': 'InternationalHomePage',
-        'related_page_invest_capital': {
-            'title': 'Capital invest',
-            'image': {'url': 'www.google.com'}
-        },
-        'related_page_expand': {
-            'title': 'Expand to the UK',
-            'image': {'url': 'www.google.com'}
-        },
-        'related_page_buy': {
-            'title': 'Trade',
-            'image': {'url': 'www.google.com'}
-        }
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InternationalHomePageView.as_view()(
-        request, path='/international')
-
-    assert len(response.context_data['related_cards']) == 3
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_new_international_landing_page_gets_related_cards_null(
-        mock_cms_response, rf):
-
-    page = {
-        'title': 'International',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ],
-            'slug': 'international'
-        },
-        'page_type': 'InternationalHomePage',
-        'related_page_buy': {
-            'title': 'Buy from the UK',
-            'image': {'url': 'www.google.com'}
-        }
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InternationalHomePageView.as_view()(
-        request, path='/international')
-
-    assert len(response.context_data['related_cards']) == 1
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -2479,17 +1430,16 @@ def test_how_to_set_up_expand_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 3
     assert mock_get_page.mock_calls[2] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='expand/how-to-setup-in-the-uk',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='expand/how-to-setup-in-the-uk',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -2529,17 +1479,16 @@ def test_how_to_set_up_invest_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='invest/how-to-setup-in-the-uk',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='invest/how-to-setup-in-the-uk',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_industries_about_uk_path_exists(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -2559,8 +1508,10 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
                     'slug': 'page',
                     'languages': [['en-gb', 'English']],
                 },
-                'landing_page_title': 'title',
-                'heading': 'heading'
+                'heading': 'title',
+                'sub_heading': 'heading',
+                'full_path': '/some-url/',
+                'hero_image_thumbnail': None
             }
         ]
     }
@@ -2578,11 +1529,11 @@ def test_industries_about_uk_path_exists(mock_get_page, client, settings):
 
     assert mock_get_page.call_count == 2
     assert mock_get_page.mock_calls[1] == call(
-                                            draft_token=None,
-                                            language_code='en-gb',
-                                            path='about-uk/industries',
-                                            site_id=2
-                                        )
+        draft_token=None,
+        language_code='en-gb',
+        path='about-uk/industries',
+        site_id=2
+    )
     assert response.status_code == 200
 
 
@@ -2595,74 +1546,6 @@ def test_business_environment_form_view(client):
 def test_business_environment_form_success_view(client):
     response = client.get(reverse('business-environment-guide-form-success'))
     assert response.status_code == 200
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_regions_on_region_page(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Midlands',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionPage',
-        'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'northern-ireland', 'languages': [['en-gb', 'English']]}, 'title': 'The Northern Ireland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'wales', 'languages': [['en-gb', 'English']]}, 'title': 'Wales'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
-        ],
-        'economics_stats': [],
-        'location_stats': [],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/midlands/')
-
-    assert len(response.context_data['regions']) == 6
-    assert response.context_data['show_mapped_regions'] is True
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_getting_regions_on_region_page_null(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Midlands',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        },
-        'page_type': 'AboutUkRegionPage',
-        'mapped_regions': [
-            {'region': {'meta': {'slug': 'scotland', 'languages': [['en-gb', 'English']]}, 'title': 'Scotland'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'north-england', 'languages': [['en-gb', 'English']]}, 'title': 'North England'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'midlands', 'languages': [['en-gb', 'English']]}, 'title': 'Midlands'}, 'text': 'Lorem ipsum'},  # NOQA
-            {'region': {'meta': {'slug': 'south-england', 'languages': [['en-gb', 'English']]}, 'title': 'The South of England'}, 'text': 'Lorem ipsum'},  # NOQA
-        ],
-        'economics_stats': [],
-        'location_stats': [],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/regions/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/regions/midlands/')
-
-    assert len(response.context_data['regions']) == 4
-    assert response.context_data['show_mapped_regions'] is False
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -2825,8 +1708,8 @@ def test_why_buy_from_uk_context(rf, client):
         request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
-        '/international/content/trade/how-we-help-you-buy/'
-        in response.context_data['international_trade_how_we_help']
+            '/international/content/trade/how-we-help-you-buy/'
+            in response.context_data['international_trade_how_we_help']
     )
     assert 'privacy-notice-5-reasons-buy-uk' in response.context_data['privacy_url']
 
@@ -2837,6 +1720,6 @@ def test_why_buy_from_uk_success_context(rf, client):
         request, path='/international/content/trade/how-we-help-you-buy/why-buy-from-the-uk/success/')
     assert '/international/trade/' in response.context_data['international_trade_home']
     assert (
-        '/international/content/trade/how-we-help-you-buy/'
-        in response.context_data['international_trade_how_we_help']
+            '/international/content/trade/how-we-help-you-buy/'
+            in response.context_data['international_trade_how_we_help']
     )

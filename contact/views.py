@@ -8,7 +8,7 @@ from django.conf import settings
 
 from contact import forms
 from contact.mixins import LocalisedURLsMixin
-from core.header_config import tier_one_nav_items, tier_two_nav_items
+from core.header_config import tier_one_nav_items
 from core.helpers import get_sender_ip_address
 from core.mixins import InternationalHeaderMixin
 
@@ -25,8 +25,7 @@ class ContactFormView(
     template_name = 'contact/contact.html'
     form_class = forms.ContactForm
     available_languages = settings.LANGUAGES
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.CONTACT_US_EXPAND
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
@@ -62,8 +61,7 @@ class ContactFormSuccessView(
 ):
     template_name = 'contact/contact_form_success_page.html'
     available_languages = settings.LANGUAGES
-    header_section = tier_one_nav_items.EXPAND
-    header_sub_section = tier_two_nav_items.CONTACT_US_EXPAND
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()

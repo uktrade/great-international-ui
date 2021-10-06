@@ -1,0 +1,45 @@
+@import '../tokens';
+
+.atlas-hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 34%;
+  height: 0;
+
+  @media (min-width: $breakpoint-xlarge) {
+    height: 454px;
+    padding-bottom: 0;
+  }
+}
+
+.atlas-hero__image {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  max-height: none;
+  max-width: none;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.atlas-hero__heading {
+  position: relative;
+  max-width: $breakpoint-xlarge;
+  margin: 0 auto;
+  background: $atlas-white;
+  padding: map-get($spacings, 'm') 0;
+
+  @media (min-width: $breakpoint-medium) {
+    padding: map-get($spacings-medium, 'm') 0;
+  }
+
+  @media (min-width: $breakpoint-xlarge) {
+    .atlas-hero + & {
+      margin-top: -140px;
+    }
+  }
+}

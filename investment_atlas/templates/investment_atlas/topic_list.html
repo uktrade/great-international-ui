@@ -1,0 +1,39 @@
+{% extends 'investment_atlas/base_cms.html' %}
+
+{% load filter_by_active_language cms_hero from cms_tags %}
+
+{% block content %}
+    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_large %}
+
+    {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
+
+    <section class="atlas-container">
+        {% if page.hero_teaser %}
+            <div class="atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--8-12-m">
+                    <p class="atlas-body--l atlas-m-t-0 atlas-m-b-l">{{ page.hero_teaser }}</p>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="atlas-grid">
+            {% for card in cards_list %}
+                <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-grid__column--4-12-l">
+                    {% include 'investment_atlas/includes/card.html' with data=card %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {% if page.related_pages|length > 0 %}
+        <section class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">Explore more of the Investment Atlas</h2>
+                {% include 'investment_atlas/includes/related_pages.html' with related_pages=page.related_pages %}
+            </div>
+        </section>
+    {% endif %}
+
+    {% include 'investment_atlas/includes/speak_to_us.html' %}
+
+{% endblock %}

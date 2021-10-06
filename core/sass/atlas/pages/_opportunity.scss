@@ -1,0 +1,48 @@
+@import '../tokens';
+
+.atlas-opportunity__icon {
+  width: 62px;
+  margin-top: 5px;
+}
+
+.atlas-opportunity__contact .atlas-grid__column {
+  display: flex;
+}
+
+.atlas-opportunity__contact .atlas-media {
+  margin: 0 auto;
+
+  & .atlas-media__body:first-child {
+    text-align: center;
+  }
+}
+
+.atlas-opportunity__contact-image {
+  width: 80px;
+  height: 80px;
+
+  & img {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 50%;
+  }
+}
+
+.atlas-opportunity__contact-cta {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.atlas-opportunity__key-links {
+  & a {
+    display: block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

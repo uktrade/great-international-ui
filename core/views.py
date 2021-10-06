@@ -2,7 +2,6 @@ import copy
 import random
 
 from django.conf import settings
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.views.generic.base import RedirectView, View
@@ -15,9 +14,8 @@ from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 import directory_forms_api_client.helpers
 
-from directory_constants.choices import COUNTRY_CHOICES
 from directory_constants import urls
-from directory_components.helpers import get_user_country, SocialLinkBuilder
+from directory_components.helpers import SocialLinkBuilder
 from directory_components.mixins import (
     CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin, EnableTranslationsMixin)
 
@@ -29,6 +27,7 @@ from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 
 import find_a_supplier.forms
+from investment_atlas.helpers import get_sectors_label
 
 
 class QuerystringRedirectView(RedirectView):
@@ -80,11 +79,11 @@ class MonolingualCMSPageFromPathView(
 
     def get_cms_data(self, path):
         return cms_api_client.lookup_by_path(
-                    site_id=self.cms_site_id,
-                    path=path,
-                    language_code=translation.get_language(),
-                    draft_token=self.request.GET.get('draft_token'),
-                )
+            site_id=self.cms_site_id,
+            path=path,
+            language_code=translation.get_language(),
+            draft_token=self.request.GET.get('draft_token'),
+        )
 
     @cached_property
     def page(self):
@@ -118,7 +117,7 @@ class MonolingualCMSPageFromPathView(
             raise Http404
 
         for modifier in context_modifier_registry.get_for_page_type(
-            self.page['page_type']
+                self.page['page_type']
         ):
             context.update(modifier(context, request=self.request))
 
@@ -137,7 +136,6 @@ class MultilingualCMSPageFromPathView(
 
 @register_context_modifier('InternationalArticlePage')
 def article_page_context_modifier(context, request):
-
     page_title = context['page'].get('article_title', '')
 
     social_links_builder = SocialLinkBuilder(
@@ -153,95 +151,28 @@ def article_page_context_modifier(context, request):
 class InternationalHomePageView(MultilingualCMSPageFromPathView):
 
     @property
-    def is_new_page_ready(self):
-        if 'is_new_page_ready' in self.page:
-            if self.page['is_new_page_ready']:
-                return True
-        return False
-
-    @property
     def template_name(self):
-        if self.is_new_page_ready:
-            return 'core/new_international_landing_page.html'
-
-        return 'core/landing_page.html'
-
-    def get_context_data(self, *args, **kwargs):
-        page = self.page
-
-        country_code = get_user_country(self.request)
-        country_name = dict(COUNTRY_CHOICES).get(country_code, '')
-        tariffs_country = {'code': country_code.lower(), 'name': country_name}
-        tariffs_country_selector_form = forms.TariffsCountryForm(
-            initial={'tariffs_country': country_code}
-        ),
-
-        random_sector = []
-        if 'all_sectors' in page:
-            all_sectors = filter_by_active_language(page['all_sectors'])
-            random.shuffle(all_sectors)
-            if all_sectors:
-                random_sector = all_sectors[0]
-
-        related_cards = []
-        if 'related_page_expand' in page and page['related_page_expand']:
-            related_cards.append(page['related_page_expand'])
-
-        if 'related_page_invest_capital' in page and page['related_page_invest_capital']:
-            related_cards.append(page['related_page_invest_capital'])
-
-        if 'related_page_buy' in page and page['related_page_buy']:
-            related_cards.append(page['related_page_buy'])
-
-        return super().get_context_data(
-            tariffs_country=tariffs_country,
-            tariffs_country_selector_form=tariffs_country_selector_form,
-            random_sector=random_sector,
-            related_cards=related_cards,
-            *args, **kwargs,
-        )
+        return 'investment_atlas/homepage.html'
 
 
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
+    child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
 
-    def rename_heading_field(page):
-        page['landing_page_title'] = page['heading']
-        return page
-
-    context['page']['child_pages'] = [
-        rename_heading_field(child_page)
-        for child_page in context['page']['child_pages']]
-
-    context['about_uk_link'] = urls.international.ABOUT_UK_HOME
-    return context
-
-
-@register_context_modifier('InternationalSectorPage')
-def sector_page_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
+    cards_list = [create_cards_list_item(
+        x['full_path'],
+        x['heading'],
+        x['sub_heading'],
+        x['hero_image_thumbnail']
+    ) for x in child_pages_for_language]
 
     return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-        }
+        "cards_list": cards_list
+    }
 
 
 @register_context_modifier('AboutUkWhyChooseTheUkPage')
 def about_uk_why_choose_the_uk_page_context_modifier(context, request):
-
     def count_data_with_field(list_of_data, field):
         filtered_list = [item for item in list_of_data if item[field]]
         return len(filtered_list)
@@ -257,30 +188,9 @@ def about_uk_why_choose_the_uk_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('InternationalSubSectorPage')
-def sub_sector_context_modifier(context, request):
-    page = context['page']
-
-    if 'related_opportunities' in page:
-        random.shuffle(page['related_opportunities'])
-        random_opportunities = page['related_opportunities'][0:3]
-    else:
-        random_opportunities = []
-
-    return {
-        'invest_contact_us_url': urls.international.EXPAND_CONTACT,
-        'num_of_statistics': helpers.count_data_with_field(
-            page['statistics'], 'number'),
-        'section_three_num_of_subsections': helpers.count_data_with_field(
-            page['section_three_subsections'], 'heading'),
-        'random_opportunities': random_opportunities,
-        'trade_contact_form_url': urls.international.TRADE_CONTACT,
-        'about_uk_link': urls.international.ABOUT_UK_HOME
-    }
-
-
 class InternationalContactPageView(CountryDisplayMixin, InternationalView):
     template_name = 'core/contact_page.html'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()
@@ -321,39 +231,8 @@ def capital_invest_region_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('AboutUkRegionPage')
-def about_uk_region_page_context_modifier(context, request):
-    page = context['page']
-
-    show_mapped_regions = False
-    regions = []
-    if 'mapped_regions' in page:
-        regions = page['mapped_regions']
-        show_mapped_regions = True if len(regions) == 6 else False
-
-    show_accordions = False
-
-    if 'subsections' in page:
-        accordions = {accordion['title']: accordion['content']
-                      for accordion in page['subsections']
-                      if accordion['title'] and accordion['content']}
-        if accordions:
-            show_accordions = True
-
-    return {
-        'num_of_economics_statistics': helpers.count_data_with_field(
-            page['economics_stats'], 'number'),
-        'num_of_location_statistics': helpers.count_data_with_field(
-            page['location_stats'], 'number'),
-        'show_accordions': show_accordions,
-        'show_mapped_regions': show_mapped_regions,
-        'regions': regions
-    }
-
-
 @register_context_modifier('CapitalInvestOpportunityPage')
 def capital_invest_opportunity_page_context_modifier(context, request):
-
     current_sector_title = None
     related_sectors = context['page']['related_sectors']
 
@@ -365,239 +244,10 @@ def capital_invest_opportunity_page_context_modifier(context, request):
         'buy_cta_link': urls.international.TRADE_HOME,
         'current_sector_title': current_sector_title,
         'contact_cta_link': urls.international.CAPITAL_INVEST_CONTACT,
-        }
-
-
-class OpportunitySearchView(CountryDisplayMixin, InternationalView):
-    template_name = 'core/capital_invest/capital_invest_opportunity_listing_page.html'
-    page_size = 10
-    header_section = tier_one_nav_items.INVEST_CAPITAL
-    header_sub_section = tier_two_nav_items.INVESTMENT_OPPORTUNITIES
-
-    def __init__(self):
-        super().__init__()
-
-        self.set_ga360_payload(
-            page_id='GreatInternationalCapitalInvestmentOpportunitySearch',
-            business_unit='CapitalInvestment',
-            site_section='Opportunities',
-            site_subsection='Search'
-        )
-
-    def get(self, request, *args, **kwargs):
-        try:
-            context = self.get_context_data(**kwargs)
-            return self.render_to_response(context)
-        except (EmptyPage, PageNotAnInteger):
-            url = helpers.get_paginator_url(self.request.GET, 'opportunities') + "&page=1"
-            return redirect(url)
-
-    @property
-    def page_number(self):
-        return self.request.GET.get('page', '1')
-
-    @property
-    def sector(self):
-        return helpers.SectorFilter(self.request.GET.getlist('sector', []))
-
-    @property
-    def scale(self):
-        return helpers.ScaleFilter(self.request.GET.getlist('scale', []))
-
-    @property
-    def region(self):
-        return helpers.RegionFilter(self.request.GET.getlist('region', ''))
-
-    @property
-    def sort_filter(self):
-        return helpers.SortFilter(self.request.GET.get('sort_by', ''))
-
-    @property
-    def sub_sector(self):
-        return helpers.SubSectorFilter(self.request.GET.getlist('sub_sector', []))
-
-    @cached_property
-    def page(self):
-        response = cms_api_client.lookup_by_path(
-            site_id=settings.DIRECTORY_CMS_SITE_ID,
-            path=self.kwargs['path'],
-            language_code=translation.get_language(),
-            draft_token=self.request.GET.get('draft_token'),
-        )
-        return handle_cms_response(response)
-
-    @property
-    def opportunities(self):
-        if 'opportunity_list' in self.page:
-            return self.page['opportunity_list']
-        else:
-            return []
-
-    @property
-    def all_sectors(self):
-        sectors = set()
-
-        for opp in self.opportunities:
-            for sector in opp['related_sectors']:
-                if sector['related_sector'] and sector['related_sector']['heading']:
-                    sectors.add(sector['related_sector']['heading'])
-        sectors = list(sectors)
-        sectors.sort()
-        return [
-            (sector, sector) for sector in sectors
-        ]
-
-    @property
-    def all_scales(self):
-        return [
-            (scale.title, scale.title)
-            for scale in helpers.ScaleFilter.scales_with_values
-        ]
-
-    @property
-    def all_regions(self):
-        regions = set()
-        for opp in self.opportunities:
-            if opp['related_region'] and opp['related_region']['title']:
-                regions.add(opp['related_region']['title'])
-        regions = list(regions)
-        regions.sort()
-        return [
-            (region, region) for region in regions
-        ]
-
-    @property
-    def all_sort_filters(self):
-        sort_filters_with_selected_status = [
-            (sort_filter.title, sort_filter.title)
-            for sort_filter in helpers.SortFilter.sort_by_with_values
-        ]
-
-        return sort_filters_with_selected_status
-
-    @property
-    def all_sub_sectors_for_sectors_chosen(self):
-        if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
-            sub_sectors_from_sector_chosen = {
-                sub for sector in self.sector.sectors
-                for sub in self.page['sector_with_sub_sectors'][sector]
-            }
-            sub_sectors_from_selected = set(self.sub_sector.sub_sectors)
-
-            all_sub_sectors = sub_sectors_from_sector_chosen.union(
-                sub_sectors_from_selected)
-        else:
-            all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
-
-        all_sub_sectors = list(all_sub_sectors)
-        all_sub_sectors.sort()
-
-        return [
-            (sub_sector, sub_sector) for sub_sector in all_sub_sectors
-        ]
-
-    @property
-    def filtered_opportunities(self):
-
-        filtered_opportunities = [opp for opp in self.opportunities]
-
-        if self.sector.sectors:
-            filtered_opportunities = helpers.filter_opportunities(
-                filtered_opportunities,
-                self.sector
-            )
-
-        if self.region.regions:
-            filtered_opportunities = helpers.filter_opportunities(
-                filtered_opportunities,
-                self.region
-            )
-
-        if self.scale.selected_scales:
-            filtered_opportunities = helpers.filter_opportunities(
-                filtered_opportunities,
-                self.scale
-            )
-
-        if self.sub_sector.sub_sectors:
-            filtered_opportunities = helpers.filter_opportunities(
-                filtered_opportunities,
-                self.sub_sector
-            )
-
-        if self.sort_filter.sort_by_filter_chosen:
-            filtered_opportunities = helpers.sort_opportunities(
-                filtered_opportunities,
-                self.sort_filter
-            )
-
-        return filtered_opportunities
-
-    @property
-    def num_of_opportunities(self):
-        return len(self.filtered_opportunities)
-
-    @property
-    def pagination(self):
-        paginator = Paginator(self.filtered_opportunities, self.page_size)
-        return paginator.page(self.page_number or 1)
-
-    @property
-    def filters_chosen(self):
-        filters = []
-        for sector in self.sector.sectors:
-            filters.append(sector)
-        for scale in self.scale.selected_scales:
-            filters.append(scale.title)
-        for region in self.region.regions:
-            filters.append(region)
-        for sub_sector in self.sub_sector.sub_sectors:
-            filters.append(sub_sector)
-        return filters
-
-    @property
-    def sorting_chosen(self):
-        return self.sort_filter.sort_by_filter_chosen.title
-
-    @property
-    def opportunity_search_form(self):
-        return forms.OpportunitySearchForm(
-            sectors=self.all_sectors,
-            scales=self.all_scales,
-            regions=self.all_regions,
-            sort_by_options=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
-            initial={
-                'sector': self.filters_chosen,
-                'scale': self.filters_chosen,
-                'region': self.filters_chosen,
-                'sort_by': self.sorting_chosen,
-                'sub_sector': self.filters_chosen
-            },
-        )
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            page=self.page,
-            invest_url=urls.international.EXPAND_HOME,
-            num_of_opportunities=self.num_of_opportunities,
-            sectors=self.all_sectors,
-            scales=self.all_scales,
-            regions=self.all_regions,
-            sorting_filters=self.all_sort_filters,
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
-            pagination=self.pagination,
-            sorting_chosen=self.sorting_chosen,
-            filters=self.filters_chosen,
-            current_page_num=self.page_number,
-            form=self.opportunity_search_form,
-            *args, **kwargs,
-        )
+    }
 
 
 class SendContactNotifyMessagesMixin:
-
     def send_company_message(self, form):
         sender = directory_forms_api_client.helpers.Sender(
             email_address=form.cleaned_data['email_address'],
@@ -672,7 +322,6 @@ def invest_homepage_context_modifier(context, request):
 
 @register_context_modifier('InternationalTradeHomePage')
 def international_trade_homepage_context_modifier(context, request):
-
     return {
         'search_form': find_a_supplier.forms.SearchForm,
     }
@@ -704,7 +353,6 @@ def get_regions_with_coordinates(regions):
 
 @register_context_modifier('AboutUkLandingPage')
 def about_uk_landing_page_context_modifier(context, request):
-
     regions = []
     if 'regions' in context['page']:
         regions = context['page']['regions']
@@ -747,41 +395,54 @@ def about_uk_landing_page_context_modifier(context, request):
     }
 
 
-@register_context_modifier('AboutUkRegionListingPage')
-def about_uk_region_listing_page_context_modifier(context, request):
-
-    regions = []
-    if 'mapped_regions' in context['page']:
-        regions = context['page']['mapped_regions']
-
-    regions_with_coordinates = {
-        'scotland': [],
-        'northern-ireland': [],
-        'north-england': [],
-        'wales': [],
-        'midlands': [],
-        'south-england': []
+def create_cards_list_item(url, title, summary, image):
+    base_item = {
+        'url': url,
+        'title': title,
+        'summary': summary,
     }
 
-    show_mapped_regions = False
-    if regions:
-        region_pages = [field['region'] for field in regions if field['region']]
-        regions_with_text = [field for field in regions
-                             if field['region'] and field['text']]
-        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
-            show_mapped_regions = True
-            regions_with_coordinates = get_regions_with_coordinates(regions)
+    if image:
+        base_item.update({
+            'image': image.get('url'),
+            'image_alt': image.get('alt'),
+            'image_width': image.get('width'),
+            'image_height': image.get('height'),
+        })
+
+    return base_item
+
+
+@register_context_modifier('AboutUkRegionListingPage')
+@register_context_modifier('AboutUkRegionPage')
+def about_uk_region_listing_page_context_modifier(context, request):
+    regions = {}
+    cards_list = []
+    if 'mapped_regions' in context['page']:
+        regions = {
+            # variable names in templates can only contain underscores and letters/numbers:
+            x['region']['meta']['slug'].replace('-', '_'): {
+                'full_path': x['region']['full_path']
+            }
+            for x in context['page']['mapped_regions'] if x['region']
+        }
+        cards_list = [create_cards_list_item(
+            x['region']['full_path'],
+            x['region']['title'],
+            x['text'],
+            x['region'].get('hero_image_thumbnail')
+        ) for x in context['page']['mapped_regions'] if x['region']]
 
     return {
-        'show_mapped_regions': show_mapped_regions,
-        'scotland': regions_with_coordinates['scotland'],
-        'northern_ireland': regions_with_coordinates['northern-ireland'],
-        'north_england': regions_with_coordinates['north-england'],
-        'wales': regions_with_coordinates['wales'],
-        'midlands': regions_with_coordinates['midlands'],
-        'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates,
-        'regions': regions
+        'regions': regions,
+        'cards_list': cards_list
+    }
+
+
+@register_context_modifier('InvestmentOpportunityPage')
+def atlas_opportunity_page_context_modifier(context, request):
+    return {
+        'sectors_label': get_sectors_label(context['page'])
     }
 
 
@@ -819,8 +480,7 @@ class LegacyRedirectCoreView(View):
 class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, FormView):
     form_class = forms.CapitalInvestContactForm
     success_url = '/international/content/capital-invest/contact/success'
-    header_section = tier_one_nav_items.INVEST_CAPITAL
-    header_sub_section = tier_two_nav_items.CONTACT_US_INVEST_CAPITAL
+    header_section = tier_one_nav_items.CONTACT
 
     def send_agent_email(self, form):
         sender = directory_forms_api_client.helpers.Sender(
@@ -860,7 +520,6 @@ class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, 
 
 
 class PathRedirectView(QuerystringRedirectView):
-
     root_url = None
 
     @property
@@ -1019,10 +678,16 @@ def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
 
 
-class InternationalContactTriageView(GA360Mixin, EnableTranslationsMixin, InternationalHeaderMixin, FormView):
+class InternationalContactTriageView(
+    GA360Mixin,
+    EnableTranslationsMixin,
+    InternationalHeaderMixin,
+    FormView,
+):
     template_name = 'core/contact_international_triage.html'
     form_class = forms.InternationalRoutingForm
     success_url = urls.domestic.CONTACT_US + 'international/'
+    header_section = tier_one_nav_items.CONTACT
 
     def __init__(self):
         super().__init__()

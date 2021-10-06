@@ -10,17 +10,28 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
-from conf.url_redirects import redirects
+from conf.url_redirects import (
+    redirects,
+    redirects_before_tree_based_routing_lookup
+)
 import euexit.views
 import invest.views
+import investment_atlas.views
 import contact.views
 import find_a_supplier.views
 import second_qualification.views
 
+
+# IMPORTANT: a lot of these views are no longer active - they are
+# avoided by entries in redirects_before_tree_based_routing_lookup
+# because they have been retired during the Investment Atlas refactor.
+# Look at redirects_before_tree_based_routing_lookup in url_redirects.py
+# to see which URL configs (and therefore views, and forms, and templates)
+# we can actively drop from the codebase.
+
 sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
 }
-
 
 urlpatterns = [
     url(
@@ -35,6 +46,8 @@ urlpatterns = [
         QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
     ),
     url(
+        # Note that some of these URLS from find-a-supplier are superceded by later
+        # entries in the URLConf
         r'^international/trade/',
         include(
             'find_a_supplier.urls',
@@ -133,6 +146,7 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
     ]
 
+# This route remains in use after the Atlas refactor
 if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
     urlpatterns += [
         url(
@@ -163,6 +177,7 @@ urlpatterns += [
     ),
 ]
 
+urlpatterns += redirects_before_tree_based_routing_lookup
 
 urlpatterns += [
     url(
@@ -181,6 +196,9 @@ urlpatterns += [
         skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
+    # Could we remove the need for InternationalHomePageView by using MultilingualCMSPageFromPathView instead?
+    # It seems InternationalHomePageView only sets the template, but this can be done in constants as for all
+    # other pages...
     url(
         r'^international/$',
         core.views.InternationalHomePageView.as_view(),
@@ -215,6 +233,7 @@ urlpatterns += [
         name='expand-home'
     ),
     url(
+        # Remains in use after the Atlas refactor
         r"^international/invest/contact/$",
         contact.views.ContactFormView.as_view(),
         name="invest-contact"
@@ -248,6 +267,7 @@ urlpatterns += [
         r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
     ),
+    # These override at least one route from the find-a-supplier namespace, included far above
     url(
         r'^international/trade/incoming/$',  # Homepage
         QuerystringRedirectView.as_view(pattern_name='trade-home'),
@@ -277,18 +297,7 @@ urlpatterns += [
             url=('/international/content/invest/#high-potential-opportunities')),
         name='hpo-landing-page-redirect'
     ),
-    url(
-        r'^international/content/invest/high-potential-opportunities/contact/$',
-        invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': 'invest/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-form'
-    ),
-    url(
-        r'^international/content/invest/high-potential-opportunities/contact/success/$',
-        invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': 'invest/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-form-success'
-    ),
+
     url(
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(
@@ -296,28 +305,19 @@ urlpatterns += [
         name='hpo-landing-page-expand-redirect'
     ),
     url(
-        r'^international/content/expand/high-potential-opportunities/contact/$',
-        invest.views.HighPotentialOpportunityFormView.as_view(),
-        {'path': 'expand/high-potential-opportunities/contact'},
-        name='high-potential-opportunity-request-expand-form'
-    ),
-    url(
-        r'^international/content/expand/high-potential-opportunities/contact/success/$',
-        invest.views.HighPotentialOpportunitySuccessView.as_view(),
-        {'path': 'expand/high-potential-opportunities/contact/success'},
-        name='high-potential-opportunity-request-expand-form-success'
-    ),
-    url(
+        # Remains in use after the Atlas refactor
         r'^international/transition-period/contact/$',
         euexit.views.TransitionContactFormView.as_view(),
         name='brexit-international-contact-form'
     ),
     url(
+        # Remains in use after the Atlas refactor
         r'^international/transition-period/contact/success/$',
         euexit.views.InternationalContactSuccessView.as_view(),
         name='brexit-international-contact-form-success'
     ),
     url(
+        # Remains in use after the Atlas refactor - but will be moved into atlas
         r'^international/content/capital-invest/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         {'path': 'capital-invest/contact'},
@@ -342,19 +342,56 @@ urlpatterns += [
         {'path': 'how-to-do-business-with-the-uk'},
         name='how-to-do-business-with-the-uk'
     ),
-    url(
-        r'^international/content/opportunities/$',
-        core.views.OpportunitySearchView.as_view(),
-        {'path': 'opportunities'},
-        name='opportunities'
-    ),
+    # r'^international/content/opportunities/$', has been replaced by international/investment/opportunities/
+    # and once the new investment atlas pages are live, we can remove all capinvest pages
     url(
         r'^international/invest-capital/$',
         QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
         {'path': 'capital-invest'},
         name='invest-capital-home'
     ),
+    # The Investment Atlas section tries to stick with the standard
+    # tree-based routing, apart from:
+    #   * the investment root page at /international/investment/
+    #   * the filterable listing view at /international/investment/opportunities/
+    #   * a special FDI contact form
+    #
+    # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
+    # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
+    #
     url(
+        r'^international/investment/$',
+        core.views.MultilingualCMSPageFromPathView.as_view(),
+        {
+            'path': 'investment'
+            # ie, in the CMS there must a direct child of the International homepage with the slug of 'investment'
+        },
+        name='atlas-home'
+    ),
+    url(
+        r'^international/investment/opportunities/$',
+        investment_atlas.views.InvestmentOpportunitySearchView.as_view(),
+        {
+            'path': 'investment/opportunities/'
+        },
+        name='atlas-opportunities'
+    ),
+    url(
+        r'^international/content/investment/foreign-direct-investment-contact/$',
+        investment_atlas.views.ForeignDirectInvestmentOpportunityFormView.as_view(),
+        {'path': 'investment/foreign-direct-investment-contact'},
+        name='fdi-opportunity-request-form'
+    ),
+    url(
+        r'^international/content/investment/foreign-direct-investment-contact/success/$',
+        investment_atlas.views.ForeignDirectInvestmentOpportunitySuccessView.as_view(),
+        {'path': 'investment/foreign-direct-investment-contact/success'},
+        name='fdi-opportunity-request-form-success'
+    ),
+    url(
+        # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
+        # Also see core.constants.TEMPLATE_MAPPING for how a paritcular CMS page model in directory-cms
+        # is mapped to HTML template in great-international-ui
         r'^international/content/(?P<path>[\w\-/]*)/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'

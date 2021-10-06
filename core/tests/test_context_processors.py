@@ -61,20 +61,13 @@ def test_services_home_links():
             'url': reverse_lazy('invest-home'),
             'label': 'Invest',
         },
+        'investment_atlas_home_link': {
+            'url': reverse_lazy('atlas-home'),
+            'label': 'Invest in the UK'
+        },
     }
 
 
-def test_header_navigation_uses_new_ia_when_flag_is_on(settings):
-    settings.FEATURE_FLAGS['NEW_IA_ON'] = True
-
+def test_header_navigation_uses_atlas_config(settings):
     context = context_processors.header_navigation(None)
-
-    assert context['navigation_tree'] == header_config.nav_tree.HEADER_TREE
-
-
-def test_header_navigation_uses_new_ia_when_flag_is_off(settings):
-    settings.FEATURE_FLAGS['NEW_IA_ON'] = False
-
-    context = context_processors.header_navigation(None)
-
-    assert context['navigation_tree'] == header_config.nav_tree.OLD_HEADER_TREE
+    assert context['navigation_tree'] == header_config.nav_tree.ATLAS_HEADER_TREE

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'directory_healthcheck',
     'euexit',
     'perfect_fit_prospectus',
+    'investment_atlas',
     'invest',
     'investment_support_directory',
     'find_a_supplier',
@@ -80,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'core.middleware.GoogleCampaignMiddleware',
+    'core.middleware.MicrosoftDefenderSafeLinksMiddleware',
     'directory_components.middleware.NoCacheMiddlware',
     'directory_components.middleware.CheckGATags'
 ]
@@ -159,12 +161,13 @@ LANGUAGE_COOKIE_DOMAIN = env.str('LANGUAGE_COOKIE_DOMAIN', None)
 # https://github.com/django/django/blob/master/django/conf/locale/__init__.py
 LANGUAGES = [
     ('en-gb', 'English'),               # English
-    ('de', 'Deutsch'),                  # German
-    ('ja', '日本語'),                    # Japanese
-    ('zh-hans', '简体中文'),             # Simplified Chinese
-    ('fr', 'Français'),                 # French
-    ('es', 'español'),                  # Spanish
-    ('pt', 'Português'),                # Portuguese
+    # Turning off translation for site, avoid risking serving empty page or 404
+    # ('de', 'Deutsch'),                  # German
+    # ('ja', '日本語'),                    # Japanese
+    # ('zh-hans', '简体中文'),             # Simplified Chinese
+    # ('fr', 'Français'),                 # French
+    # ('es', 'español'),                  # Spanish
+    # ('pt', 'Português'),                # Portuguese
 ]
 
 LOCALE_PATHS = (
@@ -390,7 +393,6 @@ FEATURE_FLAGS = {
     'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_SUB_SECTOR_PAGE_ENABLED', False),
     'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_FORM_PAGE_ENABLED', False),
     'EXPAND_REDIRECT_ON': env.bool('FEATURE_EXPAND_REDIRECT_ENABLED', False),
-    'NEW_IA_ON': env.bool('FEATURE_NEW_IA_ENABLED', False),
     'GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON': env.bool('FEATURE_GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ENABLED', False),
     'INDUSTRIES_REDIRECT_ON': env.bool('FEATURE_INDUSTRIES_REDIRECT_ENABLED', False),
     'HOW_TO_SET_UP_REDIRECT_ON': env.bool('FEATURE_HOW_TO_SET_UP_REDIRECT_ENABLED', False),
@@ -400,10 +402,10 @@ FEATURE_FLAGS = {
     'INTERNATIONAL_TRIAGE_ON': env.bool('FEATURE_INTERNATIONAL_TRIAGE_ENABLED', False)
 }
 
-# Invest High Potential Opportunities
+# Invest Foreign Direct Investment Opportunities - prev called High Potential Opportunities, hence HPO prefix
 HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',)
-HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', 'dc467956-f05f-4af9-8713-6c1dc7b7e87a')
-HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', '8db76bef-70ec-4d14-97f1-9d087abc4ce2')
+HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', 'c0a46bb9-5f43-4707-9a14-bd5b5675e26e')
+HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'c7534f85-f975-4a22-904b-5321d7fcb638')
 
 # Directory healthcheck
 DIRECTORY_HEALTHCHECK_TOKEN = env.str('HEALTH_CHECK_TOKEN')

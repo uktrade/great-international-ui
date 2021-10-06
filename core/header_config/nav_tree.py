@@ -56,3 +56,28 @@ HEADER_TREE = [
         ]
     ),
 ]
+
+ATLAS_HEADER_TREE = [
+    NavNode(
+        tier_one_item=tier_one_nav_items.INVEST_IN_UK,
+        tier_two_items=[
+            tier_two_nav_items.WHY_INVEST_IN_UK,
+            tier_two_nav_items.REGIONS,
+            tier_two_nav_items.SECTORS,
+            tier_two_nav_items.INVESTMENT_OPPORTUNITIES,
+            tier_two_nav_items.HOW_WE_CAN_HELP_INVESTMENT_ATLAS,
+        ]
+    ),
+    NavNode(
+            tier_one_item=tier_one_nav_items.BUY_FROM_THE_UK,
+            tier_two_items=[
+                tier_two_nav_items.HOW_WE_HELP_BUY,
+                tier_two_nav_items.FIND_A_SUPPLIER,
+                tier_two_nav_items.CONTACT_US_TRADE,
+            ]
+    ),
+    NavNode(
+        tier_one_item=tier_one_nav_items.CONTACT,
+        tier_two_items=[]
+    ),
+]

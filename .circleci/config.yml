@@ -2,21 +2,22 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/python:3.6.6
+      - image: circleci/python:3.6.15
     steps:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - restore_cache:
-          key: v1-deps-{{ checksum "requirements_test.txt" }}
+          key: v2-deps-{{ checksum "requirements_test.txt" }}
       - run:
           name: Create virtualenv and install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
+            pip install --upgrade pip
             make install_requirements
       - save_cache:
-          key: v1-deps-{{ checksum "requirements_test.txt" }}
+          key: v2-deps-{{ checksum "requirements_test.txt" }}
           paths:
             - "venv"
       - run:
@@ -28,7 +29,7 @@ jobs:
 
   flake8:
     docker:
-    - image: circleci/python:3.6.6
+    - image: circleci/python:3.6.15
     steps:
     - checkout
     - setup_remote_docker:
