@@ -11,9 +11,9 @@
             <div class="atlas-grid">
                 <section class="atlas-grid__column atlas-grid__column--4-12-l atlas-grid__column--3-12-xl atlas-m-b-s">
                     <div class="atlas-bg--white atlas-p-s">
-                        <h1 class="atlas-h--s atlas-m-b-s">Investment opportunities</h1>
+                        <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
-                        <button class="atlas-search-filter__toggle atlas-button atlas-button--link atlas-visually-hidden-l atlas-hidden-nojs"
+                        <button class="atlas-search-filter__toggle atlas-button atlas-button--link atlas-visually-hidden-l atlas-hidden-nojs atlas-m-t-s"
                                 type="button"
                                 aria-controls="atlas-search-filters" data-reveal-button>
                             Filter results
@@ -25,7 +25,7 @@
 
                     <div id="atlas-search-filters"
                          class="atlas-reveal__contents atlas-reveal__contents--show-l">
-                        <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-s">
+                        <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
                             {% if sectors %}
                                 {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
                             {% endif %}
@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--8-12-l atlas-p-b-s">
-                                            <h4 class="atlas-card__heading atlas-h--m atlas-m-0">{{ opportunity.title }}</h4>
+                                            <h4 class="atlas-card__heading atlas-h--s atlas-m-0">{{ opportunity.title }}</h4>
                                             {% if opportunity.opportunity_summary %}
                                                 <p class="atlas-m-t-s atlas-m-b-0">{{ opportunity.opportunity_summary }}</p>
                                             {% endif %}
