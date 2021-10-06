@@ -167,7 +167,7 @@
                         }
                     );
 
-                    map.addControl(new maplibregl.NavigationControl(), "bottom-right");
+                    map.addControl(new maplibregl.NavigationControl(), "top-right");
 
                     allOpportunities.forEach(function (opp) {
                         if (opp.locations_with_regions.length > 0) {
@@ -177,6 +177,11 @@
                                 })
                                 var marker = new maplibregl.Marker()
                                     .setLngLat([latLong[1], latLong[0]])
+                                    .setPopup(new maplibregl.Popup().setHTML(
+                                        '<a href="' + opp.full_path + '" class="atlas-link">' +
+                                        '<h3 class="atlas-h--xs">' + opp.title + '</h3>' +
+                                        '</a>'
+                                    ))
                                     .addTo(map);
                             })
                         }
