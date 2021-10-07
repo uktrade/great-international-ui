@@ -112,7 +112,7 @@
   align-self: center;
   margin-left: auto;
 
-  @media (max-width: $breakpoint-medium) {
+  @media (max-width: $breakpoint-medium - 1px) {
     flex: 1 0 100%;
     margin-top: 10px;
 
