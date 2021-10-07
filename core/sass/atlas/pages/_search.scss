@@ -148,3 +148,7 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
     }
   }
 }
+
+.atlas-opportunities-map .maplibregl-marker {
+  cursor: pointer;
+}
