@@ -1,6 +1,19 @@
 @import '../tokens';
 @import '../mixins';
 
+.atlas-search__controls {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-small) {
+    flex-direction: row;
+
+    & > button:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
+}
+
 .atlas-search-filter__toggle {
   .atlas-button__icon {
     transform: rotate(90deg);

@@ -24,43 +24,47 @@
                     <div class="atlas-bg--white atlas-p-s">
                         <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
-                        {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
-                            <div class="atlas-p-t-s atlas-hidden-nojs">
-                                {{ form.view.as_hidden }}
+                        <div class="atlas-search__controls atlas-hidden-nojs">
+                            {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
                                 {% if form.view.value == 'list' %}
-                                    <button class="atlas-button atlas-button--wire atlas-search__button" type="button"
+                                    <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
+                                            type="button"
                                             onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
-                                    <span class="atlas-button__icon atlas-button__icon--first">
-                                       {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
-                                    </span>
+                                        <span class="atlas-button__icon atlas-button__icon--first">
+                                           {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
+                                        </span>
                                         View on map
                                     </button>
                                 {% else %}
-                                    <button class="atlas-button atlas-button--wire atlas-search__button" type="button"
+                                    <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
+                                            type="button"
                                             onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
-                                    <span class="atlas-button__icon atlas-button__icon--first">
-                                       {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
-                                    </span>
+                                        <span class="atlas-button__icon atlas-button__icon--first">
+                                           {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
+                                        </span>
                                         View as list
                                     </button>
                                 {% endif %}
-                            </div>
-                        {% endif %}
+                            {% endif %}
 
-                        <button class="atlas-search-filter__toggle atlas-button atlas-button--link atlas-visually-hidden-l atlas-hidden-nojs atlas-m-t-s"
-                                type="button"
-                                aria-controls="atlas-search-filters" data-reveal-button>
-                            Filter results
-                            <span class="atlas-button__icon">
-                                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                            </span>
-                        </button>
+                            <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"
+                                    type="button"
+                                    aria-controls="atlas-search-filters" data-reveal-button>
+                                Filter results
+                                <span class="atlas-button__icon">
+                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
+                            </button>
+
+                        </div>
                     </div>
 
                     <div id="atlas-search-filters"
                          class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
                         <div class="atlas-search__scroll-fade"></div>
                         <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
+                            {{ form.view.as_hidden }}
+
                             {% if sectors %}
                                 {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
                             {% endif %}
