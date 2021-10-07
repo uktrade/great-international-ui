@@ -83,6 +83,15 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
 }
 
 // Map
+#atlas-opportunities-map {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .atlas-search--as-map {
   position: relative;
   height: calc(100vh - 129px);
@@ -91,24 +100,27 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
     height: calc(100vh - 179px);
   }
 
-  & .atlas-grid,
-  & .atlas-search__container {
+  & .atlas-search__container,
+  & .atlas-grid {
     height: 100%;
   }
 
   & .atlas-search__sidebar {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     max-height: 100%;
+
+    & > div {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   & .atlas-search__filters-wrap {
-    position: relative;
     flex-direction: column;
     overflow: auto;
   }
+
 
   & .atlas-search__scroll-fade {
     position: sticky;
