@@ -19,7 +19,6 @@ import directory_healthcheck.backends
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-
 env = environ.Env()
 for env_file in env.list('ENV_FILES', default=[]):
     env.read_env(f'conf/env/{env_file}')
@@ -38,7 +37,6 @@ DEBUG = env.bool('DEBUG', False)
 # As the app is running behind a host-based router supplied by Heroku or other
 # PaaS, we can open ALLOWED_HOSTS
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -136,7 +134,6 @@ else:
         'LOCATION': 'unique-snowflake',
     }
 
-
 CACHES = {
     'default': cache,
     'cms_fallback': cache,
@@ -160,7 +157,7 @@ LANGUAGE_COOKIE_DOMAIN = env.str('LANGUAGE_COOKIE_DOMAIN', None)
 
 # https://github.com/django/django/blob/master/django/conf/locale/__init__.py
 LANGUAGES = [
-    ('en-gb', 'English'),               # English
+    ('en-gb', 'English'),  # English
     # Turning off translation for site, avoid risking serving empty page or 404
     # ('de', 'Deutsch'),                  # German
     # ('ja', '日本語'),                    # Japanese
@@ -179,7 +176,7 @@ FEATURE_MAINTENANCE_MODE_ENABLED = env.bool(
 )
 
 # Invest High Potential Opportunities
-HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',)
+HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS', )
 HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', '064e2801-18f4-4342-a9e3-5eecddfa7d04')
 HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'a9285cb0-6acf-428f-94f7-2da7248d9ef0')
 HPO_GOV_NOTIFY_USER_REPLY_TO_ID = env.str('HPO_GOV_NOTIFY_USER_REPLY_TO_ID', '3deb5fc2-1032-4352-aa0a-c677548a9f02')
@@ -249,7 +246,6 @@ if env.str('SENTRY_DSN', ''):
         environment=env.str('SENTRY_ENVIRONMENT'),
         integrations=[DjangoIntegration()]
     )
-
 
 ANALYTICS_ID = env.str('ANALYTICS_ID', '')
 
@@ -399,11 +395,12 @@ FEATURE_FLAGS = {
     'ABOUT_UK_LANDING_PAGE_ON': env.bool('FEATURE_ABOUT_UK_LANDING_PAGE_ENABLED', False),
     'CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON': env.bool('FEATURE_CAPITAL_INVEST_CONTACT_IN_TRIAGE_ENABLED', False),
     'EXPORTING_TO_UK_ON': env.bool('FEATURE_EXPORTING_TO_UK_ON_ENABLED', False),
-    'INTERNATIONAL_TRIAGE_ON': env.bool('FEATURE_INTERNATIONAL_TRIAGE_ENABLED', False)
+    'INTERNATIONAL_TRIAGE_ON': env.bool('FEATURE_INTERNATIONAL_TRIAGE_ENABLED', False),
+    'ATLAS_OPPORTUNITIES_MAP_ON': env.bool('FEATURE_ATLAS_OPPORTUNITIES_MAP_ENABLED', False)
 }
 
 # Invest Foreign Direct Investment Opportunities - prev called High Potential Opportunities, hence HPO prefix
-HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS',)
+HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS = env.str('HPO_GOV_NOTIFY_AGENT_EMAIL_ADDRESS', )
 HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', 'c0a46bb9-5f43-4707-9a14-bd5b5675e26e')
 HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'c7534f85-f975-4a22-904b-5321d7fcb638')
 
@@ -417,7 +414,6 @@ DIRECTORY_HEALTHCHECK_BACKENDS = [
     # INSTALLED_APPS's health_check.cache
 ]
 
-
 # PFP
 PFP_API_CLIENT_API_KEY = env.str('PFP_API_CLIENT_API_KEY')
 PFP_API_CLIENT_BASE_URL = env.str('PFP_API_CLIENT_BASE_URL')
@@ -427,7 +423,6 @@ PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID = env.str('PFP_AWS_S3_PDF_STORE_ACCESS_KEY_ID
 PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY = env.str('PFP_AWS_S3_PDF_STORE_SECRET_ACCESS_KEY')  # NOQA
 PFP_AWS_S3_PDF_STORE_BUCKET_NAME = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_NAME')
 PFP_AWS_S3_PDF_STORE_BUCKET_REGION = env.str('PFP_AWS_S3_PDF_STORE_BUCKET_REGION', 'eu-west-2')  # NOQA
-
 
 # Sorl-thumbnail
 THUMBNAIL_FORMAT = 'PNG'
@@ -451,7 +446,6 @@ THUMBNAIL_FORCE_OVERWRITE = True
 # Redis for thumbnails cache
 if REDIS_URL:
     THUMBNAIL_REDIS_URL = REDIS_URL
-
 
 INVEST_REDIRECTS_UNUSED_LANGUAGES = env.tuple('INVEST_REDIRECTS_UNUSED_LANGUAGES', default=('ar', 'ja'))
 
@@ -503,3 +497,6 @@ if env.str('ELASTIC_APM_SERVER_URL', ''):
     }
 
 MAGNA_HEADER = env.bool('MAGNA_HEADER', False)
+
+# Atlas
+ATLAS_OPPORTUNITIES_MAP_POOL_ID = env.str('ATLAS_OPPORTUNITIES_MAP_POOL_ID')

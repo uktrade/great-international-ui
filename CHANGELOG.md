@@ -3,12 +3,13 @@
 ## Pre-release
 
 ### Implemented enhancements
+
 - GP2-3269 - Add redirects away from retired pages to best-fit new equivalents
 - NOTICKET - Disabling translation for site
-- NOTICKET - Switch UK Nations and Regions to sentence case in nav; Make opp filter 'UK nation or region' 
+- NOTICKET - Switch UK Nations and Regions to sentence case in nav; Make opp filter 'UK nation or region'
 - NOTICKET - Add support for case studies to Region detail page
 - GP2-3407 - Make FDI form path match that of page in CMS
-- NOTICKET - Fix FE securities vulnerabilities 
+- NOTICKET - Fix FE securities vulnerabilities
 - NOTICKET - Remove now-redundant back link from contact triage page
 - GP2-3407 - Rename HPO contact page as FDI and move into Atlas
 - NOTICKET - For related pages, rendering hero image if exists
@@ -42,6 +43,7 @@
 - GP2-3235 - Styled International homepage
 - GP2-3155 - Styled Atlas region details page
 - GP2-3236 - Styled Sector listing page
+- GP2-3669 - Opportunities listings as map
 
 ### Fixed bugs
 
