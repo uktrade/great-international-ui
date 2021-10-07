@@ -15,12 +15,12 @@
 }
 
 .atlas-search-filter__toggle {
-  .atlas-button__icon {
+  .atlas-button__icon:last-child {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;
   }
 
-  &[aria-expanded=true] .atlas-button__icon {
+  &[aria-expanded=true] .atlas-button__icon:last-child {
     transform: rotate(-90deg);
   }
 }
