@@ -45,6 +45,8 @@
                                         View as list
                                     </button>
                                 {% endif %}
+                                
+                                {{ form.view.as_hidden }}
                             {% endif %}
 
                             <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"
@@ -66,8 +68,6 @@
                          class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
                         <div class="atlas-search__scroll-fade"></div>
                         <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                            {{ form.view.as_hidden }}
-
                             {% if sectors %}
                                 {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
                             {% endif %}
