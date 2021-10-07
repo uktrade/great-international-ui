@@ -22,10 +22,19 @@
   }
 }
 
+$submit-spacing-bottom: map-get($spacings, 'm');
+$submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
+
 .atlas-search__submit {
   background: white;
   position: sticky;
-  bottom: 0;
+  bottom: $submit-spacing-bottom;
+  margin-bottom: $submit-spacing-bottom;
+
+  @media (min-width: $breakpoint-medium) {
+    bottom: $submit-spacing-bottom-medium;
+    margin-bottom: $submit-spacing-bottom-medium;
+  }
 
   &:before {
     content: '';
@@ -35,6 +44,21 @@
     top: 0;
     height: 20px;
     box-shadow: 0 -10px 10px 0px white;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: block;
+    width: 100%;
+    height: $submit-spacing-bottom;
+    background: $atlas-grey-lighter;
+
+    @media (min-width: $breakpoint-medium) {
+      height: $submit-spacing-bottom-medium;
+    }
   }
 }
 
@@ -49,6 +73,7 @@
 .atlas-search-sort__label {
   @include atlas-bold;
   margin-right: 1em;
+  white-space: nowrap;
 }
 
 .atlas-search__button {
