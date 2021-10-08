@@ -240,8 +240,10 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     def pagination(self):
         page_size = self.page_size
 
+        # increase page size to return all results for map view,
+        # or to 1 if no results to prevent ZeroDivisionError on Paginator
         if self.view == 'map':
-            page_size = len(self.filtered_opportunities)
+            page_size = len(self.filtered_opportunities) or 1
 
         paginator = Paginator(self.filtered_opportunities, page_size)
         return paginator.page(self.page_number or 1)

@@ -784,10 +784,10 @@ def test_planning_status_filter_for_opportunity_search(
     ]
 
 
-def create_mock_opportunities(count):
+def create_mock_opportunities_page(opportunities_count):
     opportunities = []
 
-    for index in range(count):
+    for index in range(opportunities_count):
         opportunities.append({
             'id': index,
             'title': 'Some Opp {}'.format(index),
@@ -809,13 +809,6 @@ def create_mock_opportunities(count):
             ],
         })
 
-    return opportunities
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response, rf, settings):
-    settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = False
-
     page = {
         'title': 'test',
         'meta': {
@@ -827,8 +820,17 @@ def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response
             'slug': 'opportunities'
         },
         'page_type': 'InvestmentOpportunityListingPage',
-        'opportunity_list': create_mock_opportunities(15)
+        'opportunity_list': opportunities
     }
+
+    return page
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response, rf, settings):
+    settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = False
+
+    page = create_mock_opportunities_page(15)
 
     mock_cms_response.return_value = create_response(page)
 
@@ -843,6 +845,7 @@ def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response
 
     assert response.context_data['form']['view'].value() == 'list'
     assert 'id="atlas-opportunities-map"' not in response.rendered_content
+    assert 'atlas-search--as-map' not in response.rendered_content
     assert 'id="id_view"' not in response.rendered_content
     assert 'View on map' not in response.rendered_content
 
@@ -852,19 +855,7 @@ def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, s
     settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = True
     settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID = 'FOO-BAR-POOL-ID'
 
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'InvestmentOpportunityListingPage',
-        'opportunity_list': create_mock_opportunities(15)
-    }
+    page = create_mock_opportunities_page(15)
 
     mock_cms_response.return_value = create_response(page)
 
@@ -881,7 +872,29 @@ def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, s
     assert 'id="id_view"' in response.rendered_content
     assert "View as list" in response.rendered_content
     assert 'id="atlas-opportunities-map"' in response.rendered_content
+    assert 'atlas-search--as-map' in response.rendered_content
     assert len(response.context_data['pagination'].object_list) == 15
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_map_view_shows_no_results_as_list(mock_cms_response, rf, settings):
+    settings.FEATURE_FLAGS['ATLAS_OPPORTUNITIES_MAP_ON'] = True
+
+    page = create_mock_opportunities_page(0)
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?view=map'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?view=map'
+    )
+
+    assert 'No results' in response.rendered_content
+    assert 'atlas-search--as-map' not in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

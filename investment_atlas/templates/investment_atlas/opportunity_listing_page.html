@@ -13,263 +13,271 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=pagination.object_list %}
+    {% with results_count=pagination.object_list|length %}
+        <form id="opportunities-search-form" action="{{ paginator_url }}"
+              class="atlas-bg--grey-lighter{% if form.view.value == 'map' and results_count > 0 %} atlas-search--as-map{% endif %}">
+            <div class="atlas-container atlas-container--wide atlas-search__container atlas-p-v-m">
+                <div class="atlas-grid">
+                    <section
+                            class="atlas-search__sidebar atlas-grid__column atlas-grid__column--4-12-l atlas-grid__column--3-12-xl atlas-m-b-m">
+                        <div class="atlas-bg--white atlas-p-s">
+                            <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
-    <form id="opportunities-search-form" action="{{ paginator_url }}"
-          class="atlas-bg--grey-lighter{% if form.view.value == 'map' %} atlas-search--as-map{% endif %}">
-        <div class="atlas-container atlas-container--wide atlas-search__container atlas-p-v-m">
-            <div class="atlas-grid">
-                <section
-                        class="atlas-search__sidebar atlas-grid__column atlas-grid__column--4-12-l atlas-grid__column--3-12-xl atlas-m-b-m">
-                    <div class="atlas-bg--white atlas-p-s">
-                        <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
+                            <div class="atlas-search__controls atlas-hidden-nojs">
+                                {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
+                                    {% if form.view.value == 'list' %}
+                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
+                                                type="button"
+                                                onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
+                                            <span class="atlas-button__icon atlas-button__icon--first">
+                                               {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
+                                            </span>
+                                            View on map
+                                        </button>
+                                    {% else %}
+                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
+                                                type="button"
+                                                onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
+                                            <span class="atlas-button__icon atlas-button__icon--first">
+                                               {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
+                                            </span>
+                                            View as list
+                                        </button>
+                                    {% endif %}
 
-                        <div class="atlas-search__controls atlas-hidden-nojs">
-                            {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
-                                {% if form.view.value == 'list' %}
-                                    <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                            type="button"
-                                            onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
-                                        <span class="atlas-button__icon atlas-button__icon--first">
-                                           {% include 'investment_atlas/includes/svg/icons/icon-map.svg' %}
-                                        </span>
-                                        View on map
-                                    </button>
-                                {% else %}
-                                    <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                            type="button"
-                                            onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
-                                        <span class="atlas-button__icon atlas-button__icon--first">
-                                           {% include 'investment_atlas/includes/svg/icons/icon-list.svg' %}
-                                        </span>
-                                        View as list
-                                    </button>
+                                    {{ form.view.as_hidden }}
                                 {% endif %}
-                                
-                                {{ form.view.as_hidden }}
-                            {% endif %}
 
-                            <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"
-                                    type="button"
-                                    aria-controls="atlas-search-filters" data-reveal-button>
-                                <span class="atlas-button__icon atlas-button__icon--first">
-                                   {% include 'investment_atlas/includes/svg/icons/icon-filter.svg' %}
-                                </span>
-                                Filter results
-                                <span class="atlas-button__icon">
-                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                </span>
-                            </button>
+                                <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"
+                                        type="button"
+                                        aria-controls="atlas-search-filters" data-reveal-button>
+                                    <span class="atlas-button__icon atlas-button__icon--first">
+                                       {% include 'investment_atlas/includes/svg/icons/icon-filter.svg' %}
+                                    </span>
+                                    Filter results
+                                    <span class="atlas-button__icon">
+                                        {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                    </span>
+                                </button>
 
-                        </div>
-                    </div>
-
-                    <div id="atlas-search-filters"
-                         class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
-                        <div class="atlas-search__scroll-fade"></div>
-                        <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                            {% if sectors %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
-                            {% endif %}
-
-                            {% if sub_sectors %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='Sub-sectors' field=form.sub_sector %}
-                            {% endif %}
-
-                            {% if regions|length > 1 %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
-                            {% endif %}
-
-                            {% if investment_types %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='Investment type' field=form.investment_type %}
-                            {% endif %}
-
-                            {% if scales %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
-                            {% endif %}
-
-                            {% if planning_statuses %}
-                                {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
-                            {% endif %}
-                        </div>
-
-                        <div class="atlas-search__submit atlas-bg--white atlas-p-s">
-                            <button class="atlas-button atlas-search__button" type="submit">
-                                {% trans 'Update results' %}
-                            </button>
-
-                            {# <p class="atlas-m-t-s atlas-m-b-0">#}
-                            {#     <a class="atlas-link" href="{% url 'atlas-opportunities' %}">#}
-                            {#         {% trans 'Clear all filters' %}#}
-                            {#     </a>#}
-                            {# </p>#}
-                        </div>
-                    </div>
-                </section>
-
-                {% if form.view.value == 'list' %}
-                    <section class="atlas-grid__column atlas-grid__column--8-12-l atlas-grid__column--9-12-xl">
-                        <div class="atlas-search-sort atlas-m-b-s">
-                            <label for="{{ form.sort_by.id_for_label }}" class="atlas-search-sort__label">
-                                {% trans 'Sort by' %}:
-                            </label>
-                            <div>
-                                {{ form.sort_by }}
                             </div>
                         </div>
 
-                        <ul>
-                            {% for opportunity in pagination.object_list %}
-                                <li>
-                                    <a class="atlas-card atlas-bg--white atlas-search__result atlas-p-h-s atlas-p-t-s atlas-m-b-s"
-                                       href="{{ opportunity.full_path }}">
-                                        <div class="atlas-grid">
-                                            <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--4-12-l atlas-p-b-s">
-                                                <img class="atlas-image" src="{{ opportunity.hero_image.url }}"
-                                                     alt="{{ opportunity.title }}">
-                                            </div>
-
-                                            <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--8-12-l atlas-p-b-s">
-                                                <h4 class="atlas-card__heading atlas-h--s atlas-m-0">{{ opportunity.title }}</h4>
-                                                {% if opportunity.opportunity_summary %}
-                                                    <p class="atlas-m-t-s atlas-m-b-0">{{ opportunity.opportunity_summary }}</p>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            {% empty %}
-                                <li>
-                                    <p class="atlas-body--m atlas-p-v-l">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-
-                        {% if pagination.paginator.num_pages > 1 %}
-                            <div class="atlas-pagination">
-                                {% if pagination.has_previous %}
-                                    <a href="?{% update_query_params page=pagination.previous_page_number %}"
-                                       class="atlas-button atlas-pagination__previous">
-                                <span class="atlas-button__icon atlas-button__icon--first">
-                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                </span>
-                                        Previous
-                                    </a>
+                        <div id="atlas-search-filters"
+                             class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
+                            <div class="atlas-search__scroll-fade"></div>
+                            <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
+                                {% if sectors %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
                                 {% endif %}
 
-                                <p class="atlas-pagination__number">Page {{ pagination.number }}
-                                    of {{ pagination.paginator.num_pages }}</p>
+                                {% if sub_sectors %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='Sub-sectors' field=form.sub_sector %}
+                                {% endif %}
 
-                                {% if pagination.has_next %}
-                                    <a href="?{% update_query_params page=pagination.next_page_number %}"
-                                       class="atlas-button atlas-pagination__next">
-                                        Next
-                                        <span class="atlas-button__icon">
-                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                </span>
-                                    </a>
+                                {% if regions|length > 1 %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
+                                {% endif %}
+
+                                {% if investment_types %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='Investment type' field=form.investment_type %}
+                                {% endif %}
+
+                                {% if scales %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
+                                {% endif %}
+
+                                {% if planning_statuses %}
+                                    {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
                                 {% endif %}
                             </div>
-                        {% endif %}
 
+                            <div class="atlas-search__submit atlas-bg--white atlas-p-s">
+                                <button class="atlas-button atlas-search__button" type="submit">
+                                    {% trans 'Update results' %}
+                                </button>
+
+                                {# <p class="atlas-m-t-s atlas-m-b-0">#}
+                                {#     <a class="atlas-link" href="{% url 'atlas-opportunities' %}">#}
+                                {#         {% trans 'Clear all filters' %}#}
+                                {#     </a>#}
+                                {# </p>#}
+                            </div>
+                        </div>
                     </section>
+
+                    {% if form.view.value == 'list' or results_count == 0 %}
+                        <section class="atlas-grid__column atlas-grid__column--8-12-l atlas-grid__column--9-12-xl">
+                            {% if results_count > 0 %}
+                                <div class="atlas-search-sort atlas-m-b-s">
+                                    <label for="{{ form.sort_by.id_for_label }}" class="atlas-search-sort__label">
+                                        {% trans 'Sort by' %}:
+                                    </label>
+                                    <div>
+                                        {{ form.sort_by }}
+                                    </div>
+                                </div>
+
+                                <ul>
+                                    {% for opportunity in pagination.object_list %}
+                                        <li>
+                                            <a class="atlas-card atlas-bg--white atlas-search__result atlas-p-h-s atlas-p-t-s atlas-m-b-s"
+                                               href="{{ opportunity.full_path }}">
+                                                <div class="atlas-grid">
+                                                    <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--4-12-l atlas-p-b-s">
+                                                        <img class="atlas-image" src="{{ opportunity.hero_image.url }}"
+                                                             alt="{{ opportunity.title }}">
+                                                    </div>
+
+                                                    <div class="atlas-grid__column atlas-grid__column--6-12-s atlas-grid__column--8-12-l atlas-p-b-s">
+                                                        <h4 class="atlas-card__heading atlas-h--s atlas-m-0">{{ opportunity.title }}</h4>
+                                                        {% if opportunity.opportunity_summary %}
+                                                            <p class="atlas-m-t-s atlas-m-b-0">{{ opportunity.opportunity_summary }}</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <div class="atlas-bg--white atlas-p-s atlas-m-b-l">
+                                    <h3 class="atlas-h--s atlas-m-b-s">No results</h3>
+                                    <p class="atlas-body--m">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</p>
+                                    <p class="atlas-body--m atlas-m-0">
+                                        <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                            {% trans 'Clear all filters' %}
+                                        </a>
+                                    </p>
+                                </div>
+                            {% endif %}
+
+                            {% if pagination.paginator.num_pages > 1 %}
+                                <div class="atlas-pagination">
+                                    {% if pagination.has_previous %}
+                                        <a href="?{% update_query_params page=pagination.previous_page_number %}"
+                                           class="atlas-button atlas-pagination__previous">
+                                            <span class="atlas-button__icon atlas-button__icon--first">
+                                               {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                            </span>
+                                            Previous
+                                        </a>
+                                    {% endif %}
+
+                                    <p class="atlas-pagination__number">Page {{ pagination.number }}
+                                        of {{ pagination.paginator.num_pages }}</p>
+
+                                    {% if pagination.has_next %}
+                                        <a href="?{% update_query_params page=pagination.next_page_number %}"
+                                           class="atlas-button atlas-pagination__next">
+                                            Next
+                                            <span class="atlas-button__icon">
+                                               {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                            </span>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+
+                        </section>
+                    {% endif %}
+                </div>
+
+                {% if form.view.value == 'map' and results_count > 0 %}
+                    {{ pagination.object_list|json_script:"atlas-opportunities-json" }}
+
+                    <div id="atlas-opportunities-map" class="atlas-opportunities-map"></div>
                 {% endif %}
             </div>
-
-            {% if form.view.value == 'map' %}
-                {{ pagination.object_list|json_script:"atlas-opportunities-json" }}
-
-                <div id="atlas-opportunities-map" class="atlas-opportunities-map"></div>
-            {% endif %}
-        </div>
-    </form>
+        </form>
+    {% endwith %}
 {% endblock content %}
 
 {% block body_js %}
     {{ block.super }}
 
-    <script src="https://unpkg.com/maplibre-gl@1"></script>
-    <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
-    <script>
-        const allOpportunities = JSON.parse(document.getElementById('atlas-opportunities-json').textContent);
+    {% if form.view.value == 'map' and pagination.object_list|length > 0 %}
+        <script src="https://unpkg.com/maplibre-gl@1"></script>
+        <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
+        <script>
+            const allOpportunities = JSON.parse(document.getElementById('atlas-opportunities-json').textContent);
 
+            function getMapPadding() {
+                const markerHeight = 35;
+                const defaultPadding = 50;
+                const $map = document.querySelector('#atlas-opportunities-map');
+                const $container = document.querySelector('.atlas-search__container');
+                const $sidebar = document.querySelector('.atlas-search__sidebar > div:first-child');
+                const horizontalPadding = (($map.clientWidth - $container.clientWidth) / 2) + defaultPadding;
 
-        function getMapPadding() {
-            const markerHeight = 35;
-            const defaultPadding = 50;
-            const $map = document.querySelector('#atlas-opportunities-map');
-            const $container = document.querySelector('.atlas-search__container');
-            const $sidebar = document.querySelector('.atlas-search__sidebar > div:first-child');
-            const horizontalPadding = (($map.clientWidth - $container.clientWidth) / 2) + defaultPadding;
-
-            const padding = {
-                top: defaultPadding + markerHeight,
-                bottom: defaultPadding,
-                left: horizontalPadding,
-                right: horizontalPadding
-            }
-
-            if (window.innerWidth < 1024) {
-                padding.top += $sidebar.getBoundingClientRect().height + defaultPadding
-            } else {
-                padding.left += $sidebar.getBoundingClientRect().width + defaultPadding;
-            }
-
-            return padding;
-        }
-
-        async function initializeMap() {
-            const ukCentre = [-3.425, 55.37];
-            const bounds = new maplibregl.LngLatBounds();
-
-            const map = await AmazonLocation.createMap(
-                {
-                    identityPoolId: "{{ aws_cognito_pool_id }}",
-                },
-                {
-                    container: "atlas-opportunities-map",
-                    center: ukCentre,
-                    zoom: 4,
-                    style: "OpportunitiesListing",
-                    dragRotate: false,
-                    touchPitch: false,
-                    pitchWithRotate: false
+                const padding = {
+                    top: defaultPadding + markerHeight,
+                    bottom: defaultPadding,
+                    left: horizontalPadding,
+                    right: horizontalPadding
                 }
-            );
 
-            map.addControl(new maplibregl.NavigationControl({showCompass: false}), "bottom-right");
+                if (window.innerWidth < 1024) {
+                    padding.top += $sidebar.getBoundingClientRect().height + defaultPadding
+                } else {
+                    padding.left += $sidebar.getBoundingClientRect().width + defaultPadding;
+                }
 
-            allOpportunities.forEach(function (opp) {
-                opp.locations_with_regions.forEach(function (location) {
-                    console.log('Found opportunity:', opp);
-                    const lngLat = location.value.map_coordinate
-                        .split(',')
-                        .map(function (coord) {
-                            return coord.trim()
-                        })
-                        .reverse();
+                return padding;
+            }
 
-                    bounds.extend(lngLat);
+            async function initializeMap() {
+                const ukCentre = [-3.425, 55.37];
+                const bounds = new maplibregl.LngLatBounds();
 
-                    let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-link atlas-search__map-popup">';
-                    if (opp.hero_image) {
-                        popupMarkup += '<img class="atlas-image atlas-m-b-xs" src="' + opp.hero_image.url + '" alt="' + opp.title + '"/>'
+                const map = await AmazonLocation.createMap(
+                    {
+                        identityPoolId: "{{ aws_cognito_pool_id }}",
+                    },
+                    {
+                        container: "atlas-opportunities-map",
+                        center: ukCentre,
+                        zoom: 4,
+                        style: "OpportunitiesListing",
+                        dragRotate: false,
+                        touchPitch: false,
+                        pitchWithRotate: false
                     }
-                    popupMarkup += '<h3 class="atlas-h--xs">' + opp.title + '</h3>';
-                    popupMarkup += '</a>';
+                );
 
-                    const marker = new maplibregl.Marker()
-                        .setLngLat(lngLat)
-                        .setPopup(new maplibregl.Popup({closeButton: false}).setHTML(popupMarkup))
-                        .addTo(map);
+                map.addControl(new maplibregl.NavigationControl({showCompass: false}), "bottom-right");
+
+                allOpportunities.forEach(function (opp) {
+                    opp.locations_with_regions.forEach(function (location) {
+                        const lngLat = location.value.map_coordinate
+                            .split(',')
+                            .map(function (coord) {
+                                return coord.trim()
+                            })
+                            .reverse();
+
+                        bounds.extend(lngLat);
+
+                        let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-link atlas-search__map-popup">';
+                        if (opp.hero_image) {
+                            popupMarkup += '<img class="atlas-image atlas-m-b-xs" src="' + opp.hero_image.url + '" alt="' + opp.title + '"/>'
+                        }
+                        popupMarkup += '<h3 class="atlas-h--xs">' + opp.title + '</h3>';
+                        popupMarkup += '</a>';
+
+                        const marker = new maplibregl.Marker()
+                            .setLngLat(lngLat)
+                            .setPopup(new maplibregl.Popup({closeButton: false}).setHTML(popupMarkup))
+                            .addTo(map);
 
 
+                    })
                 })
-            })
 
-            map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
-        }
+                map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
+            }
 
-        initializeMap();
-    </script>
+            initializeMap();
+        </script>
+    {% endif %}
 {% endblock %}
