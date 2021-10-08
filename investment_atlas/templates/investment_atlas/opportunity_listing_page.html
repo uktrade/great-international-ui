@@ -196,88 +196,88 @@
 {% block body_js %}
     {{ block.super }}
 
-    <script src="https://unpkg.com/maplibre-gl@1"></script>
-    <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
-    <script>
-        const allOpportunities = JSON.parse(document.getElementById('atlas-opportunities-json').textContent);
+    {% if form.view.value == 'map' and pagination.object_list|length > 0 %}
+        <script src="https://unpkg.com/maplibre-gl@1"></script>
+        <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
+        <script>
+            const allOpportunities = JSON.parse(document.getElementById('atlas-opportunities-json').textContent);
 
+            function getMapPadding() {
+                const markerHeight = 35;
+                const defaultPadding = 50;
+                const $map = document.querySelector('#atlas-opportunities-map');
+                const $container = document.querySelector('.atlas-search__container');
+                const $sidebar = document.querySelector('.atlas-search__sidebar > div:first-child');
+                const horizontalPadding = (($map.clientWidth - $container.clientWidth) / 2) + defaultPadding;
 
-        function getMapPadding() {
-            const markerHeight = 35;
-            const defaultPadding = 50;
-            const $map = document.querySelector('#atlas-opportunities-map');
-            const $container = document.querySelector('.atlas-search__container');
-            const $sidebar = document.querySelector('.atlas-search__sidebar > div:first-child');
-            const horizontalPadding = (($map.clientWidth - $container.clientWidth) / 2) + defaultPadding;
-
-            const padding = {
-                top: defaultPadding + markerHeight,
-                bottom: defaultPadding,
-                left: horizontalPadding,
-                right: horizontalPadding
-            }
-
-            if (window.innerWidth < 1024) {
-                padding.top += $sidebar.getBoundingClientRect().height + defaultPadding
-            } else {
-                padding.left += $sidebar.getBoundingClientRect().width + defaultPadding;
-            }
-
-            return padding;
-        }
-
-        async function initializeMap() {
-            const ukCentre = [-3.425, 55.37];
-            const bounds = new maplibregl.LngLatBounds();
-
-            const map = await AmazonLocation.createMap(
-                {
-                    identityPoolId: "{{ aws_cognito_pool_id }}",
-                },
-                {
-                    container: "atlas-opportunities-map",
-                    center: ukCentre,
-                    zoom: 4,
-                    style: "OpportunitiesListing",
-                    dragRotate: false,
-                    touchPitch: false,
-                    pitchWithRotate: false
+                const padding = {
+                    top: defaultPadding + markerHeight,
+                    bottom: defaultPadding,
+                    left: horizontalPadding,
+                    right: horizontalPadding
                 }
-            );
 
-            map.addControl(new maplibregl.NavigationControl({showCompass: false}), "bottom-right");
+                if (window.innerWidth < 1024) {
+                    padding.top += $sidebar.getBoundingClientRect().height + defaultPadding
+                } else {
+                    padding.left += $sidebar.getBoundingClientRect().width + defaultPadding;
+                }
 
-            allOpportunities.forEach(function (opp) {
-                opp.locations_with_regions.forEach(function (location) {
-                    console.log('Found opportunity:', opp);
-                    const lngLat = location.value.map_coordinate
-                        .split(',')
-                        .map(function (coord) {
-                            return coord.trim()
-                        })
-                        .reverse();
+                return padding;
+            }
 
-                    bounds.extend(lngLat);
+            async function initializeMap() {
+                const ukCentre = [-3.425, 55.37];
+                const bounds = new maplibregl.LngLatBounds();
 
-                    let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-link atlas-search__map-popup">';
-                    if (opp.hero_image) {
-                        popupMarkup += '<img class="atlas-image atlas-m-b-xs" src="' + opp.hero_image.url + '" alt="' + opp.title + '"/>'
+                const map = await AmazonLocation.createMap(
+                    {
+                        identityPoolId: "{{ aws_cognito_pool_id }}",
+                    },
+                    {
+                        container: "atlas-opportunities-map",
+                        center: ukCentre,
+                        zoom: 4,
+                        style: "OpportunitiesListing",
+                        dragRotate: false,
+                        touchPitch: false,
+                        pitchWithRotate: false
                     }
-                    popupMarkup += '<h3 class="atlas-h--xs">' + opp.title + '</h3>';
-                    popupMarkup += '</a>';
+                );
 
-                    const marker = new maplibregl.Marker()
-                        .setLngLat(lngLat)
-                        .setPopup(new maplibregl.Popup({closeButton: false}).setHTML(popupMarkup))
-                        .addTo(map);
+                map.addControl(new maplibregl.NavigationControl({showCompass: false}), "bottom-right");
+
+                allOpportunities.forEach(function (opp) {
+                    opp.locations_with_regions.forEach(function (location) {
+                        const lngLat = location.value.map_coordinate
+                            .split(',')
+                            .map(function (coord) {
+                                return coord.trim()
+                            })
+                            .reverse();
+
+                        bounds.extend(lngLat);
+
+                        let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-link atlas-search__map-popup">';
+                        if (opp.hero_image) {
+                            popupMarkup += '<img class="atlas-image atlas-m-b-xs" src="' + opp.hero_image.url + '" alt="' + opp.title + '"/>'
+                        }
+                        popupMarkup += '<h3 class="atlas-h--xs">' + opp.title + '</h3>';
+                        popupMarkup += '</a>';
+
+                        const marker = new maplibregl.Marker()
+                            .setLngLat(lngLat)
+                            .setPopup(new maplibregl.Popup({closeButton: false}).setHTML(popupMarkup))
+                            .addTo(map);
 
 
+                    })
                 })
-            })
 
-            map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
-        }
+                map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
+            }
 
-        initializeMap();
-    </script>
+            initializeMap();
+        </script>
+    {% endif %}
 {% endblock %}
