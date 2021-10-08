@@ -241,7 +241,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         page_size = self.page_size
 
         if self.view == 'map':
-            page_size = len(self.filtered_opportunities)
+            page_size = len(self.filtered_opportunities) or 1
 
         paginator = Paginator(self.filtered_opportunities, page_size)
         return paginator.page(self.page_number or 1)
