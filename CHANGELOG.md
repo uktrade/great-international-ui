@@ -1,7 +1,11 @@
 # Changelog
 
 ## Pre-release
+### Implemented enhancements
+### Fixed bugs
 
+## [3.0.1](https://github.com/uktrade/great-international-ui/releases/tag/3.0.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.3.0...3.0.1)
 ### Implemented enhancements
 
 - GP2-3269 - Add redirects away from retired pages to best-fit new equivalents
@@ -48,7 +52,7 @@
 ### Fixed bugs
 
 ## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
-
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.2.0...2.3.0)
 ### Implemented enhancements
 
 - GP2-2711 - update great branding
