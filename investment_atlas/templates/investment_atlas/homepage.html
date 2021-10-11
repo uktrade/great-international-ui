@@ -1,22 +1,22 @@
 {% extends 'investment_atlas/base_cms.html' %}
 {% load static %}
 
-{% block content %}
-    <div class="atlas-home">
-        <div class="atlas-home__image">
+{% block css_layout_class %}{{ block.super }} atlas-homepage{% endblock css_layout_class %}
 
-            <div class="video-container">
-                <video controls class="width-full" id="article-video">
-                    <source src="{{ page.hero_video.url }}" type="{{ page.hero_video.sources.type }}">
-                    <p>Your browser doesn't support HTML5 video. Here is a <a class="link" href="{{ page.hero_video.url }}">link to the video</a> instead.</p>
-                </video>
-              </div>  
-            <!-- <picture>
-                <source srcset="{% static 'core/images/atlas/homepage-mobile.jpg' %}" media="(max-width: 767px)"
-                        width="1534" height="1441">
-                <img src="{% static 'core/images/atlas/homepage.jpg' %}" alt="" width="1920" height="1826">
-            </picture> -->
+{% block content %}
+    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
+    <div class="atlas-home">
+        <div class="atlas-home__hero">
+            <video class="atlas-home__hero-media" width="1920" height="1000" poster="{{ page.hero_video.thumbnail }}"
+                   autoplay="true" loop="true">
+                {% for source in page.hero_video.sources %}
+                    <source src="{{ source.src }}" type="{{ source.type }}">
+                {% endfor %}
+
+                <img class="atlas-image" src="{{ page.hero_video.thumbnail }}" alt="" width="1920" height="1000"/>
+            </video>
         </div>
+
         <div class="atlas-container atlas-p-b-xl">
             <div class="atlas-home__header atlas-colour--white atlas-p-v-s">
                 <h1 class="atlas-bold atlas-m-v-s">{{ page.hero_title }}</h1>
