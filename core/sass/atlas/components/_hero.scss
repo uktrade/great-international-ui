@@ -3,26 +3,18 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
-  padding-bottom: 34%;
+  padding-bottom: 32.39%; // 1920x622
   height: 0;
-
-  @media (min-width: $breakpoint-xlarge) {
-    height: 454px;
-    padding-bottom: 0;
-  }
 }
 
-.atlas-hero__image {
+.atlas-hero__media {
+  display: block;
   position: absolute;
   z-index: 0;
-  top: 50%;
-  left: 50%;
-  width: auto;
+  top: 49.9%; // prevent half-rendered left and top pixels
+  left: 49.9%;
+  width: 100.2%;
   height: auto;
-  max-height: none;
-  max-width: none;
-  min-height: 100%;
-  min-width: 100%;
   transform: translate(-50%, -50%);
 }
 

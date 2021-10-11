@@ -1,6 +1,12 @@
-{% if image %}
+{% if page.hero_image %}
     <div class="atlas-hero">
-        <img class="atlas-hero__image" src="{{ image.url }}"
-             alt="{{ image.alt }}">
+        <picture>
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_small %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_medium %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_large %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_xlarge %}
+
+            <img class="atlas-hero__media" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
+        </picture>
     </div>
 {% endif %}

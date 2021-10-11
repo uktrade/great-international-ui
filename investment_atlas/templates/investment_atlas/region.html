@@ -1,7 +1,7 @@
 {% extends 'investment_atlas/base_cms.html' %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/hero_image.html' with image=page.hero_large %}
+    {% include 'investment_atlas/includes/hero_image.html' %}
 
     <div class="atlas-hero__heading">
         <div class="atlas-container">
@@ -98,35 +98,35 @@
     </section>
 
     {% if page.case_study_title and page.case_study_text %}
-    <section>
-        <div class="atlas-container atlas-p-t-l atlas-p-b-m">
-            <h2 class="atlas-h--l">{{ page.case_study_title }}</h2>
+        <section>
+            <div class="atlas-container atlas-p-t-l atlas-p-b-m">
+                <h2 class="atlas-h--l">{{ page.case_study_title }}</h2>
 
-            <div class="atlas-grid atlas-grid--masonry atlas-p-t-s">
-                {% if page.case_study_image %}
-                    <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
-                        <img class="atlas-image"
-                             src="{{ page.case_study_image.url }}"
-                             alt="{{ page.case_study_image.alt }}">
-                    </div>
-                {% endif %}
-                <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--{% if page.case_study_image %}6{% else %}8{% endif %}-12-m atlas-m-b-m">
-                    <div class="atlas-cms-text atlas-p-b-m">
-                        {{ page.case_study_text|safe }}
-                    </div>
+                <div class="atlas-grid atlas-grid--masonry atlas-p-t-s">
+                    {% if page.case_study_image %}
+                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
+                            <img class="atlas-image"
+                                 src="{{ page.case_study_image.url }}"
+                                 alt="{{ page.case_study_image.alt }}">
+                        </div>
+                    {% endif %}
+                    <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--{% if page.case_study_image %}6{% else %}8{% endif %}-12-m atlas-m-b-m">
+                        <div class="atlas-cms-text atlas-p-b-m">
+                            {{ page.case_study_text|safe }}
+                        </div>
 
-                    {% if page.case_study_cta_link and page.case_study_cta_text %}
-                    <a href="{{ page.case_study_cta_link }}" class="atlas-button atlas-m-b-m">
-                        {{ page.case_study_cta_text }}
-                        <span class="atlas-button__icon">
+                        {% if page.case_study_cta_link and page.case_study_cta_text %}
+                            <a href="{{ page.case_study_cta_link }}" class="atlas-button atlas-m-b-m">
+                                {{ page.case_study_cta_text }}
+                                <span class="atlas-button__icon">
                             {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                         </span>
-                    </a>
-                    {% endif %}
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     {% endif %}
 
 
