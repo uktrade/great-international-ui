@@ -1,12 +1,23 @@
-{% if page.hero_image %}
+{% if page.hero_image or page.hero_video %}
     <div class="atlas-hero">
-        <picture>
-            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_small %}
-            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_medium %}
-            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_large %}
-            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_xlarge %}
+        {% if page.hero_video %}
+            <video class="atlas-hero__media" width="1920" height="622" poster="{{ page.hero_video.thumbnail }}"
+                   autoplay="true" loop="true">
+                {% for source in page.hero_video.sources %}
+                    <source src="{{ source.src }}" type="{{ source.type }}">
+                {% endfor %}
 
-            <img class="atlas-hero__media" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
-        </picture>
+                <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
+            </video>
+        {% else %}
+            <picture>
+                {% include 'investment_atlas/includes/image_source.html' with image=page.hero_small %}
+                {% include 'investment_atlas/includes/image_source.html' with image=page.hero_medium %}
+                {% include 'investment_atlas/includes/image_source.html' with image=page.hero_large %}
+                {% include 'investment_atlas/includes/image_source.html' with image=page.hero_xlarge %}
+
+                <img class="atlas-hero__media" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
+            </picture>
+        {% endif %}
     </div>
 {% endif %}
