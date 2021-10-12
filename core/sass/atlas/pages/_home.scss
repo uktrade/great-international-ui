@@ -10,7 +10,7 @@
   position: absolute;
   left: 50%;
   top: 0;
-  transform: translate(-57%, -4%);
+  transform: translate(-57%);
   height: 560px;
   width: auto;
 
@@ -51,12 +51,15 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   min-height: 408px;
 
+  @media (min-width: $breakpoint-small) {
+    padding-left: 60px;
+  }
+
   @media (min-width: $breakpoint-medium) {
-    justify-content: center;
     min-height: 505px;
     padding-left: 84px;
   }
@@ -81,6 +84,7 @@
   }
 
   & .atlas-button {
+    width: auto;
     box-shadow: 0 0 4px $atlas-home-bg;
   }
 }
