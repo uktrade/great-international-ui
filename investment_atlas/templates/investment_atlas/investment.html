@@ -38,6 +38,7 @@
                     <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--6-12-m">
                         <p class="atlas-landing-page__text atlas-body--m">{{ section.value.main_text }}</p>
                     </div>
+
                     {% if section.value.block_slug == 'with-regions-map' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
                             <div class="atlas-svg-map atlas-landing__map">
@@ -50,6 +51,12 @@
                                 <p>{{ section.value.second_column.0.value }}</p>
                             </blockquote>
                         </div>
+                    {% elif section.value.second_column.0.type == 'video' %}
+                        {% with video=section.value.second_column.0.value %}
+                            <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                                {% include 'investment_atlas/includes/video.html' %}
+                            </div>
+                        {% endwith %}
                     {% elif section.value.second_column.0.value.image %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
                             <img src="{{ section.value.second_column.0.value.image }}"
@@ -57,6 +64,7 @@
                                  class="atlas-landing-page__image atlas-image"/>
                         </div>
                     {% endif %}
+
                     {% if section.value.call_to_action %}
                         <div class="atlas-grid__column atlas-grid__column--6-12-m">
                             <a href="{{ section.value.call_to_action.link }}"
