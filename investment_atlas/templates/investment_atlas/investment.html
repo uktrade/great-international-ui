@@ -3,14 +3,14 @@
 
 {% block content %}
     {% include 'investment_atlas/includes/debug_data.html' with data=page %}
-    <div class="atlas-landing__hero">
-        <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="622"
-               poster="{{ page.hero_image.url }}" autoplay="true" loop="true">
+    <div class="atlas-landing__hero atlas-gradient-bg">
+        <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="1000"
+               poster="{{ page.hero_video.thumbnail }}" autoplay="true" loop="true">
             {% for source in page.hero_video.sources %}
                 <source src="{{ source.src }}" type="{{ source.type }}">
             {% endfor %}
 
-            <img class="atlas-hero__media" src="{{ page.hero_image.url }}" alt=""/>
+            <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
         </video>
 
         <img class="atlas-hero__media atlas-landing__hero-image" src="{{ page.mobile_hero_image.url }}"
