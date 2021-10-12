@@ -42,6 +42,7 @@
   margin: 0 auto;
   color: $atlas-white;
   text-align: center;
+  text-shadow: 0 0 4px $atlas-home-bg;
 
   @media (min-width: $breakpoint-medium) {
     justify-content: center;

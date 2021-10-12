@@ -69,6 +69,7 @@
     font-size: 52px;
     line-height: 1.1;
     max-width: 5em;
+    text-shadow: 0 0 4px $atlas-home-bg;
 
     @media (min-width: $breakpoint-medium) {
       font-size: 85px;
@@ -77,6 +78,10 @@
     @media (min-width: $breakpoint-large) {
       font-size: 108px;
     }
+  }
+
+  & .atlas-button {
+    box-shadow: 0 0 4px $atlas-home-bg;
   }
 }
 
