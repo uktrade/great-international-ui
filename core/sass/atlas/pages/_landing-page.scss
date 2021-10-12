@@ -3,9 +3,32 @@
 .atlas-landing__hero {
   position: relative;
   overflow: hidden;
+  background: $atlas-home-bg;
 
   & .atlas-container {
     position: relative;
+  }
+}
+
+.atlas-landing__hero-video {
+  display: none;
+}
+
+.atlas-landing__hero-image {
+  width: auto;
+  min-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .atlas-landing__hero-video {
+    display: block;
+    width: auto;
+    height: 100%;
+    min-width: 100%;
+  }
+
+  .atlas-landing__hero-image {
+    display: none;
   }
 }
 
