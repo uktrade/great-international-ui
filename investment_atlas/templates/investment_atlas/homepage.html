@@ -4,7 +4,6 @@
 {% block css_layout_class %}{{ block.super }} atlas-homepage{% endblock css_layout_class %}
 
 {% block content %}
-    {% include 'investment_atlas/includes/debug_data.html' with data=page %}
     <div class="atlas-home">
         <div class="atlas-home__hero">
             <video class="atlas-home__hero-media" width="1920" height="1000" poster="{{ page.hero_video.thumbnail }}"
