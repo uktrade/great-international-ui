@@ -90,18 +90,18 @@
                                 {% if planning_statuses %}
                                     {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
                                 {% endif %}
+
+                                <p class="atlas-m-0 atlas-p-v-s">
+                                    <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                        {% trans 'Clear all filters' %}
+                                    </a>
+                                </p>
                             </div>
 
                             <div class="atlas-search__submit atlas-bg--white atlas-p-s">
                                 <button class="atlas-button atlas-search__button" type="submit">
                                     {% trans 'Update results' %}
                                 </button>
-
-                                {# <p class="atlas-m-t-s atlas-m-b-0">#}
-                                {#     <a class="atlas-link" href="{% url 'atlas-opportunities' %}">#}
-                                {#         {% trans 'Clear all filters' %}#}
-                                {#     </a>#}
-                                {# </p>#}
                             </div>
                         </div>
                     </section>
