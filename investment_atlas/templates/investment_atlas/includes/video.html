@@ -1,0 +1,28 @@
+<div class="atlas-video">
+    <video{% if video.thumbnail %} poster="{{ video.thumbnail }}"{% endif %}>
+        {% for source in video.sources %}
+            <source src="{{ source.src }}" type="{{ source.type }}">
+        {% endfor %}
+
+        {% for track in video.subtitles %}
+        <track kind="captions" srclang="{{ track.srclang }}" src="{{ track.url }}"{% if track.default %}
+               default{% endif %}/>
+        {% endif %}
+
+        <p>Your browser cannot play this video. You can
+            <a href="{{ video.url }}">download it</a> instead.</p>
+    </video>
+
+    {% if video.transcript %}
+        <details class="atlas-details">
+            <summary class="atlas-button atlas-button--link">
+                View transcript
+                <span class="atlas-button__icon">
+                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                </span>
+            </summary>
+
+            <div>{{ video.transcript }}</div>
+        </details>
+    {% endif %}
+</div>
