@@ -3,54 +3,52 @@
 .atlas-home {
   position: relative;
   overflow: hidden;
-  background: $atlas-brand-blue;
+  background: $atlas-home-bg;
 }
 
-
-.atlas-home__image {
+.atlas-home__hero {
   position: absolute;
-  width: 580px;
-  max-height: 100%;
   left: 50%;
   top: 0;
-  transform: translateX(-50%);
+  transform: translate(-57%);
+  height: 560px;
+  width: auto;
+
+  @media (min-width: $breakpoint-small) {
+    transform: translateX(-53%);
+    height: 600px;
+  }
 
   @media (min-width: $breakpoint-medium) {
-    width: 1024px;
+    transform: translateX(-52%);
+    height: 780px;
   }
 
   @media (min-width: $breakpoint-large) {
-    width: 1420px;
+    transform: translateX(-50%);
+    height: 1000px;
   }
+}
 
-  & img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    box-shadow: inset 0 -100px 50px 50px $atlas-brand-blue, inset 0 -100px 50px $atlas-brand-blue;
-  }
+.atlas-home__hero-media {
+  display: block;
+  height: 100%;
+  width: auto;
 }
 
 .atlas-home__header {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   min-height: 408px;
 
+  @media (min-width: $breakpoint-small) {
+    padding-left: 60px;
+  }
+
   @media (min-width: $breakpoint-medium) {
-    justify-content: center;
     min-height: 505px;
     padding-left: 84px;
   }
@@ -59,14 +57,11 @@
     min-height: 710px;
   }
 
-  @media (min-width: $breakpoint-xlarge) {
-    padding-left: 0;
-  }
-
   & h1 {
     font-size: 52px;
     line-height: 1.1;
     max-width: 5em;
+    text-shadow: 0 0 4px $atlas-home-bg;
 
     @media (min-width: $breakpoint-medium) {
       font-size: 85px;
@@ -75,6 +70,11 @@
     @media (min-width: $breakpoint-large) {
       font-size: 108px;
     }
+  }
+
+  & .atlas-button {
+    width: auto;
+    box-shadow: 0 0 4px $atlas-home-bg;
   }
 }
 
@@ -98,4 +98,8 @@
       height: 100%;
     }
   }
+}
+
+.atlas-homepage + .atlas-footer .atlas-footer__main {
+  background: $atlas-home-bg;
 }

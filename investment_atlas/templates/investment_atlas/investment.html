@@ -2,15 +2,20 @@
 {% load static %}
 
 {% block content %}
-    <div class="atlas-landing__hero">
-        <picture>
-            <source srcset="{{ page.mobile_hero_image.url }}" media="(max-width: 767px)"
-                    width="{{ page.mobile_hero_image.width }}"
-                    height="{{ page.mobile_hero_image.height }}">
-            <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}"
-                 width="{{ page.hero_image.width }}"
-                 height="{{ page.hero_image.height }}">
-        </picture>
+    <div class="atlas-landing__hero atlas-gradient-bg">
+        <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="1000"
+               poster="{{ page.hero_video.thumbnail }}" autoplay="true" loop="true">
+            {% for source in page.hero_video.sources %}
+                <source src="{{ source.src }}" type="{{ source.type }}">
+            {% endfor %}
+
+            <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
+        </video>
+
+        <img class="atlas-hero__media atlas-landing__hero-image" src="{{ page.mobile_hero_image.url }}"
+             alt="{{ page.mobile_hero_image.alt }}"
+             width="{{ page.mobile_hero_image.width }}"
+             height="{{ page.mobile_hero_image.height }}">
 
         <div class="atlas-container">
             <div class="atlas-landing__heading">
