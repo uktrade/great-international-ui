@@ -1,7 +1,13 @@
 .atlas-image,
-.atlas-video {
+.atlas-video video {
   display: block;
   width: 100%;
   max-width: 100%;
   height: auto;
+}
+
+.atlas-video__transcript {
+  max-height: 9em;
+  overflow: scroll;
+  white-space: pre-line;
 }

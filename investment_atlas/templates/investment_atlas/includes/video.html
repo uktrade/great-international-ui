@@ -1,20 +1,20 @@
 <div class="atlas-video">
-    <video{% if video.thumbnail %} poster="{{ video.thumbnail }}"{% endif %}>
+    <video controls {% if video.thumbnail %}poster="{{ video.thumbnail }}"{% endif %}>
         {% for source in video.sources %}
             <source src="{{ source.src }}" type="{{ source.type }}">
         {% endfor %}
 
         {% for track in video.subtitles %}
-        <track kind="captions" srclang="{{ track.srclang }}" src="{{ track.url }}"{% if track.default %}
-               default{% endif %}/>
-        {% endif %}
+            <track kind="captions" srclang="{{ track.srclang }}" src="{{ track.url }}"{% if track.default %}
+                   default{% endif %}/>
+        {% endfor %}
 
         <p>Your browser cannot play this video. You can
             <a href="{{ video.url }}">download it</a> instead.</p>
     </video>
 
     {% if video.transcript %}
-        <details class="atlas-details">
+        <details class="atlas-details atlas-m-t-xs">
             <summary class="atlas-button atlas-button--link">
                 View transcript
                 <span class="atlas-button__icon">
@@ -22,7 +22,7 @@
                 </span>
             </summary>
 
-            <div>{{ video.transcript }}</div>
+            <div class="atlas-video__transcript atlas-bg--grey-lighter atlas-m-t-xs atlas-p-s">{{ video.transcript }}</div>
         </details>
     {% endif %}
 </div>
