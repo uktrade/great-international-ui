@@ -36,7 +36,7 @@
                 </div>
                 <div class="atlas-grid atlas-grid--masonry">
                     <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--6-12-m">
-                        <p class="atlas-landing-page__text atlas-body--m">{{ section.value.main_text }}</p>
+                        <p class="atlas-body--m atlas-m-b-m">{{ section.value.main_text }}</p>
                     </div>
 
                     {% if section.value.block_slug == 'with-regions-map' %}
@@ -53,15 +53,15 @@
                         </div>
                     {% elif section.value.second_column.0.type == 'video' %}
                         {% with video=section.value.second_column.0.value %}
-                            <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                            <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
                                 {% include 'investment_atlas/includes/video.html' %}
                             </div>
                         {% endwith %}
                     {% elif section.value.second_column.0.value.image %}
-                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
                             <img src="{{ section.value.second_column.0.value.image }}"
                                  alt="{{ section.value.second_column.0.value.image_alt }}"
-                                 class="atlas-landing-page__image atlas-image"/>
+                                 class="atlas-image"/>
                         </div>
                     {% endif %}
 
