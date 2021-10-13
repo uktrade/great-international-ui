@@ -919,7 +919,7 @@ def test_industry_contact_serialized_data(mock_submit_generic, valid_contact_dat
 
 
 def test_unsubscribe_required_params(client):
-    response = client.get(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+    response = client.get(reverse('find-a-supplier:unsubscribe'), {'uidb64': 'aBcDe', 'token': '1a2b3c'})
 
     assert response.status_code == 200
     assert response.template_name == [views.UnsubscribeView.template_name]
@@ -936,7 +936,7 @@ def test_unsubscribe_missing_required_params(client):
 def test_unsubscribe_api_validation_failure(mock_unsubscribe, client):
     mock_unsubscribe.return_value = create_response(status_code=400)
 
-    response = client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+    response = client.post(reverse('find-a-supplier:unsubscribe'), {'uidb64': 'aBcDe', 'token': '1a2b3c'})
 
     assert response.status_code == 200
     assert response.template_name == views.UnsubscribeView.failure_template_name
@@ -947,15 +947,15 @@ def test_unsubscribe_api_error(mock_unsubscribe, client):
     mock_unsubscribe.return_value = create_response(status_code=500)
 
     with pytest.raises(requests.exceptions.HTTPError):
-        client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+        client.post(reverse('find-a-supplier:unsubscribe'), {'uidb64': 'aBcDe', 'token': '1a2b3c'})
 
 
 @patch.object(views.api_client.notifications, 'anonymous_unsubscribe')
 def test_unsubscribe_api_success(mock_unsubscribe, client):
     mock_unsubscribe.return_value = create_response()
 
-    response = client.post(reverse('find-a-supplier:unsubscribe'), {'email': '123'})
+    response = client.post(reverse('find-a-supplier:unsubscribe'), {'uidb64': 'aBcDe', 'token': '1a2b3c'})
 
-    mock_unsubscribe.assert_called_once_with('123')
+    mock_unsubscribe.assert_called_once_with('aBcDe', '1a2b3c')
     assert response.status_code == 200
     assert response.template_name == views.UnsubscribeView.success_template_name

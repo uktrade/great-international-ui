@@ -32,7 +32,7 @@ cryptography==3.3.2
     #   requests
 dateparser==0.7.0
     # via -r requirements.in
-directory-api-client==20.0.0
+directory-api-client==24.0.0
     # via -r requirements.in
 directory-client-core==6.3.0
     # via
