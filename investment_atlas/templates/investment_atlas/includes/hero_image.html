@@ -1,13 +1,12 @@
 {% if page.hero_image or page.hero_video %}
     <div class="atlas-hero">
         {% if page.hero_video %}
-            <video class="atlas-hero__media" width="1920" height="622" poster="{{ page.hero_video.thumbnail }}"
-                   autoplay="true" loop="true" muted="true">
+            <video class="atlas-hero__media"{% if page.hero_video.thumbnail %}
+                   poster="{{ page.hero_video.thumbnail }}"{% endif %}
+                   autoplay loop muted>
                 {% for source in page.hero_video.sources %}
                     <source src="{{ source.src }}" type="{{ source.type }}">
                 {% endfor %}
-
-                <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
             </video>
         {% else %}
             <picture>
