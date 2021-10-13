@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="atlas-landing__hero atlas-gradient-bg">
+    <div class="atlas-landing__hero">
         <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="1000"
                poster="{{ page.hero_video.thumbnail }}" autoplay="true" loop="true">
             {% for source in page.hero_video.sources %}

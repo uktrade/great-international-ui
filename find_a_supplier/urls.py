@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from directory_components.decorators import skip_ga360
 
 import core.views
 
@@ -79,7 +78,7 @@ urlpatterns = [
 
     url(
         r'^unsubscribe/$',
-        skip_ga360(views.UnsubscribeView.as_view()),
+        views.UnsubscribeView.as_view(),
         name='unsubscribe'
     ),
 
