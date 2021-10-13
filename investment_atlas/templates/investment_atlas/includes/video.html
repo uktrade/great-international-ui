@@ -1,3 +1,5 @@
+{% load cms_url from atlas_tags %}
+
 <div class="atlas-video">
     <video controls {% if video.thumbnail %}poster="{{ video.thumbnail }}"{% endif %}>
         {% for source in video.sources %}
@@ -5,7 +7,8 @@
         {% endfor %}
 
         {% for track in video.subtitles %}
-            <track kind="captions" srclang="{{ track.srclang }}" src="{{ track.url }}"{% if track.default %}
+            <track kind="captions" srclang="{{ track.srclang }}" src="{% cms_url %}{{ track.url }}"
+                    {% if track.default %}
                    default{% endif %}/>
         {% endfor %}
 

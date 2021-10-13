@@ -50,3 +50,15 @@ def test_collapsible_cms_text(id, input, has_button, visible, collapsed):
     if has_button:
         assert button[0]['aria-controls'] == 'atlas-collapsible-{}'.format(id)
         assert str(rendered_collapsed.decode_contents()).strip() == collapsed
+
+
+def test_cms_url(settings):
+    settings.DIRECTORY_CMS_API_CLIENT_BASE_URL = 'http://example.org/cms-url'
+    template = Template(
+        '{% load cms_url from atlas_tags %}'
+        '{% cms_url %}'
+    )
+    context = Context()
+    rendered = template.render(context)
+
+    assert 'http://example.org/cms-url' in rendered
