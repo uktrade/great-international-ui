@@ -249,19 +249,17 @@
 
                         bounds.extend(lngLat);
 
-                        let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-link atlas-search__map-popup">';
+                        let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-card atlas-search__map-popup">';
                         if (opp.hero_image) {
                             popupMarkup += '<img class="atlas-image atlas-m-b-xs" src="' + opp.hero_image.url + '" alt="' + opp.title + '"/>'
                         }
-                        popupMarkup += '<h3 class="atlas-h--xs">' + opp.title + '</h3>';
+                        popupMarkup += '<h3 class="atlas-card__heading atlas-h--xs">' + opp.title + '</h3>';
                         popupMarkup += '</a>';
 
-                        const marker = new maplibregl.Marker()
+                        new maplibregl.Marker()
                             .setLngLat(lngLat)
                             .setPopup(new maplibregl.Popup({closeButton: false}).setHTML(popupMarkup))
                             .addTo(map);
-
-
                     })
                 })
 
