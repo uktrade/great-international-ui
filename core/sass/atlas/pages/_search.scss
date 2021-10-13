@@ -3,14 +3,10 @@
 
 .atlas-search__controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  @media (min-width: $breakpoint-small) {
-    flex-direction: row;
-
-    & > button:not(:first-child) {
-      margin-left: 10px;
-    }
+  & > button:not(:first-child) {
+    margin-left: 10px;
   }
 }
 
@@ -107,10 +103,17 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
 
 .atlas-search--as-map {
   position: relative;
-  height: calc(100vh - 129px);
+  height: 100vh;
 
   @media (min-width: $breakpoint-large) {
     height: calc(100vh - 179px);
+  }
+
+  @media (max-width: $breakpoint-small - 1px) {
+    & .atlas-search__container {
+      padding: 0;
+      overflow: hidden;
+    }
   }
 
   & .atlas-search__container,
