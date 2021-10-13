@@ -1,6 +1,7 @@
 import re
 
 from django import template
+from django.conf import settings
 
 register = template.Library()
 
@@ -21,3 +22,8 @@ def collapse_text(html, text_id):
         'initial': parts[0],
         'collapsed': parts[1] if len(parts) > 1 else None
     }
+
+
+@register.simple_tag()
+def cms_url():
+    return settings.DIRECTORY_CMS_API_CLIENT_BASE_URL
