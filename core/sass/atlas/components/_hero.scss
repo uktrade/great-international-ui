@@ -3,8 +3,15 @@
 .atlas-hero {
   position: relative;
   overflow: hidden;
-  padding-bottom: 32.39%; // 1920x622
-  height: 0;
+  max-height: 454px;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-bottom: 32.39%; // 1920x622
+    height: 0;
+  }
 }
 
 .atlas-hero__media {

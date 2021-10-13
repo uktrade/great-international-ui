@@ -206,4 +206,8 @@
   &.active {
     text-decoration: underline;
   }
+
+  &:focus {
+    outline-offset: -4px;
+  }
 }
