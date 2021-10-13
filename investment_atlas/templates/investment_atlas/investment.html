@@ -3,14 +3,14 @@
 
 {% block content %}
     <div class="atlas-landing__hero">
-        <picture>
-            <source srcset="{{ page.mobile_hero_image.url }}" media="(max-width: 767px)"
-                    width="{{ page.mobile_hero_image.width }}"
-                    height="{{ page.mobile_hero_image.height }}">
-            <img class="atlas-hero__image" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}"
-                 width="{{ page.hero_image.width }}"
-                 height="{{ page.hero_image.height }}">
-        </picture>
+        <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="1000"
+               poster="{{ page.hero_video.thumbnail }}" autoplay="true" loop="true" muted="true">
+            {% for source in page.hero_video.sources %}
+                <source src="{{ source.src }}" type="{{ source.type }}">
+            {% endfor %}
+
+            <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
+        </video>
 
         <div class="atlas-container">
             <div class="atlas-landing__heading">
@@ -31,8 +31,9 @@
                 </div>
                 <div class="atlas-grid atlas-grid--masonry">
                     <div class="atlas-grid__column atlas-grid__column--left atlas-grid__column--6-12-m">
-                        <p class="atlas-landing-page__text atlas-body--m">{{ section.value.main_text }}</p>
+                        <p class="atlas-body--m atlas-m-b-m">{{ section.value.main_text }}</p>
                     </div>
+
                     {% if section.value.block_slug == 'with-regions-map' %}
                         <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
                             <div class="atlas-svg-map atlas-landing__map">
@@ -45,13 +46,20 @@
                                 <p>{{ section.value.second_column.0.value }}</p>
                             </blockquote>
                         </div>
+                    {% elif section.value.second_column.0.type == 'video' %}
+                        {% with video=section.value.second_column.0.value %}
+                            <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
+                                {% include 'investment_atlas/includes/video.html' %}
+                            </div>
+                        {% endwith %}
                     {% elif section.value.second_column.0.value.image %}
-                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m">
+                        <div class="atlas-grid__column atlas-grid__column--right atlas-grid__column--6-12-m atlas-m-b-m">
                             <img src="{{ section.value.second_column.0.value.image }}"
                                  alt="{{ section.value.second_column.0.value.image_alt }}"
-                                 class="atlas-landing-page__image atlas-image"/>
+                                 class="atlas-image"/>
                         </div>
                     {% endif %}
+
                     {% if section.value.call_to_action %}
                         <div class="atlas-grid__column atlas-grid__column--6-12-m">
                             <a href="{{ section.value.call_to_action.link }}"

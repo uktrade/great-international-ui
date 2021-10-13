@@ -337,4 +337,5 @@ class BuyFromTheUKForm(GovNotifyEmailActionMixin, forms.Form):
 
 class UnsubscribeForm(forms.Form):
     # not using EmailField because the value is signed
-    email = forms.CharField(widget=HiddenInput)
+    uidb64 = forms.CharField(widget=HiddenInput)
+    token = forms.CharField(widget=HiddenInput)

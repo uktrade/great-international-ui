@@ -8,6 +8,7 @@
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.3.0...3.0.1)
 ### Implemented enhancements
 
+- GP2-3343 - Making unsubscribe token based
 - GP2-3269 - Add redirects away from retired pages to best-fit new equivalents
 - NOTICKET - Disabling translation for site
 - NOTICKET - Switch UK Nations and Regions to sentence case in nav; Make opp filter 'UK nation or region'

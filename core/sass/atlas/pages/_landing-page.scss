@@ -3,11 +3,31 @@
 .atlas-landing__hero {
   position: relative;
   overflow: hidden;
+  background: $atlas-home-bg;
 
   & .atlas-container {
     position: relative;
   }
 }
+
+.atlas-landing__hero-video {
+  display: block;
+  top: 0;
+  width: auto;
+  height: 600px;
+  transform: translateX(-60%);
+
+  @media (min-width: $breakpoint-medium) {
+    height: 680px;
+    transform: translateX(-47%);
+  }
+
+  @media (min-width: $breakpoint-large) {
+    height: 780px;
+    transform: translateX(-50%);
+  }
+}
+
 
 .atlas-landing__heading {
   display: flex;
@@ -19,15 +39,16 @@
   margin: 0 auto;
   color: $atlas-white;
   text-align: center;
+  text-shadow: 0 0 4px $atlas-home-bg;
 
   @media (min-width: $breakpoint-medium) {
     justify-content: center;
-    margin-left: 40px;
+    margin-left: 5%;
     text-align: left;
   }
 
   @media (min-width: $breakpoint-large) {
-    margin-left: 0;
+    min-height: 560px;
   }
 }
 
@@ -60,16 +81,8 @@
   }
 
   @media (min-width: $breakpoint-large) {
-    padding: 108px 0 180px;
+    padding: 80px 0 100px;
   }
-}
-
-.atlas-landing-page__text {
-  margin: 0 0 40px;
-}
-
-.atlas-landing-page__image {
-  margin-bottom: 40px;
 }
 
 .atlas-landing-page__quote {
