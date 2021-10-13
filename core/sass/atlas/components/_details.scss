@@ -6,6 +6,10 @@
     text-decoration: underline;
   }
 
+  & summary::-webkit-details-marker {
+    display: none;
+  }
+
   & summary .atlas-button__icon {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;
