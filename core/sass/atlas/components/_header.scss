@@ -53,7 +53,7 @@
     display: flex;
   }
 
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1px) {
     .js-enabled & {
       display: none;
     }
@@ -112,7 +112,7 @@
   align-self: center;
   margin-left: auto;
 
-  @media (max-width: $breakpoint-medium - 1px) {
+  @media (max-width: $breakpoint-medium) {
     flex: 1 0 100%;
     margin-top: 10px;
 
@@ -127,7 +127,7 @@
   margin: 0 -20px -10px;
   padding: 10px 20px;
 
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1px) {
     background-color: transparent;
     margin: 0 -17px 0 0;
     padding: 0;
@@ -155,7 +155,7 @@
   font-weight: bold;
   font-size: 20px;
 
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1px) {
     padding: 10px 17px;
   }
 }
@@ -165,7 +165,7 @@
 }
 
 .atlas-nav__section {
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1px) {
     display: none;
   }
 }
@@ -178,12 +178,15 @@
   background-color: $atlas-black;
   text-align: right;
 
-  @media (min-width: $breakpoint-medium) {
+  @media (min-width: $breakpoint-medium + 1px) {
     display: block;
   }
 
   ul {
-    margin-right: -10px;
+    margin: 0 -16px;
+    padding: 0 6px;
+    white-space: nowrap;
+    overflow: auto;
   }
 
   li {
@@ -202,5 +205,9 @@
   &:hover,
   &.active {
     text-decoration: underline;
+  }
+
+  &:focus {
+    outline-offset: -4px;
   }
 }
