@@ -9,6 +9,10 @@
 
 {% load static_absolute international_header from directory_components %}
 
+{% block header_js %}{% endblock %}
+{% block head_js %}{% endblock %}
+{% block vendor_js %}{% endblock %}
+
 {% block head_css %}
     {{ block.super }}
     <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all"
@@ -16,26 +20,45 @@
     <link rel="stylesheet" href="{% static 'core/styles/main.css' %}">
 {% endblock %}
 
-{% block header_js %}
-    <script src="{% static 'directory_components/js/dit.responsive.js' %}"></script>
-    <script src="{% static 'directory_components/js/dit.utils.js' %}"></script>
-    <script src="{% static 'directory_components/js/dit.components.countrySelector.js' %}"></script>
-    <script src="{% static 'directory_components/js/dit.components.languageSelectorDropdown.js' %}"></script>
-    <script src="{% static 'directory_components/js/dit.components.header.js' %}"></script>
-    <script src="{% static 'directory_components/js/dit.components.greatInternationalHeader.js' %}"></script>
-{% endblock %}
-
 {% block head_other %}{% endblock %}
 
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
+
+
+
+
+
                 {% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     {% endif %}
 {% endblock %}
 
 {% block body_header %}
+    {% if not request.COOKIES.cookie_preferences_set %}
+        <div id="atlas-cookie-banner" class="atlas-bg atlas-bg--grey-light">
+            <div class="atlas-container atlas-container--header atlas-p-t-xs atlas-regular">
+                <div id="atlas-cookie-prompt">
+                    <h2 class="atlas-h--s">Tell us whether you accept cookies</h2>
+                    <p>We use <a class="atlas-link" href="https://www.great.gov.uk/privacy-and-cookies/">cookies to
+                        collect information</a> about how you use great.gov.uk. We use this information to make the
+                        website work as well as possible and improve government services.</p>
+                    <button class="atlas-button atlas-m-b-xs" onclick="acceptAllCookies()">Accept all</button>
+                    <a href="https://www.great.gov.uk/cookies/" class="atlas-button atlas-m-b-xs">Set cookie
+                        preferences</a>
+                </div>
+                <div id="atlas-cookie-thanks" style="display:none;">
+                    <p>You've accepted all cookies. You can <a class="atlas-link"
+                                                               href="https://www.great.gov.uk/cookies/">change your
+                        settings</a> at any time.</p>
+                    <button class="atlas-button atlas-m-b-xs" onclick="dismissCookiesThanks()">Close</button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
     {% include 'atlas/components/header.html' with site_section=header_section site_sub_section=header_sub_section %}
 {% endblock %}
 
@@ -70,7 +93,17 @@
                 atlasToggleReveal(event.target);
             })
         })
-    </script>
 
-    {{ block.super }}
+        function acceptAllCookies() {
+            const allPreferences = {"essential": true, "settings": true, "usage": true, "campaigns": true};
+            document.cookie = "cookie_preferences_set=true; max-age=60*60*24*365";
+            document.cookie = "cookies_policy=" + JSON.stringify(allPreferences) + "; max-age=60*60*24*365";
+            document.getElementById('atlas-cookie-prompt').remove();
+            document.getElementById('atlas-cookie-thanks').style.display = 'block';
+        }
+
+        function dismissCookiesThanks() {
+            document.getElementById('atlas-cookie-banner').remove();
+        }
+    </script>
 {% endblock %}
