@@ -31,6 +31,7 @@
 
 
 
+
                 {% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     {% endif %}
@@ -38,6 +39,19 @@
 
 {% block body_header %}
     {% if not request.COOKIES.cookie_preferences_set %}
+        <script>
+            function acceptAllCookies() {
+                const allPreferences = {"essential": true, "settings": true, "usage": true, "campaigns": true};
+                document.cookie = "cookie_preferences_set=true; max-age=60*60*24*365";
+                document.cookie = "cookies_policy=" + JSON.stringify(allPreferences) + "; max-age=60*60*24*365";
+                document.getElementById('atlas-cookie-prompt').remove();
+                document.getElementById('atlas-cookie-thanks').style.display = 'block';
+            }
+
+            function dismissCookiesThanks() {
+                document.getElementById('atlas-cookie-banner').remove();
+            }
+        </script>
         <div id="atlas-cookie-banner" class="atlas-bg atlas-bg--grey-light">
             <div class="atlas-container atlas-container--header atlas-p-t-xs atlas-regular">
                 <div id="atlas-cookie-prompt">
@@ -93,17 +107,5 @@
                 atlasToggleReveal(event.target);
             })
         })
-
-        function acceptAllCookies() {
-            const allPreferences = {"essential": true, "settings": true, "usage": true, "campaigns": true};
-            document.cookie = "cookie_preferences_set=true; max-age=60*60*24*365";
-            document.cookie = "cookies_policy=" + JSON.stringify(allPreferences) + "; max-age=60*60*24*365";
-            document.getElementById('atlas-cookie-prompt').remove();
-            document.getElementById('atlas-cookie-thanks').style.display = 'block';
-        }
-
-        function dismissCookiesThanks() {
-            document.getElementById('atlas-cookie-banner').remove();
-        }
     </script>
 {% endblock %}
