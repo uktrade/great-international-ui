@@ -8,7 +8,7 @@
         <div class="atlas-home__hero">
             <video class="atlas-home__hero-media"
                    {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
-                   autoplay loop muted>
+                   autoplay loop muted disableRemotePlayback>
                 {% for source in page.hero_video.sources %}
                     <source src="{{ source.src }}" type="{{ source.type }}">
                 {% endfor %}
