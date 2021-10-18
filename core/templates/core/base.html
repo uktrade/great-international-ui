@@ -11,7 +11,30 @@
 
 {% block header_js %}{% endblock %}
 {% block head_js %}{% endblock %}
-{% block vendor_js %}{% endblock %}
+{% block vendor_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script>
+        var dit = dit || {};
+    </script>
+{% endblock %}
+
+{% block head_js_ga360 %}
+    <script src="{% static 'directory_components/js/dit.tagging.js' %}"></script>
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        {% if ga360 and not skip_ga360 %}
+            window.dataLayer.push({
+                'businessUnit': '{{ ga360.business_unit }}',
+                'siteSection': '{{ ga360.site_section}}',
+                'siteSubsection': '{{ ga360.site_subsection }}',
+                'siteLanguage': '{{ ga360.site_language }}',
+                'userId': '{{ ga360.user_id }}',
+                'loginStatus': '{{ ga360.login_status }}',
+            });
+            dit.tagging.base.init(true);
+        {% endif %}
+    </script>
+{% endblock %}
 
 {% block head_css %}
     {{ block.super }}
@@ -25,6 +48,8 @@
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
+
 
 
 
@@ -64,9 +89,11 @@
                         preferences</a>
                 </div>
                 <div id="atlas-cookie-thanks" style="display:none;">
-                    <p>You've accepted all cookies. You can <a class="atlas-link"
-                                                               href="https://www.great.gov.uk/cookies/">change your
-                        settings</a> at any time.</p>
+                    <p>
+                        You've accepted all cookies. You can
+                        <a class="atlas-link" href="https://www.great.gov.uk/cookies/">change your settings</a>
+                        at any time.
+                    </p>
                     <button class="atlas-button atlas-m-b-xs" onclick="dismissCookiesThanks()">Close</button>
                 </div>
             </div>
