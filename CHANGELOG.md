@@ -3,6 +3,7 @@
 ## Pre-release
 ### Implemented enhancements
 - GP2-3741 - Python 3.9 upgrade
+- GP2-3763 - Rename related opportunities to other.
 ### Fixed bugs
 
 ## [3.0.1](https://github.com/uktrade/great-international-ui/releases/tag/3.0.1)
