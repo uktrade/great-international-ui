@@ -12,14 +12,11 @@
 {% block header_js %}{% endblock %}
 {% block head_js %}{% endblock %}
 {% block vendor_js %}
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-    <script>
-        var dit = dit || {};
-    </script>
+    <script src="{% static 'directory_components/js/vendor/details-polyfill.js' %}"></script>
 {% endblock %}
 
 {% block head_js_ga360 %}
-    <script src="{% static 'directory_components/js/dit.tagging.js' %}"></script>
+    <script src="{% static 'core/js/dit.tagging-min.js' %}"></script>
     <script type="text/javascript">
         window.dataLayer = window.dataLayer || [];
         {% if ga360 and not skip_ga360 %}
@@ -48,6 +45,10 @@
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
+
+
+
 
 
 
