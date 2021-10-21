@@ -107,11 +107,7 @@ dit.tagging.base = new function () {
         }
 
         function inferLinkType(link) {
-            if (isCta(link)) {
-                return 'CTA';
-            }
-
-            return 'PageLink';
+            return isCta(link) ? 'CTA' : 'PageLink';
         }
 
         function inferElement(domObject) {
@@ -131,11 +127,7 @@ dit.tagging.base = new function () {
         }
 
         function inferLinkValue(link) {
-            var title = guessTitleFromLinkContents(link);
-            if (title) {
-                return title;
-            }
-            return link.textContent.trim();
+            return guessTitleFromLinkContents(link) || link.textContent.trim();
         }
 
         function inferVideoValue(video) {

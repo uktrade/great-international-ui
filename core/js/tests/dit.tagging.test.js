@@ -12,6 +12,13 @@ describe('dit tagging replacement', () => {
             <section id="section-id">
                 <a href="#link-section-with-id">Link from a section with id</a>
             </section>
+            <a href="#link-with-inferred-title-h1"><h1>Title in h1 </h1></a>
+            <a href="#link-with-inferred-title-h2"><h2>  Title in h2</h2></a>
+            <a href="#link-with-inferred-title-h3"><h3>  Title in h3  </h3></a>
+            <a href="#link-with-inferred-title-h4"><h4>Title in h4 </h4></a>
+            <a href="#link-with-inferred-title-h5"><h5>Title in h5  </h5></a>
+            <a href="#link-with-inferred-title-span"><span>Title in span  </span></a>
+            <a href="#link-with-inferred-title-p"><p>   Title in p</p></a>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -98,6 +105,19 @@ describe('dit tagging replacement', () => {
             'element': 'section-id',
             'value': 'Link from a section with id',
             'destination': '#link-section-with-id'
+        })
+    })
+
+    it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'span', 'p'])('pushes to data layer on clicking a link with inferred title from %s', (titleElement) => {
+        document.querySelector(`[href="#link-with-inferred-title-${titleElement}"]`).click()
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'PageLink',
+            'element': '',
+            'value': `Title in ${titleElement}`,
+            'destination': `#link-with-inferred-title-${titleElement}`
         })
     })
 })
