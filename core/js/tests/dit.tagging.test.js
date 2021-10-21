@@ -6,6 +6,12 @@ describe('dit tagging replacement', () => {
             <a href="#link-basic">Basic link</a>
             <a href="#link-cta-button" class="button">CTA link with \`button\` class</a>
             <a href="#link-cta-cta" class="cta">CTA link with \`cta\` class</a>
+            <section data-ga-section="Section name">
+                <a href="#link-named-section">Link from named section</a>
+            </section>
+            <section id="section-id">
+                <a href="#link-section-with-id">Link from a section with id</a>
+            </section>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -66,6 +72,32 @@ describe('dit tagging replacement', () => {
             'element': '',
             'value': text,
             'destination': href
+        })
+    })
+
+    it('pushes to data layer on clicking a link from a named section', () => {
+        document.querySelector('[href="#link-named-section"]').click()
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'PageLink',
+            'element': 'Section name',
+            'value': 'Link from named section',
+            'destination': '#link-named-section'
+        })
+    })
+
+    it('pushes to data layer on clicking a link from a section with id', () => {
+        document.querySelector('[href="#link-section-with-id"]').click()
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'PageLink',
+            'element': 'section-id',
+            'value': 'Link from a section with id',
+            'destination': '#link-section-with-id'
         })
     })
 })

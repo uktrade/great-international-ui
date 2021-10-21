@@ -122,7 +122,7 @@ dit.tagging.base = new function () {
             }
 
             var idSection = domObject.closest('[id]')
-            var id = id && idSection.getAttribute('id');
+            var id = idSection && idSection.getAttribute('id');
             if (id) {
                 return id;
             }
