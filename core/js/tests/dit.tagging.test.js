@@ -19,6 +19,13 @@ describe('dit tagging replacement', () => {
             <a href="#link-with-inferred-title-h5"><h5>Title in h5  </h5></a>
             <a href="#link-with-inferred-title-span"><span>Title in span  </span></a>
             <a href="#link-with-inferred-title-p"><p>   Title in p</p></a>
+            <a 
+                href="#link-with-ga-attributes"
+                data-ga-action="ga-action"
+                data-ga-type="ga-type"
+                data-ga-element="ga-element"
+                data-ga-value="ga-value"
+            >Basic link</a>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -108,7 +115,9 @@ describe('dit tagging replacement', () => {
         })
     })
 
-    it.each(['h1', 'h2', 'h3', 'h4', 'h5', 'span', 'p'])('pushes to data layer on clicking a link with inferred title from %s', (titleElement) => {
+    it.each(
+        ['h1', 'h2', 'h3', 'h4', 'h5', 'span', 'p']
+    )('pushes to data layer on clicking a link with inferred title from %s', (titleElement) => {
         document.querySelector(`[href="#link-with-inferred-title-${titleElement}"]`).click()
 
         expect(window.dataLayer[0]).toEqual({
@@ -118,6 +127,19 @@ describe('dit tagging replacement', () => {
             'element': '',
             'value': `Title in ${titleElement}`,
             'destination': `#link-with-inferred-title-${titleElement}`
+        })
+    })
+
+    it('pushes to data layer on clicking a link with ga attributes', () => {
+        document.querySelector('[href="#link-with-ga-attributes"]').click()
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'ga-action',
+            'type': 'ga-type',
+            'element': 'ga-element',
+            'value': 'ga-value',
+            'destination': '#link-with-ga-attributes'
         })
     })
 })
