@@ -43,6 +43,7 @@
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
                 {% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     {% endif %}
@@ -80,7 +81,8 @@
                         <a class="atlas-link" href="https://www.great.gov.uk/cookies/">change your settings</a>
                         at any time.
                     </p>
-                    <button class="atlas-button atlas-m-b-xs" onclick="dismissCookiesThanks()">Close</button>
+                    <button class="atlas-button atlas-m-b-xs" onclick="dismissCookiesThanks()">Hide this message
+                    </button>
                 </div>
             </div>
         </div>
