@@ -204,6 +204,10 @@ describe('form events tracking', () => {
                 data-ga-value="ga-value"
                 onsubmit="return false;"
             ></form>
+            <form data-ga-include-form-data="true" action="/foo-bar" onsubmit="return false;">
+                <input type="hidden" name="foo" value="1">
+                <input type="hidden" name="bar" value="baz">
+            </form>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -234,6 +238,19 @@ describe('form events tracking', () => {
             'type': 'ga-type',
             'element': 'ga-element',
             'value': 'ga-value'
+        });
+    });
+
+    it('pushes to data layer on form submit and includes data', () => {
+        document.querySelector('form[data-ga-include-form-data]').submit();
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'submit',
+            'type': 'form',
+            'element': '',
+            'value': '/foo-bar',
+            'formData': 'foo=1&bar=baz'
         });
     });
 })

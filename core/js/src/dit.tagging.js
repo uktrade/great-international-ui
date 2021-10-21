@@ -103,9 +103,17 @@ dit.tagging.base = new function () {
             var type = form.getAttribute('data-ga-type') || 'form';
             var element = form.getAttribute('data-ga-element') || inferElement(form);
             var value = form.getAttribute('data-ga-value') || inferFormValue(form);
+            var formData = null;
 
             var includeFormData = form.getAttribute('data-ga-include-form-data');
-            var formData = includeFormData && includeFormData.toLowerCase() === "true" ? form.serialize() : null;
+            if (includeFormData && includeFormData.toLowerCase() === "true") {
+                formData = Array.from(
+                    new FormData(form),
+                    function (e) {
+                        return e.map(encodeURIComponent).join('=');
+                    }
+                ).join('&')
+            }
 
             sendEvent(formEvent(action, type, element, value, formData));
         }
