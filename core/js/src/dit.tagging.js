@@ -47,13 +47,11 @@ dit.tagging.base = new function () {
         }
 
         function handleLinkEvent(event) {
-            if (event.target.tagName === 'A') {
-                if (event.type === 'click') {
-                    sendLinkEvent(event.target);
-                }
-                if (event.type === 'keydown' && event.key === 'Enter') {
-                    sendLinkEvent(event.target);
-                }
+            var link = event.target.closest('a');
+            if (!link) return;
+
+            if (event.type === 'click' || (event.type === 'keydown' && event.key === 'Enter')) {
+                sendLinkEvent(link);
             }
         }
 
@@ -93,7 +91,7 @@ dit.tagging.base = new function () {
             var element = video.getAttribute('data-ga-element') || inferElement(video);
             var value = video.getAttribute('data-ga-value') || inferVideoValue(video);
 
-            sendEvent(event(action, type, element, value));
+            sendEvent(baseEvent(action, type, element, value));
         }
 
         function sendFormEvent(form) {
@@ -172,7 +170,7 @@ dit.tagging.base = new function () {
             return null;
         }
 
-        function event(action, type, element, value) {
+        function baseEvent(action, type, element, value) {
             return {
                 'event': 'gaEvent',
                 'action': action,
@@ -183,14 +181,14 @@ dit.tagging.base = new function () {
         }
 
         function linkEvent(action, type, element, value, destination) {
-            var linkEvent = event(action, type, element, value);
+            var linkEvent = baseEvent(action, type, element, value);
             linkEvent['destination'] = destination;
 
             return linkEvent;
         }
 
         function formEvent(action, type, element, value, data) {
-            var formEvent = event(action, type, element, value);
+            var formEvent = baseEvent(action, type, element, value);
 
             if (data) {
                 formEvent['formData'] = data;

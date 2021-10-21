@@ -4,6 +4,7 @@ describe('links event tracking', () => {
     beforeEach(async () => {
         document.body.innerHTML = `
             <a href="#link-basic">Basic link</a>
+            <a href="#link-nested"><span>Nested link</span></a>
             <a href="#link-cta-button" class="button">CTA link with \`button\` class</a>
             <a href="#link-cta-cta" class="cta">CTA link with \`cta\` class</a>
             <section data-ga-section="Section name">
@@ -53,6 +54,19 @@ describe('links event tracking', () => {
             'element': '',
             'value': 'Basic link',
             'destination': '#link-basic'
+        });
+    });
+
+    it('pushes to data layer on clicking descendants of a link', () => {
+        document.querySelector('[href="#link-nested"] span').click();
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'PageLink',
+            'element': '',
+            'value': 'Nested link',
+            'destination': '#link-nested'
         });
     });
 
