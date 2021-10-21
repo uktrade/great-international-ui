@@ -28,7 +28,7 @@
                 'userId': '{{ ga360.user_id }}',
                 'loginStatus': '{{ ga360.login_status }}',
             });
-            dit.tagging.base.init(true);
+            dit.tagging.base.init();
         {% endif %}
     </script>
 {% endblock %}
@@ -45,6 +45,7 @@
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
                 {% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     {% endif %}
