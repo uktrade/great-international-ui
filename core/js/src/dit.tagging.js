@@ -40,6 +40,7 @@ dit.tagging.base = new function () {
             // addTaggingForForms();
 
             document.addEventListener('click', addTaggingForLinks);
+            document.addEventListener('keydown', addTaggingForLinks);
         });
 
         function addTaggingForLinks(event) {
@@ -156,21 +157,6 @@ dit.tagging.base = new function () {
             return false;
         }
 
-        function isCard(link) {
-            if (link.textContent) {
-                return false;
-            }
-
-            var cardClasses = ['card'];
-            var linkClasses = link.css();
-            for (var index = 0; index < cardClasses.length; index++) {
-                if (linkClasses.includes(cardClasses[index])) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         function guessTitleFromLinkContents(link) {
             var titleElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'span', 'p'];
 
@@ -180,6 +166,7 @@ dit.tagging.base = new function () {
                     return titleElement.textContent.trim();
                 }
             }
+
             return null;
         }
 

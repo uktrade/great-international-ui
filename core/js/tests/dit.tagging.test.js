@@ -36,6 +36,23 @@ describe('dit tagging replacement', () => {
         })
     })
 
+    it('pushes to data layer on pressing return on a link', () => {
+        document.querySelector('[href="#link-basic"]').dispatchEvent(new KeyboardEvent('keydown', {
+            bubbles: true,
+            cancellable: true,
+            key: 'Enter'
+        }));
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'PageLink',
+            'element': '',
+            'value': 'Basic link',
+            'destination': '#link-basic'
+        })
+    })
+
     it.each([
         ['CTA link with `button` class', '#link-cta-button'],
         ['CTA link with `cta` class', '#link-cta-cta'],
