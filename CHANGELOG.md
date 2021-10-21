@@ -1,13 +1,19 @@
 # Changelog
 
 ## Pre-release
+
 ### Implemented enhancements
+
 - GP2-3741 - Python 3.9 upgrade
 - GP2-3763 - Rename related opportunities to other.
+- GP2-3773 - Remove Isle of Man from map
+
 ### Fixed bugs
 
 ## [3.0.1](https://github.com/uktrade/great-international-ui/releases/tag/3.0.1)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.3.0...3.0.1)
+
 ### Implemented enhancements
 
 - GP2-3343 - Making unsubscribe token based
@@ -55,7 +61,9 @@
 ### Fixed bugs
 
 ## [2.3.0](https://github.com/uktrade/great-international-ui/releases/tag/2.3.0)
+
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/2.2.0...2.3.0)
+
 ### Implemented enhancements
 
 - GP2-2711 - update great branding
