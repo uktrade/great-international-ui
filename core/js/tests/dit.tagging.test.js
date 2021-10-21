@@ -44,7 +44,7 @@ describe('links event tracking', () => {
         //   and releasing the button over the target.
         // - There was no distinction in the resulting GA event between left and middle button anyway.
 
-        document.querySelector('[href="#link-basic"]').click()
+        document.querySelector('[href="#link-basic"]').click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -53,7 +53,7 @@ describe('links event tracking', () => {
             'element': '',
             'value': 'Basic link',
             'destination': '#link-basic'
-        })
+        });
     })
 
     it('pushes to data layer on pressing return on a link', () => {
@@ -70,14 +70,14 @@ describe('links event tracking', () => {
             'element': '',
             'value': 'Basic link',
             'destination': '#link-basic'
-        })
+        });
     })
 
     it.each([
         ['CTA link with `button` class', '#link-cta-button'],
         ['CTA link with `cta` class', '#link-cta-cta'],
     ])('pushes to data layer on clicking a %s', (text, href) => {
-        document.querySelector(`[href="${href}"]`).click()
+        document.querySelector(`[href="${href}"]`).click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -86,11 +86,11 @@ describe('links event tracking', () => {
             'element': '',
             'value': text,
             'destination': href
-        })
+        });
     })
 
     it('pushes to data layer on clicking a link from a named section', () => {
-        document.querySelector('[href="#link-named-section"]').click()
+        document.querySelector('[href="#link-named-section"]').click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -99,11 +99,11 @@ describe('links event tracking', () => {
             'element': 'Section name',
             'value': 'Link from named section',
             'destination': '#link-named-section'
-        })
+        });
     })
 
     it('pushes to data layer on clicking a link from a section with id', () => {
-        document.querySelector('[href="#link-section-with-id"]').click()
+        document.querySelector('[href="#link-section-with-id"]').click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -112,13 +112,13 @@ describe('links event tracking', () => {
             'element': 'section-id',
             'value': 'Link from a section with id',
             'destination': '#link-section-with-id'
-        })
+        });
     })
 
     it.each(
         ['h1', 'h2', 'h3', 'h4', 'h5', 'span', 'p']
     )('pushes to data layer on clicking a link with inferred title from %s', (titleElement) => {
-        document.querySelector(`[href="#link-with-inferred-title-${titleElement}"]`).click()
+        document.querySelector(`[href="#link-with-inferred-title-${titleElement}"]`).click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -127,11 +127,11 @@ describe('links event tracking', () => {
             'element': '',
             'value': `Title in ${titleElement}`,
             'destination': `#link-with-inferred-title-${titleElement}`
-        })
+        });
     })
 
     it('pushes to data layer on clicking a link with ga attributes', () => {
-        document.querySelector('[href="#link-with-ga-attributes"]').click()
+        document.querySelector('[href="#link-with-ga-attributes"]').click();
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -140,7 +140,7 @@ describe('links event tracking', () => {
             'element': 'ga-element',
             'value': 'ga-value',
             'destination': '#link-with-ga-attributes'
-        })
+        });
     })
 })
 
@@ -165,7 +165,7 @@ describe('video events tracking', () => {
     it.each(
         ['play', 'pause', 'ended']
     )('pushes to data layer on a video %s event', (event) => {
-        document.querySelector('video').dispatchEvent(new Event(event))
+        document.querySelector('video').dispatchEvent(new Event(event));
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -173,13 +173,13 @@ describe('video events tracking', () => {
             'type': 'video',
             'element': '',
             'value': 'foo.mp4'
-        })
+        });
     })
 
     it.each(
         ['play', 'pause', 'ended']
     )('pushes to data layer on a video %s event with ga attributes', (event) => {
-        document.querySelector('video[data-ga-type]').dispatchEvent(new Event(event))
+        document.querySelector('video[data-ga-type]').dispatchEvent(new Event(event));
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
@@ -187,6 +187,33 @@ describe('video events tracking', () => {
             'type': 'ga-video',
             'element': 'ga-element',
             'value': 'ga-value'
-        })
+        });
     })
+})
+
+describe('form events tracking', () => {
+    beforeEach(async () => {
+        // Returning false as submit isn't implemented in jsdom
+        document.body.innerHTML = `
+            <form action="/foo" onsubmit="return false;"></form>
+        `;
+        window.dataLayer = [];
+        dit.tagging.base.init();
+        window.document.dispatchEvent(new Event("DOMContentLoaded", {
+            bubbles: true,
+            cancelable: true
+        }));
+    });
+
+    it('pushes to data layer on form submit', () => {
+        document.querySelector('form').submit();
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'submit',
+            'type': 'form',
+            'element': '',
+            'value': '/foo'
+        });
+    });
 })

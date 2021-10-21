@@ -36,10 +36,9 @@ dit.tagging = dit.tagging || {};
 dit.tagging.base = new function () {
     this.init = function (debug_mode) {
         window.addEventListener('DOMContentLoaded', () => {
-            // addTaggingForForms();
-
             addTaggingForLinks();
             addTaggingForVideos();
+            addTaggingForForms();
         });
 
         function addTaggingForLinks() {
@@ -72,9 +71,13 @@ dit.tagging.base = new function () {
         }
 
         function addTaggingForForms() {
-            $('form').on('submit', function () {
-                sendFormEvent($(this))
-            })
+            document.addEventListener('submit', handleFormEvent);
+        }
+
+        function handleFormEvent(event) {
+            if (event.target.tagName === 'FORM') {
+                sendFormEvent(event.target);
+            }
         }
 
         function sendLinkEvent(link) {
@@ -96,12 +99,12 @@ dit.tagging.base = new function () {
         }
 
         function sendFormEvent(form) {
-            var action = form.data('ga-action') || 'submit';
-            var type = form.data('ga-type') || 'form';
-            var element = form.data('ga-element') || inferElement(form);
-            var value = form.data('ga-value') || inferFormValue(form);
+            var action = form.getAttribute('data-ga-action') || 'submit';
+            var type = form.getAttribute('data-ga-type') || 'form';
+            var element = form.getAttribute('data-ga-element') || inferElement(form);
+            var value = form.getAttribute('data-ga-value') || inferFormValue(form);
 
-            var includeFormData = form.data('ga-include-form-data');
+            var includeFormData = form.getAttribute('data-ga-include-form-data');
             var formData = includeFormData && includeFormData.toLowerCase() === "true" ? form.serialize() : null;
 
             sendEvent(formEvent(action, type, element, value, formData));
@@ -136,7 +139,7 @@ dit.tagging.base = new function () {
         }
 
         function inferFormValue(form) {
-            return form.attr('action') || '';
+            return form.getAttribute('action') || '';
         }
 
         function isCta(link) {
