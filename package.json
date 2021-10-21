@@ -18,6 +18,7 @@
     "glob-parent": "^5.1.2",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^7.1.0",
+    "gulp-minify": "^3.1.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "jest": "^27.3.1",
