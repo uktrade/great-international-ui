@@ -39,11 +39,15 @@ dit.tagging.base = new function () {
             // addTaggingForVideos();
             // addTaggingForForms();
 
-            document.addEventListener('click', addTaggingForLinks);
-            document.addEventListener('keydown', addTaggingForLinks);
+            addTaggingForLinks();
         });
 
-        function addTaggingForLinks(event) {
+        function addTaggingForLinks() {
+            document.addEventListener('click', handleLinkEvent);
+            document.addEventListener('keydown', handleLinkEvent);
+        }
+
+        function handleLinkEvent(event) {
             if (event.target.tagName === 'A') {
                 if (event.type === 'click') {
                     sendLinkEvent(event.target);
