@@ -62,19 +62,12 @@ dit.tagging.base = new function () {
             // $("#hero-campaign-section-watch-video-button").click(function () {
             //     sendVideoEvent($(this), 'play')
             // });
+            // Video events do not bubble, so cannot be handled by delegation
             document.querySelectorAll('video').forEach(function (element) {
                 element.addEventListener('play', handleVideoEvent);
-            })
-            // $('video')
-            //     .on('play', function () {
-            //         sendVideoEvent($(this), 'play')
-            //     })
-            //     .on('pause', function () {
-            //         sendVideoEvent($(this), 'pause')
-            //     })
-            //     .on('ended', function () {
-            //         sendVideoEvent($(this), 'ended')
-            //     })
+                element.addEventListener('pause', handleVideoEvent);
+                element.addEventListener('ended', handleVideoEvent);
+            });
         }
 
         function handleVideoEvent(event) {

@@ -159,12 +159,14 @@ describe('video events tracking', () => {
         }));
     });
 
-    it('pushes to data layer on playing a video', () => {
-        document.querySelector('video').dispatchEvent(new Event('play'))
+    it.each(
+        ['play', 'pause', 'ended']
+    )('pushes to data layer on a video %s event', (event) => {
+        document.querySelector('video').dispatchEvent(new Event(event))
 
         expect(window.dataLayer[0]).toEqual({
             'event': 'gaEvent',
-            'action': 'play',
+            'action': event,
             'type': 'video',
             'element': '',
             'value': 'foo.mp4'
