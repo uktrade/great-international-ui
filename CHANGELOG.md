@@ -7,6 +7,9 @@
 - GP2-3741 - Python 3.9 upgrade
 - GP2-3763 - Rename related opportunities to other.
 - GP2-3773 - Remove Isle of Man from map
+- NOTICKET - Updated cookie banner
+- NOTICKET - Remove dependency on jQuery and directory-components scripts
+- NOTICKET - Remove unused CSS
 
 ### Fixed bugs
 
