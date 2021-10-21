@@ -148,7 +148,7 @@ dit.tagging.base = new function () {
 
         function isCta(link) {
             var ctaClasses = ['button', 'cta'];
-            var linkClasses = link.className;
+            var linkClasses = link.getAttribute('class') || '';
             for (var index = 0; index < ctaClasses.length; index++) {
                 if (linkClasses.indexOf(ctaClasses[index]) !== -1) {
                     return true;

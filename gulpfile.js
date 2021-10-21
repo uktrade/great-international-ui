@@ -43,9 +43,11 @@ gulp.task('sass:watch', function () {
 
 gulp.task('js:minify', function () {
     return gulp.src(JS_SRC_FILES)
+        .pipe(sourcemaps.init())
         .pipe(minify({
             noSource: true
         }))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(JS_DEST))
 })
 
