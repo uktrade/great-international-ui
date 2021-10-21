@@ -1,3 +1,17 @@
+/**
+ * This mostly replicates the original DIT tagging script for
+ * automatic GA integration, but without the need for jQuery.
+ * (see https://github.com/uktrade/directory-components/blob/master/directory_components/static/directory_components/js/dit.tagging.js)
+ *
+ * Differences:
+ * - Uses the `click` event rather than `mouseup` to track
+ *   clicks (as `mouseup` does not fire on touch events)
+ * - Removes `card` link type matching (class list for matching
+ *   wasn't up to date)
+ * -
+ *
+ */
+
 if (!Element.prototype.matches) {
     Element.prototype.matches =
         Element.prototype.msMatchesSelector ||
@@ -96,10 +110,6 @@ dit.tagging.base = new function () {
                 return 'CTA';
             }
 
-            if (isCard(link)) {
-                return 'Card';
-            }
-
             return 'PageLink';
         }
 
@@ -137,9 +147,9 @@ dit.tagging.base = new function () {
 
         function isCta(link) {
             var ctaClasses = ['button', 'cta'];
-            var linkClasses = link.getAttribute('class') || '';
+            var linkClasses = link.className;
             for (var index = 0; index < ctaClasses.length; index++) {
-                if (linkClasses.includes(ctaClasses[index])) {
+                if (linkClasses.indexOf(ctaClasses[index]) !== -1) {
                     return true;
                 }
             }

@@ -4,6 +4,8 @@ describe('dit tagging replacement', () => {
     beforeEach(async () => {
         document.body.innerHTML = `
             <a href="#link-basic">Basic link</a>
+            <a href="#link-cta-button" class="button">CTA link with \`button\` class</a>
+            <a href="#link-cta-cta" class="cta">CTA link with \`cta\` class</a>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -31,6 +33,22 @@ describe('dit tagging replacement', () => {
             'element': '',
             'value': 'Basic link',
             'destination': '#link-basic'
+        })
+    })
+
+    it.each([
+        ['CTA link with `button` class', '#link-cta-button'],
+        ['CTA link with `cta` class', '#link-cta-cta'],
+    ])('pushes to data layer on clicking a %s', (text, href) => {
+        document.querySelector(`[href="${href}"]`).click()
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'clickLink',
+            'type': 'CTA',
+            'element': '',
+            'value': text,
+            'destination': href
         })
     })
 })
