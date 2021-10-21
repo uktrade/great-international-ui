@@ -59,10 +59,7 @@ dit.tagging.base = new function () {
         }
 
         function addTaggingForVideos() {
-            // $("#hero-campaign-section-watch-video-button").click(function () {
-            //     sendVideoEvent($(this), 'play')
-            // });
-            // Video events do not bubble, so cannot be handled by delegation
+            // Video events do not bubble, so cannot be handled by event delegation
             document.querySelectorAll('video').forEach(function (element) {
                 element.addEventListener('play', handleVideoEvent);
                 element.addEventListener('pause', handleVideoEvent);

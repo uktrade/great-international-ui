@@ -150,6 +150,9 @@ describe('video events tracking', () => {
             <video>
                 <source src="foo.mp4">
             </video>
+            <video data-ga-type="ga-video" data-ga-element="ga-element" data-ga-value="ga-value">
+                <source src="foo-ga.mp4">
+            </video>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -170,6 +173,20 @@ describe('video events tracking', () => {
             'type': 'video',
             'element': '',
             'value': 'foo.mp4'
+        })
+    })
+
+    it.each(
+        ['play', 'pause', 'ended']
+    )('pushes to data layer on a video %s event with ga attributes', (event) => {
+        document.querySelector('video[data-ga-type]').dispatchEvent(new Event(event))
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': event,
+            'type': 'ga-video',
+            'element': 'ga-element',
+            'value': 'ga-value'
         })
     })
 })
