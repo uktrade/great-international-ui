@@ -1,6 +1,6 @@
 require('../src/dit.tagging');
 
-describe('dit tagging replacement', () => {
+describe('links event tracking', () => {
     beforeEach(async () => {
         document.body.innerHTML = `
             <a href="#link-basic">Basic link</a>
@@ -140,6 +140,34 @@ describe('dit tagging replacement', () => {
             'element': 'ga-element',
             'value': 'ga-value',
             'destination': '#link-with-ga-attributes'
+        })
+    })
+})
+
+describe('video events tracking', () => {
+    beforeEach(async () => {
+        document.body.innerHTML = `
+            <video>
+                <source src="foo.mp4">
+            </video>
+        `;
+        window.dataLayer = [];
+        dit.tagging.base.init();
+        window.document.dispatchEvent(new Event("DOMContentLoaded", {
+            bubbles: true,
+            cancelable: true
+        }));
+    });
+
+    it('pushes to data layer on playing a video', () => {
+        document.querySelector('video').dispatchEvent(new Event('play'))
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'play',
+            'type': 'video',
+            'element': '',
+            'value': 'foo.mp4'
         })
     })
 })

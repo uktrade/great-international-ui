@@ -36,10 +36,10 @@ dit.tagging = dit.tagging || {};
 dit.tagging.base = new function () {
     this.init = function (debug_mode) {
         window.addEventListener('DOMContentLoaded', () => {
-            // addTaggingForVideos();
             // addTaggingForForms();
 
             addTaggingForLinks();
+            addTaggingForVideos();
         });
 
         function addTaggingForLinks() {
@@ -59,19 +59,26 @@ dit.tagging.base = new function () {
         }
 
         function addTaggingForVideos() {
-            $("#hero-campaign-section-watch-video-button").click(function () {
-                sendVideoEvent($(this), 'play')
-            });
-            $('video')
-                .on('play', function () {
-                    sendVideoEvent($(this), 'play')
-                })
-                .on('pause', function () {
-                    sendVideoEvent($(this), 'pause')
-                })
-                .on('ended', function () {
-                    sendVideoEvent($(this), 'ended')
-                })
+            // $("#hero-campaign-section-watch-video-button").click(function () {
+            //     sendVideoEvent($(this), 'play')
+            // });
+            document.querySelectorAll('video').forEach(function (element) {
+                element.addEventListener('play', handleVideoEvent);
+            })
+            // $('video')
+            //     .on('play', function () {
+            //         sendVideoEvent($(this), 'play')
+            //     })
+            //     .on('pause', function () {
+            //         sendVideoEvent($(this), 'pause')
+            //     })
+            //     .on('ended', function () {
+            //         sendVideoEvent($(this), 'ended')
+            //     })
+        }
+
+        function handleVideoEvent(event) {
+            sendVideoEvent(event.target, event.type);
         }
 
         function addTaggingForForms() {
@@ -91,9 +98,9 @@ dit.tagging.base = new function () {
         }
 
         function sendVideoEvent(video, action) {
-            var type = video.data('ga-type') || 'video';
-            var element = video.data('ga-element') || inferElement(video);
-            var value = video.data('ga-value') || inferVideoValue(video);
+            var type = video.getAttribute('data-ga-type') || 'video';
+            var element = video.getAttribute('data-ga-element') || inferElement(video);
+            var value = video.getAttribute('data-ga-value') || inferVideoValue(video);
 
             sendEvent(event(action, type, element, value));
         }
@@ -135,7 +142,7 @@ dit.tagging.base = new function () {
         }
 
         function inferVideoValue(video) {
-            return video.find('source').attr('src');
+            return video.querySelector('source').getAttribute('src');
         }
 
         function inferFormValue(form) {
