@@ -11,13 +11,13 @@
  * -
  *
  */
-
+/* istanbul ignore next */
 if (!Element.prototype.matches) {
     Element.prototype.matches =
         Element.prototype.msMatchesSelector ||
         Element.prototype.webkitMatchesSelector;
 }
-
+/* istanbul ignore next */
 if (!Element.prototype.closest) {
     Element.prototype.closest = function (s) {
         var el = this;
@@ -75,9 +75,7 @@ dit.tagging.base = new function () {
         }
 
         function handleFormEvent(event) {
-            if (event.target.tagName === 'FORM') {
-                sendFormEvent(event.target);
-            }
+            sendFormEvent(event.target);
         }
 
         function sendLinkEvent(link) {

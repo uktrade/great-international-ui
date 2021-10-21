@@ -54,7 +54,7 @@ describe('links event tracking', () => {
             'value': 'Basic link',
             'destination': '#link-basic'
         });
-    })
+    });
 
     it('pushes to data layer on pressing return on a link', () => {
         document.querySelector('[href="#link-basic"]').dispatchEvent(new KeyboardEvent('keydown', {
@@ -142,6 +142,12 @@ describe('links event tracking', () => {
             'destination': '#link-with-ga-attributes'
         });
     })
+
+    it('does not push to data layer on clicking something else than a link', () => {
+        document.querySelector('#section-id').click();
+
+        expect(window.dataLayer.length).toEqual(0);
+    })
 })
 
 describe('video events tracking', () => {
@@ -208,6 +214,7 @@ describe('form events tracking', () => {
                 <input type="hidden" name="foo" value="1">
                 <input type="hidden" name="bar" value="baz">
             </form>
+            <form id="no-action" onsubmit="return false;"></form>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -226,6 +233,18 @@ describe('form events tracking', () => {
             'type': 'form',
             'element': '',
             'value': '/foo'
+        });
+    });
+
+    it('pushes to data layer on form submit with no action', () => {
+        document.querySelector('form#no-action').submit();
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'submit',
+            'type': 'form',
+            'element': 'no-action',
+            'value': ''
         });
     });
 
