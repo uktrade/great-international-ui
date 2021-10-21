@@ -4,6 +4,7 @@
   "description": "Great.gov.uk international site",
   "private": false,
   "scripts": {
+    "test": "jest core/js/tests",
     "watch": "gulp sass:watch",
     "sass": "gulp sass",
     "copy-assets": "gulp assets:copy",
@@ -19,6 +20,8 @@
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^5.0.0",
     "gulp-sourcemaps": "^3.0.0",
+    "jest": "^27.3.1",
+    "jest-environment-jsdom": "^27.3.1",
     "node-sass": "^6.0.1"
   },
   "dependencies": {
