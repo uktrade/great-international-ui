@@ -196,6 +196,14 @@ describe('form events tracking', () => {
         // Returning false as submit isn't implemented in jsdom
         document.body.innerHTML = `
             <form action="/foo" onsubmit="return false;"></form>
+            <form 
+                action="/bar" 
+                data-ga-action="ga-action"
+                data-ga-type="ga-type"
+                data-ga-element="ga-element"
+                data-ga-value="ga-value"
+                onsubmit="return false;"
+            ></form>
         `;
         window.dataLayer = [];
         dit.tagging.base.init();
@@ -214,6 +222,18 @@ describe('form events tracking', () => {
             'type': 'form',
             'element': '',
             'value': '/foo'
+        });
+    });
+
+    it('pushes to data layer on form submit with ga attributes', () => {
+        document.querySelector('form[data-ga-action]').submit();
+
+        expect(window.dataLayer[0]).toEqual({
+            'event': 'gaEvent',
+            'action': 'ga-action',
+            'type': 'ga-type',
+            'element': 'ga-element',
+            'value': 'ga-value'
         });
     });
 })
