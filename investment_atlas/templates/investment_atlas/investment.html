@@ -3,13 +3,12 @@
 
 {% block content %}
     <div class="atlas-landing__hero">
-        <video class="atlas-hero__media atlas-landing__hero-video" width="1920" height="1000"
-               poster="{{ page.hero_video.thumbnail }}" autoplay="true" loop="true" muted="true">
+        <video class="atlas-hero__media atlas-landing__hero-video"
+               {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
+               autoplay loop muted disableRemotePlayback>
             {% for source in page.hero_video.sources %}
                 <source src="{{ source.src }}" type="{{ source.type }}">
             {% endfor %}
-
-            <img class="atlas-hero__media" src="{{ page.hero_video.thumbnail }}" alt=""/>
         </video>
 
         <div class="atlas-container">
