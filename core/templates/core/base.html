@@ -43,6 +43,10 @@
 {% block head_sharing_metadata %}
     {% if request %}
         <meta property="og:image" content="
+
+
+
+
                 {% block meta_sharing_thumbnail %}{% static_absolute 'directory_components/images/opengraph-image.png' %}{% endblock %}">
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     {% endif %}
@@ -61,9 +65,9 @@
             })
         </script>
         <div id="atlas-cookie-banner" class="atlas-bg atlas-bg--grey-light">
-            <div class="atlas-container atlas-container--header atlas-p-t-xs atlas-regular">
+            <div class="atlas-container atlas-container--wide atlas-p-v-s atlas-regular">
                 <div id="atlas-cookie-prompt">
-                    <h2 class="atlas-h--s">Tell us whether you accept cookies</h2>
+                    <h2 class="atlas-h--s">Cookies on great.gov.uk</h2>
                     <p>We use <a class="atlas-link" href="{{ header_footer_urls.privacy_and_cookies }}">cookies to
                         collect information</a> about how you use great.gov.uk. We use this information to make the
                         website work as well as possible and improve government services.</p>
