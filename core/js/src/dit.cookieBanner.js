@@ -2,7 +2,7 @@ dit = window.dit || {}
 
 dit.cookieBanner = new function () {
     this.init = function (options) {
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', function () {
             this.banner = document.getElementById(options.bannerId);
             this.prompt = document.getElementById(options.promptId);
             this.thanks = document.getElementById(options.thanksId);
