@@ -2,7 +2,7 @@ dit = window.dit || {}
 
 dit.cookieBanner = new function () {
     this.init = function (options) {
-        window.addEventListener('DOMContentLoaded', function () {
+        window.addEventListener('DOMContentLoaded', (function () {
             this.banner = document.getElementById(options.bannerId);
             this.prompt = document.getElementById(options.promptId);
             this.thanks = document.getElementById(options.thanksId);
@@ -19,7 +19,7 @@ dit.cookieBanner = new function () {
             }
 
             this.bindEvents();
-        });
+        }).bind(this));
     }
 
     this.buildCookieString = function (name, value, options) {
