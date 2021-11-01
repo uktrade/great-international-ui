@@ -110,6 +110,11 @@ redirects = [
         '/international/content/investment/why-invest-in-the-uk/uk-infrastructure/',
     ),
     (
+
+        '/international/content/about-uk/why-choose-uk/uk-infrastructure//',
+        '/international/content/investment/why-invest-in-the-uk/uk-infrastructure/',
+    ),
+    (
         '/international/content/about-uk/industries/',
         '/international/content/investment/sectors/',
     ),
@@ -175,6 +180,10 @@ redirects = [
     ),
     (
         '/international/content/invest/how-to-setup-in-the-uk/access-finance-in-the-uk/',
+        '/international/content/investment/how-we-can-help/access-finance-in-the-uk/',
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/access-finance-in-the-uk//',
         '/international/content/investment/how-we-can-help/access-finance-in-the-uk/',
     ),
 

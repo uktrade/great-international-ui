@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: true
+          docker_layer_caching: false
       - restore_cache:
           key: v2-deps-{{ checksum "requirements_test.txt" }}
       - run:
@@ -33,7 +33,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker:
-        docker_layer_caching: true
+        docker_layer_caching: false
     - run:
         name: Run flake8
         command: |
