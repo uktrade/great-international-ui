@@ -3,19 +3,4 @@
 
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
-{% block header_js %}{% endblock %}
-
-{% comment %}
-These are prime candidates for removal but unfortunately the cookie notice won't work without them... Until a rewrite?!
-
-{% block head_js %}
-    <script src="{% static 'directory_components/js/dit.components.cookie-notice.js' %}"></script>
-    <script src="{% static 'directory_components/js/reactComponents.js' %}"></script>
-{% endblock %}
-{% block vendor_js %}
-    <script src="{% static 'directory_components/js/vendor/details-polyfill.js' %}"></script>
-    <script src="{% static 'directory_components/js/vendor/jquery-3.3.1.min.js' %}"></script>
-{% endblock %}
-{% endcomment %}
-
 {% block feedback_reporter %}{% endblock %}
