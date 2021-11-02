@@ -10,7 +10,7 @@ def test_get_sectors_label():
         'sub_sectors': ['Green housing', 'Urban', 'Renting']
     }
 
-    assert helpers.get_sectors_label(page) == 'Housing (Green housing, Urban, Renting)'
+    assert helpers.get_sectors_label(page) == '(Housing, Aerospace, Green housing, Urban, Renting)'
 
 
 def test_get_sectors_label_undefined_sectors():
@@ -35,7 +35,7 @@ def test_get_sectors_label_no_sector():
         'sub_sectors': ['Green housing', 'Urban', 'Renting']
     }
 
-    assert helpers.get_sectors_label(page) == ''
+    assert helpers.get_sectors_label(page) == '(Green housing, Urban, Renting)'
 
 
 def test_get_sectors_label_no_subsectors():
@@ -47,7 +47,7 @@ def test_get_sectors_label_no_subsectors():
         'sub_sectors': []
     }
 
-    assert helpers.get_sectors_label(page) == 'Housing'
+    assert helpers.get_sectors_label(page) == 'Housing, Aerospace'
 
 
 def test_get_sectors_label_blank_sector():

@@ -10,6 +10,7 @@
 - NOTICKET - Updated cookie banner
 - NOTICKET - Remove dependency on jQuery and directory-components scripts
 - NOTICKET - Remove unused CSS
+- GP2-3775 - Multi sector FE display
 
 ### Fixed bugs
 
