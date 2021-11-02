@@ -1323,7 +1323,9 @@ def test_atlas_opportunity_page_sectors_label(mock_cms_response, rf):
     response = MultilingualCMSPageFromPathView.as_view()(
         request, path='/international/content/investment/opportunities/test/')
 
-    assert response.context_data['sectors_label'] == 'Housing (Green housing, Urban, Renting)'
+    # we dont have sector, sub-sector relation in database hence putting everything in bracket rather showing
+    # indiviual sector with subsector
+    assert response.context_data['sectors_label'] == '(Housing, Aerospace, Green housing, Urban, Renting)'
 
 
 @pytest.mark.skip("No longer relevant - redirects stop this being accessed. Retaining test for awareness")
