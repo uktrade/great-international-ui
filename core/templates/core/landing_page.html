@@ -9,14 +9,20 @@
 {% block css_layout_class %}landing-page{% endblock %}
 
 {% block head_js %}
-  {{ block.super }}
-  <script src="{% static 'core/js/dit.tariffsCountrySelector.js' %}"></script>
+    {{ block.super }}
+    <script src="{% static 'core/js/dit.tariffsCountrySelector.js' %}"></script>
+{% endblock %}
+
+{% block head_css %}
+    {{ block.super }}
+    <link href="{% static 'directory_components/vendor/flag-icons/css/flag-icon.min.css' %}" media="all"
+          rel="stylesheet"/>
 {% endblock %}
 
 {% block content %}
 
-page.hero_title: {{page.hero_title}}
+    page.hero_title: {{ page.hero_title }}
 
-page.homepage_link_panels: {{page.homepage_link_panels}}
+    page.homepage_link_panels: {{ page.homepage_link_panels }}
 
 {% endblock content %}
