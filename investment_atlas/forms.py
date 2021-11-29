@@ -73,7 +73,15 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False,
     )
-    view = forms.ChoiceField()
+    view = forms.ChoiceField(
+        label='view',
+        widget=forms.RadioSelect(
+            attrs={
+                'onchange': 'this.form.submit()'
+            }
+        ),
+        required=False,
+    )
 
     def __init__(
             self,

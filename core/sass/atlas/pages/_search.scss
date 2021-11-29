@@ -3,14 +3,37 @@
 
 .atlas-search__controls {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  & > button:not(:first-child) {
-    margin-left: 10px;
+.atlas-search-filter__view {
+  display: flex;
+  flex: 1 1 auto;
+
+  .form-group {
+    margin: 0;
+    width: 100%;
+
+    ul {
+      display: flex;
+    }
+  }
+
+  .multiple-choice {
+    flex: 0 0 50%;
+    margin: 0;
+
+    .form-label {
+      padding-right: 1em;
+    }
   }
 }
 
 .atlas-search-filter__toggle {
+  width: auto;
+  flex: 1 1 auto;
+
   .atlas-button__icon:last-child {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;

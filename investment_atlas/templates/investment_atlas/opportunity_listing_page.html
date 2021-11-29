@@ -25,21 +25,9 @@
 
                             <div class="atlas-search__controls atlas-hidden-nojs">
                                 {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
-                                    {% if form.view.value == 'list' %}
-                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                                type="button"
-                                                onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
-                                            Map view
-                                        </button>
-                                    {% else %}
-                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                                type="button"
-                                                onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
-                                            List view
-                                        </button>
-                                    {% endif %}
-
-                                    {{ form.view.as_hidden }}
+                                    <div class="atlas-search-filter__view atlas-m-t-s">
+                                        {{ form.view }}
+                                    </div>
                                 {% endif %}
 
                                 <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"

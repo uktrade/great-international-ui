@@ -847,7 +847,6 @@ def test_atlas_opportunities_defaults_to_list_with_feature_off(mock_cms_response
     assert 'id="atlas-opportunities-map"' not in response.rendered_content
     assert 'atlas-search--as-map' not in response.rendered_content
     assert 'id="id_view"' not in response.rendered_content
-    assert 'Map view' not in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -870,7 +869,6 @@ def test_atlas_opportunities_map_view_shows_all_results(mock_cms_response, rf, s
 
     assert response.context_data['aws_cognito_pool_id'] == 'FOO-BAR-POOL-ID'
     assert 'id="id_view"' in response.rendered_content
-    assert "List view" in response.rendered_content
     assert 'id="atlas-opportunities-map"' in response.rendered_content
     assert 'atlas-search--as-map' in response.rendered_content
     assert len(response.context_data['pagination'].object_list) == 15
