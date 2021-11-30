@@ -63,42 +63,37 @@
 
                             {% else %}
                                 <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-
-                                    <fieldset class="atlas-search-type">
-                                        <a class="atlas-search-type__clear atlas-body--m"
-                                           href="{% url 'atlas-opportunities' %}">
+                                    <fieldset>
+                                        <div class="atlas-search-type">
+                                            <a class="atlas-search-type__clear atlas-body--m"
+                                               href="{% url 'atlas-opportunities' %}">
                                             <span class="atlas-icon">
                                                 {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                             </span>
-                                            <span class="atlas-visually-hidden">Change investment type</span>
-                                        </a>
+                                                <span class="atlas-visually-hidden">Change investment type</span>
+                                            </a>
 
-                                        <legend class="atlas-body--m atlas-p-l-m">
-                                            {{ selected_investment_type }}
-                                        </legend>
+                                            <legend class="atlas-body--m atlas-p-l-m">
+                                                {{ selected_investment_type }}
+                                            </legend>
+                                        </div>
+
+                                        <div class="atlas-p-l-m">
+                                            <div class="atlas-p-l-xs">
+                                                {% if selected_investment_type == 'Foreign direct investment' %}
+                                                    {{ form.sector }}
+                                                {% else %}
+                                                    {{ form.sub_sector }}
+                                                {% endif %}
+                                            </div>
+                                        </div>
                                     </fieldset>
 
-                                    <div class="atlas-p-l-m">
-                                        {% if sectors %}
-                                            {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
-                                        {% endif %}
-
-                                        {% if sub_sectors %}
-                                            {% include 'investment_atlas/includes/search_filter.html' with label='Asset class' field=form.sub_sector %}
-                                        {% endif %}
-
-                                        {% if regions|length > 1 %}
+                                    {% if regions|length > 1 %}
+                                        <div class="atlas-p-l-m">
                                             {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
-                                        {% endif %}
-
-                                        {% if scales %}
-                                            {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
-                                        {% endif %}
-
-                                        {% if planning_statuses %}
-                                            {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
-                                        {% endif %}
-                                    </div>
+                                        </div>
+                                    {% endif %}
 
                                     <p class="atlas-m-0 atlas-p-v-s">
                                         <a class="atlas-link" href="{% url 'atlas-opportunities' %}">

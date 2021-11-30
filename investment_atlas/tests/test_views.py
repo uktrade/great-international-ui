@@ -791,7 +791,7 @@ def create_mock_opportunities_page(opportunities_count):
         opportunities.append({
             'id': index,
             'title': 'Some Opp {}'.format(index),
-            'sub_sectors': ['energy'],
+            'sub_sectors': ['Energy'],
             'scale_value': '0.00',
             'investment_type': 'Investment Type One',
             'planning_status': 'Planning Status Five',
@@ -953,10 +953,102 @@ def test_atlas_opportunities_shows_other_filters_with_selected_investment_type(m
     assert 'Investment Type One' not in response.rendered_content
     assert 'Investment Type Two' in response.rendered_content
     assert 'Investment Type Three' not in response.rendered_content
-    assert 'Asset class' in response.rendered_content
+    assert 'Change investment type' in response.rendered_content
     assert 'UK nation or region' in response.rendered_content
     assert 'Clear all filters' in response.rendered_content
     assert 'Update results' in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_shows_sector_filter_for_Foreign_Direct_investment_type(mock_cms_response, rf):
+    page = create_mock_opportunities_page(15)
+
+    page['opportunity_list'][1]['investment_type'] = 'Foreign direct investment'
+    page['opportunity_list'][2]['investment_type'] = 'Foreign direct investment'
+    page['opportunity_list'][2]['related_regions'] = [{'title': 'Scotland'}]
+    page['opportunity_list'][2]['sub_sectors'] = ['Energy', 'Nuclear']
+    page['opportunity_list'][2]['related_sectors'] = [
+        {
+            'related_sector': {
+                'heading': 'Automotive'
+            }
+        },
+        {
+            'related_sector': {
+                'heading': 'Aerospace'
+            }
+        },
+    ]
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?investment_type=Foreign+direct+investment'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?investment_type=Foreign+direct+investment'
+    )
+
+    assert response.context_data['selected_investment_type'] == 'Foreign direct investment'
+
+    # Sector filter should show
+    assert 'Automotive' in response.rendered_content
+    assert 'Aerospace' in response.rendered_content
+
+    # Sub-sector filter should not show
+    assert 'Energy' not in response.rendered_content
+    assert 'Nuclear' not in response.rendered_content
+
+    # Region filter should show
+    assert 'UK nation or region' in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_shows_subsector_filter_for_not_Foreign_Direct_investment_type(mock_cms_response, rf):
+    page = create_mock_opportunities_page(15)
+
+    page['opportunity_list'][1]['investment_type'] = 'Capital investment - real estate'
+    page['opportunity_list'][2]['investment_type'] = 'Capital investment - real estate'
+    page['opportunity_list'][2]['related_regions'] = [{'title': 'Scotland'}]
+    page['opportunity_list'][2]['sub_sectors'] = ['Energy', 'Nuclear']
+    page['opportunity_list'][2]['related_sectors'] = [
+        {
+            'related_sector': {
+                'heading': 'Automotive'
+            }
+        },
+        {
+            'related_sector': {
+                'heading': 'Aerospace'
+            }
+        },
+    ]
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?investment_type=Capital+investment+-+real+estate'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?investment_type=Capital+investment+-+real+estate'
+    )
+
+    assert response.context_data['selected_investment_type'] == 'Capital investment - real estate'
+
+    # Sector filter should not show
+    assert 'Automotive' not in response.rendered_content
+    assert 'Aerospace' not in response.rendered_content
+
+    # Sub-sector filter should show
+    assert 'Energy' in response.rendered_content
+    assert 'Nuclear' in response.rendered_content
+
+    # Region filter should show
+    assert 'UK nation or region' in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

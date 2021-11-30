@@ -44,21 +44,10 @@
   }
 }
 
-.atlas-search__filters {
-  & fieldset {
-    break-inside: avoid;
-  }
-
-  @media (min-width: $breakpoint-xsmall) and (max-width: ($breakpoint-large - 1px)) {
-    columns: 2;
-  }
-}
-
 .atlas-search-type {
   position: relative;
 
   & legend {
-    float: left;
     position: relative;
     pointer-events: none;
     font-weight: 400;
