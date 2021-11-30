@@ -64,8 +64,12 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
 
     @property
+    def selected_investment_type(self):
+        return self.request.GET.get('investment_type')
+
+    @property
     def investment_type(self):
-        return core_helpers.InvestmentTypeFilter(self.request.GET.getlist('investment_type', []))
+        return core_helpers.InvestmentTypeFilter(self.selected_investment_type)
 
     @property
     def planning_status(self):
@@ -218,7 +222,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                 self.planning_status
             )
 
-        if self.investment_type.investment_types:
+        if self.investment_type.investment_type:
             filtered_opportunities = core_helpers.filter_opportunities(
                 filtered_opportunities,
                 self.investment_type
@@ -259,8 +263,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             filters.append(region)
         for sub_sector in self.sub_sector.sub_sectors:
             filters.append(sub_sector)
-        for investment_type in self.investment_type.investment_types:
-            filters.append(investment_type)
         for planning_status in self.planning_status.planning_statuses:
             filters.append(planning_status)
 
@@ -305,6 +307,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             regions=self.all_regions,
             sorting_filters=self.all_sort_filters,
             investment_types=self.all_investment_types,
+            selected_investment_type=self.selected_investment_type,
             planning_statuses=self.all_planning_statuses,
             sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             pagination=self.pagination,

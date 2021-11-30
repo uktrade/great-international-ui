@@ -45,7 +45,7 @@
                              class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
                             <div class="atlas-search__scroll-fade"></div>
 
-                            {% if not form.investment_type.value %}
+                            {% if not selected_investment_type %}
                                 <div class="atlas-bg atlas-bg--white atlas-p-h-s atlas-p-b-xs">
                                     <h2 class="atlas-h--s atlas-regular atlas-p-t-s">Choose investment type</h2>
 
@@ -63,25 +63,42 @@
 
                             {% else %}
                                 <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                                    {% if sectors %}
-                                        {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
-                                    {% endif %}
 
-                                    {% if sub_sectors %}
-                                        {% include 'investment_atlas/includes/search_filter.html' with label='Asset class' field=form.sub_sector %}
-                                    {% endif %}
+                                    <fieldset class="atlas-search-type">
+                                        <a class="atlas-search-type__clear atlas-body--m"
+                                           href="{% url 'atlas-opportunities' %}">
+                                            <span class="atlas-icon">
+                                                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                            </span>
+                                            <span class="atlas-visually-hidden">Change investment type</span>
+                                        </a>
 
-                                    {% if regions|length > 1 %}
-                                        {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
-                                    {% endif %}
+                                        <legend class="atlas-body--m atlas-p-l-m">
+                                            {{ selected_investment_type }}
+                                        </legend>
+                                    </fieldset>
 
-                                    {% if scales %}
-                                        {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
-                                    {% endif %}
+                                    <div class="atlas-p-l-m">
+                                        {% if sectors %}
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
+                                        {% endif %}
 
-                                    {% if planning_statuses %}
-                                        {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
-                                    {% endif %}
+                                        {% if sub_sectors %}
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='Asset class' field=form.sub_sector %}
+                                        {% endif %}
+
+                                        {% if regions|length > 1 %}
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
+                                        {% endif %}
+
+                                        {% if scales %}
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
+                                        {% endif %}
+
+                                        {% if planning_statuses %}
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
+                                        {% endif %}
+                                    </div>
 
                                     <p class="atlas-m-0 atlas-p-v-s">
                                         <a class="atlas-link" href="{% url 'atlas-opportunities' %}">

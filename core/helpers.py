@@ -123,13 +123,12 @@ class SubSectorFilter:
 
 
 class InvestmentTypeFilter:
-    def __init__(self, investment_types):
-        self.investment_types = investment_types
+    def __init__(self, investment_type):
+        self.investment_type = investment_type
 
     def matches(self, opportunity):
-        if 'investment_type' in opportunity and opportunity['investment_type']:
-            if opportunity['investment_type'] in self.investment_types:
-                return True
+        if 'investment_type' in opportunity and opportunity['investment_type'] == self.investment_type:
+            return True
         return False
 
 
