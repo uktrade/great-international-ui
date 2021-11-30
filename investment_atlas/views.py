@@ -294,7 +294,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                 'view': self.view,
                 'sub_sector': self.filters_chosen,
                 'planning_status': self.filters_chosen,
-                'investment_type': self.filters_chosen,
+                'investment_type': self.selected_investment_type,
             },
         )
 
