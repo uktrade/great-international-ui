@@ -62,20 +62,22 @@
                                 </div>
 
                             {% else %}
+                                
                                 <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                                    <fieldset>
+                                    <fieldset aria-labelledby="selected_investment_type">
                                         <div class="atlas-search-type">
                                             <a class="atlas-search-type__clear atlas-body--m"
                                                href="{% url 'atlas-opportunities' %}">
-                                            <span class="atlas-icon">
-                                                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                            </span>
+                                                <span class="atlas-icon">
+                                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                                </span>
                                                 <span class="atlas-visually-hidden">Change investment type</span>
                                             </a>
 
-                                            <legend class="atlas-body--m atlas-p-l-m">
+                                            <div id="selected_investment_type"
+                                                 class="atlas-search-type__legend atlas-body--m atlas-p-l-m">
                                                 {{ selected_investment_type }}
-                                            </legend>
+                                            </div>
                                         </div>
 
                                         <div class="atlas-p-l-m">

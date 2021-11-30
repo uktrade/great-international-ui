@@ -46,12 +46,6 @@
 
 .atlas-search-type {
   position: relative;
-
-  & legend {
-    position: relative;
-    pointer-events: none;
-    font-weight: 400;
-  }
 }
 
 .atlas-search-type__clear {
@@ -76,10 +70,15 @@
       margin-left: -5px;
     }
 
-    & + legend {
+    & + .atlas-search-type__legend {
       text-decoration: underline;
     }
   }
+}
+
+.atlas-search-type__legend {
+  position: relative;
+  pointer-events: none;
 }
 
 $submit-spacing-bottom: map-get($spacings, 'm');
