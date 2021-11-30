@@ -53,7 +53,7 @@
                                         <ul>
                                             {% for choice in form.investment_type %}
                                                 <li class="atlas-p-t-s">
-                                                    <a href="?{% update_query_params investment_type=choice.choice_label %}"
+                                                    <a href="?{% update_query_params investment_type=choice.choice_label view=form.view.value %}"
                                                        class="atlas-search__investment-type atlas-link--invert">{{ choice.choice_label }}</a>
                                                 </li>
                                             {% endfor %}
@@ -67,7 +67,7 @@
                                     <fieldset aria-labelledby="selected_investment_type">
                                         <div class="atlas-search-type">
                                             <a class="atlas-search-type__clear atlas-body--m"
-                                               href="{% url 'atlas-opportunities' %}">
+                                               href="{% url 'atlas-opportunities' %}?view={{ form.view.value }}">
                                                 <span class="atlas-icon">
                                                     {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                                 </span>
