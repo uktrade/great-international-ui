@@ -54,6 +54,10 @@
   }
 }
 
+.atlas-search__investment-type {
+  display: block;
+}
+
 $submit-spacing-bottom: map-get($spacings, 'm');
 $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
 

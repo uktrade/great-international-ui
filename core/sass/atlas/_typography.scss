@@ -140,6 +140,15 @@
   }
 }
 
+.atlas-link--invert {
+  color: $atlas-body;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .atlas-cms-text {
   & h2 {
     @extend .atlas-h--l;

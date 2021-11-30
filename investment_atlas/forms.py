@@ -58,10 +58,7 @@ class InvestmentOpportunitySearchForm(forms.Form):
     )
     investment_type = forms.ChoiceField(
         label='investment_type',
-        widget=forms.CheckboxSelectInlineLabelMultiple(
-            attrs={'id': 'checkbox-investment_type'},
-            use_nice_ids=True,
-        ),
+        widget=forms.RadioSelect(),
         required=False
     )
     sort_by = forms.ChoiceField(
