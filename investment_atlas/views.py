@@ -259,14 +259,20 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             filters.append(sector)
         for scale in self.scale.selected_scales:
             filters.append(scale.title)
-        for region in self.region.regions:
-            filters.append(region)
         for sub_sector in self.sub_sector.sub_sectors:
             filters.append(sub_sector)
         for planning_status in self.planning_status.planning_statuses:
             filters.append(planning_status)
 
         return filters
+
+    @property
+    def regions_chosen(self):
+        regions = []
+        for region in self.region.regions:
+            regions.append(region)
+
+        return regions
 
     @property
     def sorting_chosen(self):
@@ -312,7 +318,8 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
-            filters=self.filters_chosen,
+            filters_chosen=self.filters_chosen,
+            regions_chosen=self.regions_chosen,
             current_page_num=self.page_number,
             form=self.opportunity_search_form,
             aws_cognito_pool_id=settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID,

@@ -126,6 +126,24 @@
                                     </div>
                                 </div>
 
+                                <div class="atlas-search-info">
+                                    {% if filters_chosen %}
+                                        <p>In
+                                            {% for filter in filters_chosen %}
+                                                {{ filter }}
+                                            {% endfor %}
+                                        </p>
+                                    {% endif %}
+
+                                    {% if regions_chosen %}
+                                        <p>In
+                                            {% for region in regions_chosen %}
+                                                {{ region }}
+                                            {% endfor %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+
                                 <ul>
                                     {% for opportunity in pagination.object_list %}
                                         <li>

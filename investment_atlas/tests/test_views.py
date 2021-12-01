@@ -168,55 +168,6 @@ def test_get_num_of_opportunities_for_opportunity_search(
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_filters_chosen_for_opportunity_search(
-        mock_cms_response,
-        rf,
-):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ],
-            'slug': 'opportunities'
-        },
-        'page_type': 'InvestmentOpportunityListingPage',
-        'opportunity_list': [
-            {
-                'id': 6,
-                'title': 'Some Opp 1',
-                'sub_sectors': ['energy', 'housing-led'],
-                'scale_value': '1000.00',
-                'related_regions': [
-                    {
-                        'title': 'South of England'
-                    }
-                ],
-                'related_sectors': [
-                    {
-                        'related_sector': {
-                            'heading': 'Aerospace'
-                        }
-                    },
-                ],
-            },
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/investment/opportunities/?scale=<+£100m')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InvestmentOpportunitySearchView.as_view()(
-        request, path='/international/investment/opportunities/?scale=<+£100m')
-
-    assert len(response.context_data['filters']) == 1
-    assert '< £100m' in response.context_data['filters']
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_sorting_filters_chosen_for_opportunity_search(
         mock_cms_response,
         rf,
@@ -1049,6 +1000,32 @@ def test_atlas_opportunities_shows_subsector_filter_for_not_Foreign_Direct_inves
 
     # Region filter should show
     assert 'UK nation or region' in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_shows_selected_filters(mock_cms_response, rf):
+    page = create_mock_opportunities_page(15)
+    #
+    # page['opportunity_list'][1]['investment_type'] = 'Foreign direct investment'
+    # page['opportunity_list'][2]['investment_type'] = 'Foreign direct investment'
+    # page['opportunity_list'][2]['sub_sectors'] = ['Energy', 'Nuclear']
+    # page['opportunity_list'][3]['investment_type'] = 'Foreign direct investment'
+    # page['opportunity_list'][3]['related_regions'] = [{'title': 'Scotland'}]
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get(
+        '/international/investment/opportunities/?investment_type=Foreign+direct+investment&sector=Automotive&sector=Aerospace&region=Midlands'
+    )
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request,
+        path='/international/investment/opportunities/?investment_type=Foreign+direct+investment&sector=Automotive&sector=Aerospace&region=Midlands'
+    )
+
+    assert 'Automotive' in response.context_data['filters_chosen']
+    assert 'Aerospace' in response.context_data['filters_chosen']
+    assert 'Midlands' in response.context_data['regions_chosen']
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
