@@ -161,7 +161,10 @@ def test_atlas_opportunities_num_of_results(mock_cms_response, rf):
         request, path='/international/investment/opportunities?sector=Aerospace')
 
     assert response.context_data['num_of_opportunities'] == 2
-    assert '2 opportunities found' in response.rendered_content
+
+    # Collapse consecutive whitespace
+    rendered = ' '.join(response.rendered_content.split())
+    assert '2 opportunities found' in rendered
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -225,7 +228,10 @@ def test_atlas_opportunities_num_of_results_singular(mock_cms_response, rf):
         request, path='/international/investment/opportunities?region=Midlands')
 
     assert response.context_data['num_of_opportunities'] == 1
-    assert '1 opportunity found' in response.rendered_content
+
+    # Collapse consecutive whitespace
+    rendered = ' '.join(response.rendered_content.split())
+    assert '1 opportunity found' in rendered
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -291,7 +297,9 @@ def test_atlas_opportunities_num_of_results_includes_investment_type_selected(mo
         request, path='/international/investment/opportunities?investment_type=Foreign+direct+investment')
 
     assert response.context_data['num_of_opportunities'] == 2
-    assert '2 Foreign direct investment opportunities found' in response.rendered_content
+    # Collapse consecutive whitespace
+    rendered = ' '.join(response.rendered_content.split())
+    assert '2 Foreign direct investment opportunities found' in rendered
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
