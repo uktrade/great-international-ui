@@ -101,10 +101,7 @@ def test_atlas_opportunities_region_and_sector_filters(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_num_of_opportunities_for_opportunity_search(
-        mock_cms_response,
-        rf,
-):
+def test_atlas_opportunities_num_of_results(mock_cms_response, rf):
     page = {
         'title': 'test',
         'meta': {
@@ -164,6 +161,73 @@ def test_get_num_of_opportunities_for_opportunity_search(
         request, path='/international/investment/opportunities?sector=Aerospace')
 
     assert response.context_data['num_of_opportunities'] == 2
+    assert '2 opportunities found' in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_num_of_results_includes_investment_type_selected(mock_cms_response, rf):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'investment_type': 'Foreign direct investment',
+                'related_regions': [
+                    {
+                        'title': 'South of England'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'investment_type': 'Foreign direct investment',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/investment/opportunities/?investment_type=Foreign+direct+investment')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request, path='/international/investment/opportunities?investment_type=Foreign+direct+investment')
+
+    assert response.context_data['num_of_opportunities'] == 2
+    assert '2 Foreign direct investment opportunities found' in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
