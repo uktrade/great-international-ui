@@ -128,7 +128,11 @@
                             {% endif %}
 
                             <p class="atlas-m-b-s">
-                                {{ num_of_opportunities }} {{ selected_investment_type|lower|default_if_none:'' }}
+                                {{ num_of_opportunities }}
+                                {% if selected_investment_type %}
+                                    <a class="atlas-link" title="Change investment type"
+                                       href="{% url 'atlas-opportunities' %}">{{ selected_investment_type|lower }}</a>
+                                {% endif %}
                                 opportunit{{ num_of_opportunities|pluralize:"y,ies" }} found
                             </p>
 
