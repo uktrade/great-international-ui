@@ -1,7 +1,7 @@
 {% extends 'investment_atlas/base_cms.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load update_query_params from atlas_tags %}
+{% load update_query_params chosen_filters from atlas_tags %}
 
 {% load pagination from directory_components %}
 
@@ -127,8 +127,8 @@
                                 </div>
 
                                 <div class="atlas-search-info">
-                                    {% include 'investment_atlas/includes/chosen_filters.html' with filters=filters_chosen %}
-                                    {% include 'investment_atlas/includes/chosen_filters.html' with filters=regions_chosen %}
+                                    {% chosen_filters 'what' filters_chosen %}
+                                    {% chosen_filters 'region' regions_chosen %}
                                 </div>
 
                                 <ul>

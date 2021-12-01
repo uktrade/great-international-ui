@@ -32,14 +32,20 @@ def cms_url():
 @register.inclusion_tag('investment_atlas/includes/chosen_filters.html', takes_context=True)
 def chosen_filters(context, filter_name, applied_filters):
     filters = []
-    query = context['request'].GET.copy()
 
     for filter in applied_filters:
-        updated_query = query.copy()
-        del updated_query[filter_name]
         remove_url = context['request'].path
-        if updated_query:
-            remove_url += '?' + updated_query.urlencode()
+        query = context['request'].GET.copy()
+        query_filter = query.getlist(filter_name)
+
+        if query_filter:
+            query_filter.remove(filter)
+            query.setlist(filter_name, query_filter)
+            updated_query = query.urlencode()
+
+            if updated_query:
+                remove_url += '?' + updated_query
+
         filters.append({
             'label': filter,
             'remove_url': remove_url

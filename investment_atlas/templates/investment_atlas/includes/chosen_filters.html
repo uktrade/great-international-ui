@@ -1,4 +1,14 @@
 {% for filter in chosen_filters %}
-    <a href="{{ filter.remove_url }}">{{ filter.label }}</a>
+    <span class="atlas-filter-tag">
+        {{ filter.label }}
+        <a class="atlas-filter-tag__remove" href="{{ filter.remove_url }}">
+            <span class="atlas-visually-hidden">(Remove)</span>
+            <span class="atlas-icon">
+                {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+            </span>
+        </a>
+    </span>
+    {% if forloop.revcounter0 > 1 %},
+    {% elif forloop.revcounter0 == 1 %} and {% endif %}
 {% endfor %}
 

@@ -1,4 +1,5 @@
 import pytest
+import re
 from bs4 import BeautifulSoup
 from django.template import Template, Context
 from django.test import RequestFactory
@@ -65,7 +66,20 @@ def test_cms_url(settings):
 
 
 @pytest.mark.parametrize('page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls', (
+        # One filter -- no comma, no 'and'
         ("/page-url?foo=One", 'foo', ['One'], 0, False, ["/page-url"]),
+        # Two filters -- no comma, 'and' present
+        ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], 0, True, ["/page-url?foo=Two", "/page-url?foo=One"]),
+        # Three filters -- one comma, 'and' present
+        ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], 1, True,
+         ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
+        # 5 filters -- 3 commas, 'and' present
+        ("/?a=1&a=2&a=3&a=4&a=5", 'a', ['1', '2', '3', '4', '5'], 3, True,
+         ["/?a=2&amp;a=3&amp;a=4&amp;a=5", "/?a=1&amp;a=3&amp;a=4&amp;a=5", "/?a=1&amp;a=2&amp;a=4&amp;a=5",
+          "/?a=1&amp;a=2&amp;a=3&amp;a=5", "/?a=1&amp;a=2&amp;a=3&amp;a=4"]),
+        # test other parameters are retained
+        ("/?foo=One&bar=baz", 'foo', ['One'], 0, False, ["/?bar=baz"])
+
 ))
 def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls):
     request_factory = RequestFactory()
@@ -82,11 +96,12 @@ def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, num_comm
     rendered = template.render(context)
 
     for chosen_filter in chosen_filters:
-        assert chosen_filter in rendered
+        # Text node between tags
+        assert re.search('>\\s*{}\\s*<'.format(chosen_filter), rendered)
     assert rendered.count(',') == num_commas
     if shows_or:
-        assert ' or ' in rendered
+        assert ' and ' in rendered
     else:
-        assert ' or ' not in rendered
+        assert ' and ' not in rendered
     for url in remove_urls:
         assert '"{}"'.format(url) in rendered
