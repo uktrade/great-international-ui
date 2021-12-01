@@ -127,7 +127,9 @@
                                 </div>
                             {% endif %}
 
-                            <p class="atlas-m-b-s">{{ num_of_opportunities }} opportunities found</p>
+                            <p class="atlas-m-b-s">
+                                {{ num_of_opportunities }} opportunit{{ num_of_opportunities|pluralize:"y,ies" }} found
+                            </p>
 
                             {% if filters_chosen or regions_chosen %}
                                 <div class="atlas-search-info atlas-m-b-s">

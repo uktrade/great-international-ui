@@ -165,6 +165,70 @@ def test_atlas_opportunities_num_of_results(mock_cms_response, rf):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_atlas_opportunities_num_of_results_singular(mock_cms_response, rf):
+    page = {
+        'title': 'test',
+        'meta': {
+            'languages': [
+                ['en-gb', 'English'],
+                ['fr', 'Français'],
+                ['de', 'Deutsch'],
+            ],
+            'slug': 'opportunities'
+        },
+        'page_type': 'InvestmentOpportunityListingPage',
+        'opportunity_list': [
+            {
+                'id': 6,
+                'title': 'Some Opp 1',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'related_regions': [
+                    {
+                        'title': 'South of England'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+            {
+                'id': 4,
+                'title': 'Some Opp 2',
+                'sub_sectors': ['energy', 'housing-led'],
+                'scale_value': '1000.00',
+                'related_regions': [
+                    {
+                        'title': 'Midlands'
+                    }
+                ],
+                'related_sectors': [
+                    {
+                        'related_sector': {
+                            'heading': 'Aerospace'
+                        }
+                    },
+                ],
+            },
+        ]
+    }
+
+    mock_cms_response.return_value = create_response(page)
+
+    request = rf.get('/international/investment/opportunities/?region=Midlands')
+    request.LANGUAGE_CODE = 'en-gb'
+    response = InvestmentOpportunitySearchView.as_view()(
+        request, path='/international/investment/opportunities?region=Midlands')
+
+    assert response.context_data['num_of_opportunities'] == 1
+    assert '1 opportunity found' in response.rendered_content
+
+
+@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_atlas_opportunities_num_of_results_includes_investment_type_selected(mock_cms_response, rf):
     page = {
         'title': 'test',
