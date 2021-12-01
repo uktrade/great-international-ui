@@ -127,15 +127,17 @@
                                 </div>
                             {% endif %}
 
-                            <div class="atlas-search-info">
-                                {% if selected_investment_type == 'Foreign direct investment' %}
-                                    {% chosen_filters 'sector' filters_chosen %}
-                                {% else %}
-                                    {% chosen_filters 'sub_sector' filters_chosen %}
-                                {% endif %}
+                            {% if filters_chosen or regions_chosen %}
+                                <div class="atlas-search-info atlas-m-b-s">
+                                    {% if selected_investment_type == 'Foreign direct investment' %}
+                                        {% chosen_filters 'sector' filters_chosen %}
+                                    {% else %}
+                                        {% chosen_filters 'sub_sector' filters_chosen %}
+                                    {% endif %}
 
-                                {% chosen_filters 'region' regions_chosen %}
-                            </div>
+                                    {% chosen_filters 'region' regions_chosen %}
+                                </div>
+                            {% endif %}
 
                             {% if results_count > 0 %}
                                 <ul>
