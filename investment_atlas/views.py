@@ -295,7 +295,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             initial={
                 'sector': self.filters_chosen,
                 'scale': self.filters_chosen,
-                'region': self.filters_chosen,
+                'region': self.regions_chosen,
                 'sort_by': self.sorting_chosen,
                 'view': self.view,
                 'sub_sector': self.filters_chosen,

@@ -13,10 +13,7 @@ from investment_atlas.views import InvestmentOpportunitySearchView
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_region_sector_scale_filter_for_opportunity_search(
-        mock_cms_response,
-        rf,
-):
+def test_atlas_opportunities_region_and_sector_filters(mock_cms_response, rf):
     page = {
         'title': 'test',
         'meta': {
@@ -78,7 +75,7 @@ def test_region_sector_scale_filter_for_opportunity_search(
                 'related_sectors': [
                     {
                         'related_sector': {
-                            'heading': 'Automotive'
+                            'heading': 'Aerospace'
                         }
                     },
                 ],
@@ -89,16 +86,18 @@ def test_region_sector_scale_filter_for_opportunity_search(
     mock_cms_response.return_value = create_response(page)
 
     request = rf.get(
-        '/international/investment/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands'
+        '/international/investment/opportunities/?sector=Aerospace&region=Midlands'
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = InvestmentOpportunitySearchView.as_view()(
         request,
-        path='/international/investment/opportunities/?sector=Aerospace&scale=Value+unknown&region=Midlands'
+        path='/international/investment/opportunities/?sector=Aerospace&region=Midlands'
     )
 
     assert len(response.context_data['pagination'].object_list) == 1
     assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
+    assert response.context_data['form']['region'].initial == ['Midlands']
+    assert response.context_data['form']['sector'].initial == ['Aerospace']
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
