@@ -141,6 +141,39 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
   }
 }
 
+.atlas-filter-tag {
+  position: relative;
+  display: inline-block;
+  margin: .25em;
+  padding: .4em .8em .4em 2.4em;
+  background: $atlas-grey-light;
+  border: 1px solid $atlas-body;
+  border-radius: 5px;
+}
+
+.atlas-filter-tag__remove {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.4em;
+  height: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .atlas-icon {
+    width: 1em;
+    height: 1em;
+    color: $atlas-body;
+  }
+
+  &:hover {
+    & .atlas-icon {
+      transform: scale(1.2);
+    }
+  }
+}
+
 // Map
 #atlas-opportunities-map {
   position: absolute;

@@ -125,12 +125,19 @@
                                         {{ form.sort_by }}
                                     </div>
                                 </div>
+                            {% endif %}
 
-                                <div class="atlas-search-info">
-                                    {% chosen_filters 'what' filters_chosen %}
-                                    {% chosen_filters 'region' regions_chosen %}
-                                </div>
+                            <div class="atlas-search-info">
+                                {% if selected_investment_type == 'Foreign direct investment' %}
+                                    {% chosen_filters 'sector' filters_chosen %}
+                                {% else %}
+                                    {% chosen_filters 'sub_sector' filters_chosen %}
+                                {% endif %}
 
+                                {% chosen_filters 'region' regions_chosen %}
+                            </div>
+
+                            {% if results_count > 0 %}
                                 <ul>
                                     {% for opportunity in pagination.object_list %}
                                         <li>

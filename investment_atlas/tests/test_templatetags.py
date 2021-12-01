@@ -65,23 +65,19 @@ def test_cms_url(settings):
     assert 'http://example.org/cms-url' in rendered
 
 
-@pytest.mark.parametrize('page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls', (
-        # One filter -- no comma, no 'and'
-        ("/page-url?foo=One", 'foo', ['One'], 0, False, ["/page-url"]),
-        # Two filters -- no comma, 'and' present
-        ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], 0, True, ["/page-url?foo=Two", "/page-url?foo=One"]),
-        # Three filters -- one comma, 'and' present
-        ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], 1, True,
+@pytest.mark.parametrize('page_url, filter_name, chosen_filters, shows_and, remove_urls', (
+        # One filter
+        ("/page-url?foo=One", 'foo', ['One'], False, ["/page-url"]),
+        # Two filters
+        ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], True, ["/page-url?foo=Two", "/page-url?foo=One"]),
+        # Three filters
+        ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], True,
          ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
-        # 5 filters -- 3 commas, 'and' present
-        ("/?a=1&a=2&a=3&a=4&a=5", 'a', ['1', '2', '3', '4', '5'], 3, True,
-         ["/?a=2&amp;a=3&amp;a=4&amp;a=5", "/?a=1&amp;a=3&amp;a=4&amp;a=5", "/?a=1&amp;a=2&amp;a=4&amp;a=5",
-          "/?a=1&amp;a=2&amp;a=3&amp;a=5", "/?a=1&amp;a=2&amp;a=3&amp;a=4"]),
         # test other parameters are retained
-        ("/?foo=One&bar=baz", 'foo', ['One'], 0, False, ["/?bar=baz"])
+        ("/?foo=One&bar=baz", 'foo', ['One'], False, ["/?bar=baz"])
 
 ))
-def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls):
+def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, shows_and, remove_urls):
     request_factory = RequestFactory()
     request = request_factory.get(page_url)
     template = Template(
@@ -95,13 +91,34 @@ def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, num_comm
     })
     rendered = template.render(context)
 
+    # Check the filter label is rendered
     for chosen_filter in chosen_filters:
         # Text node between tags
         assert re.search('>\\s*{}\\s*<'.format(chosen_filter), rendered)
-    assert rendered.count(',') == num_commas
-    if shows_or:
+
+    # Check whether 'and' is shown
+    if shows_and:
         assert ' and ' in rendered
     else:
         assert ' and ' not in rendered
+
+    # Check URLs
     for url in remove_urls:
         assert '"{}"'.format(url) in rendered
+
+
+def test_chosen_filter_empty():
+    request_factory = RequestFactory()
+    request = request_factory.get("/?foo=bar")
+    template = Template(
+        '{% load chosen_filters from atlas_tags %}'
+        '{% chosen_filters filter_name chosen_filters %}'
+    )
+    context = Context({
+        'filter_name': 'bar',
+        'chosen_filters': [],
+        'request': request
+    })
+    rendered = template.render(context)
+
+    assert rendered.strip() == ''
