@@ -178,7 +178,7 @@ def sort_opportunities(opportunities, sort_by_chosen):
 
     if sort_filter.value == 'scale_value':
         opportunities.sort(
-            key=lambda x: float(x['scale_value']),
+            key=lambda x: float(x['scale_value'] or 0),
             reverse=sort_filter.reverse
         )
 
