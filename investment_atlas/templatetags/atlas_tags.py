@@ -27,3 +27,23 @@ def collapse_text(html, text_id):
 @register.simple_tag()
 def cms_url():
     return settings.DIRECTORY_CMS_API_CLIENT_BASE_URL
+
+
+@register.inclusion_tag('investment_atlas/includes/chosen_filters.html', takes_context=True)
+def chosen_filters(context, filter_name, applied_filters):
+    filters = []
+    query = context['request'].GET.copy()
+
+    for filter in applied_filters:
+        updated_query = query.copy()
+        del updated_query[filter_name]
+        remove_url = context['request'].path
+        if updated_query:
+            remove_url += '?' + updated_query.urlencode()
+        filters.append({
+            'label': filter,
+            'remove_url': remove_url
+        })
+    return {
+        'chosen_filters': filters
+    }

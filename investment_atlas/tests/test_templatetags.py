@@ -62,3 +62,31 @@ def test_cms_url(settings):
     rendered = template.render(context)
 
     assert 'http://example.org/cms-url' in rendered
+
+
+@pytest.mark.parametrize('page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls', (
+        ("/page-url?foo=One", 'foo', ['One'], 0, False, ["/page-url"]),
+))
+def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, num_commas, shows_or, remove_urls):
+    request_factory = RequestFactory()
+    request = request_factory.get(page_url)
+    template = Template(
+        '{% load chosen_filters from atlas_tags %}'
+        '{% chosen_filters filter_name chosen_filters %}'
+    )
+    context = Context({
+        'filter_name': filter_name,
+        'chosen_filters': chosen_filters,
+        'request': request
+    })
+    rendered = template.render(context)
+
+    for chosen_filter in chosen_filters:
+        assert chosen_filter in rendered
+    assert rendered.count(',') == num_commas
+    if shows_or:
+        assert ' or ' in rendered
+    else:
+        assert ' or ' not in rendered
+    for url in remove_urls:
+        assert '"{}"'.format(url) in rendered

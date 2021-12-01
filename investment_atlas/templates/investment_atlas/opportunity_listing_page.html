@@ -127,21 +127,8 @@
                                 </div>
 
                                 <div class="atlas-search-info">
-                                    {% if filters_chosen %}
-                                        <p>In
-                                            {% for filter in filters_chosen %}
-                                                {{ filter }}
-                                            {% endfor %}
-                                        </p>
-                                    {% endif %}
-
-                                    {% if regions_chosen %}
-                                        <p>In
-                                            {% for region in regions_chosen %}
-                                                {{ region }}
-                                            {% endfor %}
-                                        </p>
-                                    {% endif %}
+                                    {% include 'investment_atlas/includes/chosen_filters.html' with filters=filters_chosen %}
+                                    {% include 'investment_atlas/includes/chosen_filters.html' with filters=regions_chosen %}
                                 </div>
 
                                 <ul>
