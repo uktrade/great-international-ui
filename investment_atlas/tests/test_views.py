@@ -299,7 +299,7 @@ def test_atlas_opportunities_num_of_results_includes_investment_type_selected(mo
     assert response.context_data['num_of_opportunities'] == 2
     # Collapse consecutive whitespace
     rendered = ' '.join(response.rendered_content.split())
-    assert '2 Foreign direct investment opportunities found' in rendered
+    assert '2 foreign direct investment opportunities found' in rendered
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

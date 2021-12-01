@@ -128,7 +128,7 @@
                             {% endif %}
 
                             <p class="atlas-m-b-s">
-                                {{ num_of_opportunities }} {{ selected_investment_type|default_if_none:'' }}
+                                {{ num_of_opportunities }} {{ selected_investment_type|lower|default_if_none:'' }}
                                 opportunit{{ num_of_opportunities|pluralize:"y,ies" }} found
                             </p>
 
