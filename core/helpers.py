@@ -132,15 +132,16 @@ class InvestmentTypeFilter:
         return False
 
 
-class PlanningStatusFilter:
-    def __init__(self, planning_statuses):
-        self.planning_statuses = planning_statuses
-
-    def matches(self, opportunity):
-        if 'planning_status' in opportunity and opportunity['planning_status']:
-            if opportunity['planning_status'] in self.planning_statuses:
-                return True
-        return False
+# NOTE: disabled filter
+# class PlanningStatusFilter:
+#     def __init__(self, planning_statuses):
+#         self.planning_statuses = planning_statuses
+#
+#     def matches(self, opportunity):
+#         if 'planning_status' in opportunity and opportunity['planning_status']:
+#             if opportunity['planning_status'] in self.planning_statuses:
+#                 return True
+#         return False
 
 
 def filter_opportunities(opportunities, filter_chosen):
