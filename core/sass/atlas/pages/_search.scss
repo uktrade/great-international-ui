@@ -153,17 +153,16 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
 
 .atlas-filter-tag__remove {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 2.4em;
-  height: 2.4em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  left: -1px;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  display: block;
 
   & .atlas-icon {
     width: 1em;
     height: 1em;
+    margin: .75em;
     color: $atlas-body;
   }
 
