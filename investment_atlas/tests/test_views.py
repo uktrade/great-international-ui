@@ -186,6 +186,21 @@ def test_when_no_opportunity_list_in_page_for_opportunity_search():
     assert response.context_data['num_of_opportunities'] == 0
 
 
+def test_atlas_opportunities_shows_only_investment_type_selector():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(page, '/international/investment/opportunities/')
+
+    assert response.context_data['selected_investment_type'] is None
+    assert 'Choose investment type' in response.rendered_content
+    assert 'Foreign direct investment' in response.rendered_content
+    assert 'Capital investment - energy and infrastructure' in response.rendered_content
+    assert 'Asset class' not in response.rendered_content
+    assert 'UK nation or region' not in response.rendered_content
+    assert 'Clear all filters' not in response.rendered_content
+    assert 'Update results' not in response.rendered_content
+
+
 def test_investment_type_filter_for_opportunity_search():
     page = create_opportunities_page()
 
@@ -258,6 +273,9 @@ def test_atlas_opportunities_shows_sub_sector_and_regions_filters_for_not_foreig
     assert response.context_data['form'].fields['sector'].choices == []
 
 
+@pytest.mark.skip(
+    "The planning status and scales filters are currently disabled."
+)
 def test_planning_status_filter_for_opportunity_search():
     page = create_opportunities_page()
 
@@ -331,22 +349,6 @@ def test_atlas_opportunities_map_view_shows_no_results_as_list(settings):
 
     assert 'No results' in response.rendered_content
     assert 'atlas-search--as-map' not in response.rendered_content
-
-
-#
-# def test_atlas_opportunities_shows_only_investment_type_selector():
-#     page = create_opportunities_page()
-#
-#     response = create_opportunities_response(page, '/international/investment/opportunities/')
-#
-#     assert response.context_data['selected_investment_type'] is None
-#     assert 'Choose investment type' in response.rendered_content
-#     assert 'Foreign direct investment' in response.rendered_content
-#     assert 'Capital investment - energy and infrastructure' in response.rendered_content
-#     assert 'Asset class' not in response.rendered_content
-#     assert 'UK nation or region' not in response.rendered_content
-#     assert 'Clear all filters' not in response.rendered_content
-#     assert 'Update results' not in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

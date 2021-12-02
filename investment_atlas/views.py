@@ -60,10 +60,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return core_helpers.SectorFilter(self.request.GET.getlist('sector', []))
 
     @property
-    def scale(self):
-        return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
-
-    @property
     def selected_investment_type(self):
         return self.request.GET.get('investment_type')
 
@@ -71,9 +67,14 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     def investment_type(self):
         return core_helpers.InvestmentTypeFilter(self.selected_investment_type)
 
-    @property
-    def planning_status(self):
-        return core_helpers.PlanningStatusFilter(self.request.GET.getlist('planning_status', []))
+    # NOTE: disabled filters
+    # @property
+    # def scale(self):
+    #     return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
+    #
+    # @property
+    # def planning_status(self):
+    #     return core_helpers.PlanningStatusFilter(self.request.GET.getlist('planning_status', []))
 
     @property
     def region(self):
@@ -124,13 +125,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         else:
             return []
 
-    @property
-    def all_scales(self):
-        return [
-            (scale.title, scale.title)
-            for scale in core_helpers.ScaleFilter.scales_with_values
-        ]
-
     def all_investment_types(self):
         investment_types = set(
             [opp['investment_type'] for opp in self.opportunities if opp.get('investment_type')]
@@ -140,14 +134,22 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             (investment_type, investment_type) for investment_type in investment_types
         ]
 
-    def all_planning_statuses(self):
-        planning_statuses = set(
-            [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
-        )
-        planning_statuses = sorted(list(planning_statuses))
-        return [
-            (planning_status, planning_status) for planning_status in planning_statuses
-        ]
+    # NOTE: disabled filters
+    # @property
+    # def all_scales(self):
+    #     return [
+    #         (scale.title, scale.title)
+    #         for scale in core_helpers.ScaleFilter.scales_with_values
+    #     ]
+    #
+    # def all_planning_statuses(self):
+    #     planning_statuses = set(
+    #         [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
+    #     )
+    #     planning_statuses = sorted(list(planning_statuses))
+    #     return [
+    #         (planning_status, planning_status) for planning_status in planning_statuses
+    #     ]
 
     @property
     def all_regions(self):
@@ -218,23 +220,24 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                     self.region
                 )
 
-            if self.scale.selected_scales:
-                filtered_opportunities = core_helpers.filter_opportunities(
-                    filtered_opportunities,
-                    self.scale
-                )
-
             if self.sub_sector.sub_sectors:
                 filtered_opportunities = core_helpers.filter_opportunities(
                     filtered_opportunities,
                     self.sub_sector
                 )
 
-            if self.planning_status.planning_statuses:
-                filtered_opportunities = core_helpers.filter_opportunities(
-                    filtered_opportunities,
-                    self.planning_status
-                )
+            # NOTE: disabled filters
+            # if self.scale.selected_scales:
+            #     filtered_opportunities = core_helpers.filter_opportunities(
+            #         filtered_opportunities,
+            #         self.scale
+            #     )
+            #
+            # if self.planning_status.planning_statuses:
+            #     filtered_opportunities = core_helpers.filter_opportunities(
+            #         filtered_opportunities,
+            #         self.planning_status
+            #     )
 
         if self.sort_filter.sort_by_filter_chosen:
             filtered_opportunities = core_helpers.sort_opportunities(
@@ -266,12 +269,13 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         if self.investment_type.investment_type:
             for sector in self.sector.sectors:
                 filters.append(sector)
-            for scale in self.scale.selected_scales:
-                filters.append(scale.title)
             for sub_sector in self.sub_sector.sub_sectors:
                 filters.append(sub_sector)
-            for planning_status in self.planning_status.planning_statuses:
-                filters.append(planning_status)
+            # NOTE: disabled filters
+            # for scale in self.scale.selected_scales:
+            #     filters.append(scale.title)
+            # for planning_status in self.planning_status.planning_statuses:
+            #     filters.append(planning_status)
 
         return filters
 
@@ -292,7 +296,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     def opportunity_search_form(self):
         return forms.InvestmentOpportunitySearchForm(
             sectors=self.all_sectors,
-            scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
             view_options=(
@@ -301,16 +304,19 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             ),
             sub_sectors=self.all_sub_sectors,
             investment_types=self.all_investment_types,
-            planning_statuses=self.all_planning_statuses,
+            # NOTE: disabled filters
+            # scales=self.all_scales,
+            # planning_statuses=self.all_planning_statuses,
             initial={
                 'sector': self.filters_chosen,
-                'scale': self.filters_chosen,
                 'region': self.regions_chosen,
                 'sort_by': self.sorting_chosen,
                 'view': self.view,
                 'sub_sector': self.filters_chosen,
-                'planning_status': self.filters_chosen,
                 'investment_type': self.selected_investment_type,
+                # NOTE: disabled filters
+                # 'scale': self.filters_chosen,
+                # 'planning_status': self.filters_chosen,
             },
         )
 
@@ -318,13 +324,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return super().get_context_data(
             page=self.page,
             num_of_opportunities=self.num_of_opportunities,
-            sectors=self.all_sectors,
-            scales=self.all_scales,
-            regions=self.all_regions,
-            sorting_filters=self.all_sort_filters,
-            investment_types=self.all_investment_types,
             selected_investment_type=self.selected_investment_type,
-            planning_statuses=self.all_planning_statuses,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters_chosen=self.filters_chosen,
