@@ -82,16 +82,20 @@
 
                                         <div class="atlas-p-l-m">
                                             <div class="atlas-p-l-xs">
-                                                {% if selected_investment_type == 'Foreign direct investment' %}
+
+                                                {% if form.fields.sector.choices %}
                                                     {{ form.sector }}
-                                                {% else %}
+                                                {% endif %}
+
+                                                {% if form.fields.sub_sector.choices %}
                                                     {{ form.sub_sector }}
                                                 {% endif %}
+
                                             </div>
                                         </div>
                                     </fieldset>
 
-                                    {% if regions|length > 1 %}
+                                    {% if form.fields.region.choices %}
                                         <div class="atlas-p-l-m">
                                             {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
                                         </div>
