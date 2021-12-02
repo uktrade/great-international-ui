@@ -233,7 +233,7 @@ def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selecte
     assert response.context_data['form'].fields['sub_sector'].choices == []
 
 
-def test_atlas_opportunities_shows_sector_and_region_filters_for_foreign_direct_investment_search():
+def test_atlas_opportunities_shows_sector_and_region_filters_with_count_for_foreign_direct_investment_search():
     page = create_opportunities_page()
 
     response = create_opportunities_response(
@@ -242,16 +242,16 @@ def test_atlas_opportunities_shows_sector_and_region_filters_for_foreign_direct_
     )
 
     assert response.context_data['form'].fields['sector'].choices == [
-        ('Aerospace', 'Aerospace'),
-        ('Automotive', 'Automotive'),
+        ('Aerospace', 'Aerospace (1)'),
+        ('Automotive', 'Automotive (1)'),
     ]
     assert response.context_data['form'].fields['region'].choices == [
-        ('Midlands', 'Midlands')
+        ('Midlands', 'Midlands (2)')
     ]
     assert response.context_data['form'].fields['sub_sector'].choices == []
 
 
-def test_atlas_opportunities_shows_sub_sector_and_regions_filters_for_not_foreign_direct_investment_type():
+def test_atlas_opportunities_shows_sub_sector_and_regions_filters_with_count_for_not_foreign_direct_investment_type():
     page = create_opportunities_page()
 
     response = create_opportunities_response(
@@ -262,13 +262,13 @@ def test_atlas_opportunities_shows_sub_sector_and_regions_filters_for_not_foreig
     assert response.context_data['selected_investment_type'] == 'Capital investment - real estate'
 
     assert response.context_data['form'].fields['sub_sector'].choices == [
-        ('Chemicals', 'Chemicals'),
-        ('Energy', 'Energy'),
-        ('Nuclear', 'Nuclear'),
+        ('Chemicals', 'Chemicals (10)'),
+        ('Energy', 'Energy (1)'),
+        ('Nuclear', 'Nuclear (10)'),
     ]
     assert response.context_data['form'].fields['region'].choices == [
-        ('Northern Ireland', 'Northern Ireland'),
-        ('Wales', 'Wales'),
+        ('Northern Ireland', 'Northern Ireland (1)'),
+        ('Wales', 'Wales (10)'),
     ]
     assert response.context_data['form'].fields['sector'].choices == []
 

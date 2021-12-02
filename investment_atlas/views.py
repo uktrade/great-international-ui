@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
@@ -108,19 +110,19 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def all_sectors(self):
         if self.investment_type.investment_type == 'Foreign direct investment':
-            sectors = set()
+            sectors = Counter()
 
             for opp in self.opportunities:
                 if opp['investment_type'] == self.investment_type.investment_type:
                     for sector in opp['related_sectors']:
                         if sector['related_sector'] and sector['related_sector']['heading']:
-                            sectors.add(sector['related_sector']['heading'])
+                            sectors[sector['related_sector']['heading']] += 1
 
-            sectors = list(sectors)
-            sectors.sort()
+            sectors_list = list(sectors)
+            sectors_list.sort()
 
             return [
-                (sector, sector) for sector in sectors
+                (sector, '{} ({})'.format(sector, sectors[sector])) for sector in sectors_list
             ]
         else:
             return []
@@ -154,19 +156,19 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def all_regions(self):
         if self.investment_type.investment_type:
-            regions = set()
+            regions = Counter()
 
             for opp in self.opportunities:
                 if opp['investment_type'] == self.investment_type.investment_type:
                     for related_region in opp.get('related_regions', []):
                         if related_region and related_region['title']:
-                            regions.add(related_region['title'])
+                            regions[related_region['title']] += 1
 
-            regions = list(regions)
-            regions.sort()
+            regions_list = list(regions)
+            regions_list.sort()
 
             return [
-                (region, region) for region in regions
+                (region, '{} ({})'.format(region, regions[region])) for region in regions_list
             ]
         else:
             return []
@@ -183,16 +185,18 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def all_sub_sectors(self):
         if self.investment_type.investment_type and self.investment_type.investment_type != 'Foreign direct investment':
-            sub_sectors = {sub_sector for opp in self.opportunities
-                           for sub_sector in opp['sub_sectors'] if
-                           opp['investment_type'] == self.investment_type.investment_type and any(
-                               opp['sub_sectors'])}
+            sub_sectors = Counter()
 
-            sub_sectors = list(sub_sectors)
-            sub_sectors.sort()
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for sub_sector in opp.get('sub_sectors', []):
+                        sub_sectors[sub_sector] += 1
+
+            sub_sectors_list = list(sub_sectors)
+            sub_sectors_list.sort()
 
             return [
-                (sub_sector, sub_sector) for sub_sector in sub_sectors
+                (sub_sector, '{} ({})'.format(sub_sector, sub_sectors[sub_sector])) for sub_sector in sub_sectors_list
             ]
         else:
             return []
