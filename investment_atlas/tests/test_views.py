@@ -80,7 +80,7 @@ def create_opportunities_page():
     }
 
     # Add further non-related opportunities
-    for index in range(10):
+    for index in range(6, 16):
         mock_page['opportunity_list'].append({
             'id': index,
             'title': 'Some Opp {}'.format(index),
@@ -107,20 +107,6 @@ def create_opportunities_response(page, path, mock_cms_response):
     return response
 
 
-def test_atlas_opportunities_region_and_sector_filters():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?sector=Aerospace&region=Midlands'
-    )
-
-    assert len(response.context_data['pagination'].object_list) == 1
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
-    assert response.context_data['form']['region'].initial == ['Midlands']
-    assert response.context_data['form']['sector'].initial == ['Aerospace']
-
-
 def test_atlas_opportunities_num_of_results():
     page = create_opportunities_page()
 
@@ -137,7 +123,10 @@ def test_atlas_opportunities_num_of_results():
 def test_atlas_opportunities_num_of_results_singular():
     page = create_opportunities_page()
 
-    response = create_opportunities_response(page, '/international/investment/opportunities/?region=Northern+Ireland')
+    # Truncate opportunity list to one result
+    page['opportunity_list'] = [page['opportunity_list'][0]]
+
+    response = create_opportunities_response(page, '/international/investment/opportunities/')
 
     assert len(response.context_data['pagination'].object_list) == 1
     assert response.context_data['num_of_opportunities'] == 1
@@ -170,6 +159,21 @@ def test_get_sorting_filters_chosen_for_opportunity_search():
                                              '/international/investment/opportunities/?sort_by=Scale%3A+Low+to+High')
 
     assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
+
+
+def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selected():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/?sector=Automotive&region=South+of+England&sub_sector=Chemicals'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 10
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
+    assert response.context_data['form']['region'].initial == []
+    assert response.context_data['form']['sector'].initial == []
+    assert response.context_data['form']['sub_sector'].initial == []
 
 
 def test_get_sub_sector_filters_chosen_for_opportunity_search():
@@ -236,12 +240,12 @@ def test_planning_status_filter_for_opportunity_search():
 
     response = create_opportunities_response(
         page,
-        '/international/investment/opportunities/?planning_status=Planning+Status+Five'
+        '/international/investment/opportunities/' +
+        '?investment_type=Foreign+direct+investment&planning_status=Planning+Status+Five'
     )
 
-    assert len(response.context_data['pagination'].object_list) == 2
+    assert len(response.context_data['pagination'].object_list) == 1
     assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 2'
-    assert response.context_data['pagination'].object_list[1]['title'] == 'Some Opp 3'
 
     # Extra test coverage of all_planning_statuses
     view = InvestmentOpportunitySearchView()
