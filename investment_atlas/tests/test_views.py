@@ -39,7 +39,7 @@ def create_opportunities_page():
             {
                 'id': 2,
                 'title': 'Some Opp 2',
-                'sub_sectors': ['Energy'],
+                'sub_sectors': ['Energy', 'Building'],
                 'scale_value': '1000.00',
                 'investment_type': 'Foreign direct investment',
                 'planning_status': 'Planning Status Five',
@@ -71,7 +71,7 @@ def create_opportunities_page():
                 'title': 'Some Opp 5',
                 'sub_sectors': ['Energy'],
                 'scale_value': '0.00',
-                'investment_type': 'Capital investment - energy and infrastructure',
+                'investment_type': 'Capital investment - real estate',
                 'planning_status': 'Planning Status Two',
                 'related_regions': [{'title': 'Northern Ireland'}, ],
                 'related_sectors': [{'related_sector': {'heading': 'Aerospace'}}, ],
@@ -161,33 +161,6 @@ def test_get_sorting_filters_chosen_for_opportunity_search():
     assert response.context_data['sorting_chosen'] == 'Scale: Low to High'
 
 
-def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selected():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?sector=Automotive&region=South+of+England&sub_sector=Chemicals'
-    )
-
-    assert len(response.context_data['pagination'].object_list) == 10
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
-    assert response.context_data['form']['region'].initial == []
-    assert response.context_data['form']['sector'].initial == []
-    assert response.context_data['form']['sub_sector'].initial == []
-
-
-def test_get_sub_sector_filters_chosen_for_opportunity_search():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?investment_type=Foreign+direct+investment&sub_sector=Housing'
-    )
-
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
-    assert len(response.context_data['pagination'].object_list) == 1
-
-
 def test_goes_to_page_one_if_page_num_too_big_for_opportunity_search():
     page = create_opportunities_page()
 
@@ -225,14 +198,64 @@ def test_investment_type_filter_for_opportunity_search():
     assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
     assert response.context_data['pagination'].object_list[1]['title'] == 'Some Opp 2'
 
-    # Extra test coverage of all_investment_types
-    view = InvestmentOpportunitySearchView()
-    view.page = page
-    assert view.all_investment_types() == [
-        ('Capital investment - energy and infrastructure', 'Capital investment - energy and infrastructure'),
-        ('Capital investment - real estate', 'Capital investment - real estate'),
-        ('Foreign direct investment', 'Foreign direct investment'),
+
+def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selected():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/?sector=Automotive&region=South+of+England&sub_sector=Chemicals'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 10
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
+    assert response.context_data['form']['region'].initial == []
+    assert response.context_data['form']['sector'].initial == []
+    assert response.context_data['form']['sub_sector'].initial == []
+
+    assert response.context_data['form'].fields['region'].choices == []
+    assert response.context_data['form'].fields['sector'].choices == []
+    assert response.context_data['form'].fields['sub_sector'].choices == []
+
+
+def test_atlas_opportunities_shows_sector_and_region_filters_for_foreign_direct_investment_search():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/?investment_type=Foreign+direct+investment'
+    )
+
+    assert response.context_data['form'].fields['sector'].choices == [
+        ('Aerospace', 'Aerospace'),
+        ('Automotive', 'Automotive'),
     ]
+    assert response.context_data['form'].fields['region'].choices == [
+        ('Midlands', 'Midlands')
+    ]
+    assert response.context_data['form'].fields['sub_sector'].choices == []
+
+
+def test_atlas_opportunities_shows_sub_sector_and_regions_filters_for_not_foreign_direct_investment_type():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/?investment_type=Capital+investment+-+real+estate'
+    )
+
+    assert response.context_data['selected_investment_type'] == 'Capital investment - real estate'
+
+    assert response.context_data['form'].fields['sub_sector'].choices == [
+        ('Chemicals', 'Chemicals'),
+        ('Energy', 'Energy'),
+        ('Nuclear', 'Nuclear'),
+    ]
+    assert response.context_data['form'].fields['region'].choices == [
+        ('Northern Ireland', 'Northern Ireland'),
+        ('Wales', 'Wales'),
+    ]
+    assert response.context_data['form'].fields['sector'].choices == []
 
 
 def test_planning_status_filter_for_opportunity_search():
@@ -254,6 +277,20 @@ def test_planning_status_filter_for_opportunity_search():
         ('Planning Status Five', 'Planning Status Five'),
         ('Planning Status Two', 'Planning Status Two'),
     ]
+
+
+def test_atlas_opportunities_shows_selected_filters():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/' +
+        '?investment_type=Foreign+direct+investment&sector=Automotive&sector=Aerospace&region=Midlands'
+    )
+
+    assert 'Automotive' in response.context_data['filters_chosen']
+    assert 'Aerospace' in response.context_data['filters_chosen']
+    assert 'Midlands' in response.context_data['regions_chosen']
 
 
 def test_atlas_opportunities_defaults_to_list_with_feature_off(settings):
@@ -296,97 +333,20 @@ def test_atlas_opportunities_map_view_shows_no_results_as_list(settings):
     assert 'atlas-search--as-map' not in response.rendered_content
 
 
-def test_atlas_opportunities_shows_only_investment_type_selector():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(page, '/international/investment/opportunities/')
-
-    assert response.context_data['selected_investment_type'] is None
-    assert 'Choose investment type' in response.rendered_content
-    assert 'Foreign direct investment' in response.rendered_content
-    assert 'Capital investment - energy and infrastructure' in response.rendered_content
-    assert 'Asset class' not in response.rendered_content
-    assert 'UK nation or region' not in response.rendered_content
-    assert 'Clear all filters' not in response.rendered_content
-    assert 'Update results' not in response.rendered_content
-
-
-def test_atlas_opportunities_shows_other_filters_with_selected_investment_type():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?investment_type=Capital+investment+-+energy+and+infrastructure'
-    )
-
-    assert response.context_data['selected_investment_type'] == 'Capital investment - energy and infrastructure'
-    assert 'Choose investment type' not in response.rendered_content
-    assert 'Foreign direct investment' not in response.rendered_content
-    assert 'Capital investment - energy and infrastructure' in response.rendered_content
-    assert 'Change investment type' in response.rendered_content
-    assert 'UK nation or region' in response.rendered_content
-    assert 'Clear all filters' in response.rendered_content
-    assert 'Update results' in response.rendered_content
-
-
-def test_atlas_opportunities_shows_sector_filter_for_foreign_direct_investment_type():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?investment_type=Foreign+direct+investment'
-    )
-
-    assert response.context_data['selected_investment_type'] == 'Foreign direct investment'
-
-    # Sector filter should show
-    assert 'Automotive' in response.rendered_content
-    assert 'Aerospace' in response.rendered_content
-    assert 'Agriculture' in response.rendered_content
-
-    # Sub-sector filter should not show
-    assert 'Energy' not in response.rendered_content
-    assert 'Chemicals' not in response.rendered_content
-    assert 'Nuclear' not in response.rendered_content
-
-    # Region filter should show
-    assert 'UK nation or region' in response.rendered_content
-
-
-def test_atlas_opportunities_shows_subsector_filter_for_not_foreign_direct_investment_type():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?investment_type=Capital+investment+-+real+estate'
-    )
-
-    assert response.context_data['selected_investment_type'] == 'Capital investment - real estate'
-
-    # Sector filter should not show
-    assert 'Automotive' not in response.rendered_content
-    assert 'Aerospace' not in response.rendered_content
-
-    # Sub-sector filter should show
-    assert 'Energy' in response.rendered_content
-    assert 'Nuclear' in response.rendered_content
-
-    # Region filter should show
-    assert 'UK nation or region' in response.rendered_content
-
-
-def test_atlas_opportunities_shows_selected_filters():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/' +
-        '?investment_type=Foreign+direct+investment&sector=Automotive&sector=Aerospace&region=Midlands'
-    )
-
-    assert 'Automotive' in response.context_data['filters_chosen']
-    assert 'Aerospace' in response.context_data['filters_chosen']
-    assert 'Midlands' in response.context_data['regions_chosen']
+#
+# def test_atlas_opportunities_shows_only_investment_type_selector():
+#     page = create_opportunities_page()
+#
+#     response = create_opportunities_response(page, '/international/investment/opportunities/')
+#
+#     assert response.context_data['selected_investment_type'] is None
+#     assert 'Choose investment type' in response.rendered_content
+#     assert 'Foreign direct investment' in response.rendered_content
+#     assert 'Capital investment - energy and infrastructure' in response.rendered_content
+#     assert 'Asset class' not in response.rendered_content
+#     assert 'UK nation or region' not in response.rendered_content
+#     assert 'Clear all filters' not in response.rendered_content
+#     assert 'Update results' not in response.rendered_content
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

@@ -106,17 +106,23 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def all_sectors(self):
-        sectors = set()
+        if self.investment_type.investment_type == 'Foreign direct investment':
+            sectors = set()
 
-        for opp in self.opportunities:
-            for sector in opp['related_sectors']:
-                if sector['related_sector'] and sector['related_sector']['heading']:
-                    sectors.add(sector['related_sector']['heading'])
-        sectors = list(sectors)
-        sectors.sort()
-        return [
-            (sector, sector) for sector in sectors
-        ]
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for sector in opp['related_sectors']:
+                        if sector['related_sector'] and sector['related_sector']['heading']:
+                            sectors.add(sector['related_sector']['heading'])
+
+            sectors = list(sectors)
+            sectors.sort()
+
+            return [
+                (sector, sector) for sector in sectors
+            ]
+        else:
+            return []
 
     @property
     def all_scales(self):
@@ -145,16 +151,23 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def all_regions(self):
-        regions = set()
-        for opp in self.opportunities:
-            for related_region in opp.get('related_regions', []):
-                if related_region and related_region['title']:
-                    regions.add(related_region['title'])
-        regions = list(regions)
-        regions.sort()
-        return [
-            (region, region) for region in regions
-        ]
+        if self.investment_type.investment_type:
+            regions = set()
+
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for related_region in opp.get('related_regions', []):
+                        if related_region and related_region['title']:
+                            regions.add(related_region['title'])
+
+            regions = list(regions)
+            regions.sort()
+
+            return [
+                (region, region) for region in regions
+            ]
+        else:
+            return []
 
     @property
     def all_sort_filters(self):
@@ -166,26 +179,21 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return sort_filters_with_selected_status
 
     @property
-    def all_sub_sectors_for_sectors_chosen(self):
-        if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
-            sub_sectors_from_sector_chosen = {
-                sub for sector in self.sector.sectors
-                for sub in self.page['sector_with_sub_sectors'][sector]
-            }
-            sub_sectors_from_selected = set(self.sub_sector.sub_sectors)
+    def all_sub_sectors(self):
+        if self.investment_type.investment_type and self.investment_type.investment_type != 'Foreign direct investment':
+            sub_sectors = {sub_sector for opp in self.opportunities
+                           for sub_sector in opp['sub_sectors'] if
+                           opp['investment_type'] == self.investment_type.investment_type and any(
+                               opp['sub_sectors'])}
 
-            all_sub_sectors = sub_sectors_from_sector_chosen.union(
-                sub_sectors_from_selected)
+            sub_sectors = list(sub_sectors)
+            sub_sectors.sort()
+
+            return [
+                (sub_sector, sub_sector) for sub_sector in sub_sectors
+            ]
         else:
-            all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
-
-        all_sub_sectors = list(all_sub_sectors)
-        all_sub_sectors.sort()
-
-        return [
-            (sub_sector, sub_sector) for sub_sector in all_sub_sectors
-        ]
+            return []
 
     @property
     def filtered_opportunities(self):
@@ -291,7 +299,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
                 ('list', 'List'),
                 ('map', 'Map')
             ),
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
+            sub_sectors=self.all_sub_sectors,
             investment_types=self.all_investment_types,
             planning_statuses=self.all_planning_statuses,
             initial={
@@ -317,7 +325,6 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             investment_types=self.all_investment_types,
             selected_investment_type=self.selected_investment_type,
             planning_statuses=self.all_planning_statuses,
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
             filters_chosen=self.filters_chosen,
