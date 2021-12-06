@@ -43,7 +43,7 @@ def create_opportunities_page():
                 'scale_value': '1000.00',
                 'investment_type': 'Foreign direct investment',
                 'planning_status': 'Planning Status Five',
-                'related_regions': [{'title': 'Midlands'}],
+                'related_regions': [{'title': 'Scotland'}],
                 'related_sectors': [{'related_sector': {'heading': 'Automotive'}}, ],
             },
             {
@@ -246,7 +246,8 @@ def test_atlas_opportunities_shows_sector_and_region_filters_with_count_for_fore
         ('Automotive', 'Automotive (1)'),
     ]
     assert response.context_data['form'].fields['region'].choices == [
-        ('Midlands', 'Midlands (2)')
+        ('Midlands', 'Midlands (1)'),
+        ('Scotland', 'Scotland (1)'),
     ]
     assert response.context_data['form'].fields['sub_sector'].choices == []
 
@@ -309,6 +310,45 @@ def test_atlas_opportunities_shows_selected_filters():
     assert 'Automotive' in response.context_data['filters_chosen']
     assert 'Aerospace' in response.context_data['filters_chosen']
     assert 'Midlands' in response.context_data['regions_chosen']
+
+
+def test_atlas_opportunities_applies_region_filter():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/' +
+        '?investment_type=Foreign+direct+investment&region=Midlands'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 1
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
+
+
+def test_atlas_opportunities_applies_sector_filter():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/' +
+        '?investment_type=Foreign+direct+investment&sector=Automotive'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 1
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 2'
+
+
+def test_atlas_opportunities_applies_sub_sector_filter():
+    page = create_opportunities_page()
+
+    response = create_opportunities_response(
+        page,
+        '/international/investment/opportunities/' +
+        '?investment_type=Capital+investment+-+real+estate&sub_sector=Energy'
+    )
+
+    assert len(response.context_data['pagination'].object_list) == 1
+    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 5'
 
 
 def test_atlas_opportunities_defaults_to_list_with_feature_off(settings):
