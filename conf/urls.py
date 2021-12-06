@@ -317,11 +317,10 @@ urlpatterns += [
         name='brexit-international-contact-form-success'
     ),
     url(
-        # Remains in use after the Atlas refactor - but will be moved into atlas
-        r'^international/content/capital-invest/contact/$',
+        r'^international/content/investment/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
-        {'path': 'capital-invest/contact'},
-        name='capital-invest-contact'
+        {'path': 'investment/contact'},
+        name='investment-contact'
     ),
     # these next 3 named urls are required for breadcrumbs in templates
     url(
