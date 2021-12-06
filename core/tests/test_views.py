@@ -602,7 +602,7 @@ def test_capital_invest_contact_form_page_returns_404_when_feature_flag_off(
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
     response = client.get(
-        '/international/content/capital-invest/contact/'
+        '/international/content/investment/contact/'
     )
     assert response.status_code == 404
 
@@ -630,12 +630,12 @@ def test_capital_invest_contact_form_success_page_returns_200_when_feature_flag_
     )
 
     request = rf.get(
-        '/international/content/capital-invest/contact/success/'
+        '/international/content/investment/contact/success/'
     )
     request.LANGUAGE_CODE = 'en-gb'
     response = MultilingualCMSPageFromPathView.as_view()(
         request,
-        path='/international/content/capital-invest/contact/success/'
+        path='/international/content/investment/contact/success/'
     )
 
     assert response.status_code == 200
@@ -648,7 +648,7 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
     settings.FEATURE_FLAGS['CAPITAL_INVEST_CONTACT_FORM_PAGE_ON'] = False
 
     response = client.get(
-        '/international/content/capital-invest/contact/success/'
+        '/international/content/investment/contact/success/'
     )
     assert response.status_code == 404
 
@@ -994,11 +994,11 @@ def test_capital_invest_contact_form_success(
     )
     mock_save.return_value = create_response(status_code=200)
 
-    url = reverse('capital-invest-contact')
+    url = reverse('investment-contact')
     response = client.post(url, capital_invest_contact_form_data)
 
     assert response.status_code == 302
-    assert response.url == '/international/content/capital-invest/contact/success'
+    assert response.url == '/international/content/investment/contact/success'
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
