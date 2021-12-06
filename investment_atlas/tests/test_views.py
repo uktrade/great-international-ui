@@ -233,7 +233,7 @@ def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selecte
     assert response.context_data['form'].fields['sub_sector'].choices == []
 
 
-def test_atlas_opportunities_shows_sector_and_region_filters_with_count_for_foreign_direct_investment_search():
+def test_atlas_opportunities_shows_sector_with_count_and_region_filters_for_foreign_direct_investment_search():
     page = create_opportunities_page()
 
     response = create_opportunities_response(
@@ -246,13 +246,13 @@ def test_atlas_opportunities_shows_sector_and_region_filters_with_count_for_fore
         ('Automotive', 'Automotive (1)'),
     ]
     assert response.context_data['form'].fields['region'].choices == [
-        ('Midlands', 'Midlands (1)'),
-        ('Scotland', 'Scotland (1)'),
+        ('Midlands', 'Midlands'),
+        ('Scotland', 'Scotland'),
     ]
     assert response.context_data['form'].fields['sub_sector'].choices == []
 
 
-def test_atlas_opportunities_shows_sub_sector_and_regions_filters_with_count_for_not_foreign_direct_investment_type():
+def test_atlas_opportunities_shows_sub_sector_with_count_and_regions_filters_for_not_foreign_direct_investment_type():
     page = create_opportunities_page()
 
     response = create_opportunities_response(
@@ -268,8 +268,8 @@ def test_atlas_opportunities_shows_sub_sector_and_regions_filters_with_count_for
         ('Nuclear', 'Nuclear (10)'),
     ]
     assert response.context_data['form'].fields['region'].choices == [
-        ('Northern Ireland', 'Northern Ireland (1)'),
-        ('Wales', 'Wales (10)'),
+        ('Northern Ireland', 'Northern Ireland'),
+        ('Wales', 'Wales'),
     ]
     assert response.context_data['form'].fields['sector'].choices == []
 

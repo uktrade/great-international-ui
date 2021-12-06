@@ -168,7 +168,7 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             regions_list.sort()
 
             return [
-                (region, '{} ({})'.format(region, regions[region])) for region in regions_list
+                (region, region) for region in regions_list
             ]
         else:
             return []
