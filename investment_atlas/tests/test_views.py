@@ -147,7 +147,7 @@ def test_atlas_opportunities_num_of_results_includes_investment_type_selected():
     assert response.context_data['num_of_opportunities'] == 2
     # Collapse consecutive whitespace
     rendered = ' '.join(response.rendered_content.split())
-    assert 'title="Change investment type"' in rendered
+    assert 'aria-label="Change investment type"' in rendered
     assert 'foreign direct investment' in rendered
     assert ' opportunities found' in rendered
 
