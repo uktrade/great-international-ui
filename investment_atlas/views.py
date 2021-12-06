@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
@@ -60,16 +62,21 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return core_helpers.SectorFilter(self.request.GET.getlist('sector', []))
 
     @property
-    def scale(self):
-        return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
+    def selected_investment_type(self):
+        return self.request.GET.get('investment_type')
 
     @property
     def investment_type(self):
-        return core_helpers.InvestmentTypeFilter(self.request.GET.getlist('investment_type', []))
+        return core_helpers.InvestmentTypeFilter(self.selected_investment_type)
 
-    @property
-    def planning_status(self):
-        return core_helpers.PlanningStatusFilter(self.request.GET.getlist('planning_status', []))
+    # NOTE: disabled filters
+    # @property
+    # def scale(self):
+    #     return core_helpers.ScaleFilter(self.request.GET.getlist('scale', []))
+    #
+    # @property
+    # def planning_status(self):
+    #     return core_helpers.PlanningStatusFilter(self.request.GET.getlist('planning_status', []))
 
     @property
     def region(self):
@@ -102,24 +109,23 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
     @property
     def all_sectors(self):
-        sectors = set()
+        if self.investment_type.investment_type == 'Foreign direct investment':
+            sectors = Counter()
 
-        for opp in self.opportunities:
-            for sector in opp['related_sectors']:
-                if sector['related_sector'] and sector['related_sector']['heading']:
-                    sectors.add(sector['related_sector']['heading'])
-        sectors = list(sectors)
-        sectors.sort()
-        return [
-            (sector, sector) for sector in sectors
-        ]
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for sector in opp['related_sectors']:
+                        if sector['related_sector'] and sector['related_sector']['heading']:
+                            sectors[sector['related_sector']['heading']] += 1
 
-    @property
-    def all_scales(self):
-        return [
-            (scale.title, scale.title)
-            for scale in core_helpers.ScaleFilter.scales_with_values
-        ]
+            sectors_list = list(sectors)
+            sectors_list.sort()
+
+            return [
+                (sector, '{} ({})'.format(sector, sectors[sector])) for sector in sectors_list
+            ]
+        else:
+            return []
 
     def all_investment_types(self):
         investment_types = set(
@@ -130,27 +136,42 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
             (investment_type, investment_type) for investment_type in investment_types
         ]
 
-    def all_planning_statuses(self):
-        planning_statuses = set(
-            [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
-        )
-        planning_statuses = sorted(list(planning_statuses))
-        return [
-            (planning_status, planning_status) for planning_status in planning_statuses
-        ]
+    # NOTE: disabled filters
+    # @property
+    # def all_scales(self):
+    #     return [
+    #         (scale.title, scale.title)
+    #         for scale in core_helpers.ScaleFilter.scales_with_values
+    #     ]
+    #
+    # def all_planning_statuses(self):
+    #     planning_statuses = set(
+    #         [opp['planning_status'] for opp in self.opportunities if opp.get('planning_status')]
+    #     )
+    #     planning_statuses = sorted(list(planning_statuses))
+    #     return [
+    #         (planning_status, planning_status) for planning_status in planning_statuses
+    #     ]
 
     @property
     def all_regions(self):
-        regions = set()
-        for opp in self.opportunities:
-            for related_region in opp.get('related_regions', []):
-                if related_region and related_region['title']:
-                    regions.add(related_region['title'])
-        regions = list(regions)
-        regions.sort()
-        return [
-            (region, region) for region in regions
-        ]
+        if self.investment_type.investment_type:
+            regions = Counter()
+
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for related_region in opp.get('related_regions', []):
+                        if related_region and related_region['title']:
+                            regions[related_region['title']] += 1
+
+            regions_list = list(regions)
+            regions_list.sort()
+
+            return [
+                (region, region) for region in regions_list
+            ]
+        else:
+            return []
 
     @property
     def all_sort_filters(self):
@@ -162,67 +183,65 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return sort_filters_with_selected_status
 
     @property
-    def all_sub_sectors_for_sectors_chosen(self):
-        if self.sector.sectors and 'sector_with_sub_sectors' in self.page:
-            sub_sectors_from_sector_chosen = {
-                sub for sector in self.sector.sectors
-                for sub in self.page['sector_with_sub_sectors'][sector]
-            }
-            sub_sectors_from_selected = set(self.sub_sector.sub_sectors)
+    def all_sub_sectors(self):
+        if self.investment_type.investment_type and self.investment_type.investment_type != 'Foreign direct investment':
+            sub_sectors = Counter()
 
-            all_sub_sectors = sub_sectors_from_sector_chosen.union(
-                sub_sectors_from_selected)
+            for opp in self.opportunities:
+                if opp['investment_type'] == self.investment_type.investment_type:
+                    for sub_sector in opp.get('sub_sectors', []):
+                        sub_sectors[sub_sector] += 1
+
+            sub_sectors_list = list(sub_sectors)
+            sub_sectors_list.sort()
+
+            return [
+                (sub_sector, '{} ({})'.format(sub_sector, sub_sectors[sub_sector])) for sub_sector in sub_sectors_list
+            ]
         else:
-            all_sub_sectors = {sub_sector for opp in self.opportunities
-                               for sub_sector in opp['sub_sectors'] if any(opp['sub_sectors'])}
-
-        all_sub_sectors = list(all_sub_sectors)
-        all_sub_sectors.sort()
-
-        return [
-            (sub_sector, sub_sector) for sub_sector in all_sub_sectors
-        ]
+            return []
 
     @property
     def filtered_opportunities(self):
 
         filtered_opportunities = [opp for opp in self.opportunities]
 
-        if self.sector.sectors:
-            filtered_opportunities = core_helpers.filter_opportunities(
-                filtered_opportunities,
-                self.sector
-            )
-
-        if self.region.regions:
-            filtered_opportunities = core_helpers.filter_opportunities(
-                filtered_opportunities,
-                self.region
-            )
-
-        if self.scale.selected_scales:
-            filtered_opportunities = core_helpers.filter_opportunities(
-                filtered_opportunities,
-                self.scale
-            )
-
-        if self.sub_sector.sub_sectors:
-            filtered_opportunities = core_helpers.filter_opportunities(
-                filtered_opportunities,
-                self.sub_sector
-            )
-
-        if self.planning_status.planning_statuses:
-            filtered_opportunities = core_helpers.filter_opportunities(
-                filtered_opportunities,
-                self.planning_status
-            )
-
-        if self.investment_type.investment_types:
+        if self.investment_type.investment_type:
             filtered_opportunities = core_helpers.filter_opportunities(
                 filtered_opportunities,
                 self.investment_type
             )
+
+            if self.sector.sectors:
+                filtered_opportunities = core_helpers.filter_opportunities(
+                    filtered_opportunities,
+                    self.sector
+                )
+
+            if self.region.regions:
+                filtered_opportunities = core_helpers.filter_opportunities(
+                    filtered_opportunities,
+                    self.region
+                )
+
+            if self.sub_sector.sub_sectors:
+                filtered_opportunities = core_helpers.filter_opportunities(
+                    filtered_opportunities,
+                    self.sub_sector
+                )
+
+            # NOTE: disabled filters
+            # if self.scale.selected_scales:
+            #     filtered_opportunities = core_helpers.filter_opportunities(
+            #         filtered_opportunities,
+            #         self.scale
+            #     )
+            #
+            # if self.planning_status.planning_statuses:
+            #     filtered_opportunities = core_helpers.filter_opportunities(
+            #         filtered_opportunities,
+            #         self.planning_status
+            #     )
 
         if self.sort_filter.sort_by_filter_chosen:
             filtered_opportunities = core_helpers.sort_opportunities(
@@ -251,20 +270,27 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def filters_chosen(self):
         filters = []
-        for sector in self.sector.sectors:
-            filters.append(sector)
-        for scale in self.scale.selected_scales:
-            filters.append(scale.title)
-        for region in self.region.regions:
-            filters.append(region)
-        for sub_sector in self.sub_sector.sub_sectors:
-            filters.append(sub_sector)
-        for investment_type in self.investment_type.investment_types:
-            filters.append(investment_type)
-        for planning_status in self.planning_status.planning_statuses:
-            filters.append(planning_status)
+        if self.investment_type.investment_type:
+            for sector in self.sector.sectors:
+                filters.append(sector)
+            for sub_sector in self.sub_sector.sub_sectors:
+                filters.append(sub_sector)
+            # NOTE: disabled filters
+            # for scale in self.scale.selected_scales:
+            #     filters.append(scale.title)
+            # for planning_status in self.planning_status.planning_statuses:
+            #     filters.append(planning_status)
 
         return filters
+
+    @property
+    def regions_chosen(self):
+        regions = []
+        if self.investment_type.investment_type:
+            for region in self.region.regions:
+                regions.append(region)
+
+        return regions
 
     @property
     def sorting_chosen(self):
@@ -274,25 +300,27 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     def opportunity_search_form(self):
         return forms.InvestmentOpportunitySearchForm(
             sectors=self.all_sectors,
-            scales=self.all_scales,
             regions=self.all_regions,
             sort_by_options=self.all_sort_filters,
             view_options=(
                 ('list', 'List'),
                 ('map', 'Map')
             ),
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
+            sub_sectors=self.all_sub_sectors,
             investment_types=self.all_investment_types,
-            planning_statuses=self.all_planning_statuses,
+            # NOTE: disabled filters
+            # scales=self.all_scales,
+            # planning_statuses=self.all_planning_statuses,
             initial={
                 'sector': self.filters_chosen,
-                'scale': self.filters_chosen,
-                'region': self.filters_chosen,
+                'region': self.regions_chosen,
                 'sort_by': self.sorting_chosen,
                 'view': self.view,
                 'sub_sector': self.filters_chosen,
-                'planning_status': self.filters_chosen,
-                'investment_type': self.filters_chosen,
+                'investment_type': self.selected_investment_type,
+                # NOTE: disabled filters
+                # 'scale': self.filters_chosen,
+                # 'planning_status': self.filters_chosen,
             },
         )
 
@@ -300,16 +328,11 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
         return super().get_context_data(
             page=self.page,
             num_of_opportunities=self.num_of_opportunities,
-            sectors=self.all_sectors,
-            scales=self.all_scales,
-            regions=self.all_regions,
-            sorting_filters=self.all_sort_filters,
-            investment_types=self.all_investment_types,
-            planning_statuses=self.all_planning_statuses,
-            sub_sectors=self.all_sub_sectors_for_sectors_chosen,
+            selected_investment_type=self.selected_investment_type,
             pagination=self.pagination,
             sorting_chosen=self.sorting_chosen,
-            filters=self.filters_chosen,
+            filters_chosen=self.filters_chosen,
+            regions_chosen=self.regions_chosen,
             current_page_num=self.page_number,
             form=self.opportunity_search_form,
             aws_cognito_pool_id=settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID,

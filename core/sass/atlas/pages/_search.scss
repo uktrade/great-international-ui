@@ -3,15 +3,38 @@
 
 .atlas-search__controls {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  & > button:not(:first-child) {
-    margin-left: 10px;
+.atlas-search-filter__view {
+  display: flex;
+  flex: 1 1 auto;
+
+  & .form-group {
+    margin: 0;
+    width: 100%;
+
+    & ul {
+      display: flex;
+    }
+  }
+
+  & .multiple-choice {
+    flex: 0 0 50%;
+    margin: 0;
+
+    & .form-label {
+      padding-right: 1em;
+    }
   }
 }
 
 .atlas-search-filter__toggle {
-  .atlas-button__icon:last-child {
+  width: auto;
+  flex: 1 1 auto;
+
+  & .atlas-button__icon:last-child {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;
   }
@@ -21,14 +44,41 @@
   }
 }
 
-.atlas-search__filters {
-  fieldset {
-    break-inside: avoid;
+.atlas-search-type {
+  position: relative;
+}
+
+.atlas-search-type__clear {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  & .atlas-icon {
+    position: absolute;
+    left: 0;
+    top: .275em;
+    width: 1em;
+    height: 1em;
+    transform: rotate(180deg);
   }
 
-  @media (min-width: $breakpoint-xsmall) and (max-width: ($breakpoint-large - 1px)) {
-    columns: 2;
+  &:hover {
+    & .atlas-icon {
+      transition: margin-left .125s ease-out;
+      margin-left: -5px;
+    }
+
+    & + .atlas-search-type__legend {
+      text-decoration: underline;
+    }
   }
+}
+
+.atlas-search-type__legend {
+  position: relative;
+  pointer-events: none;
 }
 
 $submit-spacing-bottom: map-get($spacings, 'm');
@@ -88,6 +138,38 @@ $submit-spacing-bottom-medium: map-get($spacings-medium, 'm');
 .atlas-search__button {
   @media (min-width: $breakpoint-large) {
     width: 100%;
+  }
+}
+
+.atlas-filter-tag {
+  position: relative;
+  display: inline-block;
+  margin: .25em;
+  padding: .4em .8em .4em 2.4em;
+  background: $atlas-grey-light;
+  border: 1px solid $atlas-body;
+  border-radius: 5px;
+}
+
+.atlas-filter-tag__remove {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  display: block;
+
+  & .atlas-icon {
+    width: 1em;
+    height: 1em;
+    margin: .75em;
+    color: $atlas-body;
+  }
+
+  &:hover {
+    & .atlas-icon {
+      transform: scale(1.2);
+    }
   }
 }
 

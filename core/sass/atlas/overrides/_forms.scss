@@ -5,6 +5,10 @@
 .atlas .multiple-choice {
   padding-left: 2.5em;
 
+  & input {
+    width: 3em;
+  }
+
   & label {
     padding-right: 0;
     padding-left: 0;
@@ -21,11 +25,6 @@
       color: $atlas-blue-light;
     }
   }
-}
-
-.atlas .multiple-choice input:focus + label:before,
-.atlas .multiple-choice label:hover:before {
-  color: $atlas-blue-light;
 }
 
 .atlas .multiple-choice [type=checkbox] + label {
@@ -47,7 +46,25 @@
   }
 
   &:after {
-    left: 6px;
+    border-width: 8px;
+    top: 11px;
+    left: 8px;
+  }
+}
+
+.atlas .multiple-choice input:not(:checked) + label:after {
+  color: $atlas-grey-light;
+}
+
+.atlas .multiple-choice input:focus + label,
+.atlas .multiple-choice input:hover + label,
+.atlas .multiple-choice label:hover {
+  &:before {
+    color: $atlas-blue-light;
+  }
+
+  &:after {
+    opacity: 1;
   }
 }
 
