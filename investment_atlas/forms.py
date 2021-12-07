@@ -24,14 +24,6 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False
     )
-    scale = forms.ChoiceField(
-        label='scale',
-        widget=forms.CheckboxSelectInlineLabelMultiple(
-            attrs={'id': 'checkbox-scale'},
-            use_nice_ids=True,
-        ),
-        required=False
-    )
     region = forms.ChoiceField(
         label='region',
         widget=forms.CheckboxSelectInlineLabelMultiple(
@@ -48,20 +40,9 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False
     )
-    planning_status = forms.ChoiceField(
-        label='planning_status',
-        widget=forms.CheckboxSelectInlineLabelMultiple(
-            attrs={'id': 'checkbox-planning_status'},
-            use_nice_ids=True,
-        ),
-        required=False
-    )
     investment_type = forms.ChoiceField(
         label='investment_type',
-        widget=forms.CheckboxSelectInlineLabelMultiple(
-            attrs={'id': 'checkbox-investment_type'},
-            use_nice_ids=True,
-        ),
+        widget=forms.RadioSelect(),
         required=False
     )
     sort_by = forms.ChoiceField(
@@ -73,30 +54,58 @@ class InvestmentOpportunitySearchForm(forms.Form):
         ),
         required=False,
     )
-    view = forms.ChoiceField()
+    view = forms.ChoiceField(
+        label='view',
+        widget=forms.RadioSelect(
+            attrs={
+                'onchange': 'this.form.submit()'
+            }
+        ),
+        required=False,
+    )
+
+    # NOTE: disabled filters
+    # scale = forms.ChoiceField(
+    #     label='scale',
+    #     widget=forms.CheckboxSelectInlineLabelMultiple(
+    #         attrs={'id': 'checkbox-scale'},
+    #         use_nice_ids=True,
+    #     ),
+    #     required=False
+    # )
+    # planning_status = forms.ChoiceField(
+    #     label='planning_status',
+    #     widget=forms.CheckboxSelectInlineLabelMultiple(
+    #         attrs={'id': 'checkbox-planning_status'},
+    #         use_nice_ids=True,
+    #     ),
+    #     required=False
+    # )
 
     def __init__(
             self,
             sectors,
-            scales,
             regions,
             view_options,
             sort_by_options,
             sub_sectors,
-            planning_statuses,
             investment_types,
+            # NOTE: disabled filters
+            # scales,
+            # planning_statuses,
             *args,
             **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.fields['sector'].choices = sectors
-        self.fields['scale'].choices = scales
         self.fields['region'].choices = regions
         self.fields['sort_by'].choices = sort_by_options
         self.fields['view'].choices = view_options
         self.fields['sub_sector'].choices = sub_sectors
-        self.fields['planning_status'].choices = planning_statuses
         self.fields['investment_type'].choices = investment_types
+        # NOTE: disabled filters
+        # self.fields['scale'].choices = scales
+        # self.fields['planning_status'].choices = planning_statuses
 
 
 HOW_DID_YOU_HEAR_CHOICES = [

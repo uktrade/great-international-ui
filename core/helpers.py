@@ -123,25 +123,25 @@ class SubSectorFilter:
 
 
 class InvestmentTypeFilter:
-    def __init__(self, investment_types):
-        self.investment_types = investment_types
+    def __init__(self, investment_type):
+        self.investment_type = investment_type
 
     def matches(self, opportunity):
-        if 'investment_type' in opportunity and opportunity['investment_type']:
-            if opportunity['investment_type'] in self.investment_types:
-                return True
+        if 'investment_type' in opportunity and opportunity['investment_type'] == self.investment_type:
+            return True
         return False
 
 
-class PlanningStatusFilter:
-    def __init__(self, planning_statuses):
-        self.planning_statuses = planning_statuses
-
-    def matches(self, opportunity):
-        if 'planning_status' in opportunity and opportunity['planning_status']:
-            if opportunity['planning_status'] in self.planning_statuses:
-                return True
-        return False
+# NOTE: disabled filter
+# class PlanningStatusFilter:
+#     def __init__(self, planning_statuses):
+#         self.planning_statuses = planning_statuses
+#
+#     def matches(self, opportunity):
+#         if 'planning_status' in opportunity and opportunity['planning_status']:
+#             if opportunity['planning_status'] in self.planning_statuses:
+#                 return True
+#         return False
 
 
 def filter_opportunities(opportunities, filter_chosen):
@@ -179,7 +179,7 @@ def sort_opportunities(opportunities, sort_by_chosen):
 
     if sort_filter.value == 'scale_value':
         opportunities.sort(
-            key=lambda x: float(x['scale_value']),
+            key=lambda x: float(x['scale_value'] or 0),
             reverse=sort_filter.reverse
         )
 

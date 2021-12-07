@@ -11,6 +11,13 @@ redirects_for_retired_pages_that_must_come_before_tree_based_routing = [
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
     ),
     url(
+        # Redirect the old capital invest contact form to to atlas
+        r'^international/content/capital-invest/contact[/]*$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/contact/'
+        ),
+    ),
+    url(
         # Redirect the old capital invest homepage to atlas
         r'^international/content/capital-invest[/]*$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
