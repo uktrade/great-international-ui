@@ -479,7 +479,7 @@ class LegacyRedirectCoreView(View):
 
 class CapitalInvestContactFormView(MultilingualCMSPageFromPathView, GA360Mixin, FormView):
     form_class = forms.CapitalInvestContactForm
-    success_url = '/international/content/capital-invest/contact/success'
+    success_url = '/international/content/investment/contact/success'
     header_section = tier_one_nav_items.CONTACT
 
     def send_agent_email(self, form):

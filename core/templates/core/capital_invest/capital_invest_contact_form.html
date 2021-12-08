@@ -18,7 +18,7 @@
         {% if page.intro %}
             <div>{{ page.intro|add_export_elements_classes|safe }}</div>
         {% endif %}
-        <form action="{% url 'capital-invest-contact' %}" method="post" autocomplete="on">
+        <form action="{% url 'investment-contact' %}" method="post" autocomplete="on">
             {% csrf_token %}
 
             {% include 'includes/form_field.html' with field=form.given_name %}

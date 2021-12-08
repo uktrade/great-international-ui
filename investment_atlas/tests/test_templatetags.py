@@ -1,4 +1,5 @@
 import pytest
+import re
 from bs4 import BeautifulSoup
 from django.template import Template, Context
 from django.test import RequestFactory
@@ -62,3 +63,62 @@ def test_cms_url(settings):
     rendered = template.render(context)
 
     assert 'http://example.org/cms-url' in rendered
+
+
+@pytest.mark.parametrize('page_url, filter_name, chosen_filters, shows_and, remove_urls', (
+        # One filter
+        ("/page-url?foo=One", 'foo', ['One'], False, ["/page-url"]),
+        # Two filters
+        ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], True, ["/page-url?foo=Two", "/page-url?foo=One"]),
+        # Three filters
+        ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], True,
+         ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
+        # test other parameters are retained
+        ("/?foo=One&bar=baz", 'foo', ['One'], False, ["/?bar=baz"])
+
+))
+def test_chosen_filters_multiple(page_url, filter_name, chosen_filters, shows_and, remove_urls):
+    request_factory = RequestFactory()
+    request = request_factory.get(page_url)
+    template = Template(
+        '{% load chosen_filters from atlas_tags %}'
+        '{% chosen_filters filter_name chosen_filters %}'
+    )
+    context = Context({
+        'filter_name': filter_name,
+        'chosen_filters': chosen_filters,
+        'request': request
+    })
+    rendered = template.render(context)
+
+    # Check the filter label is rendered
+    for chosen_filter in chosen_filters:
+        # Text node between tags
+        assert re.search('>\\s*{}\\s*<'.format(chosen_filter), rendered)
+
+    # Check whether 'and' is shown
+    if shows_and:
+        assert ' and ' in rendered
+    else:
+        assert ' and ' not in rendered
+
+    # Check URLs
+    for url in remove_urls:
+        assert '"{}"'.format(url) in rendered
+
+
+def test_chosen_filter_empty():
+    request_factory = RequestFactory()
+    request = request_factory.get("/?foo=bar")
+    template = Template(
+        '{% load chosen_filters from atlas_tags %}'
+        '{% chosen_filters filter_name chosen_filters %}'
+    )
+    context = Context({
+        'filter_name': 'bar',
+        'chosen_filters': [],
+        'request': request
+    })
+    rendered = template.render(context)
+
+    assert rendered.strip() == ''

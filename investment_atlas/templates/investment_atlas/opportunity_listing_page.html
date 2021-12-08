@@ -1,7 +1,7 @@
 {% extends 'investment_atlas/base_cms.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% load update_query_params from atlas_tags %}
+{% load update_query_params chosen_filters from atlas_tags %}
 
 {% load pagination from directory_components %}
 
@@ -19,27 +19,15 @@
             <div class="atlas-container atlas-container--wide atlas-search__container atlas-p-v-m">
                 <div class="atlas-grid">
                     <section
-                            class="atlas-search__sidebar atlas-grid__column atlas-grid__column--4-12-l atlas-grid__column--3-12-xl atlas-m-b-m">
+                            class="atlas-search__sidebar atlas-grid__column atlas-grid__column--5-12-l atlas-grid__column--4-12-xl atlas-m-b-m">
                         <div class="atlas-bg--white atlas-p-s">
                             <h1 class="atlas-h--m atlas-m-0">Investment opportunities</h1>
 
                             <div class="atlas-search__controls atlas-hidden-nojs">
                                 {% if features.ATLAS_OPPORTUNITIES_MAP_ON %}
-                                    {% if form.view.value == 'list' %}
-                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                                type="button"
-                                                onclick="document.getElementById('id_view').value = 'map'; this.form.submit();">
-                                            Map view
-                                        </button>
-                                    {% else %}
-                                        <button class="atlas-button atlas-button--wire atlas-search__button atlas-m-t-s"
-                                                type="button"
-                                                onclick="document.getElementById('id_view').value = 'list'; this.form.submit();">
-                                            List view
-                                        </button>
-                                    {% endif %}
-
-                                    {{ form.view.as_hidden }}
+                                    <div class="atlas-search-filter__view atlas-m-t-s">
+                                        {{ form.view }}
+                                    </div>
                                 {% endif %}
 
                                 <button class="atlas-search-filter__toggle atlas-button atlas-button--wire atlas-visually-hidden-l atlas-m-t-s"
@@ -50,55 +38,88 @@
                                         {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                     </span>
                                 </button>
-
                             </div>
                         </div>
 
                         <div id="atlas-search-filters"
                              class="atlas-search__filters-wrap atlas-reveal__contents atlas-reveal__contents--show-l">
                             <div class="atlas-search__scroll-fade"></div>
-                            <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
-                                {% if sectors %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='Sector' field=form.sector %}
-                                {% endif %}
 
-                                {% if sub_sectors %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='Asset class' field=form.sub_sector %}
-                                {% endif %}
+                            {% if not selected_investment_type %}
+                                <div class="atlas-bg atlas-bg--white atlas-p-h-s atlas-p-b-xs">
+                                    <h2 class="atlas-h--s atlas-regular atlas-p-t-s">Choose investment type</h2>
 
-                                {% if regions|length > 1 %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
-                                {% endif %}
+                                    <nav>
+                                        <ul>
+                                            {% for choice in form.investment_type %}
+                                                <li class="atlas-p-t-s">
+                                                    <a href="?{% update_query_params investment_type=choice.choice_label view=form.view.value %}"
+                                                       class="atlas-search__investment-type atlas-link--invert">{{ choice.choice_label }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </nav>
+                                </div>
 
-                                {% if investment_types %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='Investment type' field=form.investment_type %}
-                                {% endif %}
+                            {% else %}
+                                {{ form.investment_type.as_hidden }}
+                                <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
+                                    <fieldset aria-labelledby="selected_investment_type">
+                                        <div class="atlas-search-type">
+                                            <a class="atlas-search-type__clear atlas-body--m"
+                                               href="{% url 'atlas-opportunities' %}?view={{ form.view.value }}">
+                                                <span class="atlas-icon">
+                                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                                </span>
+                                                <span class="atlas-visually-hidden">Change investment type</span>
+                                            </a>
 
-                                {% if scales %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='Investment value' field=form.scale %}
-                                {% endif %}
+                                            <div id="selected_investment_type"
+                                                 class="atlas-search-type__legend atlas-body--m atlas-p-l-m">
+                                                {{ selected_investment_type }}
+                                            </div>
+                                        </div>
 
-                                {% if planning_statuses %}
-                                    {% include 'investment_atlas/includes/search_filter.html' with label='Planning status' field=form.planning_status %}
-                                {% endif %}
+                                        <div class="atlas-p-l-m">
+                                            <div class="atlas-p-l-xs">
 
-                                <p class="atlas-m-0 atlas-p-v-s">
-                                    <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
-                                        {% trans 'Clear all filters' %}
-                                    </a>
-                                </p>
-                            </div>
+                                                {% if form.fields.sector.choices %}
+                                                    {{ form.sector }}
+                                                {% endif %}
 
-                            <div class="atlas-search__submit atlas-bg--white atlas-p-s">
-                                <button class="atlas-button atlas-search__button" type="submit">
-                                    {% trans 'Update results' %}
-                                </button>
-                            </div>
+                                                {% if form.fields.sub_sector.choices %}
+                                                    {{ form.sub_sector }}
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    {% if form.fields.region.choices %}
+                                        <div class="atlas-p-l-m">
+                                            {% include 'investment_atlas/includes/search_filter.html' with label='UK nation or region' field=form.region %}
+                                        </div>
+                                    {% endif %}
+
+                                    <p class="atlas-m-0 atlas-p-v-s">
+                                        <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                            {% trans 'Clear all filters' %}
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <div class="atlas-search__submit atlas-bg--white atlas-p-s">
+                                    <button class="atlas-button atlas-search__button" type="submit">
+                                        {% trans 'Update results' %}
+                                    </button>
+                                </div>
+                            {% endif %}
+
                         </div>
                     </section>
 
                     {% if form.view.value == 'list' or results_count == 0 %}
-                        <section class="atlas-grid__column atlas-grid__column--8-12-l atlas-grid__column--9-12-xl">
+                        <section class="atlas-grid__column atlas-grid__column--7-12-l atlas-grid__column--8-12-xl">
                             {% if results_count > 0 %}
                                 <div class="atlas-search-sort atlas-m-b-s">
                                     <label for="{{ form.sort_by.id_for_label }}" class="atlas-search-sort__label">
@@ -108,7 +129,30 @@
                                         {{ form.sort_by }}
                                     </div>
                                 </div>
+                            {% endif %}
 
+                            <p class="atlas-m-b-s">
+                                {{ num_of_opportunities }}
+                                {% if selected_investment_type %}
+                                    <a class="atlas-link" aria-label="Change investment type"
+                                       href="{% url 'atlas-opportunities' %}">{{ selected_investment_type|lower }}</a>
+                                {% endif %}
+                                opportunit{{ num_of_opportunities|pluralize:"y,ies" }} found
+                            </p>
+
+                            {% if filters_chosen or regions_chosen %}
+                                <div class="atlas-search-info atlas-m-b-s">
+                                    {% if selected_investment_type == 'Foreign direct investment' %}
+                                        {% chosen_filters 'sector' filters_chosen %}
+                                    {% else %}
+                                        {% chosen_filters 'sub_sector' filters_chosen %}
+                                    {% endif %}
+
+                                    {% chosen_filters 'region' regions_chosen %}
+                                </div>
+                            {% endif %}
+
+                            {% if results_count > 0 %}
                                 <ul>
                                     {% for opportunity in pagination.object_list %}
                                         <li>
