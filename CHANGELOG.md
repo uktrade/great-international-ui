@@ -19,7 +19,7 @@
 
 ## [3.2.1](https://github.com/uktrade/great-international-ui/releases/tag/3.2.1)
 
-[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.0.1...3.2.1)
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.2.0...3.2.1)
 
 ### Implemented enhancements
 
