@@ -12,6 +12,7 @@
 - NOTICKET - Remove unused CSS
 - GP2-3775 - Multi sector FE display
 - GP2-3872 - Filters updates
+- GP2-3895 - Add Bing Webmaster Tools site verification
 
 ### Fixed bugs
 
