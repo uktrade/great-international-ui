@@ -4,6 +4,8 @@
 
 ### Implemented enhancements
 
+- GP2-3895 - Add Bing Webmaster Tools site verification
+
 ### Fixed bugs
 
 ## [3.3.0](https://github.com/uktrade/great-international-ui/releases/tag/3.3.0)
