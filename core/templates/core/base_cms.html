@@ -1,12 +1,14 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} - {{ international_home_link.label }}{% endblock %}
+{% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} -
+    {{ international_home_link.label }}{% endblock %}
 
 {% block head_other %}
-  {% for language_code, url in page.meta.localised_urls %}
-    <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
-  {% endfor %}
+    {{ block.super }}
+    {% for language_code, url in page.meta.localised_urls %}
+        <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+    {% endfor %}
 {% endblock %}
 
 {% block head_sharing_metadata %}
@@ -15,9 +17,9 @@
 {% endblock %}
 
 {% block meta_sharing_thumbnail %}
-  {% if page.hero_thumbnail %}
-    {{ page.hero_thumbnail }}
-  {% else %}
-    {{ block.super }}
-  {% endif %}
+    {% if page.hero_thumbnail %}
+        {{ page.hero_thumbnail }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
 {% endblock %}

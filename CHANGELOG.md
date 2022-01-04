@@ -4,14 +4,43 @@
 
 ### Implemented enhancements
 
-- GP2-3741 - Python 3.9 upgrade
-- GP2-3763 - Rename related opportunities to other.
-- GP2-3773 - Remove Isle of Man from map
+- GP2-3895 - Add Bing Webmaster Tools site verification
+
+### Fixed bugs
+
+## [3.3.0](https://github.com/uktrade/great-international-ui/releases/tag/3.3.0)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.2.1...3.3.0)
+
+### Implemented enhancements
+
+- GP2-3872 - Filters updates
+- GP2-3415 - Move Invest Capital form into Atlas
+
+### Fixed bugs
+
+## [3.2.1](https://github.com/uktrade/great-international-ui/releases/tag/3.2.1)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.2.0...3.2.1)
+
+### Implemented enhancements
+
 - NOTICKET - Updated cookie banner
 - NOTICKET - Remove dependency on jQuery and directory-components scripts
 - NOTICKET - Remove unused CSS
 - GP2-3775 - Multi sector FE display
-- GP2-3872 - Filters updates
+
+### Fixed bugs
+
+## [3.2.0](https://github.com/uktrade/great-international-ui/releases/tag/3.2.0)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.0.1...3.2.0)
+
+### Implemented enhancements
+
+- GP2-3741 - Python 3.9 upgrade
+- GP2-3763 - Rename related opportunities to other.
+- GP2-3773 - Remove Isle of Man from map
 
 ### Fixed bugs
 
