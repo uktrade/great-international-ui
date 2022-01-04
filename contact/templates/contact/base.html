@@ -2,9 +2,10 @@
 {% load static from staticfiles %}
 
 {% block head_other %}
-  {% for url, language_code in localised_urls %}
-    <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
-  {% endfor %}
+    {{ block.super }}
+    {% for url, language_code in localised_urls %}
+        <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+    {% endfor %}
 {% endblock %}
 
 {% block css_layout_class %}invest-contact-page{% endblock %}
