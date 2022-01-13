@@ -50,7 +50,7 @@ directory-forms-api-client==5.1.0
     # via -r requirements.in
 directory-healthcheck==2.0.0
     # via -r requirements.in
-directory-validators==6.0.6
+directory-validators==8.0.0
     # via -r requirements.in
 django==2.2.24
     # via
@@ -133,7 +133,7 @@ python-dateutil==2.8.2
     # via
     #   botocore
     #   dateparser
-pytz==2020.1
+pytz==2021.3
     # via
     #   dateparser
     #   directory-validators
