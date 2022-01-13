@@ -25,7 +25,6 @@ TEMPLATE_MAPPING = {
     'AboutUkRegionPage': 'investment_atlas/region.html',
 
     # Invest
-    'InvestInternationalHomePage': 'invest/landing_page.html',
     'InvestHighPotentialOpportunityDetailPage': 'invest/hpo/high_potential_opportunity_detail.html',
     'InvestRegionPage': 'invest/regions/region_detail.html',
 
@@ -112,11 +111,6 @@ GA_DATA_MAPPING = {
     },
 
     # Invest
-    'InvestInternationalHomePage': {
-        'business_unit': 'Invest',
-        'site_section': 'HomePage',
-        'site_subsection': 'ListingPage'
-    },
     'InvestHighPotentialOpportunityDetailPage': {
         'business_unit': 'Invest',
         'site_section': 'HighPotentialOpportunities',

@@ -29,7 +29,7 @@ def test_url_redirect_expand_page_on(mock_get_page, client, settings):
                 'slug': 'page',
                 'languages': [['en-gb', 'English']],
             },
-            'page_type': 'InvestInternationalHomePage',
+            'page_type': 'InternationalArticlePage',
         }
     )
 
@@ -79,7 +79,7 @@ def test_url_redirect_expand_page_off(mock_get_page, client, settings):
                 'slug': 'page',
                 'languages': [['en-gb', 'English']],
             },
-            'page_type': 'InvestInternationalHomePage',
+            'page_type': 'InternationalArticlePage',
         }
     )
 

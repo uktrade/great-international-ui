@@ -252,28 +252,6 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
     pass
 
 
-@register_context_modifier('InvestInternationalHomePage')
-def invest_homepage_context_modifier(context, request):
-    hpo_pages = []
-    if 'high_potential_opportunities' in context['page']:
-        hpo_pages = context['page']['high_potential_opportunities'],
-
-    featured_cards = []
-    if 'featured_cards' in context['page']:
-        featured_cards = [card for card in context['page']['featured_cards']
-                          if card['title'] and card['summary'] and card['image']]
-    number_of_featured_cards = len(featured_cards)
-
-    return {
-        'international_home_page_link': urls.international.HOME,
-        'investment_support_directory_link': urls.international.EXPAND_ISD_HOME,
-        'how_to_set_up_visas_and_migration_link': urls.international.EXPAND_HOW_TO_SETUP_VISAS_AND_MIGRATION,
-        'how_to_set_up_tax_and_incentives_link': urls.international.EXPAND_HOW_TO_SETUP_TAX_AND_INCENTIVES,
-        'show_hpo_section': bool(hpo_pages and filter_by_active_language(hpo_pages[0])),
-        'show_featured_cards': (number_of_featured_cards == 3),
-    }
-
-
 @register_context_modifier('InternationalTradeHomePage')
 def international_trade_homepage_context_modifier(context, request):
     return {
