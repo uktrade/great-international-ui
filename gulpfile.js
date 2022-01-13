@@ -2,7 +2,6 @@
 const path = require('path');
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('node-sass'));
-const sourcemaps = require('gulp-sourcemaps');
 const minify = require('gulp-minify');
 const del = require('del');
 const imagemin = require('gulp-imagemin');
@@ -22,16 +21,14 @@ gulp.task('clean', function () {
 });
 
 gulp.task('sass:compile', function () {
-    return gulp.src(SASS_FILES)
-        .pipe(sourcemaps.init())
+    return gulp.src(SASS_FILES, {sourcemaps: true})
         .pipe(sass({
             includePaths: [
                 './conf/',
             ],
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest(CSS_DIR));
+        .pipe(gulp.dest(CSS_DIR, {sourcemaps: './maps'}));
 });
 
 gulp.task('sass:watch', function () {
@@ -42,13 +39,11 @@ gulp.task('sass:watch', function () {
 });
 
 gulp.task('js:minify', function () {
-    return gulp.src(JS_SRC_FILES)
-        .pipe(sourcemaps.init())
+    return gulp.src(JS_SRC_FILES, {sourcemaps: true})
         .pipe(minify({
             noSource: true
         }))
-        .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest(JS_DEST))
+        .pipe(gulp.dest(JS_DEST, {sourcemaps: './maps'}))
 })
 
 gulp.task('assets:copy', function () {
