@@ -16,7 +16,6 @@ TEMPLATE_MAPPING = {
     'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',
 
     # Capital investment
-    'CapitalInvestOpportunityListingPage': 'core/capital_invest/capital_invest_opportunity_listing_page.html',
     'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
     'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
@@ -51,7 +50,6 @@ FEATURE_FLAGGED_URLS_MAPPING = {}
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'AboutUkRegionPage': 'ABOUT_UK_REGION_PAGE_ON',
     'AboutUkRegionListingPage': 'ABOUT_UK_REGION_LISTING_PAGE_ON',
-    'CapitalInvestOpportunityListingPage': 'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
     'InternationalSubSectorPage': 'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
     'CapitalInvestContactFormPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'CapitalInvestContactFormSuccessPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
@@ -106,11 +104,6 @@ GA_DATA_MAPPING = {
     },
 
     # Capital investment
-    'CapitalInvestOpportunityListingPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Opportunity',
-        'site_subsection': 'ListingPage'
-    },
     'CapitalInvestContactFormPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'CapitalInvest',
