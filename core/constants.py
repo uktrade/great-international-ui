@@ -14,7 +14,6 @@ TEMPLATE_MAPPING = {
     # InternationalSectorPage and InternationalSubSectorPage used to use
     # 'core/sector_page.html' but they have been deprecated in favour of
     # InternationalInvestmentSectorPage and InternationalInvestmentSubSectorPage
-    'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',
     'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
 
     # Brexit
@@ -55,10 +54,7 @@ TEMPLATE_MAPPING = {
     'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
 }
 
-FEATURE_FLAGGED_URLS_MAPPING = {
-    '/international/content/how-to-do-business-with-the-uk/':
-        'HOW_TO_DO_BUSINESS_ON',
-}
+FEATURE_FLAGGED_URLS_MAPPING = {}
 
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'CapitalInvestRegionPage': 'CAPITAL_INVEST_REGION_PAGE_ON',
@@ -101,11 +97,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'SubSector',
         'site_subsection': 'DetailPage'
-    },
-    'InternationalCuratedTopicLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'CuratedTopic',
-        'site_subsection': 'LandingPage'
     },
     'InternationalGuideLandingPage': {
         'business_unit': 'Invest',

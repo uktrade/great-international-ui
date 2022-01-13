@@ -54,8 +54,8 @@ def setup_in_uk_page():
 
 
 @pytest.fixture
-def how_to_do_business_uk_page():
-    yield from stub_page({'page_type': 'InternationalCuratedTopicLandingPage'})
+def article_page():
+    yield from stub_page({'page_type': 'InternationalArticlePage'})
 
 
 @pytest.fixture
@@ -283,30 +283,12 @@ def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page,
     assert card_data['summary'] == "The UK is leading"
 
 
-@pytest.mark.usefixtures('how_to_do_business_uk_page')
-def test_how_to_do_business_feature_off(client, settings):
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = False
-
-    response = client.get(reverse('how-to-do-business-with-the-uk'))
-
-    assert response.status_code == 404
-
-
-@pytest.mark.usefixtures('how_to_do_business_uk_page')
-def test_how_to_do_business_feature_on(client, settings):
-    settings.FEATURE_FLAGS['HOW_TO_DO_BUSINESS_ON'] = True
-
-    response = client.get(reverse('how-to-do-business-with-the-uk'))
-
-    assert response.status_code == 200
-
-
-def test_cms_page_from_path_view(how_to_do_business_uk_page, client, settings):
+def test_cms_page_from_path_view(article_page, client, settings):
     response = client.get('/international/content/page/from/path/')
 
     assert response.status_code == 200
 
-    how_to_do_business_uk_page.assert_called_with(
+    article_page.assert_called_with(
         draft_token=None,
         language_code='en-gb',
         path='page/from/path',
