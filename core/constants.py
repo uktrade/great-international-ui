@@ -8,7 +8,6 @@ from directory_constants import urls
 TEMPLATE_MAPPING = {
     # Great international core
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
-    'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'investment_atlas/article_detail.html',
 
     # InternationalSectorPage and InternationalSubSectorPage used to use
@@ -83,11 +82,6 @@ GA_DATA_MAPPING = {
     'InternationalTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Topic',
-        'site_subsection': 'ListingPage'
-    },
-    'InternationalArticleListingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Article',
         'site_subsection': 'ListingPage'
     },
     'InternationalArticlePage': {
