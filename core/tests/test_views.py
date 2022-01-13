@@ -71,11 +71,6 @@ def international_capital_invest_page():
 
 
 @pytest.fixture
-def capital_invest_page():
-    yield from stub_page({'page_type': 'CapitalInvestRegionPage'})
-
-
-@pytest.fixture
 def about_uk_region_page():
     yield from stub_page({'page_type': 'AboutUkRegionPage'})
 
@@ -297,41 +292,6 @@ def test_cms_page_from_path_view(article_page, client, settings):
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_capital_invest_region_page_attaches_array_lengths_to_view(
-        mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestRegionPage',
-        'economics_stats': [
-            {'number': '1'},
-            {'number': '2', 'heading': 'heading'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-        'location_stats': [
-            {'number': '1'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
-
-    assert response.context_data['num_of_economics_statistics'] == 2
-    assert response.context_data['num_of_location_statistics'] == 1
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_get_capital_invest_opportunity_page_url_constants(
         mock_cms_response, rf):
     current_sector_title = 'Test Sector'
@@ -387,17 +347,6 @@ def test_get_capital_invest_opportunity_page_with_no_related_sectors(
         request, path='/international/content/opportunities/ashton')
 
     assert response.status_code == 200
-
-
-@pytest.mark.usefixtures('capital_invest_page')
-def test_capital_invest_region_page_returns_404_when_feature_flag_off(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_REGION_PAGE_ON'] = False
-
-    response = client.get('/international/content/midlands/')
-
-    assert response.status_code == 404
 
 
 @pytest.mark.usefixtures('about_uk_region_page')
@@ -634,63 +583,6 @@ def test_international_contact_form(mock_cms_response, client, settings):
     response = client.get(url)
 
     assert response.status_code == 200
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_showing_accordions_for_region_page(
-        mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestRegionPage',
-        'economics_stats': [],
-        'location_stats': [],
-        'subsections': [
-            {'title': 'section', 'content': 'Some content', 'icon': []},
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
-
-    assert response.context_data['show_accordions'] is True
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_showing_accordions_null_case_for_region_page(
-        mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestRegionPage',
-        'economics_stats': [],
-        'location_stats': [],
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/midlands/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/midlands/')
-
-    assert response.context_data['show_accordions'] is False
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
