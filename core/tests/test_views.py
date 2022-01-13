@@ -389,30 +389,6 @@ def test_get_capital_invest_opportunity_page_with_no_related_sectors(
     assert response.status_code == 200
 
 
-@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
-@pytest.mark.usefixtures('international_capital_invest_page')
-def test_capital_invest_landing_page_returns_404_when_feature_flag_off(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = False
-
-    response = client.get('/international/content/capital-invest/')
-
-    assert response.status_code == 404
-
-
-@pytest.mark.skip("Redundant - user is redirected away from this to Atlas")
-@pytest.mark.usefixtures('international_capital_invest_page')
-def test_capital_invest_landing_page_returns_200_when_feature_flag_on(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_LANDING_PAGE_ON'] = True
-
-    response = client.get('/international/content/capital-invest/')
-
-    assert response.status_code == 200
-
-
 @pytest.mark.usefixtures('capital_invest_page')
 def test_capital_invest_region_page_returns_404_when_feature_flag_off(
         client, settings
