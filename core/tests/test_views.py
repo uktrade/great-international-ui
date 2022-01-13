@@ -187,38 +187,6 @@ test_list_page = {
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_why_choose_the_uk_page_attaches_array_lengths_to_view(
-        mock_cms_response,
-        rf
-):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'AboutUkWhyChooseTheUkPage',
-        'statistics': [
-            {'number': '1'},
-            {'number': '2', 'heading': 'heading'},
-            {'number': None, 'heading': 'no-number-stat'}
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/about-uk/why-choose-uk/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/about-uk/why-choose-uk/')
-
-    assert response.context_data['num_of_statistics'] == 2
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_sector_page_context_modifier_creates_filtered_cards_list(mock_get_page, rf):
     page = {
         'title': 'test',

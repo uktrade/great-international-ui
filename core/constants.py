@@ -24,7 +24,6 @@ TEMPLATE_MAPPING = {
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
     'AboutUkRegionPage': 'investment_atlas/region.html',
-    'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
 
     # Invest
     'InvestInternationalHomePage': 'invest/landing_page.html',
@@ -178,11 +177,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
         'site_subsection': 'RegionPage'
-    },
-    'AboutUkWhyChooseTheUkPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutUK',
-        'site_subsection': 'WhyChooseTheUkPage'
     },
 
     # Find a supplier
