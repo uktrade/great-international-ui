@@ -20,7 +20,6 @@ TEMPLATE_MAPPING = {
     'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
     # About DIT
-    'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
     'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
@@ -160,11 +159,6 @@ GA_DATA_MAPPING = {
     },
 
     # About DIT
-    'AboutDitLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutDIT',
-        'site_subsection': 'LandingPage'
-    },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
