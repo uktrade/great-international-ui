@@ -21,7 +21,6 @@ TEMPLATE_MAPPING = {
 
     # About DIT
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
-    'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
     'AboutUkRegionPage': 'investment_atlas/region.html',
 
@@ -51,7 +50,6 @@ FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'InternationalSubSectorPage': 'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
     'CapitalInvestContactFormPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'CapitalInvestContactFormSuccessPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
-    'AboutUkLandingPage': 'ABOUT_UK_LANDING_PAGE_ON',
 }
 
 GA_DATA_MAPPING = {
@@ -162,11 +160,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
-    },
-    'AboutUkLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutUK',
-        'site_subsection': 'LandingPage'
     },
     'AboutUkRegionListingPage': {
         'business_unit': 'GreatInternational',
