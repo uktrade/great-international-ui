@@ -18,7 +18,6 @@ dummy_page = {
 
 
 def test_article_detail_page_no_related_content(default_context, rf):
-
     test_article_page_no_related_content = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -45,7 +44,6 @@ def test_article_detail_page_no_related_content(default_context, rf):
 
 
 def test_article_detail_page_related_content(default_context, rf):
-
     article_page = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -136,25 +134,6 @@ def test_article_detail_page_media_rendered(default_context, rf):
     assert src.attrs['src'] == 'test.mp4'
     assert src.attrs['type'] == 'video/mp4'
     assert 'src="campaign.jpg"' not in html
-
-
-def test_homepage_no_related_pages(default_context):
-    context = {
-        'page': {
-            'page_type': 'InternationalHomePage',
-            'news_title': 'News title',
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            'related_pages': []
-        },
-        **default_context
-    }
-
-    html = render_to_string('core/landing_page.html', context)
-
-    assert 'News title' not in html
 
 
 @patch('django.utils.translation.get_language')

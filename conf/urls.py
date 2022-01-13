@@ -21,7 +21,6 @@ import contact.views
 import find_a_supplier.views
 import second_qualification.views
 
-
 # IMPORTANT: a lot of these views are no longer active - they are
 # avoided by entries in redirects_before_tree_based_routing_lookup
 # because they have been retired during the Investment Atlas refactor.
@@ -196,12 +195,9 @@ urlpatterns += [
         skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
-    # Could we remove the need for InternationalHomePageView by using MultilingualCMSPageFromPathView instead?
-    # It seems InternationalHomePageView only sets the template, but this can be done in constants as for all
-    # other pages...
     url(
         r'^international/$',
-        core.views.InternationalHomePageView.as_view(),
+        core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': ''},
         name='index'
     ),

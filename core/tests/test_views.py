@@ -110,41 +110,6 @@ def about_uk_landing_page():
     yield from stub_page({'page_type': 'AboutUkLandingPage'})
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_cms_language_switcher_one_language(mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'InternationalHomePage'
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/')
-    request.LANGUAGE_CODE = 'de'
-
-    response = MultilingualCMSPageFromPathView.as_view()(request, path='/international/')
-
-    assert response.status_code == 200
-    assert response.context_data['language_switcher']['show'] is False
-
-
-@pytest.mark.usefixtures('home_page')
-def test_cms_language_switcher_active_language_available(rf):
-    request = rf.get('/')
-    request.LANGUAGE_CODE = 'en-gb'
-
-    response = MultilingualCMSPageFromPathView.as_view()(request, path='/international/')
-
-    assert response.status_code == 200
-    context = response.context_data['language_switcher']
-    assert context['show'] is True
-
-
 def test_get_cms_page(rf, home_page):
     request = rf.get('/')
     request.LANGUAGE_CODE = 'en-gb'

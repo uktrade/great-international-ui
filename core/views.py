@@ -148,13 +148,6 @@ def article_page_context_modifier(context, request):
     }
 
 
-class InternationalHomePageView(MultilingualCMSPageFromPathView):
-
-    @property
-    def template_name(self):
-        return 'investment_atlas/homepage.html'
-
-
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
     child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
