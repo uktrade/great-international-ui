@@ -62,7 +62,7 @@ directory-healthcheck==2.0.0
     # via -r requirements.in
 directory-validators==8.0.0
     # via -r requirements.in
-django==2.2.24
+django==2.2.26
     # via
     #   -r requirements.in
     #   directory-api-client
