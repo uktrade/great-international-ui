@@ -135,7 +135,7 @@ packaging==21.0
     #   pytest-sugar
 pep517==0.12.0
     # via pip-tools
-pillow==8.4.0
+pillow==9.0.0
     # via
     #   -r requirements_test.in
     #   directory-validators
