@@ -24,9 +24,6 @@ TEMPLATE_MAPPING = {
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
     'AboutUkRegionPage': 'investment_atlas/region.html',
 
-    # Invest
-    'InvestRegionPage': 'invest/regions/region_detail.html',
-
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
     'InternationalTradeIndustryContactPage': 'find_a_supplier/buy_from_the_uk_form.html',
@@ -119,11 +116,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'Invest',
         'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormSuccessPage',
-    },
-    'InvestRegionPage': {
-        'business_unit': 'Invest',
-        'site_section': 'Regions',
-        'site_subsection': 'DetailPage',
     },
     'WhyInvestInTheUKPage': {
         'business_unit': 'Invest',
