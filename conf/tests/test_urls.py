@@ -20,7 +20,6 @@ def reload_urlconf(settings):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_url_redirect_expand_page_on(mock_get_page, client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = True
     reload_urlconf(settings)
 
@@ -69,7 +68,6 @@ def test_url_redirect_expand_page_on(mock_get_page, client, settings):
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
 def test_url_redirect_expand_page_off(mock_get_page, client, settings):
-
     # NB: EXPAND_REDIRECT_ON looks like a setting that isn't set to True in real use
 
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
@@ -114,7 +112,6 @@ def test_url_redirect_expand_page_off(mock_get_page, client, settings):
 
 
 def test_url_redirect_how_set_up_expand_page_on(client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = True
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
     reload_urlconf(settings)
@@ -131,7 +128,6 @@ def test_url_redirect_how_set_up_expand_page_on(client, settings):
 
 
 def test_url_redirect_how_set_up_invest_page_on(client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
     reload_urlconf(settings)
@@ -147,7 +143,6 @@ def test_url_redirect_how_set_up_invest_page_on(client, settings):
 
 
 def test_url_redirect_how_set_up_expand_page_off(client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = True
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -160,7 +155,6 @@ def test_url_redirect_how_set_up_expand_page_off(client, settings):
 
 
 def test_url_redirect_how_set_up_redirect_off(client, settings):
-
     settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = False
     reload_urlconf(settings)
@@ -173,7 +167,6 @@ def test_url_redirect_how_set_up_redirect_off(client, settings):
 
 
 def test_url_redirect_industries_to_about_uk_page_on(client, settings):
-
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = True
     reload_urlconf(settings)
 
@@ -188,7 +181,6 @@ def test_url_redirect_industries_to_about_uk_page_on(client, settings):
 
 
 def test_url_redirect_industries_to_about_uk_page_off(client, settings):
-
     settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
     reload_urlconf(settings)
 
@@ -200,7 +192,6 @@ def test_url_redirect_industries_to_about_uk_page_off(client, settings):
 
 
 def test_url_redirect_international_contact_triage_on(client, settings):
-
     settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = True
     reload_urlconf(settings)
 
@@ -211,7 +202,6 @@ def test_url_redirect_international_contact_triage_on(client, settings):
 
 
 def test_url_redirect_international_contact_triage_off(client, settings):
-
     settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
     reload_urlconf(settings)
 
@@ -219,3 +209,15 @@ def test_url_redirect_international_contact_triage_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('international-contact-triage')
+
+
+@pytest.mark.parametrize('url, redirect_url', [
+    ('/international/content/how-to-setup-in-the-uk/', '/international/content/invest/how-to-setup-in-the-uk/'),
+    ('/international/content/invest/how-to-setup-in-the-uk/', '/international/investment/')
+])
+def test_other_redirects(url, redirect_url, client):
+    # This test is useful to move responsibility of older tests performed on now redirected URL
+    response = client.get(url)
+
+    assert response.status_code == 302
+    assert response.url == redirect_url

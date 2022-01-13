@@ -11,11 +11,6 @@ TEMPLATE_MAPPING = {
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticlePage': 'investment_atlas/article_detail.html',
 
-    # InternationalSectorPage and InternationalSubSectorPage used to use
-    # 'core/sector_page.html' but they have been deprecated in favour of
-    # InternationalInvestmentSectorPage and InternationalInvestmentSubSectorPage
-    'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
-
     # Brexit
     'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
     'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',
