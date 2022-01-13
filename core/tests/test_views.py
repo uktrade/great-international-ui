@@ -1,6 +1,5 @@
 from unittest.mock import patch, call
 
-from directory_constants import urls
 import pytest
 
 from django.urls import reverse
@@ -291,64 +290,6 @@ def test_cms_page_from_path_view(article_page, client, settings):
     )
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_capital_invest_opportunity_page_url_constants(
-        mock_cms_response, rf):
-    current_sector_title = 'Test Sector'
-
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestOpportunityPage',
-        'related_sectors': [
-            {'related_sector': {'title': current_sector_title}}
-        ]
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/ashton')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/opportunities/ashton')
-
-    assert response.context_data['invest_cta_link'] == urls.international.EXPAND_HOME
-    assert response.context_data['buy_cta_link'] == urls.international.TRADE_HOME
-    assert response.context_data['contact_cta_link'] == urls.international.CAPITAL_INVEST_CONTACT
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_get_capital_invest_opportunity_page_with_no_related_sectors(
-        mock_cms_response, rf):
-    page = {
-        'title': 'test',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['de', 'Deutsch'],
-            ]
-        },
-        'page_type': 'CapitalInvestOpportunityPage',
-        'related_sectors': []
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/content/opportunities/ashton')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(
-        request, path='/international/content/opportunities/ashton')
-
-    assert response.status_code == 200
-
-
 @pytest.mark.usefixtures('about_uk_region_page')
 def test_about_uk_region_page_returns_404_when_feature_flag_off(
         client, settings
@@ -389,30 +330,6 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
         request,
         path='/international/content/about-uk/regions/region/'
     )
-
-    assert response.status_code == 200
-
-
-@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
-@pytest.mark.usefixtures('capital_invest_opportunity_page')
-def test_capital_invest_opportunity_page_returns_404_when_feature_flag_off(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = False
-
-    response = client.get('/international/content/opportunities/ashton/')
-
-    assert response.status_code == 404
-
-
-@pytest.mark.skip("This test is now redundant, because we 302s to another page - retaining test for awareness")
-@pytest.mark.usefixtures('capital_invest_opportunity_page')
-def test_capital_invest_opportunity_page_returns_200_when_feature_flag_on(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_OPPORTUNITY_PAGE_ON'] = True
-
-    response = client.get('/international/content/opportunities/ashton/')
 
     assert response.status_code == 200
 
