@@ -16,41 +16,6 @@ from core.views import (
     WhyBuyFromUKFormViewSuccess
 )
 
-test_sectors = [
-    {
-        'title': 'Aerospace',
-        'featured': True,
-        'meta': {
-            'slug': 'invest-aerospace',
-            'languages': [
-                ['en-gb', 'English'],
-                ['ar', 'العربيّة'],
-                ['de', 'Deutsch'],
-            ],
-        },
-    },
-    {
-        'title': 'Automotive',
-        'featured': True,
-        'meta': {
-            'slug': 'invest-automotive',
-            'languages': [
-                ['en-gb', 'English'],
-                ['fr', 'Français'],
-                ['ja', '日本語'],
-            ],
-        },
-    },
-]
-
-
-@pytest.fixture
-def setup_in_uk_page():
-    yield from stub_page({
-        'page_type': 'InternationalGuideLandingPage',
-        'guides': [],
-    })
-
 
 @pytest.fixture
 def article_page():
@@ -58,35 +23,8 @@ def article_page():
 
 
 @pytest.fixture
-def home_page():
-    yield from stub_page({'page_type': 'InternationalHomePage'})
-
-
-@pytest.fixture
-def international_capital_invest_page():
-    yield from stub_page({
-        'page_type': 'InternationalCapitalInvestLandingPage'
-    })
-
-
-@pytest.fixture
 def about_uk_region_page():
     yield from stub_page({'page_type': 'AboutUkRegionPage'})
-
-
-@pytest.fixture
-def capital_invest_opportunity_page():
-    yield from stub_page({
-        'page_type': 'CapitalInvestOpportunityPage',
-        'related_sectors': [
-            {'related_sector': {'title': 'Test Sector'}}
-        ]
-    })
-
-
-@pytest.fixture
-def international_sub_sector_page():
-    yield from stub_page({'page_type': 'InternationalSubSectorPage'})
 
 
 @pytest.fixture
@@ -97,93 +35,6 @@ def capital_invest_contact_form_page():
 @pytest.fixture
 def capital_invest_contact_form_success_page():
     yield from stub_page({'page_type': 'CapitalInvestContactFormSuccessPage'})
-
-
-@pytest.fixture
-def about_uk_landing_page():
-    yield from stub_page({'page_type': 'AboutUkLandingPage'})
-
-
-def test_get_cms_page(rf, home_page):
-    request = rf.get('/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = MultilingualCMSPageFromPathView.as_view()(request, path='/')
-
-    assert response.context_data['page'] == home_page.return_value.json()
-
-
-test_child_pages = [
-    {
-        'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {
-            'slug': 'article-one',
-            'languages': [['en-gb', 'English']],
-        },
-        'page_type': 'InternationalArticlePage',
-        'teaser': 'Article one teaser',
-        'title': 'Article one'
-    },
-    {
-        'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {
-            'slug': 'article-two',
-            'languages': [['en-gb', 'English']],
-        },
-        'page_type': 'InternationalArticlePage',
-        'teaser': 'Article two teaser',
-        'title': 'Article two'
-    },
-]
-
-test_localised_child_pages = [
-    {
-        'last_published_at': '2019-02-28T10:56:31.455848Z',
-        'meta': {
-            'slug': 'article-one',
-            'languages': [['en-gb', 'English']],
-        },
-        'page_type': 'InternationalArticlePage',
-        'teaser': 'Article one teaser',
-        'title': 'Article one'
-    },
-    {
-        'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {
-            'slug': 'article-two',
-            'languages': [['en-gb', 'English']],
-        },
-        'page_type': 'InternationalArticlePage',
-        'teaser': 'Article two teaser',
-        'title': 'Article two'
-    },
-    {
-        'last_published_at': '2019-02-28T10:56:32.455848Z',
-        'meta': {
-            'slug': 'article-three',
-            'languages': [['en-gb', 'English']],
-        },
-        'page_type': 'InternationalArticlePage',
-        'teaser': 'Article three teaser',
-        'title': 'Article three'
-    },
-]
-
-test_list_page = {
-    'title': 'List CMS admin title',
-    'seo_title': 'SEO title article list',
-    'search_description': 'Article list search description',
-    'landing_page_title': 'Article list landing page title',
-    'hero_image': {'url': 'article_list.png'},
-    'hero_teaser': 'Article list hero teaser',
-    'list_teaser': '<p>Article list teaser</p>',
-    'child_pages': test_child_pages,
-    'localised_child_pages': test_localised_child_pages,
-    'page_type': 'InternationalArticleListingPage',
-    'meta': {
-        'slug': 'article-list',
-        'languages': [['en-gb', 'English']],
-    },
-}
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
@@ -300,20 +151,6 @@ def test_about_uk_region_page_returns_200_when_feature_flag_on(
     )
 
     assert response.status_code == 200
-
-
-@pytest.mark.usefixtures('international_sub_sector_page')
-def test_capital_invest_sub_sector_page_returns_404_when_feature_flag_off(
-        client, settings
-):
-    settings.FEATURE_FLAGS['CAPITAL_INVEST_SUB_SECTOR_PAGE_ON'] = False
-    settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
-    response = client.get(
-        '/international/content/industries/energy/mixed-use/'
-    )
-    assert response.status_code == 404
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')

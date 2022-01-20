@@ -1,5 +1,4 @@
 import copy
-import random
 
 from django.conf import settings
 from django.http import Http404
@@ -21,7 +20,7 @@ from directory_components.mixins import (
 
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
-from core.helpers import get_map_labels_with_vertical_positions, get_sender_ip_address
+from core.helpers import get_sender_ip_address
 from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin, InternationalHeaderMixin
 from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
@@ -185,22 +184,6 @@ class InternationalContactPageView(CountryDisplayMixin, InternationalView):
         )
 
 
-@register_context_modifier('CapitalInvestOpportunityPage')
-def capital_invest_opportunity_page_context_modifier(context, request):
-    current_sector_title = None
-    related_sectors = context['page']['related_sectors']
-
-    if related_sectors:
-        current_sector_title = related_sectors[0]['related_sector']['title'].lower()
-
-    return {
-        'invest_cta_link': urls.international.EXPAND_HOME,
-        'buy_cta_link': urls.international.TRADE_HOME,
-        'current_sector_title': current_sector_title,
-        'contact_cta_link': urls.international.CAPITAL_INVEST_CONTACT,
-    }
-
-
 class SendContactNotifyMessagesMixin:
     def send_company_message(self, form):
         sender = directory_forms_api_client.helpers.Sender(
@@ -256,74 +239,6 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
 def international_trade_homepage_context_modifier(context, request):
     return {
         'search_form': find_a_supplier.forms.SearchForm,
-    }
-
-
-REGION_MIDDLE_POINTS = {
-    'scotland': {'x': 164, 'y': 206},
-    'northern-ireland': {'x': 195, 'y': 372.5},
-    'north-england': {'x': 440, 'y': 427.5},
-    'wales': {'x': 333, 'y': 643},
-    'midlands': {'x': 445, 'y': 582.5},
-    'south-england': {'x': 485, 'y': 688.5},
-}
-
-
-def get_regions_with_coordinates(regions):
-    regions_with_coordinates = {}
-
-    for field in regions:
-        title = field['region']['title']
-        slug = field['region']['meta']['slug']
-
-        regions_with_coordinates[slug] = get_map_labels_with_vertical_positions(
-            title.split(), REGION_MIDDLE_POINTS[slug]['x'], REGION_MIDDLE_POINTS[slug]['y']
-        )
-
-    return regions_with_coordinates
-
-
-@register_context_modifier('AboutUkLandingPage')
-def about_uk_landing_page_context_modifier(context, request):
-    regions = []
-    if 'regions' in context['page']:
-        regions = context['page']['regions']
-
-    random_sectors = []
-    if 'all_sectors' in context['page']:
-        all_sectors = context['page']['all_sectors']
-        random.shuffle(all_sectors)
-        random_sectors = all_sectors[0:3]
-
-    regions_with_coordinates = {
-        'scotland': [],
-        'northern-ireland': [],
-        'north-england': [],
-        'wales': [],
-        'midlands': [],
-        'south-england': []
-    }
-
-    show_regions = False
-    if regions:
-        region_pages = [field['region'] for field in regions if field['region']]
-        regions_with_text = [field for field in regions
-                             if field['region'] and field['text']]
-        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
-            show_regions = True
-            regions_with_coordinates = get_regions_with_coordinates(context['page']['regions'])
-
-    return {
-        'random_sectors': random_sectors,
-        'show_regions': show_regions,
-        'scotland': regions_with_coordinates['scotland'],
-        'northern_ireland': regions_with_coordinates['northern-ireland'],
-        'north_england': regions_with_coordinates['north-england'],
-        'wales': regions_with_coordinates['wales'],
-        'midlands': regions_with_coordinates['midlands'],
-        'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates,
-        'regions': regions
     }
 
 
