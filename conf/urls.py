@@ -32,7 +32,7 @@ sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
 }
 
-# Investment Support Directory and Trade
+# Investment Support Directory, Trade and Invest
 urlpatterns = [
     url(
         r'^international/investment-support-directory/',
@@ -67,16 +67,13 @@ urlpatterns = [
         QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
         name='trade-incoming-homepage'
     ),
-    # This entry includes all URLs in find_a_supplier/redirects.py...
+    # This entry handles all URLs in find_a_supplier/redirects.py
     url(
         r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
         name='trade-incoming'
     ),
-]
-
-# Must stay first so isn't changed by expand feature flag
-urlpatterns += [
+    # This entry handles all URLs in invest/redirects.py
     url(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
         invest.views.LegacyInvestURLRedirectView.as_view(),
@@ -84,48 +81,7 @@ urlpatterns += [
     ),
 ]
 
-if settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON']:
-    urlpatterns += [
-        url(
-            r'^international/invest/$',
-            QuerystringRedirectView.as_view(pattern_name='expand-home'),
-            name='invest-home-to-expand-home-redirect'
-        ),
-        url(
-            r'^international/content/invest/$',
-            QuerystringRedirectView.as_view(pattern_name='expand-home'),
-            name='content-invest-to-expand-home-redirect'
-        ),
-        url(
-            r'^international/invest/incoming/$',  # English homepage
-            QuerystringRedirectView.as_view(pattern_name='expand-home'),
-            name='invest-incoming-homepage'
-        ),
-        url(
-            r'^international/invest/(?P<path>[\w\-/]*)/$',
-            core.views.PathRedirectView.as_view(root_url='/international/expand'),
-            name='invest-to-expand-redirect'
-        ),
-        url(
-            r'^international/content/invest/(?P<path>[\w\-/]*)/$',
-            core.views.PathRedirectView.as_view(root_url='/international/content/expand'),
-            name='content-invest-to-expand-redirect'
-        ),
-    ]
-    if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
-        urlpatterns += [
-            url(
-                r'^international/content/how-to-setup-in-the-uk/$',
-                QuerystringRedirectView.as_view(url='/international/content/expand/how-to-setup-in-the-uk/'),
-                name='how-to-set-up-home-expand-redirect'
-            ),
-            url(
-                r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
-                core.views.PathRedirectView.as_view(root_url='/international/content/expand/how-to-setup-in-the-uk'),
-                name='how-to-set-up-expand-redirect'
-            ),
-        ]
-elif not settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] and settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
+if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
     urlpatterns += [
         url(
             r'^international/content/how-to-setup-in-the-uk/$',
@@ -146,6 +102,7 @@ urlpatterns += [
         name='advanced-manufacturing-redirect'
     )
 ]
+
 if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
     urlpatterns += [
         url(

@@ -1,7 +1,6 @@
 import pytest
 from django.urls import reverse
 
-from conf.tests.test_urls import reload_urlconf
 from . import helpers
 
 
@@ -57,20 +56,14 @@ def test_invest_redirects_persist_querystrings(client):
     assert response.url == '/international/content/industries/?foo=bar&lang=es'
 
 
-def test_invest_redirect_homepage(client, settings):
-    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
+def test_invest_redirect_homepage(client):
     url = reverse('invest-incoming', kwargs={'path': '/es/'})
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302
     assert response.url == '/international/invest/?foo=bar&lang=es'
 
 
-def test_invest_redirect_homepage_english(client, settings):
-    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
+def test_invest_redirect_homepage_english(client):
     url = reverse('invest-incoming-homepage')
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302

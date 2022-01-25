@@ -23,6 +23,18 @@ redirects = [
         '/international/trade/'
     ),
     (
+        '/international/content/invest/',
+        '/international/investment/'
+    ),
+    (
+        '/international/invest/incoming/',
+        '/international/invest/'
+    ),
+    (
+        '/international/invest/incoming/foo/',
+        '/international/invest/'
+    ),
+    (
         '/international/eu-exit-news/contact/',
         reverse('brexit-international-contact-form'),
     ),
@@ -53,6 +65,10 @@ redirects = [
     (
         '/international/content/invest/high-potential-opportunities/contact/success/',
         '/international/content/investment/foreign-direct-investment-contact/success/'
+    ),
+    (
+        '/international/content/expand/',
+        '/international/expand/'
     ),
     (
         '/international/content/expand/high-potential-opportunities/contact/',
@@ -91,7 +107,7 @@ redirects = [
         '/international/investment/opportunities/',
     ),
     (
-        '/international/content/invest/high-potential-opportunities',
+        '/international/content/invest/high-potential-opportunities/',
         '/international/investment/opportunities/',
     ),
     (
