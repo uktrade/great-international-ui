@@ -31,7 +31,7 @@ from . import helpers
     ),
     (
             'foo/bar',
-            '/international/invest/'
+            '/international/investment/'
     )
 ])
 def test_invest_english_only_redirects(source, destination, client):
@@ -61,10 +61,3 @@ def test_invest_redirect_homepage(client):
     response = client.get(url, {'foo': 'bar'})
     assert response.status_code == 302
     assert response.url == '/international/invest/?foo=bar&lang=es'
-
-
-def test_invest_redirect_homepage_english(client):
-    url = reverse('invest-incoming-homepage')
-    response = client.get(url, {'foo': 'bar'})
-    assert response.status_code == 302
-    assert response.url == '/international/invest/?foo=bar'

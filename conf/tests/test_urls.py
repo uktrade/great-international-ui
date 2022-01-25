@@ -19,7 +19,6 @@ def test_url_redirect_how_set_up_invest_page_on(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
     reload_urlconf(settings)
 
-    assert reverse('how-to-set-up-home-invest-redirect')
     response = client.get('/international/content/how-to-setup-in-the-uk/')
     assert response.status_code == 302
     assert response.url == '/international/content/invest/how-to-setup-in-the-uk/'

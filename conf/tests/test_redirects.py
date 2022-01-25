@@ -28,11 +28,11 @@ redirects = [
     ),
     (
         '/international/invest/incoming/',
-        '/international/invest/'
+        '/international/investment/'
     ),
     (
         '/international/invest/incoming/foo/',
-        '/international/invest/'
+        '/international/investment/'
     ),
     (
         '/international/eu-exit-news/contact/',
@@ -68,7 +68,7 @@ redirects = [
     ),
     (
         '/international/content/expand/',
-        '/international/expand/'
+        '/international/investment/'
     ),
     (
         '/international/content/expand/high-potential-opportunities/contact/',

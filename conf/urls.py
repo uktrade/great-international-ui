@@ -179,22 +179,14 @@ urlpatterns += [
         name='content-index-redirect'
     ),
     url(
-        r'^international/invest/incoming/$',  # English homepage
-        QuerystringRedirectView.as_view(pattern_name='invest-home'),
+        r'^international/invest/incoming/$',
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
         name='invest-incoming-homepage'
-    ),
-
-    url(
-        r'^international/invest/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'invest'},
-        name='invest-home'
     ),
     url(
         r'^international/expand/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'expand'},
-        name='expand-home'
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
+        name='expand-homepage-redirect'
     ),
     url(
         # Remains in use after the Atlas refactor
@@ -218,32 +210,17 @@ urlpatterns += [
         name="expand-contact-success"
     ),
     url(
-        r'^international/content/invest/$',
-        QuerystringRedirectView.as_view(pattern_name='invest-home'),
-        name='content-invest-home-redirect'
-    ),
-    url(
         r'^international/content/expand/$',
-        QuerystringRedirectView.as_view(pattern_name='expand-home'),
+        QuerystringRedirectView.as_view(pattern_name='atlas-home'),
         name='content-expand-home-redirect'
     ),
     url(
         r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
     ),
-    # Since we don't have a frontend page for the HPO landing page in the CMS
-    # redirect to the HPO section on the homepage instead
-    url(
-        r'^international/content/invest/high-potential-opportunities/$',
-        QuerystringRedirectView.as_view(
-            url=('/international/content/invest/#high-potential-opportunities')),
-        name='hpo-landing-page-redirect'
-    ),
-
     url(
         r'^international/content/expand/high-potential-opportunities/$',
-        QuerystringRedirectView.as_view(
-            url='/international/content/expand/#high-potential-opportunities'),
+        QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
         name='hpo-landing-page-expand-redirect'
     ),
     url(
@@ -264,27 +241,6 @@ urlpatterns += [
         {'path': 'investment/contact'},
         name='investment-contact'
     ),
-    # these next 3 named urls are required for breadcrumbs in templates
-    url(
-        r'^international/content/industries/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'industries'},
-        name='industries'
-    ),
-    url(
-        r'^international/content/how-to-setup-in-the-uk/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'how-to-setup-in-the-uk'},
-        name='how-to-setup-in-the-uk'
-    ),
-    url(
-        r'^international/content/how-to-do-business-with-the-uk/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'how-to-do-business-with-the-uk'},
-        name='how-to-do-business-with-the-uk'
-    ),
-    # r'^international/content/opportunities/$', has been replaced by international/investment/opportunities/
-    # and once the new investment atlas pages are live, we can remove all capinvest pages
     url(
         r'^international/invest-capital/$',
         QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
