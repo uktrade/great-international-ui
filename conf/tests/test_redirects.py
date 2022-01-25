@@ -179,6 +179,14 @@ redirects = [
         '/international/content/investment/regions/south-england/',
     ),
     (
+        '/international/content/how-to-setup-in-the-uk/',
+        '/international/content/invest/how-to-setup-in-the-uk/'
+    ),
+    (
+        '/international/content/invest/how-to-setup-in-the-uk/',
+        '/international/investment/'
+    ),
+    (
         '/international/content/invest/how-to-setup-in-the-uk/establish-a-base-for-business-in-the-uk/',
         '/international/content/investment/how-we-can-help/establish-a-base-for-business-in-the-uk/',
     ),

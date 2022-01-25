@@ -80,15 +80,3 @@ def test_url_redirect_international_contact_triage_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('international-contact-triage')
-
-
-@pytest.mark.parametrize('url, redirect_url', [
-    ('/international/content/how-to-setup-in-the-uk/', '/international/content/invest/how-to-setup-in-the-uk/'),
-    ('/international/content/invest/how-to-setup-in-the-uk/', '/international/investment/')
-])
-def test_other_redirects(url, redirect_url, client):
-    # This test is useful to move responsibility of older tests performed on now redirected URL
-    response = client.get(url)
-
-    assert response.status_code == 302
-    assert response.url == redirect_url
