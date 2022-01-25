@@ -32,6 +32,7 @@ sitemaps = {
     'static': conf.sitemaps.StaticViewSitemap,
 }
 
+# Investment Support Directory and Trade
 urlpatterns = [
     url(
         r'^international/investment-support-directory/',
@@ -45,8 +46,6 @@ urlpatterns = [
         QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
     ),
     url(
-        # Note that some of these URLS from find-a-supplier are superceded by later
-        # entries in the URLConf
         r'^international/trade/',
         include(
             'find_a_supplier.urls',
@@ -55,8 +54,24 @@ urlpatterns = [
     ),
     url(
         r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
+        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
         name='content-trade-home-redirect'
+    ),
+    url(
+        r'^international/content/trade/contact/$',
+        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
+        name='content-trade-contact-redirect'
+    ),
+    url(
+        r'^international/trade/incoming/$',
+        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
+        name='trade-incoming-homepage'
+    ),
+    # This entry includes all URLs in find_a_supplier/redirects.py...
+    url(
+        r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
+        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
+        name='trade-incoming'
     ),
 ]
 
@@ -211,11 +226,7 @@ urlpatterns += [
         QuerystringRedirectView.as_view(pattern_name='invest-home'),
         name='invest-incoming-homepage'
     ),
-    url(
-        r'^international/content/trade/contact/$',
-        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
-        name='content-trade-contact-redirect'
-    ),
+
     url(
         r'^international/invest/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
@@ -262,28 +273,6 @@ urlpatterns += [
     url(
         r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
-    ),
-    # These override at least one route from the find-a-supplier namespace, included far above
-    url(
-        r'^international/trade/incoming/$',  # Homepage
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
-        name='trade-incoming-homepage'
-    ),
-    url(
-        r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
-        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
-        name='trade-incoming'
-    ),
-    url(
-        r'^international/trade/$',
-        core.views.MultilingualCMSPageFromPathView.as_view(),
-        {'path': 'trade'},
-        name='trade-home'
-    ),
-    url(
-        r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='trade-home'),
-        name='content-trade-home-redirect'
     ),
     # Since we don't have a frontend page for the HPO landing page in the CMS
     # redirect to the HPO section on the homepage instead

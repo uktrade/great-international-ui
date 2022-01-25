@@ -2,10 +2,26 @@ from unittest import mock
 import pytest
 
 from django.urls import reverse
-
+from core.tests.helpers import create_response
 
 # the first element needs to end with a slash
 redirects = [
+    (
+        '/international/trade/investment-support-directory/search/',
+        '/international/investment-support-directory/'
+    ),
+    (
+        '/international/content/trade/',
+        '/international/trade/'
+    ),
+    (
+        '/international/content/trade/contact/',
+        '/international/trade/contact/'
+    ),
+    (
+        '/international/trade/incoming/',
+        '/international/trade/'
+    ),
     (
         '/international/eu-exit-news/contact/',
         reverse('brexit-international-contact-form'),
@@ -197,6 +213,7 @@ def test_redirects(url, expected, client):
 
 
 not_redirected = (
+    '/international/investment-support-directory/',
     '/international/invest/perfectfit/',  # needs PIR API call mocked
 
     # just a light check of SOME but not all views
@@ -209,17 +226,38 @@ not_redirected = (
 )
 
 
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_slug')
-@mock.patch('pir_client.client.pir_api_client.get_options')
 @pytest.mark.parametrize('url', not_redirected)
-def test_does_NOT_redirect(
-        mock_lookup_by_path,
-        mock_lookup_by_slug,
+@mock.patch('pir_client.client.pir_api_client.get_options')
+def test_does_not_redirect(
         mock_get_options,
         url,
         client,
 ):
+    response = client.get(url)
+    assert response.status_code == 200  # not 30x
+    assert not hasattr(response, 'url')
+
+
+not_redirected_cms = (
+    ('/international/trade/', 'InternationalTradeHomePage'),
+)
+
+
+@pytest.mark.parametrize('url,page_type', not_redirected_cms)
+@mock.patch('directory_cms_client.client.cms_api_client.lookup_by_path')
+def test_does_not_redirect_cms_pages(mock_lookup_by_path, url, page_type, client):
+    mock_lookup_by_path.return_value = create_response(
+        status_code=200,
+        json_payload={
+            'title': url,
+            'meta': {
+                'languages': [
+                    ['en-gb', 'English'],
+                ]
+            },
+            'page_type': page_type,
+        }
+    )
     response = client.get(url)
     assert response.status_code == 200  # not 30x
     assert not hasattr(response, 'url')
