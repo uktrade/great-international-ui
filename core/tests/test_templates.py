@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 from django.template.loader import render_to_string
 
 from bs4 import BeautifulSoup
@@ -18,7 +16,6 @@ dummy_page = {
 
 
 def test_article_detail_page_no_related_content(default_context, rf):
-
     test_article_page_no_related_content = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -45,7 +42,6 @@ def test_article_detail_page_no_related_content(default_context, rf):
 
 
 def test_article_detail_page_related_content(default_context, rf):
-
     article_page = {
         'title': 'Test article',
         'display_title': 'Test article',
@@ -136,100 +132,3 @@ def test_article_detail_page_media_rendered(default_context, rf):
     assert src.attrs['src'] == 'test.mp4'
     assert src.attrs['type'] == 'video/mp4'
     assert 'src="campaign.jpg"' not in html
-
-
-def test_homepage_no_related_pages(default_context):
-    context = {
-        'page': {
-            'page_type': 'InternationalHomePage',
-            'news_title': 'News title',
-            'meta': {
-                'slug': 'slug',
-                'languages': [('en-gb', 'English')],
-            },
-            'related_pages': []
-        },
-        **default_context
-    }
-
-    html = render_to_string('core/landing_page.html', context)
-
-    assert 'News title' not in html
-
-
-@patch('django.utils.translation.get_language')
-def test_guide_child_articles_less_than_nine(mock_language):
-    mock_language.return_value = 'fr'
-
-    french_page = {
-        'meta': {
-            'languages': [['fr', 'Français']]
-        }
-    }
-    german_page = {
-        'meta': {
-            'languages': [['de', 'Deutsch']]
-        }
-    }
-
-    context = {
-        'page': {
-            'title': 'test',
-            'meta': {
-                'languages': [
-                    ['en-gb', 'English'],
-                    ['fr', 'Français'],
-                    ['de', 'Deutsch'],
-                ]
-            },
-            'page_type': '',
-            'guides': [
-                french_page, french_page, french_page, french_page, french_page, german_page, german_page
-            ]
-        }
-    }
-
-    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
-    soup = BeautifulSoup(html, 'html.parser')
-
-    assert len(soup.find(id='guide-articles').find_all('article')) == 5
-
-
-@patch('django.utils.translation.get_language')
-def test_guide_child_articles_more_than_nine(mock_language):
-    mock_language.return_value = 'fr'
-
-    french_page = {
-        'meta': {
-            'languages': [['fr', 'Français']]
-        }
-    }
-    german_page = {
-        'meta': {
-            'languages': [['de', 'Deutsch']]
-        }
-    }
-
-    context = {
-        'page': {
-            'title': 'test',
-            'meta': {
-                'languages': [
-                    ['en-gb', 'English'],
-                    ['fr', 'Français'],
-                    ['de', 'Deutsch'],
-                ]
-            },
-            'page_type': '',
-            'guides': [
-                french_page, french_page, french_page, french_page, french_page,
-                french_page, french_page, french_page, french_page, french_page,
-                german_page, german_page
-            ]
-        }
-    }
-
-    html = render_to_string('core/uk_setup_guide/guide_landing_page.html', context)
-    soup = BeautifulSoup(html, 'html.parser')
-
-    assert len(soup.find(id='guide-articles').find_all('article')) == 9

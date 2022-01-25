@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from django.urls import reverse
 from django.conf import settings
 
-from conf.tests.test_urls import reload_urlconf
 from contact import forms, views
 
 
@@ -71,13 +70,10 @@ def test_contact_invalid(mock_save, rf):
 
 @pytest.mark.skip("Skipping this test as disabled translation")
 @pytest.mark.parametrize('url', (
-    'invest-contact',
-    'invest-contact-success'
+        'invest-contact',
+        'invest-contact-success'
 ))
 def test_contact_pages_localised_urls(url, client, settings):
-    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
     url = reverse(url) + '?lang=de'
     response = client.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -94,9 +90,6 @@ def test_contact_pages_localised_urls(url, client, settings):
     [code for code, _ in settings.LANGUAGES],
 )
 def test_contact_pages_localised_urls_all_languages(language_code, client, settings):
-    settings.FEATURE_FLAGS['EXPAND_REDIRECT_ON'] = False
-    reload_urlconf(settings)
-
     url = reverse('invest-contact') + f'?lang={language_code}'
     response = client.get(url)
     soup = BeautifulSoup(response.content, 'html.parser')

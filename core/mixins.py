@@ -2,7 +2,6 @@ from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
 from django.utils import translation
 from django.http import Http404
-from django.conf import settings
 
 from directory_components.helpers import get_user_country
 from directory_components.mixins import CountryDisplayMixin
@@ -14,21 +13,6 @@ from directory_cms_client.client import cms_api_client
 from directory_cms_client.helpers import handle_cms_response
 
 from core import constants, helpers
-
-
-class NotFoundOnDisabledFeature:
-    def dispatch(self, *args, **kwargs):
-
-        if self.request.path not in constants.FEATURE_FLAGGED_URLS_MAPPING:
-            return super().dispatch(*args, **kwargs)
-
-        flag = constants.FEATURE_FLAGGED_URLS_MAPPING.get(self.request.path, None)
-        flag_on = settings.FEATURE_FLAGS.get(flag, False)
-
-        if not flag_on:
-            raise Http404()
-
-        return super().dispatch(*args, **kwargs)
 
 
 class RegionalContentMixin(CountryDisplayMixin):

@@ -98,7 +98,7 @@ def test_microsoft_defender_safe_links_middleware_trims_pii(mock_get_page, clien
                 'slug': 'page',
                 'languages': [['en-gb', 'English']],
             },
-            'page_type': 'InvestInternationalHomePage',
+            'page_type': 'InternationalArticlePage',
         }
     )
 
