@@ -37,8 +37,6 @@ TEMPLATE_MAPPING = {
     'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
 }
 
-FEATURE_FLAGGED_URLS_MAPPING = {}
-
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
     'AboutUkRegionPage': 'ABOUT_UK_REGION_PAGE_ON',
     'AboutUkRegionListingPage': 'ABOUT_UK_REGION_LISTING_PAGE_ON',

@@ -21,7 +21,7 @@ from directory_components.mixins import (
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
 from core.helpers import get_sender_ip_address
-from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin, InternationalHeaderMixin
+from core.mixins import RegionalContentMixin, InternationalHeaderMixin
 from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 
@@ -39,7 +39,6 @@ class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
 
 class MonolingualCMSPageFromPathView(
     RegionalContentMixin,
-    NotFoundOnDisabledFeature,
     InternationalView
 ):
     cms_site_id = settings.DIRECTORY_CMS_SITE_ID
