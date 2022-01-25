@@ -19,6 +19,7 @@ def test_url_redirect_how_set_up_invest_page_on(client, settings):
     settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON'] = True
     reload_urlconf(settings)
 
+    assert reverse('how-to-set-up-home-invest-redirect')
     response = client.get('/international/content/how-to-setup-in-the-uk/')
     assert response.status_code == 302
     assert response.url == '/international/content/invest/how-to-setup-in-the-uk/'
@@ -34,9 +35,6 @@ def test_url_redirect_how_set_up_redirect_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('how-to-set-up-expand-redirect')
-
-    with pytest.raises(NoReverseMatch):
-        reverse('how-to-set-up-home-invest-redirect')
 
 
 def test_url_redirect_industries_to_about_uk_page_on(client, settings):
