@@ -1,7 +1,0 @@
-{% extends 'invest/includes/plain_card_grid.html' %}
-{% load title_from_heading from cms_tags %}
-{% load card from directory_components %}
-
-{% block card_content %}
-    {% card img_src=card.hero_image.url img_alt='' url=card.meta.url title=card.heading|title_from_heading description=card.description %}
-{% endblock %}

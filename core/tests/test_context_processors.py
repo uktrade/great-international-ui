@@ -30,20 +30,19 @@ def test_footer_contact_link_processor_flag(settings):
 
 
 def test_directory_components_html_lang_attribute(settings):
-
     with translation.override('fr'):
         actual = context_processors.directory_components_html_lang_attribute(None)  # noqa
 
         assert actual[
-            'directory_components_html_lang_attribute'
-        ] == translation.get_language()
+                   'directory_components_html_lang_attribute'
+               ] == translation.get_language()
 
     with translation.override('de'):
         actual = context_processors.directory_components_html_lang_attribute(None)  # noqa
 
         assert actual[
-            'directory_components_html_lang_attribute'
-        ] == translation.get_language()
+                   'directory_components_html_lang_attribute'
+               ] == translation.get_language()
 
 
 def test_services_home_links():
@@ -56,10 +55,6 @@ def test_services_home_links():
         'trade_home_link': {
             'url': reverse_lazy('find-a-supplier:trade-home'),
             'label': 'Find a supplier',
-        },
-        'invest_home_link': {
-            'url': reverse_lazy('invest-home'),
-            'label': 'Invest',
         },
         'investment_atlas_home_link': {
             'url': reverse_lazy('atlas-home'),

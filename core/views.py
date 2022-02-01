@@ -1,5 +1,4 @@
 import copy
-import random
 
 from django.conf import settings
 from django.http import Http404
@@ -21,8 +20,8 @@ from directory_components.mixins import (
 
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
-from core.helpers import get_map_labels_with_vertical_positions, get_sender_ip_address
-from core.mixins import NotFoundOnDisabledFeature, RegionalContentMixin, InternationalHeaderMixin
+from core.helpers import get_sender_ip_address
+from core.mixins import RegionalContentMixin, InternationalHeaderMixin
 from core.templatetags.cms_tags import filter_by_active_language
 from core.header_config import tier_one_nav_items, tier_two_nav_items
 
@@ -40,7 +39,6 @@ class InternationalView(InternationalHeaderMixin, GA360Mixin, TemplateView):
 
 class MonolingualCMSPageFromPathView(
     RegionalContentMixin,
-    NotFoundOnDisabledFeature,
     InternationalView
 ):
     cms_site_id = settings.DIRECTORY_CMS_SITE_ID
@@ -148,13 +146,6 @@ def article_page_context_modifier(context, request):
     }
 
 
-class InternationalHomePageView(MultilingualCMSPageFromPathView):
-
-    @property
-    def template_name(self):
-        return 'investment_atlas/homepage.html'
-
-
 @register_context_modifier('InternationalTopicLandingPage')
 def sector_landing_page_context_modifier(context, request):
     child_pages_for_language = filter_by_active_language(context['page']['child_pages'])
@@ -168,23 +159,6 @@ def sector_landing_page_context_modifier(context, request):
 
     return {
         "cards_list": cards_list
-    }
-
-
-@register_context_modifier('AboutUkWhyChooseTheUkPage')
-def about_uk_why_choose_the_uk_page_context_modifier(context, request):
-    def count_data_with_field(list_of_data, field):
-        filtered_list = [item for item in list_of_data if item[field]]
-        return len(filtered_list)
-
-    page = context['page']
-
-    return {
-        'num_of_statistics': count_data_with_field(
-            page['statistics'],
-            'number'
-        ),
-        'about_uk_link': urls.international.ABOUT_UK_HOME
     }
 
 
@@ -207,44 +181,6 @@ class InternationalContactPageView(CountryDisplayMixin, InternationalView):
             invest_contact_us_url=urls.international.EXPAND_CONTACT,
             *args, **kwargs
         )
-
-
-@register_context_modifier('CapitalInvestRegionPage')
-def capital_invest_region_page_context_modifier(context, request):
-    page = context['page']
-
-    show_accordions = False
-
-    if 'subsections' in page:
-        accordions = {accordion['title']: accordion['content']
-                      for accordion in page['subsections']
-                      if accordion['title'] and accordion['content']}
-        if accordions:
-            show_accordions = True
-
-    return {
-        'num_of_economics_statistics': helpers.count_data_with_field(
-            page['economics_stats'], 'number'),
-        'num_of_location_statistics': helpers.count_data_with_field(
-            page['location_stats'], 'number'),
-        'show_accordions': show_accordions
-    }
-
-
-@register_context_modifier('CapitalInvestOpportunityPage')
-def capital_invest_opportunity_page_context_modifier(context, request):
-    current_sector_title = None
-    related_sectors = context['page']['related_sectors']
-
-    if related_sectors:
-        current_sector_title = related_sectors[0]['related_sector']['title'].lower()
-
-    return {
-        'invest_cta_link': urls.international.EXPAND_HOME,
-        'buy_cta_link': urls.international.TRADE_HOME,
-        'current_sector_title': current_sector_title,
-        'contact_cta_link': urls.international.CAPITAL_INVEST_CONTACT,
-    }
 
 
 class SendContactNotifyMessagesMixin:
@@ -298,100 +234,10 @@ class BaseNotifyFormView(SendContactNotifyMessagesMixin, FormView):
     pass
 
 
-@register_context_modifier('InvestInternationalHomePage')
-def invest_homepage_context_modifier(context, request):
-    hpo_pages = []
-    if 'high_potential_opportunities' in context['page']:
-        hpo_pages = context['page']['high_potential_opportunities'],
-
-    featured_cards = []
-    if 'featured_cards' in context['page']:
-        featured_cards = [card for card in context['page']['featured_cards']
-                          if card['title'] and card['summary'] and card['image']]
-    number_of_featured_cards = len(featured_cards)
-
-    return {
-        'international_home_page_link': urls.international.HOME,
-        'investment_support_directory_link': urls.international.EXPAND_ISD_HOME,
-        'how_to_set_up_visas_and_migration_link': urls.international.EXPAND_HOW_TO_SETUP_VISAS_AND_MIGRATION,
-        'how_to_set_up_tax_and_incentives_link': urls.international.EXPAND_HOW_TO_SETUP_TAX_AND_INCENTIVES,
-        'show_hpo_section': bool(hpo_pages and filter_by_active_language(hpo_pages[0])),
-        'show_featured_cards': (number_of_featured_cards == 3),
-    }
-
-
 @register_context_modifier('InternationalTradeHomePage')
 def international_trade_homepage_context_modifier(context, request):
     return {
         'search_form': find_a_supplier.forms.SearchForm,
-    }
-
-
-REGION_MIDDLE_POINTS = {
-    'scotland': {'x': 164, 'y': 206},
-    'northern-ireland': {'x': 195, 'y': 372.5},
-    'north-england': {'x': 440, 'y': 427.5},
-    'wales': {'x': 333, 'y': 643},
-    'midlands': {'x': 445, 'y': 582.5},
-    'south-england': {'x': 485, 'y': 688.5},
-}
-
-
-def get_regions_with_coordinates(regions):
-    regions_with_coordinates = {}
-
-    for field in regions:
-        title = field['region']['title']
-        slug = field['region']['meta']['slug']
-
-        regions_with_coordinates[slug] = get_map_labels_with_vertical_positions(
-            title.split(), REGION_MIDDLE_POINTS[slug]['x'], REGION_MIDDLE_POINTS[slug]['y']
-        )
-
-    return regions_with_coordinates
-
-
-@register_context_modifier('AboutUkLandingPage')
-def about_uk_landing_page_context_modifier(context, request):
-    regions = []
-    if 'regions' in context['page']:
-        regions = context['page']['regions']
-
-    random_sectors = []
-    if 'all_sectors' in context['page']:
-        all_sectors = context['page']['all_sectors']
-        random.shuffle(all_sectors)
-        random_sectors = all_sectors[0:3]
-
-    regions_with_coordinates = {
-        'scotland': [],
-        'northern-ireland': [],
-        'north-england': [],
-        'wales': [],
-        'midlands': [],
-        'south-england': []
-    }
-
-    show_regions = False
-    if regions:
-        region_pages = [field['region'] for field in regions if field['region']]
-        regions_with_text = [field for field in regions
-                             if field['region'] and field['text']]
-        if len(regions_with_text) == 6 and len(filter_by_active_language(region_pages)) == 6:
-            show_regions = True
-            regions_with_coordinates = get_regions_with_coordinates(context['page']['regions'])
-
-    return {
-        'random_sectors': random_sectors,
-        'show_regions': show_regions,
-        'scotland': regions_with_coordinates['scotland'],
-        'northern_ireland': regions_with_coordinates['northern-ireland'],
-        'north_england': regions_with_coordinates['north-england'],
-        'wales': regions_with_coordinates['wales'],
-        'midlands': regions_with_coordinates['midlands'],
-        'south_england': regions_with_coordinates['south-england'],
-        'regions_with_points': regions_with_coordinates,
-        'regions': regions
     }
 
 

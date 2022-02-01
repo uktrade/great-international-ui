@@ -7,41 +7,22 @@ from directory_constants import urls
 
 TEMPLATE_MAPPING = {
     # Great international core
-    'InternationalHomePage': 'core/landing_page.html',
+    'InternationalHomePage': 'investment_atlas/homepage.html',
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
-    'InternationalArticleListingPage': 'core/article_list.html',
     'InternationalArticlePage': 'investment_atlas/article_detail.html',
-
-    # InternationalSectorPage and InternationalSubSectorPage used to use
-    # 'core/sector_page.html' but they have been deprecated in favour of
-    # InternationalInvestmentSectorPage and InternationalInvestmentSubSectorPage
-    'InternationalCuratedTopicLandingPage': 'core/how_to_do_business_landing_page.html',
-    'InternationalGuideLandingPage': 'core/uk_setup_guide/guide_landing_page.html',
 
     # Brexit
     'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
     'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',
 
     # Capital investment
-    'InternationalCapitalInvestLandingPage': 'core/capital_invest/capital_invest_landing_page.html',
-    'CapitalInvestRegionPage': 'core/capital_invest/capital_invest_region_page.html',
-    'CapitalInvestOpportunityPage': 'core/capital_invest/capital_invest_opportunity_page.html',
-    'CapitalInvestOpportunityListingPage': 'core/capital_invest/capital_invest_opportunity_listing_page.html',
     'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
     'CapitalInvestContactFormSuccessPage': 'core/capital_invest/capital_invest_contact_form_success.html',
 
     # About DIT
-    'AboutDitLandingPage': 'core/about_dit/about_dit_landing_page.html',
     'AboutDitServicesPage': 'core/about_dit/services_page.html',
-    'AboutUkLandingPage': 'core/about_uk/about_uk_landing_page.html',
     'AboutUkRegionListingPage': 'investment_atlas/region_listing_page.html',
     'AboutUkRegionPage': 'investment_atlas/region.html',
-    'AboutUkWhyChooseTheUkPage': 'core/about_uk/why_choose_the_uk_page.html',
-
-    # Invest
-    'InvestInternationalHomePage': 'invest/landing_page.html',
-    'InvestHighPotentialOpportunityDetailPage': 'invest/hpo/high_potential_opportunity_detail.html',
-    'InvestRegionPage': 'invest/regions/region_detail.html',
 
     # Find a supplier
     'InternationalTradeHomePage': 'find_a_supplier/landing_page.html',
@@ -56,22 +37,12 @@ TEMPLATE_MAPPING = {
     'WhyInvestInTheUKPage': 'investment_atlas/why_invest_in_the_uk_page.html',
 }
 
-FEATURE_FLAGGED_URLS_MAPPING = {
-    '/international/content/how-to-do-business-with-the-uk/':
-        'HOW_TO_DO_BUSINESS_ON',
-}
-
 FEATURE_FLAGGED_PAGE_TYPES_MAPPING = {
-    'CapitalInvestRegionPage': 'CAPITAL_INVEST_REGION_PAGE_ON',
     'AboutUkRegionPage': 'ABOUT_UK_REGION_PAGE_ON',
     'AboutUkRegionListingPage': 'ABOUT_UK_REGION_LISTING_PAGE_ON',
-    'CapitalInvestOpportunityPage': 'CAPITAL_INVEST_OPPORTUNITY_PAGE_ON',
-    'InternationalCapitalInvestLandingPage': 'CAPITAL_INVEST_LANDING_PAGE_ON',
-    'CapitalInvestOpportunityListingPage': 'CAPITAL_INVEST_OPPORTUNITY_LISTING_PAGE_ON',
     'InternationalSubSectorPage': 'CAPITAL_INVEST_SUB_SECTOR_PAGE_ON',
     'CapitalInvestContactFormPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
     'CapitalInvestContactFormSuccessPage': 'CAPITAL_INVEST_CONTACT_FORM_PAGE_ON',
-    'AboutUkLandingPage': 'ABOUT_UK_LANDING_PAGE_ON',
 }
 
 GA_DATA_MAPPING = {
@@ -84,11 +55,6 @@ GA_DATA_MAPPING = {
     'InternationalTopicLandingPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'Topic',
-        'site_subsection': 'ListingPage'
-    },
-    'InternationalArticleListingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'Article',
         'site_subsection': 'ListingPage'
     },
     'InternationalArticlePage': {
@@ -107,11 +73,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'SubSector',
         'site_subsection': 'DetailPage'
-    },
-    'InternationalCuratedTopicLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'CuratedTopic',
-        'site_subsection': 'LandingPage'
     },
     'InternationalGuideLandingPage': {
         'business_unit': 'Invest',
@@ -132,26 +93,6 @@ GA_DATA_MAPPING = {
     },
 
     # Capital investment
-    'InternationalCapitalInvestLandingPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'LandingPage',
-        'site_subsection': ''
-    },
-    'CapitalInvestRegionPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Region',
-        'site_subsection': 'DetailPage'
-    },
-    'CapitalInvestOpportunityPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Opportunity',
-        'site_subsection': 'DetailPage'
-    },
-    'CapitalInvestOpportunityListingPage': {
-        'business_unit': 'CapitalInvestment',
-        'site_section': 'Opportunity',
-        'site_subsection': 'ListingPage'
-    },
     'CapitalInvestContactFormPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'CapitalInvest',
@@ -164,16 +105,6 @@ GA_DATA_MAPPING = {
     },
 
     # Invest
-    'InvestInternationalHomePage': {
-        'business_unit': 'Invest',
-        'site_section': 'HomePage',
-        'site_subsection': 'ListingPage'
-    },
-    'InvestHighPotentialOpportunityDetailPage': {
-        'business_unit': 'Invest',
-        'site_section': 'HighPotentialOpportunities',
-        'site_subsection': 'DetailPage',
-    },
     'ForeignDirectInvestmentFormPage': {
         'business_unit': 'Invest',
         'site_section': 'ForeignDirectInvestment',
@@ -183,11 +114,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'Invest',
         'site_section': 'ForeignDirectInvestment',
         'site_subsection': 'FormSuccessPage',
-    },
-    'InvestRegionPage': {
-        'business_unit': 'Invest',
-        'site_section': 'Regions',
-        'site_subsection': 'DetailPage',
     },
     'WhyInvestInTheUKPage': {
         'business_unit': 'Invest',
@@ -208,20 +134,10 @@ GA_DATA_MAPPING = {
     },
 
     # About DIT
-    'AboutDitLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutDIT',
-        'site_subsection': 'LandingPage'
-    },
     'AboutDitServicesPage': {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutDIT',
         'site_subsection': 'ServicesPage'
-    },
-    'AboutUkLandingPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutUK',
-        'site_subsection': 'LandingPage'
     },
     'AboutUkRegionListingPage': {
         'business_unit': 'GreatInternational',
@@ -232,11 +148,6 @@ GA_DATA_MAPPING = {
         'business_unit': 'GreatInternational',
         'site_section': 'AboutUK',
         'site_subsection': 'RegionPage'
-    },
-    'AboutUkWhyChooseTheUkPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'AboutUK',
-        'site_subsection': 'WhyChooseTheUkPage'
     },
 
     # Find a supplier

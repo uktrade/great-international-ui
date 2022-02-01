@@ -33,10 +33,6 @@ def services_home_links(request):
             'url': reverse_lazy('find-a-supplier:trade-home'),
             'label': _('Find a supplier')
         },
-        'invest_home_link': {
-            'url': reverse_lazy('invest-home'),
-            'label': _('Invest')
-        },
         'investment_atlas_home_link': {
             'url': reverse_lazy('atlas-home'),
             'label': _('Invest in the UK')
