@@ -6,7 +6,7 @@ from core.views import LegacyRedirectCoreView
 
 class LegacyInvestURLRedirectView(LegacyRedirectCoreView):
     redirects_mapping = redirects.REDIRECTS
-    fallback_url = '/international/invest/'
+    fallback_url = '/international/investment/'
 
     @staticmethod
     def translate_language_from_path_to_querystring(path, params):

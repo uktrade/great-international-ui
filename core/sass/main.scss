@@ -11,16 +11,6 @@
 // Atlas-specific styles
 @import 'atlas/atlas';
 
-// COMPONENTS
-// ===========
-// Styling for components that
-// appear on more than one page
-
-@import 'components/cta-block/cta-block';
-@import 'components/help-block/help-block';
-@import 'components/accordion/base';
-@import 'components/uk-map/uk-map';
-
 // PAGES
 // ======
 // Page styling should be namespaced under
@@ -28,24 +18,10 @@
 // to prevent style pollution
 
 // International
-@import 'pages/international/landing-page';
 @import 'pages/international/article-detail-page';
-@import 'pages/international/article-list-page';
-@import 'pages/international/sector-page';
-@import 'pages/international/curated-topic-landing-page';
-@import 'pages/international/new-international-home-page';
 
 // Invest
-@import 'pages/invest/landing-page';
-@import 'pages/invest/hpo-detail-page';
-@import 'pages/invest/region-page';
 @import 'pages/invest/contact';
-
-// Capital investment
-@import 'pages/capital-invest/capital-invest-landing-page';
-@import 'pages/capital-invest/capital-invest-region-page';
-@import 'pages/capital-invest/capital-invest-opportunity-page';
-@import 'pages/capital-invest/capital-invest-opportunity-listing-page';
 
 // Investment support directory
 @import 'pages/investment-support-directory/home';
@@ -58,13 +34,6 @@
 
 // About DIT
 @import 'pages/about-dit/services-page';
-@import 'pages/about-dit/about-dit-landing-page';
-
-// About UK
-@import 'pages/about-uk/about-uk-landing-page';
-@import 'pages/about-uk/why-choose-the-uk-page';
-@import 'pages/about-uk/about-uk-region-page';
-@import 'pages/about-uk/about-uk-region-listing-page';
 
 // Find a supplier
 @import 'pages/find-a-supplier/landing-page';
