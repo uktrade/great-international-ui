@@ -114,6 +114,10 @@ redirects = [
         '/international/content/invest/high-potential-opportunities/test/',
         '/international/investment/opportunities/',
     ),
+    (
+        '/international/content/investment/opportunities/',
+        '/international/investment/opportunities/'
+    ),
 
     # About the UK was moved over to Why Invest in the UK
     (
