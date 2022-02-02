@@ -6,6 +6,8 @@
 
 ### Fixed bugs
 
+- GLS-78 - add redirect for incorrect opportunities listing page URL 
+
 ## [3.5.0](https://github.com/uktrade/great-international-ui/releases/tag/3.5.0)
 
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.4.0...3.5.0)
