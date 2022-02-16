@@ -4,7 +4,23 @@
 
 ### Implemented enhancements
 
+- GLS-104 - Use Webpack for compiling front-end assets
+
 ### Fixed bugs
+
+- GLS-78 - add redirect for incorrect opportunities listing page URL
+
+## [3.5.0](https://github.com/uktrade/great-international-ui/releases/tag/3.5.0)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.4.0...3.5.0)
+
+### Implemented enhancements
+
+- GLS-45 - clean-up of unused templates and front-end assets
+
+### Fixed bugs
+
+- GLS-52 - Pillow upgrade
 
 ## [3.4.0](https://github.com/uktrade/great-international-ui/releases/tag/3.4.0)
 

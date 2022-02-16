@@ -13,7 +13,7 @@ django-ipware==2.1.0
 django-recaptcha==2.0.5
 django-redis==4.10.0
 django-storages==1.7.2
-Django==2.2.26
+Django==2.2.27
 djangorestframework==3.11.2
 elastic-apm>=5.5.2,<6.0.0
 pir-client==1.1.0
@@ -28,5 +28,5 @@ psycogreen==1.0.2
 psycopg2==2.8.5
 gevent==21.8.0
 urllib3>=1.26.5
-cryptography==3.3.2
+cryptography
 greenlet==1.1.2
