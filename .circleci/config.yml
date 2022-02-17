@@ -27,15 +27,33 @@ jobs:
             make pytest -- --cov=. --cov-config=.coveragerc --cov-report=html
             codecov
 
+  test_javascript:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node modules
+          command: npm install
+      - save_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Run Javascript tests
+          command: npm test
+
   flake8:
     docker:
-    - image: circleci/python:3.9.7
+      - image: circleci/python:3.9.7
     steps:
-    - checkout
-    - setup_remote_docker:
-        docker_layer_caching: false
-    - run:
-        name: Run flake8
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Run flake8
         command: |
           python3 -m venv venv
           . venv/bin/activate
