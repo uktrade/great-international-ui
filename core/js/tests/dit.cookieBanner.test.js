@@ -27,7 +27,7 @@ describe('cookie banner', () => {
         }));
     });
 
-    it('sets the preference cookie, removes the prompt and shows the thank you message', () => {
+    it('sets the preference cookie, removes the prompt, pushes to the GTM dataLayer and shows the thank you message', () => {
         jest.spyOn(dit.cookieBanner, 'buildCookieString');
         const defaultOptions = {
             days: 365,
@@ -50,6 +50,11 @@ describe('cookie banner', () => {
         );
         expect(document.cookie).toMatch('cookie_preferences_set=true');
         expect(document.cookie).toMatch('cookies_policy={"essential":true,"settings":true,"usage":true,"campaigns":true}');
+
+        expect(window.dataLayer).toHaveLength(2);
+        expect(window.dataLayer[0].event).toEqual('cookies_policy_accept');
+        expect(window.dataLayer[1].event).toEqual('gtm.dom');
+
         expect(document.getElementById('prompt')).toBe(null);
         expect(document.getElementById('thanks').style.display).toBe('block');
     });

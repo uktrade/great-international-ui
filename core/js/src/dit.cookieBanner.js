@@ -56,6 +56,11 @@ dit.cookieBanner = new function () {
         const allPreferences = {"essential": true, "settings": true, "usage": true, "campaigns": true};
         this.setCookie('cookie_preferences_set', 'true');
         this.setCookie('cookies_policy', JSON.stringify(allPreferences));
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({event: 'cookies_policy_accept'});
+        window.dataLayer.push({event: 'gtm.dom'});
+
         this.prompt.remove();
         this.thanks.style.display = 'block';
     }

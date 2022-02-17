@@ -8,6 +8,8 @@
 
 ### Fixed bugs
 
+- GLS-74 - load analytics on user cookies accept
+
 ## [3.5.2](https://github.com/uktrade/great-international-ui/releases/tag/3.5.2)
 
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.5.0...3.5.2)
