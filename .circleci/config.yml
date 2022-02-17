@@ -66,3 +66,4 @@ workflows:
     jobs:
       - test
       - flake8
+      - test_javascript
