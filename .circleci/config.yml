@@ -54,11 +54,11 @@ jobs:
           docker_layer_caching: false
       - run:
           name: Run flake8
-        command: |
-          python3 -m venv venv
-          . venv/bin/activate
-          pip install flake8
-          flake8
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install flake8
+            flake8
 
 workflows:
   version: 2
