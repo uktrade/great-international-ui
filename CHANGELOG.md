@@ -8,6 +8,8 @@
 
 ### Fixed bugs
 
+- GLS-157 - fix `minimist` vulnerability
+
 ## [3.5.3](https://github.com/uktrade/great-international-ui/releases/tag/3.5.3)
 
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.5.2...3.5.3)
