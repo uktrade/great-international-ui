@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const RemovePlugin = require('remove-files-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
@@ -19,18 +20,17 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                exclude: /node_modules/,
-                type: 'asset/source',
-                generator: {
-                    filename: 'styles/[name].css'
-                },
                 use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            // URLs in source are relative to compiled CSS, /static/core/styles/main.css
+                            url: false
+                        }
+                    },
                     'sass-loader'
                 ]
-            },
-            {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                type: "asset",
             },
         ],
     },
@@ -54,6 +54,9 @@ module.exports = {
         ],
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: ({chunk: {name}}) => `styles/${name.replace('_styles', '')}.css`,
+        }),
         new CopyWebpackPlugin({
             patterns: [
                 {
