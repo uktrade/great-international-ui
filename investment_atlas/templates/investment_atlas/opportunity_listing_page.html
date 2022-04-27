@@ -286,12 +286,15 @@
                     opp.locations_with_regions.forEach(function (location) {
                         const lngLat = location.value.map_coordinate
                             .split(',')
-                            .map(function (coord) {
-                                return coord.trim()
-                            })
+                            .map(parseFloat)
                             .reverse();
 
-                        bounds.extend(lngLat);
+                        try {
+                            bounds.extend(lngLat);
+                        } catch {
+                            console.error('Error parsing lat/long for opportunity:', opp.title);
+                            return;
+                        }
 
                         let popupMarkup = '<a href="' + opp.full_path + '" class="atlas-card atlas-search__map-popup">';
                         if (opp.hero_image) {

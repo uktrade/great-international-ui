@@ -8,6 +8,15 @@
 
 ### Fixed bugs
 
+- GLS-157 - fix `minimist` vulnerability
+- GLS-193 - handle invalid lat/long gracefully
+
+## [3.5.3](https://github.com/uktrade/great-international-ui/releases/tag/3.5.3)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.5.2...3.5.3)
+
+### Fixed bugs
+
 - GLS-74 - load analytics on user cookies accept
 
 ## [3.5.2](https://github.com/uktrade/great-international-ui/releases/tag/3.5.2)
