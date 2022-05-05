@@ -10,8 +10,12 @@ register = template.Library()
 def update_query_params(context, **kwargs):
     query = context['request'].GET.copy()
     for key, value in kwargs.items():
-        query.__setitem__(key, value)
-    return query.urlencode()
+        if value:
+            query.__setitem__(key, value)
+        else:
+            query.pop(key, None)
+
+    return f'?{query.urlencode()}' if query else ''
 
 
 @register.inclusion_tag('investment_atlas/includes/collapsible_text.html')

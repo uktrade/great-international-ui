@@ -41,11 +41,11 @@
 
                 {% include 'investment_atlas/includes/related_opportunities.html' with opportunities=page.related_opportunities %}
 
-                <p class="atlas-m-t-l atlas-m-b-s"><a
-                        href="/international/investment/opportunities/?region={{ page.title|urlencode }}"
-                        class="atlas-link">View all
-                    investment opportunities
-                    in {{ page.title }}</a></p>
+                <p class="atlas-m-t-l atlas-m-b-s">
+                    <a href="{% url 'atlas-opportunities' %}?region={{ page.title|urlencode }}" class="atlas-link">
+                        View all investment opportunities in {{ page.title }}
+                    </a>
+                </p>
             </div>
         </section>
     {% endif %}

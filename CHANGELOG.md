@@ -6,7 +6,11 @@
 
 ### Implemented enhancements
 
+- GLS-221 - link to opportunities filtered by sector
+
 ### Fixed bugs
+
+- GLS-220 - fix regional filter not applying to results
 
 ## [3.5.4](https://github.com/uktrade/great-international-ui/releases/tag/3.5.4)
 
