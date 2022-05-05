@@ -10,7 +10,10 @@ register = template.Library()
 def update_query_params(context, **kwargs):
     query = context['request'].GET.copy()
     for key, value in kwargs.items():
-        query.__setitem__(key, value)
+        if value:
+            query.__setitem__(key, value)
+        else:
+            query.pop(key, None)
     return query.urlencode()
 
 

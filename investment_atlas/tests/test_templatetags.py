@@ -5,23 +5,25 @@ from django.template import Template, Context
 from django.test import RequestFactory
 
 
-@pytest.mark.parametrize('input_query_string,expected_query_string', (
-        ('foo=bar&baz=1', 'foo=bar&amp;baz=1&amp;page=3'),
-        ('foo=bar&baz=1&page=2', 'foo=bar&amp;baz=1&amp;page=3'),
-        ('page=1', 'page=3'),
-        ('', 'page=3'),
+@pytest.mark.parametrize('query_string, arguments, expected', (
+        ('foo=bar&baz=1', 'page=3', 'foo=bar&amp;baz=1&amp;page=3'),
+        ('foo=bar&baz=1&page=2', 'page=3', 'foo=bar&amp;baz=1&amp;page=3'),
+        ('page=1', 'page=3', 'page=3'),
+        ('', 'page=3', 'page=3'),
+        ('foo=bar', 'foo=""', ''),
+        ('foo=bar&page=2', 'foo=""', 'page=2'),
+        ('foo=bar&baz=1&page=2', 'foo=""', 'baz=1&amp;page=2'),
+        ('baz=two', 'foo=""', 'baz=two'),
 ))
-def test_update_query(input_query_string, expected_query_string):
+def test_update_query(query_string, arguments, expected):
     request_factory = RequestFactory()
-    request = request_factory.get('/page-url?{}'.format(input_query_string))
+    request = request_factory.get('/page-url?{}'.format(query_string))
     template = Template(
-        '{% load update_query_params from atlas_tags %}'
-        '{% update_query_params page=3 %}'
-    )
+        '{{% load update_query_params from atlas_tags %}}{{% update_query_params {} %}}'.format(arguments))
     context = Context({'request': request})
 
     rendered = template.render(context)
-    assert rendered == expected_query_string
+    assert rendered == expected
 
 
 @pytest.mark.parametrize('id, input, has_button, visible, collapsed', (
@@ -29,7 +31,7 @@ def test_update_query(input_query_string, expected_query_string):
         ('id2', '<p>some text</p><hr><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),  # Splits if <hr>
         ('id3', '<p>some text</p><hr>', False, '<p>some text</p>', ''),  # Does not split if no content after <hr>
         ('id4', '<p>some text</p><hr><p>more text</p><hr><p>even more text</p>', True, '<p>some text</p>',
-         '<p>more text</p><hr/><p>even more text</p>'),  # Only splits first <hr>
+        '<p>more text</p><hr/><p>even more text</p>'),  # Only splits first <hr>
         ('id5', '<p>some text</p><hr/><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),
         # Splits if <hr/>
 ))
@@ -68,12 +70,12 @@ def test_cms_url(settings):
 @pytest.mark.parametrize('page_url, filter_name, chosen_filters, shows_and, remove_urls', (
         # One filter
         ("/page-url?foo=One", 'foo', ['One'], False, ["/page-url"]),
-        # Two filters
+            # Two filters
         ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], True, ["/page-url?foo=Two", "/page-url?foo=One"]),
-        # Three filters
+            # Three filters
         ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], True,
-         ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
-        # test other parameters are retained
+        ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
+            # test other parameters are retained
         ("/?foo=One&bar=baz", 'foo', ['One'], False, ["/?bar=baz"])
 
 ))
