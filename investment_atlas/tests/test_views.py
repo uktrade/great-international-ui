@@ -214,25 +214,6 @@ def test_investment_type_filter_for_opportunity_search():
     assert response.context_data['pagination'].object_list[1]['title'] == 'Some Opp 2'
 
 
-def test_atlas_opportunities_ignores_other_filters_if_no_investment_type_selected():
-    page = create_opportunities_page()
-
-    response = create_opportunities_response(
-        page,
-        '/international/investment/opportunities/?sector=Automotive&region=South+of+England&sub_sector=Chemicals'
-    )
-
-    assert len(response.context_data['pagination'].object_list) == 10
-    assert response.context_data['pagination'].object_list[0]['title'] == 'Some Opp 1'
-    assert response.context_data['form']['region'].initial == []
-    assert response.context_data['form']['sector'].initial == []
-    assert response.context_data['form']['sub_sector'].initial == []
-
-    assert response.context_data['form'].fields['region'].choices == []
-    assert response.context_data['form'].fields['sector'].choices == []
-    assert response.context_data['form'].fields['sub_sector'].choices == []
-
-
 def test_atlas_opportunities_shows_sector_with_count_and_region_filters_for_foreign_direct_investment_search():
     page = create_opportunities_page()
 
@@ -318,7 +299,7 @@ def test_atlas_opportunities_applies_region_filter():
     response = create_opportunities_response(
         page,
         '/international/investment/opportunities/' +
-        '?investment_type=Foreign+direct+investment&region=Midlands'
+        '?region=Midlands'
     )
 
     assert len(response.context_data['pagination'].object_list) == 1
@@ -331,7 +312,7 @@ def test_atlas_opportunities_applies_sector_filter():
     response = create_opportunities_response(
         page,
         '/international/investment/opportunities/' +
-        '?investment_type=Foreign+direct+investment&sector=Automotive'
+        '?sector=Automotive'
     )
 
     assert len(response.context_data['pagination'].object_list) == 1

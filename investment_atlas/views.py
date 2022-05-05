@@ -206,23 +206,23 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
 
         filtered_opportunities = [opp for opp in self.opportunities]
 
+        if self.sector.sectors:
+            filtered_opportunities = core_helpers.filter_opportunities(
+                filtered_opportunities,
+                self.sector
+            )
+
+        if self.region.regions:
+            filtered_opportunities = core_helpers.filter_opportunities(
+                filtered_opportunities,
+                self.region
+            )
+
         if self.investment_type.investment_type:
             filtered_opportunities = core_helpers.filter_opportunities(
                 filtered_opportunities,
                 self.investment_type
             )
-
-            if self.sector.sectors:
-                filtered_opportunities = core_helpers.filter_opportunities(
-                    filtered_opportunities,
-                    self.sector
-                )
-
-            if self.region.regions:
-                filtered_opportunities = core_helpers.filter_opportunities(
-                    filtered_opportunities,
-                    self.region
-                )
 
             if self.sub_sector.sub_sectors:
                 filtered_opportunities = core_helpers.filter_opportunities(
@@ -270,9 +270,11 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def filters_chosen(self):
         filters = []
+
+        for sector in self.sector.sectors:
+            filters.append(sector)
+
         if self.investment_type.investment_type:
-            for sector in self.sector.sectors:
-                filters.append(sector)
             for sub_sector in self.sub_sector.sub_sectors:
                 filters.append(sub_sector)
             # NOTE: disabled filters
@@ -286,9 +288,9 @@ class InvestmentOpportunitySearchView(CountryDisplayMixin, InternationalView):
     @property
     def regions_chosen(self):
         regions = []
-        if self.investment_type.investment_type:
-            for region in self.region.regions:
-                regions.append(region)
+
+        for region in self.region.regions:
+            regions.append(region)
 
         return regions
 
