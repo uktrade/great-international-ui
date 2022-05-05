@@ -27,13 +27,17 @@ def test_update_query(query_string, arguments, expected):
 
 
 @pytest.mark.parametrize('id, input, has_button, visible, collapsed', (
-        ('id1', '<p>some text</p>', False, '<p>some text</p>', ''),  # Does not split if no <hr>
-        ('id2', '<p>some text</p><hr><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),  # Splits if <hr>
-        ('id3', '<p>some text</p><hr>', False, '<p>some text</p>', ''),  # Does not split if no content after <hr>
+        # Does not split if no <hr>
+        ('id1', '<p>some text</p>', False, '<p>some text</p>', ''),
+        # Splits if <hr>
+        ('id2', '<p>some text</p><hr><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),
+        # Does not split if no content after <hr>
+        ('id3', '<p>some text</p><hr>', False, '<p>some text</p>', ''),
+        # Only splits first <hr>
         ('id4', '<p>some text</p><hr><p>more text</p><hr><p>even more text</p>', True, '<p>some text</p>',
-        '<p>more text</p><hr/><p>even more text</p>'),  # Only splits first <hr>
-        ('id5', '<p>some text</p><hr/><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),
+            '<p>more text</p><hr/><p>even more text</p>'),
         # Splits if <hr/>
+        ('id5', '<p>some text</p><hr/><p>more text</p>', True, '<p>some text</p>', '<p>more text</p>'),
 ))
 def test_collapsible_cms_text(id, input, has_button, visible, collapsed):
     template = Template(
@@ -70,12 +74,12 @@ def test_cms_url(settings):
 @pytest.mark.parametrize('page_url, filter_name, chosen_filters, shows_and, remove_urls', (
         # One filter
         ("/page-url?foo=One", 'foo', ['One'], False, ["/page-url"]),
-            # Two filters
+        # Two filters
         ("/page-url?foo=One&foo=Two", 'foo', ['One', 'Two'], True, ["/page-url?foo=Two", "/page-url?foo=One"]),
-            # Three filters
+        # Three filters
         ("/?foo=One&foo=Two&foo=Three", 'foo', ['One', 'Two', 'Three'], True,
-        ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
-            # test other parameters are retained
+            ["/?foo=Two&amp;foo=Three", "/?foo=One&amp;foo=Three", "/?foo=One&amp;foo=Two"]),
+        # test other parameters are retained
         ("/?foo=One&bar=baz", 'foo', ['One'], False, ["/?bar=baz"])
 
 ))
