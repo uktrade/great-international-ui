@@ -6,18 +6,18 @@ from django.test import RequestFactory
 
 
 @pytest.mark.parametrize('query_string, arguments, expected', (
-        ('foo=bar&baz=1', 'page=3', 'foo=bar&amp;baz=1&amp;page=3'),
-        ('foo=bar&baz=1&page=2', 'page=3', 'foo=bar&amp;baz=1&amp;page=3'),
-        ('page=1', 'page=3', 'page=3'),
-        ('', 'page=3', 'page=3'),
-        ('foo=bar', 'foo=""', ''),
-        ('foo=bar&page=2', 'foo=""', 'page=2'),
-        ('foo=bar&baz=1&page=2', 'foo=""', 'baz=1&amp;page=2'),
-        ('baz=two', 'foo=""', 'baz=two'),
+        ('?foo=bar&baz=1', 'page=3', '?foo=bar&amp;baz=1&amp;page=3'),
+        ('?foo=bar&baz=1&page=2', 'page=3', '?foo=bar&amp;baz=1&amp;page=3'),
+        ('?page=1', 'page=3', '?page=3'),
+        ('', 'page=3', '?page=3'),
+        ('?foo=bar', 'foo=""', ''),
+        ('?foo=bar&page=2', 'foo=""', '?page=2'),
+        ('?foo=bar&baz=1&page=2', 'foo=""', '?baz=1&amp;page=2'),
+        ('?baz=two', 'foo=""', '?baz=two'),
 ))
 def test_update_query(query_string, arguments, expected):
     request_factory = RequestFactory()
-    request = request_factory.get('/page-url?{}'.format(query_string))
+    request = request_factory.get('/page-url{}'.format(query_string))
     template = Template(
         '{{% load update_query_params from atlas_tags %}}{{% update_query_params {} %}}'.format(arguments))
     context = Context({'request': request})

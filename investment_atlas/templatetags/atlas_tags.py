@@ -14,7 +14,8 @@ def update_query_params(context, **kwargs):
             query.__setitem__(key, value)
         else:
             query.pop(key, None)
-    return query.urlencode()
+
+    return f'?{query.urlencode()}' if query else ''
 
 
 @register.inclusion_tag('investment_atlas/includes/collapsible_text.html')

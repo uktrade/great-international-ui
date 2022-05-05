@@ -13,6 +13,10 @@
 {% endblock %}
 
 {% block content %}
+    {% url 'atlas-opportunities' as base_url %}
+    {% update_query_params investment_type='' sector='' sub_sector='' as clear_type_query %}
+    {% update_query_params investment_type='' region='' sector='' sub_sector='' as clear_all_query %}
+
     {% with results_count=pagination.object_list|length %}
         <form id="opportunities-search-form" action="{{ paginator_url }}"
               class="atlas-bg--grey-lighter{% if form.view.value == 'map' and results_count > 0 %} atlas-search--as-map{% endif %}">
@@ -53,7 +57,8 @@
                                         <ul>
                                             {% for choice in form.investment_type %}
                                                 <li class="atlas-p-t-s">
-                                                    <a href="?{% update_query_params investment_type=choice.choice_label view=form.view.value %}"
+                                                    {% update_query_params investment_type=choice.choice_label as type_query %}
+                                                    <a href="{{ base_url }}{{ type_query }}"
                                                        class="atlas-search__investment-type atlas-link--invert">{{ choice.choice_label }}</a>
                                                 </li>
                                             {% endfor %}
@@ -67,7 +72,7 @@
                                     <fieldset aria-labelledby="selected_investment_type">
                                         <div class="atlas-search-type">
                                             <a class="atlas-search-type__clear atlas-body--m"
-                                               href="{% url 'atlas-opportunities' %}?view={{ form.view.value }}">
+                                               href="{{ base_url }}{{ clear_type_query }}">
                                                 <span class="atlas-icon">
                                                     {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                                                 </span>
@@ -102,7 +107,7 @@
                                     {% endif %}
 
                                     <p class="atlas-m-0 atlas-p-v-s">
-                                        <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                        <a class="atlas-link" href="{{ base_url }}{{ clear_all_query }}">
                                             {% trans 'Clear all filters' %}
                                         </a>
                                     </p>
@@ -135,7 +140,9 @@
                                 {{ num_of_opportunities }}
                                 {% if selected_investment_type %}
                                     <a class="atlas-link" aria-label="Change investment type"
-                                       href="{% url 'atlas-opportunities' %}">{{ selected_investment_type|lower }}</a>
+                                       href="{{ base_url }}{{ clear_type_query }}">
+                                        {{ selected_investment_type|lower }}
+                                    </a>
                                 {% endif %}
                                 opportunit{{ num_of_opportunities|pluralize:"y,ies" }} found
                             </p>
@@ -180,7 +187,7 @@
                                     <h3 class="atlas-h--s atlas-m-b-s">No results</h3>
                                     <p class="atlas-body--m">{% trans 'We couldn’t find any opportunities - please try some different filters.' %}</p>
                                     <p class="atlas-body--m atlas-m-0">
-                                        <a class="atlas-link" href="{% url 'atlas-opportunities' %}">
+                                        <a class="atlas-link" href="{{ base_url }}{{ clear_all_query }}">
                                             {% trans 'Clear all filters' %}
                                         </a>
                                     </p>
@@ -190,26 +197,30 @@
                             {% if pagination.paginator.num_pages > 1 %}
                                 <div class="atlas-pagination">
                                     {% if pagination.has_previous %}
-                                        <a href="?{% update_query_params page=pagination.previous_page_number %}"
-                                           class="atlas-button atlas-pagination__previous">
-                                            <span class="atlas-button__icon atlas-button__icon--first">
-                                               {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                            </span>
-                                            Previous
-                                        </a>
+                                        {% with prev_page=pagination.previous_page_number %}
+                                            <a href="{{ base_url }}{% update_query_params page=prev_page %}"
+                                               class="atlas-button atlas-pagination__previous">
+                                                <span class="atlas-button__icon atlas-button__icon--first">
+                                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                                </span>
+                                                Previous
+                                            </a>
+                                        {% endwith %}
                                     {% endif %}
 
                                     <p class="atlas-pagination__number">Page {{ pagination.number }}
                                         of {{ pagination.paginator.num_pages }}</p>
 
                                     {% if pagination.has_next %}
-                                        <a href="?{% update_query_params page=pagination.next_page_number %}"
-                                           class="atlas-button atlas-pagination__next">
-                                            Next
-                                            <span class="atlas-button__icon">
-                                               {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
-                                            </span>
-                                        </a>
+                                        {% with next_page=pagination.next_page_number %}
+                                            <a href="{{ base_url }}{% update_query_params page=next_page %}"
+                                               class="atlas-button atlas-pagination__next">
+                                                Next
+                                                <span class="atlas-button__icon">
+                                                   {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                                </span>
+                                            </a>
+                                        {% endwith %}
                                     {% endif %}
                                 </div>
                             {% endif %}
