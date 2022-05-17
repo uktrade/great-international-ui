@@ -1,6 +1,13 @@
 {% extends 'core/base_cms.html' %}
 {% load static %}
 
+{% block head_css %}
+    <link rel="stylesheet" href="{% static 'core/styles/atlas.css' %}">
+{% endblock %}
+
+{% block cookie_notice %}{% endblock %}
+
 {% block css_layout_class %}atlas atlas-regular{% endblock css_layout_class %}
 
 {% block feedback_reporter %}{% endblock %}
+

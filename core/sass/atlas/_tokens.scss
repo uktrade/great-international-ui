@@ -17,6 +17,8 @@ $atlas-green-light: #8ce2d0;
 $atlas-blue-lighter: #d2d0da;
 $atlas-blue-light: #787191;
 
+$govuk-focus-yellow: #ffbf47;
+
 $page-gutter: 15px;
 $page-gutter-medium: 16px;
 $page-gutter-large: 30px;
@@ -35,4 +37,5 @@ $breakpoint-suffixes: ("-s": $breakpoint-small, "-m": $breakpoint-medium, "-l": 
 $spacings: ("xs": 10px, "s": 15px, "m": 30px, "l": 45px, "xl": 75px);
 $spacings-medium: ("xs": 15px, "s": 25px, "m": 40px, "l": 60px, "xl": 100px);
 
-$govuk-focus: 4px solid #ffbf47;
+
+$govuk-focus: 4px solid $govuk-focus-yellow;

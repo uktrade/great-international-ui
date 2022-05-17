@@ -1,0 +1,8 @@
+// Base styles
+@import 'typography';
+@import 'states';
+@import 'layout';
+
+// Atlas-specific components
+@import 'components/header';
+@import 'components/footer';
