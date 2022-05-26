@@ -5,6 +5,8 @@
 ### Hotfix
 
 ### Implemented enhancements
+- 
+- CHORE - Update node requirement to v16
 
 ### Fixed bugs
 
@@ -15,7 +17,6 @@
 ### Implemented enhancements
 
 - GLS-221 - link to opportunities filtered by sector
-- CHORE - Update node requirement to v16
 
 ### Fixed bugs
 
