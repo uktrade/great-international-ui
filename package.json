@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Great.gov.uk international site",
   "private": false,
+  "engines": {
+    "node": "^16.13.0"
+  },
   "scripts": {
     "test": "jest core/js/tests",
     "build": "webpack --mode production",

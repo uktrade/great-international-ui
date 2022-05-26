@@ -29,14 +29,14 @@ jobs:
 
   test_javascript:
     docker:
-      - image: cimg/node:14.19.0
+      - image: cimg/node:16.13
     steps:
       - checkout
       - restore_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
       - run:
           name: Install node modules
-          command: npm install
+          command: npm ci
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
           paths:

@@ -5,6 +5,8 @@
 ### Hotfix
 
 ### Implemented enhancements
+- 
+- CHORE - Update node requirement to v16
 
 ### Fixed bugs
 
