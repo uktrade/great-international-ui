@@ -102,10 +102,15 @@
   line-height: 1.6;
 }
 
+.atlas-body,
 .atlas-body--l,
 .atlas-body--m,
 .atlas-body--s {
   @include atlas-regular;
+}
+
+.atlas-body {
+  font-size: 1em;
 }
 
 .atlas-body--l {
