@@ -11,11 +11,9 @@
 @import 'helpers';
 @import 'visibility';
 
-// govuk-elements and directory-components overrides
-@import 'overrides/forms';
-@import 'components/forms';
 
 // Atlas-specific components
+@import 'components/forms';
 @import 'components/skip-link';
 @import 'components/lists';
 @import 'components/header';
