@@ -5,8 +5,9 @@
 ### Hotfix
 
 ### Implemented enhancements
-- 
+
 - CHORE - Update node requirement to v16
+- CHORE - Separate Atlas styles from older styles
 
 ### Fixed bugs
 
