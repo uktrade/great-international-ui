@@ -1,5 +1,12 @@
 {% extends 'directory_components/base.html' %}
 
+{% comment %}
+As this template extends the directory_components/base.html, is brings in a
+number of extra CSS styles that were once sensible defaults:
+- govuk-elements
+- elements-components
+{% endcomment %}
+
 {% load static from staticfiles %}
 {% load i18n %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}

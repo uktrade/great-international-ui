@@ -41,7 +41,7 @@ html:focus-within {
 /* Set core body defaults */
 body {
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
+  //text-rendering: optimizeSpeed; // revert to 'auto' to enable ligatures, which improve readability
   -webkit-font-smoothing: antialiased;
   //line-height: 1.5;
   line-height: 1.6; // Increase suggested line-height
