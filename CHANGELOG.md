@@ -11,6 +11,8 @@
 
 ### Fixed bugs
 
+- GLS-255 - fix semver-regex vulnerability
+
 ## [3.6.0](https://github.com/uktrade/great-international-ui/releases/tag/3.6.0)
 
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.5.4...3.6.0)
