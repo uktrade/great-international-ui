@@ -1,0 +1,17 @@
+@import '../tokens';
+@import '../mixins';
+
+#skip-link {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  display: block;
+  padding: 1rem 2rem;
+  @include atlas-regular;
+  color: $atlas-black;
+
+  &:focus {
+    left: 0;
+    background: $govuk-focus-yellow;
+  }
+}
