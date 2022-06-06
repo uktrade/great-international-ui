@@ -24,43 +24,43 @@ NOTE: If we don't want to support IE11, we can switch to simply declaring spacin
 
   @each $p, $property in $properties {
     .atlas-#{$p}-0 {
-      #{$property}: 0 !important;
+      #{$property}: 0;
     }
 
     .atlas-#{$p}-v-0 {
-      #{$property}-top: 0 !important;
-      #{$property}-bottom: 0 !important;
+      #{$property}-top: 0;
+      #{$property}-bottom: 0;
     }
 
     .atlas-#{$p}-h-0 {
-      #{$property}-left: 0 !important;
-      #{$property}-right: 0 !important;
+      #{$property}-left: 0;
+      #{$property}-right: 0;
     }
 
     @each $s, $side in $sides {
       .atlas-#{$p}-#{$s}-0 {
-        #{$property}-#{$side}: 0 !important;
+        #{$property}-#{$side}: 0;
       }
     }
 
     @each $suffix, $value in $spacing-values {
       .atlas-#{$p}-#{$suffix} {
-        #{$property}: $value !important;
+        #{$property}: $value;
       }
 
       .atlas-#{$p}-v-#{$suffix} {
-        #{$property}-top: $value !important;
-        #{$property}-bottom: $value !important;
+        #{$property}-top: $value;
+        #{$property}-bottom: $value;
       }
 
       .atlas-#{$p}-h-#{$suffix} {
-        #{$property}-left: $value !important;
-        #{$property}-right: $value !important;
+        #{$property}-left: $value;
+        #{$property}-right: $value;
       }
 
       @each $s, $side in $sides {
         .atlas-#{$p}-#{$s}-#{$suffix} {
-          #{$property}-#{$side}: $value !important;
+          #{$property}-#{$side}: $value;
         }
       }
     }

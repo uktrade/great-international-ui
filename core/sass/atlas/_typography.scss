@@ -48,6 +48,7 @@
 .atlas-h--l,
 .atlas-h--m {
   @include atlas-bold;
+  margin-bottom: .5em;
 }
 
 .atlas-h--s,
@@ -58,7 +59,6 @@
 .atlas-h--xl {
   font-size: 48px;
   line-height: 1;
-  margin-bottom: .5em;
 
   @media (min-width: $breakpoint-medium) {
     font-size: 60px;
@@ -68,7 +68,6 @@
 .atlas-h--l {
   font-size: 36px;
   line-height: 1.1111;
-  margin-bottom: .5em;
 
   @media (min-width: $breakpoint-medium) {
     font-size: 48px;
@@ -79,7 +78,6 @@
 .atlas-h--m {
   font-size: 28px;
   line-height: 1.1428;
-  margin-bottom: .5em;
 
   @media (min-width: $breakpoint-medium) {
     font-size: 36px;
