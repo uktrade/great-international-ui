@@ -6,6 +6,14 @@
 
 ### Implemented enhancements
 
+### Fixed bugs
+
+## [3.6.1](https://github.com/uktrade/great-international-ui/releases/tag/3.6.1)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.6.0...3.6.1)
+
+### Implemented enhancements
+
 - GLS-254 - Update node requirement to v16
 - GLS-254 - Separate Atlas styles from older styles
 
