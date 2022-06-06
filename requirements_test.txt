@@ -258,7 +258,7 @@ urllib3==1.26.9
     #   sentry-sdk
 w3lib==1.22.0
     # via directory-client-core
-waitress==2.1.1
+waitress==2.1.2
     # via -r requirements.in
 wheel==0.37.1
     # via pip-tools
