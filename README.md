@@ -12,7 +12,7 @@
 
 ## Requirements
 
-[Python 3.9.2](https://www.python.org/downloads/release/)
+[Python 3.9.7](https://www.python.org/downloads/release/)
 
 [redis](https://redis.io/)
 
@@ -62,12 +62,29 @@ You may need the following entries in your hosts file:
 127.0.0.1   cms.trade.great
 ```
 
-You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild teh cache in the
+You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild the cache in the
 directory-cms container:
 
 ```shell
 $ make manage rebuild_all_cache
 ```
+
+### Find a supplier Search
+
+To enable the 'Find a supplier' search locally, you will need the following steps:
+
+1. Run an OpenSearch docker container locally:
+    ```shell
+    $ docker run -p 9200:9200 -e "discovery.type=single-node" -e "plugins.security.disabled=true" opensearchproject/opensearch:1.2.2
+    ```
+2. Seed the OpenSearch container by creating test search companies in directory-api and pushing them to OpenSearch. From the directory-api local instance:
+    ```shell
+    $ make manage create_test_search_data
+    $ make manage elasticsearch_migrate
+    ```
+3. Start the directory-api service
+
+The search should now work at <http://international.trade.great:8012/international/trade/>.
 
 ## Development
 
@@ -78,24 +95,24 @@ that is not added to version control. To create a template secrets file with dum
 
 ### Commands
 
-| Command                       | Description |
-| ----------------------------- | ------------|
-| make clean                    | Delete pyc files |
-| make pytest                   | Run all tests |
+| Command                       | Description                              |
+|-------------------------------|------------------------------------------|
+| make clean                    | Delete pyc files                         |
+| make pytest                   | Run all tests                            |
 | make pytest test_foo.py       | Run all tests in file called test_foo.py |
-| make pytest -- --last-failed` | Run the last tests to fail |
-| make pytest -- -k foo         | Run the test called foo |
-| make pytest -- <foo>          | Run arbitrary pytest command |
-| make manage <foo>             | Run arbitrary management command |
-| make webserver                | Run the development web server |
-| make requirements             | Compile the requirements file |
-| make install_requirements     | Installed the compile requirements file |
-| make css                      | Compile scss to css |
-| make secrets                  | Create your secret env var file |
+| make pytest -- --last-failed` | Run the last tests to fail               |
+| make pytest -- -k foo         | Run the test called foo                  |
+| make pytest -- <foo>          | Run arbitrary pytest command             |
+| make manage <foo>             | Run arbitrary management command         |
+| make webserver                | Run the development web server           |
+| make requirements             | Compile the requirements file            |
+| make install_requirements     | Installed the compile requirements file  |
+| make css                      | Compile scss to css                      |
+| make secrets                  | Create your secret env var file          |
 
 ## CSS development
 
-The CSS for Great International UI is compiled using `gulp`.
+The CSS and JS for Great International UI are compiled using Webpack.
 
 First, install dependencies:
 
@@ -109,13 +126,15 @@ Then build and copy all the relevant assets:
 $ npm run build
 ```
 
-Rebuild CSS on file changes:
+Rebuild CSS and JS on file changes:
 
 ```shell
 $ npm run watch
 ```
 
 ## Translations
+
+*NOTE: GIUI no longer provides translations. The following is for reference only.*
 
 ### Requirements
 

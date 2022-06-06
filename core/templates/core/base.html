@@ -1,5 +1,12 @@
 {% extends 'directory_components/base.html' %}
 
+{% comment %}
+As this template extends the directory_components/base.html, is brings in a
+number of extra CSS styles that were once sensible defaults:
+- govuk-elements
+- elements-components
+{% endcomment %}
+
 {% load static from staticfiles %}
 {% load i18n %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -69,7 +76,7 @@
                 dismissId: 'atlas-cookie-dismiss'
             })
         </script>
-        <div id="atlas-cookie-banner" class="atlas-bg atlas-bg--grey-light">
+        <div id="atlas-cookie-banner" class="atlas atlas-bg atlas-bg--grey-light">
             <div class="atlas-container atlas-container--wide atlas-p-v-s atlas-regular">
                 <div id="atlas-cookie-prompt">
                     <h2 class="atlas-h--s">Cookies on great.gov.uk</h2>

@@ -28,11 +28,16 @@
 
 .atlas {
   color: $atlas-body;
+  font-size: 16px;
+
+  @media (min-width: $breakpoint-medium) {
+    font-size: 19px;
+  }
 }
 
 .atlas-regular {
   @include atlas-regular;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .atlas-bold {
@@ -49,7 +54,6 @@
 .atlas-h--s,
 .atlas-h--xs {
   @include atlas-bold;
-  margin-bottom: 0;
 }
 
 .atlas-h--xl {
@@ -93,13 +97,18 @@
 
 .atlas-h--xs {
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
+.atlas-body,
 .atlas-body--l,
 .atlas-body--m,
 .atlas-body--s {
   @include atlas-regular;
+}
+
+.atlas-body {
+  font-size: 1em;
 }
 
 .atlas-body--l {
@@ -146,6 +155,16 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+p {
+  margin-top: 0.3125em;
+  margin-bottom: 1.25em;
+
+  @media (min-width: $breakpoint-small) {
+    margin-top: 0.26316em;
+    margin-bottom: 1.05263em;
   }
 }
 
