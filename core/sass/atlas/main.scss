@@ -1,5 +1,9 @@
+// Reset
+@import 'reset';
+
 // Base styles
 @import 'typography';
+@import 'states';
 @import 'layout';
 @import 'grid';
 @import 'spacing';
@@ -7,10 +11,11 @@
 @import 'helpers';
 @import 'visibility';
 
-// govuk-elements and directory-components overrides
-@import 'overrides/forms';
 
 // Atlas-specific components
+@import 'components/forms';
+@import 'components/skip-link';
+@import 'components/lists';
 @import 'components/header';
 @import 'components/footer';
 @import 'components/hero';

@@ -1,0 +1,134 @@
+@import '../tokens';
+@import '../mixins';
+
+// Radios and checkboxes
+.atlas .select-multiple {
+  margin-top: 10px;
+}
+
+.atlas .multiple-choice {
+  position: relative;
+  display: block;
+  margin: 0 0 10px;
+
+  & input {
+    position: absolute;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    margin: 0;
+    opacity: 0;
+
+    &:focus {
+      outline: none;
+
+      & + label:before {
+        outline: $govuk-focus;
+      }
+    }
+  }
+
+  & label {
+    display: block;
+    padding: 8px 0 8px 2.5em;
+    line-height: 1.25;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border: 2px solid $atlas-blue-lighter;
+      background: transparent;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      border-style: solid;
+      border-color: transparent;
+    }
+  }
+}
+
+.atlas .multiple-choice [type=checkbox] + label {
+  &:before {
+    border-radius: 4px;
+  }
+
+  &:after {
+    width: 20px;
+    height: 11px;
+    left: 6px;
+    top: 11px;
+    border-width: 0 0 5px 5px;
+    transform: rotate(-45deg);
+  }
+}
+
+.atlas .multiple-choice [type=radio] + label {
+  &:before {
+    border-radius: 50%;
+  }
+
+  &:after {
+    width: 0;
+    height: 0;
+    top: 11px;
+    left: 8px;
+    border-width: 8px;
+    border-radius: 50%;
+  }
+}
+
+.atlas .multiple-choice input:focus + label,
+.atlas .multiple-choice input:hover + label,
+.atlas .multiple-choice label:hover {
+  &:before {
+    border-color: $atlas-blue-light;
+  }
+
+  &:after {
+    border-color: $atlas-grey-light;
+  }
+}
+
+.atlas .multiple-choice input:checked + label:after {
+  border-color: $atlas-blue-light;
+}
+
+// Select dropdowns
+.atlas .form-control {
+  @include atlas-regular;
+  position: relative;
+  padding: 11px 2.5em 11px 10px;
+  background-color: $atlas-white;
+  background-image: url('../images/atlas/svg/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 32px 16px;
+  border: 2px solid $atlas-blue-lighter;
+  border-radius: 10px;
+  cursor: pointer;
+  line-height: 1.25;
+
+  &:focus {
+    border-width: 2px;
+    border-color: $atlas-blue-light;
+    margin: 0;
+  }
+}
+
+.atlas select.form-control {
+  -webkit-appearance: none;
+}
+
+// fieldsets
+.atlas fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}

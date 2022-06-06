@@ -10,7 +10,9 @@ module.exports = {
         cookieBanner: './core/js/src/dit.cookieBanner.js',
         reveal: './core/js/src/dit.reveal.js',
         tagging: './core/js/src/dit.tagging.js',
-        main_styles: './core/sass/main.scss'
+        main_styles: './core/sass/main.scss',
+        atlas_styles: './core/sass/atlas/main.scss',
+        atlas_header_footer_styles: './core/sass/atlas/header-footer.scss'
     },
     output: {
         path: path.resolve(__dirname, 'core', 'static', 'core'),
@@ -67,9 +69,11 @@ module.exports = {
         }),
         new RemovePlugin({
             after: {
-                include: [
-                    './core/static/core/js/dit.main_styles-min.js',
-                    './core/static/core/js/dit.main_styles-min.js.map',
+                test: [
+                    {
+                        folder: './core/static/core/js',
+                        method: (absoluteItemPath) => new RegExp(/_styles-min\.js(\.map)?$/).test(absoluteItemPath)
+                    },
                 ],
             },
         }),

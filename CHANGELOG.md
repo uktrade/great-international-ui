@@ -6,6 +6,19 @@
 
 ### Implemented enhancements
 
+- GLS-254 - Update node requirement to v16
+- GLS-254 - Separate Atlas styles from older styles
+
+### Fixed bugs
+
+- GLS-255 - fix semver-regex vulnerability
+
+## [3.6.0](https://github.com/uktrade/great-international-ui/releases/tag/3.6.0)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.5.4...3.6.0)
+
+### Implemented enhancements
+
 - GLS-221 - link to opportunities filtered by sector
 
 ### Fixed bugs
