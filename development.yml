@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   pgsql:
-    container_name: great_international_postgres
+    container_name: great_postgres
     build: ./dockerise/postgres/
     restart: on-failure
     environment:
@@ -36,6 +36,28 @@ services:
     tty: true
     command: bash -c 'while !</dev/tcp/pgsql/5432; do echo "Waiting for Postgres to start..."; sleep 1; done; sh /app/start.sh'
 
+  directory-api:
+    build: ../directory-api/
+    hostname: api.trade.great
+    container_name: directory_api
+    volumes:
+      - ../directory-api:/app
+    ports:
+      - '8000:8000'
+    env_file:
+      - ../directory-api/conf/env/dev
+      - ../directory-api/conf/env/dev-docker
+      - ../directory-api/conf/env/secrets-do-not-commit
+    networks:
+      - inside-network
+    depends_on:
+      - pgsql
+      - redis
+      - es
+    stdin_open: true
+    tty: true
+    command: bash -c 'while !</dev/tcp/pgsql/5432; do echo "Waiting for Postgres to start..."; sleep 1; done; sh /app/start.sh'
+
   great-international-ui:
     build: ./
     hostname: international.trade.great
@@ -53,17 +75,29 @@ services:
     depends_on:
       - directory-cms
       - redis
+      - directory-api
     stdin_open: true
     tty: true
 
   redis:
     image: redis
-    container_name: great_international_redis
+    container_name: great_redis
     restart: always
     ports:
       - '6379:6379'
     networks:
       - inside-network
+
+  es:
+    image: opensearchproject/opensearch:1.2.2
+    container_name: great_es
+    networks:
+      - inside-network
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+    ports:
+      - "9200:9200"
 
 networks:
   inside-network:
