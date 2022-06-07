@@ -129,7 +129,6 @@ The search should now work at <http://international.trade.great:8012/internation
 | make webserver                | Run the development web server           |
 | make requirements             | Compile the requirements file            |
 | make install_requirements     | Installed the compile requirements file  |
-| make css                      | Compile scss to css                      |
 | make secrets                  | Create your secret env var file          |
 
 ## CSS development
