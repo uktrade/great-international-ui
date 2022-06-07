@@ -6,6 +6,8 @@
 
 ### Implemented enhancements
 
+- GLS-254 - update README
+
 ### Fixed bugs
 
 ## [3.6.1](https://github.com/uktrade/great-international-ui/releases/tag/3.6.1)

@@ -12,40 +12,42 @@
 
 ## Requirements
 
-[Python 3.9.7](https://www.python.org/downloads/release/)
+- [Docker](https://www.docker.com/get-started/)
 
-[redis](https://redis.io/)
+If running 'manually', you will also need:
 
-## Local installation
+- [Python 3.9.7](https://www.python.org/downloads/release/)
+- [Postgres](https://www.postgresql.org/)
+- [redis](https://redis.io/)
 
-    $ git clone https://github.com/uktrade/great-international-ui
-    $ cd great-international-ui
-    $ [create and activate virutal environment]
-    $ make install_requirements
+## Local setup
 
-### Docker setup
+To run `great-international-ui` locally, you will first need to clone the supporting services in the parent directory:
 
-To start the Great International UI in Docker instead, including the supporting 'directory-cms' service, you will first
-need to clone [directory-cms](https://github.com/uktrade/directory-cms) in the parent directory, and initialise and
-populate its secrets file:
+- [directory-cms](https://github.com/uktrade/directory-cms)
+- [directory-api](https://github.com/uktrade/directory-api) :
 
-```shell
-$ cd ..
-$ git clone git@github.com:uktrade/directory-cms.git
-$ cd directory-cms
-$ make secrets
-# populate directory-cms/conf/env/secrets-do-not-commit with relevant environment variables
-$ cd ../great-international-ui
-```
-
-You will also need a dump of the directory-cms database, which should be saved
-as `dockerise/postgres/data/directory_cms.sql`.
-
-Create a secrets file for great-international-ui if you haven't already:
+To initialise the secrets files, run the following for `great-international-ui`, `directory-cms` and `directory-api` in
+their respective root directory:
 
 ```shell
 $ make secrets
 ```
+
+Add the following entries to your hosts file:
+
+```
+127.0.0.1   international.trade.great
+127.0.0.1   cms.trade.great
+```
+
+You can then start `great-international-ui` and the associated services using Docker or manually.
+
+### Starting using Docker
+
+You will need a dump of the `directory-cms` database, which should be saved
+as `dockerise/postgres/data/directory_cms.sql` (you can use the CloudFoundry command line tool to download a SQL dump of
+the dev database).
 
 Then start the docker containers -- it may take a while the first time, as the data is being seeded into the database
 and migrations are run:
@@ -55,45 +57,65 @@ $ docker-compose -f development.yml up
 ```
 
 Once all containers have started, the site will be accessible at <http://international.trade.great:8012/international/>.
-You may need the following entries in your hosts file:
 
-```
-127.0.0.1   international.trade.great
-127.0.0.1   cms.trade.great
-```
-
-You may need to rebuild the redis cache if you are getting 501 backend errors. If so, rebuild the cache in the
+You may need to rebuild the redis cache if you are getting `5XX` backend errors. If so, rebuild the cache in the
 directory-cms container:
 
 ```shell
 $ make manage rebuild_all_cache
 ```
 
-### Find a supplier Search
+### Starting 'manually'
 
-To enable the 'Find a supplier' search locally, you will need the following steps:
+To run Great International UI locally, you will need to create and activate virtual environments
+in `great-international-ui` and all supporting services as per their READMEs.
 
-1. Run an OpenSearch docker container locally:
-    ```shell
-    $ docker run -p 9200:9200 -e "discovery.type=single-node" -e "plugins.security.disabled=true" opensearchproject/opensearch:1.2.2
-    ```
-2. Seed the OpenSearch container by creating test search companies in directory-api and pushing them to OpenSearch. From the directory-api local instance:
-    ```shell
-    $ make manage create_test_search_data
-    $ make manage elasticsearch_migrate
-    ```
-3. Start the directory-api service
+You will also need:
+
+- Postgres running locally
+- Redis running locally
+
+Then, start each service individually using:
+
+```shell
+$ make webserver
+```
+
+The site should now be accessible at <http://international.trade.great:8012/international/>.
+
+### Troubleshooting
+
+#### Rebuild `directory-cms` cache
+
+If the server is running, but you are getting `5XX` errors from `directory-cms`, try to rebuild the cache
+in `directory-cms` (in the container if using Docker):
+
+```shell
+$ make manage rebuild_all_cache
+```
+
+#### Enabling 'Find a supplier'
+
+> If you are running `great-international-ui` manually, you will first need to run a local OpenSearch container (this is
+> run automatically if you start using Docker):
+>
+> ```shell
+> $ docker run -p 9200:9200 -e "discovery.type=single-node" -e "plugins.security.disabled=true" opensearchproject/opensearch:1.2.2
+> ```
+
+You will then need to migrate the elastic search indices, then create some test search data in the database. To do so,
+run the following commands in `directory-api` (in the container if using Docker):
+
+```shell
+$ make manage elasticsearch_migrate
+$ make manage create_test_search_data
+```
 
 The search should now work at <http://international.trade.great:8012/international/trade/>.
 
 ## Development
 
-### Configuration
-
-Secrets such as API keys and environment specific configurations are placed in `conf/env/secrets-do-not-commit` - a file
-that is not added to version control. To create a template secrets file with dummy values run `make secrets`.
-
-### Commands
+### Useful commands
 
 | Command                       | Description                              |
 |-------------------------------|------------------------------------------|
@@ -107,10 +129,9 @@ that is not added to version control. To create a template secrets file with dum
 | make webserver                | Run the development web server           |
 | make requirements             | Compile the requirements file            |
 | make install_requirements     | Installed the compile requirements file  |
-| make css                      | Compile scss to css                      |
 | make secrets                  | Create your secret env var file          |
 
-## CSS development
+## Front-end development
 
 The CSS and JS for Great International UI are compiled using Webpack.
 
@@ -131,6 +152,19 @@ Rebuild CSS and JS on file changes:
 ```shell
 $ npm run watch
 ```
+
+### Atlas styles, scripts and assets
+
+The Atlas styles are found in `core/sass/atlas` and provide styles to all the newer pages of the site. The older pages
+are styled mainly from `core/sass/main.scss`, which does include the header and footer Atlas styles as these are now
+included on all pages.
+
+The Atlas JS scripts are found in `core/js/src`, come with tests, and are compiled into individual files
+in `core/static/core/js`. This destination directory also contains scripts used on the older pages of the site. These
+typically do not have tests, and are not compiled or minified.
+
+Atlas assets are found in `core/assets` and are optimised and copied to `core/static/core` using Webpack. Older assets
+reside directly in this destination directory.
 
 ## Translations
 
