@@ -131,7 +131,7 @@ The search should now work at <http://international.trade.great:8012/internation
 | make install_requirements     | Installed the compile requirements file  |
 | make secrets                  | Create your secret env var file          |
 
-## CSS development
+## Front-end development
 
 The CSS and JS for Great International UI are compiled using Webpack.
 
@@ -152,6 +152,19 @@ Rebuild CSS and JS on file changes:
 ```shell
 $ npm run watch
 ```
+
+### Atlas styles, scripts and assets
+
+The Atlas styles are found in `core/sass/atlas` and provide styles to all the newer pages of the site. The older pages
+are styled mainly from `core/sass/main.scss`, which does include the header and footer Atlas styles as these are now
+included on all pages.
+
+The Atlas JS scripts are found in `core/js/src`, come with tests, and are compiled into individual files
+in `core/static/core/js`. This destination directory also contains scripts used on the older pages of the site. These
+typically do not have tests, and are not compiled or minified.
+
+Atlas assets are found in `core/assets` and are optimised and copied to `core/static/core` using Webpack. Older assets
+reside directly in this destination directory.
 
 ## Translations
 
