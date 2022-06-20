@@ -7,6 +7,7 @@
 ### Implemented enhancements
 
 - GLS-254 - update README
+- GLS-266 - Remove content from Investment Support Directory
 
 ### Fixed bugs
 
