@@ -6,10 +6,16 @@
 
 ### Implemented enhancements
 
+### Fixed bugs
+
+## [3.6.2](https://github.com/uktrade/great-international-ui/releases/tag/3.6.2)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.6.1...3.6.2)
+
+### Implemented enhancements
+
 - GLS-254 - update README
 - GLS-266 - Remove content from Investment Support Directory
-
-### Fixed bugs
 
 ## [3.6.1](https://github.com/uktrade/great-international-ui/releases/tag/3.6.1)
 
