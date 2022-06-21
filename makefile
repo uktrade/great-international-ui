@@ -23,9 +23,6 @@ requirements:
 install_requirements:
 	pip install -r requirements_test.txt
 
-css:
-	./node_modules/.bin/gulp sass
-
 secrets:
 	@if [ ! -f ./conf/env/secrets-do-not-commit ]; \
 		then sed -e 's/#DO NOT ADD SECRETS TO THIS FILE//g' conf/env/secrets-template > conf/env/secrets-do-not-commit \
@@ -33,4 +30,4 @@ secrets:
 		else echo "conf/env/secrets-do-not-commit already exists. Delete first to recreate it."; \
 	fi
 
-.PHONY: clean pytest manage webserver requirements install_requirements css secrets
+.PHONY: clean pytest manage webserver requirements install_requirements secrets
