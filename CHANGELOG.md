@@ -8,6 +8,14 @@
 
 ### Fixed bugs
 
+## [3.6.3](https://github.com/uktrade/great-international-ui/releases/tag/3.6.3)
+
+[Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.6.2...3.6.3)
+
+### Fixed bugs
+
+- GLS-273 - Fix got vulnerability
+
 ## [3.6.2](https://github.com/uktrade/great-international-ui/releases/tag/3.6.2)
 
 [Full Changelog](https://github.com/uktrade/great-international-ui/compare/3.6.1...3.6.2)
