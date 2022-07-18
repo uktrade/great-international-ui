@@ -3,14 +3,23 @@
 
 {% block content %}
     <div class="atlas-landing__hero">
-        <video class="atlas-hero__media atlas-landing__hero-video"
+    {% if page.hero_video %}
+       <video class="atlas-hero__media atlas-landing__hero-video"
                {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
                autoplay loop muted disableRemotePlayback>
             {% for source in page.hero_video.sources %}
                 <source src="{{ source.src }}" type="{{ source.type }}">
             {% endfor %}
         </video>
-
+    {% elif page.hero_image %}
+        <picture>
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_small %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_medium %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_large %}
+            {% include 'investment_atlas/includes/image_source.html' with image=page.hero_xlarge %}
+            <img class="atlas-hero__media" src="{{ page.hero_image.url }}" alt="{{ page.hero_image.alt }}">
+        </picture>
+    {% endif %}
         <div class="atlas-container">
             <div class="atlas-landing__heading">
                 <h1 class="atlas-h--xl">{{ page.title }}</h1>
