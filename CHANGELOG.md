@@ -6,6 +6,8 @@
 
 ### Implemented enhancements
 
+- GLS-322 - Add button to 'Invest in the UK' hero
+
 ### Fixed bugs
 
 ## [3.6.3](https://github.com/uktrade/great-international-ui/releases/tag/3.6.3)

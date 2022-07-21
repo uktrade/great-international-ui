@@ -34,7 +34,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 488px;
-  max-width: 445px;
+  max-width: 567px;
   padding: 23px 0 40px;
   margin: 0 auto;
   color: $atlas-white;
@@ -51,36 +51,17 @@
     min-height: 560px;
   }
 
-
+  .atlas-button {
+    width: 300px;
+    padding: 10px 0;
+  }
 
 }
 
-.gradient {
-  width: 567px;
-  opacity: 0.7;
-  background-color: #1A5CA4;
+.atlas-landing__strapline-container {
+  background-color: rgb(26, 92, 164, 0.7);
   padding: 25px;
-}
-
-.button {
-  height: 48px;
-  width: 246px;
-  color: #1E1348;
-  font-family: "Euclid Flex B";
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 48px;
-  text-align: center;
-  margin-top: 35px;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.rectangle {
-  height: 50px;
-  width: 300px;
-  background-color: #FFFFFF;
+  margin-bottom: 50px;
 }
 
 .atlas-landing__strapline {
