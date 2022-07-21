@@ -22,8 +22,11 @@
     {% endif %}
         <div class="atlas-container">
             <div class="atlas-landing__heading">
-                <h1 class="atlas-h--xl">{{ page.title }}</h1>
-                <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
+                <div class="gradient">
+                    <h1 class="atlas-h--xl">{{ page.title }}</h1>
+                    <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
+                </div>
+                <a href="{{page.hero_cta_link}}" class="button rectangle">{{page.hero_cta_text}} ></a>
             </div>
         </div>
     </div>
