@@ -16,6 +16,7 @@
   color: $atlas-white;
   background-color: $atlas-black;
   cursor: pointer;
+  text-shadow: none;
 
   @media (min-width: $breakpoint-small) {
     width: auto;
