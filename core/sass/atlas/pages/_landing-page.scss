@@ -56,6 +56,11 @@
     padding: 10px 0;
   }
 
+  &--old {
+    @extend .atlas-landing__heading;
+    max-width: 445px;
+  }
+
 }
 
 .atlas-landing__strapline-container {

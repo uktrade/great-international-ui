@@ -6,7 +6,7 @@
 
 ### Implemented enhancements
 
-- GLS-322 - Add button to 'Invest in the UK' hero
+- GLS-322 - Add button to 'Invest in the UK' hero behind feature flag 'FEATURE_ATLAS_HERO_REDESIGN_ON'.
 
 ### Fixed bugs
 
