@@ -6,9 +6,13 @@
 
 ### Implemented enhancements
 
-- GLS-322 - Add button to 'Invest in the UK' hero behind feature flag 'FEATURE_ATLAS_HERO_REDESIGN_ON'.
-
 ### Fixed bugs
+
+## [3.7.0](https://github.com/uktrade/great-international-ui/releases/tag/3.7.0)
+
+### Implemented enhancements
+
+- GLS-322 - Add button to 'Invest in the UK' hero behind feature flag 'FEATURE_ATLAS_HERO_REDESIGN_ON'.
 
 ## [3.6.3](https://github.com/uktrade/great-international-ui/releases/tag/3.6.3)
 
