@@ -21,10 +21,26 @@
         </picture>
     {% endif %}
         <div class="atlas-container">
+            {% if features.ATLAS_HERO_REDESIGN_ON %}
             <div class="atlas-landing__heading">
+                <div class="atlas-landing__strapline-container">
+                    <h1 class="atlas-h--xl">{{ page.title }}</h1>
+                    <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
+                </div>
+                <a href="{{ page.hero_cta_link }}"
+                   class="atlas-button atlas-button--white">
+                    {{ page.hero_cta_text }}
+                    <span class="atlas-button__icon">
+                        {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                    </span>
+                </a>
+            </div>
+            {% else %}
+            <div class="atlas-landing__heading--old">
                 <h1 class="atlas-h--xl">{{ page.title }}</h1>
                 <p class="atlas-landing__strapline">{{ page.hero_strapline }}</p>
             </div>
+            {% endif %}
         </div>
     </div>
 
