@@ -8,6 +8,12 @@
 
 ### Fixed bugs
 
+## [3.7.1](https://github.com/uktrade/great-international-ui/releases/tag/3.7.1)
+
+### Fixed bugs
+
+- GLS-341 - Upgrade terser package
+
 ## [3.7.0](https://github.com/uktrade/great-international-ui/releases/tag/3.7.0)
 
 ### Implemented enhancements
