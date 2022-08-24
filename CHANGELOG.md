@@ -6,6 +6,8 @@
 
 ### Implemented enhancements
 
+- GLS-375 - Add disclaimer to investment support directory page
+
 ### Fixed bugs
 
 ## [3.7.1](https://github.com/uktrade/great-international-ui/releases/tag/3.7.1)
