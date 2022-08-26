@@ -7,6 +7,7 @@
 ### Implemented enhancements
 
 - GLS-375 - Add disclaimer to investment support directory page
+- GLS-399 - Update CSS for investment hero video container
 
 ### Fixed bugs
 
