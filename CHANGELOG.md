@@ -8,6 +8,7 @@
 
 - GLS-375 - Add disclaimer to investment support directory page
 - GLS-399 - Update CSS for investment hero video container
+- GLS-403 - Upgrade to Python version 3.9.13
 
 ### Fixed bugs
 
