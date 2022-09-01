@@ -9,6 +9,7 @@
 
 ### Implemented enhancements
 - GLS-388 - Upgrade for Django 3.2
+- GLS-407 - Remove EU transition contact form
 
 ## [3.8.0](https://github.com/uktrade/great-international-ui/releases/tag/3.8.0)
 ### Implemented enhancements

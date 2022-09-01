@@ -1,18 +1,12 @@
 from django.utils.functional import cached_property
 from django.utils.cache import set_response_etag
-from django.utils import translation
-from django.http import Http404
 
 from directory_components.helpers import get_user_country
 from directory_components.mixins import CountryDisplayMixin
 
 from directory_constants.choices import EU_COUNTRIES
-from directory_constants import cms
 
-from directory_cms_client.client import cms_api_client
-from directory_cms_client.helpers import handle_cms_response
-
-from core import constants, helpers
+from core import helpers
 
 
 class RegionalContentMixin(CountryDisplayMixin):
@@ -30,44 +24,6 @@ class RegionalContentMixin(CountryDisplayMixin):
         return super().get_context_data(
             region=self.region,
             *args, **kwargs
-        )
-
-
-class CMSPageFromSlugMixin:
-    page_type = ''
-    region = ''
-    service_name = cms.GREAT_INTERNATIONAL
-
-    @property
-    def template_name(self):
-        return constants.TEMPLATE_MAPPING[self.page['page_type']]
-
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Avoid showing the wrong page type at the wrong url
-
-        e.g. /international/topic-slug should be a topic page
-        this avoids /international/article-slug showing an article page
-        at a url where it shouldn't exist
-        """
-        if self.page['page_type'] != self.page_type:
-            raise Http404
-        return super().dispatch(request, *args, **kwargs)
-
-    @cached_property
-    def page(self):
-        response = cms_api_client.lookup_by_slug(
-            slug=self.slug,
-            language_code=translation.get_language(),
-            service_name=self.service_name,
-            region=self.region,
-            draft_token=self.request.GET.get('draft_token'),
-        )
-        return handle_cms_response(response)
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            page=self.page, *args, **kwargs
         )
 
 
