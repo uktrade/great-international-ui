@@ -5,6 +5,7 @@
 ### Hotfix
 
 ### Fixed bugs
+- GLS-305 - Show Shetlands on UK regions map
 
 ### Implemented enhancements
 
