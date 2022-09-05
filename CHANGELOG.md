@@ -4,13 +4,16 @@
 
 ### Hotfix
 
+### Fixed bugs
+
+### Implemented enhancements
+
+## [3.8.0](https://github.com/uktrade/great-international-ui/releases/tag/3.8.0)
 ### Implemented enhancements
 
 - GLS-375 - Add disclaimer to investment support directory page
 - GLS-399 - Update CSS for investment hero video container
 - GLS-403 - Upgrade to Python version 3.9.13
-
-### Fixed bugs
 
 ## [3.7.1](https://github.com/uktrade/great-international-ui/releases/tag/3.7.1)
 
