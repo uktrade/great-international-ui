@@ -10,11 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
-from conf.url_redirects import (
-    redirects,
-    redirects_before_tree_based_routing_lookup
-)
-import euexit.views
+from conf.url_redirects import redirects_before_tree_based_routing_lookup
 import invest.views
 import investment_atlas.views
 import contact.views
@@ -224,18 +220,6 @@ urlpatterns += [
         name='hpo-landing-page-expand-redirect'
     ),
     url(
-        # Remains in use after the Atlas refactor
-        r'^international/transition-period/contact/$',
-        euexit.views.TransitionContactFormView.as_view(),
-        name='brexit-international-contact-form'
-    ),
-    url(
-        # Remains in use after the Atlas refactor
-        r'^international/transition-period/contact/success/$',
-        euexit.views.InternationalContactSuccessView.as_view(),
-        name='brexit-international-contact-form-success'
-    ),
-    url(
         r'^international/content/investment/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         {'path': 'investment/contact'},
@@ -339,7 +323,6 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     ]
 
 urlpatterns += perfectfit
-urlpatterns += redirects
 
 handler404 = core.views.handler404
 handler500 = core.views.handler500
