@@ -1,7 +1,6 @@
 from unittest import mock
 import pytest
 
-from django.urls import reverse
 from core.tests.helpers import create_response
 
 # the first element needs to end with a slash
@@ -33,22 +32,6 @@ redirects = [
     (
         '/international/invest/incoming/foo/',
         '/international/investment/'
-    ),
-    (
-        '/international/eu-exit-news/contact/',
-        reverse('brexit-international-contact-form'),
-    ),
-    (
-        '/international/eu-exit-news/contact/success/',
-        reverse('brexit-international-contact-form-success'),
-    ),
-    (
-        '/international/brexit/contact/',
-        reverse('brexit-international-contact-form'),
-    ),
-    (
-        '/international/brexit/contact/success/',
-        reverse('brexit-international-contact-form-success'),
     ),
     (
         '/international/content/opportunities/',
@@ -250,7 +233,6 @@ not_redirected = (
     '/international/invest/contact/success/',
     '/international/expand/contact/',
     '/international/expand/contact/success/',
-    '/international/transition-period/contact/',
 )
 
 

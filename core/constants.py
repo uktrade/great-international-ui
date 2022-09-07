@@ -1,7 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from collections import namedtuple
 
-from django.conf import settings
 from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
 from directory_constants import urls
 
@@ -10,10 +9,6 @@ TEMPLATE_MAPPING = {
     'InternationalHomePage': 'investment_atlas/homepage.html',
     'InternationalTopicLandingPage': 'investment_atlas/topic_list.html',
     'InternationalArticlePage': 'investment_atlas/article_detail.html',
-
-    # Brexit
-    'InternationalEUExitFormPage': 'euexit/international-contact-form.html',
-    'InternationalEUExitFormSuccessPage': 'euexit/international-contact-form-success.html',
 
     # Capital investment
     'CapitalInvestContactFormPage': 'core/capital_invest/capital_invest_contact_form.html',
@@ -79,19 +74,6 @@ GA_DATA_MAPPING = {
         'site_section': 'Guide',
         'site_subsection': 'ListingPage'
     },
-
-    # Brexit
-    'InternationalEUExitFormPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'EUExit',
-        'site_subsection': 'FormPage'
-    },
-    'InternationalEUExitFormSuccessPage': {
-        'business_unit': 'GreatInternational',
-        'site_section': 'EUExit',
-        'site_subsection': 'FormSuccessPage'
-    },
-
     # Capital investment
     'CapitalInvestContactFormPage': {
         'business_unit': 'GreatInternational',
@@ -231,7 +213,6 @@ INVEST_CONTACT_URL = urls.international.EXPAND_CONTACT
 CAPITAL_INVEST_CONTACT_URL = urls.international.CAPITAL_INVEST_CONTACT
 EXPORTING_TO_UK_CONTACT_URL = urls.international.INTERNATIONAL_CONTACT_TRIAGE / 'exporting-to-the-uk/'
 BUYING_CONTACT_URL = urls.international.TRADE_CONTACT
-EUEXIT_CONTACT_URL = settings.EU_EXIT_INTERNATIONAL_CONTACT_URL
 OTHER_CONTACT_URL = urls.domestic.CONTACT_US / 'international/'
 
 EMAIL_CONSENT_LABEL = _('I would like to receive additional information by email')
