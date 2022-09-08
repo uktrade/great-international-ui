@@ -6,6 +6,7 @@
 
 ### Fixed bugs
 - GLS-305 - Show Shetlands on UK regions map
+- GLS-388 - Upgrade elastic-apm to version 6
 
 ### Implemented enhancements
 - GLS-388 - Upgrade for Django 3.2
