@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Hotfix
+- GLS-416 - Add emergency banner
 
 ### Implemented enhancements
 
