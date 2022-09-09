@@ -37,7 +37,7 @@
   }
 
   @media (min-width: $breakpoint-xlarge) {
-    .atlas-hero + & {
+    .atlas-hero+& {
       margin-top: -140px;
     }
   }
