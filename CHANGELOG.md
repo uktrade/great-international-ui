@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Hotfix
+- GLS-416 - Add emergency banner
 
 ### Fixed bugs
 - GLS-305 - Show Shetlands on UK regions map
