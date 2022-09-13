@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'directory_components',
     'health_check.cache',
     'directory_healthcheck',
-    'euexit',
     'perfect_fit_prospectus',
     'investment_atlas',
     'invest',
@@ -181,11 +180,6 @@ HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_AGENT_TEMPLATE_ID', '
 HPO_GOV_NOTIFY_USER_TEMPLATE_ID = env.str('HPO_GOV_NOTIFY_USER_TEMPLATE_ID', 'a9285cb0-6acf-428f-94f7-2da7248d9ef0')
 HPO_GOV_NOTIFY_USER_REPLY_TO_ID = env.str('HPO_GOV_NOTIFY_USER_REPLY_TO_ID', '3deb5fc2-1032-4352-aa0a-c677548a9f02')
 
-# Brexit
-EU_EXIT_ZENDESK_SUBDOMAIN = env.str('EU_EXIT_ZENDESK_SUBDOMAIN')
-EU_EXIT_INTERNATIONAL_CONTACT_URL = env.str(
-    'EU_EXIT_INTERNATIONAL_CONTACT_URL', '/international/eu-exit-news/contact/'
-)
 
 # Contact
 INVEST_CONTACT_URL = env.str('INVEST_CONTACT_URL', 'https://invest.great.gov.uk/contact/')

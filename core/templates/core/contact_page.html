@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static from staticfiles %}
+{% load static %}
 {% load trans from i18n %}
 {% load breadcrumbs banner from directory_components %}
 
@@ -24,9 +24,6 @@
           </li>
           <li>
               <a class="link" href="{{ services_urls.fas }}industries/contact/">want to contact or buy from UK companies</a>
-          </li>
-          <li>
-              <a class="link" href="{% url 'brexit-international-contact-form' %}">have a question about the UK’s exit from the European Union</a>
           </li>
         </ul>
       </div>
