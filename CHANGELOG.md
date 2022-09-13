@@ -3,6 +3,13 @@
 ## Pre-release
 
 ### Hotfix
+
+### Fixed bugs
+
+### Implemented enhancements
+
+## [3.9.0](https://github.com/uktrade/great-international-ui/releases/tag/3.9.0)
+### Hotfix
 - GLS-416 - Add emergency banner
 
 ### Fixed bugs
