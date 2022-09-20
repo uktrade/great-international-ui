@@ -3,6 +3,7 @@
 ## Pre-release
 
 ### Hotfix
+- GLS-435 - Remove emergency banner
 
 ### Fixed bugs
 
