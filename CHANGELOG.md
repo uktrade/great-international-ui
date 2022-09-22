@@ -6,6 +6,7 @@
 - GLS-435 - Remove emergency banner
 
 ### Fixed bugs
+- GLS-436 - Upgrade Whitenoise to 6.2.0
 
 ### Implemented enhancements
 
