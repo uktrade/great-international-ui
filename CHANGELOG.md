@@ -5,6 +5,7 @@
 ### Hotfix
 
 ### Fixed bugs
+* Upgrade to django 3.2.16
 
 ### Implemented enhancements
 
