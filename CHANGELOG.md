@@ -3,12 +3,18 @@
 ## Pre-release
 
 ### Hotfix
+
+### Fixed bugs
+* Upgrade to django 3.2.16
+
+### Implemented enhancements
+
+## [3.9.1](https://github.com/uktrade/great-international-ui/releases/tag/3.9.1)
+### Hotfix
 - GLS-435 - Remove emergency banner
 
 ### Fixed bugs
 - GLS-436 - Upgrade Whitenoise to 6.2.0
-
-### Implemented enhancements
 
 ## [3.9.0](https://github.com/uktrade/great-international-ui/releases/tag/3.9.0)
 ### Hotfix
