@@ -5,9 +5,12 @@
 ### Hotfix
 
 ### Fixed bugs
-* Upgrade to django 3.2.16
 
 ### Implemented enhancements
+
+## [3.9.2](https://github.com/uktrade/great-international-ui/releases/tag/3.9.2)
+### Fixed bugs
+* Upgrade to django 3.2.16
 
 ## [3.9.1](https://github.com/uktrade/great-international-ui/releases/tag/3.9.1)
 ### Hotfix
