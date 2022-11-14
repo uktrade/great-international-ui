@@ -39,7 +39,7 @@ coverage==6.5.0
     # via
     #   codecov
     #   pytest-cov
-cryptography==38.0.1
+cryptography==38.0.3
     # via
     #   -r requirements.in
     #   pyopenssl
@@ -106,7 +106,7 @@ djangorestframework==3.11.2
     #   sigauth
 elastic-apm==6.1.3
     # via -r requirements.in
-exceptiongroup==1.0.0
+exceptiongroup==1.0.2
     # via pytest
 execnet==1.9.0
     # via pytest-xdist
@@ -148,11 +148,11 @@ packaging==21.3
     #   redis
 pep517==0.13.0
     # via build
-pillow==9.2.0
+pillow==9.3.0
     # via
     #   -r requirements_test.in
     #   directory-validators
-pip-tools==6.9.0
+pip-tools==6.10.0
     # via -r requirements_test.in
 pir-client==1.1.0
     # via -r requirements.in
@@ -176,7 +176,7 @@ pyopenssl==22.1.0
     # via requests
 pyparsing==3.0.9
     # via packaging
-pyrsistent==0.18.1
+pyrsistent==0.19.2
     # via jsonschema
 pytest==7.2.0
     # via
@@ -192,7 +192,7 @@ pytest-django==4.5.2
     # via -r requirements_test.in
 pytest-forked==1.4.0
     # via pytest-xdist
-pytest-sugar==0.9.5
+pytest-sugar==0.9.6
     # via -r requirements_test.in
 pytest-xdist==1.29.0
     # via -r requirements_test.in
@@ -242,14 +242,14 @@ soupsieve==2.3.2.post1
     # via beautifulsoup4
 sqlparse==0.4.3
     # via django
-termcolor==2.0.1
+termcolor==2.1.0
     # via pytest-sugar
 tomli==2.0.1
     # via
     #   build
     #   pep517
     #   pytest
-tzdata==2022.5
+tzdata==2022.6
     # via pytz-deprecation-shim
 tzlocal==4.2
     # via dateparser
@@ -265,15 +265,15 @@ w3lib==2.0.1
     # via directory-client-core
 waitress==2.1.2
     # via -r requirements.in
-wheel==0.37.1
+wheel==0.38.4
     # via pip-tools
-whitenoise==6.2.0
+whitenoise==4.1.3
     # via -r requirements.in
 wrapt==1.14.1
     # via deprecated
 zope-event==4.5.0
     # via gevent
-zope-interface==5.5.0
+zope-interface==5.5.1
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
