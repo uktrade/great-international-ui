@@ -5,6 +5,7 @@
 ### Hotfix
 
 ### Fixed bugs
+- Revert django back to 2.2.28 (temporarily)
 
 ### Implemented enhancements
 

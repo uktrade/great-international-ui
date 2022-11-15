@@ -1,6 +1,6 @@
 {% extends 'find_a_supplier/base.html' %}
 
-{% load static %}
+{% load static from staticfiles %}
 {% load first_paragraph filter_by_active_language from cms_tags %}
 {% load directory_components %}
 
@@ -74,7 +74,7 @@
     </div>
 </section>
 
-{% comment "This does work with the new Sector setup in Atlas, but has been disabled for now" %}
+{% comment "This does work with the new Sector setup in Atlas, but has been disabled for now" %}    
 <section id="industries-section" class="padding-bottom-60-m padding-bottom-30 background-stone-30">
     <div class="container">
         <div class="heading-large">
