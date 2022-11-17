@@ -6,12 +6,16 @@
                 {{ page.introduction|safe }}
             </div>
         </div>
-        {% if page.intro_image %}
-            <div class="atlas-grid__column atlas-grid__column--6-12-m">
+        <div class="atlas-grid__column atlas-grid__column--6-12-m atlas-m-b-m">
+            {% if page.intro_video %}
+                {% with video=page.intro_video %}
+                    {% include 'investment_atlas/includes/video.html' %}
+                {% endwith %}
+            {% elif page.intro_image %}
                 <img src="{{ page.intro_image.url }}"
-                     alt="{{ page.intro_image.alt }}"
-                     class="atlas-image atlas-m-b-m">
-            </div>
-        {% endif %}
+                    alt="{{ page.intro_image.alt }}"
+                    class="atlas-image">
+            {% endif %}
+        </div>
     </div>
 </div>

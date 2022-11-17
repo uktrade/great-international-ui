@@ -6,7 +6,7 @@
 
 ### Fixed bugs
 - Revert django back to 2.2.28 (temporarily)
-
+- KLS-27 - Display intro video on investment opportunity pages
 ### Implemented enhancements
 
 ## [3.9.2](https://github.com/uktrade/great-international-ui/releases/tag/3.9.2)
