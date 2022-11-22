@@ -8,6 +8,23 @@
 
 .atlas-video__transcript {
   max-height: 9em;
-  overflow: scroll;
+  overflow-y: scroll;
   white-space: pre-line;
+}
+
+// The following three blocks set scrollbar to always appear
+// The styling recreates that of the default scrollbar
+
+.atlas-video__transcript::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.atlas-video__transcript::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.atlas-video__transcript::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, .5);
 }
