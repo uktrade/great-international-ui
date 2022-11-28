@@ -76,6 +76,35 @@
   }
 }
 
+.atlas-search__investment-type {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  & .atlas-icon {
+    position: absolute;
+    top: 20%;
+    right: 10px;
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  & .atlas-filter-label {
+    padding-right: 10%;
+  }
+
+  &:hover {
+    & .atlas-icon {
+      transition: margin-right .125s ease-out;
+      margin-right: -5px;
+    }
+
+    & + .atlas-search__investment-type {
+      text-decoration: underline;
+    }
+  }
+}
+
 .atlas-search-type__legend {
   position: relative;
   pointer-events: none;
