@@ -5,9 +5,14 @@
 ### Hotfix
 
 ### Fixed bugs
+
+### Implemented enhancements
+- KLS-154 - Filter redesign on investment opportunity page
+
+## [4.0.0](https://github.com/uktrade/great-international-ui/releases/tag/4.0.0)
+### Fixed bugs
 - Revert django back to 2.2.28 (temporarily)
 - KLS-27 - Display intro video on investment opportunity pages
-### Implemented enhancements
 
 ## [3.9.2](https://github.com/uktrade/great-international-ui/releases/tag/3.9.2)
 ### Fixed bugs
