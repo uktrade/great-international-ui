@@ -58,8 +58,12 @@
                                             {% for choice in form.investment_type %}
                                                 <li class="atlas-p-t-s">
                                                     {% update_query_params investment_type=choice.choice_label as type_query %}
-                                                    <a href="{{ base_url }}{{ type_query }}"
-                                                       class="atlas-search__investment-type atlas-link--invert">{{ choice.choice_label }}</a>
+                                                    <div class="atlas-search__investment-type">
+                                                        <a href="{{ base_url }}{{ type_query }}" class="atlas-link--invert">
+                                                            <div class="atlas-search__investment-type atlas-filter-label">{{ choice.choice_label }}</div> 
+                                                            <span class="atlas-icon"> {% include 'investment_atlas/includes/svg/icon-arrow.svg' %} </span>
+                                                        </a>
+                                                    </div>
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -71,7 +75,7 @@
                                 <div class="atlas-search__filters atlas-bg atlas-bg--white atlas-p-h-s">
                                     <fieldset aria-labelledby="selected_investment_type">
                                         <div class="atlas-search-type">
-                                            <a class="atlas-search-type__clear atlas-body--m"
+                                            <a class="atlas-search-type__clear atlas-body--m atlas-link--invert"
                                                href="{{ base_url }}{{ clear_type_query }}">
                                                 <span class="atlas-icon">
                                                     {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
