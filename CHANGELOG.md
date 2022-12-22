@@ -7,6 +7,10 @@
 ### Fixed bugs
 
 ### Implemented enhancements
+
+## [4.1.0](https://github.com/uktrade/great-international-ui/releases/tag/4.1.0)
+
+### Implemented enhancements
 - KLS-154 - Filter redesign on investment opportunity page
 
 ## [4.0.0](https://github.com/uktrade/great-international-ui/releases/tag/4.0.0)
