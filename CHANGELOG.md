@@ -7,6 +7,7 @@
 ### Fixed bugs
 
 ### Implemented enhancements
+- KLS-283 update psycopg2 gevent greenlet
 
 ## [4.1.2](https://github.com/uktrade/great-international-ui/releases/tag/4.1.2)
 ### Implemented enhancements
