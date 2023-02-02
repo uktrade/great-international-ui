@@ -243,6 +243,7 @@ if env.str('SENTRY_DSN', ''):
 
 ANALYTICS_ID = env.str('ANALYTICS_ID', '')
 
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', True)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
