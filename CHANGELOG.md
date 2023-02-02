@@ -7,6 +7,16 @@
 ### Fixed bugs
 
 ### Implemented enhancements
+- KLS-283 update psycopg2 gevent greenlet
+
+## [4.1.2](https://github.com/uktrade/great-international-ui/releases/tag/4.1.2)
+### Implemented enhancements
+- KLS-327 - Upgrade json5 from 2.2.21 to 2.2.3
+
+## [4.1.1](https://github.com/uktrade/great-international-ui/releases/tag/4.1.1)
+### Implemented enhancements
+
+- Bump certifi from 2022.9.24 to 2022.12.7
 
 ## [4.1.0](https://github.com/uktrade/great-international-ui/releases/tag/4.1.0)
 
