@@ -8,6 +8,7 @@
 
 ### Implemented enhancements
 - KLS-283 update psycopg2 gevent greenlet
+- KLS-138 Fix investment opportunities map background with django 3.2
 
 ## [4.1.2](https://github.com/uktrade/great-international-ui/releases/tag/4.1.2)
 ### Implemented enhancements
