@@ -39,7 +39,7 @@ coverage==7.1.0
     # via
     #   codecov
     #   pytest-cov
-cryptography==39.0.0
+cryptography==39.0.1
     # via
     #   -r requirements.in
     #   pyopenssl
