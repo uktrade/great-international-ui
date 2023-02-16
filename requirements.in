@@ -2,7 +2,7 @@ boto3==1.17.90
 dateparser==0.7.0
 directory-api-client==25.1.0
 directory-cms-client==12.0.0
-directory-components==38.0.0
+directory-components==38.2.1
 directory-forms-api-client==7.1.0
 directory-healthcheck==3.0.0
 directory-validators==9.2.1
@@ -13,7 +13,7 @@ django-ipware==2.1.0
 django-recaptcha==3.0.0
 django-redis==5.2.*
 django-storages==1.13.1
-Django==3.2.16
+Django==3.2.18
 djangorestframework==3.11.2
 elastic-apm==6.1.*
 pir-client==1.1.0
