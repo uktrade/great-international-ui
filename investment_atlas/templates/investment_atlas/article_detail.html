@@ -1,22 +1,29 @@
 {% extends 'investment_atlas/base_cms.html' %}
-{% block content %} 
-{% if page.hero_video or page.hero_image %}
+{% block content %}
+    {% if page.hero_video or page.hero_image %}
         {% include 'investment_atlas/includes/hero_image.html' %}
-        {%include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
-
-    {% else  %}
-        <div class="atlas-bg-grey atlas-bg--grey-light">
-            <div class="atlas-container atlas-p-t-l atlas-p-b-s">
-                <div class="atlas-grid">
-                    <div class="atlas-grid__column atlas-grid__column--8-12-l">
-                        <h1 class="atlas-h--l">{{ page.title }}</h1>
-                        {% if page.article_subheading %}<p class="atlas-body--l">{{ page.article_subheading }}</p>{% endif %}
+        {% include 'investment_atlas/includes/hero_heading.html' with title=page.title %}
+        <div class="atlas-container">
+            <div class="atlas-grid">
+                <div class="atlas-grid__column atlas-grid__column--6-12-m">
+                    <p class="atlas-body--l atlas-m-t-0">{{ page.article_subheading }}</p>
+                </div>
+            </div>
+        {% else  %}
+            <div class="atlas-bg-grey atlas-bg--grey-light">
+                <div class="atlas-container atlas-p-t-l atlas-p-b-s">
+                    <div class="atlas-grid">
+                        <div class="atlas-grid__column atlas-grid__column--8-12-l">
+                            <h1 class="atlas-h--l">{{ page.title }}</h1>
+                            {% if page.article_subheading %}<p class="atlas-body--l">{{ page.article_subheading }}</p>{% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
+        {% endif  %}
+        <div class="{% if page.hero_video or page.hero_image %} atlas-cms-text atlas-m-b-m {% else %} atlas-container atlas-p-v-l {% endif %}"
+            <div class="atlas-cms-text atlas-cms-text--regular-headings atlas-p-b-m">
+                {{ page.article_body_text|safe }}
+            </div>
         </div>
-    {% endif  %}
-    <div class="atlas-container atlas-p-v-l">
-        <div class="atlas-cms-text atlas-cms-text--regular-headings atlas-p-b-m">{{ page.article_body_text|safe }}</div>
-    </div>
-{% endblock %}
+    {% endblock %}
