@@ -4,9 +4,14 @@
             <video class="atlas-hero__media"
                    {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
                    autoplay loop muted disableRemotePlayback>
-                {% for source in page.hero_video.sources %}
+                {% if page.hero_video.sources %}
+                    {% for source in page.hero_video.sources %}
                     <source src="{{ source.src }}" type="{{ source.type }}">
-                {% endfor %}
+                    {% endfor%}
+                {% elif page.hero_video.url and page.hero_video.file_extension %}
+                    <source src="{{ page.hero_video.url }}"
+                            type="{{ age.hero_video.file_extension }}">
+                {% endif %}
             </video>
         {% else %}
             <picture>

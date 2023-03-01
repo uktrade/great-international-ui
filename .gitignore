@@ -9,7 +9,7 @@ conf/staticfiles/
 enrolment/staticfiles/
 BrowserStackLocal
 node_modules/
-
+venv/
 # C extensions
 *.so
 
