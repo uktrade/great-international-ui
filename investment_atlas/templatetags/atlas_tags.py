@@ -57,3 +57,7 @@ def chosen_filters(context, filter_name, applied_filters):
     return {
         'chosen_filters': filters
     }
+
+@register.simple_tag
+def get_aws_cognito_pool_id():
+    return getattr(settings, 'ATLAS_OPPORTUNITIES_MAP_POOL_ID' , '')

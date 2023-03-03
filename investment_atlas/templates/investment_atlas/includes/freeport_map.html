@@ -1,24 +1,12 @@
-{% load static %}
-{% load i18n %}
-{% load update_query_params chosen_filters from atlas_tags %}
+{% load get_aws_cognito_pool_id from atlas_tags %}
+<link href="https://unpkg.com/maplibre-gl@1/dist/maplibre-gl.css" rel="stylesheet"/>
 
-{% load pagination from directory_components %}
+{{ page.freeport_data|json_script:"atlas-opportunities-json" }}
 
-{% block head_css %}
-        <link href="https://unpkg.com/maplibre-gl@1/dist/maplibre-gl.css" rel="stylesheet"/>
-{% endblock %}
+<div id="atlas-opportunities-map" class="atlas-opportunities-map"></div>
 
-{% block content %}
-    {% url 'atlas-opportunities' as base_url %}
-   
-                    {{ page.freeport_data|json_script:"atlas-opportunities-json" }}
-
-                    <div id="atlas-opportunities-map" class="atlas-opportunities-map"></div>
-         
-{% endblock content %}
 
 {% block body_js %}
-
 
     {% if page.freeport_data|length > 0 %}
         <script src="https://unpkg.com/maplibre-gl@1"></script>
@@ -31,20 +19,15 @@
                 const markerHeight = 35;
                 const defaultPadding = 50;
                 const $map = document.querySelector('#atlas-opportunities-map');
-            
-
-                
-
                 return 0;
             }
 
             async function initializeMap() {
                 const ukCentre = [-3.425, 55.37];
                 const bounds = new maplibregl.LngLatBounds();
-                console.log('bounds', bounds)
                 const map = await AmazonLocation.createMap(
                     {
-                        identityPoolId: "{{ aws_cognito_pool_id }}",
+                        identityPoolId: "{% get_aws_cognito_pool_id %}"
                     },
                     {
                         container: "atlas-opportunities-map",
@@ -56,8 +39,6 @@
                         pitchWithRotate: false
                     }
                 );
-
-                console.log('map1', map)
                 map.addControl(new maplibregl.NavigationControl({showCompass: false}), "bottom-right");
 
                 allOpportunities.forEach(function (opp) {
@@ -90,7 +71,6 @@
 
                 map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
 
-                console.log('map', map)
             }
 
             initializeMap();
