@@ -12,7 +12,7 @@
     "build:dev": "webpack --mode development",
     "watch": "webpack --watch --mode development"
   },
-  "author": "DIT",
+  "author": "DBT",
   "license": "ISC",
   "devDependencies": {
     "copy-webpack-plugin": "^10.2.4",
