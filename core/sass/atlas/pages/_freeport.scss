@@ -1,5 +1,13 @@
 .freeport-map-container{
     height: 400px;
-    width: 100%;
+    width: 50%;
     position: relative;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    .atlas-card__heading{
+        font-size: 20px;
+        margin-top: 20px
+    }
 }
