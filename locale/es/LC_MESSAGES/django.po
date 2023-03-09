@@ -57,7 +57,7 @@ msgstr "Estoy convencido y quiero hablar con alguien sobre mis planes."
 
 #: contact/forms.py:40
 msgid ""
-"The UK is on my shortlist. How can the Department for International Trade "
+"The UK is on my shortlist. How can the Department for Business and Trade "
 "help me?"
 msgstr ""
 "El Reino Unido está en mi lista. ¿Cómo me puede ayudar el Departamento de "
@@ -526,7 +526,7 @@ msgstr "Cómo usamos su información"
 
 #: core/templates/core/includes/form_consent.html:8
 msgid ""
-"The Department for International Trade will use the information provided in "
+"The Department for Business and Trade will use the information provided in "
 "this form to respond to your enquiry."
 msgstr ""
 "El Departamento de Comercio Internacional utilizará la información "
@@ -554,7 +554,7 @@ msgstr "Información adicional"
 
 #: core/templates/core/includes/form_consent_business_env_guide.html:6
 msgid ""
-"The Department for International Trade will use the information provided in "
+"The Department for Business and Trade will use the information provided in "
 "this form to send you the UK Investment Prospectus."
 msgstr ""
 "El Departamento de Comercio Internacional utilizará la información "
@@ -919,7 +919,7 @@ msgstr ""
 #: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:39
 msgid ""
 "\n"
-"        <p>The Department for International Trade will use the information "
+"        <p>Department for Business and Trade will use the information "
 "provided in this form to send you your report. You can read about how we "
 "protect your data through our <a class=\"link\" href=\"https://great.gov.uk/"
 "privacy-and-cookies/\" target=\"_blank\">privacy policy</a>.</p>\n"

@@ -2,7 +2,7 @@ boto3==1.17.90
 dateparser==0.7.0
 directory-api-client==25.1.0
 directory-cms-client==12.0.0
-directory-components==38.2.1
+directory-components==39.0.2
 directory-forms-api-client==7.1.0
 directory-healthcheck==3.0.0
 directory-validators==9.2.1
