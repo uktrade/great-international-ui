@@ -1,10 +1,10 @@
 Invest in GREAT Britain Contact Confirmation
 
-Thank you for contacting the Department for International Trade about your investment plans.
+Thank you for contacting the Department for Business and Trade about your investment plans.
 
 We have received the information you sent through the Invest in Great Britain website and will aim to follow up with you in the next 7 days. Your enquiry may be forwarded to a local post for follow up.
 
-The Department for International Trade provides free and impartial advice to companies around the world interested in doing business in the UK. We look forward to welcoming you as one of the many companies to enjoy success in the UK.
+The Department for Business and Trade provides free and impartial advice to companies around the world interested in doing business in the UK. We look forward to welcoming you as one of the many companies to enjoy success in the UK.
 
 Find our Terms and Conditions at https://great.gov.uk/terms-and-conditions
 
@@ -15,7 +15,7 @@ See below for your submitted form:
 {% endfor %}
 
 Many Thanks
-DIT
+DBT
 
-Department for International Trade (DIT) is the Government Department that helps UK‑based companies succeed in the global economy. We also help overseas companies bring their high-quality investment to the UK’s dynamic economy,
+Department for Business and Trade (DBT) is the Government Department that helps UK‑based companies succeed in the global economy. We also help overseas companies bring their high-quality investment to the UK’s dynamic economy,
 acknowledged as Europe’s best place in which to succeed in global business.https://invest.great.gov.uk
