@@ -13,7 +13,6 @@
         <script src="https://unpkg.com/amazon-location-helpers@1.1"></script>
         <script>
             const allOpportunities = JSON.parse(document.getElementById('atlas-opportunities-json').textContent);
-            console.log(allOpportunities)
 
             function getMapPadding() {
                 const markerHeight = 35;
@@ -32,7 +31,6 @@
                     {
                         container: "atlas-opportunities-map",
                         center: ukCentre,
-                        zoom: 4,
                         style: "OpportunitiesListing",
                         dragRotate: false,
                         touchPitch: false,
@@ -69,7 +67,7 @@
                     })
                 })
 
-                map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8});
+                map.fitBounds(bounds, {padding: getMapPadding(), maxZoom: 8, zoom: 4});
 
             }
 
