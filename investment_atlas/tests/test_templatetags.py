@@ -59,6 +59,18 @@ def test_collapsible_cms_text(id, input, has_button, visible, collapsed):
         assert str(rendered_collapsed.decode_contents()).strip() == collapsed
 
 
+def test_get_map_pool_id(settings):
+    settings.ATLAS_OPPORTUNITIES_MAP_POOL_ID = 'map_pool_id'
+    template = Template(
+        '{% load get_aws_cognito_pool_id from atlas_tags %}'
+        '{% get_aws_cognito_pool_id %}'
+    )
+    context = Context()
+    rendered = template.render(context)
+
+    assert 'map_pool_id' in rendered
+
+
 def test_cms_url(settings):
     settings.DIRECTORY_CMS_API_CLIENT_BASE_URL = 'http://example.org/cms-url'
     template = Template(

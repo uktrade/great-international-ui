@@ -6,6 +6,12 @@
 
 ### Fixed bugs
 
+## [4.2.1](https://github.com/uktrade/great-international-ui/releases/tag/4.2.1)
+- Added freeport map to article details page
+
+## [4.2.0](https://github.com/uktrade/great-international-ui/releases/tag/4.2.0)
+- Changed department name references and logo and corresponding imports such as directory components version 
+
 ### Implemented enhancements
 - KLS-399 - Upgrade django to 3.2.18
 
