@@ -152,7 +152,7 @@ requests[security]==2.25.1
     #   directory-client-core
 s3transfer==0.4.2
     # via boto3
-sentry-sdk==0.13.4
+sentry-sdk==1.14.0
     # via -r requirements.in
 sigauth==4.3.0
     # via directory-client-core
