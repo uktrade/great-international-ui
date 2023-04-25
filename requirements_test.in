@@ -2,13 +2,14 @@
 
 pip-tools
 pytest>=4.4.0<5.0.0
-pytest-cov==2.7.1
 pytest-django>=3.5.1<4.0.0
 pytest-sugar
 pytest-xdist==1.29.0
 flake8
 requests_mock
 freezegun
-codecov==2.1.9
+pytest-cov
 py>=1.10.0
 Pillow>=8.2.0
+pytest-codecov
+GitPython

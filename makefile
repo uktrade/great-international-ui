@@ -30,4 +30,14 @@ secrets:
 		else echo "conf/env/secrets-do-not-commit already exists. Delete first to recreate it."; \
 	fi
 
+pytest_codecov:
+	ENV_FILES='secrets-do-not-commit,test,dev' \
+	pytest \
+		--junitxml=test-reports/junit.xml \
+		--cov-config=.coveragerc \
+		--cov-report=term \
+		--cov=. \
+		--codecov \
+		$(ARGUMENTS)
+		
 .PHONY: clean pytest manage webserver requirements install_requirements secrets
