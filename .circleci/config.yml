@@ -25,8 +25,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            make pytest -- --cov=. --cov-config=.coveragerc --cov-report=html
-            codecov
+            make pytest_codecov -- --codecov-token=${CODECOV_TOKEN}
 
   test_javascript:
     docker:
