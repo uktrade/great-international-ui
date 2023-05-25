@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
 from django.urls import reverse_lazy
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from directory_components import mixins
 from pir_client.client import pir_api_client
