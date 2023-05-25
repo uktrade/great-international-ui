@@ -1,6 +1,6 @@
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV3
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.forms import TextInput
 
 from directory_components import forms

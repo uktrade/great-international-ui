@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from collections import namedtuple
 
 from core.header_config import tier_one_nav_items as tier_one, tier_two_nav_items as tier_two
