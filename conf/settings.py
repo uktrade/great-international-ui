@@ -204,7 +204,7 @@ STATIC_HOST = env.str('STATIC_HOST', '')
 STATIC_URL = STATIC_HOST + '/static/'
 STATICFILES_STORAGE = env.str(
     'STATICFILES_STORAGE',
-    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    'whitenoise.storage.CompressedStaticFilesStorage'
 )
 
 # Logging for development
