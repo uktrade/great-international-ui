@@ -250,7 +250,7 @@ tomli==2.0.1
     #   coverage
     #   pyproject-hooks
     #   pytest
-typing-extensions==4.6.1
+typing-extensions==4.6.2
     # via asgiref
 tzlocal==5.0.1
     # via dateparser
@@ -268,7 +268,7 @@ waitress==2.1.2
     # via -r requirements.in
 wheel==0.40.0
     # via pip-tools
-whitenoise==6.2.0
+whitenoise==6.4.0
     # via -r requirements.in
 zope-event==4.6
     # via gevent

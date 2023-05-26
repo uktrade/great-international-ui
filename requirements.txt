@@ -165,7 +165,7 @@ soupsieve==2.4.1
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
-typing-extensions==4.6.1
+typing-extensions==4.6.2
     # via asgiref
 tzlocal==5.0.1
     # via dateparser
@@ -181,7 +181,7 @@ w3lib==1.22.0
     # via directory-client-core
 waitress==2.1.2
     # via -r requirements.in
-whitenoise==6.2.0
+whitenoise==6.4.0
     # via -r requirements.in
 zope-event==4.6
     # via gevent
