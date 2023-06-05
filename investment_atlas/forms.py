@@ -7,7 +7,7 @@ from directory_forms_api_client.helpers import Sender
 
 from django.conf import settings
 from django.forms import Select, Textarea, SelectMultiple
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from core import constants
 

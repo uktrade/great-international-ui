@@ -3,7 +3,7 @@ from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
 
 from django.conf import settings
-from django.conf.urls import url, include
+from django.urls import re_path, include
 from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
@@ -30,47 +30,47 @@ sitemaps = {
 
 # Investment Support Directory, Trade and Invest
 urlpatterns = [
-    url(
+    re_path(
         r'^international/investment-support-directory/',
         include(
             'investment_support_directory.urls',
             namespace='investment-support-directory',
         )
     ),
-    url(
+    re_path(
         r'^international/trade/investment-support-directory/search/',
         QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
     ),
-    url(
+    re_path(
         r'^international/trade/',
         include(
             'find_a_supplier.urls',
             namespace='find-a-supplier',
         )
     ),
-    url(
+    re_path(
         r'^international/content/trade/$',
         QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
         name='content-trade-home-redirect'
     ),
-    url(
+    re_path(
         r'^international/content/trade/contact/$',
         QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
         name='content-trade-contact-redirect'
     ),
-    url(
+    re_path(
         r'^international/trade/incoming/$',
         QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
         name='trade-incoming-homepage'
     ),
     # This entry handles all URLs in find_a_supplier/redirects.py
-    url(
+    re_path(
         r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
         name='trade-incoming'
     ),
     # This entry handles all URLs in invest/redirects.py
-    url(
+    re_path(
         r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
         invest.views.LegacyInvestURLRedirectView.as_view(),
         name='invest-incoming'
@@ -79,12 +79,12 @@ urlpatterns = [
 
 if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
     urlpatterns += [
-        url(
+        re_path(
             r'^international/content/how-to-setup-in-the-uk/$',
             QuerystringRedirectView.as_view(url='/international/content/invest/how-to-setup-in-the-uk/'),
             name='how-to-set-up-home-invest-redirect'
         ),
-        url(
+        re_path(
             r'^international/content/how-to-setup-in-the-uk/(?P<path>[\w\-/]*)/$',
             core.views.PathRedirectView.as_view(root_url='/international/content/invest/how-to-setup-in-the-uk'),
             name='how-to-set-up-invest-redirect'
@@ -92,7 +92,7 @@ if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
     ]
 
 urlpatterns += [
-    url(
+    re_path(
         r'^international/content/industries/advanced-manufacturing/$',
         QuerystringRedirectView.as_view(url='/international/content/industries/engineering-and-manufacturing/'),
         name='advanced-manufacturing-redirect'
@@ -101,12 +101,12 @@ urlpatterns += [
 
 if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
     urlpatterns += [
-        url(
+        re_path(
             r'^international/content/industries/$',
             QuerystringRedirectView.as_view(url='/international/content/about-uk/industries/'),
             name='industries-home-to-about-uk-redirect'
         ),
-        url(
+        re_path(
             r'^international/content/industries/(?P<path>[\w\-/]*)/$',
             core.views.PathRedirectView.as_view(root_url='/international/content/about-uk/industries'),
             name='industries-to-about-uk-redirect'
@@ -116,7 +116,7 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
 # This route remains in use after the Atlas refactor
 if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
     urlpatterns += [
-        url(
+        re_path(
             r'^international/contact/$',
             core.views.InternationalContactTriageView.as_view(),
             name='international-contact-triage'
@@ -124,7 +124,7 @@ if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
     ]
 else:
     urlpatterns += [
-        url(
+        re_path(
             r'^international/contact/$',
             core.views.InternationalContactPageView.as_view(),
             name='contact-page-international'
@@ -132,12 +132,12 @@ else:
     ]
 
 urlpatterns += [
-    url(
+    re_path(
         r'international/invest/request-call/$',
         second_qualification.views.SecondQualificationFormView.as_view(),
         name="second-qualification"
     ),
-    url(
+    re_path(
         r'international/invest/request-call/success/$',
         second_qualification.views.SecondQualificationSuccessView.as_view(),
         name="second-qualification-success"
@@ -147,85 +147,85 @@ urlpatterns += [
 urlpatterns += redirects_before_tree_based_routing_lookup
 
 urlpatterns += [
-    url(
+    re_path(
         r'^international/healthcheck/',
         skip_ga360(directory_healthcheck.views.HealthcheckView.as_view()),
         name='healthcheck'
     ),
-    url(
+    re_path(
         r'^international/sitemap\.xml$',
         skip_ga360(sitemap),
         {'sitemaps': sitemaps},
         name='sitemap'
     ),
-    url(
+    re_path(
         r'^international/robots\.txt$',
         skip_ga360(directory_components.views.RobotsView.as_view()),
         name='robots'
     ),
-    url(
+    re_path(
         r'^international/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {'path': ''},
         name='index'
     ),
-    url(
+    re_path(
         r'^international/content/$',
         QuerystringRedirectView.as_view(pattern_name='index'),
         name='content-index-redirect'
     ),
-    url(
+    re_path(
         r'^international/invest/incoming/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
         name='invest-incoming-homepage'
     ),
-    url(
+    re_path(
         r'^international/expand/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
         name='expand-homepage-redirect'
     ),
-    url(
+    re_path(
         # Remains in use after the Atlas refactor
         r"^international/invest/contact/$",
         contact.views.ContactFormView.as_view(),
         name="invest-contact"
     ),
-    url(
+    re_path(
         r"^international/invest/contact/success/$",
         contact.views.ContactFormSuccessView.as_view(),
         name="invest-contact-success"
     ),
-    url(
+    re_path(
         r"^international/expand/contact/$",
         contact.views.ContactFormView.as_view(),
         name="expand-contact"
     ),
-    url(
+    re_path(
         r"^international/expand/contact/success/$",
         contact.views.ContactFormSuccessView.as_view(),
         name="expand-contact-success"
     ),
-    url(
+    re_path(
         r'^international/content/expand/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-home'),
         name='content-expand-home-redirect'
     ),
-    url(
+    re_path(
         r'^trade/(?P<path>industries\/.*)/$',
         find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
     ),
-    url(
+    re_path(
         r'^international/content/expand/high-potential-opportunities/$',
         QuerystringRedirectView.as_view(pattern_name='atlas-opportunities'),
         name='hpo-landing-page-expand-redirect'
     ),
-    url(
+    re_path(
         r'^international/content/investment/contact/$',
         core.views.CapitalInvestContactFormView.as_view(),
         {'path': 'investment/contact'},
         name='investment-contact'
     ),
-    url(
+    re_path(
         r'^international/invest-capital/$',
         QuerystringRedirectView.as_view(url='/international/content/capital-invest/'),
         {'path': 'capital-invest'},
@@ -240,7 +240,7 @@ urlpatterns += [
     # NOTE: the rest of the alas pages will be served by the "cms-page-from-path" view,
     # declared later in this file as /international/content/investment/child-slug/grandchild-slug/
     #
-    url(
+    re_path(
         r'^international/investment/$',
         core.views.MultilingualCMSPageFromPathView.as_view(),
         {
@@ -249,7 +249,7 @@ urlpatterns += [
         },
         name='atlas-home'
     ),
-    url(
+    re_path(
         r'^international/investment/opportunities/$',
         investment_atlas.views.InvestmentOpportunitySearchView.as_view(),
         {
@@ -257,19 +257,19 @@ urlpatterns += [
         },
         name='atlas-opportunities'
     ),
-    url(
+    re_path(
         r'^international/content/investment/foreign-direct-investment-contact/$',
         investment_atlas.views.ForeignDirectInvestmentOpportunityFormView.as_view(),
         {'path': 'investment/foreign-direct-investment-contact'},
         name='fdi-opportunity-request-form'
     ),
-    url(
+    re_path(
         r'^international/content/investment/foreign-direct-investment-contact/success/$',
         investment_atlas.views.ForeignDirectInvestmentOpportunitySuccessView.as_view(),
         {'path': 'investment/foreign-direct-investment-contact/success'},
         name='fdi-opportunity-request-form-success'
     ),
-    url(
+    re_path(
         # This view is crucial to the CMS pages that use tree-based-routing - they seem to all use it.
         # Also see core.constants.TEMPLATE_MAPPING for how a paritcular CMS page model in directory-cms
         # is mapped to HTML template in great-international-ui
@@ -277,12 +277,12 @@ urlpatterns += [
         core.views.MultilingualCMSPageFromPathView.as_view(),
         name='cms-page-from-path'
     ),
-    url(
+    re_path(
         r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/$",
         core.views.WhyBuyFromUKFormView.as_view(),
         name='why-buy-from-uk-form'
     ),
-    url(
+    re_path(
         r"^international/trade/how-we-help-you-buy/why-buy-from-the-uk/success/$",
         core.views.WhyBuyFromUKFormViewSuccess.as_view(),
         name='why-buy-from-uk-form-success'
@@ -291,12 +291,12 @@ urlpatterns += [
 
 if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
     urlpatterns += [
-        url(
+        re_path(
             r"^international/about-uk/why-choose-uk/business-environment-guide/$",
             core.views.BusinessEnvironmentGuideFormView.as_view(),
             name='business-environment-guide-form'
         ),
-        url(
+        re_path(
             r"^international/about-uk/why-choose-uk/business-environment-guide/success/$",
             core.views.BusinessEnvironmentGuideFormSuccessView.as_view(),
             name='business-environment-guide-form-success'
@@ -304,7 +304,7 @@ if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
     ]
 
 perfectfit = [
-    url(
+    re_path(
         r'^international/invest/perfectfit/',
         include(
             'perfect_fit_prospectus.urls',
@@ -315,7 +315,7 @@ perfectfit = [
 
 if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     urlpatterns += [
-        url(
+        re_path(
             r'^media/(?P<path>.*)$',
             skip_ga360(serve),
             {'document_root': settings.MEDIA_ROOT}

@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import re_path
 from perfect_fit_prospectus.views import PerfectFitProspectusMainView, \
     PerfectFitProspectusReportProxyView, PerfectFitProspectusSuccessView
 
@@ -6,17 +6,17 @@ from perfect_fit_prospectus.views import PerfectFitProspectusMainView, \
 app_name = 'perfect_fit_prospectus'
 
 urlpatterns = [
-    url(
+    re_path(
         '^$',
         PerfectFitProspectusMainView.as_view(),
         name='main'
     ),
-    url(
+    re_path(
         '^success/$',
         PerfectFitProspectusSuccessView.as_view(),
         name='success'
     ),
-    url(
+    re_path(
         '^reports/(?P<filename>.*)$',
         PerfectFitProspectusReportProxyView.as_view(),
         name='report'

@@ -2,7 +2,7 @@ from directory_components import forms
 from directory_forms_api_client.forms import GovNotifyEmailActionMixin
 from django.forms import Select, Textarea, TextInput
 from django.db.models.fields import BLANK_CHOICE_DASH
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
 
 from django.utils.html import mark_safe

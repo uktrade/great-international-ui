@@ -19,6 +19,10 @@ import directory_healthcheck.backends
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
+
 env = environ.Env()
 for env_file in env.list('ENV_FILES', default=[]):
     env.read_env(os.path.join(os.path.dirname(__file__), f'env/{env_file}'))
@@ -200,7 +204,7 @@ STATIC_HOST = env.str('STATIC_HOST', '')
 STATIC_URL = STATIC_HOST + '/static/'
 STATICFILES_STORAGE = env.str(
     'STATICFILES_STORAGE',
-    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    'whitenoise.storage.CompressedStaticFilesStorage'
 )
 
 # Logging for development
