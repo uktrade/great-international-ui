@@ -22,6 +22,7 @@ _Tick or delete as appropriate:_
 - [ ] I have updated security dependencies
 - [ ] Python requirements have been re-compiled.
 - [ ] Frontend assets have been re-compiled.
+- [ ] I have checked that my PR is using the latest package versions of: directory-api-client, directory-cms-client, directory-components, directory-forms-api-client, directory-healthcheck, directory-validators
 
 ### Merging
 
