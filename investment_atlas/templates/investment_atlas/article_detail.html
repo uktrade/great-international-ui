@@ -23,11 +23,16 @@
         {% endif  %}  
         <div class="{% if page.hero_video or page.hero_image %} atlas-cms-text atlas-m-b-m {% else %} atlas-container atlas-p-v-l {% endif %}">
             <div class="atlas-cms-text atlas-cms-text--regular-headings atlas-p-b-m">
-            {% if page.type_of_article == 'Freeport landing' %}
-                <div class="freeport-map-container">
-            {% include 'investment_atlas/includes/freeport_map.html' with title=page.title %}
-        </div>
-            {% endif %} 
+            {% if page.article_video %}
+            <div class="article-video-container">
+              {% include 'investment_atlas/includes/video.html' with video=page.article_video %}
+            </div>
+          {% endif %}
+          {% if page.article_image and not page.article_video %}
+            <div class="article-video-container">
+                <img src="{{ page.article_image.url }}" alt="{{ page.article_image.alt }}" class="width-full">
+            </div>
+          {% endif %}
                 {{ page.article_body_text|safe }}
             </div>
         </div>
