@@ -1,4 +1,10 @@
 {% extends 'investment_atlas/base_cms.html' %}
+{% load static %}
+
+{% block body_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'core/js/videoTranscript.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     {% include 'investment_atlas/includes/hero_image.html' %}
