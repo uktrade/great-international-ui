@@ -17,15 +17,15 @@
     </video>
 
     {% if video.transcript %}
-        <details class="atlas-details atlas-m-t-xs">
+        <details data-transcript-toggle class="atlas-details atlas-m-t-xs">
             <summary class="atlas-button atlas-button--link">
-                View transcript
-                <span class="atlas-button__icon">
+                <span class="atlas-details__icon">
                     {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
                 </span>
+                <span class='atlas-summary-text'>View video transcript</span>
             </summary>
 
-            <div class="atlas-video__transcript atlas-bg--grey-lighter atlas-m-t-xs atlas-p-s">{{ video.transcript }}</div>
+            <div aria-label="video transcript" class="atlas-video__transcript atlas-m-t-xs atlas-p-s">{{ video.transcript }}</div>
         </details>
     {% endif %}
 </div>

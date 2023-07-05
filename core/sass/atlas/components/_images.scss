@@ -1,3 +1,5 @@
+@import '../tokens';
+
 .atlas-image,
 .atlas-video video {
   display: block;
@@ -7,9 +9,9 @@
 }
 
 .atlas-video__transcript {
-  max-height: 9em;
-  overflow-y: scroll;
-  white-space: pre-line;
+  border-left: 5px solid $atlas-grey-light;
+  padding: 0 20px;
+  margin-top: 20px;
 }
 
 // The following three blocks set scrollbar to always appear
