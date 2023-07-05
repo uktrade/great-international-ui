@@ -16,6 +16,7 @@ $atlas-green-light: #8ce2d0;
 
 $atlas-blue-lighter: #d2d0da;
 $atlas-blue-light: #787191;
+$atlas-blue-link: #1D70B8;
 
 $govuk-focus-yellow: #ffbf47;
 
@@ -32,10 +33,27 @@ $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1300px;
 
-$breakpoint-suffixes: ("-s": $breakpoint-small, "-m": $breakpoint-medium, "-l": $breakpoint-large, "-xl": $breakpoint-xlarge);
+$breakpoint-suffixes: (
+    "-s": $breakpoint-small,
+    "-m": $breakpoint-medium,
+    "-l": $breakpoint-large,
+    "-xl": $breakpoint-xlarge
+);
 
-$spacings: ("xs": 10px, "s": 15px, "m": 30px, "l": 45px, "xl": 75px);
-$spacings-medium: ("xs": 15px, "s": 25px, "m": 40px, "l": 60px, "xl": 100px);
+$spacings: (
+    "xs": 10px,
+    "s": 15px,
+    "m": 30px,
+    "l": 45px,
+    "xl": 75px
+);
+$spacings-medium: (
+    "xs": 15px,
+    "s": 25px,
+    "m": 40px,
+    "l": 60px,
+    "xl": 100px
+);
 
 
 $govuk-focus: 4px solid $govuk-focus-yellow;

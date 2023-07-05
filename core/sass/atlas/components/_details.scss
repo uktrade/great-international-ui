@@ -2,7 +2,7 @@
 
 .atlas-details {
   & summary {
-    color: $atlas-body;
+    color: $atlas-blue-link;
     text-decoration: underline;
   }
 
@@ -10,12 +10,27 @@
     display: none;
   }
 
-  & summary .atlas-button__icon {
+  & summary .atlas-button__icon,
+  & summary .atlas-details__icon {
     transform: rotate(90deg);
     transition: transform ease-in-out .25s;
   }
 
-  &[open] summary .atlas-button__icon {
+  &[open] summary .atlas-button__icon,
+  &[open] summary .atlas-details__icon {
     transform: rotate(-90deg);
+  }
+
+  & .atlas-details__icon {
+    width: 1em;
+    height: 1em;
+    margin-left: 0;
+    margin-right: 5px;
+
+    & svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
