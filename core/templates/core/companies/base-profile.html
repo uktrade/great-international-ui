@@ -167,15 +167,17 @@
                 <div class="underline-flag-red">
                     <h3 class="box-heading heading-medium black-text">{{ company.name }} case studies</h3>
                     {% for case_study in company.supplier_case_studies %}
-                        {% cycle 'odd' 'even' as parity silent %}
-                        {% if parity == 'odd' %}<div class="grid-row">{% endif %}
-                            <div class="column-one-half">
-                                {% with "case-study-"|add:forloop.counter as card_id %}
-                                    {% url request.resolver_match.namespace|add:':case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
-                                    {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
-                                {% endwith %}
-                            </div>
-                        {% if parity == 'even' %}</div>{% endif %}
+                        {% if case_study.is_published_case_study %}
+                            {% cycle 'odd' 'even' as parity silent %}
+                            {% if parity == 'odd' %}<div class="grid-row">{% endif %}
+                                <div class="column-one-half">
+                                    {% with "case-study-"|add:forloop.counter as card_id %}
+                                        {% url request.resolver_match.namespace|add:':case-study-details' id=case_study.pk slug=case_study.slug as case_study_url %}
+                                        {% card card_id=card_id img_src=case_study.image_one url=case_study_url description=case_study.short_summary heading=case_study.title %}
+                                    {% endwith %}
+                                </div>
+                            {% if parity == 'even' %}</div>{% endif %}
+                        {% endif %}
                     {% endfor %}
                 </div>
             {% endif %}
