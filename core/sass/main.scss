@@ -35,5 +35,11 @@
 @import 'pages/find-a-supplier/subscribe';
 @import 'pages/find-a-supplier/case-study';
 
+// GOVUK Frontend styles prefixed with "govuk-"
+$govuk-font-family: $brand-font;
+@import "node_modules/govuk-frontend/govuk/all";
+
+// Great styles prefixed with "great-"
+@import 'great/main';
 
 // !!! imports only. do not write styling in this file !!!
