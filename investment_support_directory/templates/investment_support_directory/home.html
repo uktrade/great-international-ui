@@ -4,101 +4,126 @@
 
 {% block css_layout_class %}investment-support-directory-home{% endblock %}
 
+
 {% block content %}
-    <section id="hero" class="hero hero-generic background-light-blue white-text padding-vertical-90-m padding-vertical-30" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
-        <div class="container">
-            <div class="width-two-thirds">
-                <h1 class="heading-xlarge margin-0">Find a UK specialist</h1>
-                <p class="hero-subtitle margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
+    <section id="hero" class="great great-hero hero-generic padding-vertical-90-m padding-vertical-30" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
+        <div class="container" style="margin-top: -50px;">
+            <div class="govuk-grid-row great-text-white">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl govuk-!-margin-0 great-text-white">Find a UK specialist</h1>
+                    <p class="hero-subtitle govuk-!-margin-bottom-45">Search the UK Investment Support Directory to find specialists with experience in helping businesses set up or expand in the UK.</p>
+                </div>
             </div>
-            {% ga360_data "isd-search-form" target="form" %}
-            <form method="post">
-                {{ form }}
-                <button class="button">Find a UK specialist</button>
-            </form>
-            {% end_ga360_data %}
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    {% ga360_data "isd-search-form" target="form" %}
+                    <form method="post">
+
+                        <fieldset class="govuk-fieldset">
+                            <legend class="great-visually-hidden">Legend....</legend>
+                            {% for field in form.visible_fields %}
+                                <div class="govuk-form-group">
+                                    <label
+                                        class="govuk-label"
+                                        for="{{field.id_for_label}}">
+                                        {{ field.label }} 
+                                    </label>
+                                        {{ field }}
+                                </div>
+                            {% endfor %}
+                        </fieldset>
+                        <button class="govuk-button">Find a UK specialist</button>
+                    </form>
+                    {% end_ga360_data %}
+                </div>
+            </div>
         </div>
     </section>
 
-    <div id="benefits">
+    <div class="great govuk-" id="benefits">
         <div class="container">
             {% ga360_data "breadcrumbs" %}
                 {% breadcrumbs 'Find a UK specialist' %}
-                    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+                    <a class="govuk-link" href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
                 {% endbreadcrumbs %}
             {% end_ga360_data %}
-            <div class="width-half">
-                <h2 class="heading-large">UK Investment Support Directory </h2>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+                    <h2 class="govuk-heading-l">UK Investment Support Directory </h2>
+                </div>
             </div>
-            <section class="grid-row">
-                <div class="column-one-half" id="benefits-list-container">
+            <section class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half" id="benefits-list-container">
                     <ul>
                         <li>
-                            <h3 class="heading-medium">Search for experienced advice</h3>
-                            <p>The UK Investment Support Directory is a collection of companies that have skills and experience in helping overseas businesses set up or expand in the UK.<br><br/>
+                            <h3 class="govuk-heading-m">Search for experienced advice</h3>
+                            <p class="govuk-body">The UK Investment Support Directory is a collection of companies that have skills and experience in helping overseas businesses set up or expand in the UK.<br><br/>
                                 Membership of the Directory does not represent an association with The Department for Business and Trade (DBT) and being listed in the Directory does not create legal relations between the member and DBT.
                             </p>
                         </li>
                         <li>
-                            <h3 class="heading-medium">Find the right help</h3>
-                            <p>To find a specialist, search the directory by entering the skill or service you are looking for in the search bar. You can also filter your search results by expertise in specific services, industry or by regional expertise.</p>
+                            <h3 class="govuk-heading-m">Find the right help</h3>
+                            <p class="govuk-body">To find a specialist, search the directory by entering the skill or service you are looking for in the search bar. You can also filter your search results by expertise in specific services, industry or by regional expertise.</p>
                         </li>
                         <li>
-                            <h3 class="heading-medium">Get in touch</h3>
-                            <p>Contact your chosen specialist by clicking on ‘Contact company’ on their profile page. You will get your first hour of consultation for free and will also be connected to DBT for further support.</p>
+                            <h3 class="govuk-heading-m">Get in touch</h3>
+                            <p class="govuk-body">Contact your chosen specialist by clicking on ‘Contact company’ on their profile page. You will get your first hour of consultation for free and will also be connected to DBT for further support.</p>
                         </li>
                     </ul>
                 </div>
-                <div class="column-one-half">
+                <div class="govuk-grid-column-one-half">
                     <img src="{% static 'core/images/investment_support_directory/feature.png' %}" />
                 </div>
             </section>
         </div>
     </div>
-    <div class="background-stone-30" id="bottom">
+
+    <div class="great background-stone-30" id="bottom">
         {% ga360_data "search-link" %}
         <div class="container">
-            <div class="width-one-half">
-                <h2 class="heading-large">How UK businesses can help</h2>
-                <p id="create-business-profile-label-bottom">Search for products and services that can help your business set up or expand in the UK.</p>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <h2 class="govuk-heading-l">How UK businesses can help</h2>
+                    <p class="govuk-body" id="create-business-profile-label-bottom">Search for products and services that can help your business set up or expand in the UK.</p>
+                </div>
             </div>
-            <div class="grid-row">
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Financial</h3>
+            <div class="govuk-grid-row govuk-!-margin-top-8">
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Financial</h3>
                     {% for choice in CHOICES_FINANCIAL %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_financial={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_financial={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Management consulting</h3>
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Management consulting</h3>
                     {% for choice in CHOICES_MANAGEMENT_CONSULTING %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_management={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_management={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Human resources and recruitment</h3>
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Human resources and recruitment</h3>
                     {% for choice in CHOICES_HUMAN_RESOURCES %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_human_resources={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_human_resources={{ choice.split|join:'-' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="grid-row">
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Legal</h3>
+            <div class="govuk-grid-row govuk-!-margin-top-8">
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Legal</h3>
                     {% for choice in CHOICES_LEGAL %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_legal={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_legal={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Publicity and communications</h3>
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Publicity and communications</h3>
                     {% for choice in CHOICES_PUBLICITY %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_publicity={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_publicity={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
-                <ul class="column-one-third">
-                    <h3 class="heading-medium">Business support</h3>
+                <ul class="govuk-grid-column-one-third">
+                    <h3 class="govuk-heading-m">Business support</h3>
                     {% for choice in CHOICES_BUSINESS_SUPPORT %}
-                        <li><a href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_business_support={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
+                        <li><a class="govuk-link" href="{% url 'investment-support-directory:search' %}?q=&expertise_products_services_business_support={{ choice.split|join:'+' }}" class="link">{{ choice }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

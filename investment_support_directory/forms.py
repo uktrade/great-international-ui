@@ -17,7 +17,7 @@ SEARCH_PLACEHOLDER = 'Enter the skills or service you need'
 class CompanyHomeSearchForm(forms.Form):
 
     q = fields.CharField(
-        label='',
+        label=SEARCH_PLACEHOLDER,
         max_length=255,
         required=False,
         widget=widgets.SearchWidget(
@@ -25,7 +25,7 @@ class CompanyHomeSearchForm(forms.Form):
             attrs={
                 'autofocus': 'autofocus',
                 'dir': 'auto',
-                'placeholder': SEARCH_PLACEHOLDER,
+                'placeholder': '',
                 'data-ga-id': 'search-input',
             }
         ),
