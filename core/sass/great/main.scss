@@ -1,5 +1,49 @@
 @import './colors.scss';
 
+
+$brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
+$main-font-text: 'Roboto', arial, helvetica, verdana;
+$line-height: 1.6;
+
+.great-background-active-blue {
+  background-color: #006ccc; 
+}
+
+@mixin great-body-small {
+  @include font-generator($font-size: 16px, $font-size-mobile: 14px, $line-height: 1.6)
+}
+
+.great-bold-small {
+  line-height: $line-height;
+}
+
+.great-background-stone-30 {
+  background-color: #f5f2ed; 
+}
+
+.great-container {
+  max-width: 1200px;
+  margin: 0 auto;
+ }
+
+ @media (max-width: 1260px) {
+    .great-container { 
+      margin: 0 30px; } 
+  }
+
+  @media (max-width: 420px) {
+    .great-container {
+      margin: 0 20px; } 
+}
+
+section {
+  overflow: visible;
+  padding-bottom: 60px; 
+}
+section > .great-container {
+    overflow: hidden; 
+}
+
 .great-visually-hidden {
     position: absolute;
     left: -10000px;
@@ -17,6 +61,7 @@
   font-size: 20px;
   line-height: 30px;
   font-weight: normal;
+  font-family: $main-font-text;
 
   @include govuk-media-query($from: tablet) {
       font-size: 28px;
@@ -24,15 +69,37 @@
   }
 }
 
+.govuk-body-l-white {
+  @extend .govuk-body-l;
+  color: white;
+}
+
 .govuk-body,
-.govuk-link,
 .govuk-label {
   font-size: 16px;
   line-height: 24px;
   font-weight: normal;
+  font-family: $main-font-text;
 
   @include govuk-media-query($from: tablet) {
-      font-size: 18px;
+      font-size: 19px;
+      line-height: 30px;
+  }
+}
+
+.govuk-body-white {
+  @extend .govuk-body;
+  color: white;
+}
+
+.govuk-link {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal;
+  font-family: $main-font-text;
+
+  @include govuk-media-query($from: tablet) {
+      font-size: 16px;
       line-height: 30px;
   }
 }
@@ -40,12 +107,21 @@
 .govuk-body-s {
   font-size: 14px;
   line-height: 20px;
-  font-weight: normal;
+  font-family: $main-font-text;
 
   @include govuk-media-query($from: tablet) {
       font-size: 16px;
       line-height: 24px;
   }
+}
+
+.govuk-body-s-white {
+  @extend .govuk-body;
+  color: white;
+}
+
+.govuk-link {
+  line-height: 20px;
 }
 
 .govuk-label {
@@ -56,7 +132,7 @@
   background-color: $govuk-brand-colour;
   box-shadow: none;
   box-shadow: none;
-  font-weight: bold;
+  font-family: $brand-font;
   padding: 8px 20px;
   font-size: 16px;
   line-height: 24px;
@@ -89,7 +165,168 @@
 
   @include govuk-media-query($from: tablet) {
       font-size: 20px;
-      min-height: 50px;
+      min-height: 60px;
       line-height: 34px;
+  }
+}
+
+
+%great-button-arrow {
+  text-align: center;
+  padding-right: 70px;
+  position: relative;
+  font-family: $brand-font;
+
+  &:after {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 55px;
+  }
+}
+
+.great-button-arrow-small {
+  @extend %great-button-arrow;
+
+  &:after {
+    content: '➞';
+  }
+}
+
+.great-wrap-tight > *:first-child {
+  margin-top: 0;
+  padding-top: 0; 
+}
+      
+.great-wrap-tight > *:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0; 
+}
+
+.great-background-light-blue {
+  background-color: #2b8cc4;
+}
+
+.great-border-medium {
+  border-style: solid;
+  border-width: 4px;
+}
+
+.great-information-banner {
+  p {
+    margin: 0;
+  }
+
+  .banner-content {
+    width: 100%;
+    display: table;
+    margin: 0;
+
+    & > * {
+      display: table-cell;
+      vertical-align: top;
+      padding-left: 15px;
+    }
+
+    & > *:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .banner-badge {
+    // force element to shrink to fit content
+    white-space: nowrap;
+    width: 1px;
+
+    span {
+      padding: 2px 15px;
+    }
+  }
+
+  .banner-close-button {
+    float: right;
+  }
+}
+
+@media (max-width: 520px) {
+  .great-information-banner {
+    .banner-content {
+      display: block;
+      position: relative;
+
+      & > * {
+        display: block;
+        padding-left: 0;
+      }
+
+      & > *:last-child {
+        padding: 0;
+      }
+
+      .banner-badge {
+        width: auto;
+        padding-bottom: 15px;
+      }
+
+      .banner-close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+
+.great-information-banner .banner-content {
+  width: 100%;
+  display: table;
+  margin: 0; }
+  .great-bold-small .banner-content > * {
+    display: table-cell;
+    vertical-align: top;
+    padding-left: 15px; }
+  .great-information-banner .banner-content > *:first-child {
+    padding-left: 0; }
+
+.great-information-banner .banner-badge {
+  white-space: nowrap;
+  width: 1px; }
+  .information-banner .banner-badge span {
+    padding: 2px 15px; 
+}
+
+.great-information-banner .banner-close-button {
+  float: right; 
+}
+
+@media (max-width: 520px) {
+  .great-information-banner .banner-content {
+    display: block;
+    position: relative; }
+    .great-information-banner .banner-content > * {
+      display: block;
+      padding-left: 0; }
+    .great-information-banner .banner-content > *:last-child {
+      padding: 0; }
+    .great-information-banner .banner-content .banner-badge {
+      width: auto;
+      padding-bottom: 15px; }
+    .great-information-banner .banner-content .banner-close-button {
+      position: absolute;
+      top: 0;
+      right: 0; } 
+    }
+
+.great-grid-column-seven-twelfths {
+  @include govuk-media-query($from: desktop) {
+    width: calc(58.333% + 30px);
+  }
+}
+
+.great-grid-column-five-twelfths {
+  @include govuk-media-query($from: desktop) {
+    width: calc(41.667% + 30px);
   }
 }

@@ -1,6 +1,7 @@
 
 $grey: #333333;
 $transparent-white: rgba(250, 250, 250, 0.8);
+$brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
 
 .find-a-supplier-landing-page {
 
@@ -25,7 +26,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
       bottom: 50px;
     }
 
-    .container {
+    .great-container {
       margin: 0 auto;
       padding: 0 30px;
     }
@@ -41,7 +42,8 @@ $transparent-white: rgba(250, 250, 250, 0.8);
 
     .hero-teaser {
       margin-bottom: 30px;
-
+      color: $white;
+      font-family: $brand-font;
       p {
         max-width: 470px;
       }
@@ -50,7 +52,10 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     #search-area {
       @include float-clear;
       background-color: $transparent-white;
-      padding: 30px;
+      padding-left: 30px;
+      padding-right: 0px;
+      padding-top: 20px;
+      padding-bottom: 5px;
 
 
       .button-container {
@@ -136,7 +141,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     margin: 0;
     background-color: $stone-light;
 
-    .container {
+    .great-container {
       padding-top: 60px;
       padding-left: 40px;
     }
@@ -229,7 +234,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     }
 
     #articles-section {
-      .container {
+      .great-container {
         padding: 30px;
       }
     }
@@ -237,7 +242,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
 
   @media (max-width: 640px) {
     #hero {
-      .container {
+      .great-container {
         padding: 0 30px;
       }
     }
