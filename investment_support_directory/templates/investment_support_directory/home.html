@@ -7,7 +7,7 @@
 
 {% block content %}
     <section id="hero" class="great great-hero great-background-light-blue govuk-!-padding-top-9 govuk-!-padding-bottom-9" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
-        <div class="great-container govuk-!-margin-top-6">
+        <div class="container govuk-!-margin-top-6">
             <div class="govuk-grid-row great-text-white">
                 <div class="govuk-grid-column-two-thirds">
                     <h1 class="govuk-heading-xl govuk-!-margin-0 great-text-white">Find a UK specialist</h1>
@@ -43,7 +43,7 @@
     </section>
 
     <div class="great" id="benefits">
-        <div class="great-container">
+        <div class="container">
             {% ga360_data "breadcrumbs" %}
                 {% breadcrumbs 'Find a UK specialist' %}
                     <a class="govuk-link" href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
@@ -82,7 +82,7 @@
 
     <div class="great great-background-stone-30" id="bottom">
         {% ga360_data "search-link" %}
-        <div class="great-container">
+        <div class="container">
             <div class="govuk-grid-row govuk-!-margin-bottom-8">
                 <div class="govuk-grid-column-full">
                     <h2 class="govuk-heading-l">How UK businesses can help</h2>

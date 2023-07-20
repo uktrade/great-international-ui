@@ -1,18 +1,10 @@
 
 $grey: #333333;
 $transparent-white: rgba(250, 250, 250, 0.8);
-$brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
 
 .find-a-supplier-landing-page {
 
   @include hero-gradient(90deg);
-
-  #search-area {
-    .button {
-      line-height: 30px;
-      height: 60px;
-    }
-  }
 
   #hero {
     min-height: 450px;
@@ -26,9 +18,10 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
       bottom: 50px;
     }
 
-    .great-container {
+    .container {
       margin: 0 auto;
       padding: 0 30px;
+      max-width: 1200px;
     }
 
     .image-caption {
@@ -42,8 +35,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
 
     .hero-teaser {
       margin-bottom: 30px;
-      color: $white;
-      font-family: $brand-font;
+
       p {
         max-width: 470px;
       }
@@ -52,19 +44,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
     #search-area {
       @include float-clear;
       background-color: $transparent-white;
-      padding-left: 30px;
-      padding-right: 0px;
-      padding-top: 20px;
-      padding-bottom: 5px;
-
-
-      .button-container {
-        padding-left: 15px;
-
-        .button {
-          width: 100%;
-        }
-      }
+      padding: 20px 30px 0px 30px;
 
       input, select {
         width: 100%;
@@ -72,9 +52,8 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
         height: 60px;
       }
 
-      input, select, button {
+      input, select {
         line-height: 30px;
-        padding: 0 19px;
       }
 
       input[type=text] {
@@ -91,16 +70,6 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
 
     .proposition-container {
       width: 52%;
-    }
-
-    .button-container {
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-left: 100px;
-    }
-
-    .column-one-half {
-      padding: 0;
     }
 
     h2 {
@@ -120,9 +89,6 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
       line-height: 60px;
     }
 
-    .button-container {
-      text-align: center;
-    }
   }
 
   #services-section {
@@ -132,7 +98,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
       display: block;
     }
 
-    .image-container {
+    .ißßß {
       min-height: 100px;
     }
   }
@@ -141,7 +107,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
     margin: 0;
     background-color: $stone-light;
 
-    .great-container {
+    .container {
       padding-top: 60px;
       padding-left: 40px;
     }
@@ -151,18 +117,6 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
     #articles-section {
       .article-text-container {
         padding-right: 130px;
-      }
-    }
-  }
-
-  @media (max-width: 960px) {
-    #hero {
-      #search-area {
-        .button-container {
-          .button {
-            width: auto;
-          }
-        }
       }
     }
   }
@@ -193,13 +147,6 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
         padding: 20px;
         margin-bottom: 20px;
 
-        .button-container {
-          width: 100%;
-          .button {
-            width: 100%;
-          }
-        }
-
         input[type=text] {
           border-right-width: 2px;
           margin-bottom: 15px;
@@ -207,20 +154,13 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
       }
     }
     #introduction-section {
-      .button {
-        width: 100%;
-        margin-top: 30px;
-      }
+
 
       .proposition-container {
         width: 100%;
       }
 
-      .button-container {
-        margin-left: 0;
-      }
-
-      .grid-row {
+      .govuk-grid-row {
         display: inline-block;
       }
     }
@@ -234,7 +174,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
     }
 
     #articles-section {
-      .great-container {
+      .container {
         padding: 30px;
       }
     }
@@ -242,7 +182,7 @@ $brand-font: 'Overpass','Roboto', arial, helvetica, verdana;
 
   @media (max-width: 640px) {
     #hero {
-      .great-container {
+      .container {
         padding: 0 30px;
       }
     }
