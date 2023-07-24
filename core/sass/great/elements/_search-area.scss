@@ -1,0 +1,52 @@
+.great-search-area {
+  .great-search-area-search-field,
+  .great-search-area-industries,
+  .great-search-area-button {
+    padding: 0;
+
+    @include govuk-media-query($from: desktop) {
+      float: left;
+    }
+  }
+
+  .great-search-area-search-field {
+    @include govuk-media-query($from: desktop) {
+      width: 60%;
+    }
+
+    @media (min-width: 961px) {
+      width: 41.66667%;
+    }
+  }
+
+  .great-search-area-industries {
+    @include govuk-media-query($from: desktop) {
+      width: 40%;
+    }
+
+    @media (min-width: 961px) {
+      width: 33.33333%;
+    }
+  }
+
+  .great-search-area-button {
+    @include govuk-media-query($from: desktop) {
+      margin-bottom: 30px;
+      width: auto;
+    }
+
+    @media (min-width: 961px) {
+      padding-left: 15px;
+      width: 25%;
+      margin-bottom: 0;
+    }
+  }
+
+  .great-search-area-fields {
+    @media (min-width: 961px) {
+      display: flex;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+.great {
+  .govuk-body-l {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: $main-font-text;
+
+    @include govuk-media-query($from: tablet) {
+      font-size: 28px;
+      line-height: 40px;
+    }
+  }
+
+  .govuk-body-l-white {
+    @extend .govuk-body-l;
+    color: $white;
+  }
+
+  .govuk-body,
+  .govuk-label {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: $main-font-text;
+
+    @include govuk-media-query($from: tablet) {
+      font-size: 19px;
+      line-height: 30px;
+    }
+  }
+
+  .govuk-body-white {
+    @extend .govuk-body;
+    color: $white;
+  }
+
+  .form-control:focus {
+    border-width: 2px;
+    margin: 0;
+  }
+
+  .govuk-link {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    font-family: $main-font-text;
+
+    @include govuk-media-query($from: tablet) {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+
+  .govuk-body-s {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $main-font-text;
+
+    @include govuk-media-query($from: tablet) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  .govuk-body-s-white {
+    @extend .govuk-body;
+    color: $white;
+  }
+
+  .govuk-link {
+    line-height: 20px;
+  }
+
+  .govuk-label {
+    font-weight: bold;
+  }
+
+  .govuk-button {
+    background-color: $govuk-brand-colour;
+    box-shadow: none;
+    box-shadow: none;
+    font-family: $brand-font;
+    padding: 8px 20px;
+    font-size: 16px;
+    line-height: 24px;
+    min-height: 44px;
+    -webkit-font-smoothing: auto;
+    min-width: 250px;
+
+    &:hover,
+    &:focus {
+      background-color: $great-white;
+      border-color: $govuk-brand-colour;
+      color: $govuk-brand-colour;
+    }
+
+    &:focus:not(:active):not(:hover) {
+      background-color: $great-white;
+      border-color: $govuk-brand-colour;
+      box-shadow: none;
+      color: $govuk-brand-colour;
+    }
+
+    &:focus {
+      outline: 3px solid $great-yellow;
+      outline-offset: 0;
+    }
+
+    i {
+      font-size: inherit;
+      margin-right: 8px;
+    }
+
+    @include govuk-media-query($from: tablet) {
+      font-size: 19px;
+      min-height: 60px;
+      line-height: 40px;
+    }
+  }
+}

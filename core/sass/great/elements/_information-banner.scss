@@ -1,0 +1,113 @@
+.great-information-banner {
+  p {
+    margin: 0;
+  }
+
+  .banner-content {
+    width: 100%;
+    display: table;
+    margin: 0;
+
+    & > * {
+      display: table-cell;
+      vertical-align: top;
+      padding-left: 15px;
+    }
+
+    & > *:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .banner-badge {
+    // force element to shrink to fit content
+    white-space: nowrap;
+    width: 1px;
+
+    span {
+      padding: 2px 15px;
+    }
+  }
+
+  .banner-close-button {
+    float: right;
+  }
+}
+
+@media (max-width: 520px) {
+  .great-information-banner {
+    .banner-content {
+      display: block;
+      position: relative;
+
+      & > * {
+        display: block;
+        padding-left: 0;
+      }
+
+      & > *:last-child {
+        padding: 0;
+      }
+
+      .banner-badge {
+        width: auto;
+        padding-bottom: 15px;
+      }
+
+      .banner-close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.great-information-banner .banner-content {
+  width: 100%;
+  display: table;
+  margin: 0;
+}
+.great-bold-small .banner-content > * {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 15px;
+}
+.great-information-banner .banner-content > *:first-child {
+  padding-left: 0;
+}
+
+.great-information-banner .banner-badge {
+  white-space: nowrap;
+  width: 1px;
+}
+.information-banner .banner-badge span {
+  padding: 2px 15px;
+}
+
+.great-information-banner .banner-close-button {
+  float: right;
+}
+
+@media (max-width: 520px) {
+  .great-information-banner .banner-content {
+    display: block;
+    position: relative;
+  }
+  .great-information-banner .banner-content > * {
+    display: block;
+    padding-left: 0;
+  }
+  .great-information-banner .banner-content > *:last-child {
+    padding: 0;
+  }
+  .great-information-banner .banner-content .banner-badge {
+    width: auto;
+    padding-bottom: 15px;
+  }
+  .great-information-banner .banner-content .banner-close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
