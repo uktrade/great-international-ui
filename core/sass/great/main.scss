@@ -138,9 +138,9 @@ section > .container {
   }
 
   @include govuk-media-query($from: tablet) {
-      font-size: 20px;
+      font-size: 19px;
       min-height: 60px;
-      line-height: 34px;
+      line-height: 40px;
   }
 }
 
@@ -165,6 +165,11 @@ section > .container {
 
   &:after {
     content: '➞';
+    line-height: 38px;
+
+    @include govuk-media-query($from: desktop) {
+      line-height: 53px;
+    }
   }
 }
 
@@ -294,57 +299,56 @@ section > .container {
     }
 
 // replaces column-full-width-m column-seven-twelfths-l column-five-twelfths-xl
-.great-search-area-search-field {
-  @include govuk-media-query($until: tablet) {
-    padding-left: 19px;
-    padding-right: 19px;
-    width: 100%;
-  }
+// .great-search-area-search-field {
+//   @include govuk-media-query($until: tablet) {
+//     padding-left: 19px;
+//     padding-right: 19px;
+//     width: 100%;
+//   }
  
-  @include govuk-media-query($from: tablet) {
-    float: left;
-    padding-right: 0px;
-    width: calc(41.6666%);
-  }
-  @include govuk-media-query(tablet, desktop) {
-    padding-left: 15px;
-    width: calc(50%);
-  }
-}
+//   @include govuk-media-query($from: tablet) {
+//     float: left;
+//     padding-right: 0px;
+//     width: calc(41.6666%);
+//   }
+//   @include govuk-media-query(tablet, desktop) {
+//     padding-left: 15px;
+//     width: calc(50%);
+//   }
+// }
 
-.great-search-area-industries {
-  @include govuk-media-query($until: tablet) {
-    padding-left: 19px;
-    padding-right: 19px;
-    width: 100%;
-  }
+// .great-search-area-industries {
+//   @include govuk-media-query($until: tablet) {
+//     padding-left: 19px;
+//     padding-right: 19px;
+//     width: 100%;
+//   }
  
-  @include govuk-media-query($from: tablet) {
-    float: left;
-    padding-right: 0px;
-    width: calc(33.333%);
-  }
-  @include govuk-media-query(tablet, desktop) {
-    padding-right: 15px;
-    margin-top: 30px;
-    width: calc(50%);
-  }
-}
+//   @include govuk-media-query($from: tablet) {
+//     float: left;
+//     padding-right: 0px;
+//     width: calc(33.333%);
+//   }
+//   @include govuk-media-query(tablet, desktop) {
+//     padding-right: 15px;
+//     width: calc(50%);
+//   }
+// }
 
-.great-search-area-button {
-  @include govuk-media-query($until: tablet) {
-    width: 100%;
-    padding-left: 19px;
-    padding-right: 19px;
-  }
-  @include govuk-media-query($from: tablet) {
-    float: left;
-    width: calc(25%);
-  }
-  @include govuk-media-query(tablet, desktop) {
-    width: 100%;
-  }
-}
+// .great-search-area-button {
+//   @include govuk-media-query($until: tablet) {
+//     width: 100%;
+//     padding-left: 19px;
+//     padding-right: 19px;
+//   }
+//   @include govuk-media-query($from: tablet) {
+//     float: left;
+//     width: calc(25%);
+//   }
+//   @include govuk-media-query(tablet, desktop) {
+//     width: 100%;
+//   }
+// }
 
 
 .great-flex-grid {
@@ -380,5 +384,70 @@ section > .container {
   @include govuk-media-query($from: tablet) {
     float: left;
     width: calc(50%);
+  }
+}
+
+.great-align-items-end {
+  align-items: end;
+}
+
+.great-min-width-0 {
+  min-width: 0;
+}
+
+.great-width-100 {
+  width: 100%;
+}
+
+.great-search-area {
+  .great-search-area-search-field,
+  .great-search-area-industries,
+  .great-search-area-button {
+    padding: 0;
+
+    @include govuk-media-query($from: desktop) {
+      float: left;
+    }
+  }
+
+  .great-search-area-search-field {
+    @include govuk-media-query($from: desktop) {
+      width: 60%;
+    }
+
+    @media (min-width: 961px) {
+      width: 41.66667%;
+    }
+  }
+
+  .great-search-area-industries {
+    @include govuk-media-query($from: desktop) {
+      width: 40%;
+    }
+
+    @media (min-width: 961px) {
+      width: 33.33333%;
+    }
+  }
+
+  .great-search-area-button {
+    @include govuk-media-query($from: desktop) {
+      margin-bottom: 30px;
+      width: auto;
+    }
+
+    @media (min-width: 961px) {
+      padding-left: 15px;
+      width: 25%;
+      margin-bottom: 0;
+    }
+  }
+
+  .great-search-area-fields {
+    @media (min-width: 961px) {
+      display: flex;
+      align-items: end;
+      margin-bottom: 30px;
+    }
   }
 }

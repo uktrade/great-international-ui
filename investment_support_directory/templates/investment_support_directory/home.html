@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <section id="hero" class="great great-hero great-background-light-blue govuk-!-padding-top-9 govuk-!-padding-bottom-9" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
+    <section id="hero" class="great great-hero great-background-light-blue govuk-!-padding-top-3 govuk-!-padding-bottom-9" style="background-image: url('{% static 'core/images/investment_support_directory/hero.png' %}'); background-position: 50%; background-size: cover;">
         <div class="container govuk-!-margin-top-6">
             <div class="govuk-grid-row great-text-white">
                 <div class="govuk-grid-column-two-thirds">
@@ -17,14 +17,13 @@
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
                     {% ga360_data "isd-search-form" target="form" %}
-                    <form class="govuk-!-padding-top-5 govuk-!-padding-bottom-0" method="post">
-
+                    <form class="govuk-!-padding-top-5 govuk-!-padding-bottom-6 great-align-items-end" method="post">
                         <fieldset class="govuk-fieldset">
                             <legend class="great-visually-hidden">
                                 Search for products and services that can help your business expand in the UK
                             </legend>
                             {% for field in form.visible_fields %}
-                                <div class="govuk-form-group">
+                                <div class="govuk-form-group govuk-!-margin-bottom-0">
                                     <label
                                         class="govuk-label"
                                         for="{{field.id_for_label}}">
@@ -34,7 +33,7 @@
                                 </div>
                             {% endfor %}
                         </fieldset>
-                        <button class="govuk-button govuk-!-margin-top-6">Find a UK specialist</button>
+                        <button class="govuk-button great-min-width-0">Find a UK specialist</button>
                     </form>
                     {% end_ga360_data %}
                 </div>

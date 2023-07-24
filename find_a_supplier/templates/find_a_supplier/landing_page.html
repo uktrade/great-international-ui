@@ -14,14 +14,14 @@
             <div class="hero-teaser">
                 {{ page.hero_text|convert_headings_to:'h1'|add_export_elements_classes:'great-body-white' }}
             </div>
-            <div id="search-area">
+            <div id="search-area" class="great-search-area">
                 <form action="{% url 'find-a-supplier:search' %}" method="get">
                     <fieldset class="govuk-fieldset">
                         <legend class="great-visually-hidden">
                             Search for UK suppliers with products and services that 
                             are valued worldwide for their quality, creativity and reliability
                         </legend>
-                    <div class="govuk-grid-row">
+                    <div class="great-search-area-fields">
                         <div class="great-search-area-search-field">
                             <label
                                 for="{{ search_form.q.id_for_label }}"
@@ -49,8 +49,8 @@
                             </div>
 
                         </div>
-                        <div class="great-search-area-button govuk-!-padding-left-3 govuk-!-margin-top-4">
-                            <button class="govuk-button govuk-!-margin-top-3">{{ page.search_button_text }}</button>
+                        <div class="great-search-area-button">
+                            <button class="govuk-button govuk-!-margin-top-3 govuk-!-margin-bottom-0 great-min-width-0 great-width-100">{{ page.search_button_text }}</button>
                         </div>
                     </div>
                     </fieldset>
@@ -112,7 +112,7 @@
 <section id="services-section" class="great govuk-!-padding-bottom-9 govuk-!-margin-bottom-6">
     <div class="container">
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third govuk-!-padding-bottom-6">
+        <div class="govuk-grid-column-one-half govuk-!-padding-bottom-6">
             {{ page.services_list_text|add_export_elements_classes:'govuk-body' }}
         </div>
       </div>
@@ -122,7 +122,7 @@
                     <img src="{{ page.services_column_two_icon.url}}" alt=""/>
                 </div>
                 <div class="great-wrap-tight">
-                  {{ page.services_column_one|add_export_elements_classes:'govuk-body' }}
+                    {{ page.services_column_one|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
             <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
@@ -130,7 +130,7 @@
                     <img src="{{ page.services_column_one_icon.url }}" alt=""/>
                 </div>
                 <div class="great-wrap-tight">
-                  {{ page.services_column_two|add_export_elements_classes:'govuk-body' }}
+                    {{ page.services_column_two|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
             <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
@@ -138,7 +138,7 @@
                     <img src="{{ page.services_column_three_icon.url }}" alt=""/>
                 </div>
                 <div class="great-wrap-tight">
-                  {{ page.services_column_three|add_export_elements_classes:'govuk-body' }}
+                    {{ page.services_column_three|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
             <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
@@ -146,7 +146,7 @@
                     <img src="{{ page.services_column_four_icon.url }}" alt=""/>
                 </div>
                 <div class="great-wrap-tight">
-                  {{ page.services_column_four|add_export_elements_classes:'govuk-body' }}
+                    {{ page.services_column_four|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
         </div>
