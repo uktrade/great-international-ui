@@ -1,10 +1,10 @@
 boto3==1.17.90
 dateparser==0.7.0
-directory-api-client==26.3.0
-directory-cms-client==12.3.0
+directory-api-client==26.4.2
+directory-cms-client==12.3.2
 directory-components==39.1.0
-directory-forms-api-client==7.1.0
-directory-healthcheck==3.1.0
+directory-forms-api-client==7.2.2
+directory-healthcheck==3.1.2
 directory-validators==9.3.0
 django-countries==5.5
 django-environ==0.6.0
@@ -13,7 +13,8 @@ django-ipware==2.1.0
 django-recaptcha==3.0.0
 django-redis==5.2.*
 django-storages==1.13.1
-django-oauth-toolkit==2.2.0
+<<<<<<< HEAD
+django-oauth-toolkit==2.3.0
 Django==4.1.10
 djangorestframework==3.11.2
 elastic-apm==6.1.*
