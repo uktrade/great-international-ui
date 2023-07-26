@@ -17,7 +17,7 @@ SEARCH_PLACEHOLDER = 'Enter the skills or service you need'
 class CompanyHomeSearchForm(forms.Form):
 
     q = fields.CharField(
-        label=SEARCH_PLACEHOLDER,
+        label='Enter the skills or services you need',
         max_length=255,
         required=False,
         widget=widgets.SearchWidget(
