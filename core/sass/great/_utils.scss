@@ -14,14 +14,6 @@
   line-height: $line-height;
 }
 
-.great-link-black {
-  color: $great-darker-grey;
-
-  &:visited {
-    color: $great-darker-grey;
-  }
-}
-
 .great-visually-hidden {
   position: absolute;
   left: -10000px;
@@ -112,5 +104,17 @@
   @include govuk-media-query($from: tablet) {
     float: left;
     width: calc(50%);
+  }
+}
+
+// For classes where you need more specificity put them here
+.great {
+  .great-link-black {
+    color: $great-darker-grey;
+    font-weight: 400;
+
+    &:visited {
+      color: $great-darker-grey;
+    }
   }
 }
