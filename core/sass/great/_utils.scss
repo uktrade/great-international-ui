@@ -14,6 +14,14 @@
   line-height: $line-height;
 }
 
+.great-link-black {
+  color: $great-darker-grey;
+
+  &:visited {
+    color: $great-darker-grey;
+  }
+}
+
 .great-visually-hidden {
   position: absolute;
   left: -10000px;
