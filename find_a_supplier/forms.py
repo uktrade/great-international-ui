@@ -55,7 +55,6 @@ class CompanySearchForm(forms.Form):
         widget=TextInput(
             attrs={
                 'placeholder': 'Search for UK suppliers',
-                'autofocus': 'autofocus',
                 'dir': 'auto',
                 'data-ga-id': 'search-input',
                 'value': '',

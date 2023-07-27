@@ -23,7 +23,6 @@ class CompanyHomeSearchForm(forms.Form):
         widget=widgets.SearchWidget(
             hidden_label=SEARCH_PLACEHOLDER,
             attrs={
-                'autofocus': 'autofocus',
                 'dir': 'auto',
                 'placeholder': '',
                 'data-ga-id': 'search-input',
@@ -43,7 +42,6 @@ class CompanySearchForm(forms.Form):
         widget=TextInput(
             attrs={
                 'placeholder': SEARCH_PLACEHOLDER,
-                'autofocus': 'autofocus',
                 'dir': 'auto',
                 'data-ga-id': 'search-input',
                 'value': '',
