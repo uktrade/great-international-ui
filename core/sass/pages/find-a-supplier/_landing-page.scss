@@ -6,13 +6,6 @@ $transparent-white: rgba(250, 250, 250, 0.8);
 
   @include hero-gradient(90deg);
 
-  #search-area {
-    .button {
-      line-height: 30px;
-      height: 60px;
-    }
-  }
-
   #hero {
     min-height: 450px;
     background-size: cover;
@@ -28,6 +21,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     .container {
       margin: 0 auto;
       padding: 0 30px;
+      max-width: 1200px;
     }
 
     .image-caption {
@@ -50,16 +44,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     #search-area {
       @include float-clear;
       background-color: $transparent-white;
-      padding: 30px;
-
-
-      .button-container {
-        padding-left: 15px;
-
-        .button {
-          width: 100%;
-        }
-      }
+      padding: 20px 30px 0px 30px;
 
       input, select {
         width: 100%;
@@ -67,9 +52,8 @@ $transparent-white: rgba(250, 250, 250, 0.8);
         height: 60px;
       }
 
-      input, select, button {
+      input, select {
         line-height: 30px;
-        padding: 0 19px;
       }
 
       input[type=text] {
@@ -88,16 +72,6 @@ $transparent-white: rgba(250, 250, 250, 0.8);
       width: 52%;
     }
 
-    .button-container {
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-left: 100px;
-    }
-
-    .column-one-half {
-      padding: 0;
-    }
-
     h2 {
       color: $grey;
     }
@@ -109,15 +83,11 @@ $transparent-white: rgba(250, 250, 250, 0.8);
 
     a {
       text-align: center;
-      width: 350px;
       height: 60px;
       padding: 0;
       line-height: 60px;
     }
 
-    .button-container {
-      text-align: center;
-    }
   }
 
   #services-section {
@@ -127,7 +97,7 @@ $transparent-white: rgba(250, 250, 250, 0.8);
       display: block;
     }
 
-    .image-container {
+    .ißßß {
       min-height: 100px;
     }
   }
@@ -146,18 +116,6 @@ $transparent-white: rgba(250, 250, 250, 0.8);
     #articles-section {
       .article-text-container {
         padding-right: 130px;
-      }
-    }
-  }
-
-  @media (max-width: 960px) {
-    #hero {
-      #search-area {
-        .button-container {
-          .button {
-            width: auto;
-          }
-        }
       }
     }
   }
@@ -188,13 +146,6 @@ $transparent-white: rgba(250, 250, 250, 0.8);
         padding: 20px;
         margin-bottom: 20px;
 
-        .button-container {
-          width: 100%;
-          .button {
-            width: 100%;
-          }
-        }
-
         input[type=text] {
           border-right-width: 2px;
           margin-bottom: 15px;
@@ -202,20 +153,13 @@ $transparent-white: rgba(250, 250, 250, 0.8);
       }
     }
     #introduction-section {
-      .button {
-        width: 100%;
-        margin-top: 30px;
-      }
+
 
       .proposition-container {
         width: 100%;
       }
 
-      .button-container {
-        margin-left: 0;
-      }
-
-      .grid-row {
+      .govuk-grid-row {
         display: inline-block;
       }
     }

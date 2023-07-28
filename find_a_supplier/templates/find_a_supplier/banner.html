@@ -1,0 +1,12 @@
+{% load industry_tags %}
+
+<div id="information-banner" class="great-information-banner great-border-medium great-border-stone-30 govuk-!-padding-3">
+  <div class="banner-content">
+    {% if badge_content %}
+      <div class="banner-badge">
+        <span class="great-bold-small great-background-active-blue great-white-text">{{ badge_content }}</span>
+      </div>
+    {% endif %}
+    <div>{{ banner_content|add_export_elements_classes }}</div>
+  </div>
+</div>

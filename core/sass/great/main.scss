@@ -1,8 +1,13 @@
-.great-visually-hidden {
-    position: absolute;
-    left: -10000px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
+@import "./colors.scss";
+@import "./typography.scss";
+@import "./elements/main.scss";
+@import "./govuk-overrides.scss";
+@import "./utils.scss";
+
+section {
+  overflow: visible;
+}
+
+section > .container {
+  overflow: hidden;
 }
