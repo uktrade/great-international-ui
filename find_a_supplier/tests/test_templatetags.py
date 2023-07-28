@@ -29,7 +29,7 @@ def test_banner():
 
     exp_banner_content = (
         '<div><p class="govuk-body">Banner content with a '
-        '<a class="link" href="#">link</a></p></div>')
+        '<a class="govuk-link" href="#">link</a></p></div>')
 
     banner_content = soup.select('.banner-content div:nth-of-type(2)')[0]
     assert str(banner_content) == exp_banner_content
