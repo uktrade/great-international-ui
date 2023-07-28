@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 from django.template import Context, Template
 
+
 def test_banner():
     banner_content = {
         'badge_content': 'Badge content',
