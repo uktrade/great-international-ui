@@ -30,7 +30,7 @@ def search_url(sector_value=None, term=None):
 
 
 @register.filter
-def add_export_elements_classes(value, style):
+def add_export_elements_classes(value, style=None):
     soup = BeautifulSoup(value, 'html.parser')
     mapping = [
         ('h1', 'govuk-heading-xl great-text-white'),
@@ -41,8 +41,8 @@ def add_export_elements_classes(value, style):
         ('h6', 'govuk-heading-s'),
         ('ul', 'list list-bullet'),
         ('ol', 'list list-number'),
-        ('p', style),
-        ('a', 'link'),
+        ('p', style if style else 'govuk-body'),
+        ('a', 'govuk-link'),
         ('blockquote', 'quote'),
         ('strong', 'great-bold-small'),
     ]
