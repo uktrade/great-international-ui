@@ -13,7 +13,6 @@ django-ipware==2.1.0
 django-recaptcha==3.0.0
 django-redis==5.2.*
 django-storages==1.13.1
-<<<<<<< HEAD
 django-oauth-toolkit==2.3.0
 Django==4.1.10
 djangorestframework==3.11.2
