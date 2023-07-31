@@ -30,6 +30,16 @@ secrets:
 		else echo "conf/env/secrets-do-not-commit already exists. Delete first to recreate it."; \
 	fi
 
+# Usage: make pytest_single <path_to_file>::<method_name>
+pytest_single:
+	ENV_FILES='secrets-do-not-commit,test,dev' \
+	pytest \
+	    $(ARGUMENTS)
+		--junit-xml=./results/pytest_unit_report.xml \
+		--cov-config=.coveragerc \
+		--cov-report=html \
+		--cov=. \
+
 pytest_codecov:
 	ENV_FILES='secrets-do-not-commit,test,dev' \
 	pytest \

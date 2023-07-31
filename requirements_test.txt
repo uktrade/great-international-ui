@@ -20,7 +20,7 @@ botocore==1.20.112
     #   s3transfer
 build==0.10.0
     # via pip-tools
-certifi==2023.5.7
+certifi==2023.7.22
     # via
     #   elastic-apm
     #   requests
@@ -237,6 +237,7 @@ six==1.16.0
     # via
     #   django-countries
     #   jsonschema
+    #   mohawk
     #   pytest-xdist
     #   python-dateutil
     #   requests-mock
@@ -274,7 +275,7 @@ w3lib==1.22.0
     # via directory-client-core
 waitress==2.1.2
     # via -r requirements.in
-wheel==0.40.0
+wheel==0.41.0
     # via pip-tools
 whitenoise==6.4.0
     # via -r requirements.in

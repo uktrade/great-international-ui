@@ -2,41 +2,58 @@
 
 {% load static %}
 {% load first_paragraph filter_by_active_language from cms_tags %}
-{% load directory_components %}
+{% load breadcrumbs convert_headings_to from directory_components %}
+{% load industry_tags %}
 
 {% block css_layout_class %}find-a-supplier-landing-page{% endblock %}
 
 {% block content %}
-<section id="hero" class="great-hero padding-top-90-m padding-bottom-60-m padding-top-45 padding-bottom-30">
-    <div class="container">
+<section id="hero" class="great great-hero govuk-!-padding-bottom-9 govuk-!-padding-top-7">
+    <div class="container govuk-!-margin-top-9">
         <div id="hero-content">
             <div class="hero-teaser">
-                {{ page.hero_text|convert_headings_to:'h1'|add_export_elements_classes }}
+                {{ page.hero_text|convert_headings_to:'h1'|add_export_elements_classes:'great-body-white' }}
             </div>
-            <div id="search-area">
+            <div id="search-area" class="great-search-area">
                 <form action="{% url 'find-a-supplier:search' %}" method="get">
-                    <div class="grid-row">
-                        <div class="column-full-width-m column-seven-twelfths-l column-five-twelfths-xl padding-right-0-l">
+                    <fieldset class="govuk-fieldset">
+                        <legend class="great-visually-hidden">
+                            Search for UK suppliers with products and services that 
+                            are valued worldwide for their quality, creativity and reliability
+                        </legend>
+                    <div class="great-search-area-fields">
+                        <div class="great-search-area-search-field">
+                            <label
+                                for="{{ search_form.q.id_for_label }}"
+                                class="govuk-label">
+                                {{ page.search_field_placeholder }}
+                            </label>
                             <input
                                 class="form-control"
                                 type="text"
                                 name="{{ search_form.q.name }}"
                                 id="{{ search_form.q.id_for_label }}"
                                 data-ga-id="search-input"
-                                placeholder="{{ page.search_field_placeholder }}"
+                                placeholder=""
                             />
                         </div>
-                        <div class="column-full-width-m column-five-twelfths-l column-third-xl padding-0-l">
+                        <div class="great-search-area-industries">
+                            <label
+                                for="{{ search_form.industries.id_for_label }}"
+                                class="govuk-label">
+                                Industries
+                            </label>
                             <div data-ga-id="select-input-container">
                                 {# translations provided by the app #}
                                 {{ search_form.industries }}
                             </div>
 
                         </div>
-                        <div class="column-full-width-l column-quarter-xl button-container">
-                            <button class="button padding-left-0-l margin-top-15 margin-top-0-xl">{{ page.search_button_text }}</button>
+                        <div class="great-search-area-button">
+                            <button class="govuk-button govuk-!-margin-top-3 govuk-!-margin-bottom-0 great-min-width-0 great-width-100">{{ page.search_button_text }}</button>
                         </div>
                     </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -46,95 +63,95 @@
 
 
 {% if 'breadcrumbs_label' in page and page.breadcrumbs_label %}
-<div class="container">
+<div class="great container">
   {% breadcrumbs page.breadcrumbs_label %}
-    <a href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
+    <a class="govuk-link  govuk-body-s great-link-black" href="{{ international_home_link.url }}">{{ international_home_link.label }}</a>
   {% endbreadcrumbs %}
 </div>
 {% endif %}
 
 {% if features.EU_EXIT_BANNER_ON and cms_component %}
-  <div class="banner-container margin-bottom-30" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
+  <div class="great govuk-!-margin-bottom-6" dir="{{ component_is_bidi|yesno:'rtl,ltr' }}">
     <div class="container">
       {% banner banner_content=cms_component.banner_content badge_content=cms_component.banner_label %}
     </div>
   </div>
 {% endif %}
 
-<section id="introduction-section" class="padding-vertical-60-m padding-vertical-30">
+<section id="introduction-section" class="great govuk-!-padding-bottom-9 govuk-!-padding-top-9">
     <div class="container">
-        <div class="grid-row">
-            <div class="column-half">
-                {{ page.proposition_text|add_export_elements_classes }}
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                {{ page.proposition_text|add_export_elements_classes:'govuk-body' }}
             </div>
-            <div class="column-half">
-                <a href="{% url 'find-a-supplier:industry-contact' %}" class="button float-right">{{ page.call_to_action_text }}</a>
+            <div class="govuk-grid-column-one-half">
+                <a href="{% url 'find-a-supplier:industry-contact' %}" class="govuk-button float-right">{{ page.call_to_action_text }}</a>
             </div>
         </div>
     </div>
 </section>
 
 {% comment "This does work with the new Sector setup in Atlas, but has been disabled for now" %}
-<section id="industries-section" class="padding-bottom-60-m padding-bottom-30 background-stone-30">
+<section id="industries-section" class="great govuk-!-margin-bottom-9 govuk-!-margin-bottom-6 great-background-stone-30">
     <div class="container">
-        <div class="heading-large">
+        <div class="govuk-heading-l">
           {{ page.industries_list_text|safe }}
         </div>
-        <ul class="flex-grid">
+        <ul class="great-flex-grid">
           {% for industry in page.industries|filter_by_active_language %}
-            <li class="column-third-xl column-half-m">
+            <li class="great-grid-column-one-half">
               {% labelled_image_card card_id=industry.slug img_src=industry.hero_image_thumbnail.url img_alt='' url=industry.full_path title=industry.title description=industry.featured_description %}
             </li>
           {% endfor %}
         </ul>
-        <a class="button" href="{% url 'industries' %}">{{ page.industries_list_call_to_action_text }}</a>
+        <a class="govuk-button" href="{% url 'industries' %}">{{ page.industries_list_call_to_action_text }}</a>
     </div>
 </section>
 {% endcomment %}
 
-<section id="services-section" class="padding-bottom-60-m padding-bottom-30">
+<section id="services-section" class="great govuk-!-padding-bottom-9 govuk-!-margin-bottom-6">
     <div class="container">
-      <div class="grid-row">
-        <div class="column-two-thirds-m column-half-xl padding-bottom-30-m">
-            {{ page.services_list_text|add_export_elements_classes }}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half govuk-!-padding-bottom-6">
+            {{ page.services_list_text|add_export_elements_classes:'govuk-body' }}
         </div>
       </div>
-        <div class="flex-grid">
-            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
-                <div class="image-container">
-                    <img src="{{ page.services_column_two_icon.url}}"  alt=""/>
+        <div class="great-flex-grid">
+            <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
+                <div>
+                    <img src="{{ page.services_column_two_icon.url}}" alt=""/>
                 </div>
-                <div class="wrap-tight">
-                  {{ page.services_column_one|add_export_elements_classes }}
+                <div class="great-wrap-tight">
+                    {{ page.services_column_one|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
-            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
-                <div class="image-container">
+            <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
+                <div>
                     <img src="{{ page.services_column_one_icon.url }}" alt=""/>
                 </div>
-                <div class="wrap-tight">
-                  {{ page.services_column_two|add_export_elements_classes }}
+                <div class="great-wrap-tight">
+                    {{ page.services_column_two|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
-            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
-                <div class="image-container">
+            <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
+                <div>
                     <img src="{{ page.services_column_three_icon.url }}" alt=""/>
                 </div>
-                <div class="wrap-tight">
-                  {{ page.services_column_three|add_export_elements_classes }}
+                <div class="great-wrap-tight">
+                    {{ page.services_column_three|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
-            <div class="column-quarter-xl column-third-l column-half-m margin-bottom-30">
-                <div class="image-container">
+            <div class="great-grid-column-one-quarter govuk-!-margin-bottom-6">
+                <div>
                     <img src="{{ page.services_column_four_icon.url }}" alt=""/>
                 </div>
-                <div class="wrap-tight">
-                  {{ page.services_column_four|add_export_elements_classes }}
+                <div class="great-wrap-tight">
+                    {{ page.services_column_four|add_export_elements_classes:'govuk-body' }}
                 </div>
             </div>
         </div>
         {% if page.how_we_help_cta_text and page.how_we_help_cta_link %}
-            <a href="{{ page.how_we_help_cta_link }}" class="button button-arrow-small margin-top-30 margin-bottom-15">{{ page.how_we_help_cta_text }}</a>
+            <a href="{{ page.how_we_help_cta_link }}" class="govuk-button great-button-arrow-small govuk-!-margin-top-5 govuk-!-margin-bottom-3">{{ page.how_we_help_cta_text }}</a>
         {% endif %}
     </div>
 </section>
