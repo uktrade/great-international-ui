@@ -35,7 +35,7 @@ coverage[toml]==7.2.7
     # via
     #   pytest-codecov
     #   pytest-cov
-cryptography==41.0.2
+cryptography==41.0.3
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -237,7 +237,6 @@ six==1.16.0
     # via
     #   django-countries
     #   jsonschema
-    #   mohawk
     #   pytest-xdist
     #   python-dateutil
     #   requests-mock
