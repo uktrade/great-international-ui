@@ -5,7 +5,7 @@ pytest>=4.4.0<5.0.0
 pytest-django>=3.5.1<4.0.0
 pytest-sugar
 pytest-xdist==1.29.0
-flake8
+flake8==6.1.0
 requests_mock
 freezegun
 pytest-cov
