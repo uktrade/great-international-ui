@@ -6,7 +6,7 @@
 #
 asgiref==3.7.2
     # via django
-async-timeout==4.0.2
+async-timeout==4.0.3
     # via redis
 attrs==23.1.0
     # via jsonschema
@@ -27,7 +27,7 @@ cffi==1.15.1
     # via cryptography
 charset-normalizer==3.2.0
     # via requests
-cryptography==41.0.2
+cryptography==41.0.3
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -142,7 +142,7 @@ pytz==2023.3
     # via
     #   dateparser
     #   directory-validators
-redis==4.6.0
+redis==5.0.0
     # via django-redis
 regex==2022.1.18
     # via
