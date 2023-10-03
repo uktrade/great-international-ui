@@ -263,7 +263,7 @@ typing-extensions==4.7.1
     # via asgiref
 tzlocal==5.0.1
     # via dateparser
-urllib3==1.26.16
+urllib3==1.26.17
     # via
     #   -r requirements.in
     #   botocore
