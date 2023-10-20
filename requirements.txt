@@ -23,11 +23,11 @@ certifi==2023.7.22
     #   elastic-apm
     #   requests
     #   sentry-sdk
-cffi==1.15.1
+cffi==1.16.0
     # via cryptography
-charset-normalizer==3.2.0
+charset-normalizer==3.3.0
     # via requests
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -53,7 +53,7 @@ directory-forms-api-client==7.2.2
     # via -r requirements.in
 directory-healthcheck==3.1.2
     # via -r requirements.in
-directory-validators==9.3.0
+directory-validators==9.3.1
     # via -r requirements.in
 django==4.1.10
     # via
@@ -122,7 +122,7 @@ oauthlib==3.2.2
     # via django-oauth-toolkit
 olefile==0.46
     # via directory-validators
-pillow==10.0.0
+pillow==10.1.0
     # via directory-validators
 pir-client==1.2.1
     # via -r requirements.in
@@ -142,7 +142,7 @@ pytz==2023.3
     # via
     #   dateparser
     #   directory-validators
-redis==5.0.0
+redis==5.0.1
     # via django-redis
 regex==2022.1.18
     # via
@@ -169,15 +169,15 @@ six==1.16.0
     #   w3lib
 sorl-thumbnail==12.9.0
     # via -r requirements.in
-soupsieve==2.4.1
+soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via asgiref
-tzlocal==5.0.1
+tzlocal==5.1
     # via dateparser
-urllib3==1.26.16
+urllib3==1.26.18
     # via
     #   -r requirements.in
     #   botocore
@@ -195,7 +195,7 @@ wrapt==1.15.0
     # via deprecated
 zope-event==5.0
     # via gevent
-zope-interface==6.0
+zope-interface==6.1
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
