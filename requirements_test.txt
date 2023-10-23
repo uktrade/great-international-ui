@@ -18,24 +18,24 @@ botocore==1.20.112
     # via
     #   boto3
     #   s3transfer
-build==0.10.0
+build==1.0.3
     # via pip-tools
 certifi==2023.7.22
     # via
     #   elastic-apm
     #   requests
     #   sentry-sdk
-cffi==1.15.1
+cffi==1.16.0
     # via cryptography
-charset-normalizer==3.2.0
+charset-normalizer==3.3.0
     # via requests
 click==8.1.7
     # via pip-tools
-coverage[toml]==7.3.0
+coverage[toml]==7.3.2
     # via
     #   pytest-codecov
     #   pytest-cov
-cryptography==41.0.3
+cryptography==41.0.4
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -61,7 +61,7 @@ directory-forms-api-client==7.2.2
     # via -r requirements.in
 directory-healthcheck==3.1.2
     # via -r requirements.in
-directory-validators==9.3.0
+directory-validators==9.3.1
     # via -r requirements.in
 django==4.1.10
     # via
@@ -114,9 +114,9 @@ freezegun==1.2.2
     # via -r requirements_test.in
 gevent==23.9.1
     # via -r requirements.in
-gitdb==4.0.10
+gitdb==4.0.11
     # via gitpython
-gitpython==3.1.35
+gitpython==3.1.40
     # via -r requirements_test.in
 greenlet==2.0.2
     # via
@@ -126,6 +126,8 @@ gunicorn==20.1.0
     # via -r requirements.in
 idna==3.4
     # via requests
+importlib-metadata==6.8.0
+    # via build
 iniconfig==2.0.0
     # via pytest
 jmespath==0.10.0
@@ -146,12 +148,12 @@ oauthlib==3.2.2
     # via django-oauth-toolkit
 olefile==0.46
     # via directory-validators
-packaging==23.1
+packaging==23.2
     # via
     #   build
     #   pytest
     #   pytest-sugar
-pillow==10.0.0
+pillow==10.1.0
     # via
     #   -r requirements_test.in
     #   directory-validators
@@ -159,7 +161,7 @@ pip-tools==7.3.0
     # via -r requirements_test.in
 pir-client==1.2.1
     # via -r requirements.in
-pluggy==1.2.0
+pluggy==1.3.0
     # via pytest
 psycogreen==1.0.2
     # via -r requirements.in
@@ -169,7 +171,7 @@ py==1.11.0
     # via
     #   -r requirements_test.in
     #   pytest-forked
-pycodestyle==2.11.0
+pycodestyle==2.11.1
     # via flake8
 pycparser==2.21
     # via cffi
@@ -179,7 +181,7 @@ pyproject-hooks==1.0.0
     # via build
 pyrsistent==0.19.3
     # via jsonschema
-pytest==7.4.0
+pytest==7.4.2
     # via
     #   -r requirements_test.in
     #   pytest-codecov
@@ -211,7 +213,7 @@ pytz==2023.3
     # via
     #   dateparser
     #   directory-validators
-redis==5.0.0
+redis==5.0.1
     # via django-redis
 regex==2022.1.18
     # via
@@ -242,11 +244,11 @@ six==1.16.0
     #   python-dateutil
     #   requests-mock
     #   w3lib
-smmap==5.0.0
+smmap==5.0.1
     # via gitdb
 sorl-thumbnail==12.9.0
     # via -r requirements.in
-soupsieve==2.4.1
+soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
@@ -259,11 +261,11 @@ tomli==2.0.1
     #   pip-tools
     #   pyproject-hooks
     #   pytest
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via asgiref
-tzlocal==5.0.1
+tzlocal==5.1
     # via dateparser
-urllib3==1.26.16
+urllib3==1.26.18
     # via
     #   -r requirements.in
     #   botocore
@@ -281,9 +283,11 @@ whitenoise==6.4.0
     # via -r requirements.in
 wrapt==1.15.0
     # via deprecated
+zipp==3.17.0
+    # via importlib-metadata
 zope-event==5.0
     # via gevent
-zope-interface==6.0
+zope-interface==6.1
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
