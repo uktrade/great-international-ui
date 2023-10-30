@@ -42,7 +42,7 @@ module.exports = {
             "...",
             new ImageMinimizerPlugin({
                 minimizer: {
-                    implementation: ImageMinimizerPlugin.squooshMinify,
+                    implementation: ImageMinimizerPlugin.sharpMinify,
                 },
             }),
         ],
