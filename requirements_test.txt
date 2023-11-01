@@ -27,7 +27,7 @@ certifi==2023.7.22
     #   sentry-sdk
 cffi==1.16.0
     # via cryptography
-charset-normalizer==3.3.0
+charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via pip-tools
@@ -35,7 +35,7 @@ coverage[toml]==7.3.2
     # via
     #   pytest-codecov
     #   pytest-cov
-cryptography==41.0.4
+cryptography==41.0.5
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -179,9 +179,9 @@ pyflakes==3.1.0
     # via flake8
 pyproject-hooks==1.0.0
     # via build
-pyrsistent==0.19.3
+pyrsistent==0.20.0
     # via jsonschema
-pytest==7.4.2
+pytest==7.4.3
     # via
     #   -r requirements_test.in
     #   pytest-codecov
@@ -196,7 +196,7 @@ pytest-cov==4.1.0
     # via
     #   -r requirements_test.in
     #   pytest-codecov
-pytest-django==4.5.2
+pytest-django==4.6.0
     # via -r requirements_test.in
 pytest-forked==1.6.0
     # via pytest-xdist
@@ -263,7 +263,7 @@ tomli==2.0.1
     #   pytest
 typing-extensions==4.8.0
     # via asgiref
-tzlocal==5.1
+tzlocal==5.2
     # via dateparser
 urllib3==1.26.18
     # via
@@ -277,7 +277,7 @@ w3lib==1.22.0
     # via directory-client-core
 waitress==2.1.2
     # via -r requirements.in
-wheel==0.41.2
+wheel==0.41.3
     # via pip-tools
 whitenoise==6.4.0
     # via -r requirements.in

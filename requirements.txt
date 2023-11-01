@@ -25,9 +25,9 @@ certifi==2023.7.22
     #   sentry-sdk
 cffi==1.16.0
     # via cryptography
-charset-normalizer==3.3.0
+charset-normalizer==3.3.2
     # via requests
-cryptography==41.0.4
+cryptography==41.0.5
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -132,7 +132,7 @@ psycopg2==2.9.5
     # via -r requirements.in
 pycparser==2.21
     # via cffi
-pyrsistent==0.19.3
+pyrsistent==0.20.0
     # via jsonschema
 python-dateutil==2.8.2
     # via
@@ -175,7 +175,7 @@ sqlparse==0.4.4
     # via django
 typing-extensions==4.8.0
     # via asgiref
-tzlocal==5.1
+tzlocal==5.2
     # via dateparser
 urllib3==1.26.18
     # via
