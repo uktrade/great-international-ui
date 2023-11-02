@@ -55,7 +55,7 @@ directory-healthcheck==3.1.2
     # via -r requirements.in
 directory-validators==9.3.1
     # via -r requirements.in
-django==4.1.10
+django==4.1.13
     # via
     #   -r requirements.in
     #   directory-api-client
@@ -154,6 +154,7 @@ requests[security]==2.31.0
     #   directory-api-client
     #   directory-client-core
     #   django-oauth-toolkit
+    #   requests
 s3transfer==0.4.2
     # via boto3
 sentry-sdk==1.14.0
