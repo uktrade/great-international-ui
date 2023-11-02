@@ -115,4 +115,4 @@ postgres_data
 dockerise/postgres/data/*.sql
 
 # #Docker config file
-# Dockerfile.dev
+Dockerfile.dev
