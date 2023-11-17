@@ -233,4 +233,10 @@ redirects_before_tree_based_routing_lookup = [
             pattern_name='fdi-opportunity-request-form-success'
         )
     ),
+    re_path(
+        r'^vca/$',
+        QuerystringRedirectView.as_view(
+            url='/international/content/investment/how-we-can-help/the-venture-capital-unit/'
+        ),
+    ),
 ] + redirects_for_retired_pages_that_must_come_before_tree_based_routing
