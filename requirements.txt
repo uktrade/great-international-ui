@@ -18,7 +18,7 @@ botocore==1.20.112
     # via
     #   boto3
     #   s3transfer
-certifi==2023.7.22
+certifi==2023.11.17
     # via
     #   elastic-apm
     #   requests
@@ -27,7 +27,7 @@ cffi==1.16.0
     # via cryptography
 charset-normalizer==3.3.2
     # via requests
-cryptography==41.0.5
+cryptography==41.0.7
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -35,9 +35,9 @@ dateparser==0.7.0
     # via -r requirements.in
 deprecated==1.2.14
     # via jwcrypto
-directory-api-client==26.4.2
+directory-api-client==26.4.3
     # via -r requirements.in
-directory-client-core==7.2.5
+directory-client-core==7.2.6
     # via
     #   directory-api-client
     #   directory-cms-client
@@ -45,11 +45,11 @@ directory-client-core==7.2.5
     #   pir-client
 directory-cms-client==12.3.2
     # via -r requirements.in
-directory-components==39.1.0
+directory-components==39.1.4
     # via -r requirements.in
-directory-constants==23.1.1
+directory-constants==23.1.2
     # via directory-components
-directory-forms-api-client==7.2.2
+directory-forms-api-client==7.3.1
     # via -r requirements.in
 directory-healthcheck==3.1.2
     # via -r requirements.in
@@ -104,7 +104,7 @@ greenlet==2.0.2
     #   gevent
 gunicorn==20.1.0
     # via -r requirements.in
-idna==3.4
+idna==3.6
     # via requests
 jmespath==0.10.0
     # via
@@ -120,7 +120,7 @@ monotonic==1.6
     # via directory-client-core
 oauthlib==3.2.2
     # via django-oauth-toolkit
-olefile==0.46
+olefile==0.47
     # via directory-validators
 pillow==10.1.0
     # via directory-validators
@@ -174,7 +174,7 @@ soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via asgiref
 tzlocal==5.2
     # via dateparser
@@ -192,7 +192,7 @@ waitress==2.1.2
     # via -r requirements.in
 whitenoise==6.4.0
     # via -r requirements.in
-wrapt==1.15.0
+wrapt==1.16.0
     # via deprecated
 zope-event==5.0
     # via gevent
