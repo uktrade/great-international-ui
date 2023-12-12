@@ -20,7 +20,7 @@ botocore==1.20.112
     #   s3transfer
 build==1.0.3
     # via pip-tools
-certifi==2023.7.22
+certifi==2023.11.17
     # via
     #   elastic-apm
     #   requests
@@ -36,7 +36,7 @@ coverage[toml]==7.3.2
     #   coverage
     #   pytest-codecov
     #   pytest-cov
-cryptography==41.0.5
+cryptography==41.0.7
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -44,9 +44,9 @@ dateparser==0.7.0
     # via -r requirements.in
 deprecated==1.2.14
     # via jwcrypto
-directory-api-client==26.4.2
+directory-api-client==26.4.3
     # via -r requirements.in
-directory-client-core==7.2.5
+directory-client-core==7.2.6
     # via
     #   directory-api-client
     #   directory-cms-client
@@ -54,11 +54,11 @@ directory-client-core==7.2.5
     #   pir-client
 directory-cms-client==12.3.2
     # via -r requirements.in
-directory-components==39.1.0
+directory-components==39.1.4
     # via -r requirements.in
-directory-constants==23.1.1
+directory-constants==23.1.2
     # via directory-components
-directory-forms-api-client==7.2.2
+directory-forms-api-client==7.3.1
     # via -r requirements.in
 directory-healthcheck==3.1.2
     # via -r requirements.in
@@ -105,13 +105,13 @@ djangorestframework==3.11.2
     #   sigauth
 elastic-apm==6.1.3
     # via -r requirements.in
-exceptiongroup==1.1.3
+exceptiongroup==1.2.0
     # via pytest
 execnet==2.0.2
     # via pytest-xdist
 flake8==6.1.0
     # via -r requirements_test.in
-freezegun==1.2.2
+freezegun==1.3.1
     # via -r requirements_test.in
 gevent==23.9.1
     # via -r requirements.in
@@ -125,9 +125,9 @@ greenlet==2.0.2
     #   gevent
 gunicorn==20.1.0
     # via -r requirements.in
-idna==3.4
+idna==3.6
     # via requests
-importlib-metadata==6.8.0
+importlib-metadata==7.0.0
     # via build
 iniconfig==2.0.0
     # via pytest
@@ -147,7 +147,7 @@ monotonic==1.6
     # via directory-client-core
 oauthlib==3.2.2
     # via django-oauth-toolkit
-olefile==0.46
+olefile==0.47
     # via directory-validators
 packaging==23.2
     # via
@@ -197,7 +197,7 @@ pytest-cov==4.1.0
     # via
     #   -r requirements_test.in
     #   pytest-codecov
-pytest-django==4.6.0
+pytest-django==4.7.0
     # via -r requirements_test.in
 pytest-forked==1.6.0
     # via pytest-xdist
@@ -254,7 +254,7 @@ soupsieve==2.5
     # via beautifulsoup4
 sqlparse==0.4.4
     # via django
-termcolor==2.3.0
+termcolor==2.4.0
     # via pytest-sugar
 tomli==2.0.1
     # via
@@ -263,7 +263,7 @@ tomli==2.0.1
     #   pip-tools
     #   pyproject-hooks
     #   pytest
-typing-extensions==4.8.0
+typing-extensions==4.9.0
     # via asgiref
 tzlocal==5.2
     # via dateparser
@@ -279,11 +279,11 @@ w3lib==1.22.0
     # via directory-client-core
 waitress==2.1.2
     # via -r requirements.in
-wheel==0.41.3
+wheel==0.42.0
     # via pip-tools
 whitenoise==6.4.0
     # via -r requirements.in
-wrapt==1.15.0
+wrapt==1.16.0
     # via deprecated
 zipp==3.17.0
     # via importlib-metadata
