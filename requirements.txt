@@ -45,17 +45,17 @@ directory-client-core==7.2.6
     #   pir-client
 directory-cms-client==12.3.2
     # via -r requirements.in
-directory-components==39.1.4
+directory-components==40.0.0
     # via -r requirements.in
-directory-constants==23.1.2
+directory-constants==24.0.0
     # via directory-components
 directory-forms-api-client==7.3.1
     # via -r requirements.in
-directory-healthcheck==3.1.2
+directory-healthcheck==3.2
     # via -r requirements.in
 directory-validators==9.3.1
     # via -r requirements.in
-django==4.1.13
+django==4.2
     # via
     #   -r requirements.in
     #   directory-api-client
