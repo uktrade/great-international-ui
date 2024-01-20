@@ -8,9 +8,9 @@ asgiref==3.7.2
     # via django
 async-timeout==4.0.3
     # via redis
-attrs==23.1.0
+attrs==23.2.0
     # via jsonschema
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
     # via directory-components
 boto3==1.17.90
     # via -r requirements.in
@@ -35,25 +35,25 @@ dateparser==0.7.0
     # via -r requirements.in
 deprecated==1.2.14
     # via jwcrypto
-directory-api-client==26.4.3
+directory-api-client==26.4.5
     # via -r requirements.in
-directory-client-core==7.2.6
+directory-client-core==7.2.8
     # via
     #   directory-api-client
     #   directory-cms-client
     #   directory-forms-api-client
     #   pir-client
-directory-cms-client==12.3.2
+directory-cms-client==12.3.3
     # via -r requirements.in
-directory-components==40.0.0
+directory-components==40.1.0
     # via -r requirements.in
 directory-constants==24.0.0
     # via directory-components
-directory-forms-api-client==7.3.1
+directory-forms-api-client==7.3.2
     # via -r requirements.in
 directory-healthcheck==3.2
     # via -r requirements.in
-directory-validators==9.3.1
+directory-validators==9.3.2
     # via -r requirements.in
 django==4.2
     # via
@@ -112,7 +112,7 @@ jmespath==0.10.0
     #   botocore
 jsonschema==3.2.0
     # via directory-components
-jwcrypto==1.5.0
+jwcrypto==1.5.1
     # via django-oauth-toolkit
 mohawk==1.1.0
     # via sigauth
@@ -122,7 +122,7 @@ oauthlib==3.2.2
     # via django-oauth-toolkit
 olefile==0.47
     # via directory-validators
-pillow==10.1.0
+pillow==10.2.0
     # via directory-validators
 pir-client==1.2.1
     # via -r requirements.in
