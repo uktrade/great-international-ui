@@ -1,11 +1,11 @@
 boto3==1.17.90
 dateparser==0.7.0
-directory-api-client==26.4.3
-directory-cms-client==12.3.2
-directory-components==40.0.0
-directory-forms-api-client==7.3.1
-directory-healthcheck==3.2.0
-directory-validators==9.3.1
+directory-api-client==26.4.5
+directory-cms-client==12.3.3
+directory-components==40.1.0
+directory-forms-api-client==7.3.2
+directory-healthcheck==3.2
+directory-validators==9.3.2
 django-countries==5.5
 django-environ==0.6.0
 django-formtools==2.1
