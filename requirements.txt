@@ -91,7 +91,7 @@ django-ipware==6.0.3
     # via -r requirements.in
 django-oauth-toolkit==2.3.0
     # via -r requirements.in
-django-recaptcha==4.0.0
+django-recaptcha==3.0.0
     # via -r requirements.in
 django-redis==5.4.0
     # via -r requirements.in
