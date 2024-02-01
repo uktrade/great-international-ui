@@ -79,5 +79,4 @@ ATLAS_HEADER_TREE = [
                 tier_two_nav_items.CONTACT_US_TRADE,
             ]
     ),
-   
 ]
