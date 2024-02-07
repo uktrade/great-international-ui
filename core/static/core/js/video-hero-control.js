@@ -15,14 +15,16 @@ class VideoPlayerController {
     }
 
     toggleVideoPlayPause() {
-        const isPlaying = !this.video.paused;
-
-        if (isPlaying) {
-            this.video.pause();
-            this.updateButton(this.playClass, 'Play video', 'Play');
-        } else {
+        if (this.video.paused) {
             this.video.play();
             this.updateButton(this.pauseClass, 'Pause video', 'Pause');
+            this.controlBtn.setAttribute('aria-pressed', 'true');
+            document.getElementById('js-video-status').textContent = 'Video playing';
+        } else {
+            this.video.pause();
+            this.updateButton(this.playClass, 'Play video', 'Play');
+            this.controlBtn.setAttribute('aria-pressed', 'false');
+            document.getElementById('js-video-status').textContent = 'Video paused';
         }
     }
 
