@@ -58,7 +58,7 @@ CONTACT = NavItem(
 
 EXPAND_YOUR_BUSINESS = NavItem(
     name='expand-your-business-in-the-uk',
-    title=_('Expand your business in the UK'),
+    title=_('Expand your business'),
     url=EXPAND_YOUR_BUSINESS
 )
 
