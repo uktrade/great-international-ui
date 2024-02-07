@@ -44,3 +44,5 @@ document.addEventListener('DOMContentLoaded', () => {
         new VideoPlayerController(video, controlBtn);
     }
 });
+
+module.exports = VideoPlayerController;
