@@ -62,7 +62,7 @@
   right: 20px;
   width: 44px; 
   height: 44px;
-  border: 3px solid white;
+  border: 3px solid $atlas-white;
   border-radius: 50%;
   background-color: $atlas-blue-link;
   padding: 0;
@@ -113,7 +113,7 @@
       top: 0;
       height: 100%;
       width: 33%;
-      background: white;
+      background: $atlas-white;
       border-radius: 3px;
     }
     &:before {
@@ -130,7 +130,7 @@
   .atlas-hero__video-control-icon {
     display: block;
     position: relative;
-    background: white;
+    background: $atlas-white;
     text-align: left;
     &:before, &:after {
       content: "";
