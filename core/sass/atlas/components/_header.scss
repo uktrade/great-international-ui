@@ -3,7 +3,7 @@
 
 .atlas-header__global {
   background: $atlas-white;
-  padding: 14px 0;
+  padding: 10px 0;
 
   img {
     display: block;
@@ -122,7 +122,7 @@
 }
 
 .atlas-nav__list {
-  background-color: $atlas-black;
+  background-color: $great-dark-blue;
   margin: 0 -20px -10px;
   padding: 10px 20px;
 
@@ -152,7 +152,7 @@
 
 .atlas-nav__item {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 19px;
 
   @media (min-width: $breakpoint-medium + 1px) {
     padding: 10px 17px;
