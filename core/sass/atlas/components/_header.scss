@@ -154,6 +154,12 @@
   font-weight: bold;
   font-size: 19px;
 
+  &:hover,
+  &.active {
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.3em;
+  }
+
   @media (min-width: $breakpoint-medium + 1px) {
     padding: 10px 17px;
   }
@@ -161,6 +167,12 @@
 
 .atlas-nav__section-item {
   margin-left: 20px;
+
+  &:hover,
+  &.active {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
 }
 
 .atlas-nav__section {
@@ -204,6 +216,8 @@
   &:hover,
   &.active {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
   }
 
   &:focus {
