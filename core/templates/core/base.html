@@ -116,9 +116,4 @@ number of extra CSS styles that were once sensible defaults:
     {% include 'atlas/components/footer.html' %}
 {% endblock %}
 
-{% block body_js %}
-    {{ block.super }}
-    {% if page.hero_video %}
-        <script type="text/javascript" src="{% static 'core/js/dit.videoHeroControl-min.js' %}"></script>
-    {% endif %}
-{% endblock %}
+{% block body_js %}{% endblock %}

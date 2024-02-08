@@ -6,9 +6,9 @@
 {% block content %}
     <div class="atlas-home">
         <div class="atlas-home__hero">
-            <video id="js-atlas-video" class="atlas-home__hero-media"
+            <video class="atlas-home__hero-media"
                    {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
-                   autoplay loop muted playsinline disableremoteplayback>
+                   autoplay loop muted disableRemotePlayback>
                 {% for source in page.hero_video.sources %}
                     <source src="{{ source.src }}" type="{{ source.type }}">
                 {% endfor %}
@@ -20,7 +20,6 @@
                 <h1 class="atlas-bold atlas-m-v-s">{{ page.hero_title }}</h1>
 
                 <a href="/international/investment/" class="atlas-button atlas-button--white">Get Started</a>
-                {% include 'core/includes/atlas_video_controls.html' with classes='atlas-hero__video-control--homepage' %}
             </div>
 
             <nav>

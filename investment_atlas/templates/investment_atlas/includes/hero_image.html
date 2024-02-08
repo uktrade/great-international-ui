@@ -1,16 +1,16 @@
 {% if page.hero_image or page.hero_video %}
     <div class="atlas-hero">
         {% if page.hero_video %}
-            <video id="js-atlas-video" class="atlas-hero__media"
+            <video class="atlas-hero__media"
                    {% if page.hero_video.thumbnail %}poster="{{ page.hero_video.thumbnail }}"{% endif %}
-                   autoplay loop muted playsinline disableremoteplayback>
+                   autoplay loop muted disableRemotePlayback>
                 {% if page.hero_video.sources %}
                     {% for source in page.hero_video.sources %}
                     <source src="{{ source.src }}" type="{{ source.type }}">
                     {% endfor%}
                 {% elif page.hero_video.url and page.hero_video.file_extension %}
                     <source src="{{ page.hero_video.url }}"
-                            type="{{ page.hero_video.file_extension }}">
+                            type="{{ age.hero_video.file_extension }}">
                 {% endif %}
             </video>
         {% else %}
@@ -24,9 +24,4 @@
             </picture>
         {% endif %}
     </div>
-    {% if page.hero_video %}
-        <div class="atlas-hero__video-control-container">
-            {% include 'core/includes/atlas_video_controls.html' %}
-        </div>
-    {% endif %}
 {% endif %}
