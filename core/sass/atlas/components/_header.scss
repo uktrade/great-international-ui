@@ -3,7 +3,7 @@
 
 .atlas-header__global {
   background: $atlas-white;
-  padding: 14px 0;
+  padding: 10px 0;
 
   img {
     display: block;
@@ -27,10 +27,8 @@
 
   img {
     display: block;
-    width: 217px;
-    max-width: none;
-    height: auto;
-    margin: -25px 0 0 -46px;
+    width: 145px;
+    margin-top: -10px;
   }
 }
 
@@ -124,7 +122,7 @@
 }
 
 .atlas-nav__list {
-  background-color: $atlas-black;
+  background-color: $great-dark-blue;
   margin: 0 -20px -10px;
   padding: 10px 20px;
 
@@ -154,7 +152,13 @@
 
 .atlas-nav__item {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 19px;
+
+  &:hover,
+  &.active {
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.3em;
+  }
 
   @media (min-width: $breakpoint-medium + 1px) {
     padding: 10px 17px;
@@ -163,6 +167,12 @@
 
 .atlas-nav__section-item {
   margin-left: 20px;
+
+  &:hover,
+  &.active {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
 }
 
 .atlas-nav__section {
@@ -176,7 +186,7 @@
   position: relative;
   z-index: 1;
   display: none;
-  background-color: $atlas-black;
+  background-color: $great-dark-blue;
   text-align: right;
 
   @media (min-width: $breakpoint-medium + 1px) {
@@ -206,6 +216,8 @@
   &:hover,
   &.active {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
   }
 
   &:focus {

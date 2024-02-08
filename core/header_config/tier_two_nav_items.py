@@ -136,7 +136,7 @@ CONTACT_US_ABOUT_DIT = NavItem(
 
 WHY_INVEST_IN_UK = NavItem(
     name='why-invest-in-the-uk',
-    title=_('Why invest in the UK?'),
+    title=_('Why choose the UK?'),
     url=WHY_INVEST_IN_THE_UK_URL
 )
 
@@ -154,7 +154,7 @@ SECTORS = NavItem(
 
 INVESTMENT_OPPORTUNITIES = NavItem(
     name='investment-opportunities',
-    title=_('Investment opportunities'),
+    title=_('Find opportunities'),
     url=INVESTMENT_OPPORTUNITIES_URL
 )
 

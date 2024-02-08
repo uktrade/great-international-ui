@@ -10,6 +10,7 @@ module.exports = {
         cookieBanner: './core/js/src/dit.cookieBanner.js',
         reveal: './core/js/src/dit.reveal.js',
         tagging: './core/js/src/dit.tagging.js',
+        videoHeroControl: './core/js/src/dit.videoHeroControl.js',
         main_styles: './core/sass/main.scss',
         atlas_styles: './core/sass/atlas/main.scss',
         atlas_header_footer_styles: './core/sass/atlas/header-footer.scss'
