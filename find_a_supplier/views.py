@@ -73,7 +73,7 @@ class CompanySearchView(
                     url = url.replace('sectors=', 'industries=')
                 return redirect(url)
             else:
-                return HttpResponse("Unsafe URL detected")
+                return redirect('find-a-supplier:search')
         return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
