@@ -1,3 +1,6 @@
+from urllib.parse import urlparse
+from django.http import HttpResponse
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
@@ -60,9 +63,17 @@ class CompanySearchView(
     def dispatch(self, *args, **kwargs):
         if 'term' in self.request.GET or 'sectors' in self.request.GET:
             url = self.request.get_full_path()
-            return redirect(
-                url.replace('term=', 'q=').replace('sectors=', 'industries=')
-            )
+            if url_has_allowed_host_and_scheme(url, allowed_hosts=None):
+                parsed_url = urlparse(url)
+                if 'term=' in parsed_url.query:
+                    # Replace 'term=' with 'q='
+                    url = url.replace('term=', 'q=')
+                if 'sectors=' in parsed_url.query:
+                    # Replace 'sectors=' with 'industries='
+                    url = url.replace('sectors=', 'industries=')
+                return redirect(url)
+            else:
+                return HttpResponse("Unsafe URL detected")   
         return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
