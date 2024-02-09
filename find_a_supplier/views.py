@@ -63,14 +63,9 @@ class CompanySearchView(
         if 'term' in self.request.GET or 'sectors' in self.request.GET:
             url = self.request.get_full_path()
             if url_has_allowed_host_and_scheme(url, allowed_hosts=None):
-                parsed_url = urlparse(url)
-                if 'term=' in parsed_url.query:
-                    # Replace 'term=' with 'q='
-                    url = url.replace('term=', 'q=')
-                if 'sectors=' in parsed_url.query:
-                    # Replace 'sectors=' with 'industries='
-                    url = url.replace('sectors=', 'industries=')
-                return redirect(url)
+                return redirect(
+                    url.replace('term=', 'q=').replace('sectors=', 'industries=')
+                )
             else:
                 return redirect('find-a-supplier:search')
         return super().dispatch(*args, **kwargs)
