@@ -1,5 +1,4 @@
 from urllib.parse import urlparse
-from django.http import HttpResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
