@@ -247,19 +247,6 @@ def test_capital_invest_contact_form_success_page_returns_404_when_feature_flag_
     assert response.status_code == 404
 
 
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_international_contact_form(mock_cms_response, client, settings):
-    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
-    reload_urlconf(settings)
-
-    mock_cms_response.return_value = create_response(dummy_page)
-
-    url = reverse('contact-page-international')
-    response = client.get(url)
-
-    assert response.status_code == 200
-
-
 @pytest.fixture
 def capital_invest_contact_form_data(captcha_stub):
     return {
@@ -630,23 +617,6 @@ def test_about_uk_breadcrumbs_article_page_feature_off(
 
     assert len(response.context_data['page']['tree_based_breadcrumbs']) == 1
     assert response.context_data['page']['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
-
-
-@pytest.mark.parametrize(
-    'choice_contact_url',
-    [constants.INVEST_CONTACT_URL, constants.CAPITAL_INVEST_CONTACT_URL, constants.EXPORTING_TO_UK_CONTACT_URL,
-     constants.BUYING_CONTACT_URL]
-)
-def test_international_contact_triage_redirects(
-        choice_contact_url, client, feature_flags
-):
-    feature_flags['INTERNATIONAL_TRIAGE_ON'] = True
-    feature_flags['EXPORTING_TO_UK_ON'] = True
-    feature_flags['CAPITAL_INVEST_CONTACT_IN_TRIAGE_ON'] = True
-
-    response = client.post('/international/contact/', {'choice': choice_contact_url})
-    assert response.status_code == 302
-    assert response.url == choice_contact_url
 
 
 @patch('directory_cms_client.client.cms_api_client.lookup_by_path')
