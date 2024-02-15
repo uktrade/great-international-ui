@@ -113,23 +113,6 @@ if settings.FEATURE_FLAGS['INDUSTRIES_REDIRECT_ON']:
         ),
     ]
 
-# This route remains in use after the Atlas refactor
-if settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON']:
-    urlpatterns += [
-        re_path(
-            r'^international/contact/$',
-            core.views.InternationalContactTriageView.as_view(),
-            name='international-contact-triage'
-        ),
-    ]
-else:
-    urlpatterns += [
-        re_path(
-            r'^international/contact/$',
-            core.views.InternationalContactPageView.as_view(),
-            name='contact-page-international'
-        ),
-    ]
 
 urlpatterns += [
     re_path(
