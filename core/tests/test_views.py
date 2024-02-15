@@ -258,7 +258,6 @@ def test_international_contact_form(mock_cms_response, client, settings):
     assert response.status_code == 404
 
 
-
 @pytest.fixture
 def capital_invest_contact_form_data(captcha_stub):
     return {
