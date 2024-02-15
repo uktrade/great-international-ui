@@ -522,33 +522,3 @@ def handler404(request, *args, **kwargs):
 
 def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
-
-
-class InternationalContactTriageView(
-    GA360Mixin,
-    EnableTranslationsMixin,
-    InternationalHeaderMixin,
-    FormView,
-):
-    template_name = 'core/contact_international_triage.html'
-    form_class = forms.InternationalRoutingForm
-    success_url = urls.domestic.CONTACT_US + 'international/'
-    header_section = tier_one_nav_items.CONTACT
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='GreatInternationalContactTriage',
-            business_unit='GreatInternational',
-            site_section='GreatInternational',
-            site_subsection='ContactTriage'
-        )
-
-    def form_valid(self, form):
-        return redirect(form.cleaned_data['choice'])
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            domestic_contact_home=urls.domestic.CONTACT_US,
-            *args, **kwargs,
-        )

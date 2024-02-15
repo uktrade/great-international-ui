@@ -10,7 +10,6 @@ from core.tests.helpers import create_response, stub_page
 from core.views import (
     MultilingualCMSPageFromPathView,
     CapitalInvestContactFormView,
-    InternationalContactTriageView,
     WhyBuyFromUKFormView,
     WhyBuyFromUKFormViewSuccess
 )
@@ -616,29 +615,6 @@ def test_about_uk_breadcrumbs_article_page_feature_off(
 
     assert len(response.context_data['page']['tree_based_breadcrumbs']) == 1
     assert response.context_data['page']['tree_based_breadcrumbs'][0]['title'] == 'Why choose the UK'
-
-
-@patch('directory_cms_client.client.cms_api_client.lookup_by_path')
-def test_international_contact_triage_view(
-        mock_cms_response, rf
-):
-    page = {
-        'title': 'Midlands',
-        'meta': {
-            'languages': [
-                ['en-gb', 'English'],
-            ]
-        }
-    }
-
-    mock_cms_response.return_value = create_response(page)
-
-    request = rf.get('/international/contact/')
-    request.LANGUAGE_CODE = 'en-gb'
-    response = InternationalContactTriageView.as_view()(
-        request, path='/international/contact/')
-
-    assert 'domestic_contact_home' in response.context_data
 
 
 @pytest.fixture
