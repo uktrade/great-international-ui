@@ -60,4 +60,3 @@ def test_url_redirect_industries_to_about_uk_page_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('industries-to-about-uk-redirect')
-
