@@ -162,27 +162,6 @@ def sector_landing_page_context_modifier(context, request):
     }
 
 
-class InternationalContactPageView(CountryDisplayMixin, InternationalView):
-    template_name = 'core/contact_page.html'
-    header_section = tier_one_nav_items.CONTACT
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='InternationalContactPage',
-            business_unit='GreatInternational',
-            site_section='Contact',
-            site_subsection='ContactForm'
-        )
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            hide_language_selector=True,
-            invest_contact_us_url=urls.international.EXPAND_CONTACT,
-            *args, **kwargs
-        )
-
-
 class SendContactNotifyMessagesMixin:
     def send_company_message(self, form):
         sender = directory_forms_api_client.helpers.Sender(
