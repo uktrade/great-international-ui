@@ -16,7 +16,7 @@ import directory_forms_api_client.helpers
 from directory_constants import urls
 from directory_components.helpers import SocialLinkBuilder
 from directory_components.mixins import (
-    CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin, EnableTranslationsMixin)
+    CMSLanguageSwitcherMixin, GA360Mixin, EnableTranslationsMixin)
 
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry

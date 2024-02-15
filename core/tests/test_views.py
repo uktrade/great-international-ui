@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from conf.tests.test_urls import reload_urlconf
 from core.forms import CapitalInvestContactForm
-from core.tests.helpers import create_response, stub_page, dummy_page
+from core.tests.helpers import create_response, stub_page
 from core.views import (
     MultilingualCMSPageFromPathView,
     CapitalInvestContactFormView,
