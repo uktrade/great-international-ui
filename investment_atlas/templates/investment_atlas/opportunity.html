@@ -47,7 +47,11 @@
         </div>
     </div>
 
+    {% if page.investment_type == 'Foreign direct investment' or page.investment_type == 'Freeport' %}
+    {% include 'investment_atlas/includes/contact_eyb.html' with button_preamble="Take advantage of this opportunity to expand and grow your business in the UK" %}
+    {% else %}
     {% include 'investment_atlas/includes/contact.html' with button_preamble="Contact the opportunity lead" %}
+    {% endif %}
 
     <div class="atlas-alternate-bg">
         {% for section in page.main_content %}
@@ -130,7 +134,5 @@
             </div>
         </section>
     {% endif %}
-
-    {% include 'investment_atlas/includes/speak_to_us.html' %}
 
 {% endblock %}

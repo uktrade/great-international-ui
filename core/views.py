@@ -16,7 +16,7 @@ import directory_forms_api_client.helpers
 from directory_constants import urls
 from directory_components.helpers import SocialLinkBuilder
 from directory_components.mixins import (
-    CMSLanguageSwitcherMixin, GA360Mixin, CountryDisplayMixin, EnableTranslationsMixin)
+    CMSLanguageSwitcherMixin, GA360Mixin, EnableTranslationsMixin)
 
 from core import forms, helpers, constants
 from core.context_modifiers import register_context_modifier, registry as context_modifier_registry
@@ -160,27 +160,6 @@ def sector_landing_page_context_modifier(context, request):
     return {
         "cards_list": cards_list
     }
-
-
-class InternationalContactPageView(CountryDisplayMixin, InternationalView):
-    template_name = 'core/contact_page.html'
-    header_section = tier_one_nav_items.CONTACT
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='InternationalContactPage',
-            business_unit='GreatInternational',
-            site_section='Contact',
-            site_subsection='ContactForm'
-        )
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            hide_language_selector=True,
-            invest_contact_us_url=urls.international.EXPAND_CONTACT,
-            *args, **kwargs
-        )
 
 
 class SendContactNotifyMessagesMixin:
@@ -522,33 +501,3 @@ def handler404(request, *args, **kwargs):
 
 def handler500(request, *args, **kwargs):
     return render(request, '500.html', status=500)
-
-
-class InternationalContactTriageView(
-    GA360Mixin,
-    EnableTranslationsMixin,
-    InternationalHeaderMixin,
-    FormView,
-):
-    template_name = 'core/contact_international_triage.html'
-    form_class = forms.InternationalRoutingForm
-    success_url = urls.domestic.CONTACT_US + 'international/'
-    header_section = tier_one_nav_items.CONTACT
-
-    def __init__(self):
-        super().__init__()
-        self.set_ga360_payload(
-            page_id='GreatInternationalContactTriage',
-            business_unit='GreatInternational',
-            site_section='GreatInternational',
-            site_subsection='ContactTriage'
-        )
-
-    def form_valid(self, form):
-        return redirect(form.cleaned_data['choice'])
-
-    def get_context_data(self, *args, **kwargs):
-        return super().get_context_data(
-            domestic_contact_home=urls.domestic.CONTACT_US,
-            *args, **kwargs,
-        )

@@ -60,23 +60,3 @@ def test_url_redirect_industries_to_about_uk_page_off(client, settings):
 
     with pytest.raises(NoReverseMatch):
         reverse('industries-to-about-uk-redirect')
-
-
-def test_url_redirect_international_contact_triage_on(client, settings):
-    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = True
-    reload_urlconf(settings)
-
-    assert reverse('international-contact-triage')
-
-    with pytest.raises(NoReverseMatch):
-        reverse('contact-page-international')
-
-
-def test_url_redirect_international_contact_triage_off(client, settings):
-    settings.FEATURE_FLAGS['INTERNATIONAL_TRIAGE_ON'] = False
-    reload_urlconf(settings)
-
-    assert reverse('contact-page-international')
-
-    with pytest.raises(NoReverseMatch):
-        reverse('international-contact-triage')

@@ -228,7 +228,6 @@ not_redirected = (
     '/international/invest/perfectfit/',  # needs PIR API call mocked
 
     # just a light check of SOME but not all views
-    '/international/contact/',
     '/international/invest/contact/',
     '/international/invest/contact/success/',
     '/international/expand/contact/',
