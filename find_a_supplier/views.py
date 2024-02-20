@@ -66,7 +66,7 @@ class CompanySearchView(
                     url.replace('term=', 'q=').replace('sectors=', 'industries=')
                 )
             else:
-                return redirect('find-a-supplier:search')
+                return redirect('find-a-supplier:search') # noqa
         return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
