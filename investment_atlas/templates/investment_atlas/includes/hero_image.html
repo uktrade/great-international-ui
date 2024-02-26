@@ -10,7 +10,7 @@
                     {% endfor%}
                 {% elif page.hero_video.url and page.hero_video.file_extension %}
                     <source src="{{ page.hero_video.url }}"
-                            type="{{ page.hero_video.file_extension }}">
+                            type="video/{{ page.hero_video.file_extension }}">
                 {% endif %}
             </video>
         {% else %}
