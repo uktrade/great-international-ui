@@ -28,12 +28,18 @@
                     {% for node in navigation_tree %}
                         <li>
                             <a class="atlas-nav__item{% if node.tier_one_item.name == header_section %} active{% endif %}"
-                               href="{{ node.tier_one_item.url }}">{% trans node.tier_one_item.title %}</a>
+                               href="{{ node.tier_one_item.url }}"
+                               data-location="{{node.tier_one_item.name}} primary-nav"
+                               data-title="{{node.tier_one_item.title}}"
+                            >{% trans node.tier_one_item.title %}</a>
                             <ul class="atlas-nav__section atlas-list--bare">
                                 {% for item in node.tier_two_items %}
                                     <li>
                                         <a class="atlas-nav__section-item{% if item.name == header_sub_section %} active{% endif %}"
-                                           href="{{ item.url }}">{{ item.title }}</a>
+                                           href="{{ item.url }}"
+                                           data-location="{{node.tier_one_item.name}} sub-nav"
+                                           data-title="{{item.title}}"
+                                        >{{ item.title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -54,7 +60,10 @@
                             {% for item in node.tier_two_items %}
                                 <li>
                                     <a class="atlas-subnav__item{% if item.name == header_sub_section %} active{% endif %}"
-                                       href="{{ item.url }}">{{ item.title }}</a>
+                                       href="{{ item.url }}"
+                                        data-location="{{node.tier_one_item.name}} sub-nav"
+                                        data-title="{{item.title}}"
+                                    >{{ item.title }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
