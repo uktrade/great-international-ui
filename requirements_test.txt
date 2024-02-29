@@ -35,9 +35,10 @@ click==8.1.7
     # via pip-tools
 coverage[toml]==7.4.1
     # via
+    #   coverage
     #   pytest-codecov
     #   pytest-cov
-cryptography==42.0.2
+cryptography==42.0.4
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -234,6 +235,7 @@ requests[security]==2.31.0
     #   directory-client-core
     #   django-oauth-toolkit
     #   pytest-codecov
+    #   requests
     #   requests-mock
 requests-mock==1.11.0
     # via -r requirements_test.in
