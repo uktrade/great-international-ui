@@ -10,7 +10,10 @@
 }
 
 .atlas-opportunity__contact .atlas-media {
-  margin: 0 auto;
+
+  .atlas-media__body {
+    padding-top: 10px;
+  }
 
   & .atlas-media__body:first-child {
     text-align: center;
@@ -34,7 +37,11 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0;
+}
+
+.atlas-opportunity__eyb-cta {
+  margin: 0;
 }
 
 .atlas-opportunity__key-links {
