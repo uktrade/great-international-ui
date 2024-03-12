@@ -39,6 +39,13 @@
   color: $atlas-body;
   background-color: $atlas-white;
   border: 2px solid #1E1348;
+  border-bottom: 4px solid #1E1348;
+  margin-bottom: 10px;
+}
+
+.atlas-button--white:active {
+  margin-top: 2px;
+  border-bottom: 2px solid #1e1348;
 }
 
 .atlas-button--wire {
