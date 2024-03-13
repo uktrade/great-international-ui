@@ -1,10 +1,19 @@
 {% if page.contact_link or page.contact_name or page.contact_job_title or page.contact_avatar %}
-    <div class="atlas-bg--grey-darker atlas-colour--white">
+    <div class="atlas-bg--green-light">
         <div class="atlas-container">
             <div class="atlas-opportunity__contact atlas-grid">
+
+                {% if button_preamble %}
+                    <div class="atlas-grid__column atlas-p-t-s">
+                        <h2 class="atlas-h--m atlas-m-b-xs">
+                            {{ button_preamble }}
+                        </h2>
+                    </div>
+                {% endif %}
+
                 {% if page.contact_avatar or page.contact_name or page.contact_job_title %}
-                    <div class="atlas-grid__column atlas-grid__column--centred atlas-grid__column--6-12-m atlas-p-v-xs">
-                        <div class="atlas-media atlas-media--centred">
+                    <div class="atlas-grid__column">
+                        <div class="atlas-media">
                             {% if page.contact_avatar %}
                                 <div class="atlas-media__img">
                                     <div class="atlas-opportunity__contact-image">
@@ -25,19 +34,18 @@
                 {% endif %}
 
                 {% if page.contact_link %}
-                    <div class="atlas-grid__column atlas-grid__column--centred atlas-grid__column--6-12-m atlas-p-t-xs">
+                    <div class="atlas-grid__column atlas-p-t-s atlas-m-b-s">
                         <div class="atlas-opportunity__contact-cta">
-                            {% if button_preamble %}
-                                <h3 class="atlas-h--xs atlas-m-b-xs atlas-m-h-xs atlas-align--centre">
-                                    {{ button_preamble }}
-                                </h3>
-                            {% endif %}
-                            <a href="{{ page.contact_link }}" class="atlas-button atlas-button--white atlas-m-b-xs">
+                            <a href="{{ page.contact_link }}" class="atlas-button atlas-button--white">
                                 {{ button_label|default:"Get in touch" }}
+                                <span class="atlas-button__icon">
+                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
                             </a>
                         </div>
                     </div>
                 {% endif %}
+
             </div>
         </div>
     </div>

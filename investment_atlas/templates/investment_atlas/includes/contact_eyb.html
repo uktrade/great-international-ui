@@ -1,16 +1,19 @@
-    <div class="atlas-bg--grey-darker atlas-colour--white">
+    <div class="atlas-bg--green-light">
         <div class="atlas-container">
             <div class="atlas-opportunity__contact atlas-grid">
 
-                    <div class="atlas-grid__column atlas-grid__column atlas-p-t-xs">
-                        <div class="atlas-opportunity__contact-cta">
+                    <div class="atlas-grid__column atlas-grid__column--8-12-m atlas-p-t-s atlas-m-b-s">
+                        <div class="atlas-opportunity__eyb-cta">
                             {% if button_preamble %}
-                                <h3 class="atlas-h--xs atlas-m-b-xs atlas-m-h-xs">
+                                <h2 class="atlas-h--m atlas-m-b-xs">
                                     {{ button_preamble }}
-                                </h3>
+                                </h2>
                             {% endif %}
-                            <a href="/international/expand-your-business-in-the-uk/" class="atlas-button atlas-button--white atlas-m-b-xs">
-                                Find out more
+                            <a href="/international/expand-your-business-in-the-uk/" class="atlas-button atlas-button--white">
+                                Find out how 
+                                <span class="atlas-button__icon">
+                                    {% include 'investment_atlas/includes/svg/icon-arrow.svg' %}
+                                </span>
                             </a>
                         </div>
                     </div>
