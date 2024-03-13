@@ -4,15 +4,15 @@
             <div class="atlas-opportunity__contact atlas-grid">
 
                 {% if button_preamble %}
-                    <div class="atlas-grid__column atlas-p-t-xs">
-                        <h2 class="atlas-h--m atlas-m-b-xs atlas-align--centre">
+                    <div class="atlas-grid__column atlas-p-t-s">
+                        <h2 class="atlas-h--m atlas-m-b-xs">
                             {{ button_preamble }}
                         </h2>
                     </div>
                 {% endif %}
 
                 {% if page.contact_avatar or page.contact_name or page.contact_job_title %}
-                    <div class="atlas-grid__column atlas-p-v-xs">
+                    <div class="atlas-grid__column">
                         <div class="atlas-media">
                             {% if page.contact_avatar %}
                                 <div class="atlas-media__img">
@@ -34,7 +34,7 @@
                 {% endif %}
 
                 {% if page.contact_link %}
-                    <div class="atlas-grid__column atlas-p-t-xs atlas-m-b-xs">
+                    <div class="atlas-grid__column atlas-p-t-s atlas-m-b-s">
                         <div class="atlas-opportunity__contact-cta">
                             <a href="{{ page.contact_link }}" class="atlas-button atlas-button--white">
                                 {{ button_label|default:"Get in touch" }}
