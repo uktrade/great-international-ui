@@ -139,7 +139,7 @@ jmespath==1.0.1
     #   botocore
 jsonschema==3.2.0
     # via directory-components
-jwcrypto==1.5.4
+jwcrypto==1.5.6
     # via django-oauth-toolkit
 mccabe==0.7.0
     # via flake8
