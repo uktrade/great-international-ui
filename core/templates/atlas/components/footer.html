@@ -15,19 +15,28 @@
                 <ul class="atlas-list--bare atlas-m-0">
                     <li>
                         <a id="footer-privacy-and-cookies"
+                           title="{% trans 'Opens in a new window' %}"
+                           rel="noopener noreferrer"
+                           target="_blank"
                            href="{{ header_footer_urls.privacy_and_cookies }}">{% trans 'Privacy and cookies' %}</a>
                     </li>
                     <li>
                         <a id="footer-terms-and-conditions"
+                           title="{% trans 'Opens in a new window' %}"
+                           rel="noopener noreferrer"
+                           target="_blank"
                            href="{{ header_footer_urls.terms_and_conditions }}">{% trans 'Terms and conditions' %}</a>
                     </li>
                     <li>
                         <a id="accessibility-statement"
-                           href="https://www.great.gov.uk/accessibility-statement/" target="_blank">{% trans 'Accessibility' %}</a>
+                           title="{% trans 'Opens in a new window' %}"
+                           rel="noopener noreferrer"
+                           href="https://www.great.gov.uk/accessibility-statement/" 
+                           target="_blank">{% trans 'Accessibility' %}</a>
                     </li>
                     <li>
-                        <a id="footer-contact" href="/international/expand-your-business-in-the-uk/contact">
-                            {% trans 'Contact us' %}</a>
+                        <a id="footer-contact" 
+                           href="/international/contact/?next={{ request.get_full_path }}">{% trans 'Help using this site' %}</a>
                     </li>
                     <li>
                         <a id="footer-dit" href="{{ header_footer_urls.dbt }}"

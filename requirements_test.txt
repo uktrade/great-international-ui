@@ -35,7 +35,6 @@ click==8.1.7
     # via pip-tools
 coverage[toml]==7.4.3
     # via
-    #   coverage
     #   pytest-codecov
     #   pytest-cov
 cryptography==42.0.5
@@ -67,7 +66,7 @@ directory-healthcheck==3.4
     # via -r requirements.in
 directory-validators==9.3.3
     # via -r requirements.in
-django==4.2.10
+django==4.2.11
     # via
     #   -r requirements.in
     #   directory-api-client
@@ -140,7 +139,7 @@ jmespath==1.0.1
     #   botocore
 jsonschema==3.2.0
     # via directory-components
-jwcrypto==1.5.4
+jwcrypto==1.5.6
     # via django-oauth-toolkit
 mccabe==0.7.0
     # via flake8
@@ -235,7 +234,6 @@ requests[security]==2.31.0
     #   directory-client-core
     #   django-oauth-toolkit
     #   pytest-codecov
-    #   requests
     #   requests-mock
 requests-mock==1.11.0
     # via -r requirements_test.in

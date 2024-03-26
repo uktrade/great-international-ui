@@ -58,7 +58,7 @@ directory-healthcheck==3.4
     # via -r requirements.in
 directory-validators==9.3.3
     # via -r requirements.in
-django==4.2.10
+django==4.2.11
     # via
     #   -r requirements.in
     #   directory-api-client
@@ -115,7 +115,7 @@ jmespath==1.0.1
     #   botocore
 jsonschema==3.2.0
     # via directory-components
-jwcrypto==1.5.4
+jwcrypto==1.5.6
     # via django-oauth-toolkit
 mohawk==1.1.0
     # via sigauth
@@ -160,7 +160,6 @@ requests[security]==2.31.0
     #   directory-api-client
     #   directory-client-core
     #   django-oauth-toolkit
-    #   requests
 s3transfer==0.10.0
     # via boto3
 sentry-sdk==1.14.0
