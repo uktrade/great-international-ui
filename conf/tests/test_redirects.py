@@ -225,8 +225,6 @@ def test_redirects(url, expected, client):
 
 not_redirected = (
     '/international/investment-support-directory/',
-    '/international/invest/perfectfit/',  # needs PIR API call mocked
-
     # just a light check of SOME but not all views
     '/international/invest/contact/',
     '/international/invest/contact/success/',

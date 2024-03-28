@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'directory_components',
     'health_check.cache',
     'directory_healthcheck',
-    'perfect_fit_prospectus',
     'investment_atlas',
     'invest',
     'investment_support_directory',
