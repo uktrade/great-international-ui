@@ -16,11 +16,11 @@ beautifulsoup4==4.12.3
     # via directory-components
 boto3==1.34.25
     # via -r requirements.in
-botocore==1.34.72
+botocore==1.34.75
     # via
     #   boto3
     #   s3transfer
-build==1.1.1
+build==1.2.1
     # via pip-tools
 certifi==2024.2.2
     # via
@@ -156,7 +156,7 @@ packaging==24.0
     #   build
     #   pytest
     #   pytest-sugar
-pillow==10.2.0
+pillow==10.3.0
     # via
     #   -r requirements_test.in
     #   directory-validators
@@ -176,7 +176,7 @@ py==1.11.0
     #   pytest-forked
 pycodestyle==2.11.1
     # via flake8
-pycparser==2.21
+pycparser==2.22
     # via cffi
 pyflakes==3.1.0
     # via flake8
@@ -235,7 +235,7 @@ requests[security]==2.31.0
     #   django-oauth-toolkit
     #   pytest-codecov
     #   requests-mock
-requests-mock==1.12.0
+requests-mock==1.12.1
     # via -r requirements_test.in
 s3transfer==0.10.1
     # via boto3
