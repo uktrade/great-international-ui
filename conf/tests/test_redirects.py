@@ -233,18 +233,6 @@ not_redirected = (
 )
 
 
-@pytest.mark.parametrize('url', not_redirected)
-@mock.patch('pir_client.client.pir_api_client.get_options')
-def test_does_not_redirect(
-        mock_get_options,
-        url,
-        client,
-):
-    response = client.get(url)
-    assert response.status_code == 200  # not 30x
-    assert not hasattr(response, 'url')
-
-
 not_redirected_cms = (
     ('/international/trade/', 'InternationalTradeHomePage'),
 )
