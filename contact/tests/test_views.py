@@ -46,6 +46,15 @@ def test_contact_form_success(mock_save, contact_form_data, rf):
     assert mock_save.call_count == 1
 
 
+def test_contact_success_form(rf):
+    url = reverse('invest-contact-success')
+    request = rf.get(url)
+    request.LANGUAGE_CODE = 'en-gb'
+    request.utm = {}
+    response = views.ContactFormSuccessView.as_view()(request)
+    assert response.status_code == 200
+
+
 @patch.object(views.ContactFormView.form_class, 'save')
 def test_contact_invalid(mock_save, rf):
     url = reverse('invest-contact')
