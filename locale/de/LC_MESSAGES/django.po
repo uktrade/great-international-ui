@@ -165,10 +165,6 @@ msgstr "Wie haben Sie von uns erfahren?"
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: contact/forms.py:155 perfect_fit_prospectus/forms.py:33
-msgid "Country"
-msgstr "Land"
-
 #: contact/forms.py:156 core/forms.py:94 find_a_supplier/forms.py:188
 msgid "Industry"
 msgstr "Branche"
@@ -842,69 +838,6 @@ msgstr ""
 
 #: investment_atlas/templates/investment_atlas/opportunity_listing_page.html:192
 msgid "We couldn’t find any opportunities - please try some different filters."
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:13
-msgid "Name"
-msgstr "Vollständiger Name"
-
-#: perfect_fit_prospectus/forms.py:17
-msgid "Company"
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:22
-msgid "Email"
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:27
-msgid "Phone number (optional)"
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:41
-msgid "Accessible plain text format."
-msgstr ""
-
-#: perfect_fit_prospectus/forms.py:47
-msgid "I would like to receive further information."
-msgstr ""
-
-#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:5
-#: perfect_fit_prospectus/templates/perfect_fit_prospectus/success.html:5
-msgid "Perfect Fit Prospectus"
-msgstr ""
-
-#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:12
-msgid "Perfect fit"
-msgstr ""
-
-#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:23
-msgid ""
-"\n"
-"          <p>If you're thinking about expanding your business "
-"internationally, the UK could be the perfect fit. To explore what the UK has "
-"to offer, download your <span class=\"bold\">Perfect Fit Prospectus</span> "
-"today.</p>\n"
-"          <p>Simply enter your details below to access a wealth of insight "
-"into the UK's business environment tailored to your business together with "
-"help and advice.</p>\n"
-"        "
-msgstr ""
-
-#: perfect_fit_prospectus/templates/perfect_fit_prospectus/index.html:39
-msgid ""
-"\n"
-"        <p>The Department for Business and Trade will use the information "
-"provided in this form to send you your report. You can read about how we "
-"protect your data through our <a class=\"link\" href=\"https://great.gov.uk/"
-"privacy-and-cookies/\" target=\"_blank\">privacy policy</a>.</p>\n"
-"        <p>If you would like to receive further information about setting up "
-"your business in the UK, you can subscribe to our mailing list.</p>\n"
-"        "
-msgstr ""
-
-#: perfect_fit_prospectus/views.py:45
-#, python-format
-msgid "Thank You. Your Perfect Fit Prospectus has been emailed to %(email)s"
 msgstr ""
 
 #: second_qualification/forms.py:57

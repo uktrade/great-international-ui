@@ -286,16 +286,6 @@ if settings.FEATURE_FLAGS['GUIDE_TO_BUSINESS_ENVIRONMENT_FORM_ON']:
         ),
     ]
 
-perfectfit = [
-    re_path(
-        r'^international/invest/perfectfit/',
-        include(
-            'perfect_fit_prospectus.urls',
-            namespace='perfect_fit_prospectus'
-        )
-    ),
-]
-
 if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
     urlpatterns += [
         re_path(
@@ -304,8 +294,6 @@ if settings.THUMBNAIL_STORAGE_CLASS_NAME == 'local-storage':
             {'document_root': settings.MEDIA_ROOT}
         ),
     ]
-
-urlpatterns += perfectfit
 
 handler404 = core.views.handler404
 handler500 = core.views.handler500
