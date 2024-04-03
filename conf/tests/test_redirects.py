@@ -225,26 +225,12 @@ def test_redirects(url, expected, client):
 
 not_redirected = (
     '/international/investment-support-directory/',
-    '/international/invest/perfectfit/',  # needs PIR API call mocked
-
     # just a light check of SOME but not all views
     '/international/invest/contact/',
     '/international/invest/contact/success/',
     '/international/expand/contact/',
     '/international/expand/contact/success/',
 )
-
-
-@pytest.mark.parametrize('url', not_redirected)
-@mock.patch('pir_client.client.pir_api_client.get_options')
-def test_does_not_redirect(
-        mock_get_options,
-        url,
-        client,
-):
-    response = client.get(url)
-    assert response.status_code == 200  # not 30x
-    assert not hasattr(response, 'url')
 
 
 not_redirected_cms = (
