@@ -127,7 +127,7 @@ greenlet==2.0.2
     #   gevent
 gunicorn==20.1.0
     # via -r requirements.in
-idna==3.6
+idna==3.7
     # via requests
 importlib-metadata==7.1.0
     # via build
