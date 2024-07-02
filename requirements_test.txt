@@ -101,7 +101,7 @@ django-redis==5.4.0
     # via -r requirements.in
 django-storages==1.14.2
     # via -r requirements.in
-djangorestframework==3.14.0
+djangorestframework==3.15.2
     # via
     #   -r requirements.in
     #   sigauth
@@ -223,7 +223,6 @@ pytz==2023.3
     # via
     #   dateparser
     #   directory-validators
-    #   djangorestframework
 redis==5.0.3
     # via django-redis
 regex==2022.1.18
