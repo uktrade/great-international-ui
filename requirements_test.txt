@@ -277,7 +277,7 @@ typing-extensions==4.11.0
     #   jwcrypto
 tzlocal==5.2
     # via dateparser
-urllib3==1.26.18
+urllib3==1.26.19
     # via
     #   -r requirements.in
     #   botocore
