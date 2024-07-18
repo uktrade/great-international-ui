@@ -7,6 +7,7 @@ register = template.Library()
 PATH_POS = 1
 PATH_STR = '/international/investment-support-directory/'
 
+
 @register.simple_tag(takes_context=True)
 def get_canonical_url(context):
     request = context['request']
