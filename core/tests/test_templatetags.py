@@ -258,3 +258,16 @@ def test_get_canonical_url_with_www(rf):
     context_data = {'request': request}
     canonical_url = get_canonical_url(context_data)
     assert canonical_url == 'https://www.great.com/international/investment-support-directory/'
+
+
+def test_get_canonical_url_with_extra_params(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = (
+        '/international/investment-support-directory/OC380935/fred-blogs-immigration-barristers/?verbose=true'
+    )
+    request.get_host = MagicMock(return_value='www.great.com')
+
+    context_data = {'request': request}
+    canonical_url = get_canonical_url(context_data)
+    assert canonical_url == 'https://www.great.com/international/investment-support-directory/'
