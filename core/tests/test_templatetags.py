@@ -1,4 +1,7 @@
 import pytest
+from unittest.mock import MagicMock, Mock
+
+
 from django.template import Context, Template
 from django.urls import reverse
 from django.utils import translation
@@ -8,6 +11,8 @@ from core.templatetags import cms_tags
 
 from find_a_supplier.templatetags import industry_tags
 
+from core.templatetags.canonical_url_tags import get_canonical_url
+
 
 def test_search_url():
     search_url = industry_tags.search_url(
@@ -15,10 +20,7 @@ def test_search_url():
         term='test',
     )
 
-    assert search_url == (
-        reverse('find-a-supplier:search') +
-        '?industries=AEROSPACE&term=test'
-    )
+    assert search_url == (reverse('find-a-supplier:search') + '?industries=AEROSPACE&term=test')
 
 
 def test_convert_links_to_with_arrow():
@@ -27,36 +29,21 @@ def test_convert_links_to_with_arrow():
         'override_elements_css_class from directory_components %}'
         '{{ html|add_export_elements_classes|'
         'override_elements_css_class:\'a, link with-arrow\'|safe }}'
-
     )
-    context = Context({
-        'html': (
-            '<a>Capital Investment</a>'
-        )
-    })
+    context = Context({'html': ('<a>Capital Investment</a>')})
     html = template.render(context)
 
-    assert html == (
-        '<a class=" link with-arrow">Capital Investment</a>'
-    )
+    assert html == ('<a class=" link with-arrow">Capital Investment</a>')
 
 
 def test_add_anchors():
-    template = Template(
-        '{% load add_anchors from cms_tags %}'
-        '{{ html|add_anchors|safe }}'
-    )
+    template = Template('{% load add_anchors from cms_tags %}' '{{ html|add_anchors|safe }}')
 
-    context = Context({
-        'html': '<br/><h2>Title one</h2><h2>Title two</h2><br/>'
-    })
+    context = Context({'html': '<br/><h2>Title one</h2><h2>Title two</h2><br/>'})
     html = template.render(context)
 
     assert html == (
-        '<br/>'
-        '<h2 id="title-one-section">Title one</h2>'
-        '<h2 id="title-two-section">Title two</h2>'
-        '<br/>'
+        '<br/>' '<h2 id="title-one-section">Title one</h2>' '<h2 id="title-two-section">Title two</h2>' '<br/>'
     )
 
 
@@ -68,60 +55,33 @@ def test_table_of_contents():
         '{% endfor %}'
     )
 
-    context = Context({
-        'html': '<br/><h2>Title one</h2><h2>Title two</h2><br/>'
-    })
+    context = Context({'html': '<br/><h2>Title one</h2><h2>Title two</h2><br/>'})
     html = template.render(context)
 
-    assert html == (
-        '    <a href="#title-one-section">Title one</a>'
-        '    <a href="#title-two-section">Title two</a>'
-    )
+    assert html == ('    <a href="#title-one-section">Title one</a>' '    <a href="#title-two-section">Title two</a>')
 
 
 def test_first_paragraph():
-    template = Template(
-        '{% load first_paragraph from cms_tags %}'
-        '{{ html|first_paragraph|safe }}'
-
-    )
-    context = Context({
-        'html': '<p>The first paragraph</p><p></p>'
-    })
+    template = Template('{% load first_paragraph from cms_tags %}' '{{ html|first_paragraph|safe }}')
+    context = Context({'html': '<p>The first paragraph</p><p></p>'})
     html = template.render(context)
 
     assert html == '<p>The first paragraph</p>'
 
 
 def test_first_image():
-    template = Template(
-        '{% load first_image from cms_tags %}'
-        '{{ html|first_image|safe }}'
-
+    template = Template('{% load first_image from cms_tags %}' '{{ html|first_image|safe }}')
+    context = Context(
+        {'html': ('<p>The first paragraph</p>' '<p><img src="path/to/image" height="100" width="50"/></p>')}
     )
-    context = Context({
-        'html': (
-            '<p>The first paragraph</p>'
-            '<p><img src="path/to/image" height="100" width="50"/></p>'
-        )
-    })
     html = template.render(context)
 
     assert html == '<img src="path/to/image" width="50"/>'
 
 
 def test_first_image_empty():
-    template = Template(
-        '{% load first_image from cms_tags %}'
-        '{{ html|first_image|safe }}'
-
-    )
-    context = Context({
-        'html': (
-            '<p>The first paragraph</p>'
-            '<p></p>'
-        )
-    })
+    template = Template('{% load first_image from cms_tags %}' '{{ html|first_image|safe }}')
+    context = Context({'html': ('<p>The first paragraph</p>' '<p></p>')})
     html = template.render(context)
 
     assert html == ''
@@ -137,11 +97,8 @@ def test_grouper():
         '    {% endfor %}'
         '</ul>'
         '{% endfor %}'
-
     )
-    context = Context({
-        'the_list': range(1, 10)
-    })
+    context = Context({'the_list': range(1, 10)})
     html = template.render(context)
 
     assert html == (
@@ -173,11 +130,8 @@ def test_grouper_remainder():
         '    {% endfor %}'
         '</ul>'
         '{% endfor %}'
-
     )
-    context = Context({
-        'the_list': range(1, 6)
-    })
+    context = Context({'the_list': range(1, 6)})
     html = template.render(context)
 
     assert html == (
@@ -195,20 +149,18 @@ def test_grouper_remainder():
 
 def test_add_href_target(rf):
     request = rf.get('/', HTTP_HOST='www.example.com')
-    template = Template(
-        '{% load add_href_target from cms_tags %}'
-        '{{ html|add_href_target:request|safe }}'
-
+    template = Template('{% load add_href_target from cms_tags %}' '{{ html|add_href_target:request|safe }}')
+    context = Context(
+        {
+            'request': request,
+            'html': (
+                '<a href="http://www.google.com"></a>'
+                '<a href="https://www.google.com"></a>'
+                '<a href="http://www.example.com"></a>'
+                '<a href="https://www.example.com"></a>'
+            ),
+        }
     )
-    context = Context({
-        'request': request,
-        'html': (
-            '<a href="http://www.google.com"></a>'
-            '<a href="https://www.google.com"></a>'
-            '<a href="http://www.example.com"></a>'
-            '<a href="https://www.example.com"></a>'
-        )
-    })
     html = template.render(context)
 
     assert html == (
@@ -251,10 +203,7 @@ def test_filter_by_active_language(rf):
         },
     ]
 
-    context = Context({
-        'request': request,
-        'sectors': test_sectors
-    })
+    context = Context({'request': request, 'sectors': test_sectors})
 
     filtered = template.render(context)
     soup = BeautifulSoup(filtered, 'html.parser')
@@ -267,11 +216,14 @@ def test_filter_by_active_language_empty():
     assert cms_tags.filter_by_active_language(None) == []
 
 
-@pytest.mark.parametrize('value, expected_result', [
-    ('title: heading', 'title'),
-    ('アグリテック：貴社のビジネスを英国で発展させよう', 'アグリテック'),
-    ('title', 'title')
-])
+@pytest.mark.parametrize(
+    'value, expected_result',
+    [
+        ('title: heading', 'title'),
+        ('アグリテック：貴社のビジネスを英国で発展させよう', 'アグリテック'),
+        ('title', 'title'),
+    ],
+)
 def test_title_from_heading(value, expected_result):
     assert cms_tags.title_from_heading(value) == expected_result
 
@@ -284,3 +236,38 @@ def test_get_image_url_handles_missing_images():
 def test_get_image_url_handles_image_being_none():
     none_image_result = cms_tags.get_image_url({'page': {'small_image': None}}, 'small_image')
     assert none_image_result is None
+
+
+def test_get_canonical_url_without_www(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = '/international/investment-support-directory/'
+    request.get_host = MagicMock(return_value='great.com')
+
+    context_data = {'request': request}
+    canonical_url = get_canonical_url(context_data)
+    assert canonical_url == 'https://www.great.com/international/investment-support-directory/'
+
+
+def test_get_canonical_url_with_www(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = '/international/investment-support-directory/'
+    request.get_host = MagicMock(return_value='www.great.com')
+
+    context_data = {'request': request}
+    canonical_url = get_canonical_url(context_data)
+    assert canonical_url == 'https://www.great.com/international/investment-support-directory/'
+
+
+def test_get_canonical_url_with_extra_params(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = (
+        '/international/investment-support-directory/OC380935/fred-blogs-immigration-barristers/?verbose=true'
+    )
+    request.get_host = MagicMock(return_value='www.great.com')
+
+    context_data = {'request': request}
+    canonical_url = get_canonical_url(context_data)
+    assert canonical_url == 'https://www.great.com/international/investment-support-directory/'

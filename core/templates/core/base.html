@@ -1,5 +1,6 @@
 {% extends 'directory_components/base.html' %}
 
+
 {% comment %}
 As this template extends the directory_components/base.html, is brings in a
 number of extra CSS styles that were once sensible defaults:
@@ -9,6 +10,7 @@ number of extra CSS styles that were once sensible defaults:
 
 {% load static %}
 {% load i18n %}
+{% load canonical_url_tags %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% get_current_language as LANGUAGE %}
 
@@ -50,7 +52,8 @@ number of extra CSS styles that were once sensible defaults:
 {% endblock %}
 
 {% block head_other %}
-    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% get_canonical_url as canonical_url %}
+    <link rel="canonical" href="{{ canonical_url }}">
     <meta name="msvalidate.01" content="76D322F181AE9F91C43419E5CD511BBC"/>
 {% endblock %}
 
