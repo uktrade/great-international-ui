@@ -8,6 +8,8 @@ FIND_UK_SPECIALIST = urls.international.HOME / 'investment-support-directory/'
 INTERNATIONAL_CONTACT = urls.international.HOME / 'contact/'
 EXPAND_YOUR_BUSINESS = urls.international.HOME / 'expand-your-business-in-the-uk/'
 
+BUY_FROM_THE_UK_URL = urls.international.HOME / 'buy-from-the-uk/'
+
 ABOUT_UK = NavItem(
     name='about-uk',
     title=_('About the UK'),
@@ -29,7 +31,7 @@ INVEST_CAPITAL = NavItem(
 BUY_FROM_THE_UK = NavItem(
     name='trade',
     title=_('Buy from the UK'),
-    url=urls.international.TRADE_HOW_WE_HELP
+    url=BUY_FROM_THE_UK_URL
 )
 
 ABOUT_DIT = NavItem(

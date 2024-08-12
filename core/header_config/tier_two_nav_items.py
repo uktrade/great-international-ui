@@ -1,6 +1,7 @@
 from core.header_config.helpers import NavItem
 from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
+from tier_one_nav_items import BUY_FROM_THE_UK_URL
 
 
 # Until we can update directory-constants, define this just here
@@ -113,7 +114,7 @@ HOW_TO_TRADE = NavItem(
 HOW_WE_HELP_BUY = NavItem(
     name='how-we-help-buy',
     title=_('How we help'),
-    url=urls.international.TRADE_HOW_WE_HELP
+    url=BUY_FROM_THE_UK_URL
 )
 
 CONTACT_US_TRADE = NavItem(
