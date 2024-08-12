@@ -1,7 +1,7 @@
 from core.header_config.helpers import NavItem
 from django.utils.translation import gettext_lazy as _
 from directory_constants import urls
-from tier_one_nav_items import BUY_FROM_THE_UK_URL
+from core.header_config.tier_one_nav_items import BUY_FROM_THE_UK_URL
 
 
 # Until we can update directory-constants, define this just here
