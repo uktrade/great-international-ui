@@ -10,7 +10,7 @@ REGIONS_URL = urls.international.HOME / 'content/investment/regions/'
 SECTORS_URL = urls.international.HOME / 'content/investment/sectors/'
 INVESTMENT_OPPORTUNITIES_URL = urls.international.HOME / 'investment/opportunities/'
 ATLAS_HOW_WE_CAN_HELP_URL = urls.international.HOME / 'content/investment/how-we-can-help/'
-
+BUY_FROM_THE_UK_CONTACT_URL = urls.international.HOME / 'buy-from-the-uk/contact/'
 
 OVERVIEW_ABOUT = NavItem(
     name='overview-about-uk',
@@ -120,7 +120,7 @@ HOW_WE_HELP_BUY = NavItem(
 CONTACT_US_TRADE = NavItem(
     name='contact-us-trade',
     title=_('Contact us'),
-    url=urls.international.TRADE_CONTACT
+    url=BUY_FROM_THE_UK_CONTACT_URL
 )
 
 OVERVIEW_ABOUT_DIT = NavItem(
