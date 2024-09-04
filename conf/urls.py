@@ -30,51 +30,7 @@ sitemaps = {
 
 # Investment Support Directory, Trade and Invest
 urlpatterns = [
-    re_path(
-        r'^international/investment-support-directory/',
-        include(
-            'investment_support_directory.urls',
-            namespace='investment-support-directory',
-        )
-    ),
-    re_path(
-        r'^international/trade/investment-support-directory/search/',
-        QuerystringRedirectView.as_view(url='/international/investment-support-directory/')
-    ),
-    re_path(
-        r'^international/trade/',
-        include(
-            'find_a_supplier.urls',
-            namespace='find-a-supplier',
-        )
-    ),
-    re_path(
-        r'^international/content/trade/$',
-        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
-        name='content-trade-home-redirect'
-    ),
-    re_path(
-        r'^international/content/trade/contact/$',
-        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:industry-contact'),
-        name='content-trade-contact-redirect'
-    ),
-    re_path(
-        r'^international/trade/incoming/$',
-        QuerystringRedirectView.as_view(pattern_name='find-a-supplier:trade-home'),
-        name='trade-incoming-homepage'
-    ),
-    # This entry handles all URLs in find_a_supplier/redirects.py
-    re_path(
-        r'^international/trade/incoming/(?P<path>[\w\-/]*)/$',
-        find_a_supplier.views.LegacySupplierURLRedirectView.as_view(),
-        name='trade-incoming'
-    ),
-    # This entry handles all URLs in invest/redirects.py
-    re_path(
-        r'^international/invest/incoming/(?P<path>[\w\-/]*)/$',
-        invest.views.LegacyInvestURLRedirectView.as_view(),
-        name='invest-incoming'
-    ),
+    
 ]
 
 if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
