@@ -3,7 +3,7 @@ from directory_components.decorators import skip_ga360
 import directory_healthcheck.views
 
 from django.conf import settings
-from django.urls import re_path, include
+from django.urls import re_path
 from django.views.static import serve
 from django.contrib.sitemaps.views import sitemap
 
@@ -11,7 +11,6 @@ import core.views
 from core.views import QuerystringRedirectView
 import conf.sitemaps
 from conf.url_redirects import redirects_before_tree_based_routing_lookup
-import invest.views
 import investment_atlas.views
 import contact.views
 import find_a_supplier.views
@@ -29,9 +28,7 @@ sitemaps = {
 }
 
 # Investment Support Directory, Trade and Invest
-urlpatterns = [
-    
-]
+urlpatterns = []
 
 if settings.FEATURE_FLAGS['HOW_TO_SET_UP_REDIRECT_ON']:
     urlpatterns += [
