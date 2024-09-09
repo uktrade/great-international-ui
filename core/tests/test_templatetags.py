@@ -280,6 +280,9 @@ def test_get_absolute_url_without_hreflang(rf):
         '/international/investment-support-directory/OC380935/fred-blogs-immigration-barristers/?verbose=true'
     )
     request.get_host = MagicMock(return_value='www.great.com')
+    request.get_full_path = MagicMock(
+        return_value='/international/investment-support-directory/OC380935/fred-blogs-immigration-barristers/?verbose=true' # noqa E501
+    )
 
     context_data = {'request': request}
     hreflang_tags = get_hreflang_tags(context_data)
