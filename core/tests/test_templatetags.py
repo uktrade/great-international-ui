@@ -11,7 +11,7 @@ from core.templatetags import cms_tags
 
 from find_a_supplier.templatetags import industry_tags
 
-from core.templatetags.canonical_url_tags import get_canonical_url
+from core.templatetags.canonical_url_tags import get_hreflang_tags, get_canonical_url
 
 
 def test_search_url():
@@ -271,3 +271,32 @@ def test_get_canonical_url_with_extra_params(rf):
     context_data = {'request': request}
     canonical_url = get_canonical_url(context_data)
     assert canonical_url == 'https://www.great.com/international/investment-support-directory/'
+
+
+def test_get_absolute_url_without_hreflang(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = (
+        '/international/investment-support-directory/OC380935/fred-blogs-immigration-barristers/?verbose=true'
+    )
+    request.get_host = MagicMock(return_value='www.great.com')
+
+    context_data = {'request': request}
+    hreflang_tags = get_hreflang_tags(context_data)
+    assert hreflang_tags == ''
+
+
+def test_get_absolute_url_with_hreflang(rf):
+    request = Mock()
+    request.scheme = 'https'
+    request.path = '/international/investment-support-directory/'
+    request.get_host = MagicMock(return_value='www.great.com')
+    request.get_full_path = MagicMock(return_value='/international/investment-support-directory/')
+
+    context_data = {'request': request}
+    hreflang_tags = get_hreflang_tags(context_data)
+    assert (
+        hreflang_tags
+        == '<link rel="alternate" hreflang="en" href="https://www.great.com/international/investment-support-directory/" />' # noqa E501
+        '\n<link rel="alternate" hreflang="x-default" href="https://www.great.com/international/investment-support-directory/" />' # noqa E501
+    )
