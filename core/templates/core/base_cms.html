@@ -1,17 +1,9 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load canonical_url_tags %}
 
 {% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} -
     {{ international_home_link.label }}{% endblock %}
-
-{% block head_other %}
-    {{ block.super }}
-    {% for language_code, url in page.meta.localised_urls %}
-        {% if language_code != 'en-gb' and language_code != 'en'}
-            <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
-        {% endif %}
-    {% endfor %}
-{% endblock %}
 
 {% block head_sharing_metadata %}
     {{ block.super }}
