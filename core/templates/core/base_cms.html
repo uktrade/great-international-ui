@@ -1,6 +1,5 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% load canonical_url_tags %}
 
 {% block head_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} -
     {{ international_home_link.label }}{% endblock %}
