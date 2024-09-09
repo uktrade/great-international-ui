@@ -7,7 +7,9 @@
 {% block head_other %}
     {{ block.super }}
     {% for language_code, url in page.meta.localised_urls %}
-        <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+        {% if language_code != 'en-gb' and language_code != 'en'}
+            <link rel="alternate" href="{{ url }}" hreflang="{{ language_code }}">
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
