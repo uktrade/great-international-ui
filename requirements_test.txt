@@ -16,18 +16,18 @@ beautifulsoup4==4.12.3
     # via directory-components
 boto3==1.34.25
     # via -r requirements.in
-botocore==1.34.159
+botocore==1.34.162
     # via
     #   boto3
     #   s3transfer
-build==1.2.1
+build==1.2.2
     # via pip-tools
-certifi==2024.7.4
+certifi==2024.8.30
     # via
     #   elastic-apm
     #   requests
     #   sentry-sdk
-cffi==1.17.0
+cffi==1.17.1
     # via cryptography
 charset-normalizer==3.3.2
     # via requests
@@ -37,7 +37,7 @@ coverage[toml]==7.6.1
     # via
     #   pytest-codecov
     #   pytest-cov
-cryptography==43.0.0
+cryptography==43.0.1
     # via
     #   -r requirements.in
     #   jwcrypto
@@ -131,7 +131,7 @@ idna==3.7
     # via
     #   -r requirements.in
     #   requests
-importlib-metadata==8.2.0
+importlib-metadata==8.4.0
     # via build
 iniconfig==2.0.0
     # via pytest
@@ -198,13 +198,13 @@ pytest==8.3.2
     #   pytest-forked
     #   pytest-sugar
     #   pytest-xdist
-pytest-codecov==0.5.1
+pytest-codecov==0.6.0
     # via -r requirements_test.in
 pytest-cov==5.0.0
     # via
     #   -r requirements_test.in
     #   pytest-codecov
-pytest-django==4.8.0
+pytest-django==4.9.0
     # via -r requirements_test.in
 pytest-forked==1.6.0
     # via pytest-xdist
@@ -241,7 +241,7 @@ requests-mock==1.12.1
     # via -r requirements_test.in
 s3transfer==0.10.2
     # via boto3
-sentry-sdk==2.12.0
+sentry-sdk==2.13.0
     # via -r requirements.in
 sigauth==5.2.7
     # via directory-client-core
@@ -256,7 +256,7 @@ smmap==5.0.1
     # via gitdb
 sorl-thumbnail==12.9.0
     # via -r requirements.in
-soupsieve==2.5
+soupsieve==2.6
     # via beautifulsoup4
 sqlparse==0.5.1
     # via django
@@ -275,7 +275,7 @@ typing-extensions==4.12.2
     #   jwcrypto
 tzlocal==5.2
     # via dateparser
-urllib3==1.26.19
+urllib3==1.26.20
     # via
     #   -r requirements.in
     #   botocore
@@ -291,11 +291,11 @@ wheel==0.44.0
     # via pip-tools
 whitenoise==6.4.0
     # via -r requirements.in
-zipp==3.20.0
+zipp==3.20.1
     # via importlib-metadata
 zope-event==5.0
     # via gevent
-zope-interface==7.0.1
+zope-interface==7.0.3
     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
