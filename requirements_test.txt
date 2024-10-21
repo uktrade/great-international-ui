@@ -37,11 +37,11 @@ charset-normalizer==3.4.0
     # via requests
 click==8.1.7
     # via pip-tools
-coverage[toml]==7.6.3
+coverage[toml]==7.6.4
     # via
     #   pytest-codecov
     #   pytest-cov
-cryptography==43.0.1
+cryptography==43.0.3
     # via
     #   -r requirements.in
     #   jwcrypto
