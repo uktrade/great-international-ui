@@ -116,3 +116,5 @@ dockerise/postgres/data/*.sql
 
 # #Docker config file
 Dockerfile.dev
+
+test-reports/
